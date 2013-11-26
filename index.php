@@ -19,7 +19,7 @@ function tn_openid_login(){
   include_once 'class/openid.php';
   try {
     # Change 'localhost' to your domain name.
-    $openid = new LightOpenID('localhost');
+    $openid = new LightOpenID(XOOPS_URL);
     if(!$openid->mode) {
       if(isset($_POST['openid_identifier'])) {
         $openid->identity =  "http://openid.tn.edu.tw/op/user.aspx/".$_POST['openid_identifier'];
@@ -78,7 +78,7 @@ function google_login(){
   include_once 'class/openid.php';
   try {
     # Change 'localhost' to your domain name.
-    $openid = new LightOpenID('localhost');
+    $openid = new LightOpenID(XOOPS_URL);
     if(!$openid->mode) {
       if(isset($_GET['login'])) {
         $openid->identity = 'https://www.google.com/accounts/o8/id';
@@ -124,7 +124,7 @@ function yahoo_login(){
   include_once 'class/openid.php';
   try {
     # Change 'localhost' to your domain name.
-    $openid = new LightOpenID('localhost');
+    $openid = new LightOpenID(XOOPS_URL);
     if(!$openid->mode) {
       if(isset($_GET['login'])) {
         $openid->identity = 'https://me.yahoo.com';
