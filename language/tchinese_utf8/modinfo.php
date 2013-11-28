@@ -20,6 +20,7 @@ define("_MI_TADLOGIN_AUTH_METHOD_DESC","請選可要開放給使用者用的認�
 define("_MI_TADLOGIN_CONF3_OPT1","Facebook");
 define("_MI_TADLOGIN_CONF3_OPT2","Google");
 define("_MI_TADLOGIN_CONF3_OPT3","Yahoo");
+define("_MI_TADLOGIN_CONF3_OPT5","MyID.tw");
 define("_MI_TADLOGIN_CONF3_OPT4","台南市政府教育局OpenID");
 
 ?>

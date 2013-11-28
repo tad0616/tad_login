@@ -6,7 +6,7 @@ include_once XOOPS_ROOT_PATH."/header.php";
 
 /*-----------function區--------------*/
 
-//OpenID 登入
+//台南 OpenID 登入
 function tn_openid_login(){
   global $xoopsModuleConfig , $xoopsConfig ,$xoopsDB , $xoopsTpl,$xoopsUser;
 
@@ -21,14 +21,10 @@ function tn_openid_login(){
     # Change 'localhost' to your domain name.
     $openid = new LightOpenID(XOOPS_URL);
     if(!$openid->mode) {
-      if(isset($_POST['openid_identifier'])) {
-        $openid->identity =  "http://openid.tn.edu.tw/op/user.aspx/".$_POST['openid_identifier'];
-        # The following two lines request email, full name, and a nickname
-        # from the provider. Remove them if you don't need that data.
-        $openid->required = array('contact/email');
-        $openid->optional = array('namePerson', 'namePerson/friendly');
+        $openid->identity =  "https://openid.tn.edu.tw/op/";
+        $openid->required = array('contact/email' , 'namePerson/first' , 'namePerson/last' , 'pref/language' , 'contact/country/home');
         header('Location: ' . $openid->authUrl());
-      }
+      
     } else {
       $user_profile=$openid->getAttributes();
       /*
@@ -53,9 +49,9 @@ function tn_openid_login(){
         $name = $myts->addSlashes($user_profile['namePerson']);
         $pass = md5($user_profile['contact/email']);
         $email =  strtolower($user_profile['contact/email']);
-        $bio = $myts->addSlashes($user_profile['/axschema/school/id']);
+        $SchoolCode = $myts->addSlashes($user_profile['/axschema/school/id']);
         //搜尋有無相同username資料
-        login_xoops($uname,$name,$pass,$email,$bio);
+        login_xoops($uname,$name,$pass,$email,$SchoolCode);
       }
     }
   } catch(ErrorException $e) {
@@ -128,7 +124,7 @@ function yahoo_login(){
     if(!$openid->mode) {
       if(isset($_GET['login'])) {
         $openid->identity = 'https://me.yahoo.com';
-        $openid->required = array('contact/email' , 'namePerson/first' , 'namePerson/last' , 'pref/language' , 'contact/country/home');
+        $openid->required = array('contact/email' , 'namePerson/friendly' , 'namePerson');
         header('Location: ' . $openid->authUrl());
       }
     } else {
@@ -140,13 +136,10 @@ function yahoo_login(){
 
         $the_id=explode("@",$user_profile['contact/email']);
 
-        //$uid = $user['id'];
-        $uname =$the_id[0]."_ya";
+        $uname =empty($user_profile['namePerson/friendly'])?$the_id[0]."_ya":$user_profile['namePerson/friendly']."_ya";
         $name = $myts->addSlashes($the_id[0]);
-        $pass = md5($user_profile['contact/email'].$user_profile['namePerson/last'].$user_profile['namePerson/first']);
+        $pass = md5($user_profile['contact/email'].$user_profile['namePerson']);
         $email =  $user_profile['contact/email'];
-        //$bio = $myts->addSlashes($user_profile['/axschema/school/id']);
-        //搜尋有無相同username資料
         login_xoops($uname,$name,$pass,$email);
       }
     }
@@ -159,7 +152,50 @@ function yahoo_login(){
 
 
 
+//MyID 登入
+function myid_login(){
+  global $xoopsModuleConfig , $xoopsConfig ,$xoopsDB , $xoopsTpl,$xoopsUser;
 
+  if($xoopsUser){
+    header("location:".XOOPS_URL . "/user.php");
+    exit;
+  }
+
+  include_once 'class/openid.php';
+  try {
+    # Change 'localhost' to your domain name.
+    $openid = new LightOpenID(XOOPS_URL);
+    if(!$openid->mode) {
+      if(isset($_GET['login'])) {
+        $openid->identity = 'https://myid.tw';
+        //$openid->identity =  "https://openid.tn.edu.tw/op/";
+        $openid->required = array('contact/email' , 'namePerson/friendly' , 'namePerson');
+        header('Location: ' . $openid->authUrl());
+
+      }
+    } else {
+
+      $user_profile=$openid->getAttributes();
+      //die(var_export($user_profile));
+      if ($user_profile) {
+        $myts =& MyTextsanitizer::getInstance();
+
+        $the_id=explode("@",$user_profile['contact/email']);
+
+        //$uid = $user['id'];
+        $uname =empty($user_profile['namePerson/friendly'])?$the_id[0]."_my":$user_profile['namePerson/friendly']."_my";
+        $name = $myts->addSlashes($user_profile['namePerson']);
+        $pass = md5($user_profile['contact/email'].$user_profile['birthDate'].$user_profile['namePerson']);
+        $email =  $user_profile['contact/email'];
+        login_xoops($uname,$name,$pass,$email);
+      }
+    }
+  } catch(ErrorException $e) {
+      $main=$e->getMessage();
+  }
+
+  $xoopsTpl->assign('MyID',$main);
+}
 
 /*-----------執行動作判斷區----------*/
 
@@ -181,6 +217,12 @@ switch($op){
   $_SESSION['auth_method']="tn";
   tn_openid_login();
   break;
+  
+  case "myid":
+  $_SESSION['auth_method']="myid";
+  myid_login();
+  break;
+  
 
   default:
   if($_SESSION['auth_method']=="google"){
@@ -189,6 +231,8 @@ switch($op){
     yahoo_login();
   }elseif($_SESSION['auth_method']=="tn"){
     tn_openid_login();
+  }elseif($_SESSION['auth_method']=="myid"){
+    myid_login();
   }else{
     facebook_login();
   }

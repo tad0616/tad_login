@@ -64,7 +64,7 @@ if(!function_exists('facebook_login')){
       $form= $myts->addSlashes($user_profile['hometown']['name']);
       $sig= $myts->addSlashes($user_profile['quotes']);
       $occ= $myts->addSlashes($user_profile['work'][0]['employer']['name']);
-      login_xoops($uname,$name,$pass,$email,$bio,$url,$form,$sig,$occ);
+      login_xoops($uname,$name,$pass,$email,"",$url,$form,$sig,$occ,$bio);
     } else {
       $args = array('scope' => 'email');
       $loginUrl = $facebook->getLoginUrl($args);
@@ -80,7 +80,7 @@ if(!function_exists('facebook_login')){
 
 //搜尋有無相同username資料
 if(!function_exists('login_xoops')){
-  function login_xoops($uname="",$name="",$pass="",$email="",$bio="",$url="",$form="",$sig="",$occ=""){
+  function login_xoops($uname="",$name="",$pass="",$email="",$SchoolCode="",$url="",$form="",$sig="",$occ="",$bio=""){
     global $xoopsModuleConfig , $xoopsConfig ,$xoopsDB ,$xoopsUser;
     $member_handler =& xoops_gethandler('member');
     if ($member_handler->getUserCount(new Criteria('uname', $uname)) > 0) {
@@ -203,7 +203,7 @@ if(!function_exists('login_xoops')){
       $newuser->setVar("rank", 1);
       $newuser->setVar("level", 1);
       //$newuser->setVar("user_occ", $myts->addSlashes($user_profile['work'][0]['employer']['name']));
-      $newuser->setVar("user_intrest", "");
+      $newuser->setVar("user_intrest", $SchoolCode);
       $newuser->setVar('user_mailok', true);
       if (!$member_handler->insertUser($newuser, 1)) {
           $main= _MD_TADLOGIN_CNRNU;
@@ -212,7 +212,7 @@ if(!function_exists('login_xoops')){
       $sql = "INSERT INTO " . $xoopsDB->prefix('groups_users_link') . "  (groupid, uid) VALUES  (2, " . $newuser->getVar('uid') . ")";
       $result = $xoopsDB->queryF($sql);
       //redirect_header('index.php?op=login', 3, _MD_TADLOGIN_OK);
-      login_xoops($uname,$name,$pass,$email,$bio,$url,$form,$sig,$occ);
+      login_xoops($uname,$name,$pass,$email,$SchoolCode,$url,$form,$sig,$occ,$bio);
     }
   }
 }

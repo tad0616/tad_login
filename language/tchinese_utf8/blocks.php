@@ -7,6 +7,7 @@ define("_MB_TADLOGIN_OK", "登入成功");
 define("_MB_TADLOGIN_FB_LOGIN", "使用 FaceBook 登入");
 define("_MB_TADLOGIN_GO_LOGIN", "使用 Google 登入");
 define("_MB_TADLOGIN_YA_LOGIN", "使用 Yahoo 登入");
+define("_MB_TADLOGIN_MY_LOGIN", "使用 MyID 登入");
 define("_MB_TADLOGIN_TN_LOGIN", "南市教育局 OpenID 登入");
 define("_MB_TADLOGIN_PLEASE_INPUT", "請輸入");
 define("_MB_TADLOGIN_LOG_IN", "登入");

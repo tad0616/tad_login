@@ -3,7 +3,7 @@ $modversion = array();
 
 //---模組基本資訊---//
 $modversion['name'] = _MI_TADLOGIN_NAME;
-$modversion['version'] = 2.00;
+$modversion['version'] = 2.1;
 $modversion['description'] = _MI_TADLOGIN_DESC;
 $modversion['author'] = _MI_TADLOGIN_AUTHOR;
 $modversion['credits'] = _MI_TADLOGIN_CREDITS;
@@ -14,7 +14,7 @@ $modversion['image'] = "images/logo_{$xoopsConfig['language']}.png";
 $modversion['dirname'] = basename(dirname(__FILE__));
 
 //---模組狀態資訊---//
-$modversion['release_date'] = '2013/11/26';
+$modversion['release_date'] = '2013/11/28';
 $modversion['module_website_url'] = 'http://tad0616.net/';
 $modversion['module_website_name'] = _MI_TAD_WEB;
 $modversion['module_status'] = 'release';
@@ -84,7 +84,7 @@ $modversion['config'][2]['title'] = '_MI_TADLOGIN_AUTH_METHOD';
 $modversion['config'][2]['description'] = '_MI_TADLOGIN_AUTH_METHOD_DESC';
 $modversion['config'][2]['formtype']  = 'select_multi';
 $modversion['config'][2]['valuetype'] = 'array';
-$modversion['config'][2]['default'] = array('google','yahoo');
-$modversion['config'][2]['options'] = array(_MI_TADLOGIN_CONF3_OPT1 => 'facebook',_MI_TADLOGIN_CONF3_OPT2 => 'google',_MI_TADLOGIN_CONF3_OPT3 => 'yahoo',_MI_TADLOGIN_CONF3_OPT4 => 'tn_openid');
+$modversion['config'][2]['default'] = array('google','yahoo','myid');
+$modversion['config'][2]['options'] = array(_MI_TADLOGIN_CONF3_OPT1 => 'facebook',_MI_TADLOGIN_CONF3_OPT2 => 'google',_MI_TADLOGIN_CONF3_OPT3 => 'yahoo',_MI_TADLOGIN_CONF3_OPT5 => 'myid',_MI_TADLOGIN_CONF3_OPT4 => 'tn_openid');
 
 ?>

@@ -8,26 +8,19 @@
 <{/if}>
 
 <{if "google"|in_array:$auth_method}>
-<form action="?login&op=google" method="post" style="display:inline">
-    <button type="submit" class="btn"><img src="images/google.png"><{$smarty.const._MD_TADLOGIN_GO_LOGIN}></button>
-</form>
+<a href="index.php?op=google" class="btn"><img src="images/google.png"><{$smarty.const._MD_TADLOGIN_GO_LOGIN}></a>
 <{/if}>
+
 
 <{if "yahoo"|in_array:$auth_method}>
-<a href="?login&op=yahoo" class="btn"><img src="images/yahoo.png"><{$smarty.const._MD_TADLOGIN_YA_LOGIN}></a>
+<a href="index.php?op=yahoo" class="btn"><img src="images/yahoo.png"><{$smarty.const._MD_TADLOGIN_YA_LOGIN}></a>
 <{/if}>
 
+<{if "myid"|in_array:$auth_method}>
+<a href="index.php?op=myid" class="btn"><img src="images/openid.png"><{$smarty.const._MD_TADLOGIN_MY_LOGIN}></a>
+<{/if}>
 
 <{if "tn_openid"|in_array:$auth_method}>
-  <div class="well">
-    <form action="index.php" method="post">
-      <h1>
-        <{$smarty.const._MD_TADLOGIN_PLEASE_INPUT}>
-        <{$smarty.const._TAD_FOR}>
-        <input type="hidden" name="op" value="tn" />
-        <input type="text" name="openid_identifier" class="span2" />@tn.edu.tw
-        <button type="submit" class="btn"><img src="images/openid.png"><{$smarty.const._MD_TADLOGIN_TN_LOGIN}></button>
-      </h1>
-    </form>
-  </div>
+<a href="index.php?op=tn" class="btn"><img src="images/tn.png"><{$smarty.const._MD_TADLOGIN_TN_LOGIN}></a>
 <{/if}>
+

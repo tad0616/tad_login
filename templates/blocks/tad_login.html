@@ -1,26 +1,26 @@
 <{if $block}>
   <{if "facebook"|in_array:$block.auth_method}>
-    <a href="<{$block.facebook}>" class="btn"><img src="<{$xoops_url}>/modules/tad_login/images/facebook.png" alt="<{$smarty.const._MB_TADLOGIN_FB_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_FB_LOGIN}>"></a>
+    <a href="<{$block.facebook}>" ><img src="<{$xoops_url}>/modules/tad_login/images/facebook.png" alt="<{$smarty.const._MB_TADLOGIN_FB_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_FB_LOGIN}>"></a>
   <{/if}>
+  
 
   <{if "google"|in_array:$block.auth_method}>
-  <form action="<{$xoops_url}>/modules/tad_login/index.php?login&op=google" method="post" style="display:inline">
-      <button type="submit" class="btn"><img src="<{$xoops_url}>/modules/tad_login/images/google.png" alt="<{$smarty.const._MB_TADLOGIN_GO_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_GO_LOGIN}>"></button>
-  </form>
+  <a href="<{$xoops_url}>/modules/tad_login/index.php?login&op=google" ><img src="<{$xoops_url}>/modules/tad_login/images/google.png" alt="<{$smarty.const._MB_TADLOGIN_GO_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_GO_LOGIN}>"></a>
   <{/if}>
 
   <{if "yahoo"|in_array:$block.auth_method}>
-  <a href="<{$xoops_url}>/modules/tad_login/index.php?login&op=yahoo" class="btn"><img src="<{$xoops_url}>/modules/tad_login/images/yahoo.png" alt="<{$smarty.const._MB_TADLOGIN_YA_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_YA_LOGIN}>"></a>
+  <a href="<{$xoops_url}>/modules/tad_login/index.php?login&op=yahoo" ><img src="<{$xoops_url}>/modules/tad_login/images/yahoo.png" alt="<{$smarty.const._MB_TADLOGIN_YA_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_YA_LOGIN}>"></a>
+  <{/if}>
+
+
+  <{if "myid"|in_array:$block.auth_method}>
+  <a href="<{$xoops_url}>/modules/tad_login/index.php?login&op=myid" ><img src="<{$xoops_url}>/modules/tad_login/images/openid.png" alt="<{$smarty.const._MB_TADLOGIN_YA_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_MY_LOGIN}>"></a>
   <{/if}>
 
 
   <{if "tn_openid"|in_array:$block.auth_method}>
-    <form action="<{$xoops_url}>/modules/tad_login/index.php" method="post">
-        <{$smarty.const._MB_TADLOGIN_PLEASE_INPUT}>
-        <{$smarty.const._TAD_FOR}>
-        <input type="hidden" name="op" value="tn" />
-        <input type="text" name="openid_identifier" class="span4" />@tn.edu.tw
-        <button type="submit" class="btn btn-block"><img src="<{$xoops_url}>/modules/tad_login/images/openid.png"><{$smarty.const._MB_TADLOGIN_TN_LOGIN}></button>
-    </form>
+  <a href="<{$xoops_url}>/modules/tad_login/index.php?login&op=tn_openid" ><img src="<{$xoops_url}>/modules/tad_login/images/tn.png" alt="<{$smarty.const._MB_TADLOGIN_TN_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_TN_LOGIN}>"></a>
   <{/if}>
+
+
 <{/if}>
