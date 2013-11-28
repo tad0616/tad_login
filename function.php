@@ -31,6 +31,13 @@ if(!function_exists('facebook_login')){
             $uid = intval($_GET['uid']);
         }
     }
+    
+    if(empty($xoopsModuleConfig)){    
+      $modhandler = &xoops_gethandler('module');
+      $xoopsModule = &$modhandler->getByDirname("tad_login");
+      $config_handler =& xoops_gethandler('config');
+      $xoopsModuleConfig= & $config_handler->getConfigsByCat(0, $xoopsModule->getVar('mid'));
+    }
 
 
     $facebook = new Facebook(array(
@@ -57,17 +64,21 @@ if(!function_exists('facebook_login')){
       $uid = $user_profile['id'];
       $uname = $user_profile['username']."_fb";
       $name = $myts->addSlashes($user_profile['name']);
-      $pass = md5($user_profile['id']);
       $email =  $user_profile['email'];
       $bio = $myts->addSlashes($user_profile['bio']);
       $url = formatURL($user_profile['link']);
       $form= $myts->addSlashes($user_profile['hometown']['name']);
       $sig= $myts->addSlashes($user_profile['quotes']);
       $occ= $myts->addSlashes($user_profile['work'][0]['employer']['name']);
-      login_xoops($uname,$name,$pass,$email,"",$url,$form,$sig,$occ,$bio);
+      
+      login_xoops($uname,$name,$email,"",$url,$form,$sig,$occ,$bio);
     } else {
-      $args = array('scope' => 'email');
-      $loginUrl = $facebook->getLoginUrl($args);
+      //$args = array('scope' => 'email');
+      //$loginUrl = $facebook->getLoginUrl($args);
+      $loginUrl = $facebook->getLoginUrl(array(
+      'scope' => 'email'
+      //,'redirect_uri' => XOOPS_URL
+      ));
     }
     if($mode=="return"){
       return $loginUrl;
@@ -80,12 +91,15 @@ if(!function_exists('facebook_login')){
 
 //搜尋有無相同username資料
 if(!function_exists('login_xoops')){
-  function login_xoops($uname="",$name="",$pass="",$email="",$SchoolCode="",$url="",$form="",$sig="",$occ="",$bio=""){
+  function login_xoops($uname="",$name="",$email="",$SchoolCode="",$url="",$form="",$sig="",$occ="",$bio=""){
     global $xoopsModuleConfig , $xoopsConfig ,$xoopsDB ,$xoopsUser;
+    
     $member_handler =& xoops_gethandler('member');
+
     if ($member_handler->getUserCount(new Criteria('uname', $uname)) > 0) {
       //若有！
       $uname = trim($uname);
+      $pass = getPass($uname);
 
       if ($uname == '' || $pass == '') {
         redirect_header(XOOPS_URL.'/user.php', 1, _MD_TNOPENID_INCORRECTLOGIN);
@@ -98,6 +112,7 @@ if(!function_exists('login_xoops')){
       include_once $GLOBALS['xoops']->path('class/auth/authfactory.php');
 
       $xoopsAuth =& XoopsAuthFactory::getAuthConnection($uname);
+      
       $user = $xoopsAuth->authenticate($uname, $pass);
 
       if (false != $user) {
@@ -176,7 +191,8 @@ if(!function_exists('login_xoops')){
         redirect_header(XOOPS_URL . '/user.php?xoops_redirect=' . urlencode(trim($_POST['xoops_redirect'])), 5, $xoopsAuth->getHtmlErrors(), false);
       }
     }else {
-
+      
+      $pass = randStr(128);
       $newuser =& $member_handler->createUser();
       $newuser->setVar("user_viewemail",1);
       $newuser->setVar("attachsig",0);
@@ -209,13 +225,62 @@ if(!function_exists('login_xoops')){
           $main= _MD_TADLOGIN_CNRNU;
       }
 
-      $sql = "INSERT INTO " . $xoopsDB->prefix('groups_users_link') . "  (groupid, uid) VALUES  (2, " . $newuser->getVar('uid') . ")";
-      $result = $xoopsDB->queryF($sql);
-      //redirect_header('index.php?op=login', 3, _MD_TADLOGIN_OK);
-      login_xoops($uname,$name,$pass,$email,$SchoolCode,$url,$form,$sig,$occ,$bio);
+      $sql = "INSERT INTO `" . $xoopsDB->prefix('groups_users_link') . "`  (groupid, uid) VALUES  (2, " . $newuser->getVar('uid') . ")";
+      $xoopsDB->queryF($sql) or die(mysql_error());
+            
+      $sql = "replace into `".$xoopsDB->prefix('tad_login_random_pass')."` (`uname` , `random_pass`) values  ('{$uname}','{$pass}')";
+      $xoopsDB->queryF($sql) or die(mysql_error());
+      
+      login_xoops($uname,$name,$email,$SchoolCode,$url,$form,$sig,$occ,$bio);
     }
   }
 }
 
+if(!function_exists("getPass")){
+  function getPass($uname=""){
+    global $xoopsDB;
+    if(empty($uname))return;
+    
+    $sql = "select `random_pass` from `".$xoopsDB->prefix('tad_login_random_pass')."` where `uname`='{$uname}'";
+    $result = $xoopsDB->queryF($sql) or die(mysql_error());
+    list($random_pass)=$xoopsDB->fetchRow($result);
+    
+    //舊OpenID使用者
+    if(empty($random_pass)){
+      $random_pass=randStr(128);
+      
+      $sql = "replace into `".$xoopsDB->prefix('tad_login_random_pass')."` (`uname` , `random_pass`) values  ('{$uname}','{$random_pass}')";
+      $xoopsDB->queryF($sql) or die(mysql_error());
+      
+      $sql="update `".$xoopsDB->prefix('users')."` set `pass`=md5('{$random_pass}') where `uname`='{$uname}'";
+      $xoopsDB->queryF($sql) or die(mysql_error());
+    }
+    
+    return $random_pass;
+  }
+}
+
+
+if(!function_exists("randStr")){
+  function randStr($len=6,$format='ALL') {
+    switch($format) {
+      case 'ALL':
+        $chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'; break;
+      case 'CHAR':
+        $chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'; break;
+      case 'NUMBER':
+      $chars='0123456789'; break;
+      default :
+        $chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      break;
+    }
+
+    mt_srand((double)microtime()*1000000*getmypid());
+    $password="";
+    while(strlen($password)<$len)
+      $password.=substr($chars,(mt_rand()%strlen($chars)),1);
+    return $password;
+  }
+}
 
 ?>

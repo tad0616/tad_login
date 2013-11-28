@@ -22,7 +22,7 @@ function tn_openid_login(){
     $openid = new LightOpenID(XOOPS_URL);
     if(!$openid->mode) {
         $openid->identity =  "https://openid.tn.edu.tw/op/";
-        $openid->required = array('contact/email' , 'namePerson/first' , 'namePerson/last' , 'pref/language' , 'contact/country/home');
+        $openid->required = array('contact/email', 'namePerson/friendly' , 'namePerson');
         header('Location: ' . $openid->authUrl());
       
     } else {
@@ -47,11 +47,10 @@ function tn_openid_login(){
         //$uid = $user['id'];
         $uname =$the_id[0]."_tn";
         $name = $myts->addSlashes($user_profile['namePerson']);
-        $pass = md5($user_profile['contact/email']);
         $email =  strtolower($user_profile['contact/email']);
         $SchoolCode = $myts->addSlashes($user_profile['/axschema/school/id']);
         //搜尋有無相同username資料
-        login_xoops($uname,$name,$pass,$email,$SchoolCode);
+        login_xoops($uname,$name,$email,$SchoolCode);
       }
     }
   } catch(ErrorException $e) {
@@ -78,7 +77,7 @@ function google_login(){
     if(!$openid->mode) {
       if(isset($_GET['login'])) {
         $openid->identity = 'https://www.google.com/accounts/o8/id';
-        $openid->required = array('contact/email' , 'namePerson/first' , 'namePerson/last' , 'pref/language' , 'contact/country/home');
+        $openid->required = array('contact/email' , 'namePerson/first' , 'namePerson/last');
         header('Location: ' . $openid->authUrl());
       }
     } else {
@@ -92,12 +91,11 @@ function google_login(){
 
         //$uid = $user['id'];
         $uname =$the_id[0]."_goo";
-        $name = $myts->addSlashes($user_profile['namePerson/first']).$myts->addSlashes($user_profile['namePerson/last']);
-        $pass = md5($user_profile['contact/email'].$user_profile['namePerson/last'].$user_profile['namePerson/first']);
+        $name = $myts->addSlashes($user_profile['namePerson/first']).$myts->addSlashes($user_profile['namePerson/last']);        
         $email =  $user_profile['contact/email'];
         //$bio = $myts->addSlashes($user_profile['/axschema/school/id']);
         //搜尋有無相同username資料
-        login_xoops($uname,$name,$pass,$email);
+        login_xoops($uname,$name,$email);
       }
     }
   } catch(ErrorException $e) {
@@ -137,10 +135,9 @@ function yahoo_login(){
         $the_id=explode("@",$user_profile['contact/email']);
 
         $uname =empty($user_profile['namePerson/friendly'])?$the_id[0]."_ya":$user_profile['namePerson/friendly']."_ya";
-        $name = $myts->addSlashes($the_id[0]);
-        $pass = md5($user_profile['contact/email'].$user_profile['namePerson']);
+        $name = $myts->addSlashes($user_profile['namePerson']);
         $email =  $user_profile['contact/email'];
-        login_xoops($uname,$name,$pass,$email);
+        login_xoops($uname,$name,$email);
       }
     }
   } catch(ErrorException $e) {
@@ -185,9 +182,8 @@ function myid_login(){
         //$uid = $user['id'];
         $uname =empty($user_profile['namePerson/friendly'])?$the_id[0]."_my":$user_profile['namePerson/friendly']."_my";
         $name = $myts->addSlashes($user_profile['namePerson']);
-        $pass = md5($user_profile['contact/email'].$user_profile['birthDate'].$user_profile['namePerson']);
         $email =  $user_profile['contact/email'];
-        login_xoops($uname,$name,$pass,$email);
+        login_xoops($uname,$name,$email);
       }
     }
   } catch(ErrorException $e) {

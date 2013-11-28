@@ -8,16 +8,16 @@
 <{/if}>
 
 <{if "google"|in_array:$auth_method}>
-<a href="index.php?op=google" class="btn"><img src="images/google.png"><{$smarty.const._MD_TADLOGIN_GO_LOGIN}></a>
+<a href="index.php?login&op=google" class="btn"><img src="images/google.png"><{$smarty.const._MD_TADLOGIN_GO_LOGIN}></a>
 <{/if}>
 
 
 <{if "yahoo"|in_array:$auth_method}>
-<a href="index.php?op=yahoo" class="btn"><img src="images/yahoo.png"><{$smarty.const._MD_TADLOGIN_YA_LOGIN}></a>
+<a href="index.php?login&op=yahoo" class="btn"><img src="images/yahoo.png"><{$smarty.const._MD_TADLOGIN_YA_LOGIN}></a>
 <{/if}>
 
 <{if "myid"|in_array:$auth_method}>
-<a href="index.php?op=myid" class="btn"><img src="images/openid.png"><{$smarty.const._MD_TADLOGIN_MY_LOGIN}></a>
+<a href="index.php?login&op=myid" class="btn"><img src="images/openid.png"><{$smarty.const._MD_TADLOGIN_MY_LOGIN}></a>
 <{/if}>
 
 <{if "tn_openid"|in_array:$auth_method}>
