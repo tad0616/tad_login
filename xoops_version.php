@@ -89,6 +89,6 @@ $modversion['config'][2]['description'] = '_MI_TADLOGIN_AUTH_METHOD_DESC';
 $modversion['config'][2]['formtype']  = 'select_multi';
 $modversion['config'][2]['valuetype'] = 'array';
 $modversion['config'][2]['default'] = array('google','yahoo','myid');
-$modversion['config'][2]['options'] = array(_MI_TADLOGIN_CONF3_OPT1 => 'facebook',_MI_TADLOGIN_CONF3_OPT2 => 'google',_MI_TADLOGIN_CONF3_OPT3 => 'yahoo',_MI_TADLOGIN_CONF3_OPT5 => 'myid',_MI_TADLOGIN_CONF3_OPT4 => 'tn_openid');
+$modversion['config'][2]['options'] = array(_MI_TADLOGIN_CONF3_OPT1 => 'facebook',_MI_TADLOGIN_CONF3_OPT2 => 'google',_MI_TADLOGIN_CONF3_OPT3 => 'yahoo',_MI_TADLOGIN_CONF3_OPT5 => 'myid',_MI_TADLOGIN_CONF3_OPT4 => 'tn_openid',_MI_TADLOGIN_CONF3_OPT6 => 'cyc');
 
 ?>

@@ -580,7 +580,7 @@ class LightOpenID
             foreach (array('required','optional') as $type) {
                 foreach ($this->$type as $alias => $field) {
                     if (is_int($alias)) $alias = strtr($field, '/', '_');
-                    $this->aliases[$alias] = 'http://axschema.org/' . $field;
+                    $this->aliases[$alias] = 'http://openid.edu.tw/' . $field;
                     if (empty($counts[$alias])) $counts[$alias] = 0;
                     $counts[$alias] += 1;
                     ${$type}[] = $alias;
@@ -783,7 +783,7 @@ class LightOpenID
             }
             $value = $this->data['openid_' . $alias . '_value_' . $key];
             $key = substr($this->data['openid_' . $alias . '_type_' . $key],
-                          strlen('http://axschema.org/'));
+                          strlen('http://openid.edu.tw/'));
 
             $attributes[$key] = $value;
         }
@@ -795,7 +795,7 @@ class LightOpenID
         $attributes = array();
         $sreg_to_ax = array_flip(self::$ax_to_sreg);
         foreach (explode(',', $this->data['openid_signed']) as $key) {
-            $keyMatch = 'sreg.';
+            $keyMatch = 'ext1.';
             if (substr($key, 0, strlen($keyMatch)) != $keyMatch) {
                 continue;
             }
@@ -804,7 +804,7 @@ class LightOpenID
                 # The field name isn't part of the SREG spec, so we ignore it.
                 continue;
             }
-            $attributes[$sreg_to_ax[$key]] = $this->data['openid_sreg_' . $key];
+            $attributes[$sreg_to_ax[$key]] = $this->data['openid_ext1_' . $key];
         }
         return $attributes;
     }

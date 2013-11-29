@@ -165,7 +165,6 @@ function myid_login(){
     if(!$openid->mode) {
       if(isset($_GET['login'])) {
         $openid->identity = 'https://myid.tw';
-        //$openid->identity =  "https://openid.tn.edu.tw/op/";
         $openid->required = array('contact/email' , 'namePerson/friendly' , 'namePerson');
         header('Location: ' . $openid->authUrl());
 
@@ -191,6 +190,64 @@ function myid_login(){
   }
 
   $xoopsTpl->assign('MyID',$main);
+}
+
+
+//嘉義縣 OpenID 登入
+function cyc_login(){
+  global $xoopsModuleConfig , $xoopsConfig ,$xoopsDB , $xoopsTpl,$xoopsUser;
+
+  if($xoopsUser){
+    header("location:".XOOPS_URL . "/user.php");
+    exit;
+  }
+
+
+  include_once 'class/openid_tc.php';
+  try {
+    # Change 'localhost' to your domain name.
+    $openid = new LightOpenID(XOOPS_URL);
+    if(!$openid->mode) {
+        $openid->identity = 'http://openid.cyccc.tw';
+        $openid->required = array('contact/email' , 'namePerson/friendly'  , 'namePerson');
+        $openid->optional = array('axschema/person/guid' , 'axschema/school/titleStr'  , 'axschema/school/id','tw/person/guid' , 'tw/isas/roles'  );
+        header('Location: ' . $openid->authUrl());
+      
+    } else {
+      $user_profile=$openid->getAttributes();
+      //die(var_export($user_profile));
+      /*
+      array (
+        '/axschema/person/guid' => '14684bd6fd05480979e9991f498272c48923880668fd045b750dd6e79864d470',
+        '/axschema/school/titleStr' => '[{"id":"114620","title":["教師"]}]',
+        '/axschema/school/id' => '114620',
+        'tw/person/guid' => '14684bd6fd05480979e9991f498272c48923880668fd045b750dd6e79864d470',
+        'tw/isas/roles' => '[{"sid":"114620","roles":["其他"]}]',
+        'contact/email' => 'Tad@tn.edu.tw',
+        'namePerson' => '吳弘凱',
+      )
+      */
+      // Login or logout url will be needed depending on current user state.
+      if ($user_profile) {
+        $myts =& MyTextsanitizer::getInstance();
+
+        $the_id=explode("@",$user_profile['contact/email']);
+
+        //$uid = $user['id'];
+        $uname =$the_id[0]."_tn";
+        $name = $myts->addSlashes($user_profile['namePerson']);
+        $email =  strtolower($user_profile['contact/email']);
+        $SchoolCode = $myts->addSlashes($user_profile['/axschema/school/id']);
+        //搜尋有無相同username資料
+        login_xoops($uname,$name,$email,$SchoolCode);
+      }
+    }
+  } catch(ErrorException $e) {
+      $main=$e->getMessage();
+  }
+
+  $xoopsTpl->assign('openid',$main);
+        
 }
 
 /*-----------執行動作判斷區----------*/
@@ -219,6 +276,11 @@ switch($op){
   myid_login();
   break;
   
+  case "cyc":
+  $_SESSION['auth_method']="cyc";
+  cyc_login();
+  break;
+  
 
   default:
   if($_SESSION['auth_method']=="google"){
@@ -229,6 +291,8 @@ switch($op){
     tn_openid_login();
   }elseif($_SESSION['auth_method']=="myid"){
     myid_login();
+  }elseif($_SESSION['auth_method']=="cyc"){
+    cyc_login();
   }else{
     facebook_login();
   }

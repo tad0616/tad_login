@@ -22,5 +22,9 @@
   <a href="<{$xoops_url}>/modules/tad_login/index.php?op=tn" ><img src="<{$xoops_url}>/modules/tad_login/images/tn.png" alt="<{$smarty.const._MB_TADLOGIN_TN_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_TN_LOGIN}>"></a>
   <{/if}>
 
+  <{if "cyc"|in_array:$block.auth_method}>
+  <a href="<{$xoops_url}>/modules/tad_login/index.php?login&op=cyc" ><img src="<{$xoops_url}>/modules/tad_login/images/cyc.png" alt="<{$smarty.const._MB_TADLOGIN_CYC_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_CYC_LOGIN}>"></a>
+  <{/if}>
+
 
 <{/if}>

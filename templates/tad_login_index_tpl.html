@@ -24,3 +24,7 @@
 <a href="index.php?op=tn" class="btn"><img src="images/tn.png"><{$smarty.const._MD_TADLOGIN_TN_LOGIN}></a>
 <{/if}>
 
+
+<{if "cyc"|in_array:$auth_method}>
+<a href="index.php?login&op=cyc" class="btn"><img src="images/cyc.png"><{$smarty.const._MD_TADLOGIN_CYC_LOGIN}></a>
+<{/if}>

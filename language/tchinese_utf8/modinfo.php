@@ -3,7 +3,7 @@ include_once XOOPS_ROOT_PATH."/modules/tadtools/language/{$xoopsConfig['language
 
 define("_MI_TADLOGIN_NAME","快速登入");
 define("_MI_TADLOGIN_AUTHOR","快速登入");
-define("_MI_TADLOGIN_CREDITS","tad");
+define("_MI_TADLOGIN_CREDITS","王嘉田主任(adm@mail.cyc.edu.tw)");
 define("_MI_TAD_LOGIN_ADMENU1","FaceBook認證說明");
 define("_MI_TAD_LOGIN_ADMENU2","Google認證說明");
 
@@ -21,6 +21,7 @@ define("_MI_TADLOGIN_CONF3_OPT1","Facebook");
 define("_MI_TADLOGIN_CONF3_OPT2","Google");
 define("_MI_TADLOGIN_CONF3_OPT3","Yahoo");
 define("_MI_TADLOGIN_CONF3_OPT5","MyID.tw");
-define("_MI_TADLOGIN_CONF3_OPT4","台南市政府教育局OpenID");
+define("_MI_TADLOGIN_CONF3_OPT4","台南市教育局OpenID");
+define("_MI_TADLOGIN_CONF3_OPT6","嘉義縣教育處OpenID");
 
 ?>
