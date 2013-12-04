@@ -256,6 +256,15 @@ if(!function_exists("getPass")){
       $xoopsDB->queryF($sql) or die(mysql_error());
     }
     
+    
+    $sql = "select `pass` from `".$xoopsDB->prefix('users')."` where `uname`='{$uname}'";
+    $result = $xoopsDB->queryF($sql) or die(mysql_error());
+    list($pass)=$xoopsDB->fetchRow($result);
+    if($pass !== md5($random_pass)){
+      $sql="update `".$xoopsDB->prefix('users')."` set `pass`=md5('{$random_pass}') where `uname`='{$uname}'";
+      $xoopsDB->queryF($sql) or die(mysql_error());
+    }
+    
     return $random_pass;
   }
 }

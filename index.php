@@ -234,7 +234,7 @@ function cyc_login(){
         $the_id=explode("@",$user_profile['contact/email']);
 
         //$uid = $user['id'];
-        $uname =$the_id[0]."_tn";
+        $uname =$the_id[0]."_cyc";
         $name = $myts->addSlashes($user_profile['namePerson']);
         $email =  strtolower($user_profile['contact/email']);
         $SchoolCode = $myts->addSlashes($user_profile['/axschema/school/id']);
