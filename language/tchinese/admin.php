@@ -4,7 +4,7 @@ define("_TAD_NEED_TADTOOLS"," 需要 tadtools 模組，可至<a href='http://www.tad061
 
 
 define("_MA_TAD_LOGIN_STEP1","<h1>【步驟 1】建立應用程式</h1><p>請連至 <a href='https://developers.facebook.com/apps' target='_blank'>https://developers.facebook.com/apps</a>，點選「Apps」→「建立新的應用程式」。</p>");
-define("_MA_TAD_LOGIN_STEP2","<h1>【步驟 2】建立新的應用程式</h1><p>第三格不用填，因為用不到。其他兩格只要設定到 FaceBook 設可以（都變成綠色）就沒問題。</p>");
+define("_MA_TAD_LOGIN_STEP2","<h1>【步驟 2】建立新的應用程式</h1><p><ol><li>「應用程式名稱」就填一個您看得懂的中文即可，例如「快速登入」</li><li>「App Namespace」應用程式名稱空間填入一個英文代號，例如：xxx_login</li><li>「App Category」應用程式類別就隨便選一個吧！</li></ol></p>");
 define("_MA_TAD_LOGIN_STEP3","<h1>【步驟 3】驗證</h1><p>請努力通過煩人的驗證碼，中間（換行處）記得要空一格。</p>");
 define("_MA_TAD_LOGIN_STEP4","<h1>【步驟 4】最重要的步驟</h1><p>將「以FaceBook登入網站」打勾，並輸入網址（萬一日後登入時一直顯示網址錯誤，有可能是這裡設錯）。上面的 App ID 和 App Secret 就是等一下要填到偏好設定的兩個值。</p>");
 define("_MA_TAD_LOGIN_STEP5","<h1>【步驟 5】偏好設定</h1><p>請連到本模組的偏好設定，將  App ID 和 App Secret 依序填入，最後儲存即可。</p>");
