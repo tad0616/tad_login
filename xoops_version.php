@@ -3,7 +3,7 @@ $modversion = array();
 
 //---模組基本資訊---//
 $modversion['name'] = _MI_TADLOGIN_NAME;
-$modversion['version'] = 2.2;
+$modversion['version'] = 2.3;
 $modversion['description'] = _MI_TADLOGIN_DESC;
 $modversion['author'] = _MI_TADLOGIN_AUTHOR;
 $modversion['credits'] = _MI_TADLOGIN_CREDITS;
@@ -60,6 +60,10 @@ $modversion['templates'][$i]['description'] = 'tad_login_index_tpl.html';
 $i++;
 $modversion['templates'][$i]['file'] = 'tad_login_adm_main.html';
 $modversion['templates'][$i]['description'] = 'tad_login_adm_main.html';
+
+$i++;
+$modversion['templates'][$i]['file'] = 'tad_login_adm_fb.html';
+$modversion['templates'][$i]['description'] = 'tad_login_adm_fb.html';
 
 
 //---區塊設定---//

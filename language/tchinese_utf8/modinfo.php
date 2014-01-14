@@ -5,10 +5,9 @@ define("_MI_TADLOGIN_NAME","快速登入");
 define("_MI_TADLOGIN_AUTHOR","快速登入");
 define("_MI_TADLOGIN_CREDITS","王嘉田主任(adm@mail.cyc.edu.tw)");
 define("_MI_TAD_LOGIN_ADMENU1","FaceBook認證說明");
-define("_MI_TAD_LOGIN_ADMENU2","Google認證說明");
+define("_MI_TAD_LOGIN_ADMENU2","自動群組設定");
 
 define("_MI_TADLOGIN_DESC","加入FB等快速登入的機制");
-define("_MI_TADLOGIN_TEMPLATE_DESC1", "tad_login_index_tpl.html的樣板檔。");
 define("_MI_TADLOGIN_BNAME1","快速登入");
 define("_MI_TADLOGIN_BDESC1","快速登入(tad_login)");
 define("_MI_TADLOGIN_APPID","FaceBook 的「應用程式 ID / API 鑰匙」");

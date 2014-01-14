@@ -1,12 +1,14 @@
 <?php
 function xoops_module_update_tad_login(&$module, $old_version) {
     GLOBAL $xoopsDB;
-    
-		if(!chk_chk1()) go_update1();
+
+    if(!chk_chk1()) go_update1();
+    if(!chk_chk2()) go_update2();
 
     return true;
 }
 
+//檢查有無隨機密碼資料表
 function chk_chk1(){
   global $xoopsDB;
   $sql="select count(*) from ".$xoopsDB->prefix("tad_login_random_pass");
@@ -18,15 +20,40 @@ function chk_chk1(){
 
 //執行更新
 function go_update1(){
-	global $xoopsDB;
+  global $xoopsDB;
   $sql="CREATE TABLE ".$xoopsDB->prefix("tad_login_random_pass")." (
-  `uname` VARCHAR( 100 ) NOT NULL ,
-  `random_pass` VARCHAR( 255 ) NOT NULL ,
-  PRIMARY KEY ( `uname` )
-);";
+    `uname` VARCHAR( 100 ) NOT NULL ,
+    `random_pass` VARCHAR( 255 ) NOT NULL ,
+    PRIMARY KEY ( `uname` )
+  );";
   $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL,3,  mysql_error());
 
-	return true;
+  return true;
+}
+
+
+//檢查有無群組預設的表
+function chk_chk2(){
+  global $xoopsDB;
+  $sql="select count(*) from ".$xoopsDB->prefix("tad_login_config");
+  $result=$xoopsDB->query($sql);
+  if(empty($result)) return false;
+  return true;
+}
+
+
+//執行更新
+function go_update2(){
+  global $xoopsDB;
+  $sql="CREATE TABLE ".$xoopsDB->prefix("tad_login_config")." (
+    `config_id` smallint(5) unsigned NOT NULL auto_increment,
+    `item` text NOT NULL,
+    `group_id` smallint(5) unsigned NOT NULL default 0,
+    PRIMARY KEY (`config_id`)
+  ) ENGINE=MyISAM ;";
+  $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL,3,  mysql_error());
+
+  return true;
 }
 
 
@@ -44,25 +71,25 @@ function mk_dir($dir=""){
 
 //拷貝目錄
 function full_copy( $source="", $target=""){
-	if ( is_dir( $source ) ){
-		@mkdir( $target );
-		$d = dir( $source );
-		while ( FALSE !== ( $entry = $d->read() ) ){
-			if ( $entry == '.' || $entry == '..' ){
-				continue;
-			}
+  if ( is_dir( $source ) ){
+    @mkdir( $target );
+    $d = dir( $source );
+    while ( FALSE !== ( $entry = $d->read() ) ){
+      if ( $entry == '.' || $entry == '..' ){
+        continue;
+      }
 
-			$Entry = $source . '/' . $entry;
-			if ( is_dir( $Entry ) )	{
-				full_copy( $Entry, $target . '/' . $entry );
-				continue;
-			}
-			copy( $Entry, $target . '/' . $entry );
-		}
-		$d->close();
-	}else{
-		copy( $source, $target );
-	}
+      $Entry = $source . '/' . $entry;
+      if ( is_dir( $Entry ) ) {
+        full_copy( $Entry, $target . '/' . $entry );
+        continue;
+      }
+      copy( $Entry, $target . '/' . $entry );
+    }
+    $d->close();
+  }else{
+    copy( $source, $target );
+  }
 }
 
 

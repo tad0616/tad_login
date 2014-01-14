@@ -12,7 +12,7 @@ include_once XOOPS_ROOT_PATH."/modules/tadtools/tad_function.php";
 //FB登入
 if(!function_exists('facebook_login')){
   function facebook_login($mode=""){
-    global $xoopsModuleConfig , $xoopsConfig ,$xoopsDB , $xoopsTpl,$xoopsUser;
+    global $xoopsConfig ,$xoopsDB , $xoopsTpl,$xoopsUser;
     require_once 'class/facebook.php';
 
     if($xoopsUser){
@@ -31,18 +31,16 @@ if(!function_exists('facebook_login')){
             $uid = intval($_GET['uid']);
         }
     }
-    
-    if(empty($xoopsModuleConfig)){    
-      $modhandler = &xoops_gethandler('module');
-      $xoopsModule = &$modhandler->getByDirname("tad_login");
-      $config_handler =& xoops_gethandler('config');
-      $xoopsModuleConfig= & $config_handler->getConfigsByCat(0, $xoopsModule->getVar('mid'));
-    }
+
+    $modhandler = &xoops_gethandler('module');
+    $tad_loginModule = &$modhandler->getByDirname("tad_login");
+    $config_handler =& xoops_gethandler('config');
+    $tad_loginConfig= & $config_handler->getConfigsByCat(0, $tad_loginModule->getVar('mid'));
 
 
     $facebook = new Facebook(array(
-    'appId'  => $xoopsModuleConfig['appId'],
-    'secret' => $xoopsModuleConfig['secret'],
+    'appId'  => $tad_loginConfig['appId'],
+    'secret' => $tad_loginConfig['secret'],
     ));
 
     $user = $facebook->getUser();
@@ -70,7 +68,7 @@ if(!function_exists('facebook_login')){
       $form= $myts->addSlashes($user_profile['hometown']['name']);
       $sig= $myts->addSlashes($user_profile['quotes']);
       $occ= $myts->addSlashes($user_profile['work'][0]['employer']['name']);
-      
+
       login_xoops($uname,$name,$email,"",$url,$form,$sig,$occ,$bio);
     } else {
       //$args = array('scope' => 'email');
@@ -93,7 +91,7 @@ if(!function_exists('facebook_login')){
 if(!function_exists('login_xoops')){
   function login_xoops($uname="",$name="",$email="",$SchoolCode="",$url="",$form="",$sig="",$occ="",$bio=""){
     global $xoopsModuleConfig , $xoopsConfig ,$xoopsDB ,$xoopsUser;
-    
+
     $member_handler =& xoops_gethandler('member');
 
     if ($member_handler->getUserCount(new Criteria('uname', $uname)) > 0) {
@@ -112,7 +110,7 @@ if(!function_exists('login_xoops')){
       include_once $GLOBALS['xoops']->path('class/auth/authfactory.php');
 
       $xoopsAuth =& XoopsAuthFactory::getAuthConnection($uname);
-      
+
       $user = $xoopsAuth->authenticate($uname, $pass);
 
       if (false != $user) {
@@ -191,7 +189,7 @@ if(!function_exists('login_xoops')){
         redirect_header(XOOPS_URL . '/user.php?xoops_redirect=' . urlencode(trim($_POST['xoops_redirect'])), 5, $xoopsAuth->getHtmlErrors(), false);
       }
     }else {
-      
+
       $pass = randStr(128);
       $newuser =& $member_handler->createUser();
       $newuser->setVar("user_viewemail",1);
@@ -227,10 +225,10 @@ if(!function_exists('login_xoops')){
 
       $sql = "INSERT INTO `" . $xoopsDB->prefix('groups_users_link') . "`  (groupid, uid) VALUES  (2, " . $newuser->getVar('uid') . ")";
       $xoopsDB->queryF($sql) or die(mysql_error());
-            
+
       $sql = "replace into `".$xoopsDB->prefix('tad_login_random_pass')."` (`uname` , `random_pass`) values  ('{$uname}','{$pass}')";
       $xoopsDB->queryF($sql) or die(mysql_error());
-      
+
       login_xoops($uname,$name,$email,$SchoolCode,$url,$form,$sig,$occ,$bio);
     }
   }
@@ -240,23 +238,23 @@ if(!function_exists("getPass")){
   function getPass($uname=""){
     global $xoopsDB;
     if(empty($uname))return;
-    
+
     $sql = "select `random_pass` from `".$xoopsDB->prefix('tad_login_random_pass')."` where `uname`='{$uname}'";
     $result = $xoopsDB->queryF($sql) or die(mysql_error());
     list($random_pass)=$xoopsDB->fetchRow($result);
-    
+
     //舊OpenID使用者
     if(empty($random_pass)){
       $random_pass=randStr(128);
-      
+
       $sql = "replace into `".$xoopsDB->prefix('tad_login_random_pass')."` (`uname` , `random_pass`) values  ('{$uname}','{$random_pass}')";
       $xoopsDB->queryF($sql) or die(mysql_error());
-      
+
       $sql="update `".$xoopsDB->prefix('users')."` set `pass`=md5('{$random_pass}') where `uname`='{$uname}'";
       $xoopsDB->queryF($sql) or die(mysql_error());
     }
-    
-    
+
+
     $sql = "select `pass` from `".$xoopsDB->prefix('users')."` where `uname`='{$uname}'";
     $result = $xoopsDB->queryF($sql) or die(mysql_error());
     list($pass)=$xoopsDB->fetchRow($result);
@@ -264,7 +262,7 @@ if(!function_exists("getPass")){
       $sql="update `".$xoopsDB->prefix('users')."` set `pass`=md5('{$random_pass}') where `uname`='{$uname}'";
       $xoopsDB->queryF($sql) or die(mysql_error());
     }
-    
+
     return $random_pass;
   }
 }

@@ -16,4 +16,7 @@ define("_MA_TAD_LOGIN_STEP8","<h1>【步驟 8】建立帳號</h1><p>第一次登
 define("_MA_TAD_LOGIN_STEP9","<h1>【常見問題】</h1><p>若是遇到這種情形，那表示您在 FaceBook 那裡的設定不正確，修改一下即可。</p>");
 define("_MA_TAD_LOGIN_STEP10","<h1>【解決方法步驟 1】</h1><p>這時候，請看一下網址 redirect_uri 參數的值，看看和您的設定有什麼不同。「%3A」就是「:」；「%2F」就是「/」，換言之，程式會去找「http://ck2tw.net」這個網址，但我在 FaceBook 的網站位址設定卻是「http://www.ck2tw.net」，兜不起來。</p>");
 define("_MA_TAD_LOGIN_STEP11","<h1>【解決方法步驟 2】</h1><p>所以，我們只要去 FaceBook 將網站位址設定改為和redirect_uri參數一致即可，如：「http://ck2tw.net」，這樣即可順利使用。</p>");
+define("_MA_TADLOGIN_ITEM","學校代碼或Email");
+define("_MA_TADLOGIN_GROUP_ID","群組");
+
 ?>
