@@ -310,19 +310,19 @@ if(!function_exists("add2group")){
     while(list($item,$group_id)=$xoopsDB->fetchRow($result)){
       if(!in_array($group_id,$userGroups)){
         //echo "<h1>{$group_id}-{$item}-{$SchoolCode}-{$email}</h1>";
-        if(strpos($item, $SchoolCode)!==false){
-          $member_handler->addUserToGroup($group_id, $uid);
-        //echo "{$group_id}, {$uid}<br>";
+        if(!empty($SchoolCode) and strpos($item, $SchoolCode)!==false){
+          $sql="insert into `".$xoopsDB->prefix('groups_users_link')."` (groupid,uid ) values($group_id,$uid)";
+          $xoopsDB->queryF($sql) or die(mysql_error());
+          //echo "{$group_id}, {$uid}<br>";
         }
-        if(strpos($item, $email)!==false){
-          $member_handler->addUserToGroup($group_id, $uid);
-        //echo "{$group_id}, {$uid}<br>";
+
+        if(!empty($email) and strpos($item, $email)!==false){
+          $sql="insert into `".$xoopsDB->prefix('groups_users_link')."` (groupid,uid ) values($group_id,$uid)";
+          $xoopsDB->queryF($sql) or die(mysql_error());
+          //echo "{$group_id}, {$uid}<br>";
         }
       }
     }
-
-    //exit;
-
 
   }
 }
