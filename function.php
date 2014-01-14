@@ -95,7 +95,7 @@ if(!function_exists('login_xoops')){
     $member_handler =& xoops_gethandler('member');
 
     if ($member_handler->getUserCount(new Criteria('uname', $uname)) > 0) {
-      //若有！
+      //若已有此帳號！
       $uname = trim($uname);
       $pass = getPass($uname);
 
@@ -110,15 +110,19 @@ if(!function_exists('login_xoops')){
       include_once $GLOBALS['xoops']->path('class/auth/authfactory.php');
 
       $xoopsAuth =& XoopsAuthFactory::getAuthConnection($uname);
-
+      //自動登入
       $user = $xoopsAuth->authenticate($uname, $pass);
 
+      //若登入成功
       if (false != $user) {
+
+        add2group($user->getVar('uid'),$email,$SchoolCode);
+
         if (0 == $user->getVar('level')) {
           redirect_header(XOOPS_URL.'/index.php', 5, _MD_TNOPENID_NOACTTPADM);
           exit();
         }
-
+        //若網站關閉
         if ($xoopsConfig['closesite'] == 1) {
           $allowed = false;
           foreach ($user->getGroups() as $group) {
@@ -132,7 +136,7 @@ if(!function_exists('login_xoops')){
             exit();
           }
         }
-
+        //設定最後登入時間
         $user->setVar('last_login', time());
         if (!$member_handler->insertUser($user)) {
         }
@@ -154,7 +158,7 @@ if(!function_exists('login_xoops')){
             setcookie($xoopsConfig['usercookie'], 0, -1, '/', XOOPS_COOKIE_DOMAIN, 0);
           }
         }
-
+        //若有要轉頁
         if (!empty($_POST['xoops_redirect']) && !strpos($_POST['xoops_redirect'], 'register')) {
           $_POST['xoops_redirect'] = trim($_POST['xoops_redirect']);
           $parsed = parse_url(XOOPS_URL);
@@ -184,8 +188,10 @@ if(!function_exists('login_xoops')){
 
         redirect_header($url, 1, sprintf("", $user->getVar('uname')), false);
       } else if (empty($_POST['xoops_redirect'])) {
+        //若登入失敗且無轉頁
         redirect_header(XOOPS_URL . '/user.php', 5, $xoopsAuth->getHtmlErrors());
       } else {
+        //若登入失敗且有轉頁
         redirect_header(XOOPS_URL . '/user.php?xoops_redirect=' . urlencode(trim($_POST['xoops_redirect'])), 5, $xoopsAuth->getHtmlErrors(), false);
       }
     }else {
@@ -290,4 +296,34 @@ if(!function_exists("randStr")){
   }
 }
 
+
+if(!function_exists("add2group")){
+  function add2group($uid="",$email="",$SchoolCode=""){
+    global $xoopsDB,$xoopsUser;
+
+    $member_handler =& xoops_gethandler('member');
+    $user =& $member_handler->getUser($uid);
+    $userGroups=$user->getGroups();
+
+    $sql = "select `item`,`group_id` from `".$xoopsDB->prefix('tad_login_config')."`";
+    $result = $xoopsDB->queryF($sql) or die(mysql_error());
+    while(list($item,$group_id)=$xoopsDB->fetchRow($result)){
+      if(!in_array($group_id,$userGroups)){
+        //echo "<h1>{$group_id}-{$item}-{$SchoolCode}-{$email}</h1>";
+        if(strpos($item, $SchoolCode)!==false){
+          $member_handler->addUserToGroup($group_id, $uid);
+        //echo "{$group_id}, {$uid}<br>";
+        }
+        if(strpos($item, $email)!==false){
+          $member_handler->addUserToGroup($group_id, $uid);
+        //echo "{$group_id}, {$uid}<br>";
+        }
+      }
+    }
+
+    //exit;
+
+
+  }
+}
 ?>
