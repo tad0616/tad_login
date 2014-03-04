@@ -241,7 +241,7 @@ function cyc_login(){
         $uname =$the_id[0]."_cyc";
         $name = $myts->addSlashes($user_profile['namePerson']);
         $email =  strtolower($user_profile['contact/email']);
-        $SchoolCode = $myts->addSlashes($user_profile['/axschema/school/id']);
+        $SchoolCode = $myts->addSlashes($user_profile['axschema/school/id']);
         //搜尋有無相同username資料
         login_xoops($uname,$name,$email,$SchoolCode);
       }

@@ -4,6 +4,7 @@ function xoops_module_update_tad_login(&$module, $old_version) {
 
     if(!chk_chk1()) go_update1();
     if(!chk_chk2()) go_update2();
+    if(!chk_chk3()) go_update3();
 
     return true;
 }
@@ -51,6 +52,26 @@ function go_update2(){
     `group_id` smallint(5) unsigned NOT NULL default 0,
     PRIMARY KEY (`config_id`)
   ) ENGINE=MyISAM ;";
+  $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL,3,  mysql_error());
+
+  return true;
+}
+
+
+//檢查有無職稱欄位
+function chk_chk3(){
+  global $xoopsDB;
+  $sql="select count(`title`) from ".$xoopsDB->prefix("tad_login_config");
+  $result=$xoopsDB->query($sql);
+  if(empty($result)) return false;
+  return true;
+}
+
+
+//執行更新
+function go_update3(){
+  global $xoopsDB;
+  $sql="ALTER TABLE ".$xoopsDB->prefix("tad_login_config")." ADD `title` varchar(255) NOT NULL default '' after `item`";
   $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL,3,  mysql_error());
 
   return true;
