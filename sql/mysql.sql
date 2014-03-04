@@ -8,7 +8,7 @@ CREATE TABLE `tad_login_random_pass` (
 CREATE TABLE `tad_login_config` (
   `config_id` smallint(5) unsigned NOT NULL auto_increment,
   `item` text NOT NULL,
-  `title` varchar(255) NOT NULL default '',
+  `kind` varchar(255) NOT NULL default '',
   `group_id` smallint(5) unsigned NOT NULL default 0,
   PRIMARY KEY (`config_id`)
 ) ENGINE=MyISAM ;

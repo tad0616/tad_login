@@ -42,7 +42,54 @@ function tn_openid_login(){
         'namePerson' => '吳弘凱',
       )
       */
+
+    /*
+    array(20) {
+      [".tw/axschema/UserID"]=>
+      string(32) "9CC19A799323D40CCB1FF1BCD63FF14F"
+      [".tw/axschema/UserName"]=>
+      string(9) "姓名"
+      [".tw/axschema/ApplyEmail"]=>
+      string(9) "st2222222"
+      [".tw/axschema/SchoolName"]=>
+      string(12) "xx國中"
+      [".tw/axschema/UserMemo"]=>
+      string(12) "審核通過"
+      [".tw/axschema/EduSchoolID"]=>
+      string(6) "123456"
+      [".tw/axschema/JobName"]=>
+      string(6) "學生"
+      [".tw/axschema/Mobile"]=>
+      string(0) ""
+      [".tw/axschema/Phone"]=>
+      string(0) ""
+      [".tw/axschema/VOIP"]=>
+      string(0) ""
+      [".tw/axschema/std_no"]=>
+      string(7) "1010101"
+      [".tw/axschema/grade"]=>
+      string(1) "2"
+      [".tw/axschema/class"]=>
+      string(2) "26"
+      [".tw/axschema/seat"]=>
+      string(2) "14"
+      [".tw/axschema/sch_code"]=>
+      string(6) "123456"
+      ["/axschema/person/guid"]=>
+      string(64) "45b3666740e5adfe6ebe981b6f119bf868f3912463e49959fc15d178d1cd4e27"
+      ["/axschema/school/titleStr"]=>
+      string(39) "[{"id":"st2222222","title":["學生"]}]"
+      ["/axschema/school/id"]=>
+      string(6) "123456"
+      ["contact/email"]=>
+      string(25) "stxxxxxxx@cloud.tn.edu.tw"
+      ["namePerson"]=>
+      string(9) "姓名"
+    }
+    */
+
       // Login or logout url will be needed depending on current user state.
+      //die(var_dump($user_profile));
       if ($user_profile) {
         $myts =& MyTextsanitizer::getInstance();
 
@@ -271,6 +318,7 @@ switch($op){
   break;
 
   case "tn":
+  case "tn_openid":
   $_SESSION['auth_method']="tn";
   tn_openid_login();
   break;
@@ -281,6 +329,7 @@ switch($op){
   break;
 
   case "cyc":
+  case "cyc_openid":
   $_SESSION['auth_method']="cyc";
   cyc_login();
   break;

@@ -58,10 +58,10 @@ function go_update2(){
 }
 
 
-//檢查有無職稱欄位
+//檢查有無類別欄位
 function chk_chk3(){
   global $xoopsDB;
-  $sql="select count(`title`) from ".$xoopsDB->prefix("tad_login_config");
+  $sql="select count(`kind`) from ".$xoopsDB->prefix("tad_login_config");
   $result=$xoopsDB->query($sql);
   if(empty($result)) return false;
   return true;
@@ -71,9 +71,16 @@ function chk_chk3(){
 //執行更新
 function go_update3(){
   global $xoopsDB;
-  $sql="ALTER TABLE ".$xoopsDB->prefix("tad_login_config")." ADD `title` varchar(255) NOT NULL default '' after `item`";
+  $sql="ALTER TABLE ".$xoopsDB->prefix("tad_login_config")." ADD `kind` varchar(255) NOT NULL default '' after `item`";
   $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL,3,  mysql_error());
 
+  $sql="select config_id,item from ".$xoopsDB->prefix("tad_login_config")." ";
+  $result=$xoopsDB->queryF($sql) or redirect_header(XOOPS_URL,3,  mysql_error());
+  while(list($config_id,$item)=$xoopsDB->fetchRow($result)){
+    $kind=(strpos($item, "@")!==false)?"email":"schoolcode";
+    $sql="update ".$xoopsDB->prefix("tad_login_config")." set kind='$kind' where config_id='{$config_id}'";
+    $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL,3,  mysql_error());
+  }
   return true;
 }
 
