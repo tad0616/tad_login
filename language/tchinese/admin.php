@@ -19,4 +19,10 @@ define("_MA_TAD_LOGIN_STEP11","<h1>【解決方法步驟 2】</h1><p>所以，我們只要去 Fa
 define("_MA_TADLOGIN_ITEM","學校代碼或Email");
 define("_MA_TADLOGIN_GROUP_ID","群組");
 
+define("_MA_TADLOGIN_EMAIL","Email");
+define("_MA_TADLOGIN_SCHOOLCODE","學校代碼");
+define("_MA_TADLOGIN_TEACHER","教師");
+define("_MA_TADLOGIN_STUDENT","學生");
+define("_MA_TADLOGIN_JOB","身份為");
+
 ?>

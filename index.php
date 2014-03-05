@@ -100,8 +100,10 @@ function tn_openid_login(){
         $name = $myts->addSlashes($user_profile['namePerson']);
         $email =  strtolower($user_profile['contact/email']);
         $SchoolCode = $myts->addSlashes($user_profile['.tw/axschema/EduSchoolID']);
+        $JobName = $user_profile['.tw/axschema/JobName']=="學生"?"student":"teacher";
+
         //搜尋有無相同username資料
-        login_xoops($uname,$name,$email,$SchoolCode);
+        login_xoops($uname,$name,$email,$SchoolCode,$JobName);
       }
     }
   } catch(ErrorException $e) {
@@ -289,8 +291,9 @@ function cyc_login(){
         $name = $myts->addSlashes($user_profile['namePerson']);
         $email =  strtolower($user_profile['contact/email']);
         $SchoolCode = $myts->addSlashes($user_profile['axschema/school/id']);
+        $JobName = (strpos($user_profile['/axschema/school/titleStr'],"學生")!==false)?"student":"teacher";
         //搜尋有無相同username資料
-        login_xoops($uname,$name,$email,$SchoolCode);
+        login_xoops($uname,$name,$email,$SchoolCode,$JobName);
       }
     }
   } catch(ErrorException $e) {

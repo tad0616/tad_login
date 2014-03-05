@@ -30,6 +30,10 @@ function tad_login_config_form($config_id=""){
   $item=!isset($DBV['item'])?"":$DBV['item'];
   $xoopsTpl->assign('item' , $item);
 
+  //設定「kind」欄位預設值
+  $kind=!isset($DBV['kind'])?"":$DBV['kind'];
+  $xoopsTpl->assign('kind' , $kind);
+
   //設定「group_id」欄位預設值
   $group_id=!isset($DBV['group_id'])?"":$DBV['group_id'];
   $xoopsTpl->assign('group_id' , $group_id);
@@ -66,10 +70,17 @@ function insert_tad_login_config(){
   $myts =& MyTextSanitizer::getInstance();
   $_POST['item']=$myts->addSlashes($_POST['item']);
 
+  if($_POST['type']=="email"){
+    $item=$_POST['item_email'];
+    $kind=$_POST['kind_email'];
+  }else{
+    $item=$_POST['item_schoolcode'];
+    $kind=$_POST['kind_schoolcode'];
+  }
 
   $sql = "insert into `".$xoopsDB->prefix("tad_login_config")."`
-  (`item` , `group_id`)
-  values('{$_POST['item']}' , '{$_POST['group_id']}')";
+  (`item` , `kind` , `group_id`)
+  values('{$item}' , '{$kind}', '{$_POST['group_id']}')";
   $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
 
   //取得最後新增資料的流水編號
@@ -85,11 +96,20 @@ function update_tad_login_config($config_id=""){
   $myts =& MyTextSanitizer::getInstance();
   $_POST['item']=$myts->addSlashes($_POST['item']);
 
+  if($_POST['type']=="email"){
+    $item=$_POST['item_email'];
+    $kind=$_POST['kind_email'];
+  }else{
+    $item=$_POST['item_schoolcode'];
+    $kind=$_POST['kind_schoolcode'];
+  }
 
   $sql = "update `".$xoopsDB->prefix("tad_login_config")."` set
-   `item` = '{$_POST['item']}' ,
+   `item` = '{$item}' ,
+   `kind` = '{$kind}' ,
    `group_id` = '{$_POST['group_id']}'
   where `config_id` = '$config_id'";
+
   $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
   return $config_id;
 }
@@ -203,7 +223,7 @@ switch($op){
   //新增資料
   case "insert_tad_login_config":
   $config_id=insert_tad_login_config();
-  header("location: {$_SERVER['PHP_SELF']}?config_id=$config_id");
+  header("location: {$_SERVER['PHP_SELF']}");
   break;
 
   //更新資料

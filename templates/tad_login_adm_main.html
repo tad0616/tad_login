@@ -7,22 +7,64 @@
 
 <{if $now_op=="tad_login_config_form"}>
   <{$formValidator_code}>
+  <script type="text/javascript">
+  $().ready(function(){
+    <{if $kind=="email"}>
+      $("#kind_schoolcode").hide();
+      $("#kind_email").show();
+    <{else}>
+      $("#kind_schoolcode").show();
+      $("#kind_email").hide();
+    <{/if}>
 
+    $("#type").change(function() {
+      if($("#type").val()=="email"){
+        $("#kind_schoolcode").hide();
+        $("#kind_email").show();
+      }else{
+        $("#kind_schoolcode").show();
+        $("#kind_email").hide();
+      }
+    });
+  });
+  </script>
   <form action="<{$action}>" method="post" id="myForm" enctype="multipart/form-data">
 
     <!--學校代碼或Email-->
     <div class="row-fluid">
-      <div class="span1 text-right">
-        <{$smarty.const._MA_TADLOGIN_ITEM}>
+      <div class="span2 text-right">
+        <select name="type" id="type" class="span12">
+          <option value="email" <{if $kind=="email"}>selected<{/if}>><{$smarty.const._MA_TADLOGIN_EMAIL}></option>
+          <option value="schoolcode" <{if $kind!="email"}>selected<{/if}>><{$smarty.const._MA_TADLOGIN_SCHOOLCODE}></option>
+        </select>
       </div>
-      <div class="span6">
-        <textarea name="item" rows=3 id="item" class="span12 " placeholder="<{$smarty.const._MA_TADLOGIN_ITEM}>"><{$item}></textarea>
+
+      <div id="kind_schoolcode">
+        <div class="span2">
+          <input type="text" name="item_schoolcode" class="span12 " value="<{$item}>" placeholder="<{$smarty.const._MA_TADLOGIN_ITEM}>">
+        </div>
+        <label class="span1 text-right">
+          <{$smarty.const._MA_TADLOGIN_JOB}>
+        </label>
+        <div class="span2">
+          <select name="kind_schoolcode" class="span12">
+            <option value="teacher" <{if $kind=="teacher"}>selected<{/if}>><{$smarty.const._MA_TADLOGIN_TEACHER}></option>
+            <option value="student" <{if $kind=="student"}>selected<{/if}>><{$smarty.const._MA_TADLOGIN_STUDENT}></option>
+          </select>
+        </div>
+      </div>
+
+      <div id="kind_email">
+        <div class="span6">
+          <textarea name="item_email" rows=3 class="span12 " placeholder="<{$smarty.const._MA_TADLOGIN_ITEM}>"><{$item}></textarea>
+          <input type="hidden" name="kind_email" value="email">
+        </div>
       </div>
 
       <!--群組-->
-      <div class="span1 text-right">
+      <label class="span1 text-right">
         <{$smarty.const._MA_TADLOGIN_GROUP_ID}>
-      </div>
+      </label>
       <div class="span3">
         <{$group_menu}>
       </div>

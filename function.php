@@ -69,7 +69,7 @@ if(!function_exists('facebook_login')){
       $sig= $myts->addSlashes($user_profile['quotes']);
       $occ= $myts->addSlashes($user_profile['work'][0]['employer']['name']);
 
-      login_xoops($uname,$name,$email,"",$url,$form,$sig,$occ,$bio);
+      login_xoops($uname,$name,$email,"","",$url,$form,$sig,$occ,$bio);
     } else {
       //$args = array('scope' => 'email');
       //$loginUrl = $facebook->getLoginUrl($args);
@@ -89,7 +89,7 @@ if(!function_exists('facebook_login')){
 
 //搜尋有無相同username資料
 if(!function_exists('login_xoops')){
-  function login_xoops($uname="",$name="",$email="",$SchoolCode="",$url="",$form="",$sig="",$occ="",$bio=""){
+  function login_xoops($uname="",$name="",$email="",$SchoolCode="",$JobName="",$url="",$form="",$sig="",$occ="",$bio=""){
     global $xoopsModuleConfig , $xoopsConfig ,$xoopsDB ,$xoopsUser;
 
     $member_handler =& xoops_gethandler('member');
@@ -116,7 +116,7 @@ if(!function_exists('login_xoops')){
       //若登入成功
       if (false != $user) {
 
-        add2group($user->getVar('uid'),$email,$SchoolCode);
+        add2group($user->getVar('uid'),$email,$SchoolCode,$JobName);
 
         if (0 == $user->getVar('level')) {
           redirect_header(XOOPS_URL.'/index.php', 5, _MD_TNOPENID_NOACTTPADM);
@@ -235,7 +235,7 @@ if(!function_exists('login_xoops')){
       $sql = "replace into `".$xoopsDB->prefix('tad_login_random_pass')."` (`uname` , `random_pass`) values  ('{$uname}','{$pass}')";
       $xoopsDB->queryF($sql) or die(mysql_error());
 
-      login_xoops($uname,$name,$email,$SchoolCode,$url,$form,$sig,$occ,$bio);
+      login_xoops($uname,$name,$email,$SchoolCode,$JobName,$url,$form,$sig,$occ,$bio);
     }
   }
 }
@@ -276,19 +276,19 @@ if(!function_exists("getPass")){
 
 
 if(!function_exists("add2group")){
-  function add2group($uid="",$email="",$SchoolCode=""){
+  function add2group($uid="",$email="",$SchoolCode="",$JobName=""){
     global $xoopsDB,$xoopsUser;
 
     $member_handler =& xoops_gethandler('member');
     $user =& $member_handler->getUser($uid);
     $userGroups=$user->getGroups();
 
-    $sql = "select `item`,`group_id` from `".$xoopsDB->prefix('tad_login_config')."`";
+    $sql = "select `item`,`kind`,`group_id` from `".$xoopsDB->prefix('tad_login_config')."`";
     $result = $xoopsDB->queryF($sql) or die(mysql_error());
-    while(list($item,$group_id)=$xoopsDB->fetchRow($result)){
+    while(list($item,$kind,$group_id)=$xoopsDB->fetchRow($result)){
       if(!in_array($group_id,$userGroups)){
         //echo "<h1>{$group_id}-{$item}-{$SchoolCode}-{$email}</h1>";
-        if(!empty($SchoolCode) and strpos($item, $SchoolCode)!==false){
+        if(!empty($SchoolCode) and strpos($item, $SchoolCode)!==false and $JobName==$kind){
           $sql="insert into `".$xoopsDB->prefix('groups_users_link')."` (groupid,uid ) values($group_id,$uid)";
           $xoopsDB->queryF($sql) or die(mysql_error());
           //echo "{$group_id}, {$uid}<br>";
@@ -301,7 +301,6 @@ if(!function_exists("add2group")){
         }
       }
     }
-
   }
 }
 ?>

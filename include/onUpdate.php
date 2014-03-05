@@ -77,7 +77,7 @@ function go_update3(){
   $sql="select config_id,item from ".$xoopsDB->prefix("tad_login_config")." ";
   $result=$xoopsDB->queryF($sql) or redirect_header(XOOPS_URL,3,  mysql_error());
   while(list($config_id,$item)=$xoopsDB->fetchRow($result)){
-    $kind=(strpos($item, "@")!==false)?"email":"schoolcode";
+    $kind=(strpos($item, "@")!==false)?"email":"teacher";
     $sql="update ".$xoopsDB->prefix("tad_login_config")." set kind='$kind' where config_id='{$config_id}'";
     $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL,3,  mysql_error());
   }
