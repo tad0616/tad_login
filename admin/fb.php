@@ -12,29 +12,37 @@ include_once "../function.php";
 function facebook_desc(){
   global $xoopsTpl;
   $main="
-    <p>"._MA_TAD_LOGIN_STEP1."</p><br>
-    <img src='../images/step1.png' alt='step1.png, 24kB' title='Step1' border='0'><br><br>
-    <p>"._MA_TAD_LOGIN_STEP2."</p><br>
-    <img src='../images/step2.png' alt='step2.png, 11kB' title='Step2' border='0'><br><br>
-    <p>"._MA_TAD_LOGIN_STEP3."</p><br>
-    <img src='../images/step3.png' alt='step3.png, 25kB' title='Step3' border='0'><br><br>
-    <p>"._MA_TAD_LOGIN_STEP4."</p><br>
-    <img src='../images/step4.png' alt='step4.png, 28kB' title='Step4' border='0'><br><br>
-    <p>"._MA_TAD_LOGIN_STEP5."</p><br>
-    <img src='../images/step5.png' alt='step5.png, 16kB' title='Step5' border='0'><br><br>
-    <p>"._MA_TAD_LOGIN_STEP6."</p><br>
-    <img src='../images/step6.png' alt='step6.png, 3.9kB' title='Step6' border='0'><br><br>
-    <p>"._MA_TAD_LOGIN_STEP7."</p><br>
-    <img src='../images/step7.png' alt='step7.png, 19kB' title='Step7' border='0'><br><br>
-    <p>"._MA_TAD_LOGIN_STEP8."</p><br>
-    <img src='../images/step8.png' alt='step8.png, 27kB' title='Step8' border='0'><br><br>
+    <label>"._MA_TAD_LOGIN_STEP1."</label><br>
+    <img src='../images/fb/step01.png' alt='step1' title='step1' border='0' class='img-polaroid'><br><br>
+    <label>"._MA_TAD_LOGIN_STEP2."</label><br>
+    <img src='../images/fb/step02.png' alt='step2' title='step2' border='0' class='img-polaroid'><br><br>
+    <label>"._MA_TAD_LOGIN_STEP3."</label><br>
+    <img src='../images/fb/step03.png' alt='step3' title='step3' border='0' class='img-polaroid'><br><br>
+    <label>"._MA_TAD_LOGIN_STEP4."</label><br>
+    <img src='../images/fb/step04.png' alt='step4' title='step4' border='0' class='img-polaroid'><br><br>
+    <label>"._MA_TAD_LOGIN_STEP5."</label><br>
+    <img src='../images/fb/step05.png' alt='step5' title='step5' border='0' class='img-polaroid'><br><br>
     <hr>
-    <p>"._MA_TAD_LOGIN_STEP9."</p><br>
-    <img src='../images/step9.png' alt='step9.png, 8.6kB' title='Step9' border='0'><br><br>
-    <p>"._MA_TAD_LOGIN_STEP10."</p><br>
-    <img src='../images/step10.png' alt='step10.png, 10kB' title='Step10' border='0'><br><br>
-    <p>"._MA_TAD_LOGIN_STEP11."</p><br>
-    <img src='../images/step11.png' alt='step11.png, 5.3kB' title='Step11' border='0'><br><br>
+    <label>"._MA_TAD_LOGIN_STEP6."</label><br>
+    <img src='../images/fb/step06.png' alt='step6' title='step6' border='0' class='img-polaroid'><br><br>
+    <label>"._MA_TAD_LOGIN_STEP7."</label><br>
+    <img src='../images/fb/step07.png' alt='step7' title='step7' border='0' class='img-polaroid'><br><br>
+    <label>"._MA_TAD_LOGIN_STEP8."</label><br>
+    <img src='../images/fb/step08.png' alt='step8' title='step8' border='0' class='img-polaroid'><br><br>
+    <label>"._MA_TAD_LOGIN_STEP9."</label><br>
+    <img src='../images/fb/step09.png' alt='step9' title='step9' border='0' class='img-polaroid'><br><br>
+    <label>"._MA_TAD_LOGIN_STEP10."</label><br>
+    <img src='../images/fb/step10.png' alt='step10' title='step10' border='0' class='img-polaroid'><br><br>
+    <label>"._MA_TAD_LOGIN_STEP11."</label><br>
+    <img src='../images/fb/step11.png' alt='step11' title='step11' border='0' class='img-polaroid'><br><br>
+    <label>"._MA_TAD_LOGIN_STEP12."</label><br>
+    <img src='../images/fb/step12.png' alt='step12' title='step12' border='0' class='img-polaroid'><br><br>
+    <label>"._MA_TAD_LOGIN_STEP13."</label><br>
+    <img src='../images/fb/step13.png' alt='step13' title='step13' border='0' class='img-polaroid'><br><br>
+    <label>"._MA_TAD_LOGIN_STEP14."</label><br>
+    <img src='../images/fb/step14.png' alt='step14' title='step14' border='0' class='img-polaroid'><br><br>
+    <label>"._MA_TAD_LOGIN_STEP15."</label><br>
+    <img src='../images/fb/step15.png' alt='step15' title='step14' border='0' class='img-polaroid'><br><br>
   ";
   $xoopsTpl->assign("main",$main) ;
 }

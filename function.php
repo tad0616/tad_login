@@ -138,6 +138,14 @@ if(!function_exists('login_xoops')){
         }
         //設定最後登入時間
         $user->setVar('last_login', time());
+        $user->setVar("user_from", $from);
+        $user->setVar("url", formatURL($url));
+        $user->setVar("user_sig", $sig);
+        $user->setVar("user_icq", $JobName);
+        $user->setVar("bio", $bio);
+        $user->setVar("user_occ", $occ);
+        $user->setVar("user_intrest", $SchoolCode);
+
         if (!$member_handler->insertUser($user)) {
         }
         // Regenrate a new session id and destroy old session
@@ -206,7 +214,7 @@ if(!function_exists('login_xoops')){
       $newuser->setVar("url", formatURL($url));
       $newuser->setVar("user_avatar",'avatars/blank.gif');
       $newuser->setVar('user_regdate', time());
-      $newuser->setVar("user_icq", "");
+      $newuser->setVar("user_icq", $JobName);
       $newuser->setVar("user_from", $from);
       $newuser->setVar("user_sig", $sig);
       $newuser->setVar("theme", $xoopsConfig['theme_set']);

@@ -580,7 +580,7 @@ class LightOpenID
             foreach (array('required','optional') as $type) {
                 foreach ($this->$type as $alias => $field) {
                     if (is_int($alias)) $alias = strtr($field, '/', '_');
-                    $this->aliases[$alias] = 'http://openid.edu.tw/' . $field;
+                    $this->aliases[$alias] = 'http://axschema.org/' . $field;
                     if (empty($counts[$alias])) $counts[$alias] = 0;
                     $counts[$alias] += 1;
                     ${$type}[] = $alias;
@@ -770,33 +770,68 @@ class LightOpenID
         }
 
         $attributes = array();
+        //die(var_dump($this->data));
+        /*
+        ["openid_ax_type_ext0"]=>
+        string(33) "http://axschema.org/contact/email"
+        ["openid_ax_type_ext1"]=>
+        string(39) "http://axschema.org/namePerson/friendly"
+        ["openid_ax_type_ext2"]=>
+        string(30) "http://axschema.org/namePerson"
+        ["openid_ax_type_ext3"]=>
+        string(44) "http://axschema.org/axschema/school/titleStr"
+        ["openid_ax_type_ext4"]=>
+        string(38) "http://axschema.org/axschema/school/id"
+        ["openid_ax_value_ext0_1"]=>
+        string(17) "tad0616@gmail.com"
+        ["openid_ax_value_ext1_1"]=>
+        string(3) "tad"
+        ["openid_ax_value_ext2_1"]=>
+        string(9) "吳弘凱"
+        ["openid_ax_value_ext3_1"]=>
+        string(31) "{sid:"173637",title:["教師"]}"
+        ["openid_ax_value_ext4_1"]=>
+        string(6) "173637"
+         */
+        //die(var_dump(explode(',', $this->data['openid_signed'])));
+        //ax.value.ext0.1
+        //ax.value.ext1.1
+        //ax.value.ext2.1
+        //ax.value.ext3.1
+        //ax.value.ext4.1
         foreach (explode(',', $this->data['openid_signed']) as $key) {
             $keyMatch = $alias . '.value.';
             if (substr($key, 0, strlen($keyMatch)) != $keyMatch) {
                 continue;
             }
+            $key2 = substr($key, strlen($keyMatch),-2);
             $key = substr($key, strlen($keyMatch));
-            if (!isset($this->data['openid_' . $alias . '_type_' . $key])) {
+            //echo $key."<br>";
+
+            //echo  'openid_' . $alias . '_type_' . $key2."<br>";
+            if (!isset($this->data['openid_' . $alias . '_type_' . $key2])) {
                 # OP is breaking the spec by returning a field without
                 # associated ns. This shouldn't happen, but it's better
                 # to check, than cause an E_NOTICE.
                 continue;
             }
-            $value = $this->data['openid_' . $alias . '_value_' . $key];
-            $key = substr($this->data['openid_' . $alias . '_type_' . $key],
-                          strlen('http://openid.edu.tw/'));
+            $value = $this->data['openid_' . $alias . '_value_' . $key2."_1"];
+            //echo 'openid_' . $alias . '_value_' . $key."<br>";
+            $key = substr($this->data['openid_' . $alias . '_type_' . $key2],
+                          strlen('http://axschema.org/'));
 
             $attributes[$key] = $value;
         }
+        //exit;
         return $attributes;
     }
 
     protected function getSregAttributes()
     {
         $attributes = array();
-        $sreg_to_ax = array_flip(self::$ax_to_sreg);
+        $sreg_to_ax = array_flip(self::$ax_to_sreg);;
         foreach (explode(',', $this->data['openid_signed']) as $key) {
-            $keyMatch = 'ext1.';
+            $keyMatch = 'sreg.';
             if (substr($key, 0, strlen($keyMatch)) != $keyMatch) {
                 continue;
             }
@@ -805,7 +840,7 @@ class LightOpenID
                 # The field name isn't part of the SREG spec, so we ignore it.
                 continue;
             }
-            $attributes[$sreg_to_ax[$key]] = $this->data['openid_ext1_' . $key];
+            $attributes[$sreg_to_ax[$key]] = $this->data['openid_sreg_' . $key];
         }
         return $attributes;
     }

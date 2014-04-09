@@ -793,7 +793,7 @@ class LightOpenID
     protected function getSregAttributes()
     {
         $attributes = array();
-        $sreg_to_ax = array_flip(self::$ax_to_sreg);
+        $sreg_to_ax = array_flip(self::$ax_to_sreg);;
         foreach (explode(',', $this->data['openid_signed']) as $key) {
             $keyMatch = 'sreg.';
             if (substr($key, 0, strlen($keyMatch)) != $keyMatch) {

@@ -1,29 +1,105 @@
 <{if $block}>
-  <{if "facebook"|in_array:$block.auth_method}>
-    <a href="<{$block.facebook}>" ><img src="<{$xoops_url}>/modules/tad_login/images/facebook.png" alt="<{$smarty.const._MB_TADLOGIN_FB_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_FB_LOGIN}>"></a>
+
+  <{if $block.show_btn=='1' and $block.show_text=='1'}>
+    <{assign var="btn_class" value='class="btn btn-block"'}>
+  <{elseif $block.show_btn=='1' and $block.show_text=='0'}>
+    <{assign var="btn_class" value='class="btn"'}>
   <{/if}>
-  
+
+  <{if "facebook"|in_array:$block.auth_method}>
+    <a href="<{$block.facebook}>" <{$btn_class}>><img src="<{$xoops_url}>/modules/tad_login/images/facebook.png" alt="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._FACEBOOK}><{$smarty.const._MB_TADLOGIN_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._FACEBOOK}><{$smarty.const._MB_TADLOGIN_LOGIN}>"><{if $block.show_text=='1'}><{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._FACEBOOK}><{$smarty.const._MB_TADLOGIN_LOGIN}><{/if}></a>
+  <{/if}>
+
 
   <{if "google"|in_array:$block.auth_method}>
-  <a href="<{$xoops_url}>/modules/tad_login/index.php?login&op=google" ><img src="<{$xoops_url}>/modules/tad_login/images/google.png" alt="<{$smarty.const._MB_TADLOGIN_GO_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_GO_LOGIN}>"></a>
+  <a href="<{$xoops_url}>/modules/tad_login/index.php?login&op=google" <{$btn_class}>><img src="<{$xoops_url}>/modules/tad_login/images/google.png" alt="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._GOOGLE}><{$smarty.const._MB_TADLOGIN_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._GOOGLE}><{$smarty.const._MB_TADLOGIN_LOGIN}>"><{if $block.show_text=='1'}><{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._GOOGLE}><{$smarty.const._MB_TADLOGIN_LOGIN}><{/if}></a>
   <{/if}>
 
   <{if "yahoo"|in_array:$block.auth_method}>
-  <a href="<{$xoops_url}>/modules/tad_login/index.php?login&op=yahoo" ><img src="<{$xoops_url}>/modules/tad_login/images/yahoo.png" alt="<{$smarty.const._MB_TADLOGIN_YA_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_YA_LOGIN}>"></a>
+  <a href="<{$xoops_url}>/modules/tad_login/index.php?login&op=yahoo" <{$btn_class}>><img src="<{$xoops_url}>/modules/tad_login/images/yahoo.png" alt="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._YAHOO}><{$smarty.const._MB_TADLOGIN_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._YAHOO}><{$smarty.const._MB_TADLOGIN_LOGIN}>"><{if $block.show_text=='1'}><{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._YAHOO}><{$smarty.const._MB_TADLOGIN_LOGIN}><{/if}></a>
   <{/if}>
 
 
   <{if "myid"|in_array:$block.auth_method}>
-  <a href="<{$xoops_url}>/modules/tad_login/index.php?login&op=myid" ><img src="<{$xoops_url}>/modules/tad_login/images/openid.png" alt="<{$smarty.const._MB_TADLOGIN_YA_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_MY_LOGIN}>"></a>
+  <a href="<{$xoops_url}>/modules/tad_login/index.php?login&op=myid" <{$btn_class}>><img src="<{$xoops_url}>/modules/tad_login/images/openid.png" alt="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._MYID}><{$smarty.const._MB_TADLOGIN_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._MYID}><{$smarty.const._MB_TADLOGIN_LOGIN}>"><{if $block.show_text=='1'}><{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._MYID}><{$smarty.const._MB_TADLOGIN_LOGIN}><{/if}></a>
   <{/if}>
 
 
-  <{if "tn_openid"|in_array:$block.auth_method}>
-  <a href="<{$xoops_url}>/modules/tad_login/index.php?op=tn" ><img src="<{$xoops_url}>/modules/tad_login/images/tn.png" alt="<{$smarty.const._MB_TADLOGIN_TN_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_TN_LOGIN}>"></a>
+  <{if "kl"|in_array:$block.auth_method}>
+  <a href="<{$xoops_url}>/modules/tad_login/index.php?login&op=kl" <{$btn_class}>><img src="<{$xoops_url}>/modules/tad_login/images/kl.png" alt="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._KL}><{$smarty.const._MB_TADLOGIN_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._KL}><{$smarty.const._MB_TADLOGIN_LOGIN}>"><{if $block.show_text=='1'}><{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._KL}><{$smarty.const._MB_TADLOGIN_LOGIN}><{/if}></a>
   <{/if}>
+
+
+  <{if "ntpc"|in_array:$block.auth_method}>
+  <a href="<{$xoops_url}>/modules/tad_login/index.php?login&op=ntpc" <{$btn_class}>><img src="<{$xoops_url}>/modules/tad_login/images/ntpc.png" alt="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._NTPC}><{$smarty.const._MB_TADLOGIN_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._NTPC}><{$smarty.const._MB_TADLOGIN_LOGIN}>"><{if $block.show_text=='1'}><{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._NTPC}><{$smarty.const._MB_TADLOGIN_LOGIN}><{/if}></a>
+  <{/if}>
+
+
+  <{if "hcc"|in_array:$block.auth_method}>
+  <a href="<{$xoops_url}>/modules/tad_login/index.php?login&op=hcc" <{$btn_class}>><img src="<{$xoops_url}>/modules/tad_login/images/hcc.png" alt="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._HCC}><{$smarty.const._MB_TADLOGIN_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._HCC}><{$smarty.const._MB_TADLOGIN_LOGIN}>"><{if $block.show_text=='1'}><{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._HCC}><{$smarty.const._MB_TADLOGIN_LOGIN}><{/if}></a>
+  <{/if}>
+
+
+  <{if "hc"|in_array:$block.auth_method}>
+  <a href="<{$xoops_url}>/modules/tad_login/index.php?login&op=hc" <{$btn_class}>><img src="<{$xoops_url}>/modules/tad_login/images/hc.png" alt="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._HC}><{$smarty.const._MB_TADLOGIN_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._HC}><{$smarty.const._MB_TADLOGIN_LOGIN}>"><{if $block.show_text=='1'}><{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._HC}><{$smarty.const._MB_TADLOGIN_LOGIN}><{/if}></a>
+  <{/if}>
+
+
+  <{if "mlc"|in_array:$block.auth_method}>
+  <a href="<{$xoops_url}>/modules/tad_login/index.php?login&op=mlc" <{$btn_class}>><img src="<{$xoops_url}>/modules/tad_login/images/mlc.png" alt="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._MLC}><{$smarty.const._MB_TADLOGIN_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._MLC}><{$smarty.const._MB_TADLOGIN_LOGIN}>"><{if $block.show_text=='1'}><{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._MLC}><{$smarty.const._MB_TADLOGIN_LOGIN}><{/if}></a>
+  <{/if}>
+
+
+  <{if "tc"|in_array:$block.auth_method}>
+  <a href="<{$xoops_url}>/modules/tad_login/index.php?login&op=tc" <{$btn_class}>><img src="<{$xoops_url}>/modules/tad_login/images/tc.png" alt="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._TC}><{$smarty.const._MB_TADLOGIN_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._TC}><{$smarty.const._MB_TADLOGIN_LOGIN}>"><{if $block.show_text=='1'}><{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._TC}><{$smarty.const._MB_TADLOGIN_LOGIN}><{/if}></a>
+  <{/if}>
+
+
+  <{if "chc"|in_array:$block.auth_method}>
+  <a href="<{$xoops_url}>/modules/tad_login/index.php?login&op=chc" <{$btn_class}>><img src="<{$xoops_url}>/modules/tad_login/images/chc.png" alt="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._CHC}><{$smarty.const._MB_TADLOGIN_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._CHC}><{$smarty.const._MB_TADLOGIN_LOGIN}>"><{if $block.show_text=='1'}><{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._CHC}><{$smarty.const._MB_TADLOGIN_LOGIN}><{/if}></a>
+  <{/if}>
+
+
+  <{if "ntct"|in_array:$block.auth_method}>
+  <a href="<{$xoops_url}>/modules/tad_login/index.php?login&op=ntct" <{$btn_class}>><img src="<{$xoops_url}>/modules/tad_login/images/ntct.png" alt="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._NTCT}><{$smarty.const._MB_TADLOGIN_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._NTCT}><{$smarty.const._MB_TADLOGIN_LOGIN}>"><{if $block.show_text=='1'}><{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._NTCT}><{$smarty.const._MB_TADLOGIN_LOGIN}><{/if}></a>
+  <{/if}>
+
+  <{if "ylc"|in_array:$block.auth_method}>
+  <a href="<{$xoops_url}>/modules/tad_login/index.php?login&op=ylc" <{$btn_class}>><img src="<{$xoops_url}>/modules/tad_login/images/ylc.png" alt="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._YLC}><{$smarty.const._MB_TADLOGIN_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._YLC}><{$smarty.const._MB_TADLOGIN_LOGIN}>"><{if $block.show_text=='1'}><{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._YLC}><{$smarty.const._MB_TADLOGIN_LOGIN}><{/if}></a>
+  <{/if}>
+
 
   <{if "cyc"|in_array:$block.auth_method}>
-  <a href="<{$xoops_url}>/modules/tad_login/index.php?login&op=cyc" ><img src="<{$xoops_url}>/modules/tad_login/images/cyc.png" alt="<{$smarty.const._MB_TADLOGIN_CYC_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_CYC_LOGIN}>"></a>
+  <a href="<{$xoops_url}>/modules/tad_login/index.php?login&op=cyc" <{$btn_class}>><img src="<{$xoops_url}>/modules/tad_login/images/cyc.png" alt="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._CYC}><{$smarty.const._MB_TADLOGIN_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._CYC}><{$smarty.const._MB_TADLOGIN_LOGIN}>"><{if $block.show_text=='1'}><{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._CYC}><{$smarty.const._MB_TADLOGIN_LOGIN}><{/if}></a>
+  <{/if}>
+
+
+  <{if "cy"|in_array:$block.auth_method}>
+  <a href="<{$xoops_url}>/modules/tad_login/index.php?login&op=cy" <{$btn_class}>><img src="<{$xoops_url}>/modules/tad_login/images/cy.png" alt="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._CY}><{$smarty.const._MB_TADLOGIN_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._CY}><{$smarty.const._MB_TADLOGIN_LOGIN}>"><{if $block.show_text=='1'}><{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._CY}><{$smarty.const._MB_TADLOGIN_LOGIN}><{/if}></a>
+  <{/if}>
+
+
+  <{if "tn"|in_array:$block.auth_method}>
+  <a href="<{$xoops_url}>/modules/tad_login/index.php?op=tn" <{$btn_class}>><img src="<{$xoops_url}>/modules/tad_login/images/tn.png" alt="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._TN}><{$smarty.const._MB_TADLOGIN_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._TN}><{$smarty.const._MB_TADLOGIN_LOGIN}>"><{if $block.show_text=='1'}><{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._TN}><{$smarty.const._MB_TADLOGIN_LOGIN}><{/if}></a>
+  <{/if}>
+
+
+  <{if "ptc"|in_array:$block.auth_method}>
+  <a href="<{$xoops_url}>/modules/tad_login/index.php?login&op=ptc" <{$btn_class}>><img src="<{$xoops_url}>/modules/tad_login/images/ptc.png" alt="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._PTC}><{$smarty.const._MB_TADLOGIN_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._PTC}><{$smarty.const._MB_TADLOGIN_LOGIN}>"><{if $block.show_text=='1'}><{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._PTC}><{$smarty.const._MB_TADLOGIN_LOGIN}><{/if}></a>
+  <{/if}>
+
+  <{if "hlc"|in_array:$block.auth_method}>
+  <a href="<{$xoops_url}>/modules/tad_login/index.php?login&op=hlc" <{$btn_class}>><img src="<{$xoops_url}>/modules/tad_login/images/hlc.png" alt="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._HLC}><{$smarty.const._MB_TADLOGIN_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._HLC}><{$smarty.const._MB_TADLOGIN_LOGIN}>"><{if $block.show_text=='1'}><{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._HLC}><{$smarty.const._MB_TADLOGIN_LOGIN}><{/if}></a>
+  <{/if}>
+
+  <{if "ilc"|in_array:$block.auth_method}>
+  <a href="<{$xoops_url}>/modules/tad_login/index.php?login&op=ilc" <{$btn_class}>><img src="<{$xoops_url}>/modules/tad_login/images/ilc.png" alt="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._ILC}><{$smarty.const._MB_TADLOGIN_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._ILC}><{$smarty.const._MB_TADLOGIN_LOGIN}>"><{if $block.show_text=='1'}><{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._ILC}><{$smarty.const._MB_TADLOGIN_LOGIN}><{/if}></a>
+  <{/if}>
+
+
+
+  <{if "phc"|in_array:$block.auth_method}>
+  <a href="<{$xoops_url}>/modules/tad_login/index.php?login&op=phc" <{$btn_class}>><img src="<{$xoops_url}>/modules/tad_login/images/phc.png" alt="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._PHC}><{$smarty.const._MB_TADLOGIN_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._PHC}><{$smarty.const._MB_TADLOGIN_LOGIN}>"><{if $block.show_text=='1'}><{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._PHC}><{$smarty.const._MB_TADLOGIN_LOGIN}><{/if}></a>
   <{/if}>
 
 
