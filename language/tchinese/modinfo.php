@@ -18,4 +18,6 @@ define("_MI_TADLOGIN_SECRET_DESC","½Ð¦Ü https://developers.facebook.com/apps «Ø¥
 define("_MI_TADLOGIN_AUTH_METHOD","±ý¨Ï¥Îªº»{ÃÒ¤è¦¡");
 define("_MI_TADLOGIN_AUTH_METHOD_DESC","½Ð¿ï¥i­n¶}©ñµ¹¨Ï¥ÎªÌ¥Îªº»{ÃÒ¤è¦¡");
 define("_MI_TADLOGIN_LOGIN","¨Ï¥Î%sµn¤J");
+define("_MI_TADLOGIN_REAL_JOBNAME","®M¥ÎOpenIDÂ¾ºÙ");
+define("_MI_TADLOGIN_REAL_JOBNAME_DESC","¿ï¡u¬O¡v·|¹Á¸Õ§ì¨úOpenID¶Ç¦^ªºÂ¾ºÙ¡]¦pªG¦³ªº¸Ü¡^¡A¿ï¡u§_¡v¶È·|§PÂ_¬O§_¬°¾Ç¥Í©Î¦Ñ®v¡C");
 ?>

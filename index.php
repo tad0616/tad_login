@@ -100,7 +100,12 @@ function tn_login(){
         $name = $myts->addSlashes($user_profile['namePerson']);
         $email =  strtolower($user_profile['contact/email']);
         $SchoolCode = $myts->addSlashes($user_profile['.tw/axschema/EduSchoolID']);
-        $JobName = $user_profile['.tw/axschema/JobName']=="學生"?"student":"teacher";
+        if($xoopsModuleConfig['real_jobname']=="1"){
+          $var=json_decode($user_profile['/axschema/school/titleStr'],true);
+          $JobName=$var[0]['title'][0];
+        }else{
+          $JobName = $user_profile['.tw/axschema/JobName']=="學生"?"student":"teacher";
+        }
 
         //搜尋有無相同username資料
         login_xoops($uname,$name,$email,$SchoolCode,$JobName);
@@ -156,7 +161,13 @@ function kl_login(){
         $name = $myts->addSlashes($user_profile['namePerson']);
         $email =  strtolower($user_profile['contact/email']);
         $SchoolCode = $myts->addSlashes($user_profile['axschema/school/id']);
-        $JobName = (strpos($user_profile['axschema/school/titleStr'],"學生")!==false)?"student":"teacher";
+        if($xoopsModuleConfig['real_jobname']=="1"){
+          $var=json_decode($user_profile['axschema/school/titleStr'],true);
+          $JobName=$var['title'][0];
+        }else{
+          $JobName = (strpos($user_profile['axschema/school/titleStr'],"學生")!==false)?"student":"teacher";
+        }
+
 
         //搜尋有無相同username資料
         login_xoops($uname,$name,$email,$SchoolCode,$JobName);
@@ -212,7 +223,15 @@ function ilc_login(){
         $name = $myts->addSlashes($user_profile['namePerson']);
         $email =  strtolower($user_profile['contact/email']);
         $SchoolCode = $myts->addSlashes($user_profile['axschema/school/id']);
-        $JobName = (strpos($user_profile['axschema/school/titleStr'],"學生")!==false)?"student":"teacher";
+
+        if($xoopsModuleConfig['real_jobname']=="1"){
+          $var=json_decode($user_profile['axschema/school/titleStr'],true);
+          $JobName=$var['title'][0];
+        }else{
+          $JobName = (strpos($user_profile['axschema/school/titleStr'],"學生")!==false)?"student":"teacher";
+        }
+
+
 
         //搜尋有無相同username資料
         login_xoops($uname,$name,$email,$SchoolCode,$JobName);
@@ -272,7 +291,12 @@ function hc_login(){
         $name = $myts->addSlashes($user_profile['namePerson']);
         $email =  strtolower($user_profile['contact/email']);
         $SchoolCode = $myts->addSlashes($user_profile['contact/country/home']);
-        $JobName = (strpos($user_profile['pref/timezone'],"學生")!==false)?"student":"teacher";
+
+        if($xoopsModuleConfig['real_jobname']=="1"){
+          $JobName=$user_profile['pref/timezone'];
+        }else{
+          $JobName = (strpos($user_profile['pref/timezone'],"學生")!==false)?"student":"teacher";
+        }
 
         //搜尋有無相同username資料
         login_xoops($uname,$name,$email,$SchoolCode,$JobName);
@@ -363,10 +387,21 @@ function hlc_login($conty="",$openid_identity=""){
           )
            */
           $SchoolCode =$arr[0]['id'];
-          $JobName = (strpos($arr[0]['role'],"學生")!==false)?"student":"teacher";
+
+          if($xoopsModuleConfig['real_jobname']=="1"){
+            $JobName=$arr[0]['role'];
+          }else{
+            $JobName = (strpos($arr[0]['role'],"學生")!==false)?"student":"teacher";
+          }
+
         }else{
           $SchoolCode = $myts->addSlashes($user_profile['contact/country/home']);
-          $JobName = (strpos($user_profile['pref/timezone'],"學生")!==false)?"student":"teacher";
+
+          if($xoopsModuleConfig['real_jobname']=="1"){
+            $JobName=$user_profile['pref/timezone'];
+          }else{
+            $JobName = (strpos($user_profile['pref/timezone'],"學生")!==false)?"student":"teacher";
+          }
         }
         //搜尋有無相同username資料
         login_xoops($uname,$name,$email,$SchoolCode,$JobName);
@@ -585,7 +620,16 @@ function tc_login($conty="",$openid_identity=""){
         }
         //$uid = $user['id'];
         $name = $myts->addSlashes($user_profile['namePerson']);
-        $JobName = (strpos($user_profile['axschema/school/titleStr'],"學生")!==false)?"student":"teacher";
+
+        if($xoopsModuleConfig['real_jobname']=="1"){
+          $user_profile['axschema/school/titleStr']=str_replace("\\", "", $user_profile['axschema/school/titleStr']);
+          $var=json_decode($user_profile['axschema/school/titleStr'],true);
+          $JobName=$var[0]['title'][0];
+        }else{
+          $JobName = (strpos($user_profile['axschema/school/titleStr'],"學生")!==false)?"student":"teacher";
+        }
+
+
         //搜尋有無相同username資料
         login_xoops($uname,$name,$email,$SchoolCode,$JobName);
       }

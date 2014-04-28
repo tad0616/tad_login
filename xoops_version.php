@@ -3,7 +3,7 @@ $modversion = array();
 
 //---模組基本資訊---//
 $modversion['name'] = _MI_TADLOGIN_NAME;
-$modversion['version'] = 2.8;
+$modversion['version'] = 2.9;
 $modversion['description'] = _MI_TADLOGIN_DESC;
 $modversion['author'] = _MI_TADLOGIN_AUTHOR;
 $modversion['credits'] = _MI_TADLOGIN_CREDITS;
@@ -14,7 +14,7 @@ $modversion['image'] = "images/logo_{$xoopsConfig['language']}.png";
 $modversion['dirname'] = basename(dirname(__FILE__));
 
 //---模組狀態資訊---//
-$modversion['release_date'] = '2014/03/18';
+$modversion['release_date'] = '2014/04/09';
 $modversion['module_website_url'] = 'http://tad0616.net/';
 $modversion['module_website_name'] = _MI_TAD_WEB;
 $modversion['module_status'] = 'release';
@@ -118,4 +118,12 @@ $modversion['config'][2]['options'] = array(
   sprintf(_MI_TADLOGIN_LOGIN,_HLC) => 'hlc',
   sprintf(_MI_TADLOGIN_LOGIN,_PHC) => 'phc');
 //,_MI_TADLOGIN_CONF3_OPT18 => 'ilc'
+
+$modversion['config'][3]['name']  = 'real_jobname';
+$modversion['config'][3]['title'] = '_MI_TADLOGIN_REAL_JOBNAME';
+$modversion['config'][3]['description'] = '_MI_TADLOGIN_REAL_JOBNAME_DESC';
+$modversion['config'][3]['formtype']  = 'yesno';
+$modversion['config'][3]['valuetype'] = 'int';
+$modversion['config'][3]['default'] = '0';
+
 ?>

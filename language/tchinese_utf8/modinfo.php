@@ -18,4 +18,6 @@ define("_MI_TADLOGIN_SECRET_DESC","請至 https://developers.facebook.com/apps �
 define("_MI_TADLOGIN_AUTH_METHOD","欲使用的認證方式");
 define("_MI_TADLOGIN_AUTH_METHOD_DESC","請選可要開放給使用者用的認證方式");
 define("_MI_TADLOGIN_LOGIN","使用%s登入");
+define("_MI_TADLOGIN_REAL_JOBNAME","套用OpenID職稱");
+define("_MI_TADLOGIN_REAL_JOBNAME_DESC","選「是」會嘗試抓取OpenID傳回的職稱（如果有的話），選「否」僅會判斷是否為學生或老師。");
 ?>
