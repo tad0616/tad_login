@@ -54,13 +54,13 @@ if(!function_exists('facebook_login')){
         $user = null;
       }
     }
-
+//die(var_export($user_profile));
 
     // Login or logout url will be needed depending on current user state.
     if ($user) {
       $myts =& MyTextsanitizer::getInstance();
       $uid = $user_profile['id'];
-      $uname = $user_profile['username']."_fb";
+      $uname = empty($user_profile['username'])?$user_profile['id']."_fb":$user_profile['username']."_fb";
       $name = $myts->addSlashes($user_profile['name']);
       $email =  $user_profile['email'];
       $bio = $myts->addSlashes($user_profile['bio']);

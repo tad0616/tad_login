@@ -3,7 +3,7 @@ $modversion = array();
 
 //---模組基本資訊---//
 $modversion['name'] = _MI_TADLOGIN_NAME;
-$modversion['version'] = 2.9;
+$modversion['version'] = 3.0;
 $modversion['description'] = _MI_TADLOGIN_DESC;
 $modversion['author'] = _MI_TADLOGIN_AUTHOR;
 $modversion['credits'] = _MI_TADLOGIN_CREDITS;
