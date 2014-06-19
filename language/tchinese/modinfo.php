@@ -20,4 +20,14 @@ define("_MI_TADLOGIN_AUTH_METHOD_DESC","請選可要開放給使用者用的認證方式");
 define("_MI_TADLOGIN_LOGIN","使用%s登入");
 define("_MI_TADLOGIN_REAL_JOBNAME","套用OpenID職稱");
 define("_MI_TADLOGIN_REAL_JOBNAME_DESC","選「是」會嘗試抓取OpenID傳回的職稱（如果有的話），選「否」僅會判斷是否為學生或老師。");
+
+define("_MI_TADLOGIN_GOOGLE_APPID","Google 的「Client ID」");
+define("_MI_TADLOGIN_GOOGLE_APPID_DESC","請至 https://console.developers.google.com 建立一個 Project，並取得其「Client ID」，預設值對您的網站來說是無效的（僅供參考而已）。");
+define("_MI_TADLOGIN_GOOGLE_SECRET","Google 的「Client secret」");
+define("_MI_TADLOGIN_GOOGLE_SECRET_DESC","請至 https://console.developers.google.com 建立一個 Project，並取得其「Client secret」，預設值對您的網站來說是無效的（僅供參考而已）。");
+
+define("_MI_TADLOGIN_TWITTER_APPID","Twitter 的「API key」");
+define("_MI_TADLOGIN_TWITTER_APPID_DESC","請至 http://hayageek.com/login-with-twitter/ 建立一個 Application ，並取得其「API key」，預設值對您的網站來說是無效的（僅供參考而已）。");
+define("_MI_TADLOGIN_TWITTER_SECRET","Twitter 的「API secret」");
+define("_MI_TADLOGIN_TWITTER_SECRET_DESC","請至 http://hayageek.com/login-with-twitter/ 建立一個 Application ，並取得其「API secret」，預設值對您的網站來說是無效的（僅供參考而已）。");
 ?>

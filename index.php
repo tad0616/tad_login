@@ -21,7 +21,7 @@ function tn_login(){
     # Change 'localhost' to your domain name.
     $openid = new LightOpenID(XOOPS_URL);
     if(!$openid->mode) {
-        $openid->identity =  "https://openid.tn.edu.tw/op/";
+        $openid->identity =  "http://openid.tn.edu.tw/op/";
         $openid->required = array('contact/email' , 'namePerson' );
         header('Location: ' . $openid->authUrl());
 
@@ -459,6 +459,120 @@ function google_login(){
 }
 
 
+//Google OAuth 2 登入
+function google_v2_login(){
+  global $xoopsConfig ,$xoopsDB , $xoopsTpl,$xoopsUser;
+  include('class/hybridauth/Hybrid/Auth.php');
+
+  if($xoopsUser){
+    header("location:".XOOPS_URL . "/user.php");
+    exit;
+  }
+
+  if (isset($_POST)) {
+    foreach ( $_POST as $k => $v ) {
+      ${$k} = $v;
+    }
+  }
+  if (isset($_GET['op'])) {
+    $op = trim($_GET['op']);
+    if (isset($_GET['uid'])) {
+      $uid = intval($_GET['uid']);
+    }
+  }
+
+  $modhandler = &xoops_gethandler('module');
+  $tad_loginModule = &$modhandler->getByDirname("tad_login");
+  $config_handler =& xoops_gethandler('config');
+  $tad_loginConfig= & $config_handler->getConfigsByCat(0, $tad_loginModule->getVar('mid'));
+
+  $google_appId  = $tad_loginConfig['google_appId'];
+  $google_secret = $tad_loginConfig['google_secret'];
+
+  $provider = "Google";
+  $config =array(
+      "base_url" => XOOPS_URL."/modules/tad_login/index.php",
+      "providers" => array (
+        "Google" => array (
+          "enabled" => true,
+          "keys"    => array ( "id" => $google_appId, "secret" => $google_secret ),
+        )
+      ),
+      // if you want to enable logging, set 'debug_mode' to true  then provide a writable file by the web server on "debug_file"
+      "debug_mode" => true,
+      "debug_file" => "debug_google.log",
+    );
+  try{
+
+    $hybridauth = new Hybrid_Auth( $config );
+
+    $authProvider = $hybridauth->authenticate($provider);
+
+    $user_profile = $authProvider->getUserProfile();
+
+    if($user_profile && isset($user_profile->identifier)) {
+      die(var_export($user_profile));
+    }
+  } catch( Exception $e ) {
+
+     switch( $e->getCode() ) {
+      case 0 : echo "Unspecified error."; break;
+      case 1 : echo "Hybridauth configuration error."; break;
+      case 2 : echo "Provider not properly configured."; break;
+      case 3 : echo "Unknown or disabled provider."; break;
+      case 4 : echo "Missing provider application credentials."; break;
+      case 5 : echo "Authentication failed. "
+                       . "The user has canceled the authentication or the provider refused the connection.";
+               break;
+      case 6 : echo "User profile request failed. Most likely the user is not connected "
+                       . "to the provider and he should to authenticate again.";
+               $twitter->logout();
+               break;
+      case 7 : echo "User not connected to the provider.";
+               $twitter->logout();
+               break;
+      case 8 : echo "Provider does not support this feature."; break;
+    }
+
+    // well, basically your should not display this to the end user, just give him a hint and move on..
+    echo "<br /><br /><b>Original error message:</b> " . $e->getMessage();
+
+    echo "<hr /><h3>Trace</h3> <pre>" . $e->getTraceAsString() . "</pre>";
+
+  }
+exit;
+//die(var_export($user_profile));
+
+  // Login or logout url will be needed depending on current user state.
+  if ($user) {
+    $myts =& MyTextsanitizer::getInstance();
+    $uid = $user_profile['id'];
+    $uname = empty($user_profile['username'])?$user_profile['id']."_fb":$user_profile['username']."_fb";
+    $name = $myts->addSlashes($user_profile['name']);
+    $email =  $user_profile['email'];
+    $bio = $myts->addSlashes($user_profile['bio']);
+    $url = formatURL($user_profile['link']);
+    $form= $myts->addSlashes($user_profile['hometown']['name']);
+    $sig= $myts->addSlashes($user_profile['quotes']);
+    $occ= $myts->addSlashes($user_profile['work'][0]['employer']['name']);
+
+    login_xoops($uname,$name,$email,"","",$url,$form,$sig,$occ,$bio);
+  } else {
+    //$args = array('scope' => 'email');
+    //$loginUrl = $facebook->getLoginUrl($args);
+    $loginUrl = $facebook->getLoginUrl(array(
+    'scope' => 'email'
+    //,'redirect_uri' => XOOPS_URL
+    ));
+  }
+  if($mode=="return"){
+    return $loginUrl;
+  }else{
+    $xoopsTpl->assign('facebook',$loginUrl);
+  }
+}
+
+
 //Yahoo 登入
 function yahoo_login(){
   global $xoopsModuleConfig , $xoopsConfig ,$xoopsDB , $xoopsTpl,$xoopsUser;
@@ -648,9 +762,24 @@ $op=empty($_REQUEST['op'])?"":$_REQUEST['op'];
 
 
 switch($op){
+  case "facebook":
+  $_SESSION['auth_method']="facebook";
+  facebook_login();
+  break;
+
   case "google":
   $_SESSION['auth_method']="google";
   google_login();
+  break;
+
+  case "google_v2":
+  $_SESSION['auth_method']="google_v2";
+  google_v2_login();
+  break;
+
+  case "twitter":
+  $_SESSION['auth_method']="twitter";
+  twitter_login();
   break;
 
   case "yahoo":
@@ -745,8 +874,14 @@ switch($op){
 
 
   default:
-  if($_SESSION['auth_method']=="google"){
+  if($_SESSION['auth_method']=="facebook"){
+    facebook_login();
+  }elseif($_SESSION['auth_method']=="google"){
     google_login();
+  }elseif($_SESSION['auth_method']=="google_v2"){
+    google_v2_login();
+  }elseif($_SESSION['auth_method']=="twitter"){
+    twitter_login();
   }elseif($_SESSION['auth_method']=="yahoo"){
     yahoo_login();
   }elseif($_SESSION['auth_method']=="myid"){
@@ -784,7 +919,11 @@ switch($op){
   }elseif($_SESSION['auth_method']=="phc"){
     tc_login("phc","http://openid.phc.edu.tw");
   }else{
-    facebook_login();
+    require_once( "class/hybridauth/Hybrid/Auth.php" );
+    require_once( "class/hybridauth/Hybrid/Endpoint.php" );
+
+    Hybrid_Endpoint::process();
+
   }
   $xoopsTpl->assign('auth_method',$xoopsModuleConfig['auth_method']);
   break;
