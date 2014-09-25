@@ -21,7 +21,7 @@ function tn_login(){
     # Change 'localhost' to your domain name.
     $openid = new LightOpenID(XOOPS_URL);
     if(!$openid->mode) {
-        $openid->identity =  "http://openid.tn.edu.tw/op/";
+        $openid->identity =  "https://openid.tn.edu.tw/op/";
         $openid->required = array('contact/email' , 'namePerson' );
         header('Location: ' . $openid->authUrl());
 
