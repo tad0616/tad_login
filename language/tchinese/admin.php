@@ -22,6 +22,21 @@ define("_MA_TAD_LOGIN_STEP13","<h1>¡i¨BÆJ 8¡j±Ò¥Îµn¤J¥\¯à</h1><p>±µµÛÂI¿ï¡u¶i¶¥¡
 define("_MA_TAD_LOGIN_STEP14","<h1>¡i¨BÆJ 9¡j½T©w¦³¶}©ñ¥\¯à</h1><p>­Y¬Oµo²{ºñ¦â°é°é¬°ªÅ¤ßªº¡Aªí¥Ü¥\¯à©|¥¼¶}©ñµ¹¨ä¥L¤H¨Ï¥Î¡A½ÐÂI¿ï¡uStatus&Review¡v±N¶}Ãö¤Á´«¦¨¡u¬O¡v§Y¥i¡C</p>");
 define("_MA_TAD_LOGIN_STEP15","<h1>¡i¨BÆJ 10¡j°¾¦n³]©w</h1><p>½Ð³s¨ì¥»¼Ò²Õªº°¾¦n³]©w¡A±N¡uÀ³¥Îµ{¦¡ ID¡v©M ¡uÀ³¥Îµ{¦¡±KÆ_¡v¨Ì§Ç¶ñ¤J¡A¨Ã°O±o¿ï¨ú¡uFacebook¡v»{ÃÒ¤è¦¡¡A³Ì«áÀx¦s§Y¥i¡C</p>");
 
+
+
+define("_MA_TAD_LOGIN_GOO_STEP1","<h1>¡i¨BÆJ 1¡j«Ø¥ßGoogle±M®×</h1><p>½Ð³s¦Ü<a href='https://console.developers.google.com/project' target='_blank'>https://console.developers.google.com/project</a>«Ø¥ß¤@­Ó·s±M®×</p>");
+define("_MA_TAD_LOGIN_GOO_STEP2","<h1>¡i¨BÆJ 2¡j±Ò°ÊAPI</h1><p>±M®×«Ø¥ß«á¡A¦Ü¸Ó±M®×ªº OverView ¥h±Ò°ÊAPI¡A«ö¤U§Y¥i¡C</p>");
+define("_MA_TAD_LOGIN_GOO_STEP3","<h1>¡i¨BÆJ 3¡j«Ø¥ßÃÒ®Ñ</h1><p>¦Ü¡uCredentials¡v¡AÂI¿ï¡uCreate new Client ID¡v</p>");
+define("_MA_TAD_LOGIN_GOO_STEP4","<h1>¡i¨BÆJ 4¡j«Ø¥ßClient ID</h1><p>¿ï¾Ü¡uWeb application¡v¡A¡uAuthorized JavaScript origins¡v¿é¤Jºô¯¸ºô§}¡G¡uAuthorized redirect URI¡v«h¿é¤J¡u".XOOPS_URL."/modules/tad_login/index.php¡v</p>");
+define("_MA_TAD_LOGIN_GOO_STEP5","<h1>¡i¨BÆJ 5¡j¨ú±o Client ID</h1><p>¬õ®Ø³B´N¬O¨ì®É­Ô­n¶ñ¤J°¾¦n³]©w¤¤ªº¶µ¥Ø­È¡C</p>");
+define("_MA_TAD_LOGIN_GOO_STEP6","<h1>¡i¨BÆJ 6¡j«Ø¥ßAPI Key</h1><p>ÂI¿ï¡uCreate new Key¡v¥H«Ø¥ß API Key</p>");
+define("_MA_TAD_LOGIN_GOO_STEP7","<h1>¡i¨BÆJ 7¡j«Ø¥ß·sªºª÷Æ_</h1><p>¿ï¾Ü¡uBrowser Key¡v</p>");
+define("_MA_TAD_LOGIN_GOO_STEP8","<h1>¡i¨BÆJ 8¡j³]©w¤¹³\¨Ó·½</h1><p>¿é¤J¶Q¯¸ºô°ì¦WºÙ§Y¥i¡C</p>");
+define("_MA_TAD_LOGIN_GOO_STEP9","<h1>¡i¨BÆJ 9¡j¨ú±o API Key</h1><p>¬õ®Ø³Bªº API Key ´N¬O¨ì®É­Ô­n¶ñ¤J°¾¦n³]©w¤¤ªº¶µ¥Ø­È¡C</p>");
+define("_MA_TAD_LOGIN_GOO_STEP10","<h1>¡i¨BÆJ 10¡jµn¤Jµe­±³]©w</h1><p>³]©w¦n±zªºEmail¡A¥H¤Î±M®×¦WºÙ¡A´N¤j¤½§i¦¨¤F¡I</p>");
+define("_MA_TAD_LOGIN_GOO_STEP11","<h1>¡i¨BÆJ 11¡j¶i¦æ°¾¦n³]©w</h1><p>±µ¤U¨Ó½Ð¦Ü°¾¦n³]©w¡A±N¥|­ÓÄæ¦ì¨Ì§Ç¶ñ¤J§Y¥i¡C</p>");
+
+
 define("_MA_TADLOGIN_ITEM","¾Ç®Õ¥N½X©ÎEmail");
 define("_MA_TADLOGIN_GROUP_ID","¸s²Õ");
 

@@ -87,6 +87,94 @@ if(!function_exists('facebook_login')){
 }
 
 
+
+//google登入
+if(!function_exists('google_login')){
+  function google_login($mode=""){
+    global $xoopsConfig ,$xoopsDB , $xoopsTpl,$xoopsUser;
+
+    require_once 'class/google/Google_Client.php';
+    require_once 'class/google/contrib/Google_Oauth2Service.php';
+
+
+    if($xoopsUser){
+      header("location:".XOOPS_URL . "/user.php");
+      exit;
+    }
+
+    if (isset($_POST)) {
+        foreach ( $_POST as $k => $v ) {
+            ${$k} = $v;
+        }
+    }
+    if (isset($_GET['op'])) {
+        $op = trim($_GET['op']);
+        if (isset($_GET['uid'])) {
+            $uid = intval($_GET['uid']);
+        }
+    }
+
+
+    $client = new Google_Client();
+    $client->setApplicationName("Google UserInfo PHP Starter Application");
+    $oauth2 = new Google_Oauth2Service($client);
+
+    if (isset($_GET['code'])) {
+      $client->authenticate($_GET['code']);
+      $_SESSION['token'] = $client->getAccessToken();
+      $redirect = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
+      header('Location: ' . filter_var($redirect, FILTER_SANITIZE_URL));
+      return;
+    }
+
+    if (isset($_SESSION['token'])) {
+     $client->setAccessToken($_SESSION['token']);
+    }
+
+    if (isset($_REQUEST['logout'])) {
+      unset($_SESSION['token']);
+      $client->revokeToken();
+    }
+
+    if ($client->getAccessToken()) {
+      $user = $oauth2->userinfo->get();
+      //die(var_export($user));
+      // These fields are currently filtered through the PHP sanitize filters.
+      // See http://www.php.net/manual/en/filter.filters.sanitize.php
+      $email = filter_var($user['email'], FILTER_SANITIZE_EMAIL);
+      $img = filter_var($user['picture'], FILTER_VALIDATE_URL);
+
+
+      if ($user) {
+        $myts =& MyTextsanitizer::getInstance();
+        $uid = $user['id'];
+        list($goog_uname,$m)=explode("@",$user['email']);
+        $uname = empty($goog_uname)?$user['id']."_goo":$goog_uname."_goo";
+        $name = $myts->addSlashes($user['name']);
+        $email =  $user['email'];
+        $bio = '';
+        $url = formatURL($user['link']);
+        $form= '';
+        $sig= '';
+        $occ= '';
+
+        login_xoops($uname,$name,$email,"","",$url,$form,$sig,$occ,$bio);
+      }
+
+      // The access token may have been updated lazily.
+      $_SESSION['token'] = $client->getAccessToken();
+    } else {
+      $authUrl = $client->createAuthUrl();
+      if($mode=="return"){
+        return $authUrl;
+      }else{
+        $xoopsTpl->assign('google',$authUrl);
+      }
+    }
+  }
+}
+
+
 //搜尋有無相同username資料
 if(!function_exists('login_xoops')){
   function login_xoops($uname="",$name="",$email="",$SchoolCode="",$JobName="",$url="",$form="",$sig="",$occ="",$bio=""){

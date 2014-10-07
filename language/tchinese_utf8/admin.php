@@ -22,6 +22,21 @@ define("_MA_TAD_LOGIN_STEP13","<h1>【步驟 8】啟用登入功能</h1><p>接�
 define("_MA_TAD_LOGIN_STEP14","<h1>【步驟 9】確定有開放功能</h1><p>若是發現綠色圈圈為空心的，表示功能尚未開放給其他人使用，請點選「Status&Review」將開關切換成「是」即可。</p>");
 define("_MA_TAD_LOGIN_STEP15","<h1>【步驟 10】偏好設定</h1><p>請連到本模組的偏好設定，將「應用程式 ID」和 「應用程式密鑰」依序填入，並記得選取「Facebook」認證方式，最後儲存即可。</p>");
 
+
+
+define("_MA_TAD_LOGIN_GOO_STEP1","<h1>【步驟 1】建立Google專案</h1><p>請連至<a href='https://console.developers.google.com/project' target='_blank'>https://console.developers.google.com/project</a>建立一個新專案</p>");
+define("_MA_TAD_LOGIN_GOO_STEP2","<h1>【步驟 2】啟動API</h1><p>專案建立後，至該專案的 OverView 去啟動API，按下即可。</p>");
+define("_MA_TAD_LOGIN_GOO_STEP3","<h1>【步驟 3】建立證書</h1><p>至「Credentials」，點選「Create new Client ID」</p>");
+define("_MA_TAD_LOGIN_GOO_STEP4","<h1>【步驟 4】建立Client ID</h1><p>選擇「Web application」，「Authorized JavaScript origins」輸入網站網址：「Authorized redirect URI」則輸入「".XOOPS_URL."/modules/tad_login/index.php」</p>");
+define("_MA_TAD_LOGIN_GOO_STEP5","<h1>【步驟 5】取得 Client ID</h1><p>紅框處就是到時候要填入偏好設定中的項目值。</p>");
+define("_MA_TAD_LOGIN_GOO_STEP6","<h1>【步驟 6】建立API Key</h1><p>點選「Create new Key」以建立 API Key</p>");
+define("_MA_TAD_LOGIN_GOO_STEP7","<h1>【步驟 7】建立新的金鑰</h1><p>選擇「Browser Key」</p>");
+define("_MA_TAD_LOGIN_GOO_STEP8","<h1>【步驟 8】設定允許來源</h1><p>輸入貴站網域名稱即可。</p>");
+define("_MA_TAD_LOGIN_GOO_STEP9","<h1>【步驟 9】取得 API Key</h1><p>紅框處的 API Key 就是到時候要填入偏好設定中的項目值。</p>");
+define("_MA_TAD_LOGIN_GOO_STEP10","<h1>【步驟 10】登入畫面設定</h1><p>設定好您的Email，以及專案名稱，就大公告成了！</p>");
+define("_MA_TAD_LOGIN_GOO_STEP11","<h1>【步驟 11】進行偏好設定</h1><p>接下來請至偏好設定，將四個欄位依序填入即可。</p>");
+
+
 define("_MA_TADLOGIN_ITEM","學校代碼或Email");
 define("_MA_TADLOGIN_GROUP_ID","群組");
 

@@ -3,7 +3,7 @@ $modversion = array();
 
 //---模組基本資訊---//
 $modversion['name'] = _MI_TADLOGIN_NAME;
-$modversion['version'] = 3.01;
+$modversion['version'] = 3.1;
 $modversion['description'] = _MI_TADLOGIN_DESC;
 $modversion['author'] = _MI_TADLOGIN_AUTHOR;
 $modversion['credits'] = _MI_TADLOGIN_CREDITS;
@@ -14,7 +14,7 @@ $modversion['image'] = "images/logo_{$xoopsConfig['language']}.png";
 $modversion['dirname'] = basename(dirname(__FILE__));
 
 //---模組狀態資訊---//
-$modversion['release_date'] = '2014/05/22';
+$modversion['release_date'] = '2014/09/30';
 $modversion['module_website_url'] = 'http://tad0616.net/';
 $modversion['module_website_name'] = _MI_TAD_WEB;
 $modversion['module_status'] = 'release';
@@ -67,6 +67,11 @@ $i++;
 $modversion['templates'][$i]['file'] = 'tad_login_adm_fb.html';
 $modversion['templates'][$i]['description'] = 'tad_login_adm_fb.html';
 
+$i++;
+$modversion['templates'][$i]['file'] = 'tad_login_adm_google.html';
+$modversion['templates'][$i]['description'] = 'tad_login_adm_google.html';
+
+
 
 //---區塊設定---//
 $modversion['blocks'][1]['file'] = "tad_login.php";
@@ -105,16 +110,16 @@ $modversion['config'][5]['formtype']  = 'textbox';
 $modversion['config'][5]['valuetype'] = 'text';
 $modversion['config'][5]['default'] = '';
 
-$modversion['config'][6]['name']  = 'twitter_appId';
-$modversion['config'][6]['title'] = '_MI_TADLOGIN_TWITTER_APPID';
-$modversion['config'][6]['description'] = '_MI_TADLOGIN_TWITTER_APPID_DESC';
+$modversion['config'][6]['name']  = 'google_redirect_uri';
+$modversion['config'][6]['title'] = '_MI_TADLOGIN_GOOGLE_REDIRECT_URL';
+$modversion['config'][6]['description'] = '_MI_TADLOGIN_GOOGLE_REDIRECT_URL_DESC';
 $modversion['config'][6]['formtype']  = 'textbox';
 $modversion['config'][6]['valuetype'] = 'text';
 $modversion['config'][6]['default'] = '';
 
-$modversion['config'][7]['name']  = 'twitter_secret';
-$modversion['config'][7]['title'] = '_MI_TADLOGIN_TWITTER_SECRET';
-$modversion['config'][7]['description'] = '_MI_TADLOGIN_TWITTER_SECRET_DESC';
+$modversion['config'][7]['name']  = 'google_api_key';
+$modversion['config'][7]['title'] = '_MI_TADLOGIN_GOOGLE_API_KEY';
+$modversion['config'][7]['description'] = '_MI_TADLOGIN_GOOGLE_API_KEY_DESC';
 $modversion['config'][7]['formtype']  = 'textbox';
 $modversion['config'][7]['valuetype'] = 'text';
 $modversion['config'][7]['default'] = '';
@@ -128,8 +133,8 @@ $modversion['config'][2]['default'] = array('google','yahoo','myid');
 $modversion['config'][2]['options'] = array(
   sprintf(_MI_TADLOGIN_LOGIN,_FACEBOOK) => 'facebook',
   sprintf(_MI_TADLOGIN_LOGIN,_GOOGLE) => 'google',
-  sprintf(_MI_TADLOGIN_LOGIN,_GOOGLE_V2) => 'google_v2',
-  sprintf(_MI_TADLOGIN_LOGIN,_TWITTER) => 'Twitter',
+  //sprintf(_MI_TADLOGIN_LOGIN,_GOOGLE_V2) => 'google_v2',
+  //sprintf(_MI_TADLOGIN_LOGIN,_TWITTER) => 'Twitter',
   sprintf(_MI_TADLOGIN_LOGIN,_YAHOO) => 'yahoo',
   sprintf(_MI_TADLOGIN_LOGIN,_MYID) => 'myid',
   sprintf(_MI_TADLOGIN_LOGIN,_KL) => 'kl',

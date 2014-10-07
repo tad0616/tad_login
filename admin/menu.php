@@ -21,6 +21,12 @@ $adminmenu[$i]['desc'] = _MI_TAD_LOGIN_ADMENU1 ;
 $adminmenu[$i]['icon'] = "images/admin/address_book.png";
 
 $i++;
+$adminmenu[$i]['title'] = _MI_TAD_LOGIN_ADMENU3;
+$adminmenu[$i]['link'] = "admin/google.php";
+$adminmenu[$i]['desc'] = _MI_TAD_LOGIN_ADMENU3;
+$adminmenu[$i]['icon'] = "images/admin/address_book.png";
+
+$i++;
 $adminmenu[$i]['title'] = _MI_TAD_ADMIN_ABOUT;
 $adminmenu[$i]['link'] = 'admin/about.php';
 $adminmenu[$i]['desc'] = _MI_TAD_ADMIN_ABOUT_DESC;

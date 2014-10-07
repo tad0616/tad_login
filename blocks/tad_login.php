@@ -6,6 +6,7 @@ function tad_login($options=""){
 
   include_once XOOPS_ROOT_PATH."/modules/tad_login/function.php";
   $block['facebook'] =facebook_login('return');
+  $block['google'] =google_login('return');
 
   $modhandler = &xoops_gethandler('module');
   $xoopsModule = &$modhandler->getByDirname("tad_login");
