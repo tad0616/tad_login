@@ -35,6 +35,11 @@
   <{/if}>
 
 
+  <{if "tyc"|in_array:$block.auth_method}>
+  <a href="<{$xoops_url}>/modules/tad_login/index.php?login&op=tyc" <{$btn_class}>><img src="<{$xoops_url}>/modules/tad_login/images/tyc.png" alt="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._TYC}><{$smarty.const._MB_TADLOGIN_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._TYC}><{$smarty.const._MB_TADLOGIN_LOGIN}>"><{if $block.show_text=='1'}><{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._TYC}><{$smarty.const._MB_TADLOGIN_LOGIN}><{/if}></a>
+  <{/if}>
+
+
   <{if "hcc"|in_array:$block.auth_method}>
   <a href="<{$xoops_url}>/modules/tad_login/index.php?login&op=hcc" <{$btn_class}>><img src="<{$xoops_url}>/modules/tad_login/images/hcc.png" alt="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._HCC}><{$smarty.const._MB_TADLOGIN_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._HCC}><{$smarty.const._MB_TADLOGIN_LOGIN}>"><{if $block.show_text=='1'}><{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._HCC}><{$smarty.const._MB_TADLOGIN_LOGIN}><{/if}></a>
   <{/if}>
@@ -82,6 +87,12 @@
   <{if "tn"|in_array:$block.auth_method}>
   <a href="<{$xoops_url}>/modules/tad_login/index.php?op=tn" <{$btn_class}>><img src="<{$xoops_url}>/modules/tad_login/images/tn.png" alt="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._TN}><{$smarty.const._MB_TADLOGIN_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._TN}><{$smarty.const._MB_TADLOGIN_LOGIN}>"><{if $block.show_text=='1'}><{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._TN}><{$smarty.const._MB_TADLOGIN_LOGIN}><{/if}></a>
   <{/if}>
+
+
+  <{if "kh"|in_array:$block.auth_method}>
+  <a href="<{$xoops_url}>/modules/tad_login/index.php?op=kh" <{$btn_class}>><img src="<{$xoops_url}>/modules/tad_login/images/kh.png" alt="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._KH}><{$smarty.const._MB_TADLOGIN_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._KH}><{$smarty.const._MB_TADLOGIN_LOGIN}>"><{if $block.show_text=='1'}><{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._KH}><{$smarty.const._MB_TADLOGIN_LOGIN}><{/if}></a>
+  <{/if}>
+
 
 
   <{if "ptc"|in_array:$block.auth_method}>

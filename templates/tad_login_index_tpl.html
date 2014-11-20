@@ -28,6 +28,10 @@
 <a href="index.php?login&op=ntpc" class="btn btn-large btn-block"><img src="images/ntpc.png" alt="<{$smarty.const._NTPC}>"><{$smarty.const._MD_TADLOGIN_USE}><{$smarty.const._NTPC}><{$smarty.const._MD_TADLOGIN_USE}><{$smarty.const._LOGIN}></a>
 <{/if}>
 
+<{if "tyc"|in_array:$auth_method}>
+<a href="index.php?login&op=tyc" class="btn btn-large btn-block"><img src="images/tyc.png" alt="<{$smarty.const._TYC}>"><{$smarty.const._MD_TADLOGIN_USE}><{$smarty.const._TYC}><{$smarty.const._MD_TADLOGIN_USE}><{$smarty.const._LOGIN}></a>
+<{/if}>
+
 
 <{if "hcc"|in_array:$auth_method}>
 <a href="index.php?login&op=hcc" class="btn btn-large btn-block"><img src="images/hcc.png" alt="<{$smarty.const._HCC}>"><{$smarty.const._MD_TADLOGIN_USE}><{$smarty.const._HCC}><{$smarty.const._MD_TADLOGIN_USE}><{$smarty.const._LOGIN}></a>
@@ -69,6 +73,11 @@
 <{if "tn"|in_array:$auth_method}>
 <a href="index.php?op=tn" class="btn btn-large btn-block"><img src="images/tn.png" alt="<{$smarty.const._TN}>"><{$smarty.const._MD_TADLOGIN_USE}><{$smarty.const._TN}><{$smarty.const._MD_TADLOGIN_USE}><{$smarty.const._LOGIN}></a>
 <{/if}>
+
+<{if "kh"|in_array:$auth_method}>
+<a href="index.php?op=kh" class="btn btn-large btn-block"><img src="images/kh.png" alt="<{$smarty.const._KH}>"><{$smarty.const._MD_TADLOGIN_USE}><{$smarty.const._KH}><{$smarty.const._MD_TADLOGIN_USE}><{$smarty.const._LOGIN}></a>
+<{/if}>
+
 
 
 <{if "ptc"|in_array:$auth_method}>

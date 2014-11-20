@@ -3,7 +3,7 @@ $modversion = array();
 
 //---模組基本資訊---//
 $modversion['name'] = _MI_TADLOGIN_NAME;
-$modversion['version'] = 3.1;
+$modversion['version'] = 3.2;
 $modversion['description'] = _MI_TADLOGIN_DESC;
 $modversion['author'] = _MI_TADLOGIN_AUTHOR;
 $modversion['credits'] = _MI_TADLOGIN_CREDITS;
@@ -14,7 +14,7 @@ $modversion['image'] = "images/logo_{$xoopsConfig['language']}.png";
 $modversion['dirname'] = basename(dirname(__FILE__));
 
 //---模組狀態資訊---//
-$modversion['release_date'] = '2014/09/30';
+$modversion['release_date'] = '2014/11/18';
 $modversion['module_website_url'] = 'http://tad0616.net/';
 $modversion['module_website_name'] = _MI_TAD_WEB;
 $modversion['module_status'] = 'release';
@@ -133,12 +133,11 @@ $modversion['config'][2]['default'] = array('google','yahoo','myid');
 $modversion['config'][2]['options'] = array(
   sprintf(_MI_TADLOGIN_LOGIN,_FACEBOOK) => 'facebook',
   sprintf(_MI_TADLOGIN_LOGIN,_GOOGLE) => 'google',
-  //sprintf(_MI_TADLOGIN_LOGIN,_GOOGLE_V2) => 'google_v2',
-  //sprintf(_MI_TADLOGIN_LOGIN,_TWITTER) => 'Twitter',
   sprintf(_MI_TADLOGIN_LOGIN,_YAHOO) => 'yahoo',
   sprintf(_MI_TADLOGIN_LOGIN,_MYID) => 'myid',
   sprintf(_MI_TADLOGIN_LOGIN,_KL) => 'kl',
   sprintf(_MI_TADLOGIN_LOGIN,_NTPC) => 'ntpc',
+  sprintf(_MI_TADLOGIN_LOGIN,_TYC) => 'tyc',
   sprintf(_MI_TADLOGIN_LOGIN,_HCC) => 'hcc',
   sprintf(_MI_TADLOGIN_LOGIN,_HC) => 'hc',
   sprintf(_MI_TADLOGIN_LOGIN,_MLC) => 'mlc',
@@ -149,10 +148,11 @@ $modversion['config'][2]['options'] = array(
   sprintf(_MI_TADLOGIN_LOGIN,_CYC) => 'cyc',
   sprintf(_MI_TADLOGIN_LOGIN,_CY) => 'cy',
   sprintf(_MI_TADLOGIN_LOGIN,_TN) => 'tn',
+  //sprintf(_MI_TADLOGIN_LOGIN,_KH) => 'kh',
   sprintf(_MI_TADLOGIN_LOGIN,_PTC) => 'ptc',
+  //sprintf(_MI_TADLOGIN_LOGIN,_ILC) => 'ilc',
   sprintf(_MI_TADLOGIN_LOGIN,_HLC) => 'hlc',
   sprintf(_MI_TADLOGIN_LOGIN,_PHC) => 'phc');
-//,_MI_TADLOGIN_CONF3_OPT18 => 'ilc'
 
 $modversion['config'][3]['name']  = 'real_jobname';
 $modversion['config'][3]['title'] = '_MI_TADLOGIN_REAL_JOBNAME';
