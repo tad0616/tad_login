@@ -92,6 +92,11 @@
 <a href="index.php?login&op=ilc" class="btn btn-large btn-block"><img src="images/ilc.png" alt="<{$smarty.const._ILC}>"><{$smarty.const._MD_TADLOGIN_USE}><{$smarty.const._ILC}><{$smarty.const._MD_TADLOGIN_USE}><{$smarty.const._LOGIN}></a>
 <{/if}>
 
+<{if "km"|in_array:$auth_method}>
+<a href="index.php?login&op=km" class="btn btn-large btn-block"><img src="images/km.png" alt="<{$smarty.const._KM}>"><{$smarty.const._MD_TADLOGIN_USE}><{$smarty.const._KM}><{$smarty.const._MD_TADLOGIN_USE}><{$smarty.const._LOGIN}></a>
+<{/if}>
+
+
 <{if "phc"|in_array:$auth_method}>
 <a href="index.php?login&op=phc" class="btn btn-large btn-block"><img src="images/phc.png" alt="<{$smarty.const._PHC}>"><{$smarty.const._MD_TADLOGIN_USE}><{$smarty.const._PHC}><{$smarty.const._MD_TADLOGIN_USE}><{$smarty.const._LOGIN}></a>
 <{/if}>

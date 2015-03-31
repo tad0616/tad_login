@@ -3,7 +3,7 @@ $modversion = array();
 
 //---模組基本資訊---//
 $modversion['name'] = _MI_TADLOGIN_NAME;
-$modversion['version'] = 3.2;
+$modversion['version'] = 3.3;
 $modversion['description'] = _MI_TADLOGIN_DESC;
 $modversion['author'] = _MI_TADLOGIN_AUTHOR;
 $modversion['credits'] = _MI_TADLOGIN_CREDITS;
@@ -14,7 +14,7 @@ $modversion['image'] = "images/logo_{$xoopsConfig['language']}.png";
 $modversion['dirname'] = basename(dirname(__FILE__));
 
 //---模組狀態資訊---//
-$modversion['release_date'] = '2014/11/18';
+$modversion['release_date'] = '2015/03/30';
 $modversion['module_website_url'] = 'http://tad0616.net/';
 $modversion['module_website_name'] = _MI_TAD_WEB;
 $modversion['module_status'] = 'release';
@@ -60,8 +60,17 @@ $modversion['templates'][$i]['file'] = 'tad_login_index_tpl.html';
 $modversion['templates'][$i]['description'] = 'tad_login_index_tpl.html';
 
 $i++;
+$modversion['templates'][$i]['file'] = 'tad_login_index_tpl_b3.html';
+$modversion['templates'][$i]['description'] = 'tad_login_index_tpl_b3.html';
+
+$i++;
 $modversion['templates'][$i]['file'] = 'tad_login_adm_main.html';
 $modversion['templates'][$i]['description'] = 'tad_login_adm_main.html';
+
+$i++;
+$modversion['templates'][$i]['file'] = 'tad_login_adm_main_b3.html';
+$modversion['templates'][$i]['description'] = 'tad_login_adm_main_b3.html';
+
 
 $i++;
 $modversion['templates'][$i]['file'] = 'tad_login_adm_fb.html';
@@ -82,55 +91,62 @@ $modversion['blocks'][1]['template'] = "tad_login.html";
 $modversion['blocks'][1]['edit_func'] = "tad_login_edit";
 $modversion['blocks'][1]['options'] = "0|0";
 
-$modversion['config'][0]['name']	= 'appId';
-$modversion['config'][0]['title']	= '_MI_TADLOGIN_APPID';
-$modversion['config'][0]['description']	= '_MI_TADLOGIN_APPID_DESC';
-$modversion['config'][0]['formtype']	= 'textbox';
-$modversion['config'][0]['valuetype']	= 'text';
-$modversion['config'][0]['default']	= '';
+$i=1;
+$modversion['config'][$i]['name']	= 'appId';
+$modversion['config'][$i]['title']	= '_MI_TADLOGIN_APPID';
+$modversion['config'][$i]['description']	= '_MI_TADLOGIN_APPID_DESC';
+$modversion['config'][$i]['formtype']	= 'textbox';
+$modversion['config'][$i]['valuetype']	= 'text';
+$modversion['config'][$i]['default']	= '';
 
-$modversion['config'][1]['name']	= 'secret';
-$modversion['config'][1]['title']	= '_MI_TADLOGIN_SECRET';
-$modversion['config'][1]['description']	= '_MI_TADLOGIN_SECRET_DESC';
-$modversion['config'][1]['formtype']	= 'textbox';
-$modversion['config'][1]['valuetype']	= 'text';
-$modversion['config'][1]['default']	= '';
+$i++;
+$modversion['config'][$i]['name']	= 'secret';
+$modversion['config'][$i]['title']	= '_MI_TADLOGIN_SECRET';
+$modversion['config'][$i]['description']	= '_MI_TADLOGIN_SECRET_DESC';
+$modversion['config'][$i]['formtype']	= 'textbox';
+$modversion['config'][$i]['valuetype']	= 'text';
+$modversion['config'][$i]['default']	= '';
 
-$modversion['config'][4]['name']  = 'google_appId';
-$modversion['config'][4]['title'] = '_MI_TADLOGIN_GOOGLE_APPID';
-$modversion['config'][4]['description'] = '_MI_TADLOGIN_GOOGLE_APPID_DESC';
-$modversion['config'][4]['formtype']  = 'textbox';
-$modversion['config'][4]['valuetype'] = 'text';
-$modversion['config'][4]['default'] = '';
+$i++;
+$modversion['config'][$i]['name']  = 'google_appId';
+$modversion['config'][$i]['title'] = '_MI_TADLOGIN_GOOGLE_APPID';
+$modversion['config'][$i]['description'] = '_MI_TADLOGIN_GOOGLE_APPID_DESC';
+$modversion['config'][$i]['formtype']  = 'textbox';
+$modversion['config'][$i]['valuetype'] = 'text';
+$modversion['config'][$i]['default'] = '';
 
-$modversion['config'][5]['name']  = 'google_secret';
-$modversion['config'][5]['title'] = '_MI_TADLOGIN_GOOGLE_SECRET';
-$modversion['config'][5]['description'] = '_MI_TADLOGIN_GOOGLE_SECRET_DESC';
-$modversion['config'][5]['formtype']  = 'textbox';
-$modversion['config'][5]['valuetype'] = 'text';
-$modversion['config'][5]['default'] = '';
+$i++;
+$modversion['config'][$i]['name']  = 'google_secret';
+$modversion['config'][$i]['title'] = '_MI_TADLOGIN_GOOGLE_SECRET';
+$modversion['config'][$i]['description'] = '_MI_TADLOGIN_GOOGLE_SECRET_DESC';
+$modversion['config'][$i]['formtype']  = 'textbox';
+$modversion['config'][$i]['valuetype'] = 'text';
+$modversion['config'][$i]['default'] = '';
 
-$modversion['config'][6]['name']  = 'google_redirect_uri';
-$modversion['config'][6]['title'] = '_MI_TADLOGIN_GOOGLE_REDIRECT_URL';
-$modversion['config'][6]['description'] = '_MI_TADLOGIN_GOOGLE_REDIRECT_URL_DESC';
-$modversion['config'][6]['formtype']  = 'textbox';
-$modversion['config'][6]['valuetype'] = 'text';
-$modversion['config'][6]['default'] = '';
+$i++;
+$modversion['config'][$i]['name']  = 'google_redirect_uri';
+$modversion['config'][$i]['title'] = '_MI_TADLOGIN_GOOGLE_REDIRECT_URL';
+$modversion['config'][$i]['description'] = '_MI_TADLOGIN_GOOGLE_REDIRECT_URL_DESC';
+$modversion['config'][$i]['formtype']  = 'textbox';
+$modversion['config'][$i]['valuetype'] = 'text';
+$modversion['config'][$i]['default'] = '';
 
-$modversion['config'][7]['name']  = 'google_api_key';
-$modversion['config'][7]['title'] = '_MI_TADLOGIN_GOOGLE_API_KEY';
-$modversion['config'][7]['description'] = '_MI_TADLOGIN_GOOGLE_API_KEY_DESC';
-$modversion['config'][7]['formtype']  = 'textbox';
-$modversion['config'][7]['valuetype'] = 'text';
-$modversion['config'][7]['default'] = '';
+$i++;
+$modversion['config'][$i]['name']  = 'google_api_key';
+$modversion['config'][$i]['title'] = '_MI_TADLOGIN_GOOGLE_API_KEY';
+$modversion['config'][$i]['description'] = '_MI_TADLOGIN_GOOGLE_API_KEY_DESC';
+$modversion['config'][$i]['formtype']  = 'textbox';
+$modversion['config'][$i]['valuetype'] = 'text';
+$modversion['config'][$i]['default'] = '';
 
-$modversion['config'][2]['name']  = 'auth_method';
-$modversion['config'][2]['title'] = '_MI_TADLOGIN_AUTH_METHOD';
-$modversion['config'][2]['description'] = '_MI_TADLOGIN_AUTH_METHOD_DESC';
-$modversion['config'][2]['formtype']  = 'select_multi';
-$modversion['config'][2]['valuetype'] = 'array';
-$modversion['config'][2]['default'] = array('google','yahoo','myid');
-$modversion['config'][2]['options'] = array(
+$i++;
+$modversion['config'][$i]['name']  = 'auth_method';
+$modversion['config'][$i]['title'] = '_MI_TADLOGIN_AUTH_METHOD';
+$modversion['config'][$i]['description'] = '_MI_TADLOGIN_AUTH_METHOD_DESC';
+$modversion['config'][$i]['formtype']  = 'select_multi';
+$modversion['config'][$i]['valuetype'] = 'array';
+$modversion['config'][$i]['default'] = array('google','yahoo','myid');
+$modversion['config'][$i]['options'] = array(
   sprintf(_MI_TADLOGIN_LOGIN,_FACEBOOK) => 'facebook',
   sprintf(_MI_TADLOGIN_LOGIN,_GOOGLE) => 'google',
   sprintf(_MI_TADLOGIN_LOGIN,_YAHOO) => 'yahoo',
@@ -148,17 +164,39 @@ $modversion['config'][2]['options'] = array(
   sprintf(_MI_TADLOGIN_LOGIN,_CYC) => 'cyc',
   sprintf(_MI_TADLOGIN_LOGIN,_CY) => 'cy',
   sprintf(_MI_TADLOGIN_LOGIN,_TN) => 'tn',
-  //sprintf(_MI_TADLOGIN_LOGIN,_KH) => 'kh',
+  sprintf(_MI_TADLOGIN_LOGIN,_KH) => 'kh',
   sprintf(_MI_TADLOGIN_LOGIN,_PTC) => 'ptc',
   //sprintf(_MI_TADLOGIN_LOGIN,_ILC) => 'ilc',
   sprintf(_MI_TADLOGIN_LOGIN,_HLC) => 'hlc',
+  sprintf(_MI_TADLOGIN_LOGIN,_KM) => 'km',
   sprintf(_MI_TADLOGIN_LOGIN,_PHC) => 'phc');
 
-$modversion['config'][3]['name']  = 'real_jobname';
-$modversion['config'][3]['title'] = '_MI_TADLOGIN_REAL_JOBNAME';
-$modversion['config'][3]['description'] = '_MI_TADLOGIN_REAL_JOBNAME_DESC';
-$modversion['config'][3]['formtype']  = 'yesno';
-$modversion['config'][3]['valuetype'] = 'int';
-$modversion['config'][3]['default'] = '0';
+$i++;
+$modversion['config'][$i]['name']  = 'real_jobname';
+$modversion['config'][$i]['title'] = '_MI_TADLOGIN_REAL_JOBNAME';
+$modversion['config'][$i]['description'] = '_MI_TADLOGIN_REAL_JOBNAME_DESC';
+$modversion['config'][$i]['formtype']  = 'yesno';
+$modversion['config'][$i]['valuetype'] = 'int';
+$modversion['config'][$i]['default'] = '0';
+
+
+$i++;
+$modversion['config'][$i]['name'] = 'openid_login';
+$modversion['config'][$i]['title'] = '_MI_TADLOGIN_TITLE2';
+$modversion['config'][$i]['description'] = '_MI_TADLOGIN_DESC2';
+$modversion['config'][$i]['formtype'] = 'select';
+$modversion['config'][$i]['valuetype'] = 'int';
+$modversion['config'][$i]['default'] = '1';
+$modversion['config'][$i]['options'] = array(_MI_TADLOGIN_TITLE2_OPT0=>'0' , _MI_TADLOGIN_TITLE2_OPT1=>'1' , _MI_TADLOGIN_TITLE2_OPT2=>'2' , _MI_TADLOGIN_TITLE2_OPT3=>'3');
+
+$i++;
+$modversion['config'][$i]['name'] = 'openid_logo';
+$modversion['config'][$i]['title'] = '_MI_TADLOGIN_TITLE3';
+$modversion['config'][$i]['description'] = '_MI_TADLOGIN_DESC3';
+$modversion['config'][$i]['formtype'] = 'select';
+$modversion['config'][$i]['valuetype'] = 'int';
+$modversion['config'][$i]['default'] = '1';
+$modversion['config'][$i]['options'] = array(1=>'1' , 2=>'2' , 3=>'3' , 4=>'4' , 5=>'5' , 6=>'6');
+
 
 ?>

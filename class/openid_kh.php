@@ -420,7 +420,7 @@ class LightOpenID
         for ($i = 0; $i < 5; $i ++) {
             if ($yadis) {
                 $headers = $this->request($url, 'HEAD', array(), true);
-//var_export($headers);
+
                 $next = false;
                 if (isset($headers['x-xrds-location'])) {
                     $url = $this->build_url(parse_url($url), parse_url(trim($headers['x-xrds-location'])));
@@ -753,6 +753,7 @@ class LightOpenID
         } else {
             # 'ax' prefix is either undefined, or points to another extension,
             # so we search for another prefix
+            //die(var_dump($this->data));
             foreach ($this->data as $key => $val) {
                 if (substr($key, 0, strlen('openid_ns_')) == 'openid_ns_'
                     && $val == 'http://openid.net/srv/ax/1.0'
@@ -767,27 +768,107 @@ class LightOpenID
             # so there is no AX data in the OP's response
             return array();
         }
-
+        //die($alias);
         $attributes = array();
+        return $this->data;
+        //die(var_dump($this->data));
+        /*
+        array(18) {
+          ["login"]=>
+          string(0) ""
+          ["op"]=>
+          string(2) "kh"
+          ["openid_ns"]=>
+          string(32) "http://specs.openid.net/auth/2.0"
+          ["openid_op_endpoint"]=>
+          string(24) "http://openid.kh.edu.tw/"
+          ["openid_claimed_id"]=>
+          string(27) "http://openid.kh.edu.tw/tyk"
+          ["openid_response_nonce"]=>
+          string(21) "2015-03-30T03:34:35Z0"
+          ["openid_mode"]=>
+          string(6) "id_res"
+          ["openid_identity"]=>
+          string(27) "http://openid.kh.edu.tw/tyk"
+          ["openid_return_to"]=>
+          string(60) "http://localhost/x25/modules/tad_login/index.php?login&op=kh"
+          ["openid_assoc_handle"]=>
+          string(36) "d352417443064c938303d631306cdadd-719"
+          ["openid_signed"]=>
+          string(134) "op_endpoint,claimed_id,identity,return_to,response_nonce,assoc_handle,ns.ext1,ns.ext2,ext1.mode,ext2.email,ext2.nickname,ext2.fullname"
+          ["openid_sig"]=>
+          string(44) "dbFHF2DNqM3fKt4CddqVLK6tqHTYhmpIcrS0+FeKOW4="
+          ["openid_ns_ext1"]=>
+          string(28) "http://openid.net/srv/ax/1.0"
+          ["openid_ext1_mode"]=>
+          string(14) "fetch_response"
+          ["openid_ns_ext2"]=>
+          string(37) "http://openid.net/extensions/sreg/1.1"
+          ["openid_ext2_email"]=>
+          string(17) "t000@gmail.com"
+          ["openid_ext2_nickname"]=>
+          string(0) ""
+          ["openid_ext2_fullname"]=>
+          string(9) "王老師"
+        }
+
+         */
+        //die(var_dump(explode(',', $this->data['openid_signed'])));
+        /*
+        array(12) {
+          [0]=>
+          string(11) "op_endpoint"
+          [1]=>
+          string(10) "claimed_id"
+          [2]=>
+          string(8) "identity"
+          [3]=>
+          string(9) "return_to"
+          [4]=>
+          string(14) "response_nonce"
+          [5]=>
+          string(12) "assoc_handle"
+          [6]=>
+          string(7) "ns.ext1"
+          [7]=>
+          string(7) "ns.ext2"
+          [8]=>
+          string(9) "ext1.mode"
+          [9]=>
+          string(10) "ext2.email"
+          [10]=>
+          string(13) "ext2.nickname"
+          [11]=>
+          string(13) "ext2.fullname"
+        }
+
+        */
+        //die(var_export($this->data['openid_signed']));
         foreach (explode(',', $this->data['openid_signed']) as $key) {
             //echo $key."<br>";
             $keyMatch = $alias . '.value.';
+            //echo 'alias:'.$alias."<br>";
             if (substr($key, 0, strlen($keyMatch)) != $keyMatch) {
                 continue;
             }
+            $key2 = substr($key, strlen($keyMatch),-2);
             $key = substr($key, strlen($keyMatch));
-            if (!isset($this->data['openid_' . $alias . '_type_' . $key])) {
+
+            //echo  'openid_' . $alias . '_type_' . $key2."<br>";
+            if (!isset($this->data['openid_' . $alias . '_type_' . $key2])) {
                 # OP is breaking the spec by returning a field without
                 # associated ns. This shouldn't happen, but it's better
                 # to check, than cause an E_NOTICE.
                 continue;
             }
-            $value = $this->data['openid_' . $alias . '_value_' . $key];
-            $key = substr($this->data['openid_' . $alias . '_type_' . $key],
+            $value = $this->data['openid_' . $alias . '_value_' . $key2."_1"];
+            //echo 'openid_' . $alias . '_value_' . $key."<br>";
+            $key = substr($this->data['openid_' . $alias . '_type_' . $key2],
                           strlen('http://axschema.org/'));
 
             $attributes[$key] = $value;
         }
+        //exit;
         //die(var_export($attributes));
         return $attributes;
     }
@@ -826,7 +907,7 @@ class LightOpenID
             && $this->data['openid_ns'] == 'http://specs.openid.net/auth/2.0'
         ) { # OpenID 2.0
             # We search for both AX and SREG attributes, with AX taking precedence.
-//die("getAxAttributes:".var_dump($this->getAxAttributes()).",,,getSregAttributes:".var_dump($this->getSregAttributes()));
+//die(var_dump($this->getAxAttributes()).'getSregAttributes:'.var_dump($this->getSregAttributes()));
             return $this->getAxAttributes() + $this->getSregAttributes();
         }
         return $this->getSregAttributes();

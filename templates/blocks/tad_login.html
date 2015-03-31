@@ -108,6 +108,10 @@
   <{/if}>
 
 
+  <{if "km"|in_array:$block.auth_method}>
+  <a href="<{$xoops_url}>/modules/tad_login/index.php?login&op=km" <{$btn_class}>><img src="<{$xoops_url}>/modules/tad_login/images/km.png" alt="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._KM}><{$smarty.const._MB_TADLOGIN_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._KM}><{$smarty.const._MB_TADLOGIN_LOGIN}>"><{if $block.show_text=='1'}><{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._KM}><{$smarty.const._MB_TADLOGIN_LOGIN}><{/if}></a>
+  <{/if}>
+
 
   <{if "phc"|in_array:$block.auth_method}>
   <a href="<{$xoops_url}>/modules/tad_login/index.php?login&op=phc" <{$btn_class}>><img src="<{$xoops_url}>/modules/tad_login/images/phc.png" alt="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._PHC}><{$smarty.const._MB_TADLOGIN_LOGIN}>" title="<{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._PHC}><{$smarty.const._MB_TADLOGIN_LOGIN}>"><{if $block.show_text=='1'}><{$smarty.const._MB_TADLOGIN_USE}><{$smarty.const._PHC}><{$smarty.const._MB_TADLOGIN_LOGIN}><{/if}></a>

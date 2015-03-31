@@ -23,4 +23,5 @@ define("_NTCT","南投縣教育處 OpenID ");
 define("_HC","新竹市教育處 OpenID ");
 define("_KH","高雄市教育局 OpenID ");
 define("_TYC","桃園縣教育處 OpenID ");
+define("_KM","金門縣教育處 OpenID ");
 ?>

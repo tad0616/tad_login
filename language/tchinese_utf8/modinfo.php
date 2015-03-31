@@ -31,4 +31,16 @@ define('_MI_TADLOGIN_GOOGLE_REDIRECT_URL','Google 的「Redirect URIs」');
 define('_MI_TADLOGIN_GOOGLE_REDIRECT_URL_DESC','請至 https://console.developers.google.com 建立一個 Project，並取得其「Redirect URIs」。');
 define('_MI_TADLOGIN_GOOGLE_API_KEY','Google 的「API key」');
 define('_MI_TADLOGIN_GOOGLE_API_KEY_DESC','請至 https://console.developers.google.com 建立一個 Project，並取得其「API key」。');
+
+define("_MI_TADLOGIN_TITLE2","導覽列的登入選項");
+define("_MI_TADLOGIN_DESC2","請選擇預設導覽列中登入選項的呈現方式");
+define('_MI_TADLOGIN_TITLE2_OPT0','僅顯示XOOPS的登入界面');
+define('_MI_TADLOGIN_TITLE2_OPT1','同時顯示XOOPS的登入界面和OpenID的按鈕');
+define('_MI_TADLOGIN_TITLE2_OPT2','僅顯示OpenID的按鈕');
+define('_MI_TADLOGIN_TITLE2_OPT3','不顯示登入選項');
+
+
+
+define("_MI_TADLOGIN_TITLE3","登入選單中的快速登入圖示一排幾個");
+define("_MI_TADLOGIN_DESC3","若「是否崁入快速登入到登入選單中」為「是」時，選一個會出現圖示及文字，選兩個以上就只剩圖示。");
 ?>
