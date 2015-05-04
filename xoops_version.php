@@ -14,7 +14,7 @@ $modversion['image'] = "images/logo_{$xoopsConfig['language']}.png";
 $modversion['dirname'] = basename(dirname(__FILE__));
 
 //---模組狀態資訊---//
-$modversion['release_date'] = '2015/03/30';
+$modversion['release_date'] = '2015/03/31';
 $modversion['module_website_url'] = 'http://tad0616.net/';
 $modversion['module_website_name'] = _MI_TAD_WEB;
 $modversion['module_status'] = 'release';
@@ -195,8 +195,6 @@ $modversion['config'][$i]['title'] = '_MI_TADLOGIN_TITLE3';
 $modversion['config'][$i]['description'] = '_MI_TADLOGIN_DESC3';
 $modversion['config'][$i]['formtype'] = 'select';
 $modversion['config'][$i]['valuetype'] = 'int';
-$modversion['config'][$i]['default'] = '1';
+$modversion['config'][$i]['default'] = '4';
 $modversion['config'][$i]['options'] = array(1=>'1' , 2=>'2' , 3=>'3' , 4=>'4' , 5=>'5' , 6=>'6');
-
-
 ?>

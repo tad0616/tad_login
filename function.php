@@ -54,7 +54,7 @@ if(!function_exists('facebook_login')){
         $user = null;
       }
     }
-//die(var_export($user_profile));
+    //die(var_export($user_profile));
 
     // Login or logout url will be needed depending on current user state.
     if ($user) {

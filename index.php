@@ -946,6 +946,10 @@ switch($op){
   }elseif($_SESSION['auth_method']=="km"){
     km_login();
   }
+
+  facebook_login();
+  google_login();
+
   $xoopsTpl->assign('auth_method',$xoopsModuleConfig['auth_method']);
   break;
 }
