@@ -65,11 +65,11 @@ if(!function_exists('facebook_login')){
       $email =  $user_profile['email'];
       $bio = $myts->addSlashes($user_profile['bio']);
       $url = formatURL($user_profile['link']);
-      $form= $myts->addSlashes($user_profile['hometown']['name']);
+      $from= $myts->addSlashes($user_profile['hometown']['name']);
       $sig= $myts->addSlashes($user_profile['quotes']);
       $occ= $myts->addSlashes($user_profile['work'][0]['employer']['name']);
 
-      login_xoops($uname,$name,$email,"","",$url,$form,$sig,$occ,$bio);
+      login_xoops($uname,$name,$email,"","",$url,$from,$sig,$occ,$bio);
     } else {
       //$args = array('scope' => 'email');
       //$loginUrl = $facebook->getLoginUrl($args);
@@ -154,11 +154,11 @@ if(!function_exists('google_login')){
         $email =  $user['email'];
         $bio = '';
         $url = formatURL($user['link']);
-        $form= '';
+        $from= '';
         $sig= '';
         $occ= '';
 
-        login_xoops($uname,$name,$email,"","",$url,$form,$sig,$occ,$bio);
+        login_xoops($uname,$name,$email,"","",$url,$from,$sig,$occ,$bio);
       }
 
       // The access token may have been updated lazily.
@@ -177,7 +177,7 @@ if(!function_exists('google_login')){
 
 //搜尋有無相同username資料
 if(!function_exists('login_xoops')){
-  function login_xoops($uname="",$name="",$email="",$SchoolCode="",$JobName="",$url="",$form="",$sig="",$occ="",$bio=""){
+  function login_xoops($uname="",$name="",$email="",$SchoolCode="",$JobName="",$url="",$from="",$sig="",$occ="",$bio=""){
     global $xoopsModuleConfig , $xoopsConfig ,$xoopsDB ,$xoopsUser;
 
     $member_handler =& xoops_gethandler('member');
@@ -331,7 +331,7 @@ if(!function_exists('login_xoops')){
       $sql = "replace into `".$xoopsDB->prefix('tad_login_random_pass')."` (`uname` , `random_pass`) values  ('{$uname}','{$pass}')";
       $xoopsDB->queryF($sql) or die(mysql_error());
 
-      login_xoops($uname,$name,$email,$SchoolCode,$JobName,$url,$form,$sig,$occ,$bio);
+      login_xoops($uname,$name,$email,$SchoolCode,$JobName,$url,$from,$sig,$occ,$bio);
     }
   }
 }
