@@ -9,9 +9,21 @@ $adminmenu[$i]['desc'] = _MI_TAD_ADMIN_HOME_DESC ;
 $adminmenu[$i]['icon'] = 'images/admin/home.png' ;
 
 $i++;
-$adminmenu[$i]['title'] = _MI_TAD_LOGIN_ADMENU1;
+$adminmenu[$i]['title'] = _MI_TAD_LOGIN_ADMENU2;
 $adminmenu[$i]['link'] = "admin/main.php";
+$adminmenu[$i]['desc'] = _MI_TAD_LOGIN_ADMENU2 ;
+$adminmenu[$i]['icon'] = "images/admin/main.png";
+
+$i++;
+$adminmenu[$i]['title'] = _MI_TAD_LOGIN_ADMENU1;
+$adminmenu[$i]['link'] = "admin/fb.php";
 $adminmenu[$i]['desc'] = _MI_TAD_LOGIN_ADMENU1 ;
+$adminmenu[$i]['icon'] = "images/admin/address_book.png";
+
+$i++;
+$adminmenu[$i]['title'] = _MI_TAD_LOGIN_ADMENU3;
+$adminmenu[$i]['link'] = "admin/google.php";
+$adminmenu[$i]['desc'] = _MI_TAD_LOGIN_ADMENU3;
 $adminmenu[$i]['icon'] = "images/admin/address_book.png";
 
 $i++;

@@ -420,7 +420,7 @@ class LightOpenID
         for ($i = 0; $i < 5; $i ++) {
             if ($yadis) {
                 $headers = $this->request($url, 'HEAD', array(), true);
-
+//var_export($headers);
                 $next = false;
                 if (isset($headers['x-xrds-location'])) {
                     $url = $this->build_url(parse_url($url), parse_url(trim($headers['x-xrds-location'])));
@@ -770,6 +770,7 @@ class LightOpenID
 
         $attributes = array();
         foreach (explode(',', $this->data['openid_signed']) as $key) {
+            //echo $key."<br>";
             $keyMatch = $alias . '.value.';
             if (substr($key, 0, strlen($keyMatch)) != $keyMatch) {
                 continue;
@@ -787,13 +788,14 @@ class LightOpenID
 
             $attributes[$key] = $value;
         }
+        //die(var_export($attributes));
         return $attributes;
     }
 
     protected function getSregAttributes()
     {
         $attributes = array();
-        $sreg_to_ax = array_flip(self::$ax_to_sreg);
+        $sreg_to_ax = array_flip(self::$ax_to_sreg);;
         foreach (explode(',', $this->data['openid_signed']) as $key) {
             $keyMatch = 'sreg.';
             if (substr($key, 0, strlen($keyMatch)) != $keyMatch) {
@@ -824,6 +826,7 @@ class LightOpenID
             && $this->data['openid_ns'] == 'http://specs.openid.net/auth/2.0'
         ) { # OpenID 2.0
             # We search for both AX and SREG attributes, with AX taking precedence.
+//die("getAxAttributes:".var_dump($this->getAxAttributes()).",,,getSregAttributes:".var_dump($this->getSregAttributes()));
             return $this->getAxAttributes() + $this->getSregAttributes();
         }
         return $this->getSregAttributes();
