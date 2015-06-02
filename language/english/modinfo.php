@@ -2,19 +2,19 @@
 include_once XOOPS_ROOT_PATH . "/modules/tadtools/language/{$xoopsConfig['language']}/modinfo_common.php";
 include_once 'county.php';
 
-define('_MI_TADLOGIN_NAME', 'Quick Login');
-define('_MI_TADLOGIN_AUTHOR', 'Quick Login');
+define('_MI_TADLOGIN_NAME', 'Tad Login');
+define('_MI_TADLOGIN_AUTHOR', 'Tad');
 define('_MI_TADLOGIN_CREDITS', 'Wang Jiatian director (adm@mail.cyc.edu.tw)');
-define('_MI_TAD_LOGIN_ADMENU1', 'Facebook certificate');
-define('_MI_TAD_LOGIN_ADMENU1_DESC', 'Facebook certification statement');
-define('_MI_TAD_LOGIN_ADMENU2', 'Auto Group Set');
-define('_MI_TAD_LOGIN_ADMENU3', 'Google Certificate');
-define('_MI_TAD_LOGIN_ADMENU3_DESC', 'Google Certified Set Description');
+define('_MI_TADLOGIN_ADMENU1', 'Facebook certificate');
+define('_MI_TADLOGIN_ADMENU1_DESC', 'Facebook certification statement');
+define('_MI_TADLOGIN_ADMENU2', 'Auto Group Set');
+define('_MI_TADLOGIN_ADMENU3', 'Google Certificate');
+define('_MI_TADLOGIN_ADMENU3_DESC', 'Google Certified Set Description');
 
 
 define('_MI_TADLOGIN_DESC', 'Join FB and other fast login mechanism');
-define('_MI_TADLOGIN_BNAME1', 'Quick Login');
-define('_MI_TADLOGIN_BDESC1', 'Quick Login (tad_login)');
+define('_MI_TADLOGIN_BNAME1', 'Tad Login');
+define('_MI_TADLOGIN_BDESC1', 'Tad Login (tad_login)');
 define('_MI_TADLOGIN_APPID', 'FaceBook "Application ID"');
 define('_MI_TADLOGIN_APPID_DESC', 'Please go to https://developers.facebook.com/apps and obtain the"Application ID", the default value of your site is invalid (for reference only. only)');
 define('_MI_TADLOGIN_SECRET', 'FaceBook "Application Key"');
@@ -52,8 +52,8 @@ define('_MI_TADLOGIN_DESC3', 'Select how many Quick Login menu icons should we v
 
 
 define('_MI_TADLOGIN_DIRNAME', basename(dirname(dirname(__DIR__))));
-define('_MI_TADLOGIN_HELP_HEADER', __DIR__.'/help/helpheader.html');
-define('_MI_TADLOGIN_BACK_2_ADMIN','Back to Administration of ');
+define('_MI_TADLOGIN_HELP_HEADER', __DIR__ . '/help/helpheader.html');
+define('_MI_TADLOGIN_BACK_2_ADMIN', 'Back to Administration of ');
 
 //help
-define('_MI_TADLOGIN_HELP_OVERVIEW','Overview');
+define('_MI_TADLOGIN_HELP_OVERVIEW', 'Overview');
