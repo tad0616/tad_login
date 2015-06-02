@@ -5,9 +5,9 @@ include_once "county.php";
 define("_MI_TADLOGIN_NAME","快速登入");
 define("_MI_TADLOGIN_AUTHOR","快速登入");
 define("_MI_TADLOGIN_CREDITS","王嘉田主任(adm@mail.cyc.edu.tw)");
-define("_MI_TAD_LOGIN_ADMENU1","FaceBook認證設定說明");
-define("_MI_TAD_LOGIN_ADMENU2","自動群組設定");
-define("_MI_TAD_LOGIN_ADMENU3","Google認證設定說明");
+define("_MI_TADLOGIN_ADMENU1","FaceBook認證設定說明");
+define("_MI_TADLOGIN_ADMENU2","自動群組設定");
+define("_MI_TADLOGIN_ADMENU3","Google認證設定說明");
 
 define("_MI_TADLOGIN_DESC","加入FB等快速登入的機制");
 define("_MI_TADLOGIN_BNAME1","快速登入");
@@ -43,4 +43,3 @@ define('_MI_TADLOGIN_TITLE2_OPT3','不顯示登入選項');
 
 define("_MI_TADLOGIN_TITLE3","登入選單中的快速登入圖示一排幾個");
 define("_MI_TADLOGIN_DESC3","若「是否崁入快速登入到登入選單中」為「是」時，選一個會出現圖示及文字，選兩個以上就只剩圖示。");
-?>

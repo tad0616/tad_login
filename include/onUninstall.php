@@ -2,15 +2,15 @@
 /*
 function xoops_module_uninstall_tad_login(&$module) {
   GLOBAL $xoopsDB;
-	$date=date("Ymd");
+    $date=date("Ymd");
 
- 	rename(XOOPS_ROOT_PATH."/uploads/tad_login",XOOPS_ROOT_PATH."/uploads/tad_login_bak_{$date}");
+    rename(XOOPS_ROOT_PATH."/uploads/tad_login",XOOPS_ROOT_PATH."/uploads/tad_login_bak_{$date}");
 
-	return true;
+    return true;
 }
 
 
-//§R°£¥Ø¿ý
+//Â§RÂ°Â£Â¥Ã˜Â¿Ã½
 function delete_directory($dirname) {
     if (is_dir($dirname))
         $dir_handle = opendir($dirname);
@@ -29,27 +29,26 @@ function delete_directory($dirname) {
     return true;
 }
 
-//«þ¨©¥Ø¿ý
+//Â«Ã¾Â¨Â©Â¥Ã˜Â¿Ã½
 function full_copy( $source="", $target=""){
-	if ( is_dir( $source ) ){
-		@mkdir( $target );
-		$d = dir( $source );
-		while ( FALSE !== ( $entry = $d->read() ) ){
-			if ( $entry == '.' || $entry == '..' ){
-				continue;
-			}
+    if ( is_dir( $source ) ){
+        @mkdir( $target );
+        $d = dir( $source );
+        while ( FALSE !== ( $entry = $d->read() ) ){
+            if ( $entry == '.' || $entry == '..' ){
+                continue;
+            }
 
-			$Entry = $source . '/' . $entry;
-			if ( is_dir( $Entry ) )	{
-				full_copy( $Entry, $target . '/' . $entry );
-				continue;
-			}
-			copy( $Entry, $target . '/' . $entry );
-		}
-		$d->close();
-	}else{
-		copy( $source, $target );
-	}
+            $Entry = $source . '/' . $entry;
+            if ( is_dir( $Entry ) )    {
+                full_copy( $Entry, $target . '/' . $entry );
+                continue;
+            }
+            copy( $Entry, $target . '/' . $entry );
+        }
+        $d->close();
+    }else{
+        copy( $source, $target );
+    }
 }
-*/
-?>
+*/;
