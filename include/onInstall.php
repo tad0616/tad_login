@@ -2,9 +2,9 @@
 /*
 function xoops_module_install_tad_login(&$module) {
 
-	mk_dir(XOOPS_ROOT_PATH."/uploads/tad_login");
+    mk_dir(XOOPS_ROOT_PATH."/uploads/tad_login");
 
-	return true;
+    return true;
 }
 
 //建立目錄
@@ -18,5 +18,4 @@ function mk_dir($dir=""){
         mkdir($dir, 0777);
     }
 }
-*/
-?>
+*/;
