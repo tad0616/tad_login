@@ -1,5 +1,5 @@
 <?php
-include_once "../../tadtools/language/{$xoopsConfig['language']}/admin_common.php";
+include_once '../../tadtools/language/' . $xoopsConfig['language'] . '/admin_common.php';
 define('_TAD_NEED_TADTOOLS', " 需要 tadtools 模組，可至<a href='http://www.tad0616.net/modules/tad_uploader/index.php?of_cat_sn=50' target='_blank'>Tad教材網</a>下載。");
 
 define('_MA_TADLOGIN_STEP1', "<h1>【步驟 1】若還不是FB開發者</h1><p>請連至 <a href='https://developers.facebook.com/apps' target='_blank'>https://developers.facebook.com/apps</a>，若是沒有「製作新應用程式」的按鈕，那您得先按下「Register Now」成為FB開發者才行。</p>");

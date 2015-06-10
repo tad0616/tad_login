@@ -1,5 +1,5 @@
 <?php
-include_once "../../tadtools/language/{$xoopsConfig['language']}/admin_common.php";
+include_once '../../tadtools/language/' . $xoopsConfig['language'] . '/admin_common.php';
 define('_TAD_NEED_TADTOOLS', "This module needs TadTools module. You can download TadTools from <a href='http://www.tad0616.net/modules/tad_uploader/index.php?of_cat_sn=50' target='_blank'>Tad's web</a>.");
 
 define('_MA_TADLOGIN_STEP1', '<h1> [Step 1] if not the FB developer </h1> <p> Please connect to <a href = \'https: //developers.facebook.com/apps\' target =\' _blank \'> https://developers.facebook.com/apps </a>, if not "create a new Application" button, then you must first click on the "Register Now" has become the FB developer job. </p > ');
