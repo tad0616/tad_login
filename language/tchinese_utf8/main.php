@@ -5,3 +5,5 @@ define('_TAD_NEED_TADTOOLS', " 需要 tadtools 模組，可至<a href='http://ww
 define('_MD_TADLOGIN_CNRNU', "建立XOOPS使用者失敗！");
 define('_MD_TADLOGIN_USE', "使用");
 define('_MD_TADLOGIN_LOGIN', "登入");
+define('_MD_TADLOGIN_TEACHER', "教師");
+define('_MD_TADLOGIN_STUDENT', "學生");

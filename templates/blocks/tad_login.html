@@ -1,9 +1,9 @@
 <{if $block}>
 
   <{if $block.show_btn=='1' and $block.show_text=='1'}>
-    <{assign var="btn_class" value='class="btn btn-block"'}>
+    <{assign var="btn_class" value='class="btn btn-default btn-block"'}>
   <{elseif $block.show_btn=='1' and $block.show_text=='0'}>
-    <{assign var="btn_class" value='class="btn"'}>
+    <{assign var="btn_class" value='class="btn btn-default"'}>
   <{/if}>
 
   <{if "facebook"|in_array:$block.auth_method}>

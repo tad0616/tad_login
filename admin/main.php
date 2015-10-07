@@ -7,9 +7,10 @@ include_once "../function.php";
 /*-----------function區--------------*/
 
 //tad_login_config編輯表單
-function tad_login_config_form($config_id = "") {
+function tad_login_config_form($config_id = "")
+{
     global $xoopsDB, $xoopsTpl;
-    include_once(XOOPS_ROOT_PATH . "/class/xoopsformloader.php");
+    include_once XOOPS_ROOT_PATH . "/class/xoopsformloader.php";
     //抓取預設值
     if (!empty($config_id)) {
         $DBV = get_tad_login_config($config_id);
@@ -18,7 +19,6 @@ function tad_login_config_form($config_id = "") {
     }
 
     //預設值設定
-
 
     //設定「config_id」欄位預設值
     $config_id = !isset($DBV['config_id']) ? $config_id : $DBV['config_id'];
@@ -53,16 +53,17 @@ function tad_login_config_form($config_id = "") {
 
     //群組
     $SelectGroup_name = new XoopsFormSelectGroup("", "group_id", true, $group_id, 6);
-    $SelectGroup_name->setExtra("class='span12'");
+    $SelectGroup_name->setExtra("class='span12 form-control'");
     $group_menu = $SelectGroup_name->render();
     $xoopsTpl->assign('group_menu', $group_menu);
 }
 
 //新增資料到tad_login_config中
-function insert_tad_login_config() {
+function insert_tad_login_config()
+{
     global $xoopsDB, $xoopsUser;
 
-    $myts          =& MyTextSanitizer::getInstance();
+    $myts          = &MyTextSanitizer::getInstance();
     $_POST['item'] = $myts->addSlashes($_POST['item']);
 
     if ($_POST['type'] == "email") {
@@ -85,10 +86,11 @@ function insert_tad_login_config() {
 }
 
 //更新tad_login_config某一筆資料
-function update_tad_login_config($config_id = "") {
+function update_tad_login_config($config_id = "")
+{
     global $xoopsDB, $xoopsUser;
 
-    $myts          =& MyTextSanitizer::getInstance();
+    $myts          = &MyTextSanitizer::getInstance();
     $_POST['item'] = $myts->addSlashes($_POST['item']);
 
     if ($_POST['type'] == "email") {
@@ -111,10 +113,11 @@ function update_tad_login_config($config_id = "") {
 }
 
 //列出所有tad_login_config資料
-function list_tad_login_config() {
+function list_tad_login_config()
+{
     global $xoopsDB, $xoopsTpl, $isAdmin;
 
-    $sql = "select * from `" . $xoopsDB->prefix("groups") . "` ";
+    $sql    = "select * from `" . $xoopsDB->prefix("groups") . "` ";
     $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
     $groups = "";
     $i      = 0;
@@ -125,7 +128,7 @@ function list_tad_login_config() {
         $groups[$groupid] = $name;
     }
 
-    $sql = "select * from `" . $xoopsDB->prefix("tad_login_config") . "` ";
+    $sql    = "select * from `" . $xoopsDB->prefix("tad_login_config") . "` ";
     $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
 
     $all_content = "";
@@ -137,6 +140,7 @@ function list_tad_login_config() {
         }
 
         $all_content[$i]['config_id']  = $config_id;
+        $all_content[$i]['kind']       = ($kind == "teacher") ? _MA_TADLOGIN_TEACHER : _MA_TADLOGIN_STUDENT;
         $all_content[$i]['item']       = $item;
         $all_content[$i]['group_id']   = $group_id;
         $all_content[$i]['group_name'] = $groups[$group_id];
@@ -151,38 +155,41 @@ function list_tad_login_config() {
 }
 
 //以流水號取得某筆tad_login_config資料
-function get_tad_login_config($config_id = "") {
+function get_tad_login_config($config_id = "")
+{
     global $xoopsDB;
     if (empty($config_id)) {
         return;
     }
-    $sql = "select * from `" . $xoopsDB->prefix("tad_login_config") . "` where `config_id` = '{$config_id}'";
+    $sql    = "select * from `" . $xoopsDB->prefix("tad_login_config") . "` where `config_id` = '{$config_id}'";
     $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
-    $data = $xoopsDB->fetchArray($result);
+    $data   = $xoopsDB->fetchArray($result);
 
     return $data;
 }
 
 //刪除tad_login_config某筆資料資料
-function delete_tad_login_config($config_id = "") {
+function delete_tad_login_config($config_id = "")
+{
     global $xoopsDB, $isAdmin;
     $sql = "delete from `" . $xoopsDB->prefix("tad_login_config") . "` where `config_id` = '{$config_id}'";
     $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
 }
 
 //以流水號秀出某筆tad_login_config資料內容
-function show_one_tad_login_config($config_id = "") {
+function show_one_tad_login_config($config_id = "")
+{
     global $xoopsDB, $xoopsTpl, $isAdmin;
 
     if (empty($config_id)) {
         return;
     } else {
-        $config_id = (int)($config_id);
+        $config_id = (int) ($config_id);
     }
 
-    $sql = "select * from `" . $xoopsDB->prefix("tad_login_config") . "` where `config_id` = '{$config_id}' ";
+    $sql    = "select * from `" . $xoopsDB->prefix("tad_login_config") . "` where `config_id` = '{$config_id}' ";
     $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
-    $all = $xoopsDB->fetchArray($result);
+    $all    = $xoopsDB->fetchArray($result);
 
     //以下會產生這些變數： $config_id , $item , $group_id
     foreach ($all as $k => $v) {
@@ -199,7 +206,7 @@ function show_one_tad_login_config($config_id = "") {
 
 /*-----------執行動作判斷區----------*/
 $op        = (!isset($_REQUEST['op'])) ? "" : $_REQUEST['op'];
-$config_id = (!isset($_REQUEST['config_id'])) ? "" : (int)($_REQUEST['config_id']);
+$config_id = (!isset($_REQUEST['config_id'])) ? "" : (int) ($_REQUEST['config_id']);
 
 switch ($op) {
     /*---判斷動作請貼在下方---*/

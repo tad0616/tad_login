@@ -1,8 +1,11 @@
-CHANGELOG:
-
-Tad Login 3.4                (NOT RELEASED YET)
+Tad Login 3.4 official version of the function item (2015-10-07 release)
 ================================================
-1. Added English translation (mamba)
+1. Fix facebook and google can not login form tad_login index.
+2. Move OpenID preferences item from tadtools.
+3. Fix SchoolCode rules can not be added to the correct group of teachers issue
+4. Cancel the real title of preferences, to avoid problems caused because titles can not be added to correct the group login faculty
+5. Adjust the rule presented Interface
+
 
 Tad Login 3.3 official version of the function item (2015-03-31 release)
 ================================================

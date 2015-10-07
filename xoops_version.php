@@ -3,7 +3,7 @@ $modversion = array();
 
 //---模組基本資訊---//
 $modversion['name']        = _MI_TADLOGIN_NAME;
-$modversion['version']     = 3.3;
+$modversion['version']     = 3.4;
 $modversion['description'] = _MI_TADLOGIN_DESC;
 $modversion['author']      = _MI_TADLOGIN_AUTHOR;
 $modversion['credits']     = _MI_TADLOGIN_CREDITS;
@@ -14,7 +14,7 @@ $modversion['image']       = "images/logo_{$xoopsConfig['language']}.png";
 $modversion['dirname']     = basename(__DIR__);
 
 //---模組狀態資訊---//
-$modversion['release_date']        = '2015/03/31';
+$modversion['release_date']        = '2015/10/07';
 $modversion['module_website_url']  = 'http://tad0616.net/';
 $modversion['module_website_name'] = _MI_TAD_WEB;
 $modversion['module_status']       = 'release';
@@ -25,11 +25,11 @@ $modversion['min_xoops']           = '2.5';
 $modversion['min_tadtools']        = '2.08';
 
 //---paypal資訊---//
-$modversion ['paypal']                  = array();
-$modversion ['paypal']['business']      = 'tad0616@gmail.com';
-$modversion ['paypal']['item_name']     = 'Donation : ' . _MI_TAD_WEB;
-$modversion ['paypal']['amount']        = 0;
-$modversion ['paypal']['currency_code'] = 'USD';
+$modversion['paypal']                  = array();
+$modversion['paypal']['business']      = 'tad0616@gmail.com';
+$modversion['paypal']['item_name']     = 'Donation : ' . _MI_TAD_WEB;
+$modversion['paypal']['amount']        = 0;
+$modversion['paypal']['currency_code'] = 'USD';
 
 //---安裝設定---//
 $modversion['onInstall']   = "include/onInstall.php";
@@ -37,7 +37,7 @@ $modversion['onUpdate']    = "include/onUpdate.php";
 $modversion['onUninstall'] = "include/onUninstall.php";
 
 //---啟動後台管理界面選單---//
-$modversion['system_menu']      = 1;//---資料表架構---//
+$modversion['system_menu']      = 1; //---資料表架構---//
 $modversion['sqlfile']['mysql'] = "sql/mysql.sql";
 $modversion['tables'][1]        = "tad_login_random_pass";
 $modversion['tables'][2]        = "tad_login_config";
@@ -164,14 +164,6 @@ $modversion['config'][$i]['options']     = array(
     sprintf(_MI_TADLOGIN_LOGIN, _HLC)      => 'hlc',
     sprintf(_MI_TADLOGIN_LOGIN, _KM)       => 'km',
     sprintf(_MI_TADLOGIN_LOGIN, _PHC)      => 'phc');
-
-$i++;
-$modversion['config'][$i]['name']        = 'real_jobname';
-$modversion['config'][$i]['title']       = '_MI_TADLOGIN_REAL_JOBNAME';
-$modversion['config'][$i]['description'] = '_MI_TADLOGIN_REAL_JOBNAME_DESC';
-$modversion['config'][$i]['formtype']    = 'yesno';
-$modversion['config'][$i]['valuetype']   = 'int';
-$modversion['config'][$i]['default']     = '0';
 
 $i++;
 $modversion['config'][$i]['name']        = 'openid_login';
