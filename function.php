@@ -373,17 +373,22 @@ if (!function_exists("add2group")) {
     {
         global $xoopsDB, $xoopsUser;
 
-        if ($JobName == _MD_TADLOGIN_TEACHER) {
-            $JobName = "teacher";
-        } elseif ($JobName == _MD_TADLOGIN_STUDENT) {
-            $JobName = "student";
-        } else {
-            $JobName = "";
-        }
+        // if ($JobName == _MD_TADLOGIN_TEACHER) {
+        //     $JobName = "teacher";
+        // } elseif ($JobName == _MD_TADLOGIN_STUDENT) {
+        //     $JobName = "student";
+        // } else {
+        //     $JobName = "";
+        // }
 
         $member_handler = &xoops_gethandler('member');
         $user           = &$member_handler->getUser($uid);
-        $userGroups     = $user->getGroups();
+        if ($user) {
+            $userGroups = $user->getGroups();
+        } else {
+            header('location:' . XOOPS_URL);
+            exit;
+        }
 
         $sql    = "select `item`,`kind`,`group_id` from `" . $xoopsDB->prefix('tad_login_config') . "`";
         $result = $xoopsDB->queryF($sql) or die(mysql_error());

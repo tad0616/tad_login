@@ -1,3 +1,7 @@
+Tad Login 3.4.1 official version of the function item (2015-10-08 release)
+================================================
+1. Fixed group rule is not working.
+
 Tad Login 3.4 official version of the function item (2015-10-07 release)
 ================================================
 1. Fix facebook and google can not login form tad_login index.
