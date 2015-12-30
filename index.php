@@ -16,7 +16,7 @@ function tn_login()
         exit;
     }
 
-    include_once 'class/openid.php';
+    include_once 'class/openid12.php';
     try {
         # Change 'localhost' to your domain name.
         $openid = new LightOpenID(XOOPS_URL);
@@ -113,6 +113,55 @@ function tn_login()
     $xoopsTpl->assign('openid', $main);
 }
 
+//台北 OpenID 登入
+function tp_login()
+{
+    global $xoopsModuleConfig, $xoopsConfig, $xoopsDB, $xoopsTpl, $xoopsUser;
+
+    if ($xoopsUser) {
+        header("location:" . XOOPS_URL . "/user.php");
+        exit;
+    }
+
+    include_once 'class/openid12.php';
+    try {
+        # Change 'localhost' to your domain name.
+        $openid = new LightOpenID(XOOPS_URL);
+
+        if (!$openid->mode) {
+            $openid->identity = "https://openid.tp.edu.tw";
+            $openid->required = array('contact/email', 'namePerson');
+            header('Location: ' . $openid->authUrl());
+
+        } else {
+            $user_profile = $openid->getAttributes();
+            // die(var_export($user_profile));
+
+            // Login or logout url will be needed depending on current user state.
+            //die(var_dump($user_profile));
+            if ($user_profile) {
+                $myts = &MyTextsanitizer::getInstance();
+
+                $the_id = explode("@", $user_profile['contact/email']);
+
+                //$uid = $user['id'];
+                $uname      = $the_id[0] . "_tp";
+                $name       = $myts->addSlashes($user_profile['namePerson']);
+                $email      = strtolower($user_profile['contact/email']);
+                $SchoolCode = $myts->addSlashes($user_profile['.tw/axschema/EduSchoolID']);
+                $JobName    = $user_profile['.tw/axschema/JobName'] == "學生" ? "student" : "teacher";
+
+                //搜尋有無相同username資料
+                login_xoops($uname, $name, $email, $SchoolCode, $JobName);
+            }
+        }
+    } catch (ErrorException $e) {
+        $main = $e->getMessage();
+    }
+
+    $xoopsTpl->assign('openid', $main);
+}
+
 //基隆市 OpenID 登入
 function kl_login()
 {
@@ -127,6 +176,7 @@ function kl_login()
     try {
         # Change 'localhost' to your domain name.
         $openid = new LightOpenID(XOOPS_URL);
+
         if (!$openid->mode) {
             $openid->identity = "http://openid.kl.edu.tw";
             $openid->required = array('contact/email', 'namePerson/friendly', 'namePerson');
@@ -191,7 +241,7 @@ function ilc_login()
 
         } else {
             $user_profile = $openid->getAttributes();
-            die(var_export($user_profile));
+            // die(var_export($user_profile));
             // Login or logout url will be needed depending on current user state.
             /*
             array (
@@ -303,6 +353,7 @@ function hlc_login($conty = "", $openid_identity = "")
         $openid = new LightOpenID(XOOPS_URL);
         if (!$openid->mode) {
             if (isset($_GET['login'])) {
+                // die($openid_identity);
                 $openid->identity = $openid_identity;
                 $openid->required = array('contact/email', 'namePerson/friendly', 'namePerson');
                 $openid->optional = array('contact/country/home', 'pref/timezone');
@@ -343,9 +394,18 @@ function hlc_login($conty = "", $openid_identity = "")
             'namePerson/friendly' => '葉xx',
             'pref/timezone' => '[{"id":"034521","title":["\\u5b78\\u6821\\u7ba1\\u7406\\u8005","\\u6559\\u5e2b","\\u8077\\u54e1"]}]',
             )
+
+            //ttct
+            array (
+            'contact/country/home' => '1446xx',
+            'contact/email' => 'popxx@dove.ttct.edu.tw',
+            'namePerson' => '曾xx',
+            'namePerson/friendly' => 'popxx',
+            'pref/timezone' => '{"sid":"1446xx","title":["教師","學校管理者"]}',
+            )
              */
             $user_profile = $openid->getAttributes();
-            //die(var_export($user_profile));
+            // die(var_export($user_profile));
             if ($user_profile) {
                 $myts = &MyTextsanitizer::getInstance();
 
@@ -670,23 +730,28 @@ function km_login()
         exit;
     }
 
-    include_once 'class/openid.php';
+    include_once 'class/openid_kl.php';
     try {
         # Change 'localhost' to your domain name.
         $openid = new LightOpenID(XOOPS_URL);
         if (!$openid->mode) {
             $openid->identity = "http://openid.cnc.km.edu.tw";
-            $openid->required = array('contact/email', 'namePerson');
-            $openid->optional = array('axschema/person/guid', 'axschema/school/titleStr', 'axschema/school/id');
+            $openid->required = array('contact/email', 'namePerson/friendly', 'namePerson');
+            $openid->optional = array('axschema/person/guid', 'axschema/school/titleStr', 'axschema/school/id', 'tw/person/guid', 'tw/isas/roles');
+            // $openid->required = array('contact/email', 'namePerson');
+            // $openid->optional = array('axschema/person/guid', 'axschema/school/titleStr', 'axschema/school/id');
             header('Location: ' . $openid->authUrl());
 
         } else {
             $user_profile = $openid->getAttributes();
-            //die(var_export($user_profile));
+            // die(var_export($user_profile));
             /*
             array (
-            'contact/email' => 'maginot.tw@yahoo.com.tw',
-            'namePerson' => '陳志偉',
+            'axschema/school/id' => '714501',
+            'axschema/school/titleStr' => '{"sid":"714501","title":["教師"],"titles":["教師"]}',
+            'contact/email' => 'test@gm.km.edu.tw',
+            'namePerson' => '測試帳號',
+            'namePerson/friendly' => 'Test',
             )
              */
 
@@ -699,8 +764,65 @@ function km_login()
                 $uname      = $the_id[0] . "_km";
                 $name       = $myts->addSlashes($user_profile['namePerson']);
                 $email      = strtolower($user_profile['contact/email']);
-                $SchoolCode = $myts->addSlashes($user_profile['.tw/axschema/EduSchoolID']);
-                $JobName    = $user_profile['.tw/axschema/JobName'] == "學生" ? "student" : "teacher";
+                $SchoolCode = $myts->addSlashes($user_profile['axschema/school/id']);
+                $JobName    = (strrpos($user_profile['axschema/school/titleStr'], "學生") !== false) ? "student" : "teacher";
+
+                //搜尋有無相同username資料
+                login_xoops($uname, $name, $email, $SchoolCode, $JobName);
+            }
+        }
+    } catch (ErrorException $e) {
+        $main = $e->getMessage();
+    }
+
+    $xoopsTpl->assign('openid', $main);
+}
+
+//馬祖 OpenID 登入
+function mt_login()
+{
+    global $xoopsModuleConfig, $xoopsConfig, $xoopsDB, $xoopsTpl, $xoopsUser;
+
+    if ($xoopsUser) {
+        header("location:" . XOOPS_URL . "/user.php");
+        exit;
+    }
+
+    include_once 'class/openid_kl.php';
+    try {
+        # Change 'localhost' to your domain name.
+        $openid = new LightOpenID(XOOPS_URL);
+        if (!$openid->mode) {
+            $openid->identity = "http://openid.matsu.edu.tw";
+
+            $openid->required = array('contact/email', 'namePerson/friendly', 'namePerson');
+            $openid->optional = array('axschema/person/guid', 'axschema/school/titleStr', 'axschema/school/id', 'tw/person/guid', 'tw/isas/roles');
+            header('Location: ' . $openid->authUrl());
+
+        } else {
+            $user_profile = $openid->getAttributes();
+            // die(var_export($user_profile));
+            /*
+            array (
+            'axschema/school/id' => '724603',
+            'axschema/school/titleStr' => '{"sid":"724603","titles":["學生"]}',
+            'contact/email' => 'openid@gm.matsu.edu.tw',
+            'namePerson' => '林大民',
+            'namePerson/friendly' => 'Stu',
+            )
+             */
+
+            if ($user_profile) {
+                $myts = &MyTextsanitizer::getInstance();
+
+                $the_id = explode("@", $user_profile['contact/email']);
+
+                //$uid = $user['id'];
+                $uname      = $the_id[0] . "_mt";
+                $name       = $myts->addSlashes($user_profile['namePerson']);
+                $email      = strtolower($user_profile['contact/email']);
+                $SchoolCode = $myts->addSlashes($user_profile['axschema/school/id']);
+                $JobName    = $user_profile['namePerson/friendly'] == "Stu" ? "student" : "teacher";
 
                 //搜尋有無相同username資料
                 login_xoops($uname, $name, $email, $SchoolCode, $JobName);
@@ -800,17 +922,27 @@ switch ($op) {
 
     case "hlc":
         $_SESSION['auth_method'] = "hlc";
-        hlc_login('hlc', "http://openid.hlc.edu.tw");
+        hlc_login('hlc', "https://sso.hlc.edu.tw");
+        break;
+
+    case "tp":
+        $_SESSION['auth_method'] = "tp";
+        hlc_login('tp', "https://openid.tp.edu.tw");
+        break;
+
+    case "tyc":
+        $_SESSION['auth_method'] = "tyc";
+        hlc_login('tyc', "https://openid.tyc.edu.tw");
+        break;
+
+    case "ttct":
+        $_SESSION['auth_method'] = "ttct";
+        hlc_login('ttct', "http://openid.boe.ttct.edu.tw");
         break;
 
     case "ntpc":
         $_SESSION['auth_method'] = "ntpc";
         hlc_login('ntpc', "https://openid.ntpc.edu.tw");
-        break;
-
-    case "tyc":
-        $_SESSION['auth_method'] = "ntpc";
-        hlc_login('tyc', "https://openid.tyc.edu.tw");
         break;
 
     case "phc":
@@ -836,6 +968,11 @@ switch ($op) {
     case "km":
         $_SESSION['auth_method'] = "km";
         km_login();
+        break;
+
+    case "mt":
+        $_SESSION['auth_method'] = "mt";
+        mt_login();
         break;
 
     default:
@@ -869,6 +1006,12 @@ switch ($op) {
             tc_login("mlc", "http://openid.mlc.edu.tw");
         } elseif ($_SESSION['auth_method'] == "chc") {
             tc_login("chc", "http://openid.chc.edu.tw");
+        } elseif ($_SESSION['auth_method'] == "tp") {
+            hlc_login('tp', "https://openid.tp.edu.tw");
+        } elseif ($_SESSION['auth_method'] == "tyc") {
+            hlc_login('tyc', "http://openid.tyc.edu.tw");
+        } elseif ($_SESSION['auth_method'] == "ttct") {
+            hlc_login('ttct', "http://openid.boe.ttct.edu.tw");
         } elseif ($_SESSION['auth_method'] == "ntct") {
             tc_login("ntct", "http://openid.ntct.edu.tw");
         } elseif ($_SESSION['auth_method'] == "cy") {
@@ -877,8 +1020,6 @@ switch ($op) {
             tc_login("tc", "http://openid.tc.edu.tw");
         } elseif ($_SESSION['auth_method'] == "ntpc") {
             hlc_login('ntpc', "http://openid.ntpc.edu.tw");
-        } elseif ($_SESSION['auth_method'] == "tyc") {
-            hlc_login('tyc', "http://openid.tyc.edu.tw");
         } elseif ($_SESSION['auth_method'] == "hlc") {
             hlc_login('hlc', "http://openid.hlc.edu.tw");
         } elseif ($_SESSION['auth_method'] == "ptc") {
@@ -889,6 +1030,8 @@ switch ($op) {
             kh_login();
         } elseif ($_SESSION['auth_method'] == "km") {
             km_login();
+        } elseif ($_SESSION['auth_method'] == "mt") {
+            mt_login();
         }
 
         facebook_login();

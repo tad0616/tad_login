@@ -3,7 +3,7 @@ $modversion = array();
 
 //---模組基本資訊---//
 $modversion['name']        = _MI_TADLOGIN_NAME;
-$modversion['version']     = 3.42;
+$modversion['version']     = 3.5;
 $modversion['description'] = _MI_TADLOGIN_DESC;
 $modversion['author']      = _MI_TADLOGIN_AUTHOR;
 $modversion['credits']     = _MI_TADLOGIN_CREDITS;
@@ -14,7 +14,7 @@ $modversion['image']       = "images/logo_{$xoopsConfig['language']}.png";
 $modversion['dirname']     = basename(__DIR__);
 
 //---模組狀態資訊---//
-$modversion['release_date']        = '2015/10/08';
+$modversion['release_date']        = '2015/12/25';
 $modversion['module_website_url']  = 'http://tad0616.net/';
 $modversion['module_website_name'] = _MI_TAD_WEB;
 $modversion['module_status']       = 'release';
@@ -146,6 +146,7 @@ $modversion['config'][$i]['options']     = array(
     sprintf(_MI_TADLOGIN_LOGIN, _YAHOO)    => 'yahoo',
     sprintf(_MI_TADLOGIN_LOGIN, _MYID)     => 'myid',
     sprintf(_MI_TADLOGIN_LOGIN, _KL)       => 'kl',
+    sprintf(_MI_TADLOGIN_LOGIN, _TP)       => 'tp',
     sprintf(_MI_TADLOGIN_LOGIN, _NTPC)     => 'ntpc',
     sprintf(_MI_TADLOGIN_LOGIN, _TYC)      => 'tyc',
     sprintf(_MI_TADLOGIN_LOGIN, _HCC)      => 'hcc',
@@ -160,10 +161,12 @@ $modversion['config'][$i]['options']     = array(
     sprintf(_MI_TADLOGIN_LOGIN, _TN)       => 'tn',
     sprintf(_MI_TADLOGIN_LOGIN, _KH)       => 'kh',
     sprintf(_MI_TADLOGIN_LOGIN, _PTC)      => 'ptc',
-    //sprintf(_MI_TADLOGIN_LOGIN,_ILC) => 'ilc',
+    sprintf(_MI_TADLOGIN_LOGIN, _ILC)      => 'ilc',
     sprintf(_MI_TADLOGIN_LOGIN, _HLC)      => 'hlc',
+    sprintf(_MI_TADLOGIN_LOGIN, _TTCT)     => 'ttct',
+    sprintf(_MI_TADLOGIN_LOGIN, _PHC)      => 'phc',
     sprintf(_MI_TADLOGIN_LOGIN, _KM)       => 'km',
-    sprintf(_MI_TADLOGIN_LOGIN, _PHC)      => 'phc');
+    sprintf(_MI_TADLOGIN_LOGIN, _MT)       => 'mt');
 
 $i++;
 $modversion['config'][$i]['name']        = 'openid_login';

@@ -1,6 +1,7 @@
 <?php
 //區塊主函式 (快速登入(tad_login))
-function tad_login($options = "") {
+function tad_login($options = "")
+{
     global $xoopsConfig, $xoopsDB, $xoopsUser;
     if ($xoopsUser) {
         return;
@@ -12,7 +13,7 @@ function tad_login($options = "") {
 
     $modhandler     = &xoops_gethandler('module');
     $xoopsModule    = &$modhandler->getByDirname("tad_login");
-    $config_handler =& xoops_gethandler('config');
+    $config_handler = &xoops_gethandler('config');
     $modConfig      = &$config_handler->getConfigsByCat(0, $xoopsModule->getVar('mid'));
 
     $block['auth_method'] = $modConfig['auth_method'];
@@ -22,7 +23,8 @@ function tad_login($options = "") {
     return $block;
 }
 
-function tad_login_edit($options = "") {
+function tad_login_edit($options = "")
+{
     global $xoopsConfig, $xoopsDB, $xoopsUser;
     $opt0_1 = $options[0] == '1' ? "checked" : "";
     $opt0_0 = $options[0] == '0' ? "checked" : "";

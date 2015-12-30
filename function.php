@@ -1,7 +1,7 @@
 <?php
 //引入TadTools的函式庫
 if (!file_exists(XOOPS_ROOT_PATH . "/modules/tadtools/tad_function.php")) {
-    redirect_header("http://www.tad0616.net/modules/tad_uploader/index.php?of_cat_sn=50", 3, _TAD_NEED_TADTOOLS);
+    redirect_header("http://campus-xoops.tn.edu.tw/modules/tad_modules/index.php?module_sn=1", 3, _TAD_NEED_TADTOOLS);
 }
 include_once XOOPS_ROOT_PATH . "/modules/tadtools/tad_function.php";
 
@@ -90,8 +90,8 @@ if (!function_exists('google_login')) {
     {
         global $xoopsConfig, $xoopsDB, $xoopsTpl, $xoopsUser;
 
-        require_once 'class/google/Google_Client.php';
-        require_once 'class/google/contrib/Google_Oauth2Service.php';
+        require_once XOOPS_ROOT_PATH . '/modules/tad_login/class/google/Google_Client.php';
+        require_once XOOPS_ROOT_PATH . '/modules/tad_login/class/google/contrib/Google_Oauth2Service.php';
 
         if ($xoopsUser) {
             header("location:" . XOOPS_URL . "/user.php");
@@ -222,7 +222,7 @@ if (!function_exists('login_xoops')) {
                 //設定最後登入時間
                 $user->setVar('last_login', time());
                 $user->setVar("user_from", $from);
-                $user->setVar("url", formatURL($url));
+                // $user->setVar("url", formatURL($url));
                 $user->setVar("user_sig", $sig);
                 $user->setVar("user_icq", $JobName);
                 $user->setVar("bio", $bio);
