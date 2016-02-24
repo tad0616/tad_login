@@ -3,7 +3,7 @@ $modversion = array();
 
 //---模組基本資訊---//
 $modversion['name']        = _MI_TADLOGIN_NAME;
-$modversion['version']     = 3.5;
+$modversion['version']     = 3.6;
 $modversion['description'] = _MI_TADLOGIN_DESC;
 $modversion['author']      = _MI_TADLOGIN_AUTHOR;
 $modversion['credits']     = _MI_TADLOGIN_CREDITS;
@@ -14,7 +14,7 @@ $modversion['image']       = "images/logo_{$xoopsConfig['language']}.png";
 $modversion['dirname']     = basename(__DIR__);
 
 //---模組狀態資訊---//
-$modversion['release_date']        = '2015/12/25';
+$modversion['release_date']        = '2016/02/17';
 $modversion['module_website_url']  = 'http://tad0616.net/';
 $modversion['module_website_name'] = _MI_TAD_WEB;
 $modversion['module_status']       = 'release';
@@ -144,7 +144,7 @@ $modversion['config'][$i]['options']     = array(
     sprintf(_MI_TADLOGIN_LOGIN, _FACEBOOK) => 'facebook',
     sprintf(_MI_TADLOGIN_LOGIN, _GOOGLE)   => 'google',
     sprintf(_MI_TADLOGIN_LOGIN, _YAHOO)    => 'yahoo',
-    sprintf(_MI_TADLOGIN_LOGIN, _MYID)     => 'myid',
+    // sprintf(_MI_TADLOGIN_LOGIN, _MYID)     => 'myid',
     sprintf(_MI_TADLOGIN_LOGIN, _KL)       => 'kl',
     sprintf(_MI_TADLOGIN_LOGIN, _TP)       => 'tp',
     sprintf(_MI_TADLOGIN_LOGIN, _NTPC)     => 'ntpc',

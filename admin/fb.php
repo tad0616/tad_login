@@ -7,7 +7,8 @@ include_once "../function.php";
 /*-----------function區--------------*/
 
 //FB登入說明
-function facebook_desc() {
+function facebook_desc()
+{
     global $xoopsTpl;
     $main = "
     <label>" . _MA_TADLOGIN_STEP1 . "</label><br>
@@ -23,6 +24,8 @@ function facebook_desc() {
     <hr>
     <label>" . _MA_TADLOGIN_STEP6 . "</label><br>
     <img src='../images/fb/step06.png' alt='step6' title='step6' border='0' class='img-polaroid'><br><br>
+    <label>" . _MA_TADLOGIN_STEP6_1 . "</label><br>
+    <img src='../images/fb/step06_1.png' alt='step6' title='step6_1' border='0' class='img-polaroid'><br><br>
     <label>" . _MA_TADLOGIN_STEP7 . "</label><br>
     <img src='../images/fb/step07.png' alt='step7' title='step7' border='0' class='img-polaroid'><br><br>
     <label>" . _MA_TADLOGIN_STEP8 . "</label><br>
@@ -56,7 +59,7 @@ switch ($op) {
         facebook_desc();
         break;
 
-    /*---判斷動作請貼在上方---*/
+        /*---判斷動作請貼在上方---*/
 }
 
 /*-----------秀出結果區--------------*/

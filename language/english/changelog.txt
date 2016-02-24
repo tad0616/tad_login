@@ -1,3 +1,17 @@
+Tad Login 3.6 official version of the function item (2016-02-17 release)
+================================================
+1. The problem has been fixed in Hualien County unusable.
+2. Update FaceBook Authentication Setting Description
+3. Update Google Certification Setting Description
+
+Tad Login 3.5 official version of the function item (2016-01-04 release)
+================================================
+1. Fix the problem sometimes been logged but blank pages.
+2. Do not automatically write Website Information
+3. Add Lianjiang County openid
+4. Fixed Kinmen County openid
+5. Fixed Hualien County openid
+
 Tad Login 3.4.1 official version of the function item (2015-10-08 release)
 ================================================
 1. Fixed group rule is not working.

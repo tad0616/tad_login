@@ -129,8 +129,9 @@ function tp_login()
         $openid = new LightOpenID(XOOPS_URL);
 
         if (!$openid->mode) {
-            $openid->identity = "https://openid.tp.edu.tw";
-            $openid->required = array('contact/email', 'namePerson');
+            $openid->identity = "https://openid.tp.edu.tw/openid/op.action";
+            $openid->required = array('contact/email', 'namePerson/friendly', 'namePerson');
+            $openid->optional = array('axschema/person/accountType', 'axschema/school/titleStr', 'axschema/school/id');
             header('Location: ' . $openid->authUrl());
 
         } else {
@@ -581,7 +582,7 @@ function tc_login($conty = "", $openid_identity = "")
 
         } else {
             $user_profile = $openid->getAttributes();
-            //die(var_export($user_profile));
+            // die(var_export($user_profile));
             /*
             array (
             'axschema/person/guid' => 'ab1a1b5769b6886f40e8e1b2c349e36b470f76b51d3ed8e9e784843fa0ca9355',
@@ -599,6 +600,8 @@ function tc_login($conty = "", $openid_identity = "")
             'namePerson' => '測試帳號',
             )
             //南投
+            array ( 'contact/email' => ' t03238@mail.edu.tw', 'namePerson' => '劉坤榮', )
+
             array (
             'axschema/person/guid' => '3ba3a257aec87686e0b52bb81c4ca338d04dd25205358e8730d5fa87cfdf2bff',
             'axschema/school/titleStr' => '[{\\"id\\":\\"084719a1\\",\\"title\\":[\\"教師\\"]},{\\"id\\":\\"084716a1\\",\\"title\\":[\\"教師\\"]}]',
@@ -606,6 +609,7 @@ function tc_login($conty = "", $openid_identity = "")
             'contact/email' => 'kk@k.2.k',
             'namePerson' => '測試一',
             )
+
             //彰化
             array (
             'axschema/person/guid' => '4208f4152cb215d19edfa78d4e85ae2ccee65497ed68af69e5ca7641510d3af6',
@@ -626,7 +630,7 @@ function tc_login($conty = "", $openid_identity = "")
                     $email = "{$uname}@{$SchoolCode}.{$conty}.edu.tw";
                 } else {
                     $the_id = explode("@", $user_profile['contact/email']);
-                    $uname  = $the_id[0] . "_" . $conty;
+                    $uname  = trim($the_id[0]) . "_" . $conty;
                     $email  = $user_profile['contact/email'];
                 }
                 //$uid = $user['id'];
@@ -922,12 +926,12 @@ switch ($op) {
 
     case "hlc":
         $_SESSION['auth_method'] = "hlc";
-        hlc_login('hlc', "https://sso.hlc.edu.tw");
+        hlc_login('hlc', "http://openid.hlc.edu.tw");
         break;
 
     case "tp":
         $_SESSION['auth_method'] = "tp";
-        hlc_login('tp', "https://openid.tp.edu.tw");
+        tp_login();
         break;
 
     case "tyc":
@@ -1007,7 +1011,7 @@ switch ($op) {
         } elseif ($_SESSION['auth_method'] == "chc") {
             tc_login("chc", "http://openid.chc.edu.tw");
         } elseif ($_SESSION['auth_method'] == "tp") {
-            hlc_login('tp', "https://openid.tp.edu.tw");
+            tp_login();
         } elseif ($_SESSION['auth_method'] == "tyc") {
             hlc_login('tyc', "http://openid.tyc.edu.tw");
         } elseif ($_SESSION['auth_method'] == "ttct") {

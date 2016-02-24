@@ -9,6 +9,7 @@ define('_MA_TADLOGIN_STEP4', '<h1> [Step 4] phone verification </h1> <p> Please 
 define('_MA_TADLOGIN_STEP5', '"<h1> [Step 5] Congratulations on the completion of the first step </h1> <p> Now that you have a FB developer, the future would be no need to repeat this step up! </p>');
 
 define('_MA_TADLOGIN_STEP6', "<h1> [Step 1] Create application </h1> <p> Please connect to <a href='https://developers.facebook.com/apps' target='_blank'> https://developers.facebook.com/apps </a>, if you are already a developer, you should see 'Create New Application' button, click 'Create New Application' to start setting. </p> ");
+define('_MA_TADLOGIN_STEP6_1', "<p>Click \"basic setup\"</p>");
 define('_MA_TADLOGIN_STEP7', '<h1> [Step 2] to build new applications </h1> <p> <ol> <li>" Display Name "that is," Display Name "to fill the one you can understand Chinese you can, for example, "Quick Login" </li> <li> "Namespace" application name space to fill an English code (only lower case letters and the bottom line or - symbols, numbers, or Chinese not), for example: xxx_login </li> <li> "categories" to pick a bar </li> </ol> </p> ');
 define('_MA_TADLOGIN_STEP8', "<h1> [Step 3] Verify </h1> <p> Please effort by annoying verification code, if I remember to wrap at a space </p>.");
 define('_MA_TADLOGIN_STEP9', '<h1> [Step 4] the most important information </h1> <p> The above" application ID "and" application key "is to wait to fill the XOOPS Quick Access Preferences . The two values ​​</p> ');

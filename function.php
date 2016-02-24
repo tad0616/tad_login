@@ -323,10 +323,10 @@ if (!function_exists('login_xoops')) {
             }
 
             $sql = "INSERT INTO `" . $xoopsDB->prefix('groups_users_link') . "`  (groupid, uid) VALUES  (2, " . $newuser->getVar('uid') . ")";
-            $xoopsDB->queryF($sql) or die(mysql_error());
+            $xoopsDB->queryF($sql) or web_error($sql);
 
             $sql = "replace into `" . $xoopsDB->prefix('tad_login_random_pass') . "` (`uname` , `random_pass`) values  ('{$uname}','{$pass}')";
-            $xoopsDB->queryF($sql) or die(mysql_error());
+            $xoopsDB->queryF($sql) or web_error($sql);
 
             login_xoops($uname, $name, $email, $SchoolCode, $JobName, $url, $form, $sig, $occ, $bio);
         }
@@ -342,7 +342,7 @@ if (!function_exists("getPass")) {
         }
 
         $sql               = "select `random_pass` from `" . $xoopsDB->prefix('tad_login_random_pass') . "` where `uname`='{$uname}'";
-        $result            = $xoopsDB->queryF($sql) or die(mysql_error());
+        $result            = $xoopsDB->queryF($sql) or web_error($sql);
         list($random_pass) = $xoopsDB->fetchRow($result);
 
         //舊OpenID使用者
@@ -350,18 +350,18 @@ if (!function_exists("getPass")) {
             $random_pass = randStr(128);
 
             $sql = "replace into `" . $xoopsDB->prefix('tad_login_random_pass') . "` (`uname` , `random_pass`) values  ('{$uname}','{$random_pass}')";
-            $xoopsDB->queryF($sql) or die(mysql_error());
+            $xoopsDB->queryF($sql) or web_error($sql);
 
             $sql = "update `" . $xoopsDB->prefix('users') . "` set `pass`=md5('{$random_pass}') where `uname`='{$uname}'";
-            $xoopsDB->queryF($sql) or die(mysql_error());
+            $xoopsDB->queryF($sql) or web_error($sql);
         }
 
         $sql        = "select `pass` from `" . $xoopsDB->prefix('users') . "` where `uname`='{$uname}'";
-        $result     = $xoopsDB->queryF($sql) or die(mysql_error());
+        $result     = $xoopsDB->queryF($sql) or web_error($sql);
         list($pass) = $xoopsDB->fetchRow($result);
         if ($pass !== md5($random_pass)) {
             $sql = "update `" . $xoopsDB->prefix('users') . "` set `pass`=md5('{$random_pass}') where `uname`='{$uname}'";
-            $xoopsDB->queryF($sql) or die(mysql_error());
+            $xoopsDB->queryF($sql) or web_error($sql);
         }
 
         return $random_pass;
@@ -391,19 +391,19 @@ if (!function_exists("add2group")) {
         }
 
         $sql    = "select `item`,`kind`,`group_id` from `" . $xoopsDB->prefix('tad_login_config') . "`";
-        $result = $xoopsDB->queryF($sql) or die(mysql_error());
+        $result = $xoopsDB->queryF($sql) or web_error($sql);
         while (list($item, $kind, $group_id) = $xoopsDB->fetchRow($result)) {
             if (!in_array($group_id, $userGroups)) {
                 //echo "<h1>{$group_id}-{$item}-{$SchoolCode}-{$email}</h1>";
                 if (!empty($SchoolCode) and strpos($item, $SchoolCode) !== false and $JobName == $kind) {
                     $sql = "insert into `" . $xoopsDB->prefix('groups_users_link') . "` (groupid,uid ) values($group_id,$uid)";
-                    $xoopsDB->queryF($sql) or die(mysql_error());
+                    $xoopsDB->queryF($sql) or web_error($sql);
                     //echo "{$group_id}, {$uid}<br>";
                 }
 
                 if (!empty($email) and strpos($item, $email) !== false) {
                     $sql = "insert into `" . $xoopsDB->prefix('groups_users_link') . "` (groupid,uid ) values($group_id,$uid)";
-                    $xoopsDB->queryF($sql) or die(mysql_error());
+                    $xoopsDB->queryF($sql) or web_error($sql);
                     //echo "{$group_id}, {$uid}<br>";
                 }
             }
