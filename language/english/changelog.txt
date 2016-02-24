@@ -1,3 +1,9 @@
+Tad Login 3.7 official version of the function item (2016-02-24 release)
+================================================
+1.Add Taipei openid
+
+
+
 Tad Login 3.6 official version of the function item (2016-02-17 release)
 ================================================
 1. The problem has been fixed in Hualien County unusable.
