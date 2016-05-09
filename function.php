@@ -109,12 +109,12 @@ if (!function_exists('google_login')) {
                 $uid = (int) ($_GET['uid']);
             }
         }
-
         $client = new Google_Client();
         $client->setApplicationName("Google UserInfo PHP Starter Application");
         $oauth2 = new Google_Oauth2Service($client);
-
+        // die(var_export($_REQUEST['code']));
         if (isset($_GET['code'])) {
+            // die("system testing...1");
             $client->authenticate($_GET['code']);
             $_SESSION['token'] = $client->getAccessToken();
             $redirect          = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
@@ -124,17 +124,20 @@ if (!function_exists('google_login')) {
         }
 
         if (isset($_SESSION['token'])) {
+            // die("system testing...2");
             $client->setAccessToken($_SESSION['token']);
         }
 
         if (isset($_REQUEST['logout'])) {
+            // die("system testing...3");
             unset($_SESSION['token']);
             $client->revokeToken();
         }
 
         if ($client->getAccessToken()) {
+            // die("system testing...4");
             $user = $oauth2->userinfo->get();
-            //die(var_export($user));
+            // die(var_export($user));
             // These fields are currently filtered through the PHP sanitize filters.
             // See http://www.php.net/manual/en/filter.filters.sanitize.php
             $email = filter_var($user['email'], FILTER_SANITIZE_EMAIL);
@@ -152,7 +155,7 @@ if (!function_exists('google_login')) {
                 $form                 = '';
                 $sig                  = '';
                 $occ                  = '';
-
+                // die(var_export($user));
                 login_xoops($uname, $name, $email, "", "", $url, $form, $sig, $occ, $bio);
             }
 
@@ -174,7 +177,6 @@ if (!function_exists('login_xoops')) {
     function login_xoops($uname = "", $name = "", $email = "", $SchoolCode = "", $JobName = "", $url = "", $form = "", $sig = "", $occ = "", $bio = "")
     {
         global $xoopsModuleConfig, $xoopsConfig, $xoopsDB, $xoopsUser;
-
         $member_handler = &xoops_gethandler('member');
 
         if ($member_handler->getUserCount(new Criteria('uname', $uname)) > 0) {
@@ -231,6 +233,9 @@ if (!function_exists('login_xoops')) {
 
                 if (!$member_handler->insertUser($user)) {
                 }
+
+                $login_from = $_SESSION['login_from'];
+
                 // Regenrate a new session id and destroy old session
                 $GLOBALS["sess_handler"]->regenerate_id(true);
                 $_SESSION                    = array();
@@ -243,34 +248,10 @@ if (!function_exists('login_xoops')) {
 
                 // Set cookie for rememberme
                 if (!empty($xoopsConfig['usercookie'])) {
-                    if (!empty($_POST["rememberme"])) {
-                        setcookie($xoopsConfig['usercookie'], $_SESSION['xoopsUserId'] . '-' . md5($user->getVar('pass') . XOOPS_DB_NAME . XOOPS_DB_PASS . XOOPS_DB_PREFIX), time() + 31536000, '/', XOOPS_COOKIE_DOMAIN, 0);
-                    } else {
-                        setcookie($xoopsConfig['usercookie'], 0, -1, '/', XOOPS_COOKIE_DOMAIN, 0);
-                    }
+                    setcookie($xoopsConfig['usercookie'], 0, -1, '/', XOOPS_COOKIE_DOMAIN, 0);
                 }
                 //若有要轉頁
-                if (!empty($_POST['xoops_redirect']) && !strpos($_POST['xoops_redirect'], 'register')) {
-                    $_POST['xoops_redirect'] = trim($_POST['xoops_redirect']);
-                    $parsed                  = parse_url(XOOPS_URL);
-                    $url                     = isset($parsed['scheme']) ? $parsed['scheme'] . '://' : 'http://';
-                    if (isset($parsed['host'])) {
-                        $url .= $parsed['host'];
-                        if (isset($parsed['port'])) {
-                            $url .= ':' . $parsed['port'];
-                        }
-                    } else {
-                        $url .= $_SERVER['HTTP_HOST'];
-                    }
-                    if (@$parsed['path']) {
-                        if (strncmp($parsed['path'], $_POST['xoops_redirect'], strlen($parsed['path']))) {
-                            $url .= $parsed['path'];
-                        }
-                    }
-                    $url .= $_POST['xoops_redirect'];
-                } else {
-                    $url = XOOPS_URL . '/index.php';
-                }
+                $url = empty($login_from) ? XOOPS_URL . '/index.php' : $login_from;
 
                 // RMV-NOTIFY
                 // Perform some maintenance of notification records
@@ -279,13 +260,7 @@ if (!function_exists('login_xoops')) {
 
                 redirect_header($url, 1, sprintf("", $user->getVar('uname')), false);
             } else {
-                if (empty($_POST['xoops_redirect'])) {
-                    //若登入失敗且無轉頁
-                    redirect_header(XOOPS_URL . '/user.php', 5, $xoopsAuth->getHtmlErrors());
-                } else {
-                    //若登入失敗且有轉頁
-                    redirect_header(XOOPS_URL . '/user.php?xoops_redirect=' . urlencode(trim($_POST['xoops_redirect'])), 5, $xoopsAuth->getHtmlErrors(), false);
-                }
+                redirect_header(XOOPS_URL . '/user.php', 5, $xoopsAuth->getHtmlErrors());
             }
         } else {
 

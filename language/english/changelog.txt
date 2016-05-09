@@ -1,3 +1,19 @@
+Tad Login 4.0  official version of the function item (2016-05-09 release)
+================================================
+1.After the login will be back to the original page
+
+
+Tad Login 3.9  official version of the function item (2016-04-22 release)
+================================================
+1.Update Tainan OpenID login
+
+
+Tad Login 3.8  official version of the function item (2016-04-13 release)
+================================================
+1. After the login will be back to the original page
+2. Correction Auto Group Setting list incorrect information problem
+
+
 Tad Login 3.7 official version of the function item (2016-02-24 release)
 ================================================
 1.Add Taipei openid

@@ -23,73 +23,46 @@ function tn_login()
         if (!$openid->mode) {
             $openid->identity = "https://openid.tn.edu.tw/op/";
             $openid->required = array('contact/email', 'namePerson');
+            $openid->optional = array('/axschema/school/id', '/axschema/school/titleStr', 'tw/person/titles');
             header('Location: ' . $openid->authUrl());
 
         } else {
             $user_profile = $openid->getAttributes();
-            //die(var_export($user_profile));
+            // die(var_export($user_profile));
             /*
             array (
-            '.tw/axschema/UserID' => '14684bd6fd05480979e9991f498272c48923880668fd045b750dd6e79864d470',
-            '.tw/axschema/UserName' => 'tad',
-            '.tw/axschema/ApplyEmail' => 'tad',
-            '.tw/axschema/SchoolName' => '龍崎國小',
-            '.tw/axschema/UserMemo' => '審核通過                                                                                                                                                                                                                                                           ',
-            '.tw/axschema/EduSchoolID' => '114620',
-            '.tw/axschema/JobName' => '教師',
-            '.tw/axschema/Mobile' => '',
-            'contact/email' => 'tad@tn.edu.tw',
-            'namePerson' => '吳弘凱',
+            '/axschema/person/guid' => '14684bd6fd05480979e9991f498272c489238XXXb750dd6e79864d470',
+            '/axschema/school/titleStr' => '[{"id":"114620","title":["教師"]}]',
+            '/axschema/school/id' => '114620',
+            'tw/person/guid' => '14684bd6fd05480979e9991f498272c48923880668fdXXX79864d470',
+            'tw/person/titles' => '{"sid":"114620","titles":["教師"]}',
+            'tw/school/id' => '114620',
+            'contact/email' => 'tad@XX.edu.tw',
+            'namePerson' => '吳XX',
             )
-             */
-
-            /*
-            array(20) {
-            [".tw/axschema/UserID"]=>
-            string(32) "9CC19A799323D40CCB1FF1BCD63FF14F"
-            [".tw/axschema/UserName"]=>
-            string(9) "姓名"
-            [".tw/axschema/ApplyEmail"]=>
-            string(9) "st2222222"
-            [".tw/axschema/SchoolName"]=>
-            string(12) "xx國中"
-            [".tw/axschema/UserMemo"]=>
-            string(12) "審核通過"
-            [".tw/axschema/EduSchoolID"]=>
-            string(6) "123456"
-            [".tw/axschema/JobName"]=>
-            string(6) "學生"
-            [".tw/axschema/Mobile"]=>
-            string(0) ""
-            [".tw/axschema/Phone"]=>
-            string(0) ""
-            [".tw/axschema/VOIP"]=>
-            string(0) ""
-            [".tw/axschema/std_no"]=>
-            string(7) "1010101"
-            [".tw/axschema/grade"]=>
-            string(1) "2"
-            [".tw/axschema/class"]=>
-            string(2) "26"
-            [".tw/axschema/seat"]=>
-            string(2) "14"
-            [".tw/axschema/sch_code"]=>
-            string(6) "123456"
+            //new
+            array(8) {
             ["/axschema/person/guid"]=>
-            string(64) "45b3666740e5adfe6ebe981b6f119bf868f3912463e49959fc15d178d1cd4e27"
+            string(64) "89e516466fc16d76ef5e133aceb8e25f27ead82937d0XXX9fbf48dc29"
             ["/axschema/school/titleStr"]=>
-            string(39) "[{"id":"st2222222","title":["學生"]}]"
+            string(39) "[{"id":"st1020170","title":["學生"]}]"
             ["/axschema/school/id"]=>
-            string(6) "123456"
+            string(6) "213303"
+            ["tw/person/guid"]=>
+            string(64) "89e516466fc16d76ef5e133aceb8e25f27ead82937dXXX9fbf48dc29"
+            ["tw/person/titles"]=>
+            string(39) "{"sid":"st1020170","titles":["學生"]}"
+            ["tw/school/id"]=>
+            string(6) "213303"
             ["contact/email"]=>
-            string(25) "stxxxxxxx@cloud.tn.edu.tw"
+            string(25) "st1020170@cloud.tn.edu.tw"
             ["namePerson"]=>
-            string(9) "姓名"
+            string(9) "林xx"
             }
              */
 
             // Login or logout url will be needed depending on current user state.
-            //die(var_dump($user_profile));
+            // die(var_dump($user_profile));
             if ($user_profile) {
                 $myts = &MyTextsanitizer::getInstance();
 
@@ -99,8 +72,8 @@ function tn_login()
                 $uname      = $the_id[0] . "_tn";
                 $name       = $myts->addSlashes($user_profile['namePerson']);
                 $email      = strtolower($user_profile['contact/email']);
-                $SchoolCode = $myts->addSlashes($user_profile['.tw/axschema/EduSchoolID']);
-                $JobName    = $user_profile['.tw/axschema/JobName'] == "學生" ? "student" : "teacher";
+                $SchoolCode = $myts->addSlashes($user_profile['tw/school/id']);
+                $JobName    = strpos($user_profile['tw/person/titles'], "學生") !== false ? "student" : "teacher";
 
                 //搜尋有無相同username資料
                 login_xoops($uname, $name, $email, $SchoolCode, $JobName);
@@ -1038,6 +1011,7 @@ switch ($op) {
             mt_login();
         }
 
+        //注意，不能刪
         facebook_login();
         google_login();
 
@@ -1050,4 +1024,5 @@ $xoopsTpl->assign("bootstrap", get_bootstrap());
 $xoopsTpl->assign("jquery", get_jquery(true));
 $xoopsTpl->assign("isAdmin", $isAdmin);
 
+$_SESSION['login_from'] = $_SERVER["HTTP_REFERER"];
 include_once XOOPS_ROOT_PATH . '/footer.php';

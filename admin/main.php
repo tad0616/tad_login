@@ -139,8 +139,14 @@ function list_tad_login_config()
             $$k = $v;
         }
 
-        $all_content[$i]['config_id']  = $config_id;
-        $all_content[$i]['kind']       = ($kind == "teacher") ? _MA_TADLOGIN_TEACHER : _MA_TADLOGIN_STUDENT;
+        $all_content[$i]['config_id'] = $config_id;
+        if ($kind == "teacher") {
+            $all_content[$i]['kind'] = _MA_TADLOGIN_TEACHER;
+        } elseif ($kind == "email") {
+            $all_content[$i]['kind'] = '';
+        } elseif ($kind == "student") {
+            $all_content[$i]['kind'] = _MA_TADLOGIN_STUDENT;
+        }
         $all_content[$i]['item']       = $item;
         $all_content[$i]['group_id']   = $group_id;
         $all_content[$i]['group_name'] = $groups[$group_id];
