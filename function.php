@@ -162,6 +162,7 @@ if (!function_exists('google_login')) {
             // The access token may have been updated lazily.
             $_SESSION['token'] = $client->getAccessToken();
         } else {
+            $client->setApprovalPrompt("auto");
             $authUrl = $client->createAuthUrl();
             if ($mode == "return") {
                 return $authUrl;
