@@ -1,6 +1,7 @@
 <?php
-function xoops_module_update_tad_login(&$module, $old_version) {
-    GLOBAL $xoopsDB;
+function xoops_module_update_tad_login(&$module, $old_version)
+{
+    global $xoopsDB;
 
     if (!chk_chk1()) {
         go_update1();
@@ -16,7 +17,8 @@ function xoops_module_update_tad_login(&$module, $old_version) {
 }
 
 //檢查有無隨機密碼資料表
-function chk_chk1() {
+function chk_chk1()
+{
     global $xoopsDB;
     $sql    = "select count(*) from " . $xoopsDB->prefix("tad_login_random_pass");
     $result = $xoopsDB->query($sql);
@@ -28,20 +30,22 @@ function chk_chk1() {
 }
 
 //執行更新
-function go_update1() {
+function go_update1()
+{
     global $xoopsDB;
     $sql = "CREATE TABLE " . $xoopsDB->prefix("tad_login_random_pass") . " (
     `uname` VARCHAR( 100 ) NOT NULL ,
     `random_pass` VARCHAR( 255 ) NOT NULL ,
     PRIMARY KEY ( `uname` )
   );";
-    $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL, 3, mysql_error());
+    $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL, 3, $xoopsDB->error());
 
     return true;
 }
 
 //檢查有無群組預設的表
-function chk_chk2() {
+function chk_chk2()
+{
     global $xoopsDB;
     $sql    = "select count(*) from " . $xoopsDB->prefix("tad_login_config");
     $result = $xoopsDB->query($sql);
@@ -53,7 +57,8 @@ function chk_chk2() {
 }
 
 //執行更新
-function go_update2() {
+function go_update2()
+{
     global $xoopsDB;
     $sql = "CREATE TABLE " . $xoopsDB->prefix("tad_login_config") . " (
     `config_id` smallint(5) unsigned NOT NULL auto_increment,
@@ -61,13 +66,14 @@ function go_update2() {
     `group_id` smallint(5) unsigned NOT NULL default 0,
     PRIMARY KEY (`config_id`)
   ) ENGINE=MyISAM ;";
-    $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL, 3, mysql_error());
+    $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL, 3, $xoopsDB->error());
 
     return true;
 }
 
 //檢查有無類別欄位
-function chk_chk3() {
+function chk_chk3()
+{
     global $xoopsDB;
     $sql    = "select count(`kind`) from " . $xoopsDB->prefix("tad_login_config");
     $result = $xoopsDB->query($sql);
@@ -79,24 +85,26 @@ function chk_chk3() {
 }
 
 //執行更新
-function go_update3() {
+function go_update3()
+{
     global $xoopsDB;
     $sql = "ALTER TABLE " . $xoopsDB->prefix("tad_login_config") . " ADD `kind` varchar(255) NOT NULL default '' after `item`";
-    $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL, 3, mysql_error());
+    $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL, 3, $xoopsDB->error());
 
-    $sql = "select config_id,item from " . $xoopsDB->prefix("tad_login_config") . " ";
-    $result = $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL, 3, mysql_error());
+    $sql    = "select config_id,item from " . $xoopsDB->prefix("tad_login_config") . " ";
+    $result = $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL, 3, $xoopsDB->error());
     while (list($config_id, $item) = $xoopsDB->fetchRow($result)) {
         $kind = (strpos($item, "@") !== false) ? "email" : "teacher";
         $sql  = "update " . $xoopsDB->prefix("tad_login_config") . " set kind='$kind' where config_id='{$config_id}'";
-        $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL, 3, mysql_error());
+        $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL, 3, $xoopsDB->error());
     }
 
     return true;
 }
 
 //建立目錄
-function mk_dir($dir = "") {
+function mk_dir($dir = "")
+{
     //若無目錄名稱秀出警告訊息
     if (empty($dir)) {
         return;
@@ -110,7 +118,8 @@ function mk_dir($dir = "") {
 }
 
 //拷貝目錄
-function full_copy($source = "", $target = "") {
+function full_copy($source = "", $target = "")
+{
     if (is_dir($source)) {
         @mkdir($target);
         $d = dir($source);
@@ -132,7 +141,8 @@ function full_copy($source = "", $target = "") {
     }
 }
 
-function rename_win($oldfile, $newfile) {
+function rename_win($oldfile, $newfile)
+{
     if (!rename($oldfile, $newfile)) {
         if (copy($oldfile, $newfile)) {
             unlink($oldfile);
@@ -146,7 +156,8 @@ function rename_win($oldfile, $newfile) {
     return true;
 }
 
-function delete_directory($dirname) {
+function delete_directory($dirname)
+{
     if (is_dir($dirname)) {
         $dir_handle = opendir($dirname);
     }

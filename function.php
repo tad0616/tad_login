@@ -31,10 +31,10 @@ if (!function_exists('facebook_login')) {
             }
         }
 
-        $modhandler      = &xoops_gethandler('module');
-        $tad_loginModule = &$modhandler->getByDirname("tad_login");
-        $config_handler  = &xoops_gethandler('config');
-        $tad_loginConfig = &$config_handler->getConfigsByCat(0, $tad_loginModule->getVar('mid'));
+        $modhandler      = xoops_gethandler('module');
+        $tad_loginModule = $modhandler->getByDirname("tad_login");
+        $config_handler  = xoops_gethandler('config');
+        $tad_loginConfig = $config_handler->getConfigsByCat(0, $tad_loginModule->getVar('mid'));
 
         $facebook = new Facebook(array(
             'appId'  => $tad_loginConfig['appId'],
@@ -56,18 +56,18 @@ if (!function_exists('facebook_login')) {
 
         // Login or logout url will be needed depending on current user state.
         if ($user) {
-            $myts  = &MyTextsanitizer::getInstance();
+            $myts  = MyTextsanitizer::getInstance();
             $uid   = $user_profile['id'];
             $uname = empty($user_profile['username']) ? $user_profile['id'] . "_fb" : $user_profile['username'] . "_fb";
             $name  = $myts->addSlashes($user_profile['name']);
             $email = $user_profile['email'];
             $bio   = $myts->addSlashes($user_profile['bio']);
             $url   = formatURL($user_profile['link']);
-            $form  = $myts->addSlashes($user_profile['hometown']['name']);
+            $from  = $myts->addSlashes($user_profile['hometown']['name']);
             $sig   = $myts->addSlashes($user_profile['quotes']);
             $occ   = $myts->addSlashes($user_profile['work'][0]['employer']['name']);
 
-            login_xoops($uname, $name, $email, "", "", $url, $form, $sig, $occ, $bio);
+            login_xoops($uname, $name, $email, "", "", $url, $from, $sig, $occ, $bio);
         } else {
             //$args = array('scope' => 'email');
             //$loginUrl = $facebook->getLoginUrl($args);
@@ -144,7 +144,7 @@ if (!function_exists('google_login')) {
             $img   = filter_var($user['picture'], FILTER_VALIDATE_URL);
 
             if ($user) {
-                $myts                 = &MyTextsanitizer::getInstance();
+                $myts                 = MyTextsanitizer::getInstance();
                 $uid                  = $user['id'];
                 list($goog_uname, $m) = explode("@", $user['email']);
                 $uname                = empty($goog_uname) ? $user['id'] . "_goo" : $goog_uname . "_goo";
@@ -152,11 +152,11 @@ if (!function_exists('google_login')) {
                 $email                = $user['email'];
                 $bio                  = '';
                 $url                  = formatURL($user['link']);
-                $form                 = '';
+                $from                 = '';
                 $sig                  = '';
                 $occ                  = '';
                 // die(var_export($user));
-                login_xoops($uname, $name, $email, "", "", $url, $form, $sig, $occ, $bio);
+                login_xoops($uname, $name, $email, "", "", $url, $from, $sig, $occ, $bio);
             }
 
             // The access token may have been updated lazily.
@@ -175,10 +175,10 @@ if (!function_exists('google_login')) {
 
 //搜尋有無相同username資料
 if (!function_exists('login_xoops')) {
-    function login_xoops($uname = "", $name = "", $email = "", $SchoolCode = "", $JobName = "", $url = "", $form = "", $sig = "", $occ = "", $bio = "")
+    function login_xoops($uname = "", $name = "", $email = "", $SchoolCode = "", $JobName = "", $url = "", $from = "", $sig = "", $occ = "", $bio = "", $aim = "", $yim = "", $msnm = "")
     {
         global $xoopsModuleConfig, $xoopsConfig, $xoopsDB, $xoopsUser;
-        $member_handler = &xoops_gethandler('member');
+        $member_handler = xoops_gethandler('member');
 
         if ($member_handler->getUserCount(new Criteria('uname', $uname)) > 0) {
             //若已有此帳號！
@@ -190,12 +190,12 @@ if (!function_exists('login_xoops')) {
                 exit();
             }
 
-            $member_handler = &xoops_gethandler('member');
+            $member_handler = xoops_gethandler('member');
             xoops_loadLanguage('auth');
 
             include_once $GLOBALS['xoops']->path('class/auth/authfactory.php');
 
-            $xoopsAuth = &XoopsAuthFactory::getAuthConnection($uname);
+            $xoopsAuth = XoopsAuthFactory::getAuthConnection($uname);
             //自動登入
             $user = $xoopsAuth->authenticate($uname, $pass);
 
@@ -225,7 +225,7 @@ if (!function_exists('login_xoops')) {
                 //設定最後登入時間
                 $user->setVar('last_login', time());
                 $user->setVar("user_from", $from);
-                // $user->setVar("url", formatURL($url));
+                $user->setVar("url", formatURL($url));
                 $user->setVar("user_sig", $sig);
                 $user->setVar("user_icq", $JobName);
                 $user->setVar("bio", $bio);
@@ -252,14 +252,14 @@ if (!function_exists('login_xoops')) {
                     setcookie($xoopsConfig['usercookie'], 0, -1, '/', XOOPS_COOKIE_DOMAIN, 0);
                 }
                 //若有要轉頁
-                $url = empty($login_from) ? XOOPS_URL . '/index.php' : $login_from;
+                $redirect_url = empty($login_from) ? XOOPS_URL . '/index.php' : $login_from;
 
                 // RMV-NOTIFY
                 // Perform some maintenance of notification records
-                $notification_handler = &xoops_gethandler('notification');
+                $notification_handler = xoops_gethandler('notification');
                 $notification_handler->doLoginMaintenance($user->getVar('uid'));
 
-                redirect_header($url, 1, sprintf("", $user->getVar('uname')), false);
+                redirect_header($redirect_url, 1, sprintf("", $user->getVar('uname')), false);
             } else {
                 redirect_header(XOOPS_URL . '/user.php', 5, $xoopsAuth->getHtmlErrors());
             }
@@ -279,8 +279,9 @@ if (!function_exists('login_xoops')) {
             $newuser->setVar("user_from", $from);
             $newuser->setVar("user_sig", $sig);
             $newuser->setVar("theme", $xoopsConfig['theme_set']);
-            $newuser->setVar("user_yim", "");
-            $newuser->setVar("user_msnm", "");
+            // $newuser->setVar("user_yim", $yim);
+            // $newuser->setVar("user_aim", $aim);
+            // $newuser->setVar("user_msnm", $msnm);
             $newuser->setVar("pass", md5($pass));
             $newuser->setVar("timezone_offset", $xoopsConfig['default_TZ']);
             $newuser->setVar("uorder", $xoopsConfig['com_order']);
@@ -304,7 +305,7 @@ if (!function_exists('login_xoops')) {
             $sql = "replace into `" . $xoopsDB->prefix('tad_login_random_pass') . "` (`uname` , `random_pass`) values  ('{$uname}','{$pass}')";
             $xoopsDB->queryF($sql) or web_error($sql);
 
-            login_xoops($uname, $name, $email, $SchoolCode, $JobName, $url, $form, $sig, $occ, $bio);
+            login_xoops($uname, $name, $email, $SchoolCode, $JobName, $url, $from, $sig, $occ, $bio, $aim, $yim, $msnm);
         }
     }
 }
@@ -357,7 +358,7 @@ if (!function_exists("add2group")) {
         //     $JobName = "";
         // }
 
-        $member_handler = &xoops_gethandler('member');
+        $member_handler = xoops_gethandler('member');
         $user           = &$member_handler->getUser($uid);
         if ($user) {
             $userGroups = $user->getGroups();

@@ -40,31 +40,25 @@ function tn_login()
             'contact/email' => 'tad@XX.edu.tw',
             'namePerson' => '吳XX',
             )
-            //new
-            array(8) {
-            ["/axschema/person/guid"]=>
-            string(64) "89e516466fc16d76ef5e133aceb8e25f27ead82937d0XXX9fbf48dc29"
-            ["/axschema/school/titleStr"]=>
-            string(39) "[{"id":"st1020170","title":["學生"]}]"
-            ["/axschema/school/id"]=>
-            string(6) "213303"
-            ["tw/person/guid"]=>
-            string(64) "89e516466fc16d76ef5e133aceb8e25f27ead82937dXXX9fbf48dc29"
-            ["tw/person/titles"]=>
-            string(39) "{"sid":"st1020170","titles":["學生"]}"
-            ["tw/school/id"]=>
-            string(6) "213303"
-            ["contact/email"]=>
-            string(25) "st1020170@cloud.tn.edu.tw"
-            ["namePerson"]=>
-            string(9) "林xx"
-            }
+
+            array (
+            'du.tw/school/classStr' => '[{sid:\'213303\',schoolType:\'\',DN:\'\',groupId:\'\',degree:\'\',subjectId:\'\',subject:\'\',gradeId:\'3\',classId:\'6\',classTitle:\'3年6班\',title:\'學生\'}]',
+            '/axschema/person/guid' => '89e516466fc16d76ef5e133aceb8e25f27ead82937d0689a5ae4f99fbf48dc29',
+            '/axschema/school/titleStr' => '[{"id":"st1020170","title":["學生"]}]',
+            '/axschema/school/id' => '213303',
+            'tw/person/guid' => '89e516466fc16d76ef5e133aceb8e25f27ead82937d0689a5ae4f99fbf48dc29',
+            'tw/person/titles' => '{"sid":"st1020170","titles":["學生"]}',
+            'tw/school/id' => '213303',
+            'contact/email' => 'st1020170@cloud.tn.edu.tw',
+            'namePerson' => '林xx',
+            )
              */
 
             // Login or logout url will be needed depending on current user state.
             // die(var_dump($user_profile));
+
             if ($user_profile) {
-                $myts = &MyTextsanitizer::getInstance();
+                $myts = MyTextsanitizer::getInstance();
 
                 $the_id = explode("@", $user_profile['contact/email']);
 
@@ -73,10 +67,29 @@ function tn_login()
                 $name       = $myts->addSlashes($user_profile['namePerson']);
                 $email      = strtolower($user_profile['contact/email']);
                 $SchoolCode = $myts->addSlashes($user_profile['tw/school/id']);
-                $JobName    = strpos($user_profile['tw/person/titles'], "學生") !== false ? "student" : "teacher";
+                $JobName    = strpos($user_profile['tw/person/titles'], '"學生"') !== false ? "student" : "teacher";
 
+                if($user_profile['du.tw/school/classStr']){
+                    $classStr=substr($user_profile['du.tw/school/classStr'],2,-2);
+                    echo "<p>$classStr</p>";
+                    $classStr=str_replace('\\','',$classStr);
+                    echo "<p>$classStr</p>";
+                    $classStrArr=explode(',',$classStr);
+                    $StuArr=array();
+                    foreach ($classStrArr as $Arr) {
+                        list($k,$v)=explode(':',$Arr);
+                        $StuArr[$k]=str_replace('\'','',$v);
+                    }
+                    $aim= $myts->addSlashes($StuArr['gradeId']);
+                    $yim = $myts->addSlashes($StuArr['classId']);
+                    $msnm= '';
+                }else{
+                    $aim= $myts->addSlashes($user_profile['.tw/axschema/grade']);
+                    $yim = $user_profile['.tw/axschema/class'];
+                    $msnm= $myts->addSlashes($user_profile['.tw/axschema/seat']);
+                }
                 //搜尋有無相同username資料
-                login_xoops($uname, $name, $email, $SchoolCode, $JobName);
+                login_xoops($uname, $name, $email, $SchoolCode, $JobName, $url, $from, $sig, $occ, $bio, $aim, $yim, $msnm);
             }
         }
     } catch (ErrorException $e) {
@@ -114,7 +127,7 @@ function tp_login()
             // Login or logout url will be needed depending on current user state.
             //die(var_dump($user_profile));
             if ($user_profile) {
-                $myts = &MyTextsanitizer::getInstance();
+                $myts = MyTextsanitizer::getInstance();
 
                 $the_id = explode("@", $user_profile['contact/email']);
 
@@ -171,7 +184,7 @@ function kl_login()
             )
              */
             if ($user_profile) {
-                $myts = &MyTextsanitizer::getInstance();
+                $myts = MyTextsanitizer::getInstance();
 
                 $the_id = explode("@", $user_profile['contact/email']);
 
@@ -227,7 +240,7 @@ function ilc_login()
             )
              */
             if ($user_profile) {
-                $myts = &MyTextsanitizer::getInstance();
+                $myts = MyTextsanitizer::getInstance();
 
                 $the_id = explode("@", $user_profile['contact/email']);
 
@@ -288,7 +301,7 @@ function hc_login()
             )
              */
             if ($user_profile) {
-                $myts = &MyTextsanitizer::getInstance();
+                $myts = MyTextsanitizer::getInstance();
 
                 $the_id = explode("@", $user_profile['contact/email']);
 
@@ -381,7 +394,7 @@ function hlc_login($conty = "", $openid_identity = "")
             $user_profile = $openid->getAttributes();
             // die(var_export($user_profile));
             if ($user_profile) {
-                $myts = &MyTextsanitizer::getInstance();
+                $myts = MyTextsanitizer::getInstance();
 
                 $the_id = explode("@", $user_profile['contact/email']);
 
@@ -472,7 +485,7 @@ function yahoo_login()
             $user_profile = $openid->getAttributes();
             //die(var_export($user_profile));
             if ($user_profile) {
-                $myts = &MyTextsanitizer::getInstance();
+                $myts = MyTextsanitizer::getInstance();
 
                 $the_id = explode("@", $user_profile['contact/email']);
 
@@ -515,7 +528,7 @@ function myid_login()
             $user_profile = $openid->getAttributes();
             //die(var_export($user_profile));
             if ($user_profile) {
-                $myts = &MyTextsanitizer::getInstance();
+                $myts = MyTextsanitizer::getInstance();
 
                 $the_id = explode("@", $user_profile['contact/email']);
 
@@ -594,7 +607,7 @@ function tc_login($conty = "", $openid_identity = "")
              */
             // Login or logout url will be needed depending on current user state.
             if ($user_profile) {
-                $myts = &MyTextsanitizer::getInstance();
+                $myts = MyTextsanitizer::getInstance();
 
                 $SchoolCode = $myts->addSlashes($user_profile['axschema/school/id']);
 
@@ -673,7 +686,7 @@ function kh_login()
             // Login or logout url will be needed depending on current user state.
 
             if ($user_profile) {
-                $myts = &MyTextsanitizer::getInstance();
+                $myts = MyTextsanitizer::getInstance();
 
                 $the_id = explode("@", $user_profile['openid_ext2_email']);
 
@@ -733,7 +746,7 @@ function km_login()
              */
 
             if ($user_profile) {
-                $myts = &MyTextsanitizer::getInstance();
+                $myts = MyTextsanitizer::getInstance();
 
                 $the_id = explode("@", $user_profile['contact/email']);
 
@@ -790,7 +803,7 @@ function mt_login()
              */
 
             if ($user_profile) {
-                $myts = &MyTextsanitizer::getInstance();
+                $myts = MyTextsanitizer::getInstance();
 
                 $the_id = explode("@", $user_profile['contact/email']);
 
@@ -814,7 +827,8 @@ function mt_login()
 
 /*-----------執行動作判斷區----------*/
 
-$op = empty($_REQUEST['op']) ? "" : $_REQUEST['op'];
+include_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
+$op            = system_CleanVars($_REQUEST, 'op', '', 'string');
 
 switch ($op) {
     case "facebook":
@@ -1020,7 +1034,6 @@ switch ($op) {
 }
 
 $xoopsTpl->assign("toolbar", toolbar_bootstrap($interface_menu));
-$xoopsTpl->assign("bootstrap", get_bootstrap());
 $xoopsTpl->assign("jquery", get_jquery(true));
 $xoopsTpl->assign("isAdmin", $isAdmin);
 

@@ -11,9 +11,9 @@ function tad_login($options = "")
     $block['facebook'] = facebook_login('return');
     $block['google']   = google_login('return');
 
-    $modhandler     = &xoops_gethandler('module');
+    $modhandler     = xoops_gethandler('module');
     $xoopsModule    = &$modhandler->getByDirname("tad_login");
-    $config_handler = &xoops_gethandler('config');
+    $config_handler = xoops_gethandler('config');
     $modConfig      = &$config_handler->getConfigsByCat(0, $xoopsModule->getVar('mid'));
 
     $block['auth_method'] = $modConfig['auth_method'];

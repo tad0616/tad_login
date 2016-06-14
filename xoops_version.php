@@ -3,7 +3,7 @@ $modversion = array();
 
 //---模組基本資訊---//
 $modversion['name']        = _MI_TADLOGIN_NAME;
-$modversion['version']     = 4.0;
+$modversion['version']     = 4.2;
 $modversion['description'] = _MI_TADLOGIN_DESC;
 $modversion['author']      = _MI_TADLOGIN_AUTHOR;
 $modversion['credits']     = _MI_TADLOGIN_CREDITS;
@@ -14,13 +14,13 @@ $modversion['image']       = "images/logo_{$xoopsConfig['language']}.png";
 $modversion['dirname']     = basename(__DIR__);
 
 //---模組狀態資訊---//
-$modversion['release_date']        = '2016/05/09';
+$modversion['release_date']        = '2016/06/07';
 $modversion['module_website_url']  = 'http://tad0616.net/';
 $modversion['module_website_name'] = _MI_TAD_WEB;
 $modversion['module_status']       = 'release';
 $modversion['author_website_url']  = 'http://tad0616.net/';
 $modversion['author_website_name'] = _MI_TAD_WEB;
-$modversion['min_php']             = 5.2;
+$modversion['min_php']             = 5.3;
 $modversion['min_xoops']           = '2.5';
 $modversion['min_tadtools']        = '2.08';
 
@@ -53,35 +53,27 @@ $modversion['hasMain'] = 1;
 //---樣板設定---//
 $modversion['templates']                    = array();
 $i                                          = 1;
-$modversion['templates'][$i]['file']        = 'tad_login_index_tpl.html';
-$modversion['templates'][$i]['description'] = 'tad_login_index_tpl.html';
+$modversion['templates'][$i]['file']        = 'tad_login_index.tpl';
+$modversion['templates'][$i]['description'] = 'tad_login_index.tpl';
 
 $i++;
-$modversion['templates'][$i]['file']        = 'tad_login_index_tpl_b3.html';
-$modversion['templates'][$i]['description'] = 'tad_login_index_tpl_b3.html';
+$modversion['templates'][$i]['file']        = 'tad_login_adm_main.tpl';
+$modversion['templates'][$i]['description'] = 'tad_login_adm_main.tpl';
 
 $i++;
-$modversion['templates'][$i]['file']        = 'tad_login_adm_main.html';
-$modversion['templates'][$i]['description'] = 'tad_login_adm_main.html';
+$modversion['templates'][$i]['file']        = 'tad_login_adm_google.tpl';
+$modversion['templates'][$i]['description'] = 'tad_login_adm_google.tpl';
 
 $i++;
-$modversion['templates'][$i]['file']        = 'tad_login_adm_main_b3.html';
-$modversion['templates'][$i]['description'] = 'tad_login_adm_main_b3.html';
-
-$i++;
-$modversion['templates'][$i]['file']        = 'tad_login_adm_fb.html';
-$modversion['templates'][$i]['description'] = 'tad_login_adm_fb.html';
-
-$i++;
-$modversion['templates'][$i]['file']        = 'tad_login_adm_google.html';
-$modversion['templates'][$i]['description'] = 'tad_login_adm_google.html';
+$modversion['templates'][$i]['file']        = 'tad_login_adm_fb.tpl';
+$modversion['templates'][$i]['description'] = 'tad_login_adm_fb.tpl';
 
 //---區塊設定---//
 $modversion['blocks'][1]['file']        = "tad_login.php";
 $modversion['blocks'][1]['name']        = _MI_TADLOGIN_BNAME1;
 $modversion['blocks'][1]['description'] = _MI_TADLOGIN_BDESC1;
 $modversion['blocks'][1]['show_func']   = "tad_login";
-$modversion['blocks'][1]['template']    = "tad_login.html";
+$modversion['blocks'][1]['template']    = "tad_login.tpl";
 $modversion['blocks'][1]['edit_func']   = "tad_login_edit";
 $modversion['blocks'][1]['options']     = "0|0";
 

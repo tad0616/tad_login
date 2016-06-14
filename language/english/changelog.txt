@@ -1,32 +1,47 @@
-Tad Login 4.0  official version of the function item (2016-05-09 release)
+Tad Login 4.2 (2016-06-07 released)
+================================================
+1.Fix facebook openid content
+2.Support XOOPS 2.5.8
+
+Tad Login 4.1 (2016-05-25 released)
+================================================
+1.Let Google Sign easier
+2.Edit button format
+3.Support PHP7
+4.Remove BootStrap2
+5.Resolved Tainan teachers and students false identity case
+6.Recorded Tainan student class information
+
+
+Tad Login 4.0 (2016-05-09 released)
 ================================================
 1.After the login will be back to the original page
 
 
-Tad Login 3.9  official version of the function item (2016-04-22 release)
+Tad Login 3.9 (2016-04-22 released)
 ================================================
 1.Update Tainan OpenID login
 
 
-Tad Login 3.8  official version of the function item (2016-04-13 release)
+Tad Login 3.8 (2016-04-13 released)
 ================================================
 1. After the login will be back to the original page
 2. Correction Auto Group Setting list incorrect information problem
 
 
-Tad Login 3.7 official version of the function item (2016-02-24 release)
+Tad Login 3.7 (2016-02-24 released)
 ================================================
 1.Add Taipei openid
 
 
 
-Tad Login 3.6 official version of the function item (2016-02-17 release)
+Tad Login 3.6 (2016-02-17 released)
 ================================================
 1. The problem has been fixed in Hualien County unusable.
 2. Update FaceBook Authentication Setting Description
 3. Update Google Certification Setting Description
 
-Tad Login 3.5 official version of the function item (2016-01-04 release)
+Tad Login 3.5 (2016-01-04 released)
 ================================================
 1. Fix the problem sometimes been logged but blank pages.
 2. Do not automatically write Website Information
@@ -34,11 +49,11 @@ Tad Login 3.5 official version of the function item (2016-01-04 release)
 4. Fixed Kinmen County openid
 5. Fixed Hualien County openid
 
-Tad Login 3.4.1 official version of the function item (2015-10-08 release)
+Tad Login 3.4.1 (2015-10-08 released)
 ================================================
 1. Fixed group rule is not working.
 
-Tad Login 3.4 official version of the function item (2015-10-07 release)
+Tad Login 3.4 (2015-10-07 released)
 ================================================
 1. Fix facebook and google can not login form tad_login index.
 2. Move OpenID preferences item from tadtools.
@@ -47,48 +62,48 @@ Tad Login 3.4 official version of the function item (2015-10-07 release)
 5. Adjust the rule presented Interface
 
 
-Tad Login 3.3 official version of the function item (2015-03-31 release)
+Tad Login 3.3 (2015-03-31 released)
 ================================================
 1. Add Quick Access Kaohsiung, but could not get the "School Code, title" and other information, you can not use the automatic group function.
 2. Add Kinmen County quick sign in, but could not get the "School Code, title" and other information, you can not use the automatic group function.
 3. Add bootstrap3 support
 
 
-Tad Login 3.2 official version of the function item (2014-11-18 release)
+Tad Login 3.2 (2014-11-18 released)
 ================================================
 1. Add Taoyuan County Quick Access
 2. Kaohsiung currently unavailable "Name, Email" Information, Ilan County is currently not available "name, school codes"
 
 
-Tad Login 3.1 official version of the function item (2014-09-30 release)
+Tad Login 3.1 (2014-09-30 released)
 ================================================
 1. Supporting the Google OAuth 2.0 authentication mechanism
 2. Add Google Certified Set Description
 
 
-Tad Login 3.02 official version of the function item (2014-09-25 release)
+Tad Login 3.02 (2014-09-25 released)
 ================================================
 1. Amend the code to conform to WCAG
 2. Tainan with OpenID authentication from http: // read https: //
 
 
-Tad Login 3.01 official version of the function item (2014-05-22 release)
+Tad Login 3.01 (2014-05-22 released)
 ================================================
 1. In response to Tainan OpenID authentication credentials fail, temporarily Login URL from https: // instead http: //
 
 
-Tad Login 3.0 official version of the function item (2014-05-02 release)
+Tad Login 3.0 (2014-05-02 released)
 ================================================
 1. Amend not binding if FB account, you can not get the problem account name (can cause data disorder)
 
 
-Tad Login 2.9 official version of the function item (2014-04-09 release)
+Tad Login 2.9 (2014-04-09 released)
 ================================================
 1. Fixed Changhua County quick sign in question can not be used (may be self-modified login Email)
 2. New titles can choose whether to store real settings
 
 
-Tad Login 2.8 official version of the function item (2014-03-18 release)
+Tad Login 2.8 (2014-03-18 released)
 ================================================
 1. Amend the new Taipei not use quick login bug
 2. Add Nantou County and Hsinchu Fast Login
@@ -96,43 +111,43 @@ Tad Login 2.8 official version of the function item (2014-03-18 release)
 4. Modify the login block, add buttons and text rendering and other options
 
 
-Tad Login 2.7 official version of the function item (2014-03-16 release)
+Tad Login 2.7 (2014-03-16 released)
 ================================================
 1. Fixed Keelung County and Hualien County Login Username suffix is ​​not the right questions
 2. Add the new Taipei Rapid Login
 
 
-Tad Login 2.6 official version of the function item (2014-03-16 release)
+Tad Login 2.6 (2014-03-16 released)
 ================================================
 1. Revision User Once logged in, the problem of information on changes in school longer codes.
 2. The problem can not be amended to remove and then install the (repository repeat)
 3. Add Hualien County and New Taipei Rapid Login
 
-Tad Login 2.5 official version of the function item (2014-03-12 release)
+Tad Login 2.5 (2014-03-12 released)
 ================================================
 1. Add Keelung City, Yunlin County, Hsinchu County, Miaoli County, Changhua County, Chiayi City, Taichung City, Pingtung County, Penghu County OpenID login
 2. In response to FB revised, rewritten FB Quick Access Application Instructions
 3. unified parameter names, delete unnecessary drawing
 
-Tad Login 2.4 official version of the function item (2014-03-04 release)
+Tad Login 2.4 (2014-03-04 released)
 ================================================
 1. Compact randStr () function, direct access tadtools in randStr ()
 2. Fixed Chiayi County Auto Group Setting OpenID login issues will not move
 3. Add Tainan OpenID student identification function (also modify group settings interface automatically in the background)
 
-Tad Login 2.3 official version of the function item (2014-01-14 release)
+Tad Login 2.3 (2014-01-14 released)
 ================================================
 1. Fixed sometimes can not sign in bug from block FB
 2. Through Nan or Chiayi County openID can automatically determine the school, and automatically added to a specified group (eg school teacher groups)
 3. You can pre-set Email, and join the Email designated specific group.
 4. streamline unnecessary language
 
-Tad Login 2.2 official version of the function item (2013-12-04 release)
+Tad Login 2.2 (2013-12-04 released)
 ================================================
 1. Add OpenID authentication Chiayi County Education Department
 2. Fixed Users can not repair themselves after login password problem
 
-Tad Login 2.1 official version of the function item (2013-11-28 release)
+Tad Login 2.1 (2013-11-28 released)
 ================================================
 1. Add MyID.tw of OpenID authentication
 2. Modify Yahoo's OpenID authentication so that it can catch the Chinese name
@@ -142,14 +157,14 @@ Tad Login 2.1 official version of the function item (2013-11-28 release)
 6. randomly generated password to increased security
 
 
-Tad Login 2.0 official version of the function item (2013-11-26 release)
+Tad Login 2.0 (2013-11-26 released)
 ================================================
 1. You can use Google and Yahoo account Quick Access Account
 2. Tainan City Government Department of Education can use Quick Login OpenID account
 3. Modify the XOOPS 2.5 module architecture
 4. Add BootStrap support
 
-Tad Login 1.0 official version of the function item (2013-03-01 release)
+Tad Login 1.0 (2013-03-01 released)
 ================================================
 1. You can use Quick Login facebook account
 2. There is a quick login block.
