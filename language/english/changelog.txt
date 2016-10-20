@@ -1,3 +1,8 @@
+Tad Login 4.3（2016-10-20 released)
+================================================
+1. Function correction
+2. Update the Facebook login mechanism, and related settings
+
 Tad Login 4.2 (2016-06-07 released)
 ================================================
 1.Fix facebook openid content

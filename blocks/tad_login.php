@@ -8,8 +8,6 @@ function tad_login($options = "")
     }
 
     include_once XOOPS_ROOT_PATH . "/modules/tad_login/function.php";
-    $block['facebook'] = facebook_login('return');
-    $block['google']   = google_login('return');
 
     $modhandler     = xoops_gethandler('module');
     $xoopsModule    = &$modhandler->getByDirname("tad_login");
@@ -19,6 +17,21 @@ function tad_login($options = "")
     $block['auth_method'] = $modConfig['auth_method'];
     $block['show_btn']    = $options[0];
     $block['show_text']   = $options[1];
+    if ($_GET['test'] == 1) {
+        die(var_export($modConfig['auth_method']));
+    }
+
+    if (in_array('facebook', $modConfig['auth_method'])) {
+        $block['facebook'] = facebook_login('return');
+    } else {
+        $block['facebook'] = '';
+    }
+
+    if (in_array('google', $modConfig['auth_method'])) {
+        $block['google'] = google_login('return');
+    } else {
+        $block['google'] = '';
+    }
 
     return $block;
 }

@@ -69,24 +69,24 @@ function tn_login()
                 $SchoolCode = $myts->addSlashes($user_profile['tw/school/id']);
                 $JobName    = strpos($user_profile['tw/person/titles'], '"學生"') !== false ? "student" : "teacher";
 
-                if($user_profile['du.tw/school/classStr']){
-                    $classStr=substr($user_profile['du.tw/school/classStr'],2,-2);
+                if ($user_profile['du.tw/school/classStr']) {
+                    $classStr = substr($user_profile['du.tw/school/classStr'], 2, -2);
                     echo "<p>$classStr</p>";
-                    $classStr=str_replace('\\','',$classStr);
+                    $classStr = str_replace('\\', '', $classStr);
                     echo "<p>$classStr</p>";
-                    $classStrArr=explode(',',$classStr);
-                    $StuArr=array();
+                    $classStrArr = explode(',', $classStr);
+                    $StuArr      = array();
                     foreach ($classStrArr as $Arr) {
-                        list($k,$v)=explode(':',$Arr);
-                        $StuArr[$k]=str_replace('\'','',$v);
+                        list($k, $v) = explode(':', $Arr);
+                        $StuArr[$k]  = str_replace('\'', '', $v);
                     }
-                    $aim= $myts->addSlashes($StuArr['gradeId']);
-                    $yim = $myts->addSlashes($StuArr['classId']);
-                    $msnm= '';
-                }else{
-                    $aim= $myts->addSlashes($user_profile['.tw/axschema/grade']);
-                    $yim = $user_profile['.tw/axschema/class'];
-                    $msnm= $myts->addSlashes($user_profile['.tw/axschema/seat']);
+                    $aim  = $myts->addSlashes($StuArr['gradeId']);
+                    $yim  = $myts->addSlashes($StuArr['classId']);
+                    $msnm = '';
+                } else {
+                    $aim  = $myts->addSlashes($user_profile['.tw/axschema/grade']);
+                    $yim  = $user_profile['.tw/axschema/class'];
+                    $msnm = $myts->addSlashes($user_profile['.tw/axschema/seat']);
                 }
                 //搜尋有無相同username資料
                 login_xoops($uname, $name, $email, $SchoolCode, $JobName, $url, $from, $sig, $occ, $bio, $aim, $yim, $msnm);
@@ -688,15 +688,21 @@ function kh_login()
             if ($user_profile) {
                 $myts = MyTextsanitizer::getInstance();
 
-                $the_id = explode("@", $user_profile['openid_ext2_email']);
+                if ($user_profile['openid_ext2_email']) {
+                    $the_id = explode("@", $user_profile['openid_ext2_email']);
+                    $uname  = $the_id[0] . "_hk";
+                    $email  = strtolower($user_profile['openid_ext2_email']);
+                } else {
+                    $the_id = str_replace('http://openid.kh.edu.tw/', '', $user_profile['openid_claimed_id']);
+                    $uname  = $the_id . "_hk";
+                    $email  = "{$the_id}@mail.kh.edu.tw";
+                }
 
                 //$uid = $user['id'];
-                $uname      = $the_id[0] . "_hk";
                 $name       = $myts->addSlashes($user_profile['openid_ext2_fullname']);
-                $email      = strtolower($user_profile['openid_ext2_email']);
                 $SchoolCode = $myts->addSlashes($user_profile['contact/country/home']);
 
-                $JobName = (strpos($user_profile['pref/timezone'], "學生") !== false) ? "student" : "teacher";
+                $JobName = (strpos($user_profile['openid_claimed_id'], "http://openid.kh.edu.tw/S") !== false and is_numeric(substr($the_id, 1, 7))) ? "student" : "teacher";
 
                 //搜尋有無相同username資料
                 login_xoops($uname, $name, $email, $SchoolCode, $JobName);
@@ -828,7 +834,7 @@ function mt_login()
 /*-----------執行動作判斷區----------*/
 
 include_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
-$op            = system_CleanVars($_REQUEST, 'op', '', 'string');
+$op = system_CleanVars($_REQUEST, 'op', '', 'string');
 
 switch ($op) {
     case "facebook":
@@ -1026,8 +1032,12 @@ switch ($op) {
         }
 
         //注意，不能刪
-        facebook_login();
-        google_login();
+        if (in_array('facebook', $xoopsModuleConfig['auth_method'])) {
+            facebook_login();
+        }
+        if (in_array('google', $xoopsModuleConfig['auth_method'])) {
+            google_login();
+        }
 
         $xoopsTpl->assign('auth_method', $xoopsModuleConfig['auth_method']);
         break;
