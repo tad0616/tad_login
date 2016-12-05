@@ -651,38 +651,69 @@ function kh_login()
         # Change 'localhost' to your domain name.
         $openid = new LightOpenID(XOOPS_URL);
         if (!$openid->mode) {
-            //guid,sid,titleStr
-            $openid->identity = "http://openid.kh.edu.tw";
-            $openid->required = array('namePerson/friendly', 'contact/email', 'namePerson', 'contact/postalCode/home', 'contact/country/home');
-            $openid->optional = array('axschema/person/guid', 'edu/person/guid');
-            header('Location: ' . $openid->authUrl());
+
+            header('Location: https://openid.kh.edu.tw/?openid.return_to=' . XOOPS_URL . '/modules/tad_login/index.php?op=kh&openid.realm=' . XOOPS_URL . '/&openid.identity=http://openid.kh.edu.tw/&openid.mode=checkid_setup&openid.ns=http://specs.openid.net/auth/2.0&openid.ns.ext1=http://openid.net/extensions/sreg/1.1&openid.ns.ext2=http://openid.net/srv/ax/1.0&openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select&openid.ext1.required=fullname,email&openid.ext2.type.guid=http://axschema.edu.tw/person/guid&openid.ext2.type.sid=http://axschema.edu.tw/school/id&openid.ext2.type.titles=http://axschema.edu.tw/person/titles&openid.ext2.type.classStr=http://axschema.kh.edu.tw/school/classStr&openid.ext2.required=guid,sid,titles,classStr&openid.ext2.mode=fetch_request');
 
             /*
+
         array (
-        'login' => '',
+        'op' => 'kh',
+        'openid_ns' => 'http://specs.openid.net/auth/2.0',
+        'openid_op_endpoint' => 'http://openid.kh.edu.tw/',
+        'openid_claimed_id' => 'http://openid.kh.edu.tw/S0407225',
+        'openid_response_nonce' => '2016-11-18T08:46:32Z0',
+        'openid_mode' => 'id_res',
+        'openid_identity' => 'http://openid.kh.edu.tw/S0407225',
+        'openid_return_to' => 'http://est.tpps.kh.edu.tw/modules/tad_login/index.php?op=kh',
+        'openid_assoc_handle' => '08a58751cb534ed5a011c218aa2cc89f-2995',
+        'openid_signed' => 'op_endpoint,claimed_id,identity,return_to,response_nonce,assoc_handle,ns.ext1,ns.ext2,ext1.mode,ext1.type.guid,ext1.value.guid,ext1.type.sid,ext1.value.sid,ext1.type.titles,ext1.value.titles,ext1.type.classStr,ext1.value.classStr,ext2.fullname,ext2.email',
+        'openid_sig' => 'F9o3ttinjAUySAU9Xxeg+Av1liyschcnsiV0d0YLUdo=',
+        'openid_ns_ext1' => 'http://openid.net/srv/ax/1.0',
+        'openid_ext1_mode' => 'fetch_response',
+        'openid_ext1_type_guid' => 'http://axschema.edu.tw/person/guid',
+        'openid_ext1_value_guid' => '4b9d1643ddf10225f49b4b1d6993b03f94b60f5c05f6788694d12def0add9a1f',
+        'openid_ext1_type_sid' => 'http://axschema.edu.tw/school/id',
+        'openid_ext1_value_sid' => '613605',
+        'openid_ext1_type_titles' => 'http://axschema.edu.tw/person/titles',
+        'openid_ext1_value_titles' => '{"sid":"613605","titles":["學生"]}',
+        'openid_ext1_type_classStr' => 'http://axschema.kh.edu.tw/school/classStr',
+        'openid_ext1_value_classStr' => '[{"sid":"613605","groupId":"","title":"學生","classTitle":"201","degree":"國小","DN":"D","gradeId":"2","classId":"01","subject":"普通班","subjectId":"0","schoolType":"P"}]',
+        'openid_ns_ext2' => 'http://openid.net/extensions/sreg/1.1',
+        'openid_ext2_fullname' => '曹宸澔',
+        'openid_ext2_email' => '',
+        )
+
+        array (
         'op' => 'kh',
         'openid_ns' => 'http://specs.openid.net/auth/2.0',
         'openid_op_endpoint' => 'http://openid.kh.edu.tw/',
         'openid_claimed_id' => 'http://openid.kh.edu.tw/tyk',
-        'openid_response_nonce' => '2015-03-30T06:30:07Z3',
+        'openid_response_nonce' => '2016-11-18T08:55:41Z0',
         'openid_mode' => 'id_res',
         'openid_identity' => 'http://openid.kh.edu.tw/tyk',
-        'openid_return_to' => 'http://localhost/x25/modules/tad_login/index.php?login&op=kh',
-        'openid_assoc_handle' => 'd352417443064c938303d631306cdadd-1453',
-        'openid_signed' => 'op_endpoint,claimed_id,identity,return_to,response_nonce,assoc_handle,ns.ext1,ns.ext2,ext1.mode,ext2.email,ext2.nickname,ext2.fullname',
-        'openid_sig' => '3Vz6Ah47JkC3xDXaASxCxsTqKSqYBKDKtMeRFf2axQA=',
+        'openid_return_to' => 'http://est.tpps.kh.edu.tw/modules/tad_login/index.php?op=kh',
+        'openid_assoc_handle' => '08a58751cb534ed5a011c218aa2cc89f-3007',
+        'openid_signed' => 'op_endpoint,claimed_id,identity,return_to,response_nonce,assoc_handle,ns.ext1,ns.ext2,ext1.mode,ext1.type.guid,ext1.value.guid,ext1.type.sid,ext1.value.sid,ext1.type.titles,ext1.value.titles,ext1.type.classStr,ext1.value.classStr,ext2.fullname,ext2.email',
+        'openid_sig' => '4QhRyqpGVjnStBa0pYuv1/G6lGfr5CprnFE6SQ0cfj4=',
         'openid_ns_ext1' => 'http://openid.net/srv/ax/1.0',
         'openid_ext1_mode' => 'fetch_response',
+        'openid_ext1_type_guid' => 'http://axschema.edu.tw/person/guid',
+        'openid_ext1_value_guid' => 'a0c55d6527c4795ee56777f54d32ee1ac9506b872112be6653930f83f0319d86',
+        'openid_ext1_type_sid' => 'http://axschema.edu.tw/school/id',
+        'openid_ext1_value_sid' => '123456',
+        'openid_ext1_type_titles' => 'http://axschema.edu.tw/person/titles',
+        'openid_ext1_value_titles' => '{"sid":"123456","titles":["教師","設備組長"]}',
+        'openid_ext1_type_classStr' => 'http://axschema.kh.edu.tw/school/classStr',
+        'openid_ext1_value_classStr' => '[]',
         'openid_ns_ext2' => 'http://openid.net/extensions/sreg/1.1',
-        'openid_ext2_email' => 't@gmail.com',
-        'openid_ext2_nickname' => '',
         'openid_ext2_fullname' => '杜老師',
+        'openid_ext2_email' => 't000@gmail.com',
         )
          */
 
         } else {
             $user_profile = $openid->getAttributes();
-            //die(var_export($user_profile));
+            // die(var_export($user_profile));
             // Login or logout url will be needed depending on current user state.
 
             if ($user_profile) {
@@ -700,12 +731,14 @@ function kh_login()
 
                 //$uid = $user['id'];
                 $name       = $myts->addSlashes($user_profile['openid_ext2_fullname']);
-                $SchoolCode = $myts->addSlashes($user_profile['contact/country/home']);
+                $SchoolCode = $myts->addSlashes($user_profile['openid_ext1_value_sid']);
+                $classStr   = $myts->addSlashes($user_profile['openid_ext1_value_classStr']);
 
-                $JobName = (strpos($user_profile['openid_claimed_id'], "http://openid.kh.edu.tw/S") !== false and is_numeric(substr($the_id, 1, 7))) ? "student" : "teacher";
+                $JobName = (strpos($user_profile['openid_ext1_value_titles'], "教師") !== false) ? "teacher" : "student";
 
                 //搜尋有無相同username資料
-                login_xoops($uname, $name, $email, $SchoolCode, $JobName);
+                //login_xoops($uname = "", $name = "", $email = "", $SchoolCode = "", $JobName = "", $url = "", $from = "", $sig = "", $occ = "", $bio = "", $aim = "", $yim = "", $msnm = "")
+                login_xoops($uname, $name, $email, $SchoolCode, $JobName, null, $classStr);
             }
         }
     } catch (ErrorException $e) {

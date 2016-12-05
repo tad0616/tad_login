@@ -37,7 +37,7 @@ if (!function_exists('facebook_login')) {
         $config_handler  = xoops_gethandler('config');
         $tad_loginConfig = $config_handler->getConfigsByCat(0, $tad_loginModule->getVar('mid'));
 
-        $fb = new Facebook(array(
+        $fb = new Facebook\Facebook(array(
             'app_id'                => $tad_loginConfig['appId'], // Replace {app-id} with your app id
             'app_secret'            => $tad_loginConfig['secret'],
             'default_graph_version' => 'v2.2',
@@ -262,7 +262,7 @@ if (!function_exists('login_xoops')) {
                 $user->setVar("user_occ", $occ);
                 $user->setVar("user_intrest", $SchoolCode);
 
-                if (!$member_handler->insertUser($user)) {
+                if (!$member_handler->insertUser($user, true)) {
                 }
 
                 $login_from = $_SESSION['login_from'];

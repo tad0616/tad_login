@@ -603,8 +603,7 @@ class LightOpenID
                     if (is_int($alias)) {
                         $alias = strtr($field, '/', '_');
                     }
-
-                    $this->aliases[$alias] = 'http://axschema.org/' . $field;
+                    $this->aliases[$alias] = 'http://axschema.kh.edu.tw/' . $field;
                     if (empty($counts[$alias])) {
                         $counts[$alias] = 0;
                     }
