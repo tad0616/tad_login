@@ -44,6 +44,16 @@ define('_MA_TADLOGIN_GOO_STEP9', '<h1> [Step 9] get API Key </h1> <p> red box at
 define('_MA_TADLOGIN_GOO_STEP10', '<h1> [Step 10] login screen set </h1> <p> Setting up your Email, as well as project name, became a big announcement </p>!');
 define('_MA_TADLOGIN_GOO_STEP11', '<h1> [Step 11] to Preferences </h1> <p> Next, go to Preferences, four field sequence can fill </p>.');
 
+define('_MA_TADLOGIN_GOO_STEP1', "<h1> [Step 1] Create a Google project </ h1> <p> Go to <a href='https://console.developers.google.com/project' target='_blank'> https://console.developers.google.com/project </a> Create a new project </p>");
+define('_MA_TADLOGIN_GOO_STEP2', "<h1> [Step 2] Create a certificate</h1><p>To the \"Credentials\", click \"New credentials\" in the \"OAuth client ID\"</p>");
+define('_MA_TADLOGIN_GOO_STEP3', "<h1> [Step 3] Set the \"OAuth consent screen\"</h1><p>Choose an Email Address, specify a Product Name, and press Save. </p>");
+define('_MA_TADLOGIN_GOO_STEP4', "<h1> [Step 4] Create \"OAuth client ID\"</h1><p>Under Application type, select Web application. In the Authorized JavaScript origins field, enter the origin for your app. You can enter multiple origins to allow for your app to run on different protocols, domains, or subdomains. You cannot use wildcards. In the example below, the second URL could be a production URL. The Authorized redirect URI field, enter \"<span style = 'color: blue;'>" . XOOPS_URL . "/modules/tad_login/index.php</span>\"</p>");
+define('_MA_TADLOGIN_GOO_STEP5', "<h1> [Step 5] Get client ID</h1><p>Under the time is to fill in the preferences of the project value (paste, be sure to remove the blank before and after).</p>");
+define('_MA_TADLOGIN_GOO_STEP6', "<h1> [Step 6] Create an API key</h1><p>Click API Key to create the API key</p>");
+define('_MA_TADLOGIN_GOO_STEP7', "<h1> [Step 7] Get the API key</h1><p>The API key is the value of the item to fill in the preferences.</p>");
+define('_MA_TADLOGIN_GOO_STEP8', "<h1> [Step 8] Sets the allowed key source</h1><p>Select \"HTTP Referrer (Website)\" to enter your domain name, followed by " * " for all pages.</p>");
+define('_MA_TADLOGIN_GOO_STEP9', "<h1> [Step 9] Complete your preferences</h1><p>Finally, please go to the preferences, the three fields can be filled in order, paste, be sure to remove the blank before and after. Also remember to select \"Sign in using Google\"</p>");
+
 define('_MA_TADLOGIN_ITEM', "School Code or Email");
 define('_MA_TADLOGIN_GROUP_ID', "Group");
 

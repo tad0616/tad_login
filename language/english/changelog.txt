@@ -1,3 +1,25 @@
+Tad Login 4.4.2 (2017-02-06 released)
+================================================
+1. Add custom URL settings after signing in
+2. When not using the city and county Department of Education OpenID login, do not modify the school name and number.
+
+
+Tad Login 4.4.1 (2017-01-08 released)
+================================================
+1.Change the col-md of boootstrap to col-sm
+
+
+Tad Login 4.4 (2016-12-19 released)
+================================================
+1. Add a large icon function
+2. Join the full function of OpenID in Kaohsiung
+3. Hualian County OpenID switch to the new OpenID host
+4. Remove myid authentication
+5. Fixed some e-mail settings can not login error
+6. Rewrite your Google sign-in instructions
+7. Avoid PHP5.4 following the use of facebook host login blank page
+
+
 Tad Login 4.3（2016-10-20 released)
 ================================================
 1. Function correction

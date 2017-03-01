@@ -26,7 +26,7 @@
 
       <!--學校代碼或Email-->
       <div class="row">
-        <div class="col-md-2 text-right">
+        <div class="col-sm-2 text-right">
           <select name="type" id="type" class="form-control">
             <option value="email" <{if $kind=="email"}>selected<{/if}>><{$smarty.const._MA_TADLOGIN_EMAIL}></option>
             <option value="schoolcode" <{if $kind!="email"}>selected<{/if}>><{$smarty.const._MA_TADLOGIN_SCHOOLCODE}></option>
@@ -34,13 +34,13 @@
         </div>
 
         <div id="kind_schoolcode">
-          <div class="col-md-2">
+          <div class="col-sm-2">
             <input type="text" name="item_schoolcode" class="form-control " value="<{$item}>" placeholder="<{$smarty.const._MA_TADLOGIN_ITEM}>">
           </div>
-          <label class="col-md-1 text-right">
+          <label class="col-sm-1 text-right">
             <{$smarty.const._MA_TADLOGIN_JOB}>
           </label>
-          <div class="col-md-2">
+          <div class="col-sm-2">
             <select name="kind_schoolcode" class="form-control">
               <option value="teacher" <{if $kind=="teacher"}>selected<{/if}>><{$smarty.const._MA_TADLOGIN_TEACHER}></option>
               <option value="student" <{if $kind=="student"}>selected<{/if}>><{$smarty.const._MA_TADLOGIN_STUDENT}></option>
@@ -49,21 +49,21 @@
         </div>
 
         <div id="kind_email">
-          <div class="col-md-6">
+          <div class="col-sm-6">
             <textarea name="item_email" rows=3 class="form-control " placeholder="<{$smarty.const._MA_TADLOGIN_ITEM}>"><{$item}></textarea>
             <input type="hidden" name="kind_email" value="email">
           </div>
         </div>
 
         <!--群組-->
-        <label class="col-md-1 text-right">
+        <label class="col-sm-1 text-right">
           <{$smarty.const._MA_TADLOGIN_GROUP_ID}>
         </label>
-        <div class="col-md-3">
+        <div class="col-sm-3">
           <{$group_menu}>
         </div>
 
-        <div class="col-md-1 text-center">
+        <div class="col-sm-1 text-center">
           <!--編號-->
           <input type='hidden' name="config_id" value="<{$config_id}>">
           <input type="hidden" name="op" value="<{$next_op}>">
@@ -87,10 +87,10 @@
     <table class="table table-striped table-hover" style="width:auto;">
       <thead>
       <tr>
-        <th class="col-md-6"><{$smarty.const._MA_TADLOGIN_ITEM}></th>
-        <th class="col-md-2"><{$smarty.const._MA_TADLOGIN_JOB}></th>
-        <th class="col-md-2"><{$smarty.const._MA_TADLOGIN_GROUP_ID}></th>
-        <th class="col-md-2"><{$smarty.const._TAD_FUNCTION}></th>
+        <th class="col-sm-6"><{$smarty.const._MA_TADLOGIN_ITEM}></th>
+        <th class="col-sm-2"><{$smarty.const._MA_TADLOGIN_JOB}></th>
+        <th class="col-sm-2"><{$smarty.const._MA_TADLOGIN_GROUP_ID}></th>
+        <th class="col-sm-2"><{$smarty.const._TAD_FUNCTION}></th>
       </tr>
       </thead>
 
@@ -126,10 +126,10 @@
 
     <div class="row">
         <!--群組-->
-      <div class="col-md-3 text-right">
+      <div class="col-sm-3 text-right">
         <{$smarty.const._MA_TADLOGIN_GROUP_ID}>
       </div>
-      <div class="col-md-9">
+      <div class="col-sm-9">
         <{$group_id}>
       </div>
 
@@ -138,7 +138,7 @@
     <div class="row">
 
     <!--學校代碼或Email-->
-      <div class="col-md-3 text-right">
+      <div class="col-sm-3 text-right">
         <{$smarty.const._MA_TADLOGIN_ITEM}>
       </div>
       <div class="well span9">

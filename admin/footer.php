@@ -1,6 +1,6 @@
 <?php
 /**
- * MyLinks module
+ * Tad Login module
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -9,13 +9,12 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright ::  The XOOPS Project http://sourceforge.net/projects/xoops/
- * @license   ::  http://www.fsf.org/copyleft/gpl.html GNU public license
- * @package   ::  tad_login
- * @subpackage::  admin
- * @since     ::  1.0
- * @author    ::  Tad
- * @version   ::  $Id $
+ * @copyright           The XOOPS Project http://sourceforge.net/projects/xoops/
+ * @license             http://www.fsf.org/copyleft/gpl.html GNU public license
+ * @package             tad_login
+ * @since               1.0
+ * @author              Tad
+ * @version             $Id $
  **/
 
 echo "<div align=\"center\"><a href=\"http://www.xoops.org\" target=\"_blank\"><img src=\"../images/admin/xoopsmicrobutton.gif\" alt=\"XOOPS\" title=\"XOOPS\"></a></div>";

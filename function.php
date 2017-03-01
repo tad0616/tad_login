@@ -12,7 +12,9 @@ if (!function_exists('facebook_login')) {
     function facebook_login($mode = "")
     {
         global $xoopsConfig, $xoopsDB, $xoopsTpl, $xoopsUser;
-        // require_once 'class/facebook.php';
+        if (PHP_VERSION_ID < 50400) {
+            return false;
+        }
         require_once 'class/Facebook/autoload.php';
 
         if ($xoopsUser) {
@@ -259,8 +261,10 @@ if (!function_exists('login_xoops')) {
                 $user->setVar("user_sig", $sig);
                 $user->setVar("user_icq", $JobName);
                 $user->setVar("bio", $bio);
-                $user->setVar("user_occ", $occ);
-                $user->setVar("user_intrest", $SchoolCode);
+                if ($SchoolCode) {
+                    $user->setVar("user_occ", $occ);
+                    $user->setVar("user_intrest", $SchoolCode);
+                }
 
                 if (!$member_handler->insertUser($user, true)) {
                 }
@@ -282,7 +286,11 @@ if (!function_exists('login_xoops')) {
                     setcookie($xoopsConfig['usercookie'], 0, -1, '/', XOOPS_COOKIE_DOMAIN, 0);
                 }
                 //若有要轉頁
-                $redirect_url = empty($login_from) ? XOOPS_URL . '/index.php' : $login_from;
+                if (!empty($xoopsModuleConfig['redirect_url'])) {
+                    $redirect_url = $xoopsModuleConfig['redirect_url'];
+                } else {
+                    $redirect_url = empty($login_from) ? XOOPS_URL . '/index.php' : $login_from;
+                }
 
                 // RMV-NOTIFY
                 // Perform some maintenance of notification records
