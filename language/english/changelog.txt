@@ -1,3 +1,9 @@
+Tad Login 4.4.3 (2017-03-14 released)
+================================================
+ 1.Fixed an issue where Kaohsiung students could not use OpenID login.
+
+
+
 Tad Login 4.4.2 (2017-02-06 released)
 ================================================
 1. Add custom URL settings after signing in

@@ -9,7 +9,7 @@
       <{else}>
         <{if $block.show_btn!='1'}>
           <div class="row">
-            <div class="col-sm-12 col-sm-12">
+            <div class="col-sm-12">
               <div class="thumbnail" style="background-color: transparent; border: none;">
                 <a href="<{$openid.url}>"><img src="<{$openid.logo}>" alt="<{$openid.text}>" title="<{$openid.text}>"></a>
                 <div class="text-center">

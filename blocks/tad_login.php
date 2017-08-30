@@ -23,6 +23,8 @@ function tad_login($options = "")
             $url = facebook_login('return');
         } elseif ($openid == 'google') {
             $url = google_login('return');
+        } elseif ($openid == 'edu') {
+            $url = edu_login('return');
         } else {
             $url = XOOPS_URL . "/modules/tad_login/index.php?login&op={$openid}";
         }

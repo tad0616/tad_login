@@ -27,3 +27,4 @@ define('_TYC', "桃園市教育局 OpenID ");
 define('_KM', "金門縣教育處 OpenID ");
 define('_MT', "連江縣教育處 OpenID ");
 define('_TTCT', "臺東縣教育處 OpenID ");
+define('_EDU', "教育部 OpenID ");

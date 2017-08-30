@@ -1,0 +1,6 @@
+{
+    "require": {
+        "phpseclib/phpseclib": "^2.0",
+        "namshi/jose": "^7.2"
+    }
+}

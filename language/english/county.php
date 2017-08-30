@@ -28,3 +28,4 @@ define('_TYC', 'Taoyuan City Education Office OpenID');
 define('_KM', 'Kinmen County Education Office OpenID');
 define('_MT', "Matsu County Education Office OpenID");
 define('_TTCT', "Taitung County Education Office OpenID");
+define('_EDU', "Ministry of Education Office OpenID");
