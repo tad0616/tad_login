@@ -68,13 +68,10 @@ function tn_login()
                 $name       = $myts->addSlashes($user_profile['namePerson']);
                 $email      = strtolower($user_profile['contact/email']);
                 $SchoolCode = $myts->addSlashes($user_profile['tw/school/id']);
-                $JobName    = strpos($user_profile['tw/person/titles'], '"學生"') !== false ? "student" : "teacher";
 
                 if ($user_profile['du.tw/school/classStr']) {
-                    $classStr = substr($user_profile['du.tw/school/classStr'], 2, -2);
-                    echo "<p>$classStr</p>";
-                    $classStr = str_replace('\\', '', $classStr);
-                    echo "<p>$classStr</p>";
+                    $classStr    = substr($user_profile['du.tw/school/classStr'], 2, -2);
+                    $classStr    = str_replace('\\', '', $classStr);
                     $classStrArr = explode(',', $classStr);
                     $StuArr      = array();
                     foreach ($classStrArr as $Arr) {
