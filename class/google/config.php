@@ -19,9 +19,9 @@ include_once "../../../../mainfile.php";
 global $apiConfig;
 
 $modhandler      = xoops_gethandler('module');
-$tad_loginModule = &$modhandler->getByDirname("tad_login");
+$tad_loginModule = $modhandler->getByDirname("tad_login");
 $config_handler  = xoops_gethandler('config');
-$tad_loginConfig = &$config_handler->getConfigsByCat(0, $tad_loginModule->getVar('mid'));
+$tad_loginConfig = $config_handler->getConfigsByCat(0, $tad_loginModule->getVar('mid'));
 
 $apiConfig = array(
     // True if objects should be returned by the service classes.

@@ -127,9 +127,9 @@ if (!function_exists('facebook_login')) {
             }
         }
 
-        $modhandler      = xoops_gethandler('module');
+        $modhandler      = xoops_getHandler('module');
         $tad_loginModule = $modhandler->getByDirname("tad_login");
-        $config_handler  = xoops_gethandler('config');
+        $config_handler  = xoops_getHandler('config');
         $tad_loginConfig = $config_handler->getConfigsByCat(0, $tad_loginModule->getVar('mid'));
 
         $fb = new Facebook\Facebook(array(
@@ -302,7 +302,7 @@ if (!function_exists('login_xoops')) {
     function login_xoops($uname = "", $name = "", $email = "", $SchoolCode = "", $JobName = "", $url = "", $from = "", $sig = "", $occ = "", $bio = "", $aim = "", $yim = "", $msnm = "")
     {
         global $xoopsModuleConfig, $xoopsConfig, $xoopsDB, $xoopsUser;
-        $member_handler = xoops_gethandler('member');
+        $member_handler = xoops_getHandler('member');
 
         if ($member_handler->getUserCount(new Criteria('uname', $uname)) > 0) {
             //若已有此帳號！
@@ -315,7 +315,7 @@ if (!function_exists('login_xoops')) {
                 exit();
             }
 
-            $member_handler = xoops_gethandler('member');
+            $member_handler = xoops_getHandler('member');
             xoops_loadLanguage('auth');
 
             include_once $GLOBALS['xoops']->path('class/auth/authfactory.php');
@@ -387,7 +387,7 @@ if (!function_exists('login_xoops')) {
 
                 // RMV-NOTIFY
                 // Perform some maintenance of notification records
-                $notification_handler = xoops_gethandler('notification');
+                $notification_handler = xoops_getHandler('notification');
                 $notification_handler->doLoginMaintenance($user->getVar('uid'));
 
                 redirect_header($redirect_url, 1, sprintf("", $user->getVar('uname')), false);
@@ -496,7 +496,7 @@ if (!function_exists("add2group")) {
         //     $JobName = "";
         // }
 
-        $member_handler = xoops_gethandler('member');
+        $member_handler = xoops_getHandler('member');
         $user           = &$member_handler->getUser($uid);
         if ($user) {
             $userGroups = $user->getGroups();
