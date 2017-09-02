@@ -68,6 +68,7 @@ function tn_login()
                 $name       = $myts->addSlashes($user_profile['namePerson']);
                 $email      = strtolower($user_profile['contact/email']);
                 $SchoolCode = $myts->addSlashes($user_profile['tw/school/id']);
+                $JobName    = strpos($user_profile['contact/email'], '@cloud.tn.edu.tw') !== false ? "student" : "teacher";
 
                 if ($user_profile['du.tw/school/classStr']) {
                     $classStr    = substr($user_profile['du.tw/school/classStr'], 2, -2);
