@@ -505,7 +505,7 @@ if (!function_exists("add2group")) {
             exit;
         }
 
-        $sql    = "select `item`,`kind`,`group_id` from `" . $xoopsDB->prefix('tad_login_config') . "`";
+        $sql = "SELECT `item`,`kind`,`group_id` FROM `" . $xoopsDB->prefix('tad_login_config') . "`";
         $result = $xoopsDB->queryF($sql) or web_error($sql);
         while (list($item, $kind, $group_id) = $xoopsDB->fetchRow($result)) {
             if (!in_array($group_id, $userGroups)) {
