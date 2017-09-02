@@ -117,7 +117,7 @@ function list_tad_login_config()
 {
     global $xoopsDB, $xoopsTpl, $isAdmin;
 
-    $sql    = "select * from `" . $xoopsDB->prefix("groups") . "` ";
+    $sql = "SELECT * FROM `" . $xoopsDB->prefix("groups") . "` ";
     $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
     $groups = "";
     $i      = 0;
@@ -128,7 +128,7 @@ function list_tad_login_config()
         $groups[$groupid] = $name;
     }
 
-    $sql    = "select * from `" . $xoopsDB->prefix("tad_login_config") . "` ";
+    $sql = "SELECT * FROM `" . $xoopsDB->prefix("tad_login_config") . "` ";
     $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
 
     $all_content = "";
@@ -157,7 +157,6 @@ function list_tad_login_config()
     $xoopsTpl->assign('isAdmin', $isAdmin);
     $xoopsTpl->assign('all_content', $all_content);
     $xoopsTpl->assign('now_op', 'list_tad_login_config');
-
 }
 
 //以流水號取得某筆tad_login_config資料
@@ -167,9 +166,9 @@ function get_tad_login_config($config_id = "")
     if (empty($config_id)) {
         return;
     }
-    $sql    = "select * from `" . $xoopsDB->prefix("tad_login_config") . "` where `config_id` = '{$config_id}'";
+    $sql = "select * from `" . $xoopsDB->prefix("tad_login_config") . "` where `config_id` = '{$config_id}'";
     $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
-    $data   = $xoopsDB->fetchArray($result);
+    $data = $xoopsDB->fetchArray($result);
 
     return $data;
 }
@@ -190,12 +189,12 @@ function show_one_tad_login_config($config_id = "")
     if (empty($config_id)) {
         return;
     } else {
-        $config_id = (int) ($config_id);
+        $config_id = (int)($config_id);
     }
 
-    $sql    = "select * from `" . $xoopsDB->prefix("tad_login_config") . "` where `config_id` = '{$config_id}' ";
+    $sql = "select * from `" . $xoopsDB->prefix("tad_login_config") . "` where `config_id` = '{$config_id}' ";
     $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
-    $all    = $xoopsDB->fetchArray($result);
+    $all = $xoopsDB->fetchArray($result);
 
     //以下會產生這些變數： $config_id , $item , $group_id
     foreach ($all as $k => $v) {

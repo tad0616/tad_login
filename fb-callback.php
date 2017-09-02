@@ -2,9 +2,9 @@
 include "header.php";
 require_once __DIR__ . '/class/Facebook/autoload.php';
 
-$modhandler      = xoops_gethandler('module');
+$modhandler      = xoops_getHandler('module');
 $tad_loginModule = $modhandler->getByDirname("tad_login");
-$config_handler  = xoops_gethandler('config');
+$config_handler  = xoops_getHandler('config');
 $tad_loginConfig = $config_handler->getConfigsByCat(0, $tad_loginModule->getVar('mid'));
 
 /*

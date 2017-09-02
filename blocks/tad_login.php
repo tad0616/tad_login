@@ -9,10 +9,10 @@ function tad_login($options = "")
 
     include_once XOOPS_ROOT_PATH . "/modules/tad_login/function.php";
 
-    $modhandler     = xoops_gethandler('module');
-    $xoopsModule    = &$modhandler->getByDirname("tad_login");
-    $config_handler = xoops_gethandler('config');
-    $modConfig      = &$config_handler->getConfigsByCat(0, $xoopsModule->getVar('mid'));
+    $modhandler     = xoops_getHandler('module');
+    $xoopsModule    = $modhandler->getByDirname("tad_login");
+    $config_handler = xoops_getHandler('config');
+    $modConfig      = $config_handler->getConfigsByCat(0, $xoopsModule->getVar('mid'));
 
     $block['show_btn']  = $options[0];
     $block['show_text'] = $options[1];
