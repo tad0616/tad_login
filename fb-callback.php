@@ -13,7 +13,7 @@ $tad_loginConfig = $config_handler->getConfigsByCat(0, $tad_loginModule->getVar(
 $fb = new Facebook\Facebook([
     'app_id'                => $tad_loginConfig['appId'], // Replace {app-id} with your app id
     'app_secret'            => $tad_loginConfig['secret'],
-    'default_graph_version' => 'v2.2',
+    'default_graph_version' => 'v2.11',
 ]);
 
 $helper                  = $fb->getRedirectLoginHelper();

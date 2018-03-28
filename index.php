@@ -427,9 +427,9 @@ function hlc_login($conty = "", $openid_identity = "")
 
                     $JobName = (strpos($arr[0]['role'], "學生") !== false) ? "student" : "teacher";
 
-                } elseif ($conty == "tyc") {
-                    $SchoolCode = $myts->addSlashes($user_profile['contact/country/home']);
-                    $arr        = json_decode($user_profile['pref/timezone'], true);
+                // } elseif ($conty == "tyc") {
+                //     $SchoolCode = $myts->addSlashes($user_profile['contact/country/home']);
+                //     $arr        = json_decode($user_profile['pref/timezone'], true);
                     //die(var_export($arr));
                     // array (
                     //   0 =>
@@ -444,7 +444,7 @@ function hlc_login($conty = "", $openid_identity = "")
                     //   ),
                     // )
 
-                    $JobName = (strpos($arr[0]['title'], "學生") !== false) ? "student" : "teacher";
+                    // $JobName = (strpos($arr[0]['title'], "學生") !== false) ? "student" : "teacher";
 
                 } else {
                     $SchoolCode = $myts->addSlashes($user_profile['contact/country/home']);
@@ -488,7 +488,7 @@ function tyc_login()
         } else {
 
             $user_profile = $openid->getAttributes();
-            die(var_export($user_profile));
+            // die(var_export($user_profile));
             if ($user_profile) {
                 $myts = MyTextsanitizer::getInstance();
 
@@ -496,7 +496,7 @@ function tyc_login()
                 $the_id                        = explode("@", $user_profile['contact/email']);
 
                 //$uid = $user['id'];
-                $uname = $the_id[0] . "_" . $conty;
+                $uname = $the_id[0] . "_tyc";
                 $name  = $myts->addSlashes($user_profile['namePerson']);
                 $email = strtolower($user_profile['contact/email']);
 
@@ -953,12 +953,12 @@ function list_login()
     }
 
     //注意，不能刪
-    // if (in_array('facebook', $xoopsModuleConfig['auth_method'])) {
-    //     facebook_login();
-    // }
-    // if (in_array('google', $xoopsModuleConfig['auth_method'])) {
-    //     google_login();
-    // }
+    if (in_array('facebook', $xoopsModuleConfig['auth_method'])) {
+        facebook_login();
+    }
+    if (in_array('google', $xoopsModuleConfig['auth_method'])) {
+        google_login();
+    }
 
     $i = 0;
     foreach ($xoopsModuleConfig['auth_method'] as $openid) {
@@ -1123,6 +1123,9 @@ switch ($op) {
 
 $xoopsTpl->assign("toolbar", toolbar_bootstrap($interface_menu));
 $xoopsTpl->assign("isAdmin", $isAdmin);
-
-$_SESSION['login_from'] = $_SERVER["HTTP_REFERER"];
+if (isset($_SESSION['link_to'])) {
+    $_SESSION['login_from'] = $_SESSION['link_to'];
+} elseif (!isset($_SESSION['login_from'])) {
+    $_SESSION['login_from'] = $_SERVER["HTTP_REFERER"];
+}
 include_once XOOPS_ROOT_PATH . '/footer.php';

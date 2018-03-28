@@ -135,7 +135,7 @@ if (!function_exists('facebook_login')) {
         $fb = new Facebook\Facebook(array(
             'app_id'                => $tad_loginConfig['appId'], // Replace {app-id} with your app id
             'app_secret'            => $tad_loginConfig['secret'],
-            'default_graph_version' => 'v2.2',
+            'default_graph_version' => 'v2.11',
         ));
 
         // $user_profile = '';
@@ -488,13 +488,6 @@ if (!function_exists("add2group")) {
     {
         global $xoopsDB, $xoopsUser;
 
-        // if ($JobName == _MD_TADLOGIN_TEACHER) {
-        //     $JobName = "teacher";
-        // } elseif ($JobName == _MD_TADLOGIN_STUDENT) {
-        //     $JobName = "student";
-        // } else {
-        //     $JobName = "";
-        // }
 
         $member_handler = xoops_getHandler('member');
         $user           = &$member_handler->getUser($uid);
@@ -505,7 +498,7 @@ if (!function_exists("add2group")) {
             exit;
         }
 
-        $sql = "SELECT `item`,`kind`,`group_id` FROM `" . $xoopsDB->prefix('tad_login_config') . "`";
+        $sql    = "SELECT `item`,`kind`,`group_id` FROM `" . $xoopsDB->prefix('tad_login_config') . "`";
         $result = $xoopsDB->queryF($sql) or web_error($sql);
         while (list($item, $kind, $group_id) = $xoopsDB->fetchRow($result)) {
             if (!in_array($group_id, $userGroups)) {

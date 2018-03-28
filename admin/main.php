@@ -117,9 +117,9 @@ function list_tad_login_config()
 {
     global $xoopsDB, $xoopsTpl, $isAdmin;
 
-    $sql = "SELECT * FROM `" . $xoopsDB->prefix("groups") . "` ";
+    $sql    = "SELECT * FROM `" . $xoopsDB->prefix("groups") . "` ";
     $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
-    $groups = "";
+    $groups = array();
     $i      = 0;
     while ($all = $xoopsDB->fetchArray($result)) {
         foreach ($all as $k => $v) {
@@ -128,10 +128,10 @@ function list_tad_login_config()
         $groups[$groupid] = $name;
     }
 
-    $sql = "SELECT * FROM `" . $xoopsDB->prefix("tad_login_config") . "` ";
+    $sql    = "SELECT * FROM `" . $xoopsDB->prefix("tad_login_config") . "` ";
     $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
 
-    $all_content = "";
+    $all_content = array();
     $i           = 0;
     while ($all = $xoopsDB->fetchArray($result)) {
         //以下會產生這些變數： $config_id , $item , $group_id
@@ -166,9 +166,9 @@ function get_tad_login_config($config_id = "")
     if (empty($config_id)) {
         return;
     }
-    $sql = "select * from `" . $xoopsDB->prefix("tad_login_config") . "` where `config_id` = '{$config_id}'";
+    $sql    = "select * from `" . $xoopsDB->prefix("tad_login_config") . "` where `config_id` = '{$config_id}'";
     $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
-    $data = $xoopsDB->fetchArray($result);
+    $data   = $xoopsDB->fetchArray($result);
 
     return $data;
 }
@@ -189,12 +189,12 @@ function show_one_tad_login_config($config_id = "")
     if (empty($config_id)) {
         return;
     } else {
-        $config_id = (int)($config_id);
+        $config_id = (int) ($config_id);
     }
 
-    $sql = "select * from `" . $xoopsDB->prefix("tad_login_config") . "` where `config_id` = '{$config_id}' ";
+    $sql    = "select * from `" . $xoopsDB->prefix("tad_login_config") . "` where `config_id` = '{$config_id}' ";
     $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
-    $all = $xoopsDB->fetchArray($result);
+    $all    = $xoopsDB->fetchArray($result);
 
     //以下會產生這些變數： $config_id , $item , $group_id
     foreach ($all as $k => $v) {
