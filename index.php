@@ -1122,7 +1122,7 @@ switch ($op) {
 }
 
 $xoopsTpl->assign("toolbar", toolbar_bootstrap($interface_menu));
-$xoopsTpl->assign("isAdmin", $isAdmin);
+
 if (isset($_SESSION['link_to'])) {
     $_SESSION['login_from'] = $_SESSION['link_to'];
 } elseif (!isset($_SESSION['login_from'])) {

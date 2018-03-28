@@ -44,6 +44,7 @@ define('_MA_TADLOGIN_ITEM', "學校代碼或Email");
 define('_MA_TADLOGIN_GROUP_ID', "群組");
 
 define('_MA_TADLOGIN_EMAIL', "Email");
+define('_MA_TADLOGIN_EMAIL_DESC', "可用任何符號隔開 Email，亦可用 *@tn.edu.tw 萬用字元");
 define('_MA_TADLOGIN_SCHOOLCODE', "學校代碼");
 define('_MA_TADLOGIN_TEACHER', "教師");
 define('_MA_TADLOGIN_STUDENT', "學生");

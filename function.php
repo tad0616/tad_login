@@ -488,7 +488,6 @@ if (!function_exists("add2group")) {
     {
         global $xoopsDB, $xoopsUser;
 
-
         $member_handler = xoops_getHandler('member');
         $user           = &$member_handler->getUser($uid);
         if ($user) {
@@ -507,6 +506,21 @@ if (!function_exists("add2group")) {
                     $sql = "insert into `" . $xoopsDB->prefix('groups_users_link') . "` (groupid,uid ) values($group_id,$uid)";
                     $xoopsDB->queryF($sql) or web_error($sql);
                     //echo "{$group_id}, {$uid}<br>";
+                }
+
+                if (empty($item) and $JobName == $kind) {
+                    $sql = "insert into `" . $xoopsDB->prefix('groups_users_link') . "` (groupid,uid ) values($group_id,$uid)";
+                    $xoopsDB->queryF($sql) or web_error($sql);
+                }
+
+                if (!empty($email) and strpos($item,'*') !== false) {
+                    $item=trim($item);
+                    $new_item = str_replace('*', '', $item);
+                    // die($new_item);
+                    if (strpos($email, $new_item) !== false) {
+                        $sql = "insert into `" . $xoopsDB->prefix('groups_users_link') . "` (groupid,uid ) values($group_id,$uid)";
+                        $xoopsDB->queryF($sql) or web_error($sql);
+                    }
                 }
 
                 if (!empty($email) and strpos($item, $email) !== false) {

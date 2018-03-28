@@ -1,3 +1,14 @@
+Tad Login 4.4.4 (released on 2018-03-28)
+================================================
+  1. Fixed an issue where Google couldn't return to the home page when logging in.
+  2. Upgrade Facebook SDK to 5.6.2
+  3. Support PHP 7.2
+  4. Correction of language problems
+  5. Automatic group setting supports universal characters (Email mode)
+  6. Automatic group settings support blank school code, only to determine identity (school code mode)
+
+
+
 Tad Login 4.4.3 (2017-03-14 released)
 ================================================
  1.Fixed an issue where Kaohsiung students could not use OpenID login.
