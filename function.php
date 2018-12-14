@@ -12,89 +12,13 @@ if (!function_exists('edu_login')) {
     {
         global $xoopsConfig, $xoopsDB, $xoopsTpl, $xoopsUser;
 
-        require_once XOOPS_ROOT_PATH . '/modules/tad_login/class/edu/config.php';
-        require_once XOOPS_ROOT_PATH . '/modules/tad_login/class/edu/library.class.php';
+        $link = XOOPS_URL . '/modules/tad_login/class/edu/auth.php';
 
-        define('REDIR_URI0', XOOPS_URL . '/modules/tad_login/index.php');
-        //若已經登入
-        if ($xoopsUser) {
-            header("location:" . XOOPS_URL . "/user.php");
-            exit;
-        }
-
-        $code  = $_GET['code'];
-        $state = $_GET['state'];
-
-        $obj = new openid();
-        if (isset($_GET['code'])) {
-
-            $token_ep = TOKEN_ENDPOINT;
-            if (DYNAMICAL_ENDPOINT) {
-                $token_ep = $ep->getEndPoint()->token_endpoint;
-            }
-
-            $acctoken = $obj->getAccessToken($token_ep, $code, REDIR_URI0);
-            if (!$acctoken || !isset($acctoken->access_token)) {
-                die("無法取得ACCESS TOKEN");
-            }
-
-            $_SESSION['access_token'] = $acctoken->access_token;
-            $_SESSION['id_token']     = $acctoken->id_token;
-
-            $redirect = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
-            header('Location: ' . filter_var($redirect, FILTER_SANITIZE_URL));
-
-            return;
-        }
-
-        if ($_SESSION['access_token']) {
-
-            $token_ep = USERINFO_ENDPOINT;
-            if (DYNAMICAL_ENDPOINT) {
-                $token_ep = $ep->getEndPoint()->userinfo_endpoint;
-            }
-
-            $user = $obj->getUserinfo($token_ep, $_SESSION['access_token'], true);
-
-            die(var_export($user));
-            $email = filter_var($user['email'], FILTER_SANITIZE_EMAIL);
-            $img   = filter_var($user['picture'], FILTER_VALIDATE_URL);
-
-            if ($user) {
-                $myts                 = MyTextsanitizer::getInstance();
-                $uid                  = $user['id'];
-                list($goog_uname, $m) = explode("@", $user['email']);
-                $uname                = empty($goog_uname) ? $user['id'] . "_goo" : $goog_uname . "_goo";
-                $name                 = $myts->addSlashes($user['name']);
-                $email                = $user['email'];
-                $bio                  = '';
-                $url                  = formatURL($user['link']);
-                $from                 = '';
-                $sig                  = '';
-                $occ                  = '';
-                // die(var_export($user));
-                login_xoops($uname, $name, $email, "", "", $url, $from, $sig, $occ, $bio);
-            }
-
-            $_SESSION['access_token'] = $obj->getAccessToken($token_ep, $code, REDIR_URI0);
+        // die(REDIR_URI0);
+        if ($mode == "return") {
+            return $link;
         } else {
-            $_SESSION['azp_state'] = rand(0, 9999999); //隨機產生state值
-            $_SESSION['nonce']     = isset($_SESSION['nonce']) ? $_SESSION['nonce'] : base64_encode($_SESSION['azp_state']);
-
-            $auth_ep = AUTH_ENDPOINT;
-            if (DYNAMICAL_ENDPOINT) {
-                $auth_ep = $ep->getEndPoint()->authorization_endpoint;
-            }
-            $link = $auth_ep . "?response_type=code&client_id=" . CLIENT_ID .
-            "&redirect_uri=" . urlencode(REDIR_URI0) . "&scope=openid+email+profile&state=" . $_SESSION['azp_state'] .
-                "&nonce=" . $_SESSION['nonce'];
-
-            // die(REDIR_URI0);
-            if ($mode == "return") {
-                return $link;
-            } else {
-                $xoopsTpl->assign('edu', $link);
-            }
+            $xoopsTpl->assign('edu', $link);
         }
 
     }
@@ -513,8 +437,8 @@ if (!function_exists("add2group")) {
                     $xoopsDB->queryF($sql) or web_error($sql);
                 }
 
-                if (!empty($email) and strpos($item,'*') !== false) {
-                    $item=trim($item);
+                if (!empty($email) and strpos($item, '*') !== false) {
+                    $item     = trim($item);
                     $new_item = str_replace('*', '', $item);
                     // die($new_item);
                     if (strpos($email, $new_item) !== false) {

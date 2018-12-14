@@ -4,26 +4,12 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit847282f6f8ed52ae9e8b15f5f72669cd
+class ComposerStaticInit3fc34c3a496c01c1b5e6c1d5203d5dee
 {
-    public static $files = array (
-        'decc78cc4436b1292c6c0d151b19445c' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/bootstrap.php',
-        'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
-    );
-
     public static $prefixLengthsPsr4 = array (
         'p' => 
         array (
             'phpseclib\\' => 10,
-        ),
-        'S' => 
-        array (
-            'Symfony\\Polyfill\\Util\\' => 22,
-            'Symfony\\Polyfill\\Php56\\' => 23,
-        ),
-        'N' => 
-        array (
-            'Namshi\\JOSE\\' => 12,
         ),
     );
 
@@ -32,25 +18,19 @@ class ComposerStaticInit847282f6f8ed52ae9e8b15f5f72669cd
         array (
             0 => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib',
         ),
-        'Symfony\\Polyfill\\Util\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-util',
-        ),
-        'Symfony\\Polyfill\\Php56\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-php56',
-        ),
-        'Namshi\\JOSE\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/namshi/jose/src/Namshi/JOSE',
-        ),
+    );
+
+    public static $classMap = array (
+        'Jumbojett\\OpenIDConnectClient' => __DIR__ . '/..' . '/jumbojett/openid-connect-php/src/OpenIDConnectClient.php',
+        'Jumbojett\\OpenIDConnectClientException' => __DIR__ . '/..' . '/jumbojett/openid-connect-php/src/OpenIDConnectClient.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit847282f6f8ed52ae9e8b15f5f72669cd::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit847282f6f8ed52ae9e8b15f5f72669cd::$prefixDirsPsr4;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit3fc34c3a496c01c1b5e6c1d5203d5dee::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit3fc34c3a496c01c1b5e6c1d5203d5dee::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit3fc34c3a496c01c1b5e6c1d5203d5dee::$classMap;
 
         }, null, ClassLoader::class);
     }

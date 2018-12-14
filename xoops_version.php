@@ -3,7 +3,7 @@ $modversion = array();
 
 //---模組基本資訊---//
 $modversion['name']        = _MI_TADLOGIN_NAME;
-$modversion['version']     = 4.44;
+$modversion['version']     = 4.5;
 $modversion['description'] = _MI_TADLOGIN_DESC;
 $modversion['author']      = _MI_TADLOGIN_AUTHOR;
 $modversion['credits']     = _MI_TADLOGIN_CREDITS;
@@ -14,7 +14,7 @@ $modversion['image']       = "images/logo_{$xoopsConfig['language']}.png";
 $modversion['dirname']     = basename(__DIR__);
 
 //---模組狀態資訊---//
-$modversion['release_date']        = '2018-03-28';
+$modversion['release_date']        = '2018-09-13';
 $modversion['module_website_url']  = 'http://tad0616.net/';
 $modversion['module_website_name'] = _MI_TAD_WEB;
 $modversion['module_status']       = 'release';
@@ -118,6 +118,22 @@ $modversion['config'][$i]['valuetype']   = 'text';
 $modversion['config'][$i]['default']     = '';
 
 $i++;
+$modversion['config'][$i]['name']        = 'edu_clientid';
+$modversion['config'][$i]['title']       = '_MI_TADLOGIN_EDU_CLIENTID';
+$modversion['config'][$i]['description'] = '_MI_TADLOGIN_EDU_CLIENTID_DESC';
+$modversion['config'][$i]['formtype']    = 'textbox';
+$modversion['config'][$i]['valuetype']   = 'text';
+$modversion['config'][$i]['default']     = '';
+
+$i++;
+$modversion['config'][$i]['name']        = 'edu_clientsecret';
+$modversion['config'][$i]['title']       = '_MI_TADLOGIN_EDU_CLIENTSECRET';
+$modversion['config'][$i]['description'] = '_MI_TADLOGIN_EDU_CLIENTSECRET_DESC';
+$modversion['config'][$i]['formtype']    = 'textbox';
+$modversion['config'][$i]['valuetype']   = 'text';
+$modversion['config'][$i]['default']     = '';
+
+$i++;
 $modversion['config'][$i]['name']        = 'auth_method';
 $modversion['config'][$i]['title']       = '_MI_TADLOGIN_AUTH_METHOD';
 $modversion['config'][$i]['description'] = '_MI_TADLOGIN_AUTH_METHOD_DESC';
@@ -128,7 +144,7 @@ $modversion['config'][$i]['options']     = array(
     sprintf(_MI_TADLOGIN_LOGIN, _FACEBOOK) => 'facebook',
     sprintf(_MI_TADLOGIN_LOGIN, _GOOGLE)   => 'google',
     sprintf(_MI_TADLOGIN_LOGIN, _YAHOO)    => 'yahoo',
-    // sprintf(_MI_TADLOGIN_LOGIN, _EDU)      => 'edu',
+    sprintf(_MI_TADLOGIN_LOGIN, _EDU)      => 'edu',
     sprintf(_MI_TADLOGIN_LOGIN, _KL)       => 'kl',
     sprintf(_MI_TADLOGIN_LOGIN, _TP)       => 'tp',
     sprintf(_MI_TADLOGIN_LOGIN, _NTPC)     => 'ntpc',

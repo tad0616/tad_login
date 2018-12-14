@@ -44,3 +44,8 @@ define('_MI_TADLOGIN_DESC3', "若「是否崁入快速登入到登入選單中�
 
 define('_MI_TADLOGIN_REDIRECT_URL', "登入後轉向設定");
 define('_MI_TADLOGIN_REDIRECT_URL_DESC', "可設定登入後要導向到哪個位址，一般無須設定。");
+
+define('_MI_TADLOGIN_EDU_CLIENTID', "教育部教育雲端帳號的 clientid");
+define('_MI_TADLOGIN_EDU_CLIENTID_DESC', "申請詳情請至 https://oidc.tanet.edu.tw/ 查看");
+define('_MI_TADLOGIN_EDU_CLIENTSECRET', "教育部教育雲端帳號的 clientsecret");
+define('_MI_TADLOGIN_EDU_CLIENTSECRET_DESC', "申請詳情請至 https://oidc.tanet.edu.tw/ 查看");

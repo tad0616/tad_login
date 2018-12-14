@@ -78,7 +78,7 @@ function insert_tad_login_config()
     $sql = "insert into `" . $xoopsDB->prefix("tad_login_config") . "`
   (`item` , `kind` , `group_id`)
   values('{$item}' , '{$kind}', '{$_POST['group_id']}')";
-    $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
+    $xoopsDB->query($sql) or web_error($sql);
 
     //取得最後新增資料的流水編號
     $config_id = $xoopsDB->getInsertId();
@@ -108,7 +108,7 @@ function update_tad_login_config($config_id = "")
     `group_id` = '{$_POST['group_id']}'
     where `config_id` = '$config_id'";
 
-    $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
+    $xoopsDB->queryF($sql) or web_error($sql);
 
     return $config_id;
 }
@@ -119,7 +119,7 @@ function list_tad_login_config()
     global $xoopsDB, $xoopsTpl;
 
     $sql    = "SELECT * FROM `" . $xoopsDB->prefix("groups") . "` ";
-    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
+    $result = $xoopsDB->query($sql) or web_error($sql);
     $groups = array();
     $i      = 0;
     while ($all = $xoopsDB->fetchArray($result)) {
@@ -130,7 +130,7 @@ function list_tad_login_config()
     }
 
     $sql    = "SELECT * FROM `" . $xoopsDB->prefix("tad_login_config") . "` ";
-    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
+    $result = $xoopsDB->query($sql) or web_error($sql);
 
     $all_content = array();
     $i           = 0;
@@ -170,7 +170,7 @@ function get_tad_login_config($config_id = "")
         return;
     }
     $sql    = "select * from `" . $xoopsDB->prefix("tad_login_config") . "` where `config_id` = '{$config_id}'";
-    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
+    $result = $xoopsDB->query($sql) or web_error($sql);
     $data   = $xoopsDB->fetchArray($result);
 
     return $data;
@@ -181,7 +181,7 @@ function delete_tad_login_config($config_id = "")
 {
     global $xoopsDB;
     $sql = "delete from `" . $xoopsDB->prefix("tad_login_config") . "` where `config_id` = '{$config_id}'";
-    $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
+    $xoopsDB->queryF($sql) or web_error($sql);
 }
 
 //以流水號秀出某筆tad_login_config資料內容
@@ -196,7 +196,7 @@ function show_one_tad_login_config($config_id = "")
     }
 
     $sql    = "select * from `" . $xoopsDB->prefix("tad_login_config") . "` where `config_id` = '{$config_id}' ";
-    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
+    $result = $xoopsDB->query($sql) or web_error($sql);
     $all    = $xoopsDB->fetchArray($result);
 
     //以下會產生這些變數： $config_id , $item , $group_id
