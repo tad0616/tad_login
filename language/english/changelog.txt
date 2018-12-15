@@ -1,8 +1,12 @@
+Tad Login 4.5.1 (2019-01-01 released)
+================================================
+ 1.Support BootStrap4
+ 
+
 Tad Login 4.5 (2018-09-13 released)
 =========================================================
   1. Added Ministry of Education Education Cloud Account Login
   2. Remove the Big5 Chinese language family
-
 
 
 Tad Login 4.4.4 (2018-03-28 released)
@@ -13,7 +17,6 @@ Tad Login 4.4.4 (2018-03-28 released)
   4. Correction of language problems
   5. Automatic group setting supports universal characters (Email mode)
   6. Automatic group settings support blank school code, only to determine identity (school code mode)
-
 
 
 Tad Login 4.4.3 (2017-03-14 released)
