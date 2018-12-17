@@ -114,7 +114,7 @@ function tp_login()
         $openid = new LightOpenID(XOOPS_URL);
 
         if (!$openid->mode) {
-            $openid->identity = "https://openid.tp.edu.tw/openid/op.action";
+            $openid->identity = "https://ldap.tp.edu.tw/openid/op.action";
             $openid->required = array('contact/email', 'namePerson/friendly', 'namePerson');
             $openid->optional = array('axschema/person/accountType', 'axschema/school/titleStr', 'axschema/school/id');
             header('Location: ' . $openid->authUrl());
