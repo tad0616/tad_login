@@ -1,2 +1,2 @@
-<{assign var=this_file value=tad_login}>
+<{assign var=this_file value=$smarty.template|basename|replace:'db:':''}>
 <{includeq file="$xoops_rootpath/modules/tad_login/templates/blocks/b4.tpl"}>

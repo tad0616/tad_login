@@ -1,2 +1,2 @@
-<{assign var=this_file value=op_tad_login_config_form}>
-<{includeq file="$xoops_rootpath/modules/tad_login/templates/b4.tpl"}>
+<{assign var=this_file value=$smarty.template|basename|replace:'db:':''}>
+<{includeq file="$xoops_rootpath/modules/$xoops_dirname/templates/b4.tpl"}>
