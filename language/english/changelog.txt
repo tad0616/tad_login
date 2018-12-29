@@ -1,7 +1,9 @@
 Tad Login 4.5.1 (2019-01-01 released)
 ================================================
- 1.Support BootStrap4
- 2.Modify Taipei OpenID login URL
+ 1. Support BootStrap4
+ 2. Modify Taipei OpenID login URL
+ 3. Support PHP 7.3
+ 4. Support MySQL database strict mode
 
 
 Tad Login 4.5 (2018-09-13 released)
