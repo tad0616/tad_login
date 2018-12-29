@@ -52,22 +52,29 @@ function tad_login_edit($options = "")
     $opt2_0 = $options[2] != '1' ? "checked" : "";
 
     $main = "
-    <div>
-      " . _MB_TADLOGIN_LOGIN_BUTTON . "
-      <input type='radio' name='options[0]' value='1' $opt0_1>" . _YES . "
-      <input type='radio' name='options[0]' value='0' $opt0_0>" . _NO . "
-      </div>
-    <div>
-      " . _MB_TADLOGIN_LOGIN_TEXT . "
-      <input type='radio' name='options[1]' value='1' $opt1_1>" . _YES . "
-      <input type='radio' name='options[1]' value='0' $opt1_0>" . _NO . "
-    </div>
-    <div>
-      " . _MB_TADLOGIN_LOGIN_BIG . "
-      <input type='radio' name='options[2]' value='1' $opt2_1>" . _YES . "
-      <input type='radio' name='options[2]' value='0' $opt2_0>" . _NO . "
-    </div>
-    ";
+    <ol class='my-form'>
+        <li class='my-row'>
+            <lable class='my-label'>" . _MB_TADLOGIN_LOGIN_BUTTON . "</lable>
+            <div class='my-content'>
+                <input type='radio' name='options[0]' value='1' $opt0_1>" . _YES . "
+                <input type='radio' name='options[0]' value='0' $opt0_0>" . _NO . "
+            </div>
+        </li>
+        <li class='my-row'>
+            <lable class='my-label'>" . _MB_TADLOGIN_LOGIN_TEXT . "</lable>
+            <div class='my-content'>
+                <input type='radio' name='options[1]' value='1' $opt1_1>" . _YES . "
+                <input type='radio' name='options[1]' value='0' $opt1_0>" . _NO . "
+            </div>
+        </li>
+        <li class='my-row'>
+            <lable class='my-label'>" . _MB_TADLOGIN_LOGIN_BIG . "</lable>
+            <div class='my-content'>
+                <input type='radio' name='options[2]' value='1' $opt2_1>" . _YES . "
+                <input type='radio' name='options[2]' value='0' $opt2_0>" . _NO . "
+            </div>
+        </li>
+    </ol>";
 
     return $main;
 }
