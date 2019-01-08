@@ -1,3 +1,9 @@
+Tad Login 4.5.2 (2019-01-08 released)
+================================================
+1. Add Taipei City Government Education Bureau Education Cloud Login
+2. Add Taoyuan City Government Education Bureau Education Cloud Login
+
+
 Tad Login 4.5.1 (2019-01-01 released)
 ================================================
  1. Support BootStrap4
@@ -191,6 +197,7 @@ Tad Login 2.4 (2014-03-04 released)
 1. Compact randStr () function, direct access tadtools in randStr ()
 2. Fixed Chiayi County Auto Group Setting OpenID login issues will not move
 3. Add Tainan OpenID student identification function (also modify group settings interface automatically in the background)
+
 
 Tad Login 2.3 (2014-01-14 released)
 ================================================
