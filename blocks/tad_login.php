@@ -25,8 +25,8 @@ function tad_login($options = "")
             $url = google_login('return');
         } elseif ($openid == 'edu') {
             $url = edu_login($openid, 'return');
-            // } elseif ($openid == 'ty_edu') {
-            //     $url = edu_login($openid, 'return');
+        } elseif ($openid == 'ty_edu') {
+            $url = edu_login($openid, 'return');
         } else {
             $url = XOOPS_URL . "/modules/tad_login/index.php?op={$openid}";
         }

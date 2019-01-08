@@ -280,8 +280,8 @@ class OpenIDConnectClient
                 throw new OpenIDConnectClientException("無法偵測到 {$_REQUEST['state']} != {$_SESSION['openid_connect_state']}");
             }
 
-	    // Cleanup state
-	    $this->unsetState();
+            // Cleanup state
+            $this->unsetState();
 
             if (!property_exists($token_json, 'id_token')) {
                 throw new OpenIDConnectClientException("User did not authorize openid scope.");
