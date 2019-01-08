@@ -277,7 +277,7 @@ class OpenIDConnectClient
 
             // Do an OpenID Connect session check
             if ($_REQUEST['state'] != $this->getState()) {
-                throw new OpenIDConnectClientException("Unable to determine state");
+                throw new OpenIDConnectClientException("無法偵測到 {$_REQUEST['state']} != {$_SESSION['openid_connect_state']}");
             }
 
 	    // Cleanup state
@@ -573,7 +573,7 @@ class OpenIDConnectClient
 
         // State essentially acts as a session key for OIDC
         $state = $this->setState($this->generateRandString());
-
+    
         $auth_params = array_merge($this->authParams, array(
             'response_type' => $response_type,
             'redirect_uri' => $this->getRedirectURL(),
@@ -582,7 +582,6 @@ class OpenIDConnectClient
             'state' => $state,
             'scope' => 'openid'
         ));
-
         // If the client has been registered with additional scopes
         if (sizeof($this->scopes) > 0) {
             $auth_params = array_merge($auth_params, array('scope' => implode(' ', $this->scopes)));

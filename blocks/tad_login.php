@@ -12,7 +12,7 @@ function tad_login($options = "")
     $modhandler     = xoops_getHandler('module');
     $xoopsModule    = $modhandler->getByDirname("tad_login");
     $config_handler = xoops_getHandler('config');
-    $modConfig      = $config_handler->getConfigsByCat(0, $xoopsModule->getVar('mid'));
+    $modConfig      = $config_handler->getConfigsByCat(0, $xoopsModule->mid());
 
     $block['show_btn']  = $options[0];
     $block['show_text'] = $options[1];
@@ -24,9 +24,11 @@ function tad_login($options = "")
         } elseif ($openid == 'google') {
             $url = google_login('return');
         } elseif ($openid == 'edu') {
-            $url = edu_login('return');
+            $url = edu_login($openid, 'return');
+            // } elseif ($openid == 'ty_edu') {
+            //     $url = edu_login($openid, 'return');
         } else {
-            $url = XOOPS_URL . "/modules/tad_login/index.php?login&op={$openid}";
+            $url = XOOPS_URL . "/modules/tad_login/index.php?op={$openid}";
         }
         $auth_method[$i]['title'] = $openid;
         $auth_method[$i]['url']   = $url;

@@ -7,7 +7,9 @@ $config_handler  = xoops_getHandler('config');
 $tad_loginConfig = $config_handler->getConfigsByCat(0, $tad_loginModule->getVar('mid'));
 
 require 'fun.php';
-$provideruri = 'https://oidc.tanet.edu.tw';
+$provideruri             = 'https://oidc.tanet.edu.tw';
+$_SESSION['auth_method'] = 'edu';
+
 //only support code flow
 $responsetype = array('code');
 //allowed scops
@@ -23,6 +25,6 @@ $nonce = generateRandomString();
 $state = generateRandomString(10);
 //redirect_uri
 $redirecturi = XOOPS_URL . '/modules/tad_login/edu_callback.php';
-// $redirecturi = 'http://dream.k12cc.tw/modules/tad_login/edu_callback.php';
 //eduinfo endpoint
+
 $eduinfoep = 'https://oidc.tanet.edu.tw/moeresource/api/v1/oidc/eduinfo';

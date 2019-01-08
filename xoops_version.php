@@ -3,7 +3,7 @@ $modversion = array();
 
 //---模組基本資訊---//
 $modversion['name']        = _MI_TADLOGIN_NAME;
-$modversion['version']     = 4.51;
+$modversion['version']     = 4.52;
 $modversion['description'] = _MI_TADLOGIN_DESC;
 $modversion['author']      = _MI_TADLOGIN_AUTHOR;
 $modversion['credits']     = _MI_TADLOGIN_CREDITS;
@@ -134,6 +134,38 @@ $modversion['config'][$i]['valuetype']   = 'text';
 $modversion['config'][$i]['default']     = '';
 
 $i++;
+$modversion['config'][$i]['name']        = 'ty_edu_clientid';
+$modversion['config'][$i]['title']       = '_MI_TADLOGIN_TY_EDU_CLIENTID';
+$modversion['config'][$i]['description'] = '_MI_TADLOGIN_TY_EDU_CLIENTID_DESC';
+$modversion['config'][$i]['formtype']    = 'textbox';
+$modversion['config'][$i]['valuetype']   = 'text';
+$modversion['config'][$i]['default']     = '';
+
+$i++;
+$modversion['config'][$i]['name']        = 'ty_edu_clientsecret';
+$modversion['config'][$i]['title']       = '_MI_TADLOGIN_TY_EDU_CLIENTSECRET';
+$modversion['config'][$i]['description'] = '_MI_TADLOGIN_TY_EDU_CLIENTSECRET_DESC';
+$modversion['config'][$i]['formtype']    = 'textbox';
+$modversion['config'][$i]['valuetype']   = 'text';
+$modversion['config'][$i]['default']     = '';
+
+$i++;
+$modversion['config'][$i]['name']        = 'tp_edu_clientid';
+$modversion['config'][$i]['title']       = '_MI_TADLOGIN_TP_EDU_CLIENTID';
+$modversion['config'][$i]['description'] = '_MI_TADLOGIN_TP_EDU_CLIENTID_DESC';
+$modversion['config'][$i]['formtype']    = 'textbox';
+$modversion['config'][$i]['valuetype']   = 'text';
+$modversion['config'][$i]['default']     = '';
+
+$i++;
+$modversion['config'][$i]['name']        = 'tp_edu_clientsecret';
+$modversion['config'][$i]['title']       = '_MI_TADLOGIN_TP_EDU_CLIENTSECRET';
+$modversion['config'][$i]['description'] = '_MI_TADLOGIN_TP_EDU_CLIENTSECRET_DESC';
+$modversion['config'][$i]['formtype']    = 'textbox';
+$modversion['config'][$i]['valuetype']   = 'text';
+$modversion['config'][$i]['default']     = '';
+
+$i++;
 $modversion['config'][$i]['name']        = 'auth_method';
 $modversion['config'][$i]['title']       = '_MI_TADLOGIN_AUTH_METHOD';
 $modversion['config'][$i]['description'] = '_MI_TADLOGIN_AUTH_METHOD_DESC';
@@ -143,12 +175,13 @@ $modversion['config'][$i]['default']     = array('tn');
 $modversion['config'][$i]['options']     = array(
     sprintf(_MI_TADLOGIN_LOGIN, _FACEBOOK) => 'facebook',
     sprintf(_MI_TADLOGIN_LOGIN, _GOOGLE)   => 'google',
-    sprintf(_MI_TADLOGIN_LOGIN, _YAHOO)    => 'yahoo',
     sprintf(_MI_TADLOGIN_LOGIN, _EDU)      => 'edu',
     sprintf(_MI_TADLOGIN_LOGIN, _KL)       => 'kl',
     sprintf(_MI_TADLOGIN_LOGIN, _TP)       => 'tp',
+    sprintf(_MI_TADLOGIN_LOGIN, _TP_EDU)   => 'tp_edu',
     sprintf(_MI_TADLOGIN_LOGIN, _NTPC)     => 'ntpc',
     sprintf(_MI_TADLOGIN_LOGIN, _TYC)      => 'tyc',
+    sprintf(_MI_TADLOGIN_LOGIN, _TY_EDU)   => 'ty_edu',
     sprintf(_MI_TADLOGIN_LOGIN, _HCC)      => 'hcc',
     sprintf(_MI_TADLOGIN_LOGIN, _HC)       => 'hc',
     sprintf(_MI_TADLOGIN_LOGIN, _MLC)      => 'mlc',

@@ -10,16 +10,16 @@ if (!isset($_GET['code']) && !isset($_SESSION['token'])) {
     exit;
 } elseif (!isset($_SESSION['token'])) {
     $_SESSION['state'] = $_GET['state'];
-    $param             = [
+
+    $param = [
         'grant_type'    => 'authorization_code',
         'client_id'     => $xoopsModuleConfig['ty_edu_clientid'],
         'client_secret' => $xoopsModuleConfig['ty_edu_clientsecret'],
-        'redirect_uri'  => XOOPS_URL . '/modules/tad_login/edu_callback.php',
+        'redirect_uri'  => XOOPS_URL . '/modules/tad_login/tp_callback.php',
         'code'          => $_GET['code'],
     ];
     $response = do_post('https://tyc.sso.edu.tw/oidc/v1/token', $param);
-    $token    = json_decode($response, true);
-    die(var_export($token));
+    $token    = json_decode($response);
     ini_set("session.gc_maxlifetime", $token->expires_in);
     $_SESSION['token']   = $token->access_token;
     $_SESSION['refresh'] = $token->refresh_token;

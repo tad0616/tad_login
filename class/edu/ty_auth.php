@@ -1,13 +1,13 @@
 <?php
 require __DIR__ . '/vendor/autoload.php';
-require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/ty_config.php';
 use Jumbojett\OpenIDConnectClient;
 $oidc = new OpenIDConnectClient($provideruri, $clientid, $clientsecret);
 
 $oidc->setResponseTypes($responsetype);
 $oidc->setRedirectURL($redirecturi);
-//$oidc->setState(generateRandomString());
-//$oidc->setNonce(generateRandomString());
+// $oidc->setState(generateRandomString());
+// $oidc->setNonce(generateRandomString());
 $oidc->setAllowImplicitFlow(false);
 $oidc->addScope($scope);
 

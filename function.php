@@ -6,15 +6,61 @@ if (!file_exists(XOOPS_ROOT_PATH . "/modules/tadtools/tad_function.php")) {
 include_once XOOPS_ROOT_PATH . "/modules/tadtools/tad_function.php";
 
 /********************* 自訂函數 *********************/
+function generateRandomString($length = 20)
+{
+    $characters       = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_*';
+    $charactersLength = strlen($characters);
+    $randomString     = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
+function requestProtectedApi($token_ep = '', $accesstoken = '', $rtn_array = true, $gzipenable = false)
+{
+    $header  = array("Authorization: Bearer $accesstoken");
+    $options = array(
+        'http' => array(
+            'header'  => $header,
+            'method'  => 'GET',
+            'content' => '',
+        ));
+    $context = stream_context_create($options);
+    if ($gzipenable) {
+        $result = gzdecode(file_get_contents($token_ep, false, $context));
+    } else {
+        $result = file_get_contents($token_ep, false, $context);
+    }
+    $u = json_decode($result, $rtn_array);
+    return $u;
+}
+
+function do_post($url, $data)
+{
+    $ch = curl_init($url);
+
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    $response = curl_exec($ch);
+    curl_close($ch);
+    return $response;
+}
+
 //教育部登入
 if (!function_exists('edu_login')) {
-    function edu_login($mode = "")
+    function edu_login($openid = 'edu', $mode = "")
     {
         global $xoopsConfig, $xoopsDB, $xoopsTpl, $xoopsUser;
 
-        $link = XOOPS_URL . '/modules/tad_login/class/edu/auth.php';
+        if ($openid == 'ty_edu') {
+            $link = XOOPS_URL . '/modules/tad_login/class/edu/ty_auth.php';
+        } else {
+            $link = XOOPS_URL . '/modules/tad_login/class/edu/auth.php';
+        }
 
-        // die(REDIR_URI0);
         if ($mode == "return") {
             return $link;
         } else {

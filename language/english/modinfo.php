@@ -63,3 +63,13 @@ define('_MI_TADLOGIN_EDU_CLIENTID', "Ministry of Education cloud openid connect 
 define('_MI_TADLOGIN_EDU_CLIENTID_DESC', "For application details, please visit https://oidc.tanet.edu.tw/");
 define('_MI_TADLOGIN_EDU_CLIENTSECRET', "Ministry of Education cloud openid connect clientsecret");
 define('_MI_TADLOGIN_EDU_CLIENTSECRET_DESC', "For application details, please visit https://oidc.tanet.edu.tw/");
+
+define('_MI_TADLOGIN_TY_EDU_CLIENTID', "Ministry of Education cloud for Taoyuan City openid connect clientid");
+define('_MI_TADLOGIN_TY_EDU_CLIENTID_DESC', "For application details, please visit https://tyc.sso.edu.tw");
+define('_MI_TADLOGIN_TY_EDU_CLIENTSECRET', "Ministry of Education cloud for Taoyuan City openid connect clientsecret");
+define('_MI_TADLOGIN_TY_EDU_CLIENTSECRET_DESC', "For application details, please visit https://tyc.sso.edu.tw");
+
+define('_MI_TADLOGIN_TP_EDU_CLIENTID', "Ministry of Education cloud for Taipei City openid connect clientid");
+define('_MI_TADLOGIN_TP_EDU_CLIENTID_DESC', "For application details, please visit https://ldap.tp.edu.tw");
+define('_MI_TADLOGIN_TP_EDU_CLIENTSECRET', "Ministry of Education cloud for Taipei City openid connect clientsecret");
+define('_MI_TADLOGIN_TP_EDU_CLIENTSECRET_DESC', "For application details, please visit https://ldap.tp.edu.tw");

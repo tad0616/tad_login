@@ -49,3 +49,13 @@ define('_MI_TADLOGIN_EDU_CLIENTID', "教育部教育雲端帳號的 clientid");
 define('_MI_TADLOGIN_EDU_CLIENTID_DESC', "申請詳情請至 https://oidc.tanet.edu.tw/ 查看");
 define('_MI_TADLOGIN_EDU_CLIENTSECRET', "教育部教育雲端帳號的 clientsecret");
 define('_MI_TADLOGIN_EDU_CLIENTSECRET_DESC', "申請詳情請至 https://oidc.tanet.edu.tw/ 查看");
+
+define('_MI_TADLOGIN_TY_EDU_CLIENTID', "桃園市教育雲端帳號的 clientid");
+define('_MI_TADLOGIN_TY_EDU_CLIENTID_DESC', "申請詳情請至 https://tyc.sso.edu.tw 查看");
+define('_MI_TADLOGIN_TY_EDU_CLIENTSECRET', "桃園市教育雲端帳號的 clientsecret");
+define('_MI_TADLOGIN_TY_EDU_CLIENTSECRET_DESC', "申請詳情請至 https://tyc.sso.edu.tw 查看");
+
+define('_MI_TADLOGIN_TP_EDU_CLIENTID', "臺北市教育雲端帳號的 clientid");
+define('_MI_TADLOGIN_TP_EDU_CLIENTID_DESC', "申請詳情請至 https://ldap.tp.edu.tw 查看");
+define('_MI_TADLOGIN_TP_EDU_CLIENTSECRET', "臺北市教育雲端帳號的 clientsecret");
+define('_MI_TADLOGIN_TP_EDU_CLIENTSECRET_DESC', "申請詳情請至 https://ldap.tp.edu.tw 查看");
