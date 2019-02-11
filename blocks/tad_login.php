@@ -28,7 +28,7 @@ function tad_login($options = "")
         } elseif ($openid == 'ty_edu') {
             $url = edu_login($openid, 'return');
         } else {
-            $url = XOOPS_URL . "/modules/tad_login/index.php?op={$openid}";
+            $url = XOOPS_URL . "/modules/tad_login/index.php?login&op={$openid}";
         }
         $auth_method[$i]['title'] = $openid;
         $auth_method[$i]['url']   = $url;

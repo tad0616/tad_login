@@ -28,5 +28,5 @@ define('_KM', "金門縣教育處 OpenID ");
 define('_MT', "連江縣教育處 OpenID ");
 define('_TTCT', "臺東縣教育處 OpenID ");
 define('_EDU', "教育部教育雲端帳號");
-define('_TP_EDU', "臺北市教育局教育雲認證");
+define('_TP_EDU', "臺北市單一身分驗證");
 define('_TY_EDU', "桃園市教育局教育雲認證");

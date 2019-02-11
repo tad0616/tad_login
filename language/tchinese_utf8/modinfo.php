@@ -55,7 +55,7 @@ define('_MI_TADLOGIN_TY_EDU_CLIENTID_DESC', "申請詳情請至 https://tyc.sso.
 define('_MI_TADLOGIN_TY_EDU_CLIENTSECRET', "桃園市教育雲端帳號的 client secret");
 define('_MI_TADLOGIN_TY_EDU_CLIENTSECRET_DESC', "申請詳情請至 https://tyc.sso.edu.tw 查看");
 
-define('_MI_TADLOGIN_TP_EDU_CLIENTID', "臺北市教育雲端帳號的 clientid");
+define('_MI_TADLOGIN_TP_EDU_CLIENTID', "臺北市單一身分驗證的 clientid");
 define('_MI_TADLOGIN_TP_EDU_CLIENTID_DESC', "申請詳情請至 https://ldap.tp.edu.tw 查看，申請時請提供 redirect uri 為 " . XOOPS_URL . "/modules/tad_login/tp_callback.php");
-define('_MI_TADLOGIN_TP_EDU_CLIENTSECRET', "臺北市教育雲端帳號的 client secret");
+define('_MI_TADLOGIN_TP_EDU_CLIENTSECRET', "臺北市單一身分驗證的 client secret");
 define('_MI_TADLOGIN_TP_EDU_CLIENTSECRET_DESC', "申請詳情請至 https://ldap.tp.edu.tw 查看");
