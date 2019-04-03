@@ -1002,6 +1002,7 @@ function ty_edu_login(){
 
 include_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
 $op = system_CleanVars($_REQUEST, 'op', '', 'string');
+$link_to = system_CleanVars($_REQUEST, 'link_to', '', 'string');
 
 switch ($op) {
     case "edu":
@@ -1152,8 +1153,8 @@ switch ($op) {
 
 $xoopsTpl->assign("toolbar", toolbar_bootstrap($interface_menu));
 
-if (isset($_SESSION['link_to'])) {
-    $_SESSION['login_from'] = $_SESSION['link_to'];
+if (isset($link_to) and !empty($link_to)) {
+    $_SESSION['login_from'] = $link_to;
 } elseif (!isset($_SESSION['login_from'])) {
     $_SESSION['login_from'] = $_SERVER["HTTP_REFERER"];
 }

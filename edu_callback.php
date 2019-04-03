@@ -38,7 +38,7 @@ if ($_SESSION['auth_method'] == 'ty_edu') {
 
 // exit;
 
-if ($userinfo['email']) {
+if ($userinfo['email'] and $_SESSION['auth_method'] == 'ty_edu') {
 
     $myts         = MyTextsanitizer::getInstance();
     $uname        = $userinfo['sub'] . "_ty";
@@ -53,6 +53,22 @@ if ($userinfo['email']) {
     $from = '';
     $sig  = '';
     $occ  = '';
+
+    login_xoops($uname, $name, $email, $SchoolCode, $JobName, $url, $from, $sig, $occ, $bio);
+} else {
+
+    $myts       = MyTextsanitizer::getInstance();
+    $uname      = $claims['preferred_username'] . "_edu";
+    $name       = $myts->addSlashes($userinfo['name']);
+    $email      = $claims['email'];
+    $SchoolCode = $myts->addSlashes($eduinfo['schoolid']);
+    // $JobName    = strpos($eduinfo_json, '教師') !== false ? "teacher" : "student";
+    $JobName = "teacher";
+    $bio     = '';
+    $url     = '';
+    $from    = '';
+    $sig     = '';
+    $occ     = '';
 
     login_xoops($uname, $name, $email, $SchoolCode, $JobName, $url, $from, $sig, $occ, $bio);
 }
