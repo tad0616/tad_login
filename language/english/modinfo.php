@@ -50,7 +50,7 @@ define('_MI_TADLOGIN_TITLE3', 'Quick Login menu icons in a row');
 define('_MI_TADLOGIN_DESC3', 'Select how many Quick Login menu icons should we visible in one row, choose two or more.');
 
 define('_MI_TADLOGIN_DIRNAME', basename(dirname(dirname(__DIR__))));
-define('_MI_TADLOGIN_HELP_HEADER', __DIR__ . '/help/helpheader.html');
+define('_MI_TADLOGIN_HELP_HEADER', __DIR__ . '/help/helpheader.tpl');
 define('_MI_TADLOGIN_BACK_2_ADMIN', 'Back to Administration of ');
 
 //help
