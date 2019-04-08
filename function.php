@@ -366,6 +366,14 @@ if (!function_exists('login_xoops')) {
             }
         } else {
 
+            $sql          = "select CHARACTER_MAXIMUM_LENGTH from information_schema.columns where table_schema = DATABASE() AND table_name = '" . $xoopsDB->prefix("users") . "' AND COLUMN_NAME = 'uname'";
+            $result       = $xoopsDB->query($sql);
+            list($length) = $xoopsDB->fetchRow($result);
+
+            if (strlen($uname) > $length) {
+                die(sprintf(_MD_TADLOGIN_UNAME_TOO_LONG, $uname, $length));
+            }
+
             $pass    = randStr(128);
             $newuser = &$member_handler->createUser();
             $newuser->setVar("user_viewemail", 1);
@@ -397,7 +405,7 @@ if (!function_exists('login_xoops')) {
             $newuser->setVar("user_intrest", $SchoolCode);
             $newuser->setVar('user_mailok', true);
             if (!$member_handler->insertUser($newuser, 1)) {
-                redirect_header(XOOPS_URL, 5, _MD_TADLOGIN_CNRNU);
+                die(_MD_TADLOGIN_CNRNU);
             }
 
             $uid = $newuser->getVar('uid');

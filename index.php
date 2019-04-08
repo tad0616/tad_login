@@ -928,7 +928,7 @@ function list_login()
     } elseif ($_SESSION['auth_method'] == "hcc") {
         tc_login("hcc", "http://openid.hcc.edu.tw");
     } elseif ($_SESSION['auth_method'] == "mlc") {
-        tc_login("mlc", "http://openid.mlc.edu.tw");
+        tc_login("mlc", "https://openid2.mlc.edu.tw");
     } elseif ($_SESSION['auth_method'] == "chc") {
         tc_login("chc", "http://openid.chc.edu.tw");
     } elseif ($_SESSION['auth_method'] == "ntct") {
@@ -1052,7 +1052,7 @@ switch ($op) {
 
     case "mlc":
         $_SESSION['auth_method'] = "mlc";
-        tc_login("mlc", "http://openid.mlc.edu.tw");
+        tc_login("mlc", "https://openid2.mlc.edu.tw");
         break;
 
     case "chc":
