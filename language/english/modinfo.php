@@ -11,7 +11,6 @@ define('_MI_TADLOGIN_ADMENU2', 'Auto Group Set');
 define('_MI_TADLOGIN_ADMENU3', 'Google Certificate');
 define('_MI_TADLOGIN_ADMENU3_DESC', 'Google Certified Set Description');
 
-
 define('_MI_TADLOGIN_DESC', 'Join FB and other fast login mechanism');
 define('_MI_TADLOGIN_BNAME1', 'Tad Login');
 define('_MI_TADLOGIN_BDESC1', 'Tad Login (tad_login)');
@@ -50,10 +49,27 @@ define('_MI_TADLOGIN_TITLE2_OPT3', 'Does not show login option');
 define('_MI_TADLOGIN_TITLE3', 'Quick Login menu icons in a row');
 define('_MI_TADLOGIN_DESC3', 'Select how many Quick Login menu icons should we visible in one row, choose two or more.');
 
-
 define('_MI_TADLOGIN_DIRNAME', basename(dirname(dirname(__DIR__))));
 define('_MI_TADLOGIN_HELP_HEADER', __DIR__ . '/help/helpheader.tpl');
 define('_MI_TADLOGIN_BACK_2_ADMIN', 'Back to Administration of ');
 
 //help
 define('_MI_TADLOGIN_HELP_OVERVIEW', 'Overview');
+
+define('_MI_TADLOGIN_REDIRECT_URL', "Sign-in URL redirects to settings");
+define('_MI_TADLOGIN_REDIRECT_URL_DESC', "You can set which URL to redirect to after login.");
+
+define('_MI_TADLOGIN_EDU_CLIENTID', "Ministry of Education cloud openid connect clientid");
+define('_MI_TADLOGIN_EDU_CLIENTID_DESC', "For application details, please visit https://oidc.tanet.edu.tw/");
+define('_MI_TADLOGIN_EDU_CLIENTSECRET', "Ministry of Education cloud openid connect clientsecret");
+define('_MI_TADLOGIN_EDU_CLIENTSECRET_DESC', "For application details, please visit https://oidc.tanet.edu.tw/");
+
+define('_MI_TADLOGIN_TY_EDU_CLIENTID', "Ministry of Education cloud for Taoyuan City openid connect clientid");
+define('_MI_TADLOGIN_TY_EDU_CLIENTID_DESC', "For application details, please visit https://tyc.sso.edu.tw");
+define('_MI_TADLOGIN_TY_EDU_CLIENTSECRET', "Ministry of Education cloud for Taoyuan City openid connect clientsecret");
+define('_MI_TADLOGIN_TY_EDU_CLIENTSECRET_DESC', "For application details, please visit https://tyc.sso.edu.tw");
+
+define('_MI_TADLOGIN_TP_EDU_CLIENTID', "Ministry of Education cloud for Taipei City openid connect clientid");
+define('_MI_TADLOGIN_TP_EDU_CLIENTID_DESC', "For application details, please visit https://ldap.tp.edu.tw");
+define('_MI_TADLOGIN_TP_EDU_CLIENTSECRET', "Ministry of Education cloud for Taipei City openid connect clientsecret");
+define('_MI_TADLOGIN_TP_EDU_CLIENTSECRET_DESC', "For application details, please visit https://ldap.tp.edu.tw");

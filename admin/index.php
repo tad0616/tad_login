@@ -1,6 +1,6 @@
 <?php
 /**
- * ****************************************************************************
+ * Tad Login module
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -9,14 +9,13 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright  XOOPS Project
- * @license    http://www.fsf.org/copyleft/gpl.html GNU public license
- * @package   ::  tad_login
- * @since     ::  1.0
- * @author    ::  Tad
- * Version : $Id:
- * ****************************************************************************
- */
+ * @copyright           XOOPS Project (https://xoops.org)
+ * @license             http://www.fsf.org/copyleft/gpl.html GNU public license
+ * @package             tad_login
+ * @since               1.0
+ * @author              Tad
+ * @version             $Id $
+ **/
 
 require_once '../../../include/cp_header.php';
 include __DIR__ . '/header.php';
@@ -31,7 +30,6 @@ $index_admin->addLineConfigLabel(_AM_XDIR_CONFIG_XOOPS, $xoopsModule->getInfo("m
 
 echo $index_admin->addNavigation('index.php');
 echo $index_admin->renderIndex();
-
 
 include __DIR__ . '/footer.php';
 xoops_cp_footer();

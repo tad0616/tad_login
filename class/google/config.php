@@ -18,10 +18,10 @@ include_once "../../../../mainfile.php";
 
 global $apiConfig;
 
-$modhandler      = &xoops_gethandler('module');
-$tad_loginModule = &$modhandler->getByDirname("tad_login");
-$config_handler  = &xoops_gethandler('config');
-$tad_loginConfig = &$config_handler->getConfigsByCat(0, $tad_loginModule->getVar('mid'));
+$modhandler      = xoops_gethandler('module');
+$tad_loginModule = $modhandler->getByDirname("tad_login");
+$config_handler  = xoops_gethandler('config');
+$tad_loginConfig = $config_handler->getConfigsByCat(0, $tad_loginModule->getVar('mid'));
 
 $apiConfig = array(
     // True if objects should be returned by the service classes.
@@ -34,7 +34,7 @@ $apiConfig = array(
     // OAuth2 Settings, you can get these keys at https://code.google.com/apis/console
     'oauth2_client_id'      => trim($tad_loginConfig['google_appId']),
     'oauth2_client_secret'  => trim($tad_loginConfig['google_secret']),
-    'oauth2_redirect_uri'   => trim($tad_loginConfig['google_redirect_uri']),
+    'oauth2_redirect_uri'   => XOOPS_URL . "/modules/tad_login/index.php",
 
     // The developer key, you get this at https://code.google.com/apis/console
     'developer_key'         => trim($tad_loginConfig['google_api_key']),

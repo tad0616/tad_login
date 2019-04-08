@@ -1,0 +1,3 @@
+若資料欄位不夠長
+請調整 \kernel\user.php
+及資料庫 users 資料表

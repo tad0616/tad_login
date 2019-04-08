@@ -41,3 +41,21 @@ define('_MI_TADLOGIN_TITLE2_OPT3', '不顯示登入選項');
 
 define('_MI_TADLOGIN_TITLE3', "登入選單中的快速登入圖示一排幾個");
 define('_MI_TADLOGIN_DESC3', "若「是否崁入快速登入到登入選單中」為「是」時，選一個會出現圖示及文字，選兩個以上就只剩圖示。");
+
+define('_MI_TADLOGIN_REDIRECT_URL', "登入後轉向設定");
+define('_MI_TADLOGIN_REDIRECT_URL_DESC', "可設定登入後要導向到哪個位址，一般無須設定。");
+
+define('_MI_TADLOGIN_EDU_CLIENTID', "教育部教育雲端帳號的 client id");
+define('_MI_TADLOGIN_EDU_CLIENTID_DESC', "申請詳情請至 https://oidc.tanet.edu.tw/ 查看");
+define('_MI_TADLOGIN_EDU_CLIENTSECRET', "教育部教育雲端帳號的 clientsecret");
+define('_MI_TADLOGIN_EDU_CLIENTSECRET_DESC', "申請詳情請至 https://oidc.tanet.edu.tw/ 查看");
+
+define('_MI_TADLOGIN_TY_EDU_CLIENTID', "桃園市教育雲端帳號的 client id");
+define('_MI_TADLOGIN_TY_EDU_CLIENTID_DESC', "申請詳情請至 https://tyc.sso.edu.tw 查看，申請時請提供 redirect uri 為 " . XOOPS_URL . "/modules/tad_login/edu_callback.php");
+define('_MI_TADLOGIN_TY_EDU_CLIENTSECRET', "桃園市教育雲端帳號的 client secret");
+define('_MI_TADLOGIN_TY_EDU_CLIENTSECRET_DESC', "申請詳情請至 https://tyc.sso.edu.tw 查看");
+
+define('_MI_TADLOGIN_TP_EDU_CLIENTID', "臺北市單一身分驗證的 clientid");
+define('_MI_TADLOGIN_TP_EDU_CLIENTID_DESC', "申請詳情請至 https://ldap.tp.edu.tw 查看，申請時請提供 redirect uri 為 " . XOOPS_URL . "/modules/tad_login/tp_callback.php");
+define('_MI_TADLOGIN_TP_EDU_CLIENTSECRET', "臺北市單一身分驗證的 client secret");
+define('_MI_TADLOGIN_TP_EDU_CLIENTSECRET_DESC', "申請詳情請至 https://ldap.tp.edu.tw 查看");

@@ -6,13 +6,79 @@ if (!file_exists(XOOPS_ROOT_PATH . "/modules/tadtools/tad_function.php")) {
 include_once XOOPS_ROOT_PATH . "/modules/tadtools/tad_function.php";
 
 /********************* 自訂函數 *********************/
+function generateRandomString($length = 20)
+{
+    $characters       = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_*';
+    $charactersLength = strlen($characters);
+    $randomString     = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
+function requestProtectedApi($token_ep = '', $accesstoken = '', $rtn_array = true, $gzipenable = false)
+{
+    $header  = array("Authorization: Bearer $accesstoken");
+    $options = array(
+        'http' => array(
+            'header'  => $header,
+            'method'  => 'GET',
+            'content' => '',
+        ));
+    $context = stream_context_create($options);
+    if ($gzipenable) {
+        $result = gzdecode(file_get_contents($token_ep, false, $context));
+    } else {
+        $result = file_get_contents($token_ep, false, $context);
+    }
+    $u = json_decode($result, $rtn_array);
+    return $u;
+}
+
+function do_post($url, $data)
+{
+    $ch = curl_init($url);
+
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    $response = curl_exec($ch);
+    curl_close($ch);
+    return $response;
+}
+
+//教育部登入
+if (!function_exists('edu_login')) {
+    function edu_login($openid = 'edu', $mode = "")
+    {
+        global $xoopsConfig, $xoopsDB, $xoopsTpl, $xoopsUser;
+
+        if ($openid == 'ty_edu') {
+            $link = XOOPS_URL . '/modules/tad_login/class/edu/ty_auth.php';
+        } else {
+            $link = XOOPS_URL . '/modules/tad_login/class/edu/auth.php';
+        }
+
+        if ($mode == "return") {
+            return $link;
+        } else {
+            $xoopsTpl->assign('edu', $link);
+        }
+
+    }
+}
 
 //FB登入
 if (!function_exists('facebook_login')) {
     function facebook_login($mode = "")
     {
         global $xoopsConfig, $xoopsDB, $xoopsTpl, $xoopsUser;
-        require_once 'class/facebook.php';
+        if (PHP_VERSION_ID < 50400) {
+            return false;
+        }
+        require_once XOOPS_ROOT_PATH . '/modules/tad_login/class/Facebook/autoload.php';
 
         if ($xoopsUser) {
             header("location:" . XOOPS_URL . "/user.php");
@@ -31,50 +97,78 @@ if (!function_exists('facebook_login')) {
             }
         }
 
-        $modhandler      = &xoops_gethandler('module');
-        $tad_loginModule = &$modhandler->getByDirname("tad_login");
-        $config_handler  = &xoops_gethandler('config');
-        $tad_loginConfig = &$config_handler->getConfigsByCat(0, $tad_loginModule->getVar('mid'));
+        $modhandler      = xoops_getHandler('module');
+        $tad_loginModule = $modhandler->getByDirname("tad_login");
+        $config_handler  = xoops_getHandler('config');
+        $tad_loginConfig = $config_handler->getConfigsByCat(0, $tad_loginModule->getVar('mid'));
 
+        $fb = new Facebook\Facebook(array(
+            'app_id'                => $tad_loginConfig['appId'], // Replace {app-id} with your app id
+            'app_secret'            => $tad_loginConfig['secret'],
+            'default_graph_version' => 'v2.11',
+        ));
+
+        // $user_profile = '';
+        // if ($_SESSION['fb_access_token']) {
+        //     die('fb_access_token:' . $_SESSION['fb_access_token']);
+        //     try {
+        //         // Returns a `Facebook\FacebookResponse` object
+        //         $response = $fb->get('/me?fields=id,name,email', $_SESSION['fb_access_token']);
+        //     } catch (Facebook\Exceptions\FacebookResponseException $e) {
+        //         echo 'Graph returned an error: ' . $e->getMessage();
+        //         exit;
+        //     } catch (Facebook\Exceptions\FacebookSDKException $e) {
+        //         echo 'Facebook SDK returned an error: ' . $e->getMessage();
+        //         exit;
+        //     }
+
+        //     $user_profile = $response->getGraphUser();
+        // }
+        /*
         $facebook = new Facebook(array(
-            'appId'  => $tad_loginConfig['appId'],
-            'secret' => $tad_loginConfig['secret'],
+        'appId'  => $tad_loginConfig['appId'],
+        'secret' => $tad_loginConfig['secret'],
         ));
 
         $user = $facebook->getUser();
 
         if ($user) {
-            try {
-                // Proceed knowing you have a logged in user who's authenticated.
-                $user_profile = $facebook->api('/me');
-            } catch (FacebookApiException $e) {
-                error_log($e);
-                $user = null;
-            }
+        try {
+        // Proceed knowing you have a logged in user who's authenticated.
+        $user_profile = $facebook->api('/me');
+        } catch (FacebookApiException $e) {
+        error_log($e);
+        $user = null;
         }
-        //die(var_export($user_profile));
+        }
+         */
 
         // Login or logout url will be needed depending on current user state.
-        if ($user) {
-            $myts  = &MyTextsanitizer::getInstance();
-            $uid   = $user_profile['id'];
-            $uname = empty($user_profile['username']) ? $user_profile['id'] . "_fb" : $user_profile['username'] . "_fb";
-            $name  = $myts->addSlashes($user_profile['name']);
-            $email = $user_profile['email'];
-            $bio   = $myts->addSlashes($user_profile['bio']);
-            $url   = formatURL($user_profile['link']);
-            $form  = $myts->addSlashes($user_profile['hometown']['name']);
-            $sig   = $myts->addSlashes($user_profile['quotes']);
-            $occ   = $myts->addSlashes($user_profile['work'][0]['employer']['name']);
+        if ($user_profile) {
+            // die(var_export($user_profile));
+            // $myts  = MyTextsanitizer::getInstance();
+            // $uid   = $user_profile['id'];
+            // $uname = empty($user_profile['username']) ? $user_profile['id'] . "_fb" : $user_profile['username'] . "_fb";
+            // $name  = $myts->addSlashes($user_profile['name']);
+            // $email = $user_profile['email'];
+            // $bio   = $myts->addSlashes($user_profile['bio']);
+            // $url   = formatURL($user_profile['link']);
+            // $from  = $myts->addSlashes($user_profile['hometown']['name']);
+            // $sig   = $myts->addSlashes($user_profile['quotes']);
+            // $occ   = $myts->addSlashes($user_profile['work'][0]['employer']['name']);
 
-            login_xoops($uname, $name, $email, "", "", $url, $form, $sig, $occ, $bio);
+            // login_xoops($uname, $name, $email, "", "", $url, $from, $sig, $occ, $bio);
         } else {
-            //$args = array('scope' => 'email');
-            //$loginUrl = $facebook->getLoginUrl($args);
-            $loginUrl = $facebook->getLoginUrl(array(
-                'scope' => 'email',
-                //,'redirect_uri' => XOOPS_URL
-            ));
+            // $loginUrl = $facebook->getLoginUrl(array(
+            //     'scope' => 'email',
+            // ));
+
+            $helper = $fb->getRedirectLoginHelper();
+            // $_SESSION['FBRLH_state'] = $_GET['state'];
+            // die($_GET['state']);
+            $permissions = array('email'); // Optional permissions
+            $loginUrl    = $helper->getLoginUrl(XOOPS_URL . '/modules/tad_login/fb-callback.php', $permissions);
+
         }
         if ($mode == "return") {
             return $loginUrl;
@@ -144,7 +238,7 @@ if (!function_exists('google_login')) {
             $img   = filter_var($user['picture'], FILTER_VALIDATE_URL);
 
             if ($user) {
-                $myts                 = &MyTextsanitizer::getInstance();
+                $myts                 = MyTextsanitizer::getInstance();
                 $uid                  = $user['id'];
                 list($goog_uname, $m) = explode("@", $user['email']);
                 $uname                = empty($goog_uname) ? $user['id'] . "_goo" : $goog_uname . "_goo";
@@ -152,11 +246,11 @@ if (!function_exists('google_login')) {
                 $email                = $user['email'];
                 $bio                  = '';
                 $url                  = formatURL($user['link']);
-                $form                 = '';
+                $from                 = '';
                 $sig                  = '';
                 $occ                  = '';
                 // die(var_export($user));
-                login_xoops($uname, $name, $email, "", "", $url, $form, $sig, $occ, $bio);
+                login_xoops($uname, $name, $email, "", "", $url, $from, $sig, $occ, $bio);
             }
 
             // The access token may have been updated lazily.
@@ -175,27 +269,28 @@ if (!function_exists('google_login')) {
 
 //搜尋有無相同username資料
 if (!function_exists('login_xoops')) {
-    function login_xoops($uname = "", $name = "", $email = "", $SchoolCode = "", $JobName = "", $url = "", $form = "", $sig = "", $occ = "", $bio = "")
+    function login_xoops($uname = "", $name = "", $email = "", $SchoolCode = "", $JobName = "", $url = "", $from = "", $sig = "", $occ = "", $bio = "", $aim = "", $yim = "", $msnm = "")
     {
         global $xoopsModuleConfig, $xoopsConfig, $xoopsDB, $xoopsUser;
-        $member_handler = &xoops_gethandler('member');
+        $member_handler = xoops_getHandler('member');
 
         if ($member_handler->getUserCount(new Criteria('uname', $uname)) > 0) {
             //若已有此帳號！
             $uname = trim($uname);
-            $pass  = getPass($uname);
+            // die($uname);
+            $pass = getPass($uname);
 
             if ($uname == '' || $pass == '') {
                 redirect_header(XOOPS_URL . '/user.php', 1, _MD_TNOPENID_INCORRECTLOGIN);
                 exit();
             }
 
-            $member_handler = &xoops_gethandler('member');
+            $member_handler = xoops_getHandler('member');
             xoops_loadLanguage('auth');
 
             include_once $GLOBALS['xoops']->path('class/auth/authfactory.php');
 
-            $xoopsAuth = &XoopsAuthFactory::getAuthConnection($uname);
+            $xoopsAuth = XoopsAuthFactory::getAuthConnection($uname);
             //自動登入
             $user = $xoopsAuth->authenticate($uname, $pass);
 
@@ -225,14 +320,16 @@ if (!function_exists('login_xoops')) {
                 //設定最後登入時間
                 $user->setVar('last_login', time());
                 $user->setVar("user_from", $from);
-                // $user->setVar("url", formatURL($url));
+                $user->setVar("url", formatURL($url));
                 $user->setVar("user_sig", $sig);
                 $user->setVar("user_icq", $JobName);
                 $user->setVar("bio", $bio);
-                $user->setVar("user_occ", $occ);
-                $user->setVar("user_intrest", $SchoolCode);
+                if ($SchoolCode) {
+                    $user->setVar("user_occ", $occ);
+                    $user->setVar("user_intrest", $SchoolCode);
+                }
 
-                if (!$member_handler->insertUser($user)) {
+                if (!$member_handler->insertUser($user, true)) {
                 }
 
                 $login_from = $_SESSION['login_from'];
@@ -252,18 +349,30 @@ if (!function_exists('login_xoops')) {
                     setcookie($xoopsConfig['usercookie'], 0, -1, '/', XOOPS_COOKIE_DOMAIN, 0);
                 }
                 //若有要轉頁
-                $url = empty($login_from) ? XOOPS_URL . '/index.php' : $login_from;
+                if (!empty($xoopsModuleConfig['redirect_url'])) {
+                    $redirect_url = $xoopsModuleConfig['redirect_url'];
+                } else {
+                    $redirect_url = empty($login_from) ? XOOPS_URL . '/index.php' : $login_from;
+                }
 
                 // RMV-NOTIFY
                 // Perform some maintenance of notification records
-                $notification_handler = &xoops_gethandler('notification');
+                $notification_handler = xoops_getHandler('notification');
                 $notification_handler->doLoginMaintenance($user->getVar('uid'));
 
-                redirect_header($url, 1, sprintf("", $user->getVar('uname')), false);
+                redirect_header($redirect_url, 1, sprintf("", $user->getVar('uname')), false);
             } else {
                 redirect_header(XOOPS_URL . '/user.php', 5, $xoopsAuth->getHtmlErrors());
             }
         } else {
+
+            $sql          = "select CHARACTER_MAXIMUM_LENGTH from information_schema.columns where table_schema = DATABASE() AND table_name = '" . $xoopsDB->prefix("users") . "' AND COLUMN_NAME = 'uname'";
+            $result       = $xoopsDB->query($sql);
+            list($length) = $xoopsDB->fetchRow($result);
+
+            if (strlen($uname) > $length) {
+                die(sprintf(_MD_TADLOGIN_UNAME_TOO_LONG, $uname, $length));
+            }
 
             $pass    = randStr(128);
             $newuser = &$member_handler->createUser();
@@ -279,8 +388,9 @@ if (!function_exists('login_xoops')) {
             $newuser->setVar("user_from", $from);
             $newuser->setVar("user_sig", $sig);
             $newuser->setVar("theme", $xoopsConfig['theme_set']);
-            $newuser->setVar("user_yim", "");
-            $newuser->setVar("user_msnm", "");
+            // $newuser->setVar("user_yim", $yim);
+            // $newuser->setVar("user_aim", $aim);
+            // $newuser->setVar("user_msnm", $msnm);
             $newuser->setVar("pass", md5($pass));
             $newuser->setVar("timezone_offset", $xoopsConfig['default_TZ']);
             $newuser->setVar("uorder", $xoopsConfig['com_order']);
@@ -295,16 +405,23 @@ if (!function_exists('login_xoops')) {
             $newuser->setVar("user_intrest", $SchoolCode);
             $newuser->setVar('user_mailok', true);
             if (!$member_handler->insertUser($newuser, 1)) {
-                $main = _MD_TADLOGIN_CNRNU;
+                die(_MD_TADLOGIN_CNRNU);
             }
 
-            $sql = "INSERT INTO `" . $xoopsDB->prefix('groups_users_link') . "`  (groupid, uid) VALUES  (2, " . $newuser->getVar('uid') . ")";
-            $xoopsDB->queryF($sql) or web_error($sql);
+            $uid = $newuser->getVar('uid');
 
-            $sql = "replace into `" . $xoopsDB->prefix('tad_login_random_pass') . "` (`uname` , `random_pass`) values  ('{$uname}','{$pass}')";
-            $xoopsDB->queryF($sql) or web_error($sql);
+            if ($uid) {
 
-            login_xoops($uname, $name, $email, $SchoolCode, $JobName, $url, $form, $sig, $occ, $bio);
+                $sql = "INSERT INTO `" . $xoopsDB->prefix('groups_users_link') . "`  (groupid, uid) VALUES  (2, " . $uid . ")";
+                $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
+
+                $sql = "replace into `" . $xoopsDB->prefix('tad_login_random_pass') . "` (`uname` , `random_pass`) values  ('{$uname}','{$pass}')";
+                $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
+
+                login_xoops($uname, $name, $email, $SchoolCode, $JobName, $url, $from, $sig, $occ, $bio, $aim, $yim, $msnm);
+            } else {
+                redirect_header(XOOPS_URL, 5, _MD_TADLOGIN_CNRNU);
+            }
         }
     }
 }
@@ -318,7 +435,7 @@ if (!function_exists("getPass")) {
         }
 
         $sql               = "select `random_pass` from `" . $xoopsDB->prefix('tad_login_random_pass') . "` where `uname`='{$uname}'";
-        $result            = $xoopsDB->queryF($sql) or web_error($sql);
+        $result            = $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
         list($random_pass) = $xoopsDB->fetchRow($result);
 
         //舊OpenID使用者
@@ -326,18 +443,18 @@ if (!function_exists("getPass")) {
             $random_pass = randStr(128);
 
             $sql = "replace into `" . $xoopsDB->prefix('tad_login_random_pass') . "` (`uname` , `random_pass`) values  ('{$uname}','{$random_pass}')";
-            $xoopsDB->queryF($sql) or web_error($sql);
+            $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
 
             $sql = "update `" . $xoopsDB->prefix('users') . "` set `pass`=md5('{$random_pass}') where `uname`='{$uname}'";
-            $xoopsDB->queryF($sql) or web_error($sql);
+            $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
         }
 
         $sql        = "select `pass` from `" . $xoopsDB->prefix('users') . "` where `uname`='{$uname}'";
-        $result     = $xoopsDB->queryF($sql) or web_error($sql);
+        $result     = $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
         list($pass) = $xoopsDB->fetchRow($result);
         if ($pass !== md5($random_pass)) {
             $sql = "update `" . $xoopsDB->prefix('users') . "` set `pass`=md5('{$random_pass}') where `uname`='{$uname}'";
-            $xoopsDB->queryF($sql) or web_error($sql);
+            $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
         }
 
         return $random_pass;
@@ -349,15 +466,7 @@ if (!function_exists("add2group")) {
     {
         global $xoopsDB, $xoopsUser;
 
-        // if ($JobName == _MD_TADLOGIN_TEACHER) {
-        //     $JobName = "teacher";
-        // } elseif ($JobName == _MD_TADLOGIN_STUDENT) {
-        //     $JobName = "student";
-        // } else {
-        //     $JobName = "";
-        // }
-
-        $member_handler = &xoops_gethandler('member');
+        $member_handler = xoops_getHandler('member');
         $user           = &$member_handler->getUser($uid);
         if ($user) {
             $userGroups = $user->getGroups();
@@ -366,20 +475,35 @@ if (!function_exists("add2group")) {
             exit;
         }
 
-        $sql    = "select `item`,`kind`,`group_id` from `" . $xoopsDB->prefix('tad_login_config') . "`";
-        $result = $xoopsDB->queryF($sql) or web_error($sql);
+        $sql    = "SELECT `item`,`kind`,`group_id` FROM `" . $xoopsDB->prefix('tad_login_config') . "`";
+        $result = $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
         while (list($item, $kind, $group_id) = $xoopsDB->fetchRow($result)) {
             if (!in_array($group_id, $userGroups)) {
                 //echo "<h1>{$group_id}-{$item}-{$SchoolCode}-{$email}</h1>";
                 if (!empty($SchoolCode) and strpos($item, $SchoolCode) !== false and $JobName == $kind) {
                     $sql = "insert into `" . $xoopsDB->prefix('groups_users_link') . "` (groupid,uid ) values($group_id,$uid)";
-                    $xoopsDB->queryF($sql) or web_error($sql);
+                    $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
                     //echo "{$group_id}, {$uid}<br>";
+                }
+
+                if (empty($item) and $JobName == $kind) {
+                    $sql = "insert into `" . $xoopsDB->prefix('groups_users_link') . "` (groupid,uid ) values($group_id,$uid)";
+                    $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
+                }
+
+                if (!empty($email) and strpos($item, '*') !== false) {
+                    $item     = trim($item);
+                    $new_item = str_replace('*', '', $item);
+                    // die($new_item);
+                    if (strpos($email, $new_item) !== false) {
+                        $sql = "insert into `" . $xoopsDB->prefix('groups_users_link') . "` (groupid,uid ) values($group_id,$uid)";
+                        $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
+                    }
                 }
 
                 if (!empty($email) and strpos($item, $email) !== false) {
                     $sql = "insert into `" . $xoopsDB->prefix('groups_users_link') . "` (groupid,uid ) values($group_id,$uid)";
-                    $xoopsDB->queryF($sql) or web_error($sql);
+                    $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
                     //echo "{$group_id}, {$uid}<br>";
                 }
             }
