@@ -1,5 +1,8 @@
 <?php
 /*
+
+use XoopsModules\Tad_login\Utility;
+
 function xoops_module_uninstall_tad_login(&$module) {
   GLOBAL $xoopsDB;
     $date=date("Ymd");
