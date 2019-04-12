@@ -34,10 +34,10 @@
      * @opt_param string source String to identify the originator of this request.
      * @return Google_Bookshelf
      */
-    public function get($userId, $shelf, $optParams = array()) {
-      $params = array('userId' => $userId, 'shelf' => $shelf);
+    public function get($userId, $shelf, $optParams = []) {
+      $params = ['userId' => $userId, 'shelf' => $shelf];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Bookshelf($data);
       } else {
@@ -53,10 +53,10 @@
      * @opt_param string source String to identify the originator of this request.
      * @return Google_Bookshelves
      */
-    public function listBookshelves($userId, $optParams = array()) {
-      $params = array('userId' => $userId);
+    public function listBookshelves($userId, $optParams = []) {
+      $params = ['userId' => $userId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Bookshelves($data);
       } else {
@@ -88,10 +88,10 @@
      * @opt_param string startIndex Index of the first element to return (starts at 0)
      * @return Google_Volumes
      */
-    public function listBookshelvesVolumes($userId, $shelf, $optParams = array()) {
-      $params = array('userId' => $userId, 'shelf' => $shelf);
+    public function listBookshelvesVolumes($userId, $shelf, $optParams = []) {
+      $params = ['userId' => $userId, 'shelf' => $shelf];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Volumes($data);
       } else {
@@ -121,10 +121,10 @@
      * @opt_param string upload_client_token
      * @return Google_BooksCloudloadingResource
      */
-    public function addBook($optParams = array()) {
-      $params = array();
+    public function addBook($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('addBook', array($params));
+      $data = $this->__call('addBook', [$params]);
       if ($this->useObjects()) {
         return new Google_BooksCloudloadingResource($data);
       } else {
@@ -137,10 +137,10 @@
      * @param string $volumeId The id of the book to be removed.
      * @param array $optParams Optional parameters.
      */
-    public function deleteBook($volumeId, $optParams = array()) {
-      $params = array('volumeId' => $volumeId);
+    public function deleteBook($volumeId, $optParams = []) {
+      $params = ['volumeId' => $volumeId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('deleteBook', array($params));
+      $data = $this->__call('deleteBook', [$params]);
       return $data;
     }
     /**
@@ -150,10 +150,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_BooksCloudloadingResource
      */
-    public function updateBook(Google_BooksCloudloadingResource $postBody, $optParams = array()) {
-      $params = array('postBody' => $postBody);
+    public function updateBook(Google_BooksCloudloadingResource $postBody, $optParams = []) {
+      $params = ['postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('updateBook', array($params));
+      $data = $this->__call('updateBook', [$params]);
       if ($this->useObjects()) {
         return new Google_BooksCloudloadingResource($data);
       } else {
@@ -183,10 +183,10 @@
      * @opt_param string source String to identify the originator of this request.
      * @return Google_Layersummary
      */
-    public function get($volumeId, $summaryId, $optParams = array()) {
-      $params = array('volumeId' => $volumeId, 'summaryId' => $summaryId);
+    public function get($volumeId, $summaryId, $optParams = []) {
+      $params = ['volumeId' => $volumeId, 'summaryId' => $summaryId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Layersummary($data);
       } else {
@@ -205,10 +205,10 @@
      * @opt_param string source String to identify the originator of this request.
      * @return Google_Layersummaries
      */
-    public function listLayers($volumeId, $optParams = array()) {
-      $params = array('volumeId' => $volumeId);
+    public function listLayers($volumeId, $optParams = []) {
+      $params = ['volumeId' => $volumeId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Layersummaries($data);
       } else {
@@ -243,10 +243,10 @@
      * @opt_param int w The requested pixel width for any images. If width is provided height must also be provided.
      * @return Google_Annotationdata
      */
-    public function get($volumeId, $layerId, $annotationDataId, $contentVersion, $optParams = array()) {
-      $params = array('volumeId' => $volumeId, 'layerId' => $layerId, 'annotationDataId' => $annotationDataId, 'contentVersion' => $contentVersion);
+    public function get($volumeId, $layerId, $annotationDataId, $contentVersion, $optParams = []) {
+      $params = ['volumeId' => $volumeId, 'layerId' => $layerId, 'annotationDataId' => $annotationDataId, 'contentVersion' => $contentVersion];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Annotationdata($data);
       } else {
@@ -273,10 +273,10 @@
      * @opt_param int w The requested pixel width for any images. If width is provided height must also be provided.
      * @return Google_Annotationsdata
      */
-    public function listLayersAnnotationData($volumeId, $layerId, $contentVersion, $optParams = array()) {
-      $params = array('volumeId' => $volumeId, 'layerId' => $layerId, 'contentVersion' => $contentVersion);
+    public function listLayersAnnotationData($volumeId, $layerId, $contentVersion, $optParams = []) {
+      $params = ['volumeId' => $volumeId, 'layerId' => $layerId, 'contentVersion' => $contentVersion];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Annotationsdata($data);
       } else {
@@ -306,10 +306,10 @@
      * @opt_param string source String to identify the originator of this request.
      * @return Google_Volumeannotation
      */
-    public function get($volumeId, $layerId, $annotationId, $optParams = array()) {
-      $params = array('volumeId' => $volumeId, 'layerId' => $layerId, 'annotationId' => $annotationId);
+    public function get($volumeId, $layerId, $annotationId, $optParams = []) {
+      $params = ['volumeId' => $volumeId, 'layerId' => $layerId, 'annotationId' => $annotationId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Volumeannotation($data);
       } else {
@@ -338,10 +338,10 @@
      * @opt_param string volumeAnnotationsVersion The version of the volume annotations that you are requesting.
      * @return Google_Volumeannotations
      */
-    public function listLayersVolumeAnnotations($volumeId, $layerId, $contentVersion, $optParams = array()) {
-      $params = array('volumeId' => $volumeId, 'layerId' => $layerId, 'contentVersion' => $contentVersion);
+    public function listLayersVolumeAnnotations($volumeId, $layerId, $contentVersion, $optParams = []) {
+      $params = ['volumeId' => $volumeId, 'layerId' => $layerId, 'contentVersion' => $contentVersion];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Volumeannotations($data);
       } else {
@@ -371,10 +371,10 @@
      * @opt_param string source String to identify the originator of this request.
      * @return Google_DownloadAccesses
      */
-    public function releaseDownloadAccess($volumeIds, $cpksver, $optParams = array()) {
-      $params = array('volumeIds' => $volumeIds, 'cpksver' => $cpksver);
+    public function releaseDownloadAccess($volumeIds, $cpksver, $optParams = []) {
+      $params = ['volumeIds' => $volumeIds, 'cpksver' => $cpksver];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('releaseDownloadAccess', array($params));
+      $data = $this->__call('releaseDownloadAccess', [$params]);
       if ($this->useObjects()) {
         return new Google_DownloadAccesses($data);
       } else {
@@ -393,10 +393,10 @@
      * @opt_param string locale ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
      * @return Google_RequestAccess
      */
-    public function requestAccess($source, $volumeId, $nonce, $cpksver, $optParams = array()) {
-      $params = array('source' => $source, 'volumeId' => $volumeId, 'nonce' => $nonce, 'cpksver' => $cpksver);
+    public function requestAccess($source, $volumeId, $nonce, $cpksver, $optParams = []) {
+      $params = ['source' => $source, 'volumeId' => $volumeId, 'nonce' => $nonce, 'cpksver' => $cpksver];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('requestAccess', array($params));
+      $data = $this->__call('requestAccess', [$params]);
       if ($this->useObjects()) {
         return new Google_RequestAccess($data);
       } else {
@@ -417,10 +417,10 @@
      * @opt_param string volumeIds The volume(s) to request download restrictions for.
      * @return Google_Volumes
      */
-    public function syncVolumeLicenses($source, $nonce, $cpksver, $optParams = array()) {
-      $params = array('source' => $source, 'nonce' => $nonce, 'cpksver' => $cpksver);
+    public function syncVolumeLicenses($source, $nonce, $cpksver, $optParams = []) {
+      $params = ['source' => $source, 'nonce' => $nonce, 'cpksver' => $cpksver];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('syncVolumeLicenses', array($params));
+      $data = $this->__call('syncVolumeLicenses', [$params]);
       if ($this->useObjects()) {
         return new Google_Volumes($data);
       } else {
@@ -459,10 +459,10 @@
      *
      * @opt_param string source String to identify the originator of this request.
      */
-    public function delete($annotationId, $optParams = array()) {
-      $params = array('annotationId' => $annotationId);
+    public function delete($annotationId, $optParams = []) {
+      $params = ['annotationId' => $annotationId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -474,10 +474,10 @@
      * @opt_param string source String to identify the originator of this request.
      * @return Google_Annotation
      */
-    public function get($annotationId, $optParams = array()) {
-      $params = array('annotationId' => $annotationId);
+    public function get($annotationId, $optParams = []) {
+      $params = ['annotationId' => $annotationId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Annotation($data);
       } else {
@@ -493,10 +493,10 @@
      * @opt_param string source String to identify the originator of this request.
      * @return Google_Annotation
      */
-    public function insert(Google_Annotation $postBody, $optParams = array()) {
-      $params = array('postBody' => $postBody);
+    public function insert(Google_Annotation $postBody, $optParams = []) {
+      $params = ['postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Annotation($data);
       } else {
@@ -520,10 +520,10 @@
      * @opt_param string volumeId The volume to restrict annotations to.
      * @return Google_Annotations
      */
-    public function listMylibraryAnnotations($optParams = array()) {
-      $params = array();
+    public function listMylibraryAnnotations($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Annotations($data);
       } else {
@@ -540,10 +540,10 @@
      * @opt_param string source String to identify the originator of this request.
      * @return Google_Annotation
      */
-    public function update($annotationId, Google_Annotation $postBody, $optParams = array()) {
-      $params = array('annotationId' => $annotationId, 'postBody' => $postBody);
+    public function update($annotationId, Google_Annotation $postBody, $optParams = []) {
+      $params = ['annotationId' => $annotationId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_Annotation($data);
       } else {
@@ -570,10 +570,10 @@
      *
      * @opt_param string source String to identify the originator of this request.
      */
-    public function addVolume($shelf, $volumeId, $optParams = array()) {
-      $params = array('shelf' => $shelf, 'volumeId' => $volumeId);
+    public function addVolume($shelf, $volumeId, $optParams = []) {
+      $params = ['shelf' => $shelf, 'volumeId' => $volumeId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('addVolume', array($params));
+      $data = $this->__call('addVolume', [$params]);
       return $data;
     }
     /**
@@ -584,10 +584,10 @@
      *
      * @opt_param string source String to identify the originator of this request.
      */
-    public function clearVolumes($shelf, $optParams = array()) {
-      $params = array('shelf' => $shelf);
+    public function clearVolumes($shelf, $optParams = []) {
+      $params = ['shelf' => $shelf];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('clearVolumes', array($params));
+      $data = $this->__call('clearVolumes', [$params]);
       return $data;
     }
     /**
@@ -600,10 +600,10 @@
      * @opt_param string source String to identify the originator of this request.
      * @return Google_Bookshelf
      */
-    public function get($shelf, $optParams = array()) {
-      $params = array('shelf' => $shelf);
+    public function get($shelf, $optParams = []) {
+      $params = ['shelf' => $shelf];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Bookshelf($data);
       } else {
@@ -618,10 +618,10 @@
      * @opt_param string source String to identify the originator of this request.
      * @return Google_Bookshelves
      */
-    public function listMylibraryBookshelves($optParams = array()) {
-      $params = array();
+    public function listMylibraryBookshelves($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Bookshelves($data);
       } else {
@@ -638,10 +638,10 @@
      *
      * @opt_param string source String to identify the originator of this request.
      */
-    public function moveVolume($shelf, $volumeId, $volumePosition, $optParams = array()) {
-      $params = array('shelf' => $shelf, 'volumeId' => $volumeId, 'volumePosition' => $volumePosition);
+    public function moveVolume($shelf, $volumeId, $volumePosition, $optParams = []) {
+      $params = ['shelf' => $shelf, 'volumeId' => $volumeId, 'volumePosition' => $volumePosition];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('moveVolume', array($params));
+      $data = $this->__call('moveVolume', [$params]);
       return $data;
     }
     /**
@@ -653,10 +653,10 @@
      *
      * @opt_param string source String to identify the originator of this request.
      */
-    public function removeVolume($shelf, $volumeId, $optParams = array()) {
-      $params = array('shelf' => $shelf, 'volumeId' => $volumeId);
+    public function removeVolume($shelf, $volumeId, $optParams = []) {
+      $params = ['shelf' => $shelf, 'volumeId' => $volumeId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('removeVolume', array($params));
+      $data = $this->__call('removeVolume', [$params]);
       return $data;
     }
   }
@@ -686,10 +686,10 @@
      * @opt_param string startIndex Index of the first element to return (starts at 0)
      * @return Google_Volumes
      */
-    public function listMylibraryBookshelvesVolumes($shelf, $optParams = array()) {
-      $params = array('shelf' => $shelf);
+    public function listMylibraryBookshelvesVolumes($shelf, $optParams = []) {
+      $params = ['shelf' => $shelf];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Volumes($data);
       } else {
@@ -717,10 +717,10 @@
      * @opt_param string source String to identify the originator of this request.
      * @return Google_ReadingPosition
      */
-    public function get($volumeId, $optParams = array()) {
-      $params = array('volumeId' => $volumeId);
+    public function get($volumeId, $optParams = []) {
+      $params = ['volumeId' => $volumeId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_ReadingPosition($data);
       } else {
@@ -740,10 +740,10 @@
      * @opt_param string deviceCookie Random persistent device cookie optional on set position.
      * @opt_param string source String to identify the originator of this request.
      */
-    public function setPosition($volumeId, $timestamp, $position, $optParams = array()) {
-      $params = array('volumeId' => $volumeId, 'timestamp' => $timestamp, 'position' => $position);
+    public function setPosition($volumeId, $timestamp, $position, $optParams = []) {
+      $params = ['volumeId' => $volumeId, 'timestamp' => $timestamp, 'position' => $position];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('setPosition', array($params));
+      $data = $this->__call('setPosition', [$params]);
       return $data;
     }
   }
@@ -770,10 +770,10 @@
      * @opt_param string source String to identify the originator of this request.
      * @return Google_Volume
      */
-    public function get($volumeId, $optParams = array()) {
-      $params = array('volumeId' => $volumeId);
+    public function get($volumeId, $optParams = []) {
+      $params = ['volumeId' => $volumeId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Volume($data);
       } else {
@@ -800,10 +800,10 @@
      * @opt_param string startIndex Index of the first result to return (starts at 0)
      * @return Google_Volumes
      */
-    public function listVolumes($q, $optParams = array()) {
-      $params = array('q' => $q);
+    public function listVolumes($q, $optParams = []) {
+      $params = ['q' => $q];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Volumes($data);
       } else {
@@ -833,10 +833,10 @@
      * @opt_param string source String to identify the originator of this request.
      * @return Google_Volumes
      */
-    public function listVolumesAssociated($volumeId, $optParams = array()) {
-      $params = array('volumeId' => $volumeId);
+    public function listVolumesAssociated($volumeId, $optParams = []) {
+      $params = ['volumeId' => $volumeId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Volumes($data);
       } else {
@@ -867,10 +867,10 @@
      * @opt_param string startIndex Index of the first result to return (starts at 0)
      * @return Google_Volumes
      */
-    public function listVolumesMybooks($optParams = array()) {
-      $params = array();
+    public function listVolumesMybooks($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Volumes($data);
       } else {
@@ -897,10 +897,10 @@
      * @opt_param string source String to identify the originator of this request.
      * @return Google_Volumes
      */
-    public function listVolumesRecommended($optParams = array()) {
-      $params = array();
+    public function listVolumesRecommended($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Volumes($data);
       } else {
@@ -931,10 +931,10 @@
      * @opt_param string volumeId The ids of the volumes to be returned. If not specified all that match the processingState are returned.
      * @return Google_Volumes
      */
-    public function listVolumesUseruploaded($optParams = array()) {
-      $params = array();
+    public function listVolumesUseruploaded($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Volumes($data);
       } else {

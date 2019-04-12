@@ -5,6 +5,6 @@
 $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
-return array(
-    'phpseclib\\' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
-);
+return [
+    'phpseclib\\' => [$vendorDir . '/phpseclib/phpseclib/phpseclib'],
+];

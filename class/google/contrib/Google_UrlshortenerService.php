@@ -33,10 +33,10 @@
      * @opt_param string projection Additional information to return.
      * @return Google_Url
      */
-    public function get($shortUrl, $optParams = array()) {
-      $params = array('shortUrl' => $shortUrl);
+    public function get($shortUrl, $optParams = []) {
+      $params = ['shortUrl' => $shortUrl];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Url($data);
       } else {
@@ -50,10 +50,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Url
      */
-    public function insert(Google_Url $postBody, $optParams = array()) {
-      $params = array('postBody' => $postBody);
+    public function insert(Google_Url $postBody, $optParams = []) {
+      $params = ['postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Url($data);
       } else {
@@ -69,10 +69,10 @@
      * @opt_param string start-token Token for requesting successive pages of results.
      * @return Google_UrlHistory
      */
-    public function listUrl($optParams = array()) {
-      $params = array();
+    public function listUrl($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_UrlHistory($data);
       } else {

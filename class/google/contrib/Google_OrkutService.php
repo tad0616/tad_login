@@ -31,10 +31,10 @@
      * @param string $userId ID of the user to be removed from the activity.
      * @param array $optParams Optional parameters.
      */
-    public function delete($activityId, $userId, $optParams = array()) {
-      $params = array('activityId' => $activityId, 'userId' => $userId);
+    public function delete($activityId, $userId, $optParams = []) {
+      $params = ['activityId' => $activityId, 'userId' => $userId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
   }
@@ -55,10 +55,10 @@
      * @param string $activityId ID of the activity to remove.
      * @param array $optParams Optional parameters.
      */
-    public function delete($activityId, $optParams = array()) {
-      $params = array('activityId' => $activityId);
+    public function delete($activityId, $optParams = []) {
+      $params = ['activityId' => $activityId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -73,10 +73,10 @@
      * @opt_param string pageToken A continuation token that allows pagination.
      * @return Google_ActivityList
      */
-    public function listActivities($userId, $collection, $optParams = array()) {
-      $params = array('userId' => $userId, 'collection' => $collection);
+    public function listActivities($userId, $collection, $optParams = []) {
+      $params = ['userId' => $userId, 'collection' => $collection];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_ActivityList($data);
       } else {
@@ -102,10 +102,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Visibility
      */
-    public function get($activityId, $optParams = array()) {
-      $params = array('activityId' => $activityId);
+    public function get($activityId, $optParams = []) {
+      $params = ['activityId' => $activityId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Visibility($data);
       } else {
@@ -121,10 +121,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Visibility
      */
-    public function patch($activityId, Google_Visibility $postBody, $optParams = array()) {
-      $params = array('activityId' => $activityId, 'postBody' => $postBody);
+    public function patch($activityId, Google_Visibility $postBody, $optParams = []) {
+      $params = ['activityId' => $activityId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_Visibility($data);
       } else {
@@ -139,10 +139,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Visibility
      */
-    public function update($activityId, Google_Visibility $postBody, $optParams = array()) {
-      $params = array('activityId' => $activityId, 'postBody' => $postBody);
+    public function update($activityId, Google_Visibility $postBody, $optParams = []) {
+      $params = ['activityId' => $activityId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_Visibility($data);
       } else {
@@ -169,10 +169,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Badge
      */
-    public function get($userId, $badgeId, $optParams = array()) {
-      $params = array('userId' => $userId, 'badgeId' => $badgeId);
+    public function get($userId, $badgeId, $optParams = []) {
+      $params = ['userId' => $userId, 'badgeId' => $badgeId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Badge($data);
       } else {
@@ -186,10 +186,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_BadgeList
      */
-    public function listBadges($userId, $optParams = array()) {
-      $params = array('userId' => $userId);
+    public function listBadges($userId, $optParams = []) {
+      $params = ['userId' => $userId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_BadgeList($data);
       } else {
@@ -214,10 +214,10 @@
      * @param string $commentId ID of the comment to remove.
      * @param array $optParams Optional parameters.
      */
-    public function delete($commentId, $optParams = array()) {
-      $params = array('commentId' => $commentId);
+    public function delete($commentId, $optParams = []) {
+      $params = ['commentId' => $commentId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -229,10 +229,10 @@
      * @opt_param string hl Specifies the interface language (host language) of your user interface.
      * @return Google_Comment
      */
-    public function get($commentId, $optParams = array()) {
-      $params = array('commentId' => $commentId);
+    public function get($commentId, $optParams = []) {
+      $params = ['commentId' => $commentId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Comment($data);
       } else {
@@ -247,10 +247,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Comment
      */
-    public function insert($activityId, Google_Comment $postBody, $optParams = array()) {
-      $params = array('activityId' => $activityId, 'postBody' => $postBody);
+    public function insert($activityId, Google_Comment $postBody, $optParams = []) {
+      $params = ['activityId' => $activityId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Comment($data);
       } else {
@@ -269,10 +269,10 @@
      * @opt_param string pageToken A continuation token that allows pagination.
      * @return Google_CommentList
      */
-    public function listComments($activityId, $optParams = array()) {
-      $params = array('activityId' => $activityId);
+    public function listComments($activityId, $optParams = []) {
+      $params = ['activityId' => $activityId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_CommentList($data);
       } else {
@@ -300,10 +300,10 @@
      * @opt_param string hl Specifies the interface language (host language) of your user interface.
      * @return Google_Community
      */
-    public function get($communityId, $optParams = array()) {
-      $params = array('communityId' => $communityId);
+    public function get($communityId, $optParams = []) {
+      $params = ['communityId' => $communityId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Community($data);
       } else {
@@ -321,10 +321,10 @@
      * @opt_param string orderBy How to order the communities by.
      * @return Google_CommunityList
      */
-    public function listCommunities($userId, $optParams = array()) {
-      $params = array('userId' => $userId);
+    public function listCommunities($userId, $optParams = []) {
+      $params = ['userId' => $userId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_CommunityList($data);
       } else {
@@ -350,10 +350,10 @@
      * @param string $userId ID of the user.
      * @param array $optParams Optional parameters.
      */
-    public function delete($communityId, $userId, $optParams = array()) {
-      $params = array('communityId' => $communityId, 'userId' => $userId);
+    public function delete($communityId, $userId, $optParams = []) {
+      $params = ['communityId' => $communityId, 'userId' => $userId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -364,10 +364,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_CommunityMembers
      */
-    public function insert($communityId, $userId, $optParams = array()) {
-      $params = array('communityId' => $communityId, 'userId' => $userId);
+    public function insert($communityId, $userId, $optParams = []) {
+      $params = ['communityId' => $communityId, 'userId' => $userId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_CommunityMembers($data);
       } else {
@@ -393,10 +393,10 @@
      * @param string $userId ID of the user.
      * @param array $optParams Optional parameters.
      */
-    public function delete($communityId, $userId, $optParams = array()) {
-      $params = array('communityId' => $communityId, 'userId' => $userId);
+    public function delete($communityId, $userId, $optParams = []) {
+      $params = ['communityId' => $communityId, 'userId' => $userId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -409,10 +409,10 @@
      * @opt_param string hl Specifies the interface language (host language) of your user interface.
      * @return Google_CommunityMembers
      */
-    public function get($communityId, $userId, $optParams = array()) {
-      $params = array('communityId' => $communityId, 'userId' => $userId);
+    public function get($communityId, $userId, $optParams = []) {
+      $params = ['communityId' => $communityId, 'userId' => $userId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_CommunityMembers($data);
       } else {
@@ -427,10 +427,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_CommunityMembers
      */
-    public function insert($communityId, $userId, $optParams = array()) {
-      $params = array('communityId' => $communityId, 'userId' => $userId);
+    public function insert($communityId, $userId, $optParams = []) {
+      $params = ['communityId' => $communityId, 'userId' => $userId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_CommunityMembers($data);
       } else {
@@ -451,10 +451,10 @@
      * @opt_param string pageToken A continuation token that allows pagination.
      * @return Google_CommunityMembersList
      */
-    public function listCommunityMembers($communityId, $optParams = array()) {
-      $params = array('communityId' => $communityId);
+    public function listCommunityMembers($communityId, $optParams = []) {
+      $params = ['communityId' => $communityId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_CommunityMembersList($data);
       } else {
@@ -481,10 +481,10 @@
      * @param string $messageId The ID of the message to be moved to the trash folder.
      * @param array $optParams Optional parameters.
      */
-    public function delete($communityId, $topicId, $messageId, $optParams = array()) {
-      $params = array('communityId' => $communityId, 'topicId' => $topicId, 'messageId' => $messageId);
+    public function delete($communityId, $topicId, $messageId, $optParams = []) {
+      $params = ['communityId' => $communityId, 'topicId' => $topicId, 'messageId' => $messageId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -496,10 +496,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_CommunityMessage
      */
-    public function insert($communityId, $topicId, Google_CommunityMessage $postBody, $optParams = array()) {
-      $params = array('communityId' => $communityId, 'topicId' => $topicId, 'postBody' => $postBody);
+    public function insert($communityId, $topicId, Google_CommunityMessage $postBody, $optParams = []) {
+      $params = ['communityId' => $communityId, 'topicId' => $topicId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_CommunityMessage($data);
       } else {
@@ -518,10 +518,10 @@
      * @opt_param string pageToken A continuation token that allows pagination.
      * @return Google_CommunityMessageList
      */
-    public function listCommunityMessages($communityId, $topicId, $optParams = array()) {
-      $params = array('communityId' => $communityId, 'topicId' => $topicId);
+    public function listCommunityMessages($communityId, $topicId, $optParams = []) {
+      $params = ['communityId' => $communityId, 'topicId' => $topicId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_CommunityMessageList($data);
       } else {
@@ -549,10 +549,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_CommunityPollComment
      */
-    public function insert($communityId, $pollId, Google_CommunityPollComment $postBody, $optParams = array()) {
-      $params = array('communityId' => $communityId, 'pollId' => $pollId, 'postBody' => $postBody);
+    public function insert($communityId, $pollId, Google_CommunityPollComment $postBody, $optParams = []) {
+      $params = ['communityId' => $communityId, 'pollId' => $pollId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_CommunityPollComment($data);
       } else {
@@ -571,10 +571,10 @@
      * @opt_param string pageToken A continuation token that allows pagination.
      * @return Google_CommunityPollCommentList
      */
-    public function listCommunityPollComments($communityId, $pollId, $optParams = array()) {
-      $params = array('communityId' => $communityId, 'pollId' => $pollId);
+    public function listCommunityPollComments($communityId, $pollId, $optParams = []) {
+      $params = ['communityId' => $communityId, 'pollId' => $pollId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_CommunityPollCommentList($data);
       } else {
@@ -602,10 +602,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_CommunityPollVote
      */
-    public function insert($communityId, $pollId, Google_CommunityPollVote $postBody, $optParams = array()) {
-      $params = array('communityId' => $communityId, 'pollId' => $pollId, 'postBody' => $postBody);
+    public function insert($communityId, $pollId, Google_CommunityPollVote $postBody, $optParams = []) {
+      $params = ['communityId' => $communityId, 'pollId' => $pollId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_CommunityPollVote($data);
       } else {
@@ -634,10 +634,10 @@
      * @opt_param string hl Specifies the interface language (host language) of your user interface.
      * @return Google_CommunityPoll
      */
-    public function get($communityId, $pollId, $optParams = array()) {
-      $params = array('communityId' => $communityId, 'pollId' => $pollId);
+    public function get($communityId, $pollId, $optParams = []) {
+      $params = ['communityId' => $communityId, 'pollId' => $pollId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_CommunityPoll($data);
       } else {
@@ -655,10 +655,10 @@
      * @opt_param string pageToken A continuation token that allows pagination.
      * @return Google_CommunityPollList
      */
-    public function listCommunityPolls($communityId, $optParams = array()) {
-      $params = array('communityId' => $communityId);
+    public function listCommunityPolls($communityId, $optParams = []) {
+      $params = ['communityId' => $communityId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_CommunityPollList($data);
       } else {
@@ -686,10 +686,10 @@
      * @opt_param string hl Specifies the interface language (host language) of your user interface.
      * @return Google_CommunityList
      */
-    public function listCommunityRelated($communityId, $optParams = array()) {
-      $params = array('communityId' => $communityId);
+    public function listCommunityRelated($communityId, $optParams = []) {
+      $params = ['communityId' => $communityId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_CommunityList($data);
       } else {
@@ -715,10 +715,10 @@
      * @param string $topicId The ID of the topic to be moved to the trash folder.
      * @param array $optParams Optional parameters.
      */
-    public function delete($communityId, $topicId, $optParams = array()) {
-      $params = array('communityId' => $communityId, 'topicId' => $topicId);
+    public function delete($communityId, $topicId, $optParams = []) {
+      $params = ['communityId' => $communityId, 'topicId' => $topicId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -731,10 +731,10 @@
      * @opt_param string hl Specifies the interface language (host language) of your user interface.
      * @return Google_CommunityTopic
      */
-    public function get($communityId, $topicId, $optParams = array()) {
-      $params = array('communityId' => $communityId, 'topicId' => $topicId);
+    public function get($communityId, $topicId, $optParams = []) {
+      $params = ['communityId' => $communityId, 'topicId' => $topicId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_CommunityTopic($data);
       } else {
@@ -751,10 +751,10 @@
      * @opt_param bool isShout Whether this topic is a shout.
      * @return Google_CommunityTopic
      */
-    public function insert($communityId, Google_CommunityTopic $postBody, $optParams = array()) {
-      $params = array('communityId' => $communityId, 'postBody' => $postBody);
+    public function insert($communityId, Google_CommunityTopic $postBody, $optParams = []) {
+      $params = ['communityId' => $communityId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_CommunityTopic($data);
       } else {
@@ -772,10 +772,10 @@
      * @opt_param string pageToken A continuation token that allows pagination.
      * @return Google_CommunityTopicList
      */
-    public function listCommunityTopics($communityId, $optParams = array()) {
-      $params = array('communityId' => $communityId);
+    public function listCommunityTopics($communityId, $optParams = []) {
+      $params = ['communityId' => $communityId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_CommunityTopicList($data);
       } else {
@@ -801,10 +801,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Counters
      */
-    public function listCounters($userId, $optParams = array()) {
-      $params = array('userId' => $userId);
+    public function listCounters($userId, $optParams = []) {
+      $params = ['userId' => $userId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Counters($data);
       } else {
@@ -830,10 +830,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Activity
      */
-    public function insert(Google_Activity $postBody, $optParams = array()) {
-      $params = array('postBody' => $postBody);
+    public function insert(Google_Activity $postBody, $optParams = []) {
+      $params = ['postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Activity($data);
       } else {

@@ -19,13 +19,14 @@ function generateRandomString($length = 20)
 
 function requestProtectedApi($token_ep = '', $accesstoken = '', $rtn_array = true, $gzipenable = false)
 {
-    $header  = array("Authorization: Bearer $accesstoken");
-    $options = array(
-        'http' => array(
+    $header  = ["Authorization: Bearer $accesstoken"];
+    $options = [
+        'http' => [
             'header'  => $header,
             'method'  => 'GET',
             'content' => '',
-        ));
+        ]
+    ];
     $context = stream_context_create($options);
     if ($gzipenable) {
         $result = gzdecode(file_get_contents($token_ep, false, $context));
@@ -102,11 +103,11 @@ if (!function_exists('facebook_login')) {
         $config_handler  = xoops_getHandler('config');
         $tad_loginConfig = $config_handler->getConfigsByCat(0, $tad_loginModule->getVar('mid'));
 
-        $fb = new Facebook\Facebook(array(
+        $fb = new Facebook\Facebook([
             'app_id'                => $tad_loginConfig['appId'], // Replace {app-id} with your app id
             'app_secret'            => $tad_loginConfig['secret'],
             'default_graph_version' => 'v2.11',
-        ));
+                                    ]);
 
         // $user_profile = '';
         // if ($_SESSION['fb_access_token']) {
@@ -166,7 +167,7 @@ if (!function_exists('facebook_login')) {
             $helper = $fb->getRedirectLoginHelper();
             // $_SESSION['FBRLH_state'] = $_GET['state'];
             // die($_GET['state']);
-            $permissions = array('email'); // Optional permissions
+            $permissions = ['email']; // Optional permissions
             $loginUrl    = $helper->getLoginUrl(XOOPS_URL . '/modules/tad_login/fb-callback.php', $permissions);
 
         }
@@ -336,7 +337,7 @@ if (!function_exists('login_xoops')) {
 
                 // Regenrate a new session id and destroy old session
                 $GLOBALS["sess_handler"]->regenerate_id(true);
-                $_SESSION                    = array();
+                $_SESSION                    = [];
                 $_SESSION['xoopsUserId']     = $user->getVar('uid');
                 $_SESSION['xoopsUserGroups'] = $user->getGroups();
                 $user_theme                  = $user->getVar('theme');

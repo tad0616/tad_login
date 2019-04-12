@@ -53,10 +53,10 @@
      * @opt_param int start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      * @return Google_GaData
      */
-    public function get($ids, $start_date, $end_date, $metrics, $optParams = array()) {
-      $params = array('ids' => $ids, 'start-date' => $start_date, 'end-date' => $end_date, 'metrics' => $metrics);
+    public function get($ids, $start_date, $end_date, $metrics, $optParams = []) {
+      $params = ['ids' => $ids, 'start-date' => $start_date, 'end-date' => $end_date, 'metrics' => $metrics];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_GaData($data);
       } else {
@@ -90,10 +90,10 @@
      * @opt_param int start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      * @return Google_McfData
      */
-    public function get($ids, $start_date, $end_date, $metrics, $optParams = array()) {
-      $params = array('ids' => $ids, 'start-date' => $start_date, 'end-date' => $end_date, 'metrics' => $metrics);
+    public function get($ids, $start_date, $end_date, $metrics, $optParams = []) {
+      $params = ['ids' => $ids, 'start-date' => $start_date, 'end-date' => $end_date, 'metrics' => $metrics];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_McfData($data);
       } else {
@@ -124,10 +124,10 @@
      * @opt_param string sort A comma-separated list of dimensions or metrics that determine the sort order for real time data.
      * @return Google_RealtimeData
      */
-    public function get($ids, $metrics, $optParams = array()) {
-      $params = array('ids' => $ids, 'metrics' => $metrics);
+    public function get($ids, $metrics, $optParams = []) {
+      $params = ['ids' => $ids, 'metrics' => $metrics];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_RealtimeData($data);
       } else {
@@ -165,10 +165,10 @@
      * @param string $linkId Link ID to delete the user link for.
      * @param array $optParams Optional parameters.
      */
-    public function delete($accountId, $linkId, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'linkId' => $linkId);
+    public function delete($accountId, $linkId, $optParams = []) {
+      $params = ['accountId' => $accountId, 'linkId' => $linkId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -179,10 +179,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_EntityUserLink
      */
-    public function insert($accountId, Google_EntityUserLink $postBody, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'postBody' => $postBody);
+    public function insert($accountId, Google_EntityUserLink $postBody, $optParams = []) {
+      $params = ['accountId' => $accountId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_EntityUserLink($data);
       } else {
@@ -199,10 +199,10 @@
      * @opt_param int start-index An index of the first account-user link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      * @return Google_EntityUserLinks
      */
-    public function listManagementAccountUserLinks($accountId, $optParams = array()) {
-      $params = array('accountId' => $accountId);
+    public function listManagementAccountUserLinks($accountId, $optParams = []) {
+      $params = ['accountId' => $accountId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_EntityUserLinks($data);
       } else {
@@ -219,10 +219,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_EntityUserLink
      */
-    public function update($accountId, $linkId, Google_EntityUserLink $postBody, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'linkId' => $linkId, 'postBody' => $postBody);
+    public function update($accountId, $linkId, Google_EntityUserLink $postBody, $optParams = []) {
+      $params = ['accountId' => $accountId, 'linkId' => $linkId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_EntityUserLink($data);
       } else {
@@ -249,10 +249,10 @@
      * @opt_param int start-index An index of the first account to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      * @return Google_Accounts
      */
-    public function listManagementAccounts($optParams = array()) {
-      $params = array();
+    public function listManagementAccounts($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Accounts($data);
       } else {
@@ -282,10 +282,10 @@
      * @opt_param int start-index A 1-based index of the first custom data source to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      * @return Google_CustomDataSources
      */
-    public function listManagementCustomDataSources($accountId, $webPropertyId, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId);
+    public function listManagementCustomDataSources($accountId, $webPropertyId, $optParams = []) {
+      $params = ['accountId' => $accountId, 'webPropertyId' => $webPropertyId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_CustomDataSources($data);
       } else {
@@ -313,10 +313,10 @@
      * @param string $type Type of data for this delete.
      * @param array $optParams Optional parameters.
      */
-    public function delete($accountId, $webPropertyId, $customDataSourceId, $date, $type, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'customDataSourceId' => $customDataSourceId, 'date' => $date, 'type' => $type);
+    public function delete($accountId, $webPropertyId, $customDataSourceId, $date, $type, $optParams = []) {
+      $params = ['accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'customDataSourceId' => $customDataSourceId, 'date' => $date, 'type' => $type];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -333,10 +333,10 @@
      * @opt_param int start-index A 1-based index of the first daily upload to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      * @return Google_DailyUploads
      */
-    public function listManagementDailyUploads($accountId, $webPropertyId, $customDataSourceId, $start_date, $end_date, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'customDataSourceId' => $customDataSourceId, 'start-date' => $start_date, 'end-date' => $end_date);
+    public function listManagementDailyUploads($accountId, $webPropertyId, $customDataSourceId, $start_date, $end_date, $optParams = []) {
+      $params = ['accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'customDataSourceId' => $customDataSourceId, 'start-date' => $start_date, 'end-date' => $end_date];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_DailyUploads($data);
       } else {
@@ -357,10 +357,10 @@
      * @opt_param bool reset Reset/Overwrite all previous appends for this date and start over with this file as the first upload.
      * @return Google_DailyUploadAppend
      */
-    public function upload($accountId, $webPropertyId, $customDataSourceId, $date, $appendNumber, $type, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'customDataSourceId' => $customDataSourceId, 'date' => $date, 'appendNumber' => $appendNumber, 'type' => $type);
+    public function upload($accountId, $webPropertyId, $customDataSourceId, $date, $appendNumber, $type, $optParams = []) {
+      $params = ['accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'customDataSourceId' => $customDataSourceId, 'date' => $date, 'appendNumber' => $appendNumber, 'type' => $type];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('upload', array($params));
+      $data = $this->__call('upload', [$params]);
       if ($this->useObjects()) {
         return new Google_DailyUploadAppend($data);
       } else {
@@ -387,10 +387,10 @@
      * @param string $experimentId ID of the experiment to delete
      * @param array $optParams Optional parameters.
      */
-    public function delete($accountId, $webPropertyId, $profileId, $experimentId, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'experimentId' => $experimentId);
+    public function delete($accountId, $webPropertyId, $profileId, $experimentId, $optParams = []) {
+      $params = ['accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'experimentId' => $experimentId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -403,10 +403,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Experiment
      */
-    public function get($accountId, $webPropertyId, $profileId, $experimentId, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'experimentId' => $experimentId);
+    public function get($accountId, $webPropertyId, $profileId, $experimentId, $optParams = []) {
+      $params = ['accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'experimentId' => $experimentId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Experiment($data);
       } else {
@@ -423,10 +423,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Experiment
      */
-    public function insert($accountId, $webPropertyId, $profileId, Google_Experiment $postBody, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'postBody' => $postBody);
+    public function insert($accountId, $webPropertyId, $profileId, Google_Experiment $postBody, $optParams = []) {
+      $params = ['accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Experiment($data);
       } else {
@@ -445,10 +445,10 @@
      * @opt_param int start-index An index of the first experiment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      * @return Google_Experiments
      */
-    public function listManagementExperiments($accountId, $webPropertyId, $profileId, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId);
+    public function listManagementExperiments($accountId, $webPropertyId, $profileId, $optParams = []) {
+      $params = ['accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Experiments($data);
       } else {
@@ -467,10 +467,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Experiment
      */
-    public function patch($accountId, $webPropertyId, $profileId, $experimentId, Google_Experiment $postBody, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'experimentId' => $experimentId, 'postBody' => $postBody);
+    public function patch($accountId, $webPropertyId, $profileId, $experimentId, Google_Experiment $postBody, $optParams = []) {
+      $params = ['accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'experimentId' => $experimentId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_Experiment($data);
       } else {
@@ -488,10 +488,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Experiment
      */
-    public function update($accountId, $webPropertyId, $profileId, $experimentId, Google_Experiment $postBody, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'experimentId' => $experimentId, 'postBody' => $postBody);
+    public function update($accountId, $webPropertyId, $profileId, $experimentId, Google_Experiment $postBody, $optParams = []) {
+      $params = ['accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'experimentId' => $experimentId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_Experiment($data);
       } else {
@@ -519,10 +519,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Goal
      */
-    public function get($accountId, $webPropertyId, $profileId, $goalId, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'goalId' => $goalId);
+    public function get($accountId, $webPropertyId, $profileId, $goalId, $optParams = []) {
+      $params = ['accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'goalId' => $goalId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Goal($data);
       } else {
@@ -539,10 +539,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Goal
      */
-    public function insert($accountId, $webPropertyId, $profileId, Google_Goal $postBody, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'postBody' => $postBody);
+    public function insert($accountId, $webPropertyId, $profileId, Google_Goal $postBody, $optParams = []) {
+      $params = ['accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Goal($data);
       } else {
@@ -561,10 +561,10 @@
      * @opt_param int start-index An index of the first goal to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      * @return Google_Goals
      */
-    public function listManagementGoals($accountId, $webPropertyId, $profileId, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId);
+    public function listManagementGoals($accountId, $webPropertyId, $profileId, $optParams = []) {
+      $params = ['accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Goals($data);
       } else {
@@ -583,10 +583,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Goal
      */
-    public function patch($accountId, $webPropertyId, $profileId, $goalId, Google_Goal $postBody, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'goalId' => $goalId, 'postBody' => $postBody);
+    public function patch($accountId, $webPropertyId, $profileId, $goalId, Google_Goal $postBody, $optParams = []) {
+      $params = ['accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'goalId' => $goalId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_Goal($data);
       } else {
@@ -604,10 +604,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Goal
      */
-    public function update($accountId, $webPropertyId, $profileId, $goalId, Google_Goal $postBody, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'goalId' => $goalId, 'postBody' => $postBody);
+    public function update($accountId, $webPropertyId, $profileId, $goalId, Google_Goal $postBody, $optParams = []) {
+      $params = ['accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'goalId' => $goalId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_Goal($data);
       } else {
@@ -634,10 +634,10 @@
      * @param string $linkId Link ID to delete the user link for.
      * @param array $optParams Optional parameters.
      */
-    public function delete($accountId, $webPropertyId, $profileId, $linkId, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'linkId' => $linkId);
+    public function delete($accountId, $webPropertyId, $profileId, $linkId, $optParams = []) {
+      $params = ['accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'linkId' => $linkId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -650,10 +650,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_EntityUserLink
      */
-    public function insert($accountId, $webPropertyId, $profileId, Google_EntityUserLink $postBody, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'postBody' => $postBody);
+    public function insert($accountId, $webPropertyId, $profileId, Google_EntityUserLink $postBody, $optParams = []) {
+      $params = ['accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_EntityUserLink($data);
       } else {
@@ -672,10 +672,10 @@
      * @opt_param int start-index An index of the first profile-user link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      * @return Google_EntityUserLinks
      */
-    public function listManagementProfileUserLinks($accountId, $webPropertyId, $profileId, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId);
+    public function listManagementProfileUserLinks($accountId, $webPropertyId, $profileId, $optParams = []) {
+      $params = ['accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_EntityUserLinks($data);
       } else {
@@ -694,10 +694,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_EntityUserLink
      */
-    public function update($accountId, $webPropertyId, $profileId, $linkId, Google_EntityUserLink $postBody, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'linkId' => $linkId, 'postBody' => $postBody);
+    public function update($accountId, $webPropertyId, $profileId, $linkId, Google_EntityUserLink $postBody, $optParams = []) {
+      $params = ['accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'linkId' => $linkId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_EntityUserLink($data);
       } else {
@@ -723,10 +723,10 @@
      * @param string $profileId ID of the view (profile) to be deleted.
      * @param array $optParams Optional parameters.
      */
-    public function delete($accountId, $webPropertyId, $profileId, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId);
+    public function delete($accountId, $webPropertyId, $profileId, $optParams = []) {
+      $params = ['accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -738,10 +738,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Profile
      */
-    public function get($accountId, $webPropertyId, $profileId, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId);
+    public function get($accountId, $webPropertyId, $profileId, $optParams = []) {
+      $params = ['accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Profile($data);
       } else {
@@ -757,10 +757,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Profile
      */
-    public function insert($accountId, $webPropertyId, Google_Profile $postBody, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'postBody' => $postBody);
+    public function insert($accountId, $webPropertyId, Google_Profile $postBody, $optParams = []) {
+      $params = ['accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Profile($data);
       } else {
@@ -778,10 +778,10 @@
      * @opt_param int start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      * @return Google_Profiles
      */
-    public function listManagementProfiles($accountId, $webPropertyId, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId);
+    public function listManagementProfiles($accountId, $webPropertyId, $optParams = []) {
+      $params = ['accountId' => $accountId, 'webPropertyId' => $webPropertyId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Profiles($data);
       } else {
@@ -799,10 +799,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Profile
      */
-    public function patch($accountId, $webPropertyId, $profileId, Google_Profile $postBody, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'postBody' => $postBody);
+    public function patch($accountId, $webPropertyId, $profileId, Google_Profile $postBody, $optParams = []) {
+      $params = ['accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_Profile($data);
       } else {
@@ -819,10 +819,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Profile
      */
-    public function update($accountId, $webPropertyId, $profileId, Google_Profile $postBody, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'postBody' => $postBody);
+    public function update($accountId, $webPropertyId, $profileId, Google_Profile $postBody, $optParams = []) {
+      $params = ['accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'profileId' => $profileId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_Profile($data);
       } else {
@@ -849,10 +849,10 @@
      * @opt_param int start-index An index of the first advanced segment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      * @return Google_Segments
      */
-    public function listManagementSegments($optParams = array()) {
-      $params = array();
+    public function listManagementSegments($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Segments($data);
       } else {
@@ -879,10 +879,10 @@
      * @param Google_AnalyticsDataimportDeleteUploadDataRequest $postBody
      * @param array $optParams Optional parameters.
      */
-    public function deleteUploadData($accountId, $webPropertyId, $customDataSourceId, Google_AnalyticsDataimportDeleteUploadDataRequest $postBody, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'customDataSourceId' => $customDataSourceId, 'postBody' => $postBody);
+    public function deleteUploadData($accountId, $webPropertyId, $customDataSourceId, Google_AnalyticsDataimportDeleteUploadDataRequest $postBody, $optParams = []) {
+      $params = ['accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'customDataSourceId' => $customDataSourceId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('deleteUploadData', array($params));
+      $data = $this->__call('deleteUploadData', [$params]);
       return $data;
     }
     /**
@@ -895,10 +895,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Upload
      */
-    public function get($accountId, $webPropertyId, $customDataSourceId, $uploadId, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'customDataSourceId' => $customDataSourceId, 'uploadId' => $uploadId);
+    public function get($accountId, $webPropertyId, $customDataSourceId, $uploadId, $optParams = []) {
+      $params = ['accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'customDataSourceId' => $customDataSourceId, 'uploadId' => $uploadId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Upload($data);
       } else {
@@ -917,10 +917,10 @@
      * @opt_param int start-index A 1-based index of the first upload to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      * @return Google_Uploads
      */
-    public function listManagementUploads($accountId, $webPropertyId, $customDataSourceId, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'customDataSourceId' => $customDataSourceId);
+    public function listManagementUploads($accountId, $webPropertyId, $customDataSourceId, $optParams = []) {
+      $params = ['accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'customDataSourceId' => $customDataSourceId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Uploads($data);
       } else {
@@ -936,10 +936,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Upload
      */
-    public function uploadData($accountId, $webPropertyId, $customDataSourceId, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'customDataSourceId' => $customDataSourceId);
+    public function uploadData($accountId, $webPropertyId, $customDataSourceId, $optParams = []) {
+      $params = ['accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'customDataSourceId' => $customDataSourceId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('uploadData', array($params));
+      $data = $this->__call('uploadData', [$params]);
       if ($this->useObjects()) {
         return new Google_Upload($data);
       } else {
@@ -965,10 +965,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Webproperty
      */
-    public function get($accountId, $webPropertyId, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId);
+    public function get($accountId, $webPropertyId, $optParams = []) {
+      $params = ['accountId' => $accountId, 'webPropertyId' => $webPropertyId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Webproperty($data);
       } else {
@@ -984,10 +984,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Webproperty
      */
-    public function insert($accountId, Google_Webproperty $postBody, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'postBody' => $postBody);
+    public function insert($accountId, Google_Webproperty $postBody, $optParams = []) {
+      $params = ['accountId' => $accountId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Webproperty($data);
       } else {
@@ -1004,10 +1004,10 @@
      * @opt_param int start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      * @return Google_Webproperties
      */
-    public function listManagementWebproperties($accountId, $optParams = array()) {
-      $params = array('accountId' => $accountId);
+    public function listManagementWebproperties($accountId, $optParams = []) {
+      $params = ['accountId' => $accountId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Webproperties($data);
       } else {
@@ -1024,10 +1024,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Webproperty
      */
-    public function patch($accountId, $webPropertyId, Google_Webproperty $postBody, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'postBody' => $postBody);
+    public function patch($accountId, $webPropertyId, Google_Webproperty $postBody, $optParams = []) {
+      $params = ['accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_Webproperty($data);
       } else {
@@ -1043,10 +1043,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Webproperty
      */
-    public function update($accountId, $webPropertyId, Google_Webproperty $postBody, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'postBody' => $postBody);
+    public function update($accountId, $webPropertyId, Google_Webproperty $postBody, $optParams = []) {
+      $params = ['accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_Webproperty($data);
       } else {
@@ -1072,10 +1072,10 @@
      * @param string $linkId Link ID to delete the user link for.
      * @param array $optParams Optional parameters.
      */
-    public function delete($accountId, $webPropertyId, $linkId, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'linkId' => $linkId);
+    public function delete($accountId, $webPropertyId, $linkId, $optParams = []) {
+      $params = ['accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'linkId' => $linkId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -1087,10 +1087,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_EntityUserLink
      */
-    public function insert($accountId, $webPropertyId, Google_EntityUserLink $postBody, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'postBody' => $postBody);
+    public function insert($accountId, $webPropertyId, Google_EntityUserLink $postBody, $optParams = []) {
+      $params = ['accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_EntityUserLink($data);
       } else {
@@ -1109,10 +1109,10 @@
      * @opt_param int start-index An index of the first webProperty-user link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      * @return Google_EntityUserLinks
      */
-    public function listManagementWebpropertyUserLinks($accountId, $webPropertyId, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId);
+    public function listManagementWebpropertyUserLinks($accountId, $webPropertyId, $optParams = []) {
+      $params = ['accountId' => $accountId, 'webPropertyId' => $webPropertyId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_EntityUserLinks($data);
       } else {
@@ -1130,10 +1130,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_EntityUserLink
      */
-    public function update($accountId, $webPropertyId, $linkId, Google_EntityUserLink $postBody, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'linkId' => $linkId, 'postBody' => $postBody);
+    public function update($accountId, $webPropertyId, $linkId, Google_EntityUserLink $postBody, $optParams = []) {
+      $params = ['accountId' => $accountId, 'webPropertyId' => $webPropertyId, 'linkId' => $linkId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_EntityUserLink($data);
       } else {
@@ -1171,10 +1171,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Columns
      */
-    public function listMetadataColumns($reportType, $optParams = array()) {
-      $params = array('reportType' => $reportType);
+    public function listMetadataColumns($reportType, $optParams = []) {
+      $params = ['reportType' => $reportType];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Columns($data);
       } else {

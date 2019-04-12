@@ -31,10 +31,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Groups
      */
-    public function get($groupUniqueId, $optParams = array()) {
-      $params = array('groupUniqueId' => $groupUniqueId);
+    public function get($groupUniqueId, $optParams = []) {
+      $params = ['groupUniqueId' => $groupUniqueId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Groups($data);
       } else {
@@ -49,10 +49,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Groups
      */
-    public function patch($groupUniqueId, Google_Groups $postBody, $optParams = array()) {
-      $params = array('groupUniqueId' => $groupUniqueId, 'postBody' => $postBody);
+    public function patch($groupUniqueId, Google_Groups $postBody, $optParams = []) {
+      $params = ['groupUniqueId' => $groupUniqueId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_Groups($data);
       } else {
@@ -67,10 +67,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Groups
      */
-    public function update($groupUniqueId, Google_Groups $postBody, $optParams = array()) {
-      $params = array('groupUniqueId' => $groupUniqueId, 'postBody' => $postBody);
+    public function update($groupUniqueId, Google_Groups $postBody, $optParams = []) {
+      $params = ['groupUniqueId' => $groupUniqueId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_Groups($data);
       } else {

@@ -36,10 +36,10 @@
      * @opt_param string advertiserId The ID of the advertiser to look up. Optional.
      * @return Google_Advertiser
      */
-    public function get($role, $roleId, $optParams = array()) {
-      $params = array('role' => $role, 'roleId' => $roleId);
+    public function get($role, $roleId, $optParams = []) {
+      $params = ['role' => $role, 'roleId' => $roleId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Advertiser($data);
       } else {
@@ -63,10 +63,10 @@
      * @opt_param string relationshipStatus Filters out all advertisers for which do not have the given relationship status with the requesting publisher.
      * @return Google_Advertisers
      */
-    public function listAdvertisers($role, $roleId, $optParams = array()) {
-      $params = array('role' => $role, 'roleId' => $roleId);
+    public function listAdvertisers($role, $roleId, $optParams = []) {
+      $params = ['role' => $role, 'roleId' => $roleId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Advertisers($data);
       } else {
@@ -95,10 +95,10 @@
      * @opt_param string projection The set of fields to return.
      * @return Google_CcOffers
      */
-    public function listCcOffers($publisher, $optParams = array()) {
-      $params = array('publisher' => $publisher);
+    public function listCcOffers($publisher, $optParams = []) {
+      $params = ['publisher' => $publisher];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_CcOffers($data);
       } else {
@@ -142,10 +142,10 @@
      * @opt_param string type Filters out all events that are not of the given type. Valid values: 'action', 'transaction', 'charge'. Optional.
      * @return Google_Events
      */
-    public function listEvents($role, $roleId, $optParams = array()) {
-      $params = array('role' => $role, 'roleId' => $roleId);
+    public function listEvents($role, $roleId, $optParams = []) {
+      $params = ['role' => $role, 'roleId' => $roleId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Events($data);
       } else {
@@ -175,10 +175,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Link
      */
-    public function get($role, $roleId, $linkId, $optParams = array()) {
-      $params = array('role' => $role, 'roleId' => $roleId, 'linkId' => $linkId);
+    public function get($role, $roleId, $linkId, $optParams = []) {
+      $params = ['role' => $role, 'roleId' => $roleId, 'linkId' => $linkId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Link($data);
       } else {
@@ -194,10 +194,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Link
      */
-    public function insert($role, $roleId, Google_Link $postBody, $optParams = array()) {
-      $params = array('role' => $role, 'roleId' => $roleId, 'postBody' => $postBody);
+    public function insert($role, $roleId, Google_Link $postBody, $optParams = []) {
+      $params = ['role' => $role, 'roleId' => $roleId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Link($data);
       } else {
@@ -226,10 +226,10 @@
      * @opt_param string startDateMin The beginning of the start date range.
      * @return Google_Links
      */
-    public function listLinks($role, $roleId, $optParams = array()) {
-      $params = array('role' => $role, 'roleId' => $roleId);
+    public function listLinks($role, $roleId, $optParams = []) {
+      $params = ['role' => $role, 'roleId' => $roleId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Links($data);
       } else {
@@ -260,10 +260,10 @@
      * @opt_param string publisherId The ID of the publisher to look up. Optional.
      * @return Google_Publisher
      */
-    public function get($role, $roleId, $optParams = array()) {
-      $params = array('role' => $role, 'roleId' => $roleId);
+    public function get($role, $roleId, $optParams = []) {
+      $params = ['role' => $role, 'roleId' => $roleId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Publisher($data);
       } else {
@@ -287,10 +287,10 @@
      * @opt_param string relationshipStatus Filters out all publishers for which do not have the given relationship status with the requesting publisher.
      * @return Google_Publishers
      */
-    public function listPublishers($role, $roleId, $optParams = array()) {
-      $params = array('role' => $role, 'roleId' => $roleId);
+    public function listPublishers($role, $roleId, $optParams = []) {
+      $params = ['role' => $role, 'roleId' => $roleId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Publishers($data);
       } else {
@@ -330,10 +330,10 @@
      * @opt_param string status Filters out all events that do not have the given status. Valid values: 'active', 'canceled', or 'invalid'. Optional.
      * @return Google_Report
      */
-    public function get($role, $roleId, $reportType, $optParams = array()) {
-      $params = array('role' => $role, 'roleId' => $roleId, 'reportType' => $reportType);
+    public function get($role, $roleId, $reportType, $optParams = []) {
+      $params = ['role' => $role, 'roleId' => $roleId, 'reportType' => $reportType];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Report($data);
       } else {

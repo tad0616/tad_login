@@ -33,10 +33,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_AllocateIdsResponse
      */
-    public function allocateIds($datasetId, Google_AllocateIdsRequest $postBody, $optParams = array()) {
-      $params = array('datasetId' => $datasetId, 'postBody' => $postBody);
+    public function allocateIds($datasetId, Google_AllocateIdsRequest $postBody, $optParams = []) {
+      $params = ['datasetId' => $datasetId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('allocateIds', array($params));
+      $data = $this->__call('allocateIds', [$params]);
       if ($this->useObjects()) {
         return new Google_AllocateIdsResponse($data);
       } else {
@@ -51,10 +51,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_BeginTransactionResponse
      */
-    public function beginTransaction($datasetId, Google_BeginTransactionRequest $postBody, $optParams = array()) {
-      $params = array('datasetId' => $datasetId, 'postBody' => $postBody);
+    public function beginTransaction($datasetId, Google_BeginTransactionRequest $postBody, $optParams = []) {
+      $params = ['datasetId' => $datasetId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('beginTransaction', array($params));
+      $data = $this->__call('beginTransaction', [$params]);
       if ($this->useObjects()) {
         return new Google_BeginTransactionResponse($data);
       } else {
@@ -69,10 +69,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_BlindWriteResponse
      */
-    public function blindWrite($datasetId, Google_BlindWriteRequest $postBody, $optParams = array()) {
-      $params = array('datasetId' => $datasetId, 'postBody' => $postBody);
+    public function blindWrite($datasetId, Google_BlindWriteRequest $postBody, $optParams = []) {
+      $params = ['datasetId' => $datasetId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('blindWrite', array($params));
+      $data = $this->__call('blindWrite', [$params]);
       if ($this->useObjects()) {
         return new Google_BlindWriteResponse($data);
       } else {
@@ -87,10 +87,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_CommitResponse
      */
-    public function commit($datasetId, Google_CommitRequest $postBody, $optParams = array()) {
-      $params = array('datasetId' => $datasetId, 'postBody' => $postBody);
+    public function commit($datasetId, Google_CommitRequest $postBody, $optParams = []) {
+      $params = ['datasetId' => $datasetId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('commit', array($params));
+      $data = $this->__call('commit', [$params]);
       if ($this->useObjects()) {
         return new Google_CommitResponse($data);
       } else {
@@ -105,10 +105,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_LookupResponse
      */
-    public function lookup($datasetId, Google_LookupRequest $postBody, $optParams = array()) {
-      $params = array('datasetId' => $datasetId, 'postBody' => $postBody);
+    public function lookup($datasetId, Google_LookupRequest $postBody, $optParams = []) {
+      $params = ['datasetId' => $datasetId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('lookup', array($params));
+      $data = $this->__call('lookup', [$params]);
       if ($this->useObjects()) {
         return new Google_LookupResponse($data);
       } else {
@@ -123,10 +123,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_RollbackResponse
      */
-    public function rollback($datasetId, Google_RollbackRequest $postBody, $optParams = array()) {
-      $params = array('datasetId' => $datasetId, 'postBody' => $postBody);
+    public function rollback($datasetId, Google_RollbackRequest $postBody, $optParams = []) {
+      $params = ['datasetId' => $datasetId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('rollback', array($params));
+      $data = $this->__call('rollback', [$params]);
       if ($this->useObjects()) {
         return new Google_RollbackResponse($data);
       } else {
@@ -141,10 +141,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_RunQueryResponse
      */
-    public function runQuery($datasetId, Google_RunQueryRequest $postBody, $optParams = array()) {
-      $params = array('datasetId' => $datasetId, 'postBody' => $postBody);
+    public function runQuery($datasetId, Google_RunQueryRequest $postBody, $optParams = []) {
+      $params = ['datasetId' => $datasetId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('runQuery', array($params));
+      $data = $this->__call('runQuery', [$params]);
       if ($this->useObjects()) {
         return new Google_RunQueryResponse($data);
       } else {

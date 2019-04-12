@@ -33,10 +33,10 @@
      * @opt_param bool tree Whether the tree of sub accounts should be returned.
      * @return Google_Account
      */
-    public function get($accountId, $optParams = array()) {
-      $params = array('accountId' => $accountId);
+    public function get($accountId, $optParams = []) {
+      $params = ['accountId' => $accountId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Account($data);
       } else {
@@ -52,10 +52,10 @@
      * @opt_param string pageToken A continuation token, used to page through accounts. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      * @return Google_Accounts
      */
-    public function listAccounts($optParams = array()) {
-      $params = array();
+    public function listAccounts($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Accounts($data);
       } else {
@@ -84,10 +84,10 @@
      * @opt_param string pageToken A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      * @return Google_AdClients
      */
-    public function listAccountsAdclients($accountId, $optParams = array()) {
-      $params = array('accountId' => $accountId);
+    public function listAccountsAdclients($accountId, $optParams = []) {
+      $params = ['accountId' => $accountId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_AdClients($data);
       } else {
@@ -114,10 +114,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_AdUnit
      */
-    public function get($accountId, $adClientId, $adUnitId, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'adClientId' => $adClientId, 'adUnitId' => $adUnitId);
+    public function get($accountId, $adClientId, $adUnitId, $optParams = []) {
+      $params = ['accountId' => $accountId, 'adClientId' => $adClientId, 'adUnitId' => $adUnitId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_AdUnit($data);
       } else {
@@ -133,10 +133,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_AdCode
      */
-    public function getAdCode($accountId, $adClientId, $adUnitId, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'adClientId' => $adClientId, 'adUnitId' => $adUnitId);
+    public function getAdCode($accountId, $adClientId, $adUnitId, $optParams = []) {
+      $params = ['accountId' => $accountId, 'adClientId' => $adClientId, 'adUnitId' => $adUnitId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('getAdCode', array($params));
+      $data = $this->__call('getAdCode', [$params]);
       if ($this->useObjects()) {
         return new Google_AdCode($data);
       } else {
@@ -155,10 +155,10 @@
      * @opt_param string pageToken A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      * @return Google_AdUnits
      */
-    public function listAccountsAdunits($accountId, $adClientId, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'adClientId' => $adClientId);
+    public function listAccountsAdunits($accountId, $adClientId, $optParams = []) {
+      $params = ['accountId' => $accountId, 'adClientId' => $adClientId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_AdUnits($data);
       } else {
@@ -189,10 +189,10 @@
      * @opt_param string pageToken A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      * @return Google_CustomChannels
      */
-    public function listAccountsAdunitsCustomchannels($accountId, $adClientId, $adUnitId, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'adClientId' => $adClientId, 'adUnitId' => $adUnitId);
+    public function listAccountsAdunitsCustomchannels($accountId, $adClientId, $adUnitId, $optParams = []) {
+      $params = ['accountId' => $accountId, 'adClientId' => $adClientId, 'adUnitId' => $adUnitId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_CustomChannels($data);
       } else {
@@ -219,10 +219,10 @@
      * @opt_param string locale The locale to use for translating alert messages. The account locale will be used if this is not supplied. The AdSense default (English) will be used if the supplied locale is invalid or unsupported.
      * @return Google_Alerts
      */
-    public function listAccountsAlerts($accountId, $optParams = array()) {
-      $params = array('accountId' => $accountId);
+    public function listAccountsAlerts($accountId, $optParams = []) {
+      $params = ['accountId' => $accountId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Alerts($data);
       } else {
@@ -250,10 +250,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_CustomChannel
      */
-    public function get($accountId, $adClientId, $customChannelId, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'adClientId' => $adClientId, 'customChannelId' => $customChannelId);
+    public function get($accountId, $adClientId, $customChannelId, $optParams = []) {
+      $params = ['accountId' => $accountId, 'adClientId' => $adClientId, 'customChannelId' => $customChannelId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_CustomChannel($data);
       } else {
@@ -272,10 +272,10 @@
      * @opt_param string pageToken A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      * @return Google_CustomChannels
      */
-    public function listAccountsCustomchannels($accountId, $adClientId, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'adClientId' => $adClientId);
+    public function listAccountsCustomchannels($accountId, $adClientId, $optParams = []) {
+      $params = ['accountId' => $accountId, 'adClientId' => $adClientId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_CustomChannels($data);
       } else {
@@ -307,10 +307,10 @@
      * @opt_param string pageToken A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      * @return Google_AdUnits
      */
-    public function listAccountsCustomchannelsAdunits($accountId, $adClientId, $customChannelId, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'adClientId' => $adClientId, 'customChannelId' => $customChannelId);
+    public function listAccountsCustomchannelsAdunits($accountId, $adClientId, $customChannelId, $optParams = []) {
+      $params = ['accountId' => $accountId, 'adClientId' => $adClientId, 'customChannelId' => $customChannelId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_AdUnits($data);
       } else {
@@ -349,10 +349,10 @@
      * @opt_param bool useTimezoneReporting Whether the report should be generated in the AdSense account's local timezone. If false default PST/PDT timezone will be used.
      * @return Google_AdsenseReportsGenerateResponse
      */
-    public function generate($accountId, $startDate, $endDate, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'startDate' => $startDate, 'endDate' => $endDate);
+    public function generate($accountId, $startDate, $endDate, $optParams = []) {
+      $params = ['accountId' => $accountId, 'startDate' => $startDate, 'endDate' => $endDate];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('generate', array($params));
+      $data = $this->__call('generate', [$params]);
       if ($this->useObjects()) {
         return new Google_AdsenseReportsGenerateResponse($data);
       } else {
@@ -384,10 +384,10 @@
      * @opt_param int startIndex Index of the first row of report data to return.
      * @return Google_AdsenseReportsGenerateResponse
      */
-    public function generate($accountId, $savedReportId, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'savedReportId' => $savedReportId);
+    public function generate($accountId, $savedReportId, $optParams = []) {
+      $params = ['accountId' => $accountId, 'savedReportId' => $savedReportId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('generate', array($params));
+      $data = $this->__call('generate', [$params]);
       if ($this->useObjects()) {
         return new Google_AdsenseReportsGenerateResponse($data);
       } else {
@@ -404,10 +404,10 @@
      * @opt_param string pageToken A continuation token, used to page through saved reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      * @return Google_SavedReports
      */
-    public function listAccountsReportsSaved($accountId, $optParams = array()) {
-      $params = array('accountId' => $accountId);
+    public function listAccountsReportsSaved($accountId, $optParams = []) {
+      $params = ['accountId' => $accountId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_SavedReports($data);
       } else {
@@ -433,10 +433,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_SavedAdStyle
      */
-    public function get($accountId, $savedAdStyleId, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'savedAdStyleId' => $savedAdStyleId);
+    public function get($accountId, $savedAdStyleId, $optParams = []) {
+      $params = ['accountId' => $accountId, 'savedAdStyleId' => $savedAdStyleId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_SavedAdStyle($data);
       } else {
@@ -453,10 +453,10 @@
      * @opt_param string pageToken A continuation token, used to page through saved ad styles. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      * @return Google_SavedAdStyles
      */
-    public function listAccountsSavedadstyles($accountId, $optParams = array()) {
-      $params = array('accountId' => $accountId);
+    public function listAccountsSavedadstyles($accountId, $optParams = []) {
+      $params = ['accountId' => $accountId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_SavedAdStyles($data);
       } else {
@@ -485,10 +485,10 @@
      * @opt_param string pageToken A continuation token, used to page through URL channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      * @return Google_UrlChannels
      */
-    public function listAccountsUrlchannels($accountId, $adClientId, $optParams = array()) {
-      $params = array('accountId' => $accountId, 'adClientId' => $adClientId);
+    public function listAccountsUrlchannels($accountId, $adClientId, $optParams = []) {
+      $params = ['accountId' => $accountId, 'adClientId' => $adClientId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_UrlChannels($data);
       } else {
@@ -516,10 +516,10 @@
      * @opt_param string pageToken A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      * @return Google_AdClients
      */
-    public function listAdclients($optParams = array()) {
-      $params = array();
+    public function listAdclients($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_AdClients($data);
       } else {
@@ -546,10 +546,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_AdUnit
      */
-    public function get($adClientId, $adUnitId, $optParams = array()) {
-      $params = array('adClientId' => $adClientId, 'adUnitId' => $adUnitId);
+    public function get($adClientId, $adUnitId, $optParams = []) {
+      $params = ['adClientId' => $adClientId, 'adUnitId' => $adUnitId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_AdUnit($data);
       } else {
@@ -564,10 +564,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_AdCode
      */
-    public function getAdCode($adClientId, $adUnitId, $optParams = array()) {
-      $params = array('adClientId' => $adClientId, 'adUnitId' => $adUnitId);
+    public function getAdCode($adClientId, $adUnitId, $optParams = []) {
+      $params = ['adClientId' => $adClientId, 'adUnitId' => $adUnitId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('getAdCode', array($params));
+      $data = $this->__call('getAdCode', [$params]);
       if ($this->useObjects()) {
         return new Google_AdCode($data);
       } else {
@@ -585,10 +585,10 @@
      * @opt_param string pageToken A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      * @return Google_AdUnits
      */
-    public function listAdunits($adClientId, $optParams = array()) {
-      $params = array('adClientId' => $adClientId);
+    public function listAdunits($adClientId, $optParams = []) {
+      $params = ['adClientId' => $adClientId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_AdUnits($data);
       } else {
@@ -618,10 +618,10 @@
      * @opt_param string pageToken A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      * @return Google_CustomChannels
      */
-    public function listAdunitsCustomchannels($adClientId, $adUnitId, $optParams = array()) {
-      $params = array('adClientId' => $adClientId, 'adUnitId' => $adUnitId);
+    public function listAdunitsCustomchannels($adClientId, $adUnitId, $optParams = []) {
+      $params = ['adClientId' => $adClientId, 'adUnitId' => $adUnitId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_CustomChannels($data);
       } else {
@@ -648,10 +648,10 @@
      * @opt_param string locale The locale to use for translating alert messages. The account locale will be used if this is not supplied. The AdSense default (English) will be used if the supplied locale is invalid or unsupported.
      * @return Google_Alerts
      */
-    public function listAlerts($optParams = array()) {
-      $params = array();
+    public function listAlerts($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Alerts($data);
       } else {
@@ -678,10 +678,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_CustomChannel
      */
-    public function get($adClientId, $customChannelId, $optParams = array()) {
-      $params = array('adClientId' => $adClientId, 'customChannelId' => $customChannelId);
+    public function get($adClientId, $customChannelId, $optParams = []) {
+      $params = ['adClientId' => $adClientId, 'customChannelId' => $customChannelId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_CustomChannel($data);
       } else {
@@ -699,10 +699,10 @@
      * @opt_param string pageToken A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      * @return Google_CustomChannels
      */
-    public function listCustomchannels($adClientId, $optParams = array()) {
-      $params = array('adClientId' => $adClientId);
+    public function listCustomchannels($adClientId, $optParams = []) {
+      $params = ['adClientId' => $adClientId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_CustomChannels($data);
       } else {
@@ -733,10 +733,10 @@
      * @opt_param string pageToken A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      * @return Google_AdUnits
      */
-    public function listCustomchannelsAdunits($adClientId, $customChannelId, $optParams = array()) {
-      $params = array('adClientId' => $adClientId, 'customChannelId' => $customChannelId);
+    public function listCustomchannelsAdunits($adClientId, $customChannelId, $optParams = []) {
+      $params = ['adClientId' => $adClientId, 'customChannelId' => $customChannelId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_AdUnits($data);
       } else {
@@ -773,10 +773,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Metadata
      */
-    public function listMetadataDimensions($optParams = array()) {
-      $params = array();
+    public function listMetadataDimensions($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Metadata($data);
       } else {
@@ -800,10 +800,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Metadata
      */
-    public function listMetadataMetrics($optParams = array()) {
-      $params = array();
+    public function listMetadataMetrics($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Metadata($data);
       } else {
@@ -843,10 +843,10 @@
      * @opt_param bool useTimezoneReporting Whether the report should be generated in the AdSense account's local timezone. If false default PST/PDT timezone will be used.
      * @return Google_AdsenseReportsGenerateResponse
      */
-    public function generate($startDate, $endDate, $optParams = array()) {
-      $params = array('startDate' => $startDate, 'endDate' => $endDate);
+    public function generate($startDate, $endDate, $optParams = []) {
+      $params = ['startDate' => $startDate, 'endDate' => $endDate];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('generate', array($params));
+      $data = $this->__call('generate', [$params]);
       if ($this->useObjects()) {
         return new Google_AdsenseReportsGenerateResponse($data);
       } else {
@@ -877,10 +877,10 @@
      * @opt_param int startIndex Index of the first row of report data to return.
      * @return Google_AdsenseReportsGenerateResponse
      */
-    public function generate($savedReportId, $optParams = array()) {
-      $params = array('savedReportId' => $savedReportId);
+    public function generate($savedReportId, $optParams = []) {
+      $params = ['savedReportId' => $savedReportId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('generate', array($params));
+      $data = $this->__call('generate', [$params]);
       if ($this->useObjects()) {
         return new Google_AdsenseReportsGenerateResponse($data);
       } else {
@@ -896,10 +896,10 @@
      * @opt_param string pageToken A continuation token, used to page through saved reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      * @return Google_SavedReports
      */
-    public function listReportsSaved($optParams = array()) {
-      $params = array();
+    public function listReportsSaved($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_SavedReports($data);
       } else {
@@ -925,10 +925,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_SavedAdStyle
      */
-    public function get($savedAdStyleId, $optParams = array()) {
-      $params = array('savedAdStyleId' => $savedAdStyleId);
+    public function get($savedAdStyleId, $optParams = []) {
+      $params = ['savedAdStyleId' => $savedAdStyleId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_SavedAdStyle($data);
       } else {
@@ -944,10 +944,10 @@
      * @opt_param string pageToken A continuation token, used to page through saved ad styles. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      * @return Google_SavedAdStyles
      */
-    public function listSavedadstyles($optParams = array()) {
-      $params = array();
+    public function listSavedadstyles($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_SavedAdStyles($data);
       } else {
@@ -976,10 +976,10 @@
      * @opt_param string pageToken A continuation token, used to page through URL channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      * @return Google_UrlChannels
      */
-    public function listUrlchannels($adClientId, $optParams = array()) {
-      $params = array('adClientId' => $adClientId);
+    public function listUrlchannels($adClientId, $optParams = []) {
+      $params = ['adClientId' => $adClientId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_UrlChannels($data);
       } else {

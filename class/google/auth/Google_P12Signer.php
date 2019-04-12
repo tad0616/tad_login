@@ -34,7 +34,7 @@ class Google_P12Signer extends Google_Signer {
     }
 
     // This throws on error
-    $certs = array();
+    $certs = [];
     if (!openssl_pkcs12_read($p12, $certs, $password)) {
       throw new Google_AuthException("Unable to parse the p12 file.  " .
           "Is this a .p12 file?  Is the password correct?  OpenSSL error: " .

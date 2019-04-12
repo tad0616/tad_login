@@ -26,20 +26,20 @@
  */
 class Google_ServiceResource {
   // Valid query parameters that work, but don't appear in discovery.
-  private $stackParameters = array(
-      'alt' => array('type' => 'string', 'location' => 'query'),
-      'boundary' => array('type' => 'string', 'location' => 'query'),
-      'fields' => array('type' => 'string', 'location' => 'query'),
-      'trace' => array('type' => 'string', 'location' => 'query'),
-      'userIp' => array('type' => 'string', 'location' => 'query'),
-      'userip' => array('type' => 'string', 'location' => 'query'),
-      'quotaUser' => array('type' => 'string', 'location' => 'query'),
-      'file' => array('type' => 'complex', 'location' => 'body'),
-      'data' => array('type' => 'string', 'location' => 'body'),
-      'mimeType' => array('type' => 'string', 'location' => 'header'),
-      'uploadType' => array('type' => 'string', 'location' => 'query'),
-      'mediaUpload' => array('type' => 'complex', 'location' => 'query'),
-  );
+  private $stackParameters = [
+      'alt' => ['type' => 'string', 'location' => 'query'],
+      'boundary' => ['type' => 'string', 'location' => 'query'],
+      'fields' => ['type' => 'string', 'location' => 'query'],
+      'trace' => ['type' => 'string', 'location' => 'query'],
+      'userIp' => ['type' => 'string', 'location' => 'query'],
+      'userip' => ['type' => 'string', 'location' => 'query'],
+      'quotaUser' => ['type' => 'string', 'location' => 'query'],
+      'file' => ['type' => 'complex', 'location' => 'body'],
+      'data' => ['type' => 'string', 'location' => 'body'],
+      'mimeType' => ['type' => 'string', 'location' => 'header'],
+      'uploadType' => ['type' => 'string', 'location' => 'query'],
+      'mediaUpload' => ['type' => 'complex', 'location' => 'query'],
+  ];
 
   /** @var Google_Service $service */
   private $service;
@@ -57,7 +57,7 @@ class Google_ServiceResource {
     $this->service = $service;
     $this->serviceName = $serviceName;
     $this->resourceName = $resourceName;
-    $this->methods = isset($resource['methods']) ? $resource['methods'] : array($resourceName => $resource);
+    $this->methods = isset($resource['methods']) ? $resource['methods'] : [$resourceName => $resource];
   }
 
   /**
@@ -102,7 +102,7 @@ class Google_ServiceResource {
     }
 
     if (!isset($method['parameters'])) {
-      $method['parameters'] = array();
+      $method['parameters'] = [];
     }
     
     $method['parameters'] = array_merge($method['parameters'], $this->stackParameters);
@@ -154,7 +154,7 @@ class Google_ServiceResource {
     $url = Google_REST::createRequestUri($servicePath, $method['path'], $parameters);
     $httpRequest = new Google_HttpRequest($url, $method['httpMethod'], null, $postBody);
     if ($postBody) {
-      $contentTypeHeader = array();
+      $contentTypeHeader = [];
       if (isset($contentType) && $contentType) {
         $contentTypeHeader['content-type'] = $contentType;
       } else {
@@ -172,7 +172,7 @@ class Google_ServiceResource {
     // Terminate immediately if this is a resumable request.
     if (isset($parameters['uploadType']['value'])
         && Google_MediaFileUpload::UPLOAD_RESUMABLE_TYPE == $parameters['uploadType']['value']) {
-      $contentTypeHeader = array();
+      $contentTypeHeader = [];
       if (isset($contentType) && $contentType) {
         $contentTypeHeader['content-type'] = $contentType;
       }

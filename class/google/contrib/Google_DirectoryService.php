@@ -35,10 +35,10 @@
      * @opt_param string projection Restrict information returned to a set of selected fields.
      * @return Google_ChromeOsDevice
      */
-    public function get($customerId, $deviceId, $optParams = array()) {
-      $params = array('customerId' => $customerId, 'deviceId' => $deviceId);
+    public function get($customerId, $deviceId, $optParams = []) {
+      $params = ['customerId' => $customerId, 'deviceId' => $deviceId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_ChromeOsDevice($data);
       } else {
@@ -59,10 +59,10 @@
      * @opt_param string sortOrder Whether to return results in ascending or descending order. Only of use when orderBy is also used
      * @return Google_ChromeOsDevices
      */
-    public function listChromeosdevices($customerId, $optParams = array()) {
-      $params = array('customerId' => $customerId);
+    public function listChromeosdevices($customerId, $optParams = []) {
+      $params = ['customerId' => $customerId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_ChromeOsDevices($data);
       } else {
@@ -80,10 +80,10 @@
      * @opt_param string projection Restrict information returned to a set of selected fields.
      * @return Google_ChromeOsDevice
      */
-    public function patch($customerId, $deviceId, Google_ChromeOsDevice $postBody, $optParams = array()) {
-      $params = array('customerId' => $customerId, 'deviceId' => $deviceId, 'postBody' => $postBody);
+    public function patch($customerId, $deviceId, Google_ChromeOsDevice $postBody, $optParams = []) {
+      $params = ['customerId' => $customerId, 'deviceId' => $deviceId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_ChromeOsDevice($data);
       } else {
@@ -101,10 +101,10 @@
      * @opt_param string projection Restrict information returned to a set of selected fields.
      * @return Google_ChromeOsDevice
      */
-    public function update($customerId, $deviceId, Google_ChromeOsDevice $postBody, $optParams = array()) {
-      $params = array('customerId' => $customerId, 'deviceId' => $deviceId, 'postBody' => $postBody);
+    public function update($customerId, $deviceId, Google_ChromeOsDevice $postBody, $optParams = []) {
+      $params = ['customerId' => $customerId, 'deviceId' => $deviceId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_ChromeOsDevice($data);
       } else {
@@ -130,10 +130,10 @@
      * @param string $groupKey Email or immutable Id of the group
      * @param array $optParams Optional parameters.
      */
-    public function delete($groupKey, $optParams = array()) {
-      $params = array('groupKey' => $groupKey);
+    public function delete($groupKey, $optParams = []) {
+      $params = ['groupKey' => $groupKey];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -143,10 +143,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Group
      */
-    public function get($groupKey, $optParams = array()) {
-      $params = array('groupKey' => $groupKey);
+    public function get($groupKey, $optParams = []) {
+      $params = ['groupKey' => $groupKey];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Group($data);
       } else {
@@ -160,10 +160,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Group
      */
-    public function insert(Google_Group $postBody, $optParams = array()) {
-      $params = array('postBody' => $postBody);
+    public function insert(Google_Group $postBody, $optParams = []) {
+      $params = ['postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Group($data);
       } else {
@@ -182,10 +182,10 @@
      * @opt_param string userKey Email or immutable Id of the user if only those groups are to be listed, the given user is a member of. If Id, it should match with id of user object
      * @return Google_Groups
      */
-    public function listGroups($optParams = array()) {
-      $params = array();
+    public function listGroups($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Groups($data);
       } else {
@@ -200,10 +200,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Group
      */
-    public function patch($groupKey, Google_Group $postBody, $optParams = array()) {
-      $params = array('groupKey' => $groupKey, 'postBody' => $postBody);
+    public function patch($groupKey, Google_Group $postBody, $optParams = []) {
+      $params = ['groupKey' => $groupKey, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_Group($data);
       } else {
@@ -218,10 +218,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Group
      */
-    public function update($groupKey, Google_Group $postBody, $optParams = array()) {
-      $params = array('groupKey' => $groupKey, 'postBody' => $postBody);
+    public function update($groupKey, Google_Group $postBody, $optParams = []) {
+      $params = ['groupKey' => $groupKey, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_Group($data);
       } else {
@@ -248,10 +248,10 @@
      * @param string $alias The alias to be removed
      * @param array $optParams Optional parameters.
      */
-    public function delete($groupKey, $alias, $optParams = array()) {
-      $params = array('groupKey' => $groupKey, 'alias' => $alias);
+    public function delete($groupKey, $alias, $optParams = []) {
+      $params = ['groupKey' => $groupKey, 'alias' => $alias];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -262,10 +262,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Alias
      */
-    public function insert($groupKey, Google_Alias $postBody, $optParams = array()) {
-      $params = array('groupKey' => $groupKey, 'postBody' => $postBody);
+    public function insert($groupKey, Google_Alias $postBody, $optParams = []) {
+      $params = ['groupKey' => $groupKey, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Alias($data);
       } else {
@@ -279,10 +279,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Aliases
      */
-    public function listGroupsAliases($groupKey, $optParams = array()) {
-      $params = array('groupKey' => $groupKey);
+    public function listGroupsAliases($groupKey, $optParams = []) {
+      $params = ['groupKey' => $groupKey];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Aliases($data);
       } else {
@@ -309,10 +309,10 @@
      * @param string $memberKey Email or immutable Id of the member
      * @param array $optParams Optional parameters.
      */
-    public function delete($groupKey, $memberKey, $optParams = array()) {
-      $params = array('groupKey' => $groupKey, 'memberKey' => $memberKey);
+    public function delete($groupKey, $memberKey, $optParams = []) {
+      $params = ['groupKey' => $groupKey, 'memberKey' => $memberKey];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -323,10 +323,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Member
      */
-    public function get($groupKey, $memberKey, $optParams = array()) {
-      $params = array('groupKey' => $groupKey, 'memberKey' => $memberKey);
+    public function get($groupKey, $memberKey, $optParams = []) {
+      $params = ['groupKey' => $groupKey, 'memberKey' => $memberKey];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Member($data);
       } else {
@@ -341,10 +341,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Member
      */
-    public function insert($groupKey, Google_Member $postBody, $optParams = array()) {
-      $params = array('groupKey' => $groupKey, 'postBody' => $postBody);
+    public function insert($groupKey, Google_Member $postBody, $optParams = []) {
+      $params = ['groupKey' => $groupKey, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Member($data);
       } else {
@@ -362,10 +362,10 @@
      * @opt_param string roles Comma separated role values to filter list results on.
      * @return Google_Members
      */
-    public function listMembers($groupKey, $optParams = array()) {
-      $params = array('groupKey' => $groupKey);
+    public function listMembers($groupKey, $optParams = []) {
+      $params = ['groupKey' => $groupKey];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Members($data);
       } else {
@@ -382,10 +382,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Member
      */
-    public function patch($groupKey, $memberKey, Google_Member $postBody, $optParams = array()) {
-      $params = array('groupKey' => $groupKey, 'memberKey' => $memberKey, 'postBody' => $postBody);
+    public function patch($groupKey, $memberKey, Google_Member $postBody, $optParams = []) {
+      $params = ['groupKey' => $groupKey, 'memberKey' => $memberKey, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_Member($data);
       } else {
@@ -401,10 +401,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Member
      */
-    public function update($groupKey, $memberKey, Google_Member $postBody, $optParams = array()) {
-      $params = array('groupKey' => $groupKey, 'memberKey' => $memberKey, 'postBody' => $postBody);
+    public function update($groupKey, $memberKey, Google_Member $postBody, $optParams = []) {
+      $params = ['groupKey' => $groupKey, 'memberKey' => $memberKey, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_Member($data);
       } else {
@@ -432,10 +432,10 @@
      * @param Google_MobileDeviceAction $postBody
      * @param array $optParams Optional parameters.
      */
-    public function action($customerId, $resourceId, Google_MobileDeviceAction $postBody, $optParams = array()) {
-      $params = array('customerId' => $customerId, 'resourceId' => $resourceId, 'postBody' => $postBody);
+    public function action($customerId, $resourceId, Google_MobileDeviceAction $postBody, $optParams = []) {
+      $params = ['customerId' => $customerId, 'resourceId' => $resourceId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('action', array($params));
+      $data = $this->__call('action', [$params]);
       return $data;
     }
     /**
@@ -445,10 +445,10 @@
      * @param string $resourceId Immutable id of Mobile Device
      * @param array $optParams Optional parameters.
      */
-    public function delete($customerId, $resourceId, $optParams = array()) {
-      $params = array('customerId' => $customerId, 'resourceId' => $resourceId);
+    public function delete($customerId, $resourceId, $optParams = []) {
+      $params = ['customerId' => $customerId, 'resourceId' => $resourceId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -461,10 +461,10 @@
      * @opt_param string projection Restrict information returned to a set of selected fields.
      * @return Google_MobileDevice
      */
-    public function get($customerId, $resourceId, $optParams = array()) {
-      $params = array('customerId' => $customerId, 'resourceId' => $resourceId);
+    public function get($customerId, $resourceId, $optParams = []) {
+      $params = ['customerId' => $customerId, 'resourceId' => $resourceId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_MobileDevice($data);
       } else {
@@ -485,10 +485,10 @@
      * @opt_param string sortOrder Whether to return results in ascending or descending order. Only of use when orderBy is also used
      * @return Google_MobileDevices
      */
-    public function listMobiledevices($customerId, $optParams = array()) {
-      $params = array('customerId' => $customerId);
+    public function listMobiledevices($customerId, $optParams = []) {
+      $params = ['customerId' => $customerId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_MobileDevices($data);
       } else {
@@ -515,10 +515,10 @@
      * @param string $orgUnitPath Full path of the organization unit
      * @param array $optParams Optional parameters.
      */
-    public function delete($customerId, $orgUnitPath, $optParams = array()) {
-      $params = array('customerId' => $customerId, 'orgUnitPath' => $orgUnitPath);
+    public function delete($customerId, $orgUnitPath, $optParams = []) {
+      $params = ['customerId' => $customerId, 'orgUnitPath' => $orgUnitPath];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -529,10 +529,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_OrgUnit
      */
-    public function get($customerId, $orgUnitPath, $optParams = array()) {
-      $params = array('customerId' => $customerId, 'orgUnitPath' => $orgUnitPath);
+    public function get($customerId, $orgUnitPath, $optParams = []) {
+      $params = ['customerId' => $customerId, 'orgUnitPath' => $orgUnitPath];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_OrgUnit($data);
       } else {
@@ -547,10 +547,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_OrgUnit
      */
-    public function insert($customerId, Google_OrgUnit $postBody, $optParams = array()) {
-      $params = array('customerId' => $customerId, 'postBody' => $postBody);
+    public function insert($customerId, Google_OrgUnit $postBody, $optParams = []) {
+      $params = ['customerId' => $customerId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_OrgUnit($data);
       } else {
@@ -567,10 +567,10 @@
      * @opt_param string type Whether to return all sub-organizations or just immediate children
      * @return Google_OrgUnits
      */
-    public function listOrgunits($customerId, $optParams = array()) {
-      $params = array('customerId' => $customerId);
+    public function listOrgunits($customerId, $optParams = []) {
+      $params = ['customerId' => $customerId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_OrgUnits($data);
       } else {
@@ -586,10 +586,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_OrgUnit
      */
-    public function patch($customerId, $orgUnitPath, Google_OrgUnit $postBody, $optParams = array()) {
-      $params = array('customerId' => $customerId, 'orgUnitPath' => $orgUnitPath, 'postBody' => $postBody);
+    public function patch($customerId, $orgUnitPath, Google_OrgUnit $postBody, $optParams = []) {
+      $params = ['customerId' => $customerId, 'orgUnitPath' => $orgUnitPath, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_OrgUnit($data);
       } else {
@@ -605,10 +605,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_OrgUnit
      */
-    public function update($customerId, $orgUnitPath, Google_OrgUnit $postBody, $optParams = array()) {
-      $params = array('customerId' => $customerId, 'orgUnitPath' => $orgUnitPath, 'postBody' => $postBody);
+    public function update($customerId, $orgUnitPath, Google_OrgUnit $postBody, $optParams = []) {
+      $params = ['customerId' => $customerId, 'orgUnitPath' => $orgUnitPath, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_OrgUnit($data);
       } else {
@@ -634,10 +634,10 @@
      * @param string $userKey Email or immutable Id of the user
      * @param array $optParams Optional parameters.
      */
-    public function delete($userKey, $optParams = array()) {
-      $params = array('userKey' => $userKey);
+    public function delete($userKey, $optParams = []) {
+      $params = ['userKey' => $userKey];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -647,10 +647,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_User
      */
-    public function get($userKey, $optParams = array()) {
-      $params = array('userKey' => $userKey);
+    public function get($userKey, $optParams = []) {
+      $params = ['userKey' => $userKey];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_User($data);
       } else {
@@ -664,10 +664,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_User
      */
-    public function insert(Google_User $postBody, $optParams = array()) {
-      $params = array('postBody' => $postBody);
+    public function insert(Google_User $postBody, $optParams = []) {
+      $params = ['postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_User($data);
       } else {
@@ -689,10 +689,10 @@
      * @opt_param string sortOrder Whether to return results in ascending or descending order.
      * @return Google_Users
      */
-    public function listUsers($optParams = array()) {
-      $params = array();
+    public function listUsers($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Users($data);
       } else {
@@ -706,10 +706,10 @@
      * @param Google_UserMakeAdmin $postBody
      * @param array $optParams Optional parameters.
      */
-    public function makeAdmin($userKey, Google_UserMakeAdmin $postBody, $optParams = array()) {
-      $params = array('userKey' => $userKey, 'postBody' => $postBody);
+    public function makeAdmin($userKey, Google_UserMakeAdmin $postBody, $optParams = []) {
+      $params = ['userKey' => $userKey, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('makeAdmin', array($params));
+      $data = $this->__call('makeAdmin', [$params]);
       return $data;
     }
     /**
@@ -720,10 +720,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_User
      */
-    public function patch($userKey, Google_User $postBody, $optParams = array()) {
-      $params = array('userKey' => $userKey, 'postBody' => $postBody);
+    public function patch($userKey, Google_User $postBody, $optParams = []) {
+      $params = ['userKey' => $userKey, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_User($data);
       } else {
@@ -737,10 +737,10 @@
      * @param Google_UserUndelete $postBody
      * @param array $optParams Optional parameters.
      */
-    public function undelete($userKey, Google_UserUndelete $postBody, $optParams = array()) {
-      $params = array('userKey' => $userKey, 'postBody' => $postBody);
+    public function undelete($userKey, Google_UserUndelete $postBody, $optParams = []) {
+      $params = ['userKey' => $userKey, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('undelete', array($params));
+      $data = $this->__call('undelete', [$params]);
       return $data;
     }
     /**
@@ -751,10 +751,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_User
      */
-    public function update($userKey, Google_User $postBody, $optParams = array()) {
-      $params = array('userKey' => $userKey, 'postBody' => $postBody);
+    public function update($userKey, Google_User $postBody, $optParams = []) {
+      $params = ['userKey' => $userKey, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_User($data);
       } else {
@@ -781,10 +781,10 @@
      * @param string $alias The alias to be removed
      * @param array $optParams Optional parameters.
      */
-    public function delete($userKey, $alias, $optParams = array()) {
-      $params = array('userKey' => $userKey, 'alias' => $alias);
+    public function delete($userKey, $alias, $optParams = []) {
+      $params = ['userKey' => $userKey, 'alias' => $alias];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -795,10 +795,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Alias
      */
-    public function insert($userKey, Google_Alias $postBody, $optParams = array()) {
-      $params = array('userKey' => $userKey, 'postBody' => $postBody);
+    public function insert($userKey, Google_Alias $postBody, $optParams = []) {
+      $params = ['userKey' => $userKey, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Alias($data);
       } else {
@@ -812,10 +812,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Aliases
      */
-    public function listUsersAliases($userKey, $optParams = array()) {
-      $params = array('userKey' => $userKey);
+    public function listUsersAliases($userKey, $optParams = []) {
+      $params = ['userKey' => $userKey];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Aliases($data);
       } else {
@@ -840,10 +840,10 @@
      * @param string $userKey Email or immutable Id of the user
      * @param array $optParams Optional parameters.
      */
-    public function delete($userKey, $optParams = array()) {
-      $params = array('userKey' => $userKey);
+    public function delete($userKey, $optParams = []) {
+      $params = ['userKey' => $userKey];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -853,10 +853,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_UserPhoto
      */
-    public function get($userKey, $optParams = array()) {
-      $params = array('userKey' => $userKey);
+    public function get($userKey, $optParams = []) {
+      $params = ['userKey' => $userKey];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_UserPhoto($data);
       } else {
@@ -871,10 +871,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_UserPhoto
      */
-    public function patch($userKey, Google_UserPhoto $postBody, $optParams = array()) {
-      $params = array('userKey' => $userKey, 'postBody' => $postBody);
+    public function patch($userKey, Google_UserPhoto $postBody, $optParams = []) {
+      $params = ['userKey' => $userKey, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_UserPhoto($data);
       } else {
@@ -889,10 +889,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_UserPhoto
      */
-    public function update($userKey, Google_UserPhoto $postBody, $optParams = array()) {
-      $params = array('userKey' => $userKey, 'postBody' => $postBody);
+    public function update($userKey, Google_UserPhoto $postBody, $optParams = []) {
+      $params = ['userKey' => $userKey, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_UserPhoto($data);
       } else {

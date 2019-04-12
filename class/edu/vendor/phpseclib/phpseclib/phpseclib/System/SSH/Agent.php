@@ -149,7 +149,7 @@ class Agent
     function requestIdentities()
     {
         if (!$this->fsock) {
-            return array();
+            return [];
         }
 
         $packet = pack('NC', 1, self::SSH_AGENTC_REQUEST_IDENTITIES);
@@ -163,7 +163,7 @@ class Agent
             user_error('Unable to request identities');
         }
 
-        $identities = array();
+        $identities = [];
         $keyCount = current(unpack('N', fread($this->fsock, 4)));
         for ($i = 0; $i < $keyCount; $i++) {
             $length = current(unpack('N', fread($this->fsock, 4)));

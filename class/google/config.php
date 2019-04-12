@@ -23,7 +23,7 @@ $tad_loginModule = $modhandler->getByDirname("tad_login");
 $config_handler  = xoops_getHandler('config');
 $tad_loginConfig = $config_handler->getConfigsByCat(0, $tad_loginModule->getVar('mid'));
 
-$apiConfig = array(
+$apiConfig = [
     // True if objects should be returned by the service classes.
     // False if associative arrays should be returned (default behavior).
     'use_objects'           => false,
@@ -58,31 +58,31 @@ $apiConfig = array(
         '/tmp/Google_Client'),
 
     // Definition of service specific values like scopes, oauth token URLs, etc
-    'services'              => array(
-        'analytics'        => array('scope' => 'https://www.googleapis.com/auth/analytics.readonly'),
-        'calendar'         => array(
-            'scope' => array(
+    'services'              => [
+        'analytics'        => ['scope' => 'https://www.googleapis.com/auth/analytics.readonly'],
+        'calendar'         => [
+            'scope' => [
                 "https://www.googleapis.com/auth/calendar",
                 "https://www.googleapis.com/auth/calendar.readonly",
-            ),
-        ),
-        'books'            => array('scope' => 'https://www.googleapis.com/auth/books'),
-        'latitude'         => array(
-            'scope' => array(
+            ],
+        ],
+        'books'            => ['scope' => 'https://www.googleapis.com/auth/books'],
+        'latitude'         => [
+            'scope' => [
                 'https://www.googleapis.com/auth/latitude.all.best',
                 'https://www.googleapis.com/auth/latitude.all.city',
-            ),
-        ),
-        'moderator'        => array('scope' => 'https://www.googleapis.com/auth/moderator'),
-        'oauth2'           => array(
-            'scope' => array(
+            ],
+        ],
+        'moderator'        => ['scope' => 'https://www.googleapis.com/auth/moderator'],
+        'oauth2'           => [
+            'scope' => [
                 'https://www.googleapis.com/auth/userinfo.profile',
                 'https://www.googleapis.com/auth/userinfo.email',
-            ),
-        ),
-        'plus'             => array('scope' => 'https://www.googleapis.com/auth/plus.login'),
-        'siteVerification' => array('scope' => 'https://www.googleapis.com/auth/siteverification'),
-        'tasks'            => array('scope' => 'https://www.googleapis.com/auth/tasks'),
-        'urlshortener'     => array('scope' => 'https://www.googleapis.com/auth/urlshortener'),
-    ),
-);
+            ],
+        ],
+        'plus'             => ['scope' => 'https://www.googleapis.com/auth/plus.login'],
+        'siteVerification' => ['scope' => 'https://www.googleapis.com/auth/siteverification'],
+        'tasks'            => ['scope' => 'https://www.googleapis.com/auth/tasks'],
+        'urlshortener'     => ['scope' => 'https://www.googleapis.com/auth/urlshortener'],
+    ],
+];

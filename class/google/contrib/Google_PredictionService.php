@@ -33,10 +33,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Output
      */
-    public function predict($project, $hostedModelName, Google_Input $postBody, $optParams = array()) {
-      $params = array('project' => $project, 'hostedModelName' => $hostedModelName, 'postBody' => $postBody);
+    public function predict($project, $hostedModelName, Google_Input $postBody, $optParams = []) {
+      $params = ['project' => $project, 'hostedModelName' => $hostedModelName, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('predict', array($params));
+      $data = $this->__call('predict', [$params]);
       if ($this->useObjects()) {
         return new Google_Output($data);
       } else {
@@ -63,10 +63,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Analyze
      */
-    public function analyze($project, $id, $optParams = array()) {
-      $params = array('project' => $project, 'id' => $id);
+    public function analyze($project, $id, $optParams = []) {
+      $params = ['project' => $project, 'id' => $id];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('analyze', array($params));
+      $data = $this->__call('analyze', [$params]);
       if ($this->useObjects()) {
         return new Google_Analyze($data);
       } else {
@@ -80,10 +80,10 @@
      * @param string $id The unique name for the predictive model.
      * @param array $optParams Optional parameters.
      */
-    public function delete($project, $id, $optParams = array()) {
-      $params = array('project' => $project, 'id' => $id);
+    public function delete($project, $id, $optParams = []) {
+      $params = ['project' => $project, 'id' => $id];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -94,10 +94,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Insert2
      */
-    public function get($project, $id, $optParams = array()) {
-      $params = array('project' => $project, 'id' => $id);
+    public function get($project, $id, $optParams = []) {
+      $params = ['project' => $project, 'id' => $id];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Insert2($data);
       } else {
@@ -112,10 +112,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Insert2
      */
-    public function insert($project, Google_Insert $postBody, $optParams = array()) {
-      $params = array('project' => $project, 'postBody' => $postBody);
+    public function insert($project, Google_Insert $postBody, $optParams = []) {
+      $params = ['project' => $project, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Insert2($data);
       } else {
@@ -132,10 +132,10 @@
      * @opt_param string pageToken Pagination token.
      * @return Google_PredictionList
      */
-    public function listTrainedmodels($project, $optParams = array()) {
-      $params = array('project' => $project);
+    public function listTrainedmodels($project, $optParams = []) {
+      $params = ['project' => $project];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_PredictionList($data);
       } else {
@@ -151,10 +151,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Output
      */
-    public function predict($project, $id, Google_Input $postBody, $optParams = array()) {
-      $params = array('project' => $project, 'id' => $id, 'postBody' => $postBody);
+    public function predict($project, $id, Google_Input $postBody, $optParams = []) {
+      $params = ['project' => $project, 'id' => $id, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('predict', array($params));
+      $data = $this->__call('predict', [$params]);
       if ($this->useObjects()) {
         return new Google_Output($data);
       } else {
@@ -170,10 +170,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Insert2
      */
-    public function update($project, $id, Google_Update $postBody, $optParams = array()) {
-      $params = array('project' => $project, 'id' => $id, 'postBody' => $postBody);
+    public function update($project, $id, Google_Update $postBody, $optParams = []) {
+      $params = ['project' => $project, 'id' => $id, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_Insert2($data);
       } else {

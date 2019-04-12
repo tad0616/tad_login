@@ -35,10 +35,10 @@
      * @opt_param string pageToken Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @return Google_AddressAggregatedList
      */
-    public function aggregatedList($project, $optParams = array()) {
-      $params = array('project' => $project);
+    public function aggregatedList($project, $optParams = []) {
+      $params = ['project' => $project];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('aggregatedList', array($params));
+      $data = $this->__call('aggregatedList', [$params]);
       if ($this->useObjects()) {
         return new Google_AddressAggregatedList($data);
       } else {
@@ -54,10 +54,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Operation
      */
-    public function delete($project, $region, $address, $optParams = array()) {
-      $params = array('project' => $project, 'region' => $region, 'address' => $address);
+    public function delete($project, $region, $address, $optParams = []) {
+      $params = ['project' => $project, 'region' => $region, 'address' => $address];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       if ($this->useObjects()) {
         return new Google_Operation($data);
       } else {
@@ -73,10 +73,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Address
      */
-    public function get($project, $region, $address, $optParams = array()) {
-      $params = array('project' => $project, 'region' => $region, 'address' => $address);
+    public function get($project, $region, $address, $optParams = []) {
+      $params = ['project' => $project, 'region' => $region, 'address' => $address];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Address($data);
       } else {
@@ -93,10 +93,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Operation
      */
-    public function insert($project, $region, Google_Address $postBody, $optParams = array()) {
-      $params = array('project' => $project, 'region' => $region, 'postBody' => $postBody);
+    public function insert($project, $region, Google_Address $postBody, $optParams = []) {
+      $params = ['project' => $project, 'region' => $region, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Operation($data);
       } else {
@@ -115,10 +115,10 @@
      * @opt_param string pageToken Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @return Google_AddressList
      */
-    public function listAddresses($project, $region, $optParams = array()) {
-      $params = array('project' => $project, 'region' => $region);
+    public function listAddresses($project, $region, $optParams = []) {
+      $params = ['project' => $project, 'region' => $region];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_AddressList($data);
       } else {
@@ -148,10 +148,10 @@
      * @opt_param string pageToken Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @return Google_DiskAggregatedList
      */
-    public function aggregatedList($project, $optParams = array()) {
-      $params = array('project' => $project);
+    public function aggregatedList($project, $optParams = []) {
+      $params = ['project' => $project];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('aggregatedList', array($params));
+      $data = $this->__call('aggregatedList', [$params]);
       if ($this->useObjects()) {
         return new Google_DiskAggregatedList($data);
       } else {
@@ -168,10 +168,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Operation
      */
-    public function createSnapshot($project, $zone, $disk, Google_Snapshot $postBody, $optParams = array()) {
-      $params = array('project' => $project, 'zone' => $zone, 'disk' => $disk, 'postBody' => $postBody);
+    public function createSnapshot($project, $zone, $disk, Google_Snapshot $postBody, $optParams = []) {
+      $params = ['project' => $project, 'zone' => $zone, 'disk' => $disk, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('createSnapshot', array($params));
+      $data = $this->__call('createSnapshot', [$params]);
       if ($this->useObjects()) {
         return new Google_Operation($data);
       } else {
@@ -187,10 +187,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Operation
      */
-    public function delete($project, $zone, $disk, $optParams = array()) {
-      $params = array('project' => $project, 'zone' => $zone, 'disk' => $disk);
+    public function delete($project, $zone, $disk, $optParams = []) {
+      $params = ['project' => $project, 'zone' => $zone, 'disk' => $disk];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       if ($this->useObjects()) {
         return new Google_Operation($data);
       } else {
@@ -206,10 +206,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Disk
      */
-    public function get($project, $zone, $disk, $optParams = array()) {
-      $params = array('project' => $project, 'zone' => $zone, 'disk' => $disk);
+    public function get($project, $zone, $disk, $optParams = []) {
+      $params = ['project' => $project, 'zone' => $zone, 'disk' => $disk];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Disk($data);
       } else {
@@ -228,10 +228,10 @@
      * @opt_param string sourceImage Optional. Source image to restore onto a disk.
      * @return Google_Operation
      */
-    public function insert($project, $zone, Google_Disk $postBody, $optParams = array()) {
-      $params = array('project' => $project, 'zone' => $zone, 'postBody' => $postBody);
+    public function insert($project, $zone, Google_Disk $postBody, $optParams = []) {
+      $params = ['project' => $project, 'zone' => $zone, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Operation($data);
       } else {
@@ -250,10 +250,10 @@
      * @opt_param string pageToken Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @return Google_DiskList
      */
-    public function listDisks($project, $zone, $optParams = array()) {
-      $params = array('project' => $project, 'zone' => $zone);
+    public function listDisks($project, $zone, $optParams = []) {
+      $params = ['project' => $project, 'zone' => $zone];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_DiskList($data);
       } else {
@@ -280,10 +280,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Operation
      */
-    public function delete($project, $firewall, $optParams = array()) {
-      $params = array('project' => $project, 'firewall' => $firewall);
+    public function delete($project, $firewall, $optParams = []) {
+      $params = ['project' => $project, 'firewall' => $firewall];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       if ($this->useObjects()) {
         return new Google_Operation($data);
       } else {
@@ -298,10 +298,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Firewall
      */
-    public function get($project, $firewall, $optParams = array()) {
-      $params = array('project' => $project, 'firewall' => $firewall);
+    public function get($project, $firewall, $optParams = []) {
+      $params = ['project' => $project, 'firewall' => $firewall];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Firewall($data);
       } else {
@@ -317,10 +317,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Operation
      */
-    public function insert($project, Google_Firewall $postBody, $optParams = array()) {
-      $params = array('project' => $project, 'postBody' => $postBody);
+    public function insert($project, Google_Firewall $postBody, $optParams = []) {
+      $params = ['project' => $project, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Operation($data);
       } else {
@@ -338,10 +338,10 @@
      * @opt_param string pageToken Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @return Google_FirewallList
      */
-    public function listFirewalls($project, $optParams = array()) {
-      $params = array('project' => $project);
+    public function listFirewalls($project, $optParams = []) {
+      $params = ['project' => $project];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_FirewallList($data);
       } else {
@@ -358,10 +358,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Operation
      */
-    public function patch($project, $firewall, Google_Firewall $postBody, $optParams = array()) {
-      $params = array('project' => $project, 'firewall' => $firewall, 'postBody' => $postBody);
+    public function patch($project, $firewall, Google_Firewall $postBody, $optParams = []) {
+      $params = ['project' => $project, 'firewall' => $firewall, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_Operation($data);
       } else {
@@ -377,10 +377,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Operation
      */
-    public function update($project, $firewall, Google_Firewall $postBody, $optParams = array()) {
-      $params = array('project' => $project, 'firewall' => $firewall, 'postBody' => $postBody);
+    public function update($project, $firewall, Google_Firewall $postBody, $optParams = []) {
+      $params = ['project' => $project, 'firewall' => $firewall, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_Operation($data);
       } else {
@@ -410,10 +410,10 @@
      * @opt_param string pageToken Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @return Google_OperationAggregatedList
      */
-    public function aggregatedList($project, $optParams = array()) {
-      $params = array('project' => $project);
+    public function aggregatedList($project, $optParams = []) {
+      $params = ['project' => $project];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('aggregatedList', array($params));
+      $data = $this->__call('aggregatedList', [$params]);
       if ($this->useObjects()) {
         return new Google_OperationAggregatedList($data);
       } else {
@@ -427,10 +427,10 @@
      * @param string $operation Name of the operation resource to delete.
      * @param array $optParams Optional parameters.
      */
-    public function delete($project, $operation, $optParams = array()) {
-      $params = array('project' => $project, 'operation' => $operation);
+    public function delete($project, $operation, $optParams = []) {
+      $params = ['project' => $project, 'operation' => $operation];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -441,10 +441,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Operation
      */
-    public function get($project, $operation, $optParams = array()) {
-      $params = array('project' => $project, 'operation' => $operation);
+    public function get($project, $operation, $optParams = []) {
+      $params = ['project' => $project, 'operation' => $operation];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Operation($data);
       } else {
@@ -463,10 +463,10 @@
      * @opt_param string pageToken Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @return Google_OperationList
      */
-    public function listGlobalOperations($project, $optParams = array()) {
-      $params = array('project' => $project);
+    public function listGlobalOperations($project, $optParams = []) {
+      $params = ['project' => $project];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_OperationList($data);
       } else {
@@ -493,10 +493,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Operation
      */
-    public function delete($project, $image, $optParams = array()) {
-      $params = array('project' => $project, 'image' => $image);
+    public function delete($project, $image, $optParams = []) {
+      $params = ['project' => $project, 'image' => $image];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       if ($this->useObjects()) {
         return new Google_Operation($data);
       } else {
@@ -513,10 +513,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Operation
      */
-    public function deprecate($project, $image, Google_DeprecationStatus $postBody, $optParams = array()) {
-      $params = array('project' => $project, 'image' => $image, 'postBody' => $postBody);
+    public function deprecate($project, $image, Google_DeprecationStatus $postBody, $optParams = []) {
+      $params = ['project' => $project, 'image' => $image, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('deprecate', array($params));
+      $data = $this->__call('deprecate', [$params]);
       if ($this->useObjects()) {
         return new Google_Operation($data);
       } else {
@@ -531,10 +531,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Image
      */
-    public function get($project, $image, $optParams = array()) {
-      $params = array('project' => $project, 'image' => $image);
+    public function get($project, $image, $optParams = []) {
+      $params = ['project' => $project, 'image' => $image];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Image($data);
       } else {
@@ -550,10 +550,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Operation
      */
-    public function insert($project, Google_Image $postBody, $optParams = array()) {
-      $params = array('project' => $project, 'postBody' => $postBody);
+    public function insert($project, Google_Image $postBody, $optParams = []) {
+      $params = ['project' => $project, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Operation($data);
       } else {
@@ -571,10 +571,10 @@
      * @opt_param string pageToken Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @return Google_ImageList
      */
-    public function listImages($project, $optParams = array()) {
-      $params = array('project' => $project);
+    public function listImages($project, $optParams = []) {
+      $params = ['project' => $project];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_ImageList($data);
       } else {
@@ -604,10 +604,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Operation
      */
-    public function addAccessConfig($project, $zone, $instance, $networkInterface, Google_AccessConfig $postBody, $optParams = array()) {
-      $params = array('project' => $project, 'zone' => $zone, 'instance' => $instance, 'networkInterface' => $networkInterface, 'postBody' => $postBody);
+    public function addAccessConfig($project, $zone, $instance, $networkInterface, Google_AccessConfig $postBody, $optParams = []) {
+      $params = ['project' => $project, 'zone' => $zone, 'instance' => $instance, 'networkInterface' => $networkInterface, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('addAccessConfig', array($params));
+      $data = $this->__call('addAccessConfig', [$params]);
       if ($this->useObjects()) {
         return new Google_Operation($data);
       } else {
@@ -625,10 +625,10 @@
      * @opt_param string pageToken Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @return Google_InstanceAggregatedList
      */
-    public function aggregatedList($project, $optParams = array()) {
-      $params = array('project' => $project);
+    public function aggregatedList($project, $optParams = []) {
+      $params = ['project' => $project];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('aggregatedList', array($params));
+      $data = $this->__call('aggregatedList', [$params]);
       if ($this->useObjects()) {
         return new Google_InstanceAggregatedList($data);
       } else {
@@ -645,10 +645,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Operation
      */
-    public function attachDisk($project, $zone, $instance, Google_AttachedDisk $postBody, $optParams = array()) {
-      $params = array('project' => $project, 'zone' => $zone, 'instance' => $instance, 'postBody' => $postBody);
+    public function attachDisk($project, $zone, $instance, Google_AttachedDisk $postBody, $optParams = []) {
+      $params = ['project' => $project, 'zone' => $zone, 'instance' => $instance, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('attachDisk', array($params));
+      $data = $this->__call('attachDisk', [$params]);
       if ($this->useObjects()) {
         return new Google_Operation($data);
       } else {
@@ -664,10 +664,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Operation
      */
-    public function delete($project, $zone, $instance, $optParams = array()) {
-      $params = array('project' => $project, 'zone' => $zone, 'instance' => $instance);
+    public function delete($project, $zone, $instance, $optParams = []) {
+      $params = ['project' => $project, 'zone' => $zone, 'instance' => $instance];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       if ($this->useObjects()) {
         return new Google_Operation($data);
       } else {
@@ -685,10 +685,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Operation
      */
-    public function deleteAccessConfig($project, $zone, $instance, $accessConfig, $networkInterface, $optParams = array()) {
-      $params = array('project' => $project, 'zone' => $zone, 'instance' => $instance, 'accessConfig' => $accessConfig, 'networkInterface' => $networkInterface);
+    public function deleteAccessConfig($project, $zone, $instance, $accessConfig, $networkInterface, $optParams = []) {
+      $params = ['project' => $project, 'zone' => $zone, 'instance' => $instance, 'accessConfig' => $accessConfig, 'networkInterface' => $networkInterface];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('deleteAccessConfig', array($params));
+      $data = $this->__call('deleteAccessConfig', [$params]);
       if ($this->useObjects()) {
         return new Google_Operation($data);
       } else {
@@ -705,10 +705,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Operation
      */
-    public function detachDisk($project, $zone, $instance, $deviceName, $optParams = array()) {
-      $params = array('project' => $project, 'zone' => $zone, 'instance' => $instance, 'deviceName' => $deviceName);
+    public function detachDisk($project, $zone, $instance, $deviceName, $optParams = []) {
+      $params = ['project' => $project, 'zone' => $zone, 'instance' => $instance, 'deviceName' => $deviceName];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('detachDisk', array($params));
+      $data = $this->__call('detachDisk', [$params]);
       if ($this->useObjects()) {
         return new Google_Operation($data);
       } else {
@@ -724,10 +724,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Instance
      */
-    public function get($project, $zone, $instance, $optParams = array()) {
-      $params = array('project' => $project, 'zone' => $zone, 'instance' => $instance);
+    public function get($project, $zone, $instance, $optParams = []) {
+      $params = ['project' => $project, 'zone' => $zone, 'instance' => $instance];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Instance($data);
       } else {
@@ -743,10 +743,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_SerialPortOutput
      */
-    public function getSerialPortOutput($project, $zone, $instance, $optParams = array()) {
-      $params = array('project' => $project, 'zone' => $zone, 'instance' => $instance);
+    public function getSerialPortOutput($project, $zone, $instance, $optParams = []) {
+      $params = ['project' => $project, 'zone' => $zone, 'instance' => $instance];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('getSerialPortOutput', array($params));
+      $data = $this->__call('getSerialPortOutput', [$params]);
       if ($this->useObjects()) {
         return new Google_SerialPortOutput($data);
       } else {
@@ -763,10 +763,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Operation
      */
-    public function insert($project, $zone, Google_Instance $postBody, $optParams = array()) {
-      $params = array('project' => $project, 'zone' => $zone, 'postBody' => $postBody);
+    public function insert($project, $zone, Google_Instance $postBody, $optParams = []) {
+      $params = ['project' => $project, 'zone' => $zone, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Operation($data);
       } else {
@@ -785,10 +785,10 @@
      * @opt_param string pageToken Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @return Google_InstanceList
      */
-    public function listInstances($project, $zone, $optParams = array()) {
-      $params = array('project' => $project, 'zone' => $zone);
+    public function listInstances($project, $zone, $optParams = []) {
+      $params = ['project' => $project, 'zone' => $zone];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_InstanceList($data);
       } else {
@@ -804,10 +804,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Operation
      */
-    public function reset($project, $zone, $instance, $optParams = array()) {
-      $params = array('project' => $project, 'zone' => $zone, 'instance' => $instance);
+    public function reset($project, $zone, $instance, $optParams = []) {
+      $params = ['project' => $project, 'zone' => $zone, 'instance' => $instance];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('reset', array($params));
+      $data = $this->__call('reset', [$params]);
       if ($this->useObjects()) {
         return new Google_Operation($data);
       } else {
@@ -825,10 +825,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Operation
      */
-    public function setMetadata($project, $zone, $instance, Google_Metadata $postBody, $optParams = array()) {
-      $params = array('project' => $project, 'zone' => $zone, 'instance' => $instance, 'postBody' => $postBody);
+    public function setMetadata($project, $zone, $instance, Google_Metadata $postBody, $optParams = []) {
+      $params = ['project' => $project, 'zone' => $zone, 'instance' => $instance, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('setMetadata', array($params));
+      $data = $this->__call('setMetadata', [$params]);
       if ($this->useObjects()) {
         return new Google_Operation($data);
       } else {
@@ -845,10 +845,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Operation
      */
-    public function setTags($project, $zone, $instance, Google_Tags $postBody, $optParams = array()) {
-      $params = array('project' => $project, 'zone' => $zone, 'instance' => $instance, 'postBody' => $postBody);
+    public function setTags($project, $zone, $instance, Google_Tags $postBody, $optParams = []) {
+      $params = ['project' => $project, 'zone' => $zone, 'instance' => $instance, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('setTags', array($params));
+      $data = $this->__call('setTags', [$params]);
       if ($this->useObjects()) {
         return new Google_Operation($data);
       } else {
@@ -875,10 +875,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Kernel
      */
-    public function get($project, $kernel, $optParams = array()) {
-      $params = array('project' => $project, 'kernel' => $kernel);
+    public function get($project, $kernel, $optParams = []) {
+      $params = ['project' => $project, 'kernel' => $kernel];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Kernel($data);
       } else {
@@ -896,10 +896,10 @@
      * @opt_param string pageToken Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @return Google_KernelList
      */
-    public function listKernels($project, $optParams = array()) {
-      $params = array('project' => $project);
+    public function listKernels($project, $optParams = []) {
+      $params = ['project' => $project];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_KernelList($data);
       } else {
@@ -929,10 +929,10 @@
      * @opt_param string pageToken Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @return Google_MachineTypeAggregatedList
      */
-    public function aggregatedList($project, $optParams = array()) {
-      $params = array('project' => $project);
+    public function aggregatedList($project, $optParams = []) {
+      $params = ['project' => $project];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('aggregatedList', array($params));
+      $data = $this->__call('aggregatedList', [$params]);
       if ($this->useObjects()) {
         return new Google_MachineTypeAggregatedList($data);
       } else {
@@ -948,10 +948,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_MachineType
      */
-    public function get($project, $zone, $machineType, $optParams = array()) {
-      $params = array('project' => $project, 'zone' => $zone, 'machineType' => $machineType);
+    public function get($project, $zone, $machineType, $optParams = []) {
+      $params = ['project' => $project, 'zone' => $zone, 'machineType' => $machineType];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_MachineType($data);
       } else {
@@ -971,10 +971,10 @@
      * @opt_param string pageToken Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @return Google_MachineTypeList
      */
-    public function listMachineTypes($project, $zone, $optParams = array()) {
-      $params = array('project' => $project, 'zone' => $zone);
+    public function listMachineTypes($project, $zone, $optParams = []) {
+      $params = ['project' => $project, 'zone' => $zone];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_MachineTypeList($data);
       } else {
@@ -1001,10 +1001,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Operation
      */
-    public function delete($project, $network, $optParams = array()) {
-      $params = array('project' => $project, 'network' => $network);
+    public function delete($project, $network, $optParams = []) {
+      $params = ['project' => $project, 'network' => $network];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       if ($this->useObjects()) {
         return new Google_Operation($data);
       } else {
@@ -1019,10 +1019,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Network
      */
-    public function get($project, $network, $optParams = array()) {
-      $params = array('project' => $project, 'network' => $network);
+    public function get($project, $network, $optParams = []) {
+      $params = ['project' => $project, 'network' => $network];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Network($data);
       } else {
@@ -1038,10 +1038,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Operation
      */
-    public function insert($project, Google_Network $postBody, $optParams = array()) {
-      $params = array('project' => $project, 'postBody' => $postBody);
+    public function insert($project, Google_Network $postBody, $optParams = []) {
+      $params = ['project' => $project, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Operation($data);
       } else {
@@ -1059,10 +1059,10 @@
      * @opt_param string pageToken Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @return Google_NetworkList
      */
-    public function listNetworks($project, $optParams = array()) {
-      $params = array('project' => $project);
+    public function listNetworks($project, $optParams = []) {
+      $params = ['project' => $project];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_NetworkList($data);
       } else {
@@ -1088,10 +1088,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Project
      */
-    public function get($project, $optParams = array()) {
-      $params = array('project' => $project);
+    public function get($project, $optParams = []) {
+      $params = ['project' => $project];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Project($data);
       } else {
@@ -1107,10 +1107,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Operation
      */
-    public function setCommonInstanceMetadata($project, Google_Metadata $postBody, $optParams = array()) {
-      $params = array('project' => $project, 'postBody' => $postBody);
+    public function setCommonInstanceMetadata($project, Google_Metadata $postBody, $optParams = []) {
+      $params = ['project' => $project, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('setCommonInstanceMetadata', array($params));
+      $data = $this->__call('setCommonInstanceMetadata', [$params]);
       if ($this->useObjects()) {
         return new Google_Operation($data);
       } else {
@@ -1137,10 +1137,10 @@
      * @param string $operation Name of the operation resource to delete.
      * @param array $optParams Optional parameters.
      */
-    public function delete($project, $region, $operation, $optParams = array()) {
-      $params = array('project' => $project, 'region' => $region, 'operation' => $operation);
+    public function delete($project, $region, $operation, $optParams = []) {
+      $params = ['project' => $project, 'region' => $region, 'operation' => $operation];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -1152,10 +1152,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Operation
      */
-    public function get($project, $region, $operation, $optParams = array()) {
-      $params = array('project' => $project, 'region' => $region, 'operation' => $operation);
+    public function get($project, $region, $operation, $optParams = []) {
+      $params = ['project' => $project, 'region' => $region, 'operation' => $operation];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Operation($data);
       } else {
@@ -1175,10 +1175,10 @@
      * @opt_param string pageToken Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @return Google_OperationList
      */
-    public function listRegionOperations($project, $region, $optParams = array()) {
-      $params = array('project' => $project, 'region' => $region);
+    public function listRegionOperations($project, $region, $optParams = []) {
+      $params = ['project' => $project, 'region' => $region];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_OperationList($data);
       } else {
@@ -1205,10 +1205,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Region
      */
-    public function get($project, $region, $optParams = array()) {
-      $params = array('project' => $project, 'region' => $region);
+    public function get($project, $region, $optParams = []) {
+      $params = ['project' => $project, 'region' => $region];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Region($data);
       } else {
@@ -1226,10 +1226,10 @@
      * @opt_param string pageToken Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @return Google_RegionList
      */
-    public function listRegions($project, $optParams = array()) {
-      $params = array('project' => $project);
+    public function listRegions($project, $optParams = []) {
+      $params = ['project' => $project];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_RegionList($data);
       } else {
@@ -1256,10 +1256,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Operation
      */
-    public function delete($project, $route, $optParams = array()) {
-      $params = array('project' => $project, 'route' => $route);
+    public function delete($project, $route, $optParams = []) {
+      $params = ['project' => $project, 'route' => $route];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       if ($this->useObjects()) {
         return new Google_Operation($data);
       } else {
@@ -1274,10 +1274,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Route
      */
-    public function get($project, $route, $optParams = array()) {
-      $params = array('project' => $project, 'route' => $route);
+    public function get($project, $route, $optParams = []) {
+      $params = ['project' => $project, 'route' => $route];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Route($data);
       } else {
@@ -1293,10 +1293,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Operation
      */
-    public function insert($project, Google_Route $postBody, $optParams = array()) {
-      $params = array('project' => $project, 'postBody' => $postBody);
+    public function insert($project, Google_Route $postBody, $optParams = []) {
+      $params = ['project' => $project, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Operation($data);
       } else {
@@ -1314,10 +1314,10 @@
      * @opt_param string pageToken Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @return Google_RouteList
      */
-    public function listRoutes($project, $optParams = array()) {
-      $params = array('project' => $project);
+    public function listRoutes($project, $optParams = []) {
+      $params = ['project' => $project];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_RouteList($data);
       } else {
@@ -1344,10 +1344,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Operation
      */
-    public function delete($project, $snapshot, $optParams = array()) {
-      $params = array('project' => $project, 'snapshot' => $snapshot);
+    public function delete($project, $snapshot, $optParams = []) {
+      $params = ['project' => $project, 'snapshot' => $snapshot];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       if ($this->useObjects()) {
         return new Google_Operation($data);
       } else {
@@ -1362,10 +1362,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Snapshot
      */
-    public function get($project, $snapshot, $optParams = array()) {
-      $params = array('project' => $project, 'snapshot' => $snapshot);
+    public function get($project, $snapshot, $optParams = []) {
+      $params = ['project' => $project, 'snapshot' => $snapshot];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Snapshot($data);
       } else {
@@ -1384,10 +1384,10 @@
      * @opt_param string pageToken Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @return Google_SnapshotList
      */
-    public function listSnapshots($project, $optParams = array()) {
-      $params = array('project' => $project);
+    public function listSnapshots($project, $optParams = []) {
+      $params = ['project' => $project];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_SnapshotList($data);
       } else {
@@ -1414,10 +1414,10 @@
      * @param string $operation Name of the operation resource to delete.
      * @param array $optParams Optional parameters.
      */
-    public function delete($project, $zone, $operation, $optParams = array()) {
-      $params = array('project' => $project, 'zone' => $zone, 'operation' => $operation);
+    public function delete($project, $zone, $operation, $optParams = []) {
+      $params = ['project' => $project, 'zone' => $zone, 'operation' => $operation];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -1429,10 +1429,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Operation
      */
-    public function get($project, $zone, $operation, $optParams = array()) {
-      $params = array('project' => $project, 'zone' => $zone, 'operation' => $operation);
+    public function get($project, $zone, $operation, $optParams = []) {
+      $params = ['project' => $project, 'zone' => $zone, 'operation' => $operation];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Operation($data);
       } else {
@@ -1452,10 +1452,10 @@
      * @opt_param string pageToken Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @return Google_OperationList
      */
-    public function listZoneOperations($project, $zone, $optParams = array()) {
-      $params = array('project' => $project, 'zone' => $zone);
+    public function listZoneOperations($project, $zone, $optParams = []) {
+      $params = ['project' => $project, 'zone' => $zone];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_OperationList($data);
       } else {
@@ -1482,10 +1482,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Zone
      */
-    public function get($project, $zone, $optParams = array()) {
-      $params = array('project' => $project, 'zone' => $zone);
+    public function get($project, $zone, $optParams = []) {
+      $params = ['project' => $project, 'zone' => $zone];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Zone($data);
       } else {
@@ -1503,10 +1503,10 @@
      * @opt_param string pageToken Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @return Google_ZoneList
      */
-    public function listZones($project, $optParams = array()) {
-      $params = array('project' => $project);
+    public function listZones($project, $optParams = []) {
+      $params = ['project' => $project];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_ZoneList($data);
       } else {

@@ -31,10 +31,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Activity
      */
-    public function get($activityId, $optParams = array()) {
-      $params = array('activityId' => $activityId);
+    public function get($activityId, $optParams = []) {
+      $params = ['activityId' => $activityId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Activity($data);
       } else {
@@ -51,10 +51,10 @@
      * @opt_param bool preview If "true", extract the potential media attachments for a url. The response will include all possible attachments for a url, including video, photos, and articles based on the content of the page.
      * @return Google_Activity
      */
-    public function insert($userId, Google_Activity $postBody, $optParams = array()) {
-      $params = array('userId' => $userId, 'postBody' => $postBody);
+    public function insert($userId, Google_Activity $postBody, $optParams = []) {
+      $params = ['userId' => $userId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Activity($data);
       } else {
@@ -73,10 +73,10 @@
      * @opt_param string pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      * @return Google_ActivityFeed
      */
-    public function listActivities($userId, $collection, $optParams = array()) {
-      $params = array('userId' => $userId, 'collection' => $collection);
+    public function listActivities($userId, $collection, $optParams = []) {
+      $params = ['userId' => $userId, 'collection' => $collection];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_ActivityFeed($data);
       } else {
@@ -105,10 +105,10 @@
      * @opt_param string pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      * @return Google_AudiencesFeed
      */
-    public function listAudiences($userId, $optParams = array()) {
-      $params = array('userId' => $userId);
+    public function listAudiences($userId, $optParams = []) {
+      $params = ['userId' => $userId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_AudiencesFeed($data);
       } else {
@@ -138,10 +138,10 @@
      * @opt_param string userId IDs of the people to add to the circle. Optional, can be repeated.
      * @return Google_Circle
      */
-    public function addPeople($circleId, $optParams = array()) {
-      $params = array('circleId' => $circleId);
+    public function addPeople($circleId, $optParams = []) {
+      $params = ['circleId' => $circleId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('addPeople', array($params));
+      $data = $this->__call('addPeople', [$params]);
       if ($this->useObjects()) {
         return new Google_Circle($data);
       } else {
@@ -155,10 +155,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Circle
      */
-    public function get($circleId, $optParams = array()) {
-      $params = array('circleId' => $circleId);
+    public function get($circleId, $optParams = []) {
+      $params = ['circleId' => $circleId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Circle($data);
       } else {
@@ -173,10 +173,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Circle
      */
-    public function insert($userId, Google_Circle $postBody, $optParams = array()) {
-      $params = array('userId' => $userId, 'postBody' => $postBody);
+    public function insert($userId, Google_Circle $postBody, $optParams = []) {
+      $params = ['userId' => $userId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Circle($data);
       } else {
@@ -193,10 +193,10 @@
      * @opt_param string pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      * @return Google_CircleFeed
      */
-    public function listCircles($userId, $optParams = array()) {
-      $params = array('userId' => $userId);
+    public function listCircles($userId, $optParams = []) {
+      $params = ['userId' => $userId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_CircleFeed($data);
       } else {
@@ -211,10 +211,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Circle
      */
-    public function patch($circleId, Google_Circle $postBody, $optParams = array()) {
-      $params = array('circleId' => $circleId, 'postBody' => $postBody);
+    public function patch($circleId, Google_Circle $postBody, $optParams = []) {
+      $params = ['circleId' => $circleId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_Circle($data);
       } else {
@@ -227,10 +227,10 @@
      * @param string $circleId The ID of the circle to delete.
      * @param array $optParams Optional parameters.
      */
-    public function remove($circleId, $optParams = array()) {
-      $params = array('circleId' => $circleId);
+    public function remove($circleId, $optParams = []) {
+      $params = ['circleId' => $circleId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('remove', array($params));
+      $data = $this->__call('remove', [$params]);
       return $data;
     }
     /**
@@ -242,10 +242,10 @@
      * @opt_param string email Email of the people to add to the circle. Optional, can be repeated.
      * @opt_param string userId IDs of the people to remove from the circle. Optional, can be repeated.
      */
-    public function removePeople($circleId, $optParams = array()) {
-      $params = array('circleId' => $circleId);
+    public function removePeople($circleId, $optParams = []) {
+      $params = ['circleId' => $circleId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('removePeople', array($params));
+      $data = $this->__call('removePeople', [$params]);
       return $data;
     }
     /**
@@ -256,10 +256,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Circle
      */
-    public function update($circleId, Google_Circle $postBody, $optParams = array()) {
-      $params = array('circleId' => $circleId, 'postBody' => $postBody);
+    public function update($circleId, Google_Circle $postBody, $optParams = []) {
+      $params = ['circleId' => $circleId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_Circle($data);
       } else {
@@ -285,10 +285,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Comment
      */
-    public function get($commentId, $optParams = array()) {
-      $params = array('commentId' => $commentId);
+    public function get($commentId, $optParams = []) {
+      $params = ['commentId' => $commentId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Comment($data);
       } else {
@@ -303,10 +303,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Comment
      */
-    public function insert($activityId, Google_Comment $postBody, $optParams = array()) {
-      $params = array('activityId' => $activityId, 'postBody' => $postBody);
+    public function insert($activityId, Google_Comment $postBody, $optParams = []) {
+      $params = ['activityId' => $activityId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Comment($data);
       } else {
@@ -324,10 +324,10 @@
      * @opt_param string sortOrder The order in which to sort the list of comments.
      * @return Google_CommentFeed
      */
-    public function listComments($activityId, $optParams = array()) {
-      $params = array('activityId' => $activityId);
+    public function listComments($activityId, $optParams = []) {
+      $params = ['activityId' => $activityId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_CommentFeed($data);
       } else {
@@ -358,10 +358,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Media
      */
-    public function insert($userId, $collection, Google_Media $postBody, $optParams = array()) {
-      $params = array('userId' => $userId, 'collection' => $collection, 'postBody' => $postBody);
+    public function insert($userId, $collection, Google_Media $postBody, $optParams = []) {
+      $params = ['userId' => $userId, 'collection' => $collection, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Media($data);
       } else {
@@ -387,10 +387,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Person
      */
-    public function get($userId, $optParams = array()) {
-      $params = array('userId' => $userId);
+    public function get($userId, $optParams = []) {
+      $params = ['userId' => $userId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Person($data);
       } else {
@@ -409,10 +409,10 @@
      * @opt_param string pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      * @return Google_PeopleFeed
      */
-    public function listPeople($userId, $collection, $optParams = array()) {
-      $params = array('userId' => $userId, 'collection' => $collection);
+    public function listPeople($userId, $collection, $optParams = []) {
+      $params = ['userId' => $userId, 'collection' => $collection];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_PeopleFeed($data);
       } else {
@@ -431,10 +431,10 @@
      * @opt_param string pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      * @return Google_PeopleFeed
      */
-    public function listByActivity($activityId, $collection, $optParams = array()) {
-      $params = array('activityId' => $activityId, 'collection' => $collection);
+    public function listByActivity($activityId, $collection, $optParams = []) {
+      $params = ['activityId' => $activityId, 'collection' => $collection];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('listByActivity', array($params));
+      $data = $this->__call('listByActivity', [$params]);
       if ($this->useObjects()) {
         return new Google_PeopleFeed($data);
       } else {
@@ -451,10 +451,10 @@
      * @opt_param string pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      * @return Google_PeopleFeed
      */
-    public function listByCircle($circleId, $optParams = array()) {
-      $params = array('circleId' => $circleId);
+    public function listByCircle($circleId, $optParams = []) {
+      $params = ['circleId' => $circleId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('listByCircle', array($params));
+      $data = $this->__call('listByCircle', [$params]);
       if ($this->useObjects()) {
         return new Google_PeopleFeed($data);
       } else {

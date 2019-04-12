@@ -87,8 +87,8 @@ class Google_REST {
    */
   static function createRequestUri($servicePath, $restPath, $params) {
     $requestUrl = $servicePath . $restPath;
-    $uriTemplateVars = array();
-    $queryVars = array();
+    $uriTemplateVars = [];
+    $queryVars = [];
     foreach ($params as $paramName => $paramSpec) {
       // Discovery v1.0 puts the canonical location under the 'location' field.
       if (! isset($paramSpec['location'])) {

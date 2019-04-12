@@ -57,7 +57,7 @@ X6zk7S0ljKtt2jny2+00VsBerQJBAJGC1Mg5Oydo5NwD6BiROrPxGo2bpTbu/fhrT8ebHkTz2epl
 U9VQQSQzY1oZMVX8i1m5WUTLPz2yLJIBQVdXqhMCQBGoiuSoSjafUhV7i1cEGpb88h5NBYZzWXGZ
 37sJ5QsW+sJyoNde3xH8vdXhzU7eT82D6X/scw9RZz+/6rCJ4p0=
 -----END RSA PRIVATE KEY-----';
-        $key = str_replace(array("\r", "\n", "\r\n"), ' ', $key);
+        $key = str_replace(["\r", "\n", "\r\n"], ' ', $key);
 
         $this->assertTrue($rsa->loadKey($key));
         $this->assertInternalType('string', $rsa->getPrivateKey());

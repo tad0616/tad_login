@@ -32,10 +32,10 @@
      * @param string $entity The entity holding the permission. Can be user-userId, group-groupId, allUsers, or allAuthenticatedUsers.
      * @param array $optParams Optional parameters.
      */
-    public function delete($bucket, $entity, $optParams = array()) {
-      $params = array('bucket' => $bucket, 'entity' => $entity);
+    public function delete($bucket, $entity, $optParams = []) {
+      $params = ['bucket' => $bucket, 'entity' => $entity];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -47,10 +47,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_BucketAccessControl
      */
-    public function get($bucket, $entity, $optParams = array()) {
-      $params = array('bucket' => $bucket, 'entity' => $entity);
+    public function get($bucket, $entity, $optParams = []) {
+      $params = ['bucket' => $bucket, 'entity' => $entity];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_BucketAccessControl($data);
       } else {
@@ -65,10 +65,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_BucketAccessControl
      */
-    public function insert($bucket, Google_BucketAccessControl $postBody, $optParams = array()) {
-      $params = array('bucket' => $bucket, 'postBody' => $postBody);
+    public function insert($bucket, Google_BucketAccessControl $postBody, $optParams = []) {
+      $params = ['bucket' => $bucket, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_BucketAccessControl($data);
       } else {
@@ -82,10 +82,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_BucketAccessControls
      */
-    public function listBucketAccessControls($bucket, $optParams = array()) {
-      $params = array('bucket' => $bucket);
+    public function listBucketAccessControls($bucket, $optParams = []) {
+      $params = ['bucket' => $bucket];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_BucketAccessControls($data);
       } else {
@@ -102,10 +102,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_BucketAccessControl
      */
-    public function patch($bucket, $entity, Google_BucketAccessControl $postBody, $optParams = array()) {
-      $params = array('bucket' => $bucket, 'entity' => $entity, 'postBody' => $postBody);
+    public function patch($bucket, $entity, Google_BucketAccessControl $postBody, $optParams = []) {
+      $params = ['bucket' => $bucket, 'entity' => $entity, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_BucketAccessControl($data);
       } else {
@@ -121,10 +121,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_BucketAccessControl
      */
-    public function update($bucket, $entity, Google_BucketAccessControl $postBody, $optParams = array()) {
-      $params = array('bucket' => $bucket, 'entity' => $entity, 'postBody' => $postBody);
+    public function update($bucket, $entity, Google_BucketAccessControl $postBody, $optParams = []) {
+      $params = ['bucket' => $bucket, 'entity' => $entity, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_BucketAccessControl($data);
       } else {
@@ -152,10 +152,10 @@
      * @opt_param string ifMetagenerationMatch Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
      * @opt_param string ifMetagenerationNotMatch Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
      */
-    public function delete($bucket, $optParams = array()) {
-      $params = array('bucket' => $bucket);
+    public function delete($bucket, $optParams = []) {
+      $params = ['bucket' => $bucket];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -169,10 +169,10 @@
      * @opt_param string projection Set of properties to return. Defaults to noAcl.
      * @return Google_Bucket
      */
-    public function get($bucket, $optParams = array()) {
-      $params = array('bucket' => $bucket);
+    public function get($bucket, $optParams = []) {
+      $params = ['bucket' => $bucket];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Bucket($data);
       } else {
@@ -189,10 +189,10 @@
      * @opt_param string projection Set of properties to return. Defaults to noAcl, unless the bucket resource specifies acl or defaultObjectAcl properties, when it defaults to full.
      * @return Google_Bucket
      */
-    public function insert($project, Google_Bucket $postBody, $optParams = array()) {
-      $params = array('project' => $project, 'postBody' => $postBody);
+    public function insert($project, Google_Bucket $postBody, $optParams = []) {
+      $params = ['project' => $project, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Bucket($data);
       } else {
@@ -210,10 +210,10 @@
      * @opt_param string projection Set of properties to return. Defaults to noAcl.
      * @return Google_Buckets
      */
-    public function listBuckets($project, $optParams = array()) {
-      $params = array('project' => $project);
+    public function listBuckets($project, $optParams = []) {
+      $params = ['project' => $project];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Buckets($data);
       } else {
@@ -232,10 +232,10 @@
      * @opt_param string projection Set of properties to return. Defaults to full.
      * @return Google_Bucket
      */
-    public function patch($bucket, Google_Bucket $postBody, $optParams = array()) {
-      $params = array('bucket' => $bucket, 'postBody' => $postBody);
+    public function patch($bucket, Google_Bucket $postBody, $optParams = []) {
+      $params = ['bucket' => $bucket, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_Bucket($data);
       } else {
@@ -254,10 +254,10 @@
      * @opt_param string projection Set of properties to return. Defaults to full.
      * @return Google_Bucket
      */
-    public function update($bucket, Google_Bucket $postBody, $optParams = array()) {
-      $params = array('bucket' => $bucket, 'postBody' => $postBody);
+    public function update($bucket, Google_Bucket $postBody, $optParams = []) {
+      $params = ['bucket' => $bucket, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_Bucket($data);
       } else {
@@ -282,10 +282,10 @@
      * @param Google_Channel $postBody
      * @param array $optParams Optional parameters.
      */
-    public function stop(Google_Channel $postBody, $optParams = array()) {
-      $params = array('postBody' => $postBody);
+    public function stop(Google_Channel $postBody, $optParams = []) {
+      $params = ['postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('stop', array($params));
+      $data = $this->__call('stop', [$params]);
       return $data;
     }
   }
@@ -308,10 +308,10 @@
      * @param string $entity The entity holding the permission. Can be user-userId, group-groupId, allUsers, or allAuthenticatedUsers.
      * @param array $optParams Optional parameters.
      */
-    public function delete($bucket, $entity, $optParams = array()) {
-      $params = array('bucket' => $bucket, 'entity' => $entity);
+    public function delete($bucket, $entity, $optParams = []) {
+      $params = ['bucket' => $bucket, 'entity' => $entity];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -323,10 +323,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_ObjectAccessControl
      */
-    public function get($bucket, $entity, $optParams = array()) {
-      $params = array('bucket' => $bucket, 'entity' => $entity);
+    public function get($bucket, $entity, $optParams = []) {
+      $params = ['bucket' => $bucket, 'entity' => $entity];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_ObjectAccessControl($data);
       } else {
@@ -342,10 +342,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_ObjectAccessControl
      */
-    public function insert($bucket, Google_ObjectAccessControl $postBody, $optParams = array()) {
-      $params = array('bucket' => $bucket, 'postBody' => $postBody);
+    public function insert($bucket, Google_ObjectAccessControl $postBody, $optParams = []) {
+      $params = ['bucket' => $bucket, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_ObjectAccessControl($data);
       } else {
@@ -359,10 +359,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_ObjectAccessControls
      */
-    public function listDefaultObjectAccessControls($bucket, $optParams = array()) {
-      $params = array('bucket' => $bucket);
+    public function listDefaultObjectAccessControls($bucket, $optParams = []) {
+      $params = ['bucket' => $bucket];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_ObjectAccessControls($data);
       } else {
@@ -379,10 +379,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_ObjectAccessControl
      */
-    public function patch($bucket, $entity, Google_ObjectAccessControl $postBody, $optParams = array()) {
-      $params = array('bucket' => $bucket, 'entity' => $entity, 'postBody' => $postBody);
+    public function patch($bucket, $entity, Google_ObjectAccessControl $postBody, $optParams = []) {
+      $params = ['bucket' => $bucket, 'entity' => $entity, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_ObjectAccessControl($data);
       } else {
@@ -398,10 +398,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_ObjectAccessControl
      */
-    public function update($bucket, $entity, Google_ObjectAccessControl $postBody, $optParams = array()) {
-      $params = array('bucket' => $bucket, 'entity' => $entity, 'postBody' => $postBody);
+    public function update($bucket, $entity, Google_ObjectAccessControl $postBody, $optParams = []) {
+      $params = ['bucket' => $bucket, 'entity' => $entity, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_ObjectAccessControl($data);
       } else {
@@ -431,10 +431,10 @@
      *
      * @opt_param string generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      */
-    public function delete($bucket, $object, $entity, $optParams = array()) {
-      $params = array('bucket' => $bucket, 'object' => $object, 'entity' => $entity);
+    public function delete($bucket, $object, $entity, $optParams = []) {
+      $params = ['bucket' => $bucket, 'object' => $object, 'entity' => $entity];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -449,10 +449,10 @@
      * @opt_param string generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @return Google_ObjectAccessControl
      */
-    public function get($bucket, $object, $entity, $optParams = array()) {
-      $params = array('bucket' => $bucket, 'object' => $object, 'entity' => $entity);
+    public function get($bucket, $object, $entity, $optParams = []) {
+      $params = ['bucket' => $bucket, 'object' => $object, 'entity' => $entity];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_ObjectAccessControl($data);
       } else {
@@ -470,10 +470,10 @@
      * @opt_param string generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @return Google_ObjectAccessControl
      */
-    public function insert($bucket, $object, Google_ObjectAccessControl $postBody, $optParams = array()) {
-      $params = array('bucket' => $bucket, 'object' => $object, 'postBody' => $postBody);
+    public function insert($bucket, $object, Google_ObjectAccessControl $postBody, $optParams = []) {
+      $params = ['bucket' => $bucket, 'object' => $object, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_ObjectAccessControl($data);
       } else {
@@ -490,10 +490,10 @@
      * @opt_param string generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @return Google_ObjectAccessControls
      */
-    public function listObjectAccessControls($bucket, $object, $optParams = array()) {
-      $params = array('bucket' => $bucket, 'object' => $object);
+    public function listObjectAccessControls($bucket, $object, $optParams = []) {
+      $params = ['bucket' => $bucket, 'object' => $object];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_ObjectAccessControls($data);
       } else {
@@ -513,10 +513,10 @@
      * @opt_param string generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @return Google_ObjectAccessControl
      */
-    public function patch($bucket, $object, $entity, Google_ObjectAccessControl $postBody, $optParams = array()) {
-      $params = array('bucket' => $bucket, 'object' => $object, 'entity' => $entity, 'postBody' => $postBody);
+    public function patch($bucket, $object, $entity, Google_ObjectAccessControl $postBody, $optParams = []) {
+      $params = ['bucket' => $bucket, 'object' => $object, 'entity' => $entity, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_ObjectAccessControl($data);
       } else {
@@ -535,10 +535,10 @@
      * @opt_param string generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @return Google_ObjectAccessControl
      */
-    public function update($bucket, $object, $entity, Google_ObjectAccessControl $postBody, $optParams = array()) {
-      $params = array('bucket' => $bucket, 'object' => $object, 'entity' => $entity, 'postBody' => $postBody);
+    public function update($bucket, $object, $entity, Google_ObjectAccessControl $postBody, $optParams = []) {
+      $params = ['bucket' => $bucket, 'object' => $object, 'entity' => $entity, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_ObjectAccessControl($data);
       } else {
@@ -569,10 +569,10 @@
      * @opt_param string ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
      * @return Google_StorageObject
      */
-    public function compose($destinationBucket, $destinationObject, Google_ComposeRequest $postBody, $optParams = array()) {
-      $params = array('destinationBucket' => $destinationBucket, 'destinationObject' => $destinationObject, 'postBody' => $postBody);
+    public function compose($destinationBucket, $destinationObject, Google_ComposeRequest $postBody, $optParams = []) {
+      $params = ['destinationBucket' => $destinationBucket, 'destinationObject' => $destinationObject, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('compose', array($params));
+      $data = $this->__call('compose', [$params]);
       if ($this->useObjects()) {
         return new Google_StorageObject($data);
       } else {
@@ -602,10 +602,10 @@
      * @opt_param string sourceGeneration If present, selects a specific revision of the source object (as opposed to the latest version, the default).
      * @return Google_StorageObject
      */
-    public function copy($sourceBucket, $sourceObject, $destinationBucket, $destinationObject, Google_StorageObject $postBody, $optParams = array()) {
-      $params = array('sourceBucket' => $sourceBucket, 'sourceObject' => $sourceObject, 'destinationBucket' => $destinationBucket, 'destinationObject' => $destinationObject, 'postBody' => $postBody);
+    public function copy($sourceBucket, $sourceObject, $destinationBucket, $destinationObject, Google_StorageObject $postBody, $optParams = []) {
+      $params = ['sourceBucket' => $sourceBucket, 'sourceObject' => $sourceObject, 'destinationBucket' => $destinationBucket, 'destinationObject' => $destinationObject, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('copy', array($params));
+      $data = $this->__call('copy', [$params]);
       if ($this->useObjects()) {
         return new Google_StorageObject($data);
       } else {
@@ -626,10 +626,10 @@
      * @opt_param string ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
      * @opt_param string ifMetagenerationNotMatch Makes the operation conditional on whether the object's current metageneration does not match the given value.
      */
-    public function delete($bucket, $object, $optParams = array()) {
-      $params = array('bucket' => $bucket, 'object' => $object);
+    public function delete($bucket, $object, $optParams = []) {
+      $params = ['bucket' => $bucket, 'object' => $object];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -647,10 +647,10 @@
      * @opt_param string projection Set of properties to return. Defaults to noAcl.
      * @return Google_StorageObject
      */
-    public function get($bucket, $object, $optParams = array()) {
-      $params = array('bucket' => $bucket, 'object' => $object);
+    public function get($bucket, $object, $optParams = []) {
+      $params = ['bucket' => $bucket, 'object' => $object];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_StorageObject($data);
       } else {
@@ -672,10 +672,10 @@
      * @opt_param string projection Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
      * @return Google_StorageObject
      */
-    public function insert($bucket, Google_StorageObject $postBody, $optParams = array()) {
-      $params = array('bucket' => $bucket, 'postBody' => $postBody);
+    public function insert($bucket, Google_StorageObject $postBody, $optParams = []) {
+      $params = ['bucket' => $bucket, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_StorageObject($data);
       } else {
@@ -696,10 +696,10 @@
      * @opt_param bool versions If true, lists all versions of a file as distinct results.
      * @return Google_Objects
      */
-    public function listObjects($bucket, $optParams = array()) {
-      $params = array('bucket' => $bucket);
+    public function listObjects($bucket, $optParams = []) {
+      $params = ['bucket' => $bucket];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Objects($data);
       } else {
@@ -722,10 +722,10 @@
      * @opt_param string projection Set of properties to return. Defaults to full.
      * @return Google_StorageObject
      */
-    public function patch($bucket, $object, Google_StorageObject $postBody, $optParams = array()) {
-      $params = array('bucket' => $bucket, 'object' => $object, 'postBody' => $postBody);
+    public function patch($bucket, $object, Google_StorageObject $postBody, $optParams = []) {
+      $params = ['bucket' => $bucket, 'object' => $object, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_StorageObject($data);
       } else {
@@ -748,10 +748,10 @@
      * @opt_param string projection Set of properties to return. Defaults to full.
      * @return Google_StorageObject
      */
-    public function update($bucket, $object, Google_StorageObject $postBody, $optParams = array()) {
-      $params = array('bucket' => $bucket, 'object' => $object, 'postBody' => $postBody);
+    public function update($bucket, $object, Google_StorageObject $postBody, $optParams = []) {
+      $params = ['bucket' => $bucket, 'object' => $object, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_StorageObject($data);
       } else {
@@ -773,10 +773,10 @@
      * @opt_param bool versions If true, lists all versions of a file as distinct results.
      * @return Google_Channel
      */
-    public function watchAll($bucket, Google_Channel $postBody, $optParams = array()) {
-      $params = array('bucket' => $bucket, 'postBody' => $postBody);
+    public function watchAll($bucket, Google_Channel $postBody, $optParams = []) {
+      $params = ['bucket' => $bucket, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('watchAll', array($params));
+      $data = $this->__call('watchAll', [$params]);
       if ($this->useObjects()) {
         return new Google_Channel($data);
       } else {

@@ -34,10 +34,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_BackupRun
      */
-    public function get($project, $instance, $backupConfiguration, $dueTime, $optParams = array()) {
-      $params = array('project' => $project, 'instance' => $instance, 'backupConfiguration' => $backupConfiguration, 'dueTime' => $dueTime);
+    public function get($project, $instance, $backupConfiguration, $dueTime, $optParams = []) {
+      $params = ['project' => $project, 'instance' => $instance, 'backupConfiguration' => $backupConfiguration, 'dueTime' => $dueTime];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_BackupRun($data);
       } else {
@@ -57,10 +57,10 @@
      * @opt_param string pageToken A previously-returned page token representing part of the larger set of results to view.
      * @return Google_BackupRunsListResponse
      */
-    public function listBackupRuns($project, $instance, $backupConfiguration, $optParams = array()) {
-      $params = array('project' => $project, 'instance' => $instance, 'backupConfiguration' => $backupConfiguration);
+    public function listBackupRuns($project, $instance, $backupConfiguration, $optParams = []) {
+      $params = ['project' => $project, 'instance' => $instance, 'backupConfiguration' => $backupConfiguration];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_BackupRunsListResponse($data);
       } else {
@@ -87,10 +87,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_InstancesDeleteResponse
      */
-    public function delete($project, $instance, $optParams = array()) {
-      $params = array('project' => $project, 'instance' => $instance);
+    public function delete($project, $instance, $optParams = []) {
+      $params = ['project' => $project, 'instance' => $instance];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       if ($this->useObjects()) {
         return new Google_InstancesDeleteResponse($data);
       } else {
@@ -107,10 +107,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_InstancesExportResponse
      */
-    public function export($project, $instance, Google_InstancesExportRequest $postBody, $optParams = array()) {
-      $params = array('project' => $project, 'instance' => $instance, 'postBody' => $postBody);
+    public function export($project, $instance, Google_InstancesExportRequest $postBody, $optParams = []) {
+      $params = ['project' => $project, 'instance' => $instance, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('export', array($params));
+      $data = $this->__call('export', [$params]);
       if ($this->useObjects()) {
         return new Google_InstancesExportResponse($data);
       } else {
@@ -125,10 +125,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_DatabaseInstance
      */
-    public function get($project, $instance, $optParams = array()) {
-      $params = array('project' => $project, 'instance' => $instance);
+    public function get($project, $instance, $optParams = []) {
+      $params = ['project' => $project, 'instance' => $instance];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_DatabaseInstance($data);
       } else {
@@ -145,10 +145,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_InstancesImportResponse
      */
-    public function import($project, $instance, Google_InstancesImportRequest $postBody, $optParams = array()) {
-      $params = array('project' => $project, 'instance' => $instance, 'postBody' => $postBody);
+    public function import($project, $instance, Google_InstancesImportRequest $postBody, $optParams = []) {
+      $params = ['project' => $project, 'instance' => $instance, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('import', array($params));
+      $data = $this->__call('import', [$params]);
       if ($this->useObjects()) {
         return new Google_InstancesImportResponse($data);
       } else {
@@ -163,10 +163,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_InstancesInsertResponse
      */
-    public function insert($project, Google_DatabaseInstance $postBody, $optParams = array()) {
-      $params = array('project' => $project, 'postBody' => $postBody);
+    public function insert($project, Google_DatabaseInstance $postBody, $optParams = []) {
+      $params = ['project' => $project, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_InstancesInsertResponse($data);
       } else {
@@ -184,10 +184,10 @@
      * @opt_param string pageToken A previously-returned page token representing part of the larger set of results to view.
      * @return Google_InstancesListResponse
      */
-    public function listInstances($project, $optParams = array()) {
-      $params = array('project' => $project);
+    public function listInstances($project, $optParams = []) {
+      $params = ['project' => $project];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_InstancesListResponse($data);
       } else {
@@ -205,10 +205,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_InstancesUpdateResponse
      */
-    public function patch($project, $instance, Google_DatabaseInstance $postBody, $optParams = array()) {
-      $params = array('project' => $project, 'instance' => $instance, 'postBody' => $postBody);
+    public function patch($project, $instance, Google_DatabaseInstance $postBody, $optParams = []) {
+      $params = ['project' => $project, 'instance' => $instance, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_InstancesUpdateResponse($data);
       } else {
@@ -223,10 +223,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_InstancesRestartResponse
      */
-    public function restart($project, $instance, $optParams = array()) {
-      $params = array('project' => $project, 'instance' => $instance);
+    public function restart($project, $instance, $optParams = []) {
+      $params = ['project' => $project, 'instance' => $instance];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('restart', array($params));
+      $data = $this->__call('restart', [$params]);
       if ($this->useObjects()) {
         return new Google_InstancesRestartResponse($data);
       } else {
@@ -243,10 +243,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_InstancesRestoreBackupResponse
      */
-    public function restoreBackup($project, $instance, $backupConfiguration, $dueTime, $optParams = array()) {
-      $params = array('project' => $project, 'instance' => $instance, 'backupConfiguration' => $backupConfiguration, 'dueTime' => $dueTime);
+    public function restoreBackup($project, $instance, $backupConfiguration, $dueTime, $optParams = []) {
+      $params = ['project' => $project, 'instance' => $instance, 'backupConfiguration' => $backupConfiguration, 'dueTime' => $dueTime];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('restoreBackup', array($params));
+      $data = $this->__call('restoreBackup', [$params]);
       if ($this->useObjects()) {
         return new Google_InstancesRestoreBackupResponse($data);
       } else {
@@ -264,10 +264,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_InstancesUpdateResponse
      */
-    public function update($project, $instance, Google_DatabaseInstance $postBody, $optParams = array()) {
-      $params = array('project' => $project, 'instance' => $instance, 'postBody' => $postBody);
+    public function update($project, $instance, Google_DatabaseInstance $postBody, $optParams = []) {
+      $params = ['project' => $project, 'instance' => $instance, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_InstancesUpdateResponse($data);
       } else {
@@ -295,10 +295,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_InstanceOperation
      */
-    public function get($project, $instance, $operation, $optParams = array()) {
-      $params = array('project' => $project, 'instance' => $instance, 'operation' => $operation);
+    public function get($project, $instance, $operation, $optParams = []) {
+      $params = ['project' => $project, 'instance' => $instance, 'operation' => $operation];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_InstanceOperation($data);
       } else {
@@ -317,10 +317,10 @@
      * @opt_param string pageToken A previously-returned page token representing part of the larger set of results to view.
      * @return Google_OperationsListResponse
      */
-    public function listOperations($project, $instance, $optParams = array()) {
-      $params = array('project' => $project, 'instance' => $instance);
+    public function listOperations($project, $instance, $optParams = []) {
+      $params = ['project' => $project, 'instance' => $instance];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_OperationsListResponse($data);
       } else {
@@ -346,10 +346,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_TiersListResponse
      */
-    public function listTiers($optParams = array()) {
-      $params = array();
+    public function listTiers($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_TiersListResponse($data);
       } else {

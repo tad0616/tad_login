@@ -32,10 +32,10 @@
      * @opt_param string sort Enables sorting of the list
      * @return Google_WebfontList
      */
-    public function listWebfonts($optParams = array()) {
-      $params = array();
+    public function listWebfonts($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_WebfontList($data);
       } else {

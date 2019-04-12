@@ -35,10 +35,10 @@
      *
      * @opt_param bool deleteContents If True, delete all the tables in the dataset. If False and the dataset contains tables, the request will fail. Default is False
      */
-    public function delete($projectId, $datasetId, $optParams = array()) {
-      $params = array('projectId' => $projectId, 'datasetId' => $datasetId);
+    public function delete($projectId, $datasetId, $optParams = []) {
+      $params = ['projectId' => $projectId, 'datasetId' => $datasetId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -49,10 +49,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Dataset
      */
-    public function get($projectId, $datasetId, $optParams = array()) {
-      $params = array('projectId' => $projectId, 'datasetId' => $datasetId);
+    public function get($projectId, $datasetId, $optParams = []) {
+      $params = ['projectId' => $projectId, 'datasetId' => $datasetId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Dataset($data);
       } else {
@@ -67,10 +67,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Dataset
      */
-    public function insert($projectId, Google_Dataset $postBody, $optParams = array()) {
-      $params = array('projectId' => $projectId, 'postBody' => $postBody);
+    public function insert($projectId, Google_Dataset $postBody, $optParams = []) {
+      $params = ['projectId' => $projectId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Dataset($data);
       } else {
@@ -88,10 +88,10 @@
      * @opt_param string pageToken Page token, returned by a previous call, to request the next page of results
      * @return Google_DatasetList
      */
-    public function listDatasets($projectId, $optParams = array()) {
-      $params = array('projectId' => $projectId);
+    public function listDatasets($projectId, $optParams = []) {
+      $params = ['projectId' => $projectId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_DatasetList($data);
       } else {
@@ -110,10 +110,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Dataset
      */
-    public function patch($projectId, $datasetId, Google_Dataset $postBody, $optParams = array()) {
-      $params = array('projectId' => $projectId, 'datasetId' => $datasetId, 'postBody' => $postBody);
+    public function patch($projectId, $datasetId, Google_Dataset $postBody, $optParams = []) {
+      $params = ['projectId' => $projectId, 'datasetId' => $datasetId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_Dataset($data);
       } else {
@@ -132,10 +132,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Dataset
      */
-    public function update($projectId, $datasetId, Google_Dataset $postBody, $optParams = array()) {
-      $params = array('projectId' => $projectId, 'datasetId' => $datasetId, 'postBody' => $postBody);
+    public function update($projectId, $datasetId, Google_Dataset $postBody, $optParams = []) {
+      $params = ['projectId' => $projectId, 'datasetId' => $datasetId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_Dataset($data);
       } else {
@@ -162,10 +162,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Job
      */
-    public function get($projectId, $jobId, $optParams = array()) {
-      $params = array('projectId' => $projectId, 'jobId' => $jobId);
+    public function get($projectId, $jobId, $optParams = []) {
+      $params = ['projectId' => $projectId, 'jobId' => $jobId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Job($data);
       } else {
@@ -185,10 +185,10 @@
      * @opt_param string timeoutMs How long to wait for the query to complete, in milliseconds, before returning. Default is to return immediately. If the timeout passes before the job completes, the request will fail with a TIMEOUT error
      * @return Google_GetQueryResultsResponse
      */
-    public function getQueryResults($projectId, $jobId, $optParams = array()) {
-      $params = array('projectId' => $projectId, 'jobId' => $jobId);
+    public function getQueryResults($projectId, $jobId, $optParams = []) {
+      $params = ['projectId' => $projectId, 'jobId' => $jobId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('getQueryResults', array($params));
+      $data = $this->__call('getQueryResults', [$params]);
       if ($this->useObjects()) {
         return new Google_GetQueryResultsResponse($data);
       } else {
@@ -203,10 +203,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Job
      */
-    public function insert($projectId, Google_Job $postBody, $optParams = array()) {
-      $params = array('projectId' => $projectId, 'postBody' => $postBody);
+    public function insert($projectId, Google_Job $postBody, $optParams = []) {
+      $params = ['projectId' => $projectId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Job($data);
       } else {
@@ -226,10 +226,10 @@
      * @opt_param string stateFilter Filter for job state
      * @return Google_JobList
      */
-    public function listJobs($projectId, $optParams = array()) {
-      $params = array('projectId' => $projectId);
+    public function listJobs($projectId, $optParams = []) {
+      $params = ['projectId' => $projectId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_JobList($data);
       } else {
@@ -245,10 +245,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_QueryResponse
      */
-    public function query($projectId, Google_QueryRequest $postBody, $optParams = array()) {
-      $params = array('projectId' => $projectId, 'postBody' => $postBody);
+    public function query($projectId, Google_QueryRequest $postBody, $optParams = []) {
+      $params = ['projectId' => $projectId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('query', array($params));
+      $data = $this->__call('query', [$params]);
       if ($this->useObjects()) {
         return new Google_QueryResponse($data);
       } else {
@@ -276,10 +276,10 @@
      * @opt_param string pageToken Page token, returned by a previous call, to request the next page of results
      * @return Google_ProjectList
      */
-    public function listProjects($optParams = array()) {
-      $params = array();
+    public function listProjects($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_ProjectList($data);
       } else {
@@ -311,10 +311,10 @@
      * @opt_param string startIndex Zero-based index of the starting row to read
      * @return Google_TableDataList
      */
-    public function listTabledata($projectId, $datasetId, $tableId, $optParams = array()) {
-      $params = array('projectId' => $projectId, 'datasetId' => $datasetId, 'tableId' => $tableId);
+    public function listTabledata($projectId, $datasetId, $tableId, $optParams = []) {
+      $params = ['projectId' => $projectId, 'datasetId' => $datasetId, 'tableId' => $tableId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_TableDataList($data);
       } else {
@@ -342,10 +342,10 @@
      * @param string $tableId Table ID of the table to delete
      * @param array $optParams Optional parameters.
      */
-    public function delete($projectId, $datasetId, $tableId, $optParams = array()) {
-      $params = array('projectId' => $projectId, 'datasetId' => $datasetId, 'tableId' => $tableId);
+    public function delete($projectId, $datasetId, $tableId, $optParams = []) {
+      $params = ['projectId' => $projectId, 'datasetId' => $datasetId, 'tableId' => $tableId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -358,10 +358,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Table
      */
-    public function get($projectId, $datasetId, $tableId, $optParams = array()) {
-      $params = array('projectId' => $projectId, 'datasetId' => $datasetId, 'tableId' => $tableId);
+    public function get($projectId, $datasetId, $tableId, $optParams = []) {
+      $params = ['projectId' => $projectId, 'datasetId' => $datasetId, 'tableId' => $tableId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Table($data);
       } else {
@@ -377,10 +377,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Table
      */
-    public function insert($projectId, $datasetId, Google_Table $postBody, $optParams = array()) {
-      $params = array('projectId' => $projectId, 'datasetId' => $datasetId, 'postBody' => $postBody);
+    public function insert($projectId, $datasetId, Google_Table $postBody, $optParams = []) {
+      $params = ['projectId' => $projectId, 'datasetId' => $datasetId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Table($data);
       } else {
@@ -398,10 +398,10 @@
      * @opt_param string pageToken Page token, returned by a previous call, to request the next page of results
      * @return Google_TableList
      */
-    public function listTables($projectId, $datasetId, $optParams = array()) {
-      $params = array('projectId' => $projectId, 'datasetId' => $datasetId);
+    public function listTables($projectId, $datasetId, $optParams = []) {
+      $params = ['projectId' => $projectId, 'datasetId' => $datasetId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_TableList($data);
       } else {
@@ -419,10 +419,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Table
      */
-    public function patch($projectId, $datasetId, $tableId, Google_Table $postBody, $optParams = array()) {
-      $params = array('projectId' => $projectId, 'datasetId' => $datasetId, 'tableId' => $tableId, 'postBody' => $postBody);
+    public function patch($projectId, $datasetId, $tableId, Google_Table $postBody, $optParams = []) {
+      $params = ['projectId' => $projectId, 'datasetId' => $datasetId, 'tableId' => $tableId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_Table($data);
       } else {
@@ -439,10 +439,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Table
      */
-    public function update($projectId, $datasetId, $tableId, Google_Table $postBody, $optParams = array()) {
-      $params = array('projectId' => $projectId, 'datasetId' => $datasetId, 'tableId' => $tableId, 'postBody' => $postBody);
+    public function update($projectId, $datasetId, $tableId, Google_Table $postBody, $optParams = []) {
+      $params = ['projectId' => $projectId, 'datasetId' => $datasetId, 'tableId' => $tableId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_Table($data);
       } else {

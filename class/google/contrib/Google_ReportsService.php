@@ -40,10 +40,10 @@
      * @opt_param string startTime Return events which occured at or after this time.
      * @return Google_Activities
      */
-    public function listActivities($userKey, $applicationName, $optParams = array()) {
-      $params = array('userKey' => $userKey, 'applicationName' => $applicationName);
+    public function listActivities($userKey, $applicationName, $optParams = []) {
+      $params = ['userKey' => $userKey, 'applicationName' => $applicationName];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Activities($data);
       } else {
@@ -73,10 +73,10 @@
      * @opt_param string parameters Represents the application name, parameter name pairs to fetch in csv as app_name1:param_name1, app_name2:param_name2.
      * @return Google_UsageReports
      */
-    public function get($date, $optParams = array()) {
-      $params = array('date' => $date);
+    public function get($date, $optParams = []) {
+      $params = ['date' => $date];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_UsageReports($data);
       } else {
@@ -109,10 +109,10 @@
      * @opt_param string parameters Represents the application name, parameter name pairs to fetch in csv as app_name1:param_name1, app_name2:param_name2.
      * @return Google_UsageReports
      */
-    public function get($userKey, $date, $optParams = array()) {
-      $params = array('userKey' => $userKey, 'date' => $date);
+    public function get($userKey, $date, $optParams = []) {
+      $params = ['userKey' => $userKey, 'date' => $date];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_UsageReports($data);
       } else {

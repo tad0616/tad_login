@@ -34,10 +34,10 @@
      * @opt_param string pageToken The token returned by the previous request.
      * @return Google_AchievementDefinitionsListResponse
      */
-    public function listAchievementDefinitions($optParams = array()) {
-      $params = array();
+    public function listAchievementDefinitions($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_AchievementDefinitionsListResponse($data);
       } else {
@@ -67,10 +67,10 @@
      * @opt_param string requestId A randomly generated numeric ID for each request specified by the caller. This number is used at the server to ensure that the increment is performed correctly across retries.
      * @return Google_AchievementIncrementResponse
      */
-    public function increment($achievementId, $stepsToIncrement, $optParams = array()) {
-      $params = array('achievementId' => $achievementId, 'stepsToIncrement' => $stepsToIncrement);
+    public function increment($achievementId, $stepsToIncrement, $optParams = []) {
+      $params = ['achievementId' => $achievementId, 'stepsToIncrement' => $stepsToIncrement];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('increment', array($params));
+      $data = $this->__call('increment', [$params]);
       if ($this->useObjects()) {
         return new Google_AchievementIncrementResponse($data);
       } else {
@@ -90,10 +90,10 @@
      * @opt_param string state Tells the server to return only achievements with the specified state. If this parameter isn't specified, all achievements are returned.
      * @return Google_PlayerAchievementListResponse
      */
-    public function listAchievements($playerId, $optParams = array()) {
-      $params = array('playerId' => $playerId);
+    public function listAchievements($playerId, $optParams = []) {
+      $params = ['playerId' => $playerId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_PlayerAchievementListResponse($data);
       } else {
@@ -108,10 +108,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_AchievementRevealResponse
      */
-    public function reveal($achievementId, $optParams = array()) {
-      $params = array('achievementId' => $achievementId);
+    public function reveal($achievementId, $optParams = []) {
+      $params = ['achievementId' => $achievementId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('reveal', array($params));
+      $data = $this->__call('reveal', [$params]);
       if ($this->useObjects()) {
         return new Google_AchievementRevealResponse($data);
       } else {
@@ -125,10 +125,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_AchievementUnlockResponse
      */
-    public function unlock($achievementId, $optParams = array()) {
-      $params = array('achievementId' => $achievementId);
+    public function unlock($achievementId, $optParams = []) {
+      $params = ['achievementId' => $achievementId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('unlock', array($params));
+      $data = $this->__call('unlock', [$params]);
       if ($this->useObjects()) {
         return new Google_AchievementUnlockResponse($data);
       } else {
@@ -159,10 +159,10 @@
      * @opt_param string platformType Restrict application details returned to the specific platform.
      * @return Google_Application
      */
-    public function get($applicationId, $optParams = array()) {
-      $params = array('applicationId' => $applicationId);
+    public function get($applicationId, $optParams = []) {
+      $params = ['applicationId' => $applicationId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Application($data);
       } else {
@@ -175,10 +175,10 @@
      *
      * @param array $optParams Optional parameters.
      */
-    public function played($optParams = array()) {
-      $params = array();
+    public function played($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('played', array($params));
+      $data = $this->__call('played', [$params]);
       return $data;
     }
   }
@@ -202,10 +202,10 @@
      * @opt_param string language The preferred language to use for strings returned by this method.
      * @return Google_Leaderboard
      */
-    public function get($leaderboardId, $optParams = array()) {
-      $params = array('leaderboardId' => $leaderboardId);
+    public function get($leaderboardId, $optParams = []) {
+      $params = ['leaderboardId' => $leaderboardId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Leaderboard($data);
       } else {
@@ -222,10 +222,10 @@
      * @opt_param string pageToken The token returned by the previous request.
      * @return Google_LeaderboardListResponse
      */
-    public function listLeaderboards($optParams = array()) {
-      $params = array();
+    public function listLeaderboards($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_LeaderboardListResponse($data);
       } else {
@@ -252,10 +252,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Player
      */
-    public function get($playerId, $optParams = array()) {
-      $params = array('playerId' => $playerId);
+    public function get($playerId, $optParams = []) {
+      $params = ['playerId' => $playerId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Player($data);
       } else {
@@ -281,10 +281,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_RevisionCheckResponse
      */
-    public function check($clientRevision, $optParams = array()) {
-      $params = array('clientRevision' => $clientRevision);
+    public function check($clientRevision, $optParams = []) {
+      $params = ['clientRevision' => $clientRevision];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('check', array($params));
+      $data = $this->__call('check', [$params]);
       if ($this->useObjects()) {
         return new Google_RevisionCheckResponse($data);
       } else {
@@ -313,10 +313,10 @@
      * @opt_param string language The preferred language to use for strings returned by this method.
      * @return Google_Room
      */
-    public function create(Google_RoomCreateRequest $postBody, $optParams = array()) {
-      $params = array('postBody' => $postBody);
+    public function create(Google_RoomCreateRequest $postBody, $optParams = []) {
+      $params = ['postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('create', array($params));
+      $data = $this->__call('create', [$params]);
       if ($this->useObjects()) {
         return new Google_Room($data);
       } else {
@@ -331,10 +331,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Room
      */
-    public function decline($roomId, $optParams = array()) {
-      $params = array('roomId' => $roomId);
+    public function decline($roomId, $optParams = []) {
+      $params = ['roomId' => $roomId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('decline', array($params));
+      $data = $this->__call('decline', [$params]);
       if ($this->useObjects()) {
         return new Google_Room($data);
       } else {
@@ -348,10 +348,10 @@
      * @param string $roomId The ID of the room.
      * @param array $optParams Optional parameters.
      */
-    public function dismiss($roomId, $optParams = array()) {
-      $params = array('roomId' => $roomId);
+    public function dismiss($roomId, $optParams = []) {
+      $params = ['roomId' => $roomId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('dismiss', array($params));
+      $data = $this->__call('dismiss', [$params]);
       return $data;
     }
     /**
@@ -363,10 +363,10 @@
      * @opt_param string language Specify the preferred language to use to format room info.
      * @return Google_Room
      */
-    public function get($roomId, $optParams = array()) {
-      $params = array('roomId' => $roomId);
+    public function get($roomId, $optParams = []) {
+      $params = ['roomId' => $roomId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Room($data);
       } else {
@@ -382,10 +382,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Room
      */
-    public function join($roomId, Google_RoomJoinRequest $postBody, $optParams = array()) {
-      $params = array('roomId' => $roomId, 'postBody' => $postBody);
+    public function join($roomId, Google_RoomJoinRequest $postBody, $optParams = []) {
+      $params = ['roomId' => $roomId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('join', array($params));
+      $data = $this->__call('join', [$params]);
       if ($this->useObjects()) {
         return new Google_Room($data);
       } else {
@@ -401,10 +401,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Room
      */
-    public function leave($roomId, Google_RoomLeaveRequest $postBody, $optParams = array()) {
-      $params = array('roomId' => $roomId, 'postBody' => $postBody);
+    public function leave($roomId, Google_RoomLeaveRequest $postBody, $optParams = []) {
+      $params = ['roomId' => $roomId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('leave', array($params));
+      $data = $this->__call('leave', [$params]);
       if ($this->useObjects()) {
         return new Google_Room($data);
       } else {
@@ -421,10 +421,10 @@
      * @opt_param string pageToken The token returned by the previous request.
      * @return Google_RoomList
      */
-    public function listRooms($optParams = array()) {
-      $params = array();
+    public function listRooms($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_RoomList($data);
       } else {
@@ -440,10 +440,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_RoomStatus
      */
-    public function reportStatus($roomId, Google_RoomP2PStatuses $postBody, $optParams = array()) {
-      $params = array('roomId' => $roomId, 'postBody' => $postBody);
+    public function reportStatus($roomId, Google_RoomP2PStatuses $postBody, $optParams = []) {
+      $params = ['roomId' => $roomId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('reportStatus', array($params));
+      $data = $this->__call('reportStatus', [$params]);
       if ($this->useObjects()) {
         return new Google_RoomStatus($data);
       } else {
@@ -478,10 +478,10 @@
      * @opt_param string pageToken The token returned by the previous request.
      * @return Google_PlayerLeaderboardScoreListResponse
      */
-    public function get($playerId, $leaderboardId, $timeSpan, $optParams = array()) {
-      $params = array('playerId' => $playerId, 'leaderboardId' => $leaderboardId, 'timeSpan' => $timeSpan);
+    public function get($playerId, $leaderboardId, $timeSpan, $optParams = []) {
+      $params = ['playerId' => $playerId, 'leaderboardId' => $leaderboardId, 'timeSpan' => $timeSpan];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_PlayerLeaderboardScoreListResponse($data);
       } else {
@@ -501,10 +501,10 @@
      * @opt_param string pageToken The token returned by the previous request.
      * @return Google_LeaderboardScores
      */
-    public function listScores($leaderboardId, $collection, $timeSpan, $optParams = array()) {
-      $params = array('leaderboardId' => $leaderboardId, 'collection' => $collection, 'timeSpan' => $timeSpan);
+    public function listScores($leaderboardId, $collection, $timeSpan, $optParams = []) {
+      $params = ['leaderboardId' => $leaderboardId, 'collection' => $collection, 'timeSpan' => $timeSpan];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_LeaderboardScores($data);
       } else {
@@ -526,10 +526,10 @@
      * @opt_param bool returnTopIfAbsent True if the top scores should be returned when the player is not in the leaderboard. Defaults to true.
      * @return Google_LeaderboardScores
      */
-    public function listWindow($leaderboardId, $collection, $timeSpan, $optParams = array()) {
-      $params = array('leaderboardId' => $leaderboardId, 'collection' => $collection, 'timeSpan' => $timeSpan);
+    public function listWindow($leaderboardId, $collection, $timeSpan, $optParams = []) {
+      $params = ['leaderboardId' => $leaderboardId, 'collection' => $collection, 'timeSpan' => $timeSpan];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('listWindow', array($params));
+      $data = $this->__call('listWindow', [$params]);
       if ($this->useObjects()) {
         return new Google_LeaderboardScores($data);
       } else {
@@ -546,10 +546,10 @@
      * @opt_param string language The preferred language to use for strings returned by this method.
      * @return Google_PlayerScoreResponse
      */
-    public function submit($leaderboardId, $score, $optParams = array()) {
-      $params = array('leaderboardId' => $leaderboardId, 'score' => $score);
+    public function submit($leaderboardId, $score, $optParams = []) {
+      $params = ['leaderboardId' => $leaderboardId, 'score' => $score];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('submit', array($params));
+      $data = $this->__call('submit', [$params]);
       if ($this->useObjects()) {
         return new Google_PlayerScoreResponse($data);
       } else {
@@ -565,10 +565,10 @@
      * @opt_param string language The preferred language to use for strings returned by this method.
      * @return Google_PlayerScoreListResponse
      */
-    public function submitMultiple(Google_PlayerScoreSubmissionList $postBody, $optParams = array()) {
-      $params = array('postBody' => $postBody);
+    public function submitMultiple(Google_PlayerScoreSubmissionList $postBody, $optParams = []) {
+      $params = ['postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('submitMultiple', array($params));
+      $data = $this->__call('submitMultiple', [$params]);
       if ($this->useObjects()) {
         return new Google_PlayerScoreListResponse($data);
       } else {

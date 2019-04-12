@@ -34,10 +34,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Activity
      */
-    public function insert($part, Google_Activity $postBody, $optParams = array()) {
-      $params = array('part' => $part, 'postBody' => $postBody);
+    public function insert($part, Google_Activity $postBody, $optParams = []) {
+      $params = ['part' => $part, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Activity($data);
       } else {
@@ -64,10 +64,10 @@
      * @opt_param string regionCode The regionCode parameter instructs the API to return results for the specified country. The parameter value is an ISO 3166-1 alpha-2 country code.
      * @return Google_ActivityListResponse
      */
-    public function listActivities($part, $optParams = array()) {
-      $params = array('part' => $part);
+    public function listActivities($part, $optParams = []) {
+      $params = ['part' => $part];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_ActivityListResponse($data);
       } else {
@@ -95,10 +95,10 @@
      * @opt_param string onBehalfOfContentOwner USE_DESCRIPTION --- channels:list:onBehalfOfContentOwner
      * @return Google_ChannelBannerResource
      */
-    public function insert(Google_ChannelBannerResource $postBody, $optParams = array()) {
-      $params = array('postBody' => $postBody);
+    public function insert(Google_ChannelBannerResource $postBody, $optParams = []) {
+      $params = ['postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_ChannelBannerResource($data);
       } else {
@@ -136,10 +136,10 @@
      * @opt_param string pageToken The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      * @return Google_ChannelListResponse
      */
-    public function listChannels($part, $optParams = array()) {
-      $params = array('part' => $part);
+    public function listChannels($part, $optParams = []) {
+      $params = ['part' => $part];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_ChannelListResponse($data);
       } else {
@@ -158,10 +158,10 @@
      * @opt_param string onBehalfOfContentOwner The onBehalfOfContentOwner parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner.
      * @return Google_Channel
      */
-    public function update($part, Google_Channel $postBody, $optParams = array()) {
-      $params = array('part' => $part, 'postBody' => $postBody);
+    public function update($part, Google_Channel $postBody, $optParams = []) {
+      $params = ['part' => $part, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_Channel($data);
       } else {
@@ -192,10 +192,10 @@
      * @opt_param string regionCode The regionCode parameter instructs the API to return the list of guide categories available in the specified country. The parameter value is an ISO 3166-1 alpha-2 country code.
      * @return Google_GuideCategoryListResponse
      */
-    public function listGuideCategories($part, $optParams = array()) {
-      $params = array('part' => $part);
+    public function listGuideCategories($part, $optParams = []) {
+      $params = ['part' => $part];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_GuideCategoryListResponse($data);
       } else {
@@ -226,10 +226,10 @@
      * @opt_param string streamId The streamId parameter specifies the unique ID of the video stream that is being bound to a broadcast. If this parameter is omitted, the API will remove any existing binding between the broadcast and a video stream.
      * @return Google_LiveBroadcast
      */
-    public function bind($id, $part, $optParams = array()) {
-      $params = array('id' => $id, 'part' => $part);
+    public function bind($id, $part, $optParams = []) {
+      $params = ['id' => $id, 'part' => $part];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('bind', array($params));
+      $data = $this->__call('bind', [$params]);
       if ($this->useObjects()) {
         return new Google_LiveBroadcast($data);
       } else {
@@ -248,10 +248,10 @@
      * @opt_param string onBehalfOfContentOwner USE_DESCRIPTION --- channels:list:onBehalfOfContentOwner
      * @return Google_LiveBroadcast
      */
-    public function control($id, $part, $optParams = array()) {
-      $params = array('id' => $id, 'part' => $part);
+    public function control($id, $part, $optParams = []) {
+      $params = ['id' => $id, 'part' => $part];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('control', array($params));
+      $data = $this->__call('control', [$params]);
       if ($this->useObjects()) {
         return new Google_LiveBroadcast($data);
       } else {
@@ -266,10 +266,10 @@
      *
      * @opt_param string onBehalfOfContentOwner USE_DESCRIPTION --- channels:list:onBehalfOfContentOwner
      */
-    public function delete($id, $optParams = array()) {
-      $params = array('id' => $id);
+    public function delete($id, $optParams = []) {
+      $params = ['id' => $id];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -283,10 +283,10 @@
      * @opt_param string onBehalfOfContentOwner USE_DESCRIPTION --- channels:list:onBehalfOfContentOwner
      * @return Google_LiveBroadcast
      */
-    public function insert($part, Google_LiveBroadcast $postBody, $optParams = array()) {
-      $params = array('part' => $part, 'postBody' => $postBody);
+    public function insert($part, Google_LiveBroadcast $postBody, $optParams = []) {
+      $params = ['part' => $part, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_LiveBroadcast($data);
       } else {
@@ -306,10 +306,10 @@
      * @opt_param string pageToken The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      * @return Google_LiveBroadcastList
      */
-    public function listLiveBroadcasts($part, $optParams = array()) {
-      $params = array('part' => $part);
+    public function listLiveBroadcasts($part, $optParams = []) {
+      $params = ['part' => $part];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_LiveBroadcastList($data);
       } else {
@@ -329,10 +329,10 @@
      * @opt_param string onBehalfOfContentOwner USE_DESCRIPTION --- channels:list:onBehalfOfContentOwner
      * @return Google_LiveBroadcast
      */
-    public function transition($broadcastStatus, $id, $part, $optParams = array()) {
-      $params = array('broadcastStatus' => $broadcastStatus, 'id' => $id, 'part' => $part);
+    public function transition($broadcastStatus, $id, $part, $optParams = []) {
+      $params = ['broadcastStatus' => $broadcastStatus, 'id' => $id, 'part' => $part];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('transition', array($params));
+      $data = $this->__call('transition', [$params]);
       if ($this->useObjects()) {
         return new Google_LiveBroadcast($data);
       } else {
@@ -352,10 +352,10 @@
      * @opt_param string onBehalfOfContentOwner USE_DESCRIPTION --- channels:list:onBehalfOfContentOwner
      * @return Google_LiveBroadcast
      */
-    public function update($part, Google_LiveBroadcast $postBody, $optParams = array()) {
-      $params = array('part' => $part, 'postBody' => $postBody);
+    public function update($part, Google_LiveBroadcast $postBody, $optParams = []) {
+      $params = ['part' => $part, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_LiveBroadcast($data);
       } else {
@@ -380,10 +380,10 @@
      * @param string $id The id parameter specifies the YouTube live stream ID for the resource that is being deleted.
      * @param array $optParams Optional parameters.
      */
-    public function delete($id, $optParams = array()) {
-      $params = array('id' => $id);
+    public function delete($id, $optParams = []) {
+      $params = ['id' => $id];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -396,10 +396,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_LiveStream
      */
-    public function insert($part, Google_LiveStream $postBody, $optParams = array()) {
-      $params = array('part' => $part, 'postBody' => $postBody);
+    public function insert($part, Google_LiveStream $postBody, $optParams = []) {
+      $params = ['part' => $part, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_LiveStream($data);
       } else {
@@ -418,10 +418,10 @@
      * @opt_param string pageToken The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      * @return Google_LiveStreamList
      */
-    public function listLiveStreams($part, $optParams = array()) {
-      $params = array('part' => $part);
+    public function listLiveStreams($part, $optParams = []) {
+      $params = ['part' => $part];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_LiveStreamList($data);
       } else {
@@ -439,10 +439,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_LiveStream
      */
-    public function update($part, Google_LiveStream $postBody, $optParams = array()) {
-      $params = array('part' => $part, 'postBody' => $postBody);
+    public function update($part, Google_LiveStream $postBody, $optParams = []) {
+      $params = ['part' => $part, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_LiveStream($data);
       } else {
@@ -467,10 +467,10 @@
      * @param string $id The id parameter specifies the YouTube playlist item ID for the playlist item that is being deleted. In a playlistItem resource, the id property specifies the playlist item's ID.
      * @param array $optParams Optional parameters.
      */
-    public function delete($id, $optParams = array()) {
-      $params = array('id' => $id);
+    public function delete($id, $optParams = []) {
+      $params = ['id' => $id];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -482,10 +482,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_PlaylistItem
      */
-    public function insert($part, Google_PlaylistItem $postBody, $optParams = array()) {
-      $params = array('part' => $part, 'postBody' => $postBody);
+    public function insert($part, Google_PlaylistItem $postBody, $optParams = []) {
+      $params = ['part' => $part, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_PlaylistItem($data);
       } else {
@@ -508,10 +508,10 @@
      * @opt_param string videoId The videoId parameter specifies that the request should return only the playlist items that contain the specified video.
      * @return Google_PlaylistItemListResponse
      */
-    public function listPlaylistItems($part, $optParams = array()) {
-      $params = array('part' => $part);
+    public function listPlaylistItems($part, $optParams = []) {
+      $params = ['part' => $part];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_PlaylistItemListResponse($data);
       } else {
@@ -529,10 +529,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_PlaylistItem
      */
-    public function update($part, Google_PlaylistItem $postBody, $optParams = array()) {
-      $params = array('part' => $part, 'postBody' => $postBody);
+    public function update($part, Google_PlaylistItem $postBody, $optParams = []) {
+      $params = ['part' => $part, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_PlaylistItem($data);
       } else {
@@ -557,10 +557,10 @@
      * @param string $id The id parameter specifies the YouTube playlist ID for the playlist that is being deleted. In a playlist resource, the id property specifies the playlist's ID.
      * @param array $optParams Optional parameters.
      */
-    public function delete($id, $optParams = array()) {
-      $params = array('id' => $id);
+    public function delete($id, $optParams = []) {
+      $params = ['id' => $id];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -572,10 +572,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Playlist
      */
-    public function insert($part, Google_Playlist $postBody, $optParams = array()) {
-      $params = array('part' => $part, 'postBody' => $postBody);
+    public function insert($part, Google_Playlist $postBody, $optParams = []) {
+      $params = ['part' => $part, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Playlist($data);
       } else {
@@ -598,10 +598,10 @@
      * @opt_param string pageToken USE_DESCRIPTION --- channels:list:pageToken
      * @return Google_PlaylistListResponse
      */
-    public function listPlaylists($part, $optParams = array()) {
-      $params = array('part' => $part);
+    public function listPlaylists($part, $optParams = []) {
+      $params = ['part' => $part];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_PlaylistListResponse($data);
       } else {
@@ -619,10 +619,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Playlist
      */
-    public function update($part, Google_Playlist $postBody, $optParams = array()) {
-      $params = array('part' => $part, 'postBody' => $postBody);
+    public function update($part, Google_Playlist $postBody, $optParams = []) {
+      $params = ['part' => $part, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_Playlist($data);
       } else {
@@ -678,10 +678,10 @@
      * @opt_param string videoType The videoType parameter lets you restrict a search to a particular type of videos.
      * @return Google_SearchListResponse
      */
-    public function listSearch($part, $optParams = array()) {
-      $params = array('part' => $part);
+    public function listSearch($part, $optParams = []) {
+      $params = ['part' => $part];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_SearchListResponse($data);
       } else {
@@ -706,10 +706,10 @@
      * @param string $id The id parameter specifies the YouTube subscription ID for the resource that is being deleted. In a subscription resource, the id property specifies the YouTube subscription ID.
      * @param array $optParams Optional parameters.
      */
-    public function delete($id, $optParams = array()) {
-      $params = array('id' => $id);
+    public function delete($id, $optParams = []) {
+      $params = ['id' => $id];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -721,10 +721,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Subscription
      */
-    public function insert($part, Google_Subscription $postBody, $optParams = array()) {
-      $params = array('part' => $part, 'postBody' => $postBody);
+    public function insert($part, Google_Subscription $postBody, $optParams = []) {
+      $params = ['part' => $part, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Subscription($data);
       } else {
@@ -748,10 +748,10 @@
      * @opt_param string pageToken USE_DESCRIPTION --- channels:list:pageToken
      * @return Google_SubscriptionListResponse
      */
-    public function listSubscriptions($part, $optParams = array()) {
-      $params = array('part' => $part);
+    public function listSubscriptions($part, $optParams = []) {
+      $params = ['part' => $part];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_SubscriptionListResponse($data);
       } else {
@@ -777,10 +777,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_ThumbnailListResponse
      */
-    public function set($videoId, $optParams = array()) {
-      $params = array('videoId' => $videoId);
+    public function set($videoId, $optParams = []) {
+      $params = ['videoId' => $videoId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('set', array($params));
+      $data = $this->__call('set', [$params]);
       if ($this->useObjects()) {
         return new Google_ThumbnailListResponse($data);
       } else {
@@ -810,10 +810,10 @@
      * @opt_param string regionCode The regionCode parameter instructs the API to return the list of video categories available in the specified country. The parameter value is an ISO 3166-1 alpha-2 country code.
      * @return Google_VideoCategoryListResponse
      */
-    public function listVideoCategories($part, $optParams = array()) {
-      $params = array('part' => $part);
+    public function listVideoCategories($part, $optParams = []) {
+      $params = ['part' => $part];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_VideoCategoryListResponse($data);
       } else {
@@ -840,10 +840,10 @@
      *
      * @opt_param string onBehalfOfContentOwner USE_DESCRIPTION --- channels:list:onBehalfOfContentOwner
      */
-    public function delete($id, $optParams = array()) {
-      $params = array('id' => $id);
+    public function delete($id, $optParams = []) {
+      $params = ['id' => $id];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -855,10 +855,10 @@
      * @opt_param string onBehalfOfContentOwner USE_DESCRIPTION --- channels:list:onBehalfOfContentOwner
      * @return Google_VideoGetRatingResponse
      */
-    public function getRating($id, $optParams = array()) {
-      $params = array('id' => $id);
+    public function getRating($id, $optParams = []) {
+      $params = ['id' => $id];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('getRating', array($params));
+      $data = $this->__call('getRating', [$params]);
       if ($this->useObjects()) {
         return new Google_VideoGetRatingResponse($data);
       } else {
@@ -881,10 +881,10 @@
      * @opt_param bool stabilize The stabilize parameter specifies whether the video should be stabilized by YouTube.
      * @return Google_Video
      */
-    public function insert($part, Google_Video $postBody, $optParams = array()) {
-      $params = array('part' => $part, 'postBody' => $postBody);
+    public function insert($part, Google_Video $postBody, $optParams = []) {
+      $params = ['part' => $part, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Video($data);
       } else {
@@ -908,10 +908,10 @@
      * @opt_param string videoCategoryId The videoCategoryId parameter selects a video chart based on the category. If using this parameter, chart must also be set.
      * @return Google_VideoListResponse
      */
-    public function listVideos($part, $optParams = array()) {
-      $params = array('part' => $part);
+    public function listVideos($part, $optParams = []) {
+      $params = ['part' => $part];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_VideoListResponse($data);
       } else {
@@ -927,10 +927,10 @@
      *
      * @opt_param string onBehalfOfContentOwner USE_DESCRIPTION --- channels:list:onBehalfOfContentOwner
      */
-    public function rate($id, $rating, $optParams = array()) {
-      $params = array('id' => $id, 'rating' => $rating);
+    public function rate($id, $rating, $optParams = []) {
+      $params = ['id' => $id, 'rating' => $rating];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('rate', array($params));
+      $data = $this->__call('rate', [$params]);
       return $data;
     }
     /**
@@ -946,10 +946,10 @@
      * @opt_param string onBehalfOfContentOwner USE_DESCRIPTION --- channels:list:onBehalfOfContentOwner
      * @return Google_Video
      */
-    public function update($part, Google_Video $postBody, $optParams = array()) {
-      $params = array('part' => $part, 'postBody' => $postBody);
+    public function update($part, Google_Video $postBody, $optParams = []) {
+      $params = ['part' => $part, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_Video($data);
       } else {

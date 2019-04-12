@@ -31,10 +31,10 @@
      * @param string $columnId Name or identifier for the column being deleted.
      * @param array $optParams Optional parameters.
      */
-    public function delete($tableId, $columnId, $optParams = array()) {
-      $params = array('tableId' => $tableId, 'columnId' => $columnId);
+    public function delete($tableId, $columnId, $optParams = []) {
+      $params = ['tableId' => $tableId, 'columnId' => $columnId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -45,10 +45,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Column
      */
-    public function get($tableId, $columnId, $optParams = array()) {
-      $params = array('tableId' => $tableId, 'columnId' => $columnId);
+    public function get($tableId, $columnId, $optParams = []) {
+      $params = ['tableId' => $tableId, 'columnId' => $columnId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Column($data);
       } else {
@@ -63,10 +63,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Column
      */
-    public function insert($tableId, Google_Column $postBody, $optParams = array()) {
-      $params = array('tableId' => $tableId, 'postBody' => $postBody);
+    public function insert($tableId, Google_Column $postBody, $optParams = []) {
+      $params = ['tableId' => $tableId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Column($data);
       } else {
@@ -83,10 +83,10 @@
      * @opt_param string pageToken Continuation token specifying which result page to return. Optional.
      * @return Google_ColumnList
      */
-    public function listColumn($tableId, $optParams = array()) {
-      $params = array('tableId' => $tableId);
+    public function listColumn($tableId, $optParams = []) {
+      $params = ['tableId' => $tableId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_ColumnList($data);
       } else {
@@ -103,10 +103,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Column
      */
-    public function patch($tableId, $columnId, Google_Column $postBody, $optParams = array()) {
-      $params = array('tableId' => $tableId, 'columnId' => $columnId, 'postBody' => $postBody);
+    public function patch($tableId, $columnId, Google_Column $postBody, $optParams = []) {
+      $params = ['tableId' => $tableId, 'columnId' => $columnId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_Column($data);
       } else {
@@ -122,10 +122,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Column
      */
-    public function update($tableId, $columnId, Google_Column $postBody, $optParams = array()) {
-      $params = array('tableId' => $tableId, 'columnId' => $columnId, 'postBody' => $postBody);
+    public function update($tableId, $columnId, Google_Column $postBody, $optParams = []) {
+      $params = ['tableId' => $tableId, 'columnId' => $columnId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_Column($data);
       } else {
@@ -154,10 +154,10 @@
      * @opt_param bool typed Should typed values be returned in the (JSON) response -- numbers for numeric values and parsed geometries for KML values? Default is true.
      * @return Google_Sqlresponse
      */
-    public function sql($sql, $optParams = array()) {
-      $params = array('sql' => $sql);
+    public function sql($sql, $optParams = []) {
+      $params = ['sql' => $sql];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('sql', array($params));
+      $data = $this->__call('sql', [$params]);
       if ($this->useObjects()) {
         return new Google_Sqlresponse($data);
       } else {
@@ -174,10 +174,10 @@
      * @opt_param bool typed Should typed values be returned in the (JSON) response -- numbers for numeric values and parsed geometries for KML values? Default is true.
      * @return Google_Sqlresponse
      */
-    public function sqlGet($sql, $optParams = array()) {
-      $params = array('sql' => $sql);
+    public function sqlGet($sql, $optParams = []) {
+      $params = ['sql' => $sql];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('sqlGet', array($params));
+      $data = $this->__call('sqlGet', [$params]);
       if ($this->useObjects()) {
         return new Google_Sqlresponse($data);
       } else {
@@ -203,10 +203,10 @@
      * @param int $styleId Identifier (within a table) for the style being deleted
      * @param array $optParams Optional parameters.
      */
-    public function delete($tableId, $styleId, $optParams = array()) {
-      $params = array('tableId' => $tableId, 'styleId' => $styleId);
+    public function delete($tableId, $styleId, $optParams = []) {
+      $params = ['tableId' => $tableId, 'styleId' => $styleId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -217,10 +217,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_StyleSetting
      */
-    public function get($tableId, $styleId, $optParams = array()) {
-      $params = array('tableId' => $tableId, 'styleId' => $styleId);
+    public function get($tableId, $styleId, $optParams = []) {
+      $params = ['tableId' => $tableId, 'styleId' => $styleId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_StyleSetting($data);
       } else {
@@ -235,10 +235,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_StyleSetting
      */
-    public function insert($tableId, Google_StyleSetting $postBody, $optParams = array()) {
-      $params = array('tableId' => $tableId, 'postBody' => $postBody);
+    public function insert($tableId, Google_StyleSetting $postBody, $optParams = []) {
+      $params = ['tableId' => $tableId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_StyleSetting($data);
       } else {
@@ -255,10 +255,10 @@
      * @opt_param string pageToken Continuation token specifying which result page to return. Optional.
      * @return Google_StyleSettingList
      */
-    public function listStyle($tableId, $optParams = array()) {
-      $params = array('tableId' => $tableId);
+    public function listStyle($tableId, $optParams = []) {
+      $params = ['tableId' => $tableId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_StyleSettingList($data);
       } else {
@@ -274,10 +274,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_StyleSetting
      */
-    public function patch($tableId, $styleId, Google_StyleSetting $postBody, $optParams = array()) {
-      $params = array('tableId' => $tableId, 'styleId' => $styleId, 'postBody' => $postBody);
+    public function patch($tableId, $styleId, Google_StyleSetting $postBody, $optParams = []) {
+      $params = ['tableId' => $tableId, 'styleId' => $styleId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_StyleSetting($data);
       } else {
@@ -293,10 +293,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_StyleSetting
      */
-    public function update($tableId, $styleId, Google_StyleSetting $postBody, $optParams = array()) {
-      $params = array('tableId' => $tableId, 'styleId' => $styleId, 'postBody' => $postBody);
+    public function update($tableId, $styleId, Google_StyleSetting $postBody, $optParams = []) {
+      $params = ['tableId' => $tableId, 'styleId' => $styleId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_StyleSetting($data);
       } else {
@@ -324,10 +324,10 @@
      * @opt_param bool copyPresentation Whether to also copy tabs, styles, and templates. Default is false.
      * @return Google_Table
      */
-    public function copy($tableId, $optParams = array()) {
-      $params = array('tableId' => $tableId);
+    public function copy($tableId, $optParams = []) {
+      $params = ['tableId' => $tableId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('copy', array($params));
+      $data = $this->__call('copy', [$params]);
       if ($this->useObjects()) {
         return new Google_Table($data);
       } else {
@@ -340,10 +340,10 @@
      * @param string $tableId ID of the table that is being deleted.
      * @param array $optParams Optional parameters.
      */
-    public function delete($tableId, $optParams = array()) {
-      $params = array('tableId' => $tableId);
+    public function delete($tableId, $optParams = []) {
+      $params = ['tableId' => $tableId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -353,10 +353,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Table
      */
-    public function get($tableId, $optParams = array()) {
-      $params = array('tableId' => $tableId);
+    public function get($tableId, $optParams = []) {
+      $params = ['tableId' => $tableId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Table($data);
       } else {
@@ -376,10 +376,10 @@
      * @opt_param int startLine The index of the first line from which to start importing, inclusive. Default is 0.
      * @return Google_Import
      */
-    public function importRows($tableId, $optParams = array()) {
-      $params = array('tableId' => $tableId);
+    public function importRows($tableId, $optParams = []) {
+      $params = ['tableId' => $tableId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('importRows', array($params));
+      $data = $this->__call('importRows', [$params]);
       if ($this->useObjects()) {
         return new Google_Import($data);
       } else {
@@ -396,10 +396,10 @@
      * @opt_param string encoding The encoding of the content. Default is UTF-8. Use 'auto-detect' if you are unsure of the encoding.
      * @return Google_Table
      */
-    public function importTable($name, $optParams = array()) {
-      $params = array('name' => $name);
+    public function importTable($name, $optParams = []) {
+      $params = ['name' => $name];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('importTable', array($params));
+      $data = $this->__call('importTable', [$params]);
       if ($this->useObjects()) {
         return new Google_Table($data);
       } else {
@@ -413,10 +413,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Table
      */
-    public function insert(Google_Table $postBody, $optParams = array()) {
-      $params = array('postBody' => $postBody);
+    public function insert(Google_Table $postBody, $optParams = []) {
+      $params = ['postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Table($data);
       } else {
@@ -432,10 +432,10 @@
      * @opt_param string pageToken Continuation token specifying which result page to return. Optional.
      * @return Google_TableList
      */
-    public function listTable($optParams = array()) {
-      $params = array();
+    public function listTable($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_TableList($data);
       } else {
@@ -453,10 +453,10 @@
      * @opt_param bool replaceViewDefinition Should the view definition also be updated? The specified view definition replaces the existing one. Only a view can be updated with a new definition.
      * @return Google_Table
      */
-    public function patch($tableId, Google_Table $postBody, $optParams = array()) {
-      $params = array('tableId' => $tableId, 'postBody' => $postBody);
+    public function patch($tableId, Google_Table $postBody, $optParams = []) {
+      $params = ['tableId' => $tableId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_Table($data);
       } else {
@@ -474,10 +474,10 @@
      * @opt_param bool replaceViewDefinition Should the view definition also be updated? The specified view definition replaces the existing one. Only a view can be updated with a new definition.
      * @return Google_Table
      */
-    public function update($tableId, Google_Table $postBody, $optParams = array()) {
-      $params = array('tableId' => $tableId, 'postBody' => $postBody);
+    public function update($tableId, Google_Table $postBody, $optParams = []) {
+      $params = ['tableId' => $tableId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_Table($data);
       } else {
@@ -503,10 +503,10 @@
      * @param int $templateId Identifier for the template which is being deleted
      * @param array $optParams Optional parameters.
      */
-    public function delete($tableId, $templateId, $optParams = array()) {
-      $params = array('tableId' => $tableId, 'templateId' => $templateId);
+    public function delete($tableId, $templateId, $optParams = []) {
+      $params = ['tableId' => $tableId, 'templateId' => $templateId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -517,10 +517,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Template
      */
-    public function get($tableId, $templateId, $optParams = array()) {
-      $params = array('tableId' => $tableId, 'templateId' => $templateId);
+    public function get($tableId, $templateId, $optParams = []) {
+      $params = ['tableId' => $tableId, 'templateId' => $templateId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Template($data);
       } else {
@@ -535,10 +535,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Template
      */
-    public function insert($tableId, Google_Template $postBody, $optParams = array()) {
-      $params = array('tableId' => $tableId, 'postBody' => $postBody);
+    public function insert($tableId, Google_Template $postBody, $optParams = []) {
+      $params = ['tableId' => $tableId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Template($data);
       } else {
@@ -555,10 +555,10 @@
      * @opt_param string pageToken Continuation token specifying which results page to return. Optional.
      * @return Google_TemplateList
      */
-    public function listTemplate($tableId, $optParams = array()) {
-      $params = array('tableId' => $tableId);
+    public function listTemplate($tableId, $optParams = []) {
+      $params = ['tableId' => $tableId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_TemplateList($data);
       } else {
@@ -574,10 +574,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Template
      */
-    public function patch($tableId, $templateId, Google_Template $postBody, $optParams = array()) {
-      $params = array('tableId' => $tableId, 'templateId' => $templateId, 'postBody' => $postBody);
+    public function patch($tableId, $templateId, Google_Template $postBody, $optParams = []) {
+      $params = ['tableId' => $tableId, 'templateId' => $templateId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_Template($data);
       } else {
@@ -593,10 +593,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Template
      */
-    public function update($tableId, $templateId, Google_Template $postBody, $optParams = array()) {
-      $params = array('tableId' => $tableId, 'templateId' => $templateId, 'postBody' => $postBody);
+    public function update($tableId, $templateId, Google_Template $postBody, $optParams = []) {
+      $params = ['tableId' => $tableId, 'templateId' => $templateId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_Template($data);
       } else {

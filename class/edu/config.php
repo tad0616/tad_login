@@ -10,8 +10,8 @@ if (!isset($xoopsModuleConfig)) {
 // require 'fun.php';
 $provideruri             = 'https://oidc.tanet.edu.tw';
 $_SESSION['auth_method'] = 'edu';
-$responsetype            = array('code');
-$scope                   = array('openid', 'email', 'profile', 'openid2');
+$responsetype            = ['code'];
+$scope                   = ['openid', 'email', 'profile', 'openid2'];
 $clientid                = $xoopsModuleConfig['edu_clientid'];
 $clientsecret            = $xoopsModuleConfig['edu_clientsecret'];
 $redirecturi             = XOOPS_URL . '/modules/tad_login/edu_callback.php';

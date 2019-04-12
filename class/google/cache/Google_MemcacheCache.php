@@ -113,8 +113,10 @@ class Google_MemcacheCache extends Google_Cache {
   public function set($key, $value) {
     $this->check();
     // we store it with the cache_time default expiration so objects will at least get cleaned eventually.
-    if (@memcache_set($this->connection, $key, array('time' => time(),
-        'data' => $value), false) == false) {
+    if (@memcache_set($this->connection, $key, [
+            'time' => time(),
+            'data' => $value
+        ], false) == false) {
       throw new Google_CacheException("Couldn't store data in cache");
     }
   }

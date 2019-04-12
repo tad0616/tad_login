@@ -54,7 +54,7 @@ class Google_Model {
             $this->$key = $this->createObjectFromName($keyTypeName, $val);
           }
         } else if (is_array($val)) {
-          $arrayObject = array();
+          $arrayObject = [];
           foreach ($val as $arrayIndex => $arrayItem) {
             $arrayObject[$arrayIndex] = $this->createObjectFromName($keyTypeName, $arrayItem);
           }

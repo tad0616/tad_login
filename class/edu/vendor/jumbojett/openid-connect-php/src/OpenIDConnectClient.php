@@ -112,7 +112,7 @@ class OpenIDConnectClient
     /**
      * @var array holds the provider configuration
      */
-    private $providerConfig = array();
+    private $providerConfig = [];
 
     /**
      * @var string http proxy if necessary
@@ -157,7 +157,7 @@ class OpenIDConnectClient
     /**
      * @var array holds scopes
      */
-    private $scopes = array();
+    private $scopes = [];
 
     /**
      * @var int|null Response code from the server
@@ -167,17 +167,17 @@ class OpenIDConnectClient
     /**
      * @var array holds response types
      */
-    private $responseTypes = array();
+    private $responseTypes = [];
 
     /**
      * @var array holds a cache of info returned from the user info endpoint
      */
-    private $userInfo = array();
+    private $userInfo = [];
 
     /**
      * @var array holds authentication parameters
      */
-    private $authParams = array();
+    private $authParams = [];
 
     /**
      * @var mixed holds well-known openid server properties
@@ -197,12 +197,12 @@ class OpenIDConnectClient
     /**
      * @var array holds response types
      */
-    private $additionalJwks = array();
+    private $additionalJwks = [];
 
     /**
      * @var array holds verified jwt claims
      */
-    private $verifiedClaims = array();
+    private $verifiedClaims = [];
 
     /**
      * @var bool Allow OAuth 2 implicit flow; see http://openid.net/specs/openid-connect-core-1_0.html#ImplicitFlowAuth
@@ -407,12 +407,13 @@ class OpenIDConnectClient
 
         $signout_params = null;
         if($redirect == null){
-          $signout_params = array('id_token_hint' => $accessToken);
+          $signout_params = ['id_token_hint' => $accessToken];
         }
         else {
-          $signout_params = array(
+          $signout_params = [
                 'id_token_hint' => $accessToken,
-                'post_logout_redirect_uri' => $redirect);
+                'post_logout_redirect_uri' => $redirect
+          ];
         }
 
         $signout_endpoint  .= (strpos($signout_endpoint, '?') === false ? '?' : '&') . http_build_query( $signout_params, null, '&');
@@ -574,22 +575,22 @@ class OpenIDConnectClient
         // State essentially acts as a session key for OIDC
         $state = $this->setState($this->generateRandString());
     
-        $auth_params = array_merge($this->authParams, array(
+        $auth_params = array_merge($this->authParams, [
             'response_type' => $response_type,
             'redirect_uri' => $this->getRedirectURL(),
             'client_id' => $this->clientID,
             'nonce' => $nonce,
             'state' => $state,
             'scope' => 'openid'
-        ));
+        ]);
         // If the client has been registered with additional scopes
         if (sizeof($this->scopes) > 0) {
-            $auth_params = array_merge($auth_params, array('scope' => implode(' ', $this->scopes)));
+            $auth_params = array_merge($auth_params, ['scope' => implode(' ', $this->scopes)]);
         }
 
         // If the client has been registered with additional response types
         if (sizeof($this->responseTypes) > 0) {
-            $auth_params = array_merge($auth_params, array('response_type' => implode(' ', $this->responseTypes)));
+            $auth_params = array_merge($auth_params, ['response_type' => implode(' ', $this->responseTypes)]);
         }
 
         $auth_endpoint .= (strpos($auth_endpoint, '?') === false ? '?' : '&') . http_build_query($auth_params, null, '&');
@@ -609,12 +610,12 @@ class OpenIDConnectClient
 
         $grant_type = "client_credentials";
 
-        $post_data = array(
+        $post_data = [
             'grant_type'    => $grant_type,
             'client_id'     => $this->clientID,
             'client_secret' => $this->clientSecret,
             'scope'         => implode(' ', $this->scopes)
-        );
+        ];
 
         // Convert token params to string format
         $post_params = http_build_query($post_data, null, '&');
@@ -636,12 +637,12 @@ class OpenIDConnectClient
 
         $grant_type = "password";
 
-        $post_data = array(
+        $post_data = [
             'grant_type'    => $grant_type,
             'username'      => $this->authParams['username'],
             'password'      => $this->authParams['password'],
             'scope'         => implode(' ', $this->scopes)
-        );
+        ];
 
         //For client authentication include the client values
         if($bClientAuth) {
@@ -672,13 +673,13 @@ class OpenIDConnectClient
 
         $grant_type = "authorization_code";
 
-        $token_params = array(
+        $token_params = [
             'grant_type' => $grant_type,
             'code' => $code,
             'redirect_uri' => $this->getRedirectURL(),
             'client_id' => $this->clientID,
             'client_secret' => $this->clientSecret
-        );
+        ];
 
         # Consider Basic authentication if provider config is set this way
         if (in_array('client_secret_basic', $token_endpoint_auth_methods_supported)) {
@@ -704,12 +705,12 @@ class OpenIDConnectClient
 
         $grant_type = "refresh_token";
 
-        $token_params = array(
+        $token_params = [
             'grant_type' => $grant_type,
             'refresh_token' => $refresh_token,
             'client_id' => $this->clientID,
             'client_secret' => $this->clientSecret,
-        );
+        ];
 
         // Convert token params to string format
         $token_params = http_build_query($token_params, null, '&');
@@ -938,7 +939,7 @@ class OpenIDConnectClient
         $user_info_endpoint .= "?schema=" . $schema;
 
         //The accessToken has to be send in the Authorization header, so we create a new array with only this header.
-        $headers = array("Authorization: Bearer {$this->accessToken}");
+        $headers = ["Authorization: Bearer {$this->accessToken}"];
 
         $user_json = json_decode($this->fetchURL($user_info_endpoint,null,$headers));
 
@@ -990,7 +991,7 @@ class OpenIDConnectClient
      * @throws OpenIDConnectClientException
      * @return mixed
      */
-    protected function fetchURL($url, $post_body = null,$headers = array()) {
+    protected function fetchURL($url, $post_body = null,$headers = []) {
 
 
         // OK cool - then let's create a new cURL resource handle
@@ -1218,10 +1219,10 @@ class OpenIDConnectClient
 
         $registration_endpoint = $this->getProviderConfigValue('registration_endpoint');
 
-        $send_object = (object)array(
-            'redirect_uris' => array($this->getRedirectURL()),
+        $send_object = (object)[
+            'redirect_uris' => [$this->getRedirectURL()],
             'client_name' => $this->getClientName()
-        );
+        ];
 
         $response = $this->fetchURL($registration_endpoint, json_encode($send_object));
 

@@ -23,7 +23,7 @@ class Google_BatchRequest {
   private $boundary;
 
   /** @var array service requests to be executed. */
-  private $requests = array();
+  private $requests = [];
 
   public function __construct($boundary = false) {
     $boundary = (false == $boundary) ? mt_rand() : $boundary;
@@ -53,8 +53,9 @@ class Google_BatchRequest {
     global $apiConfig;
     $url = $apiConfig['basePath'] . '/batch';
     $httpRequest = new Google_HttpRequest($url, 'POST');
-    $httpRequest->setRequestHeaders(array(
-        'Content-Type' => 'multipart/mixed; boundary=' . $this->boundary));
+    $httpRequest->setRequestHeaders([
+        'Content-Type' => 'multipart/mixed; boundary=' . $this->boundary
+                                    ]);
 
     $httpRequest->setPostBody($body);
     $response = Google_Client::$io->makeRequest($httpRequest);
@@ -78,7 +79,7 @@ class Google_BatchRequest {
     if ($body) {
       $body = str_replace("--$boundary--", "--$boundary", $body);
       $parts = explode("--$boundary", $body);
-      $responses = array();
+      $responses = [];
 
       foreach($parts as $part) {
         $part = trim($part);

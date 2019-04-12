@@ -34,10 +34,10 @@
      * @opt_param string maxlength The max number of characters to return. Valid only for 'plain' format.
      * @return Google_ContentserviceGet
      */
-    public function get($id, $optParams = array()) {
-      $params = array('id' => $id);
+    public function get($id, $optParams = []) {
+      $params = ['id' => $id];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_ContentserviceGet($data);
       } else {
@@ -69,10 +69,10 @@
      * @opt_param bool raw Do not apply any constraints, or get any names.
      * @return Google_TopicLookup
      */
-    public function lookup($id, $optParams = array()) {
-      $params = array('id' => $id);
+    public function lookup($id, $optParams = []) {
+      $params = ['id' => $id];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('lookup', array($params));
+      $data = $this->__call('lookup', [$params]);
       if ($this->useObjects()) {
         return new Google_TopicLookup($data);
       } else {

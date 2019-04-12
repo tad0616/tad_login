@@ -22,8 +22,8 @@ function tn_login()
         $openid = new LightOpenID(XOOPS_URL);
         if (!$openid->mode) {
             $openid->identity = "https://openid.tn.edu.tw/op/";
-            $openid->required = array('contact/email', 'namePerson');
-            $openid->optional = array('/axschema/school/id', '/axschema/school/titleStr', 'tw/person/titles');
+            $openid->required = ['contact/email', 'namePerson'];
+            $openid->optional = ['/axschema/school/id', '/axschema/school/titleStr', 'tw/person/titles'];
             header('Location: ' . $openid->authUrl());
 
         } else {
@@ -74,7 +74,7 @@ function tn_login()
                     $classStr    = substr($user_profile['du.tw/school/classStr'], 2, -2);
                     $classStr    = str_replace('\\', '', $classStr);
                     $classStrArr = explode(',', $classStr);
-                    $StuArr      = array();
+                    $StuArr      = [];
                     foreach ($classStrArr as $Arr) {
                         list($k, $v) = explode(':', $Arr);
                         $StuArr[$k]  = str_replace('\'', '', $v);
@@ -116,8 +116,8 @@ function tp_login()
         if (!$openid->mode) {
             //     $openid->identity = "https://ldap.tp.edu.tw/openid/op.action";
             $openid->identity = "https://openid.tp.edu.tw/openid/op.action";
-            $openid->required = array('contact/email', 'namePerson/friendly', 'namePerson');
-            $openid->optional = array('axschema/person/accountType', 'axschema/school/titleStr', 'axschema/school/id');
+            $openid->required = ['contact/email', 'namePerson/friendly', 'namePerson'];
+            $openid->optional = ['axschema/person/accountType', 'axschema/school/titleStr', 'axschema/school/id'];
             header('Location: ' . $openid->authUrl());
 
         } else {
@@ -167,8 +167,8 @@ function kl_login()
 
         if (!$openid->mode) {
             $openid->identity = "http://openid.kl.edu.tw";
-            $openid->required = array('contact/email', 'namePerson/friendly', 'namePerson');
-            $openid->optional = array('axschema/person/guid', 'axschema/school/titleStr', 'axschema/school/id', 'tw/person/guid', 'tw/isas/roles');
+            $openid->required = ['contact/email', 'namePerson/friendly', 'namePerson'];
+            $openid->optional = ['axschema/person/guid', 'axschema/school/titleStr', 'axschema/school/id', 'tw/person/guid', 'tw/isas/roles'];
             header('Location: ' . $openid->authUrl());
 
         } else {
@@ -224,7 +224,7 @@ function ilc_login()
         $openid = new LightOpenID(XOOPS_URL);
         if (!$openid->mode) {
             $openid->identity = "http://openid.ilc.edu.tw";
-            $openid->required = array('contact/email', 'namePerson/friendly', 'namePerson');
+            $openid->required = ['contact/email', 'namePerson/friendly', 'namePerson'];
             //$openid->optional = array('contact/postalCode/home' , 'contact/country/home'  , 'pref/language','pref/timezone','axschema/person/guid' , 'axschema/school/titleStr'  , 'axschema/school/id','tw/person/guid' , 'tw/isas/roles'  );
             header('Location: ' . $openid->authUrl());
 
@@ -282,8 +282,8 @@ function hc_login()
         $openid = new LightOpenID(XOOPS_URL);
         if (!$openid->mode) {
             $openid->identity = "http://openid.hc.edu.tw";
-            $openid->required = array('contact/email', 'namePerson/friendly', 'namePerson');
-            $openid->optional = array('contact/postalCode/home', 'contact/country/home', 'pref/language', 'pref/timezone');
+            $openid->required = ['contact/email', 'namePerson/friendly', 'namePerson'];
+            $openid->optional = ['contact/postalCode/home', 'contact/country/home', 'pref/language', 'pref/timezone'];
             header('Location: ' . $openid->authUrl());
 
         } else {
@@ -345,8 +345,8 @@ function hlc_login($conty = "", $openid_identity = "")
             if (isset($_GET['login'])) {
                 // die($openid_identity);
                 $openid->identity = $openid_identity;
-                $openid->required = array('contact/email', 'namePerson/friendly', 'namePerson');
-                $openid->optional = array('contact/country/home', 'pref/timezone');
+                $openid->required = ['contact/email', 'namePerson/friendly', 'namePerson'];
+                $openid->optional = ['contact/country/home', 'pref/timezone'];
                 header('Location: ' . $openid->authUrl());
 
             }
@@ -481,8 +481,8 @@ function tyc_login()
         if (!$openid->mode) {
             if (isset($_GET['login'])) {
                 $openid->identity = 'https://openid.tyc.edu.tw';
-                $openid->required = array('contact/email', 'namePerson/friendly', 'namePerson');
-                $openid->optional = array('contact/country/home', 'pref/timezone');
+                $openid->required = ['contact/email', 'namePerson/friendly', 'namePerson'];
+                $openid->optional = ['contact/country/home', 'pref/timezone'];
                 header('Location: ' . $openid->authUrl());
 
             }
@@ -533,7 +533,7 @@ function yahoo_login()
         if (!$openid->mode) {
             if (isset($_GET['login'])) {
                 $openid->identity = 'https://me.yahoo.com';
-                $openid->required = array('contact/email', 'namePerson/friendly', 'namePerson');
+                $openid->required = ['contact/email', 'namePerson/friendly', 'namePerson'];
                 header('Location: ' . $openid->authUrl());
             }
         } else {
@@ -575,8 +575,8 @@ function tc_login($conty = "", $openid_identity = "")
         $openid = new LightOpenID(XOOPS_URL);
         if (!$openid->mode) {
             $openid->identity = $openid_identity;
-            $openid->required = array('contact/email', 'namePerson/friendly', 'namePerson');
-            $openid->optional = array('axschema/person/guid', 'axschema/school/titleStr', 'axschema/school/id', 'tw/person/guid', 'tw/isas/roles');
+            $openid->required = ['contact/email', 'namePerson/friendly', 'namePerson'];
+            $openid->optional = ['axschema/person/guid', 'axschema/school/titleStr', 'axschema/school/id', 'tw/person/guid', 'tw/isas/roles'];
             header('Location: ' . $openid->authUrl());
 
         } else {
@@ -766,7 +766,7 @@ function kh_login()
                 $classStr  = str_replace('&#34;', '"', superentities($classStr));
                 $user_data = json_decode($classStr, true);
                 // [{"classTitle":"503","gradeId":"5","classId":"03","subject":"普通班"}]
-                $newclassStr = array("classTitle" => $user_data['classTitle'], "gradeId" => $user_data['gradeId'], "classId" => $user_data['classId'], "subject" => $user_data['subject']);
+                $newclassStr = ["classTitle" => $user_data['classTitle'], "gradeId" => $user_data['gradeId'], "classId" => $user_data['classId'], "subject" => $user_data['subject']];
                 $classStr    = is_array($user_data) ? '[' . json_encode($newclassStr) . ']' : '[]';
                 // die($classStr);
                 login_xoops($uname, $name, $email, $SchoolCode, $JobName, null, $classStr);
@@ -794,7 +794,7 @@ function superentities($str)
             ($o > 59 && $o < 63) /* html */
         ) {
             // convert to numeric entity
-            $c = mb_encode_numericentity($c, array(0x0, 0xffff, 0, 0xffff), 'UTF-8');
+            $c = mb_encode_numericentity($c, [0x0, 0xffff, 0, 0xffff], 'UTF-8');
         }
         $str2 .= $c;
     }
@@ -816,8 +816,8 @@ function km_login()
         $openid = new LightOpenID(XOOPS_URL);
         if (!$openid->mode) {
             $openid->identity = "http://openid.cnc.km.edu.tw";
-            $openid->required = array('contact/email', 'namePerson/friendly', 'namePerson');
-            $openid->optional = array('axschema/person/guid', 'axschema/school/titleStr', 'axschema/school/id', 'tw/person/guid', 'tw/isas/roles');
+            $openid->required = ['contact/email', 'namePerson/friendly', 'namePerson'];
+            $openid->optional = ['axschema/person/guid', 'axschema/school/titleStr', 'axschema/school/id', 'tw/person/guid', 'tw/isas/roles'];
             // $openid->required = array('contact/email', 'namePerson');
             // $openid->optional = array('axschema/person/guid', 'axschema/school/titleStr', 'axschema/school/id');
             header('Location: ' . $openid->authUrl());
@@ -876,8 +876,8 @@ function mt_login()
         if (!$openid->mode) {
             $openid->identity = "http://openid.matsu.edu.tw";
 
-            $openid->required = array('contact/email', 'namePerson/friendly', 'namePerson');
-            $openid->optional = array('axschema/person/guid', 'axschema/school/titleStr', 'axschema/school/id', 'tw/person/guid', 'tw/isas/roles');
+            $openid->required = ['contact/email', 'namePerson/friendly', 'namePerson'];
+            $openid->optional = ['axschema/person/guid', 'axschema/school/titleStr', 'axschema/school/id', 'tw/person/guid', 'tw/isas/roles'];
             header('Location: ' . $openid->authUrl());
 
         } else {

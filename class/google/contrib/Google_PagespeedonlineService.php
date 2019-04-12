@@ -37,10 +37,10 @@
      * @opt_param string strategy The analysis strategy to use
      * @return Google_Result
      */
-    public function runpagespeed($url, $optParams = array()) {
-      $params = array('url' => $url);
+    public function runpagespeed($url, $optParams = []) {
+      $params = ['url' => $url];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('runpagespeed', array($params));
+      $data = $this->__call('runpagespeed', [$params]);
       if ($this->useObjects()) {
         return new Google_Result($data);
       } else {

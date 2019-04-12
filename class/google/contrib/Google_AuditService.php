@@ -42,10 +42,10 @@
      * @opt_param string startTime Return events which occured at or after this time.
      * @return Google_Activities
      */
-    public function listActivities($customerId, $applicationId, $optParams = array()) {
-      $params = array('customerId' => $customerId, 'applicationId' => $applicationId);
+    public function listActivities($customerId, $applicationId, $optParams = []) {
+      $params = ['customerId' => $customerId, 'applicationId' => $applicationId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Activities($data);
       } else {

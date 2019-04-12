@@ -25,12 +25,12 @@
  */
 class Google_HttpRequest {
   const USER_AGENT_SUFFIX = "google-api-php-client/0.6.5";
-  private $batchHeaders = array(
+  private $batchHeaders = [
     'Content-Type' => 'application/http',
     'Content-Transfer-Encoding' => 'binary',
     'MIME-Version' => '1.0',
     'Content-Length' => ''
-  );
+  ];
 
   protected $url;
   protected $requestMethod;
@@ -44,7 +44,7 @@ class Google_HttpRequest {
   
   public $accessKey;
 
-  public function __construct($url, $method = 'GET', $headers = array(), $postBody = null) {
+  public function __construct($url, $method = 'GET', $headers = [], $postBody = null) {
     $this->setUrl($url);
     $this->setRequestMethod($method);
     $this->setRequestHeaders($headers);
@@ -79,11 +79,11 @@ class Google_HttpRequest {
   public function getQueryParams() {
     if ($pos = strpos($this->url, '?')) {
       $queryStr = substr($this->url, $pos + 1);
-      $params = array();
+      $params = [];
       parse_str($queryStr, $params);
       return $params;
     }
-    return array();
+    return [];
   }
 
   /**
@@ -265,7 +265,7 @@ class Google_HttpRequest {
   }
 
   public function getParsedCacheControl() {
-    $parsed = array();
+    $parsed = [];
     $rawCacheControl = $this->getResponseHeader('cache-control');
     if ($rawCacheControl) {
       $rawCacheControl = str_replace(', ', '&', $rawCacheControl);

@@ -19,13 +19,14 @@ function generateRandomString($length = 20)
  */
 function requestProtectedApi($token_ep = '', $accesstoken = '', $rtn_array = false, $gzipenable = false)
 {
-    $header  = array("Authorization: Bearer $accesstoken");
-    $options = array(
-        'http' => array(
+    $header  = ["Authorization: Bearer $accesstoken"];
+    $options = [
+        'http' => [
             'header'  => $header,
             'method'  => 'GET',
             'content' => '',
-        ));
+        ]
+    ];
     $context = stream_context_create($options);
     if ($gzipenable) {
         $result = gzdecode(file_get_contents($token_ep, false, $context));

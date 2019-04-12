@@ -37,10 +37,10 @@
      * @opt_param string unauthToken User identifier for unauthenticated usage mode
      * @return Google_Vote
      */
-    public function insert($seriesId, $submissionId, Google_Vote $postBody, $optParams = array()) {
-      $params = array('seriesId' => $seriesId, 'submissionId' => $submissionId, 'postBody' => $postBody);
+    public function insert($seriesId, $submissionId, Google_Vote $postBody, $optParams = []) {
+      $params = ['seriesId' => $seriesId, 'submissionId' => $submissionId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Vote($data);
       } else {
@@ -60,10 +60,10 @@
      * @opt_param string unauthToken User identifier for unauthenticated usage mode
      * @return Google_Vote
      */
-    public function patch($seriesId, $submissionId, Google_Vote $postBody, $optParams = array()) {
-      $params = array('seriesId' => $seriesId, 'submissionId' => $submissionId, 'postBody' => $postBody);
+    public function patch($seriesId, $submissionId, Google_Vote $postBody, $optParams = []) {
+      $params = ['seriesId' => $seriesId, 'submissionId' => $submissionId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_Vote($data);
       } else {
@@ -80,10 +80,10 @@
      * @opt_param string start-index Index of the first result to be retrieved.
      * @return Google_VoteList
      */
-    public function listVotes($seriesId, $optParams = array()) {
-      $params = array('seriesId' => $seriesId);
+    public function listVotes($seriesId, $optParams = []) {
+      $params = ['seriesId' => $seriesId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_VoteList($data);
       } else {
@@ -103,10 +103,10 @@
      * @opt_param string unauthToken User identifier for unauthenticated usage mode
      * @return Google_Vote
      */
-    public function update($seriesId, $submissionId, Google_Vote $postBody, $optParams = array()) {
-      $params = array('seriesId' => $seriesId, 'submissionId' => $submissionId, 'postBody' => $postBody);
+    public function update($seriesId, $submissionId, Google_Vote $postBody, $optParams = []) {
+      $params = ['seriesId' => $seriesId, 'submissionId' => $submissionId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_Vote($data);
       } else {
@@ -125,10 +125,10 @@
      * @opt_param string unauthToken User identifier for unauthenticated usage mode
      * @return Google_Vote
      */
-    public function get($seriesId, $submissionId, $optParams = array()) {
-      $params = array('seriesId' => $seriesId, 'submissionId' => $submissionId);
+    public function get($seriesId, $submissionId, $optParams = []) {
+      $params = ['seriesId' => $seriesId, 'submissionId' => $submissionId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Vote($data);
       } else {
@@ -162,10 +162,10 @@
      * @opt_param bool anonymous Set to true to mark the new submission as anonymous.
      * @return Google_Submission
      */
-    public function insert($seriesId, $topicId, $parentSubmissionId, Google_Submission $postBody, $optParams = array()) {
-      $params = array('seriesId' => $seriesId, 'topicId' => $topicId, 'parentSubmissionId' => $parentSubmissionId, 'postBody' => $postBody);
+    public function insert($seriesId, $topicId, $parentSubmissionId, Google_Submission $postBody, $optParams = []) {
+      $params = ['seriesId' => $seriesId, 'topicId' => $topicId, 'parentSubmissionId' => $parentSubmissionId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Submission($data);
       } else {
@@ -188,10 +188,10 @@
      * @opt_param bool hasAttachedVideo Specifies whether to restrict to submissions that have videos attached.
      * @return Google_SubmissionList
      */
-    public function listResponses($seriesId, $submissionId, $optParams = array()) {
-      $params = array('seriesId' => $seriesId, 'submissionId' => $submissionId);
+    public function listResponses($seriesId, $submissionId, $optParams = []) {
+      $params = ['seriesId' => $seriesId, 'submissionId' => $submissionId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_SubmissionList($data);
       } else {
@@ -220,10 +220,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Tag
      */
-    public function insert($seriesId, $submissionId, Google_Tag $postBody, $optParams = array()) {
-      $params = array('seriesId' => $seriesId, 'submissionId' => $submissionId, 'postBody' => $postBody);
+    public function insert($seriesId, $submissionId, Google_Tag $postBody, $optParams = []) {
+      $params = ['seriesId' => $seriesId, 'submissionId' => $submissionId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Tag($data);
       } else {
@@ -238,10 +238,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_TagList
      */
-    public function listTags($seriesId, $submissionId, $optParams = array()) {
-      $params = array('seriesId' => $seriesId, 'submissionId' => $submissionId);
+    public function listTags($seriesId, $submissionId, $optParams = []) {
+      $params = ['seriesId' => $seriesId, 'submissionId' => $submissionId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_TagList($data);
       } else {
@@ -257,10 +257,10 @@
      * @param string $tagId
      * @param array $optParams Optional parameters.
      */
-    public function delete($seriesId, $submissionId, $tagId, $optParams = array()) {
-      $params = array('seriesId' => $seriesId, 'submissionId' => $submissionId, 'tagId' => $tagId);
+    public function delete($seriesId, $submissionId, $tagId, $optParams = []) {
+      $params = ['seriesId' => $seriesId, 'submissionId' => $submissionId, 'tagId' => $tagId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
   }
@@ -283,10 +283,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Series
      */
-    public function insert(Google_Series $postBody, $optParams = array()) {
-      $params = array('postBody' => $postBody);
+    public function insert(Google_Series $postBody, $optParams = []) {
+      $params = ['postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Series($data);
       } else {
@@ -301,10 +301,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Series
      */
-    public function patch($seriesId, Google_Series $postBody, $optParams = array()) {
-      $params = array('seriesId' => $seriesId, 'postBody' => $postBody);
+    public function patch($seriesId, Google_Series $postBody, $optParams = []) {
+      $params = ['seriesId' => $seriesId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_Series($data);
       } else {
@@ -321,10 +321,10 @@
      * @opt_param string start-index Index of the first result to be retrieved.
      * @return Google_SeriesList
      */
-    public function listSeries($optParams = array()) {
-      $params = array();
+    public function listSeries($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_SeriesList($data);
       } else {
@@ -339,10 +339,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Series
      */
-    public function update($seriesId, Google_Series $postBody, $optParams = array()) {
-      $params = array('seriesId' => $seriesId, 'postBody' => $postBody);
+    public function update($seriesId, Google_Series $postBody, $optParams = []) {
+      $params = ['seriesId' => $seriesId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_Series($data);
       } else {
@@ -356,10 +356,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Series
      */
-    public function get($seriesId, $optParams = array()) {
-      $params = array('seriesId' => $seriesId);
+    public function get($seriesId, $optParams = []) {
+      $params = ['seriesId' => $seriesId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Series($data);
       } else {
@@ -396,10 +396,10 @@
      * @opt_param bool hasAttachedVideo Specifies whether to restrict to submissions that have videos attached.
      * @return Google_SubmissionList
      */
-    public function listSeriesSubmissions($seriesId, $optParams = array()) {
-      $params = array('seriesId' => $seriesId);
+    public function listSeriesSubmissions($seriesId, $optParams = []) {
+      $params = ['seriesId' => $seriesId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_SubmissionList($data);
       } else {
@@ -432,10 +432,10 @@
      * @opt_param bool hasAttachedVideo Specifies whether to restrict to submissions that have videos attached.
      * @return Google_SeriesList
      */
-    public function listSeriesResponses($seriesId, $optParams = array()) {
-      $params = array('seriesId' => $seriesId);
+    public function listSeriesResponses($seriesId, $optParams = []) {
+      $params = ['seriesId' => $seriesId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_SeriesList($data);
       } else {
@@ -463,10 +463,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Topic
      */
-    public function insert($seriesId, Google_Topic $postBody, $optParams = array()) {
-      $params = array('seriesId' => $seriesId, 'postBody' => $postBody);
+    public function insert($seriesId, Google_Topic $postBody, $optParams = []) {
+      $params = ['seriesId' => $seriesId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Topic($data);
       } else {
@@ -485,10 +485,10 @@
      * @opt_param string mode
      * @return Google_TopicList
      */
-    public function listTopics($seriesId, $optParams = array()) {
-      $params = array('seriesId' => $seriesId);
+    public function listTopics($seriesId, $optParams = []) {
+      $params = ['seriesId' => $seriesId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_TopicList($data);
       } else {
@@ -504,10 +504,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Topic
      */
-    public function update($seriesId, $topicId, Google_Topic $postBody, $optParams = array()) {
-      $params = array('seriesId' => $seriesId, 'topicId' => $topicId, 'postBody' => $postBody);
+    public function update($seriesId, $topicId, Google_Topic $postBody, $optParams = []) {
+      $params = ['seriesId' => $seriesId, 'topicId' => $topicId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_Topic($data);
       } else {
@@ -522,10 +522,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Topic
      */
-    public function get($seriesId, $topicId, $optParams = array()) {
-      $params = array('seriesId' => $seriesId, 'topicId' => $topicId);
+    public function get($seriesId, $topicId, $optParams = []) {
+      $params = ['seriesId' => $seriesId, 'topicId' => $topicId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Topic($data);
       } else {
@@ -562,10 +562,10 @@
      * @opt_param bool hasAttachedVideo Specifies whether to restrict to submissions that have videos attached.
      * @return Google_SubmissionList
      */
-    public function listTopicsSubmissions($seriesId, $topicId, $optParams = array()) {
-      $params = array('seriesId' => $seriesId, 'topicId' => $topicId);
+    public function listTopicsSubmissions($seriesId, $topicId, $optParams = []) {
+      $params = ['seriesId' => $seriesId, 'topicId' => $topicId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_SubmissionList($data);
       } else {
@@ -608,10 +608,10 @@
      * @opt_param string start-index Index of the first result to be retrieved.
      * @return Google_SeriesList
      */
-    public function listModeratorGlobalSeries($optParams = array()) {
-      $params = array();
+    public function listModeratorGlobalSeries($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_SeriesList($data);
       } else {
@@ -639,10 +639,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Profile
      */
-    public function patch(Google_Profile $postBody, $optParams = array()) {
-      $params = array('postBody' => $postBody);
+    public function patch(Google_Profile $postBody, $optParams = []) {
+      $params = ['postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_Profile($data);
       } else {
@@ -656,10 +656,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Profile
      */
-    public function update(Google_Profile $postBody, $optParams = array()) {
-      $params = array('postBody' => $postBody);
+    public function update(Google_Profile $postBody, $optParams = []) {
+      $params = ['postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_Profile($data);
       } else {
@@ -672,10 +672,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Profile
      */
-    public function get($optParams = array()) {
-      $params = array();
+    public function get($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Profile($data);
       } else {
@@ -714,10 +714,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_SeriesList
      */
-    public function listFeaturedSeries($optParams = array()) {
-      $params = array();
+    public function listFeaturedSeries($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_SeriesList($data);
       } else {
@@ -756,10 +756,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_SeriesList
      */
-    public function listMyrecentSeries($optParams = array()) {
-      $params = array();
+    public function listMyrecentSeries($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_SeriesList($data);
       } else {
@@ -798,10 +798,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_SeriesList
      */
-    public function listMySeries($optParams = array()) {
-      $params = array();
+    public function listMySeries($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_SeriesList($data);
       } else {
@@ -833,10 +833,10 @@
      * @opt_param bool anonymous Set to true to mark the new submission as anonymous.
      * @return Google_Submission
      */
-    public function insert($seriesId, $topicId, Google_Submission $postBody, $optParams = array()) {
-      $params = array('seriesId' => $seriesId, 'topicId' => $topicId, 'postBody' => $postBody);
+    public function insert($seriesId, $topicId, Google_Submission $postBody, $optParams = []) {
+      $params = ['seriesId' => $seriesId, 'topicId' => $topicId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Submission($data);
       } else {
@@ -854,10 +854,10 @@
      * @opt_param bool includeVotes Specifies whether to include the current user's vote
      * @return Google_Submission
      */
-    public function get($seriesId, $submissionId, $optParams = array()) {
-      $params = array('seriesId' => $seriesId, 'submissionId' => $submissionId);
+    public function get($seriesId, $submissionId, $optParams = []) {
+      $params = ['seriesId' => $seriesId, 'submissionId' => $submissionId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Submission($data);
       } else {

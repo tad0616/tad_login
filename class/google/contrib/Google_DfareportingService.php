@@ -35,10 +35,10 @@
      * @opt_param string pageToken The value of the nextToken from the previous result page.
      * @return Google_DimensionValueList
      */
-    public function query($profileId, Google_DimensionValueRequest $postBody, $optParams = array()) {
-      $params = array('profileId' => $profileId, 'postBody' => $postBody);
+    public function query($profileId, Google_DimensionValueRequest $postBody, $optParams = []) {
+      $params = ['profileId' => $profileId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('query', array($params));
+      $data = $this->__call('query', [$params]);
       if ($this->useObjects()) {
         return new Google_DimensionValueList($data);
       } else {
@@ -65,10 +65,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_DfareportingFile
      */
-    public function get($reportId, $fileId, $optParams = array()) {
-      $params = array('reportId' => $reportId, 'fileId' => $fileId);
+    public function get($reportId, $fileId, $optParams = []) {
+      $params = ['reportId' => $reportId, 'fileId' => $fileId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_DfareportingFile($data);
       } else {
@@ -88,10 +88,10 @@
      * @opt_param string sortOrder Order of sorted results, default is 'DESCENDING'.
      * @return Google_FileList
      */
-    public function listFiles($profileId, $optParams = array()) {
-      $params = array('profileId' => $profileId);
+    public function listFiles($profileId, $optParams = []) {
+      $params = ['profileId' => $profileId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_FileList($data);
       } else {
@@ -117,10 +117,10 @@
      * @param string $reportId The ID of the report.
      * @param array $optParams Optional parameters.
      */
-    public function delete($profileId, $reportId, $optParams = array()) {
-      $params = array('profileId' => $profileId, 'reportId' => $reportId);
+    public function delete($profileId, $reportId, $optParams = []) {
+      $params = ['profileId' => $profileId, 'reportId' => $reportId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -131,10 +131,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Report
      */
-    public function get($profileId, $reportId, $optParams = array()) {
-      $params = array('profileId' => $profileId, 'reportId' => $reportId);
+    public function get($profileId, $reportId, $optParams = []) {
+      $params = ['profileId' => $profileId, 'reportId' => $reportId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Report($data);
       } else {
@@ -149,10 +149,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Report
      */
-    public function insert($profileId, Google_Report $postBody, $optParams = array()) {
-      $params = array('profileId' => $profileId, 'postBody' => $postBody);
+    public function insert($profileId, Google_Report $postBody, $optParams = []) {
+      $params = ['profileId' => $profileId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Report($data);
       } else {
@@ -172,10 +172,10 @@
      * @opt_param string sortOrder Order of sorted results, default is 'DESCENDING'.
      * @return Google_ReportList
      */
-    public function listReports($profileId, $optParams = array()) {
-      $params = array('profileId' => $profileId);
+    public function listReports($profileId, $optParams = []) {
+      $params = ['profileId' => $profileId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_ReportList($data);
       } else {
@@ -191,10 +191,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Report
      */
-    public function patch($profileId, $reportId, Google_Report $postBody, $optParams = array()) {
-      $params = array('profileId' => $profileId, 'reportId' => $reportId, 'postBody' => $postBody);
+    public function patch($profileId, $reportId, Google_Report $postBody, $optParams = []) {
+      $params = ['profileId' => $profileId, 'reportId' => $reportId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_Report($data);
       } else {
@@ -211,10 +211,10 @@
      * @opt_param bool synchronous If set and true, tries to run the report synchronously.
      * @return Google_DfareportingFile
      */
-    public function run($profileId, $reportId, $optParams = array()) {
-      $params = array('profileId' => $profileId, 'reportId' => $reportId);
+    public function run($profileId, $reportId, $optParams = []) {
+      $params = ['profileId' => $profileId, 'reportId' => $reportId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('run', array($params));
+      $data = $this->__call('run', [$params]);
       if ($this->useObjects()) {
         return new Google_DfareportingFile($data);
       } else {
@@ -230,10 +230,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Report
      */
-    public function update($profileId, $reportId, Google_Report $postBody, $optParams = array()) {
-      $params = array('profileId' => $profileId, 'reportId' => $reportId, 'postBody' => $postBody);
+    public function update($profileId, $reportId, Google_Report $postBody, $optParams = []) {
+      $params = ['profileId' => $profileId, 'reportId' => $reportId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_Report($data);
       } else {
@@ -262,10 +262,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_CompatibleFields
      */
-    public function query($profileId, Google_Report $postBody, $optParams = array()) {
-      $params = array('profileId' => $profileId, 'postBody' => $postBody);
+    public function query($profileId, Google_Report $postBody, $optParams = []) {
+      $params = ['profileId' => $profileId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('query', array($params));
+      $data = $this->__call('query', [$params]);
       if ($this->useObjects()) {
         return new Google_CompatibleFields($data);
       } else {
@@ -292,10 +292,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_DfareportingFile
      */
-    public function get($profileId, $reportId, $fileId, $optParams = array()) {
-      $params = array('profileId' => $profileId, 'reportId' => $reportId, 'fileId' => $fileId);
+    public function get($profileId, $reportId, $fileId, $optParams = []) {
+      $params = ['profileId' => $profileId, 'reportId' => $reportId, 'fileId' => $fileId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_DfareportingFile($data);
       } else {
@@ -315,10 +315,10 @@
      * @opt_param string sortOrder Order of sorted results, default is 'DESCENDING'.
      * @return Google_FileList
      */
-    public function listReportsFiles($profileId, $reportId, $optParams = array()) {
-      $params = array('profileId' => $profileId, 'reportId' => $reportId);
+    public function listReportsFiles($profileId, $reportId, $optParams = []) {
+      $params = ['profileId' => $profileId, 'reportId' => $reportId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_FileList($data);
       } else {
@@ -344,10 +344,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_UserProfile
      */
-    public function get($profileId, $optParams = array()) {
-      $params = array('profileId' => $profileId);
+    public function get($profileId, $optParams = []) {
+      $params = ['profileId' => $profileId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_UserProfile($data);
       } else {
@@ -360,10 +360,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_UserProfileList
      */
-    public function listUserProfiles($optParams = array()) {
-      $params = array();
+    public function listUserProfiles($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_UserProfileList($data);
       } else {

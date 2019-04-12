@@ -34,10 +34,10 @@
      * @opt_param bool getStats Whether to get stats. Optional.
      * @return Google_TaskQueue
      */
-    public function get($project, $taskqueue, $optParams = array()) {
-      $params = array('project' => $project, 'taskqueue' => $taskqueue);
+    public function get($project, $taskqueue, $optParams = []) {
+      $params = ['project' => $project, 'taskqueue' => $taskqueue];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_TaskQueue($data);
       } else {
@@ -64,10 +64,10 @@
      * @param string $task The id of the task to delete.
      * @param array $optParams Optional parameters.
      */
-    public function delete($project, $taskqueue, $task, $optParams = array()) {
-      $params = array('project' => $project, 'taskqueue' => $taskqueue, 'task' => $task);
+    public function delete($project, $taskqueue, $task, $optParams = []) {
+      $params = ['project' => $project, 'taskqueue' => $taskqueue, 'task' => $task];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -79,10 +79,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Task
      */
-    public function get($project, $taskqueue, $task, $optParams = array()) {
-      $params = array('project' => $project, 'taskqueue' => $taskqueue, 'task' => $task);
+    public function get($project, $taskqueue, $task, $optParams = []) {
+      $params = ['project' => $project, 'taskqueue' => $taskqueue, 'task' => $task];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Task($data);
       } else {
@@ -98,10 +98,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Task
      */
-    public function insert($project, $taskqueue, Google_Task $postBody, $optParams = array()) {
-      $params = array('project' => $project, 'taskqueue' => $taskqueue, 'postBody' => $postBody);
+    public function insert($project, $taskqueue, Google_Task $postBody, $optParams = []) {
+      $params = ['project' => $project, 'taskqueue' => $taskqueue, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Task($data);
       } else {
@@ -121,10 +121,10 @@
      * @opt_param string tag The tag allowed for tasks in the response. Must only be specified if group_by_tag is true. If group_by_tag is true and tag is not specified the tag will be that of the oldest task by eta, i.e. the first available tag
      * @return Google_Tasks
      */
-    public function lease($project, $taskqueue, $numTasks, $leaseSecs, $optParams = array()) {
-      $params = array('project' => $project, 'taskqueue' => $taskqueue, 'numTasks' => $numTasks, 'leaseSecs' => $leaseSecs);
+    public function lease($project, $taskqueue, $numTasks, $leaseSecs, $optParams = []) {
+      $params = ['project' => $project, 'taskqueue' => $taskqueue, 'numTasks' => $numTasks, 'leaseSecs' => $leaseSecs];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('lease', array($params));
+      $data = $this->__call('lease', [$params]);
       if ($this->useObjects()) {
         return new Google_Tasks($data);
       } else {
@@ -139,10 +139,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Tasks2
      */
-    public function listTasks($project, $taskqueue, $optParams = array()) {
-      $params = array('project' => $project, 'taskqueue' => $taskqueue);
+    public function listTasks($project, $taskqueue, $optParams = []) {
+      $params = ['project' => $project, 'taskqueue' => $taskqueue];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Tasks2($data);
       } else {
@@ -161,10 +161,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Task
      */
-    public function patch($project, $taskqueue, $task, $newLeaseSeconds, Google_Task $postBody, $optParams = array()) {
-      $params = array('project' => $project, 'taskqueue' => $taskqueue, 'task' => $task, 'newLeaseSeconds' => $newLeaseSeconds, 'postBody' => $postBody);
+    public function patch($project, $taskqueue, $task, $newLeaseSeconds, Google_Task $postBody, $optParams = []) {
+      $params = ['project' => $project, 'taskqueue' => $taskqueue, 'task' => $task, 'newLeaseSeconds' => $newLeaseSeconds, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_Task($data);
       } else {
@@ -182,10 +182,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Task
      */
-    public function update($project, $taskqueue, $task, $newLeaseSeconds, Google_Task $postBody, $optParams = array()) {
-      $params = array('project' => $project, 'taskqueue' => $taskqueue, 'task' => $task, 'newLeaseSeconds' => $newLeaseSeconds, 'postBody' => $postBody);
+    public function update($project, $taskqueue, $task, $newLeaseSeconds, Google_Task $postBody, $optParams = []) {
+      $params = ['project' => $project, 'taskqueue' => $taskqueue, 'task' => $task, 'newLeaseSeconds' => $newLeaseSeconds, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_Task($data);
       } else {

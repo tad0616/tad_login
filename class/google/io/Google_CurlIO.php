@@ -25,19 +25,20 @@
 require_once 'Google_CacheParser.php';
 
 class Google_CurlIO extends Google_IO {
-  private static $ENTITY_HTTP_METHODS = array("POST" => null, "PUT" => null);
-  private static $HOP_BY_HOP = array(
+  private static $ENTITY_HTTP_METHODS = ["POST" => null, "PUT" => null];
+  private static $HOP_BY_HOP = [
       'connection', 'keep-alive', 'proxy-authenticate', 'proxy-authorization',
-      'te', 'trailers', 'transfer-encoding', 'upgrade');
+      'te', 'trailers', 'transfer-encoding', 'upgrade'
+  ];
 
-  private $curlParams = array (
+  private $curlParams = [
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_FOLLOWLOCATION => 0,
       CURLOPT_FAILONERROR => false,
       CURLOPT_SSL_VERIFYPEER => true,
       CURLOPT_HEADER => true,
       CURLOPT_VERBOSE => false,
-  );
+  ];
 
   /**
    * Check for cURL availability.
@@ -95,7 +96,7 @@ class Google_CurlIO extends Google_IO {
 
     $requestHeaders = $request->getRequestHeaders();
     if ($requestHeaders && is_array($requestHeaders)) {
-      $parsed = array();
+      $parsed = [];
       foreach ($requestHeaders as $k => $v) {
         $parsed[] = "$k: $v";
       }
@@ -175,11 +176,11 @@ class Google_CurlIO extends Google_IO {
     }
 
     $responseHeaders = self::parseResponseHeaders($responseHeaders);
-    return array($responseHeaders, $responseBody);
+    return [$responseHeaders, $responseBody];
   }
 
   private static function parseResponseHeaders($rawHeaders) {
-    $responseHeaders = array();
+    $responseHeaders = [];
 
     $responseHeaderLines = explode("\r\n", $rawHeaders);
     foreach ($responseHeaderLines as $headerLine) {

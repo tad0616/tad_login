@@ -31,10 +31,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Activity
      */
-    public function get($activityId, $optParams = array()) {
-      $params = array('activityId' => $activityId);
+    public function get($activityId, $optParams = []) {
+      $params = ['activityId' => $activityId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Activity($data);
       } else {
@@ -52,10 +52,10 @@
      * @opt_param string pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      * @return Google_ActivityFeed
      */
-    public function listActivities($userId, $collection, $optParams = array()) {
-      $params = array('userId' => $userId, 'collection' => $collection);
+    public function listActivities($userId, $collection, $optParams = []) {
+      $params = ['userId' => $userId, 'collection' => $collection];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_ActivityFeed($data);
       } else {
@@ -74,10 +74,10 @@
      * @opt_param string pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response. This token can be of any length.
      * @return Google_ActivityFeed
      */
-    public function search($query, $optParams = array()) {
-      $params = array('query' => $query);
+    public function search($query, $optParams = []) {
+      $params = ['query' => $query];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('search', array($params));
+      $data = $this->__call('search', [$params]);
       if ($this->useObjects()) {
         return new Google_ActivityFeed($data);
       } else {
@@ -103,10 +103,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Comment
      */
-    public function get($commentId, $optParams = array()) {
-      $params = array('commentId' => $commentId);
+    public function get($commentId, $optParams = []) {
+      $params = ['commentId' => $commentId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Comment($data);
       } else {
@@ -124,10 +124,10 @@
      * @opt_param string sortOrder The order in which to sort the list of comments.
      * @return Google_CommentFeed
      */
-    public function listComments($activityId, $optParams = array()) {
-      $params = array('activityId' => $activityId);
+    public function listComments($activityId, $optParams = []) {
+      $params = ['activityId' => $activityId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_CommentFeed($data);
       } else {
@@ -158,10 +158,10 @@
      * @opt_param bool debug Return the moment as written. Should be used only for debugging.
      * @return Google_Moment
      */
-    public function insert($userId, $collection, Google_Moment $postBody, $optParams = array()) {
-      $params = array('userId' => $userId, 'collection' => $collection, 'postBody' => $postBody);
+    public function insert($userId, $collection, Google_Moment $postBody, $optParams = []) {
+      $params = ['userId' => $userId, 'collection' => $collection, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Moment($data);
       } else {
@@ -181,10 +181,10 @@
      * @opt_param string type Only moments of this type will be returned.
      * @return Google_MomentsFeed
      */
-    public function listMoments($userId, $collection, $optParams = array()) {
-      $params = array('userId' => $userId, 'collection' => $collection);
+    public function listMoments($userId, $collection, $optParams = []) {
+      $params = ['userId' => $userId, 'collection' => $collection];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_MomentsFeed($data);
       } else {
@@ -197,10 +197,10 @@
      * @param string $id The ID of the moment to delete.
      * @param array $optParams Optional parameters.
      */
-    public function remove($id, $optParams = array()) {
-      $params = array('id' => $id);
+    public function remove($id, $optParams = []) {
+      $params = ['id' => $id];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('remove', array($params));
+      $data = $this->__call('remove', [$params]);
       return $data;
     }
   }
@@ -223,10 +223,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Person
      */
-    public function get($userId, $optParams = array()) {
-      $params = array('userId' => $userId);
+    public function get($userId, $optParams = []) {
+      $params = ['userId' => $userId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Person($data);
       } else {
@@ -245,10 +245,10 @@
      * @opt_param string pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      * @return Google_PeopleFeed
      */
-    public function listPeople($userId, $collection, $optParams = array()) {
-      $params = array('userId' => $userId, 'collection' => $collection);
+    public function listPeople($userId, $collection, $optParams = []) {
+      $params = ['userId' => $userId, 'collection' => $collection];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_PeopleFeed($data);
       } else {
@@ -267,10 +267,10 @@
      * @opt_param string pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      * @return Google_PeopleFeed
      */
-    public function listByActivity($activityId, $collection, $optParams = array()) {
-      $params = array('activityId' => $activityId, 'collection' => $collection);
+    public function listByActivity($activityId, $collection, $optParams = []) {
+      $params = ['activityId' => $activityId, 'collection' => $collection];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('listByActivity', array($params));
+      $data = $this->__call('listByActivity', [$params]);
       if ($this->useObjects()) {
         return new Google_PeopleFeed($data);
       } else {
@@ -288,10 +288,10 @@
      * @opt_param string pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response. This token can be of any length.
      * @return Google_PeopleFeed
      */
-    public function search($query, $optParams = array()) {
-      $params = array('query' => $query);
+    public function search($query, $optParams = []) {
+      $params = ['query' => $query];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('search', array($params));
+      $data = $this->__call('search', [$params]);
       if ($this->useObjects()) {
         return new Google_PeopleFeed($data);
       } else {

@@ -1,5 +1,5 @@
 <?php
-$modversion = array();
+$modversion = [];
 
 //---模組基本資訊---//
 $modversion['name']        = _MI_TADLOGIN_NAME;
@@ -25,7 +25,7 @@ $modversion['min_xoops']           = '2.5';
 $modversion['min_tadtools']        = '2.08';
 
 //---paypal資訊---//
-$modversion['paypal']                  = array();
+$modversion['paypal']                  = [];
 $modversion['paypal']['business']      = 'tad0616@gmail.com';
 $modversion['paypal']['item_name']     = 'Donation : ' . _MI_TAD_WEB;
 $modversion['paypal']['amount']        = 0;
@@ -51,7 +51,7 @@ $modversion['adminmenu']  = "admin/menu.php";
 $modversion['hasMain'] = 1;
 
 //---樣板設定---//
-$modversion['templates']                    = array();
+$modversion['templates']                    = [];
 $i                                          = 1;
 $modversion['templates'][$i]['file']        = 'tad_login_index.tpl';
 $modversion['templates'][$i]['description'] = 'tad_login_index.tpl';
@@ -171,8 +171,8 @@ $modversion['config'][$i]['title']       = '_MI_TADLOGIN_AUTH_METHOD';
 $modversion['config'][$i]['description'] = '_MI_TADLOGIN_AUTH_METHOD_DESC';
 $modversion['config'][$i]['formtype']    = 'select_multi';
 $modversion['config'][$i]['valuetype']   = 'array';
-$modversion['config'][$i]['default']     = array('tn');
-$modversion['config'][$i]['options']     = array(
+$modversion['config'][$i]['default']     = ['tn'];
+$modversion['config'][$i]['options']     = [
     sprintf(_MI_TADLOGIN_LOGIN, _FACEBOOK) => 'facebook',
     sprintf(_MI_TADLOGIN_LOGIN, _GOOGLE)   => 'google',
     sprintf(_MI_TADLOGIN_LOGIN, _YAHOO)    => 'yahoo',
@@ -200,7 +200,8 @@ $modversion['config'][$i]['options']     = array(
     sprintf(_MI_TADLOGIN_LOGIN, _TTCT)     => 'ttct',
     sprintf(_MI_TADLOGIN_LOGIN, _PHC)      => 'phc',
     sprintf(_MI_TADLOGIN_LOGIN, _KM)       => 'km',
-    sprintf(_MI_TADLOGIN_LOGIN, _MT)       => 'mt');
+    sprintf(_MI_TADLOGIN_LOGIN, _MT)       => 'mt'
+];
 
 $i++;
 $modversion['config'][$i]['name']        = 'openid_login';
@@ -209,7 +210,7 @@ $modversion['config'][$i]['description'] = '_MI_TADLOGIN_DESC2';
 $modversion['config'][$i]['formtype']    = 'select';
 $modversion['config'][$i]['valuetype']   = 'int';
 $modversion['config'][$i]['default']     = '1';
-$modversion['config'][$i]['options']     = array(_MI_TADLOGIN_TITLE2_OPT0 => '0', _MI_TADLOGIN_TITLE2_OPT1 => '1', _MI_TADLOGIN_TITLE2_OPT2 => '2', _MI_TADLOGIN_TITLE2_OPT3 => '3');
+$modversion['config'][$i]['options']     = [_MI_TADLOGIN_TITLE2_OPT0 => '0', _MI_TADLOGIN_TITLE2_OPT1 => '1', _MI_TADLOGIN_TITLE2_OPT2 => '2', _MI_TADLOGIN_TITLE2_OPT3 => '3'];
 
 $i++;
 $modversion['config'][$i]['name']        = 'openid_logo';
@@ -218,7 +219,7 @@ $modversion['config'][$i]['description'] = '_MI_TADLOGIN_DESC3';
 $modversion['config'][$i]['formtype']    = 'select';
 $modversion['config'][$i]['valuetype']   = 'int';
 $modversion['config'][$i]['default']     = '4';
-$modversion['config'][$i]['options']     = array(1 => '1', 2 => '2', 3 => '3', 4 => '4', 5 => '5', 6 => '6');
+$modversion['config'][$i]['options']     = [1 => '1', 2 => '2', 3 => '3', 4 => '4', 5 => '5', 6 => '6'];
 
 $i++;
 $modversion['config'][$i]['name']        = 'redirect_url';

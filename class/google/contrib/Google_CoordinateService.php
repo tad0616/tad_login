@@ -31,10 +31,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_CustomFieldDefListResponse
      */
-    public function listCustomFieldDef($teamId, $optParams = array()) {
-      $params = array('teamId' => $teamId);
+    public function listCustomFieldDef($teamId, $optParams = []) {
+      $params = ['teamId' => $teamId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_CustomFieldDefListResponse($data);
       } else {
@@ -61,10 +61,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Job
      */
-    public function get($teamId, $jobId, $optParams = array()) {
-      $params = array('teamId' => $teamId, 'jobId' => $jobId);
+    public function get($teamId, $jobId, $optParams = []) {
+      $params = ['teamId' => $teamId, 'jobId' => $jobId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Job($data);
       } else {
@@ -89,10 +89,10 @@
      * @opt_param string note Job note as newline (Unix) separated string
      * @return Google_Job
      */
-    public function insert($teamId, $address, $lat, $lng, $title, Google_Job $postBody, $optParams = array()) {
-      $params = array('teamId' => $teamId, 'address' => $address, 'lat' => $lat, 'lng' => $lng, 'title' => $title, 'postBody' => $postBody);
+    public function insert($teamId, $address, $lat, $lng, $title, Google_Job $postBody, $optParams = []) {
+      $params = ['teamId' => $teamId, 'address' => $address, 'lat' => $lat, 'lng' => $lng, 'title' => $title, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Job($data);
       } else {
@@ -110,10 +110,10 @@
      * @opt_param string pageToken Continuation token
      * @return Google_JobListResponse
      */
-    public function listJobs($teamId, $optParams = array()) {
-      $params = array('teamId' => $teamId);
+    public function listJobs($teamId, $optParams = []) {
+      $params = ['teamId' => $teamId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_JobListResponse($data);
       } else {
@@ -141,10 +141,10 @@
      * @opt_param string title Job title
      * @return Google_Job
      */
-    public function patch($teamId, $jobId, Google_Job $postBody, $optParams = array()) {
-      $params = array('teamId' => $teamId, 'jobId' => $jobId, 'postBody' => $postBody);
+    public function patch($teamId, $jobId, Google_Job $postBody, $optParams = []) {
+      $params = ['teamId' => $teamId, 'jobId' => $jobId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_Job($data);
       } else {
@@ -171,10 +171,10 @@
      * @opt_param string title Job title
      * @return Google_Job
      */
-    public function update($teamId, $jobId, Google_Job $postBody, $optParams = array()) {
-      $params = array('teamId' => $teamId, 'jobId' => $jobId, 'postBody' => $postBody);
+    public function update($teamId, $jobId, Google_Job $postBody, $optParams = []) {
+      $params = ['teamId' => $teamId, 'jobId' => $jobId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_Job($data);
       } else {
@@ -205,10 +205,10 @@
      * @opt_param string pageToken Continuation token
      * @return Google_LocationListResponse
      */
-    public function listLocation($teamId, $workerEmail, $startTimestampMs, $optParams = array()) {
-      $params = array('teamId' => $teamId, 'workerEmail' => $workerEmail, 'startTimestampMs' => $startTimestampMs);
+    public function listLocation($teamId, $workerEmail, $startTimestampMs, $optParams = []) {
+      $params = ['teamId' => $teamId, 'workerEmail' => $workerEmail, 'startTimestampMs' => $startTimestampMs];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_LocationListResponse($data);
       } else {
@@ -235,10 +235,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Schedule
      */
-    public function get($teamId, $jobId, $optParams = array()) {
-      $params = array('teamId' => $teamId, 'jobId' => $jobId);
+    public function get($teamId, $jobId, $optParams = []) {
+      $params = ['teamId' => $teamId, 'jobId' => $jobId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Schedule($data);
       } else {
@@ -260,10 +260,10 @@
      * @opt_param string startTime Scheduled start time in milliseconds since epoch.
      * @return Google_Schedule
      */
-    public function patch($teamId, $jobId, Google_Schedule $postBody, $optParams = array()) {
-      $params = array('teamId' => $teamId, 'jobId' => $jobId, 'postBody' => $postBody);
+    public function patch($teamId, $jobId, Google_Schedule $postBody, $optParams = []) {
+      $params = ['teamId' => $teamId, 'jobId' => $jobId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_Schedule($data);
       } else {
@@ -284,10 +284,10 @@
      * @opt_param string startTime Scheduled start time in milliseconds since epoch.
      * @return Google_Schedule
      */
-    public function update($teamId, $jobId, Google_Schedule $postBody, $optParams = array()) {
-      $params = array('teamId' => $teamId, 'jobId' => $jobId, 'postBody' => $postBody);
+    public function update($teamId, $jobId, Google_Schedule $postBody, $optParams = []) {
+      $params = ['teamId' => $teamId, 'jobId' => $jobId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_Schedule($data);
       } else {
@@ -313,10 +313,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_WorkerListResponse
      */
-    public function listWorker($teamId, $optParams = array()) {
-      $params = array('teamId' => $teamId);
+    public function listWorker($teamId, $optParams = []) {
+      $params = ['teamId' => $teamId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_WorkerListResponse($data);
       } else {

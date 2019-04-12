@@ -30,10 +30,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_ElectionsQueryResponse
      */
-    public function electionQuery($optParams = array()) {
-      $params = array();
+    public function electionQuery($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('electionQuery', array($params));
+      $data = $this->__call('electionQuery', [$params]);
       if ($this->useObjects()) {
         return new Google_ElectionsQueryResponse($data);
       } else {
@@ -51,10 +51,10 @@
      * @opt_param bool officialOnly If set to true, only data from official state sources will be returned.
      * @return Google_VoterInfoResponse
      */
-    public function voterInfoQuery($electionId, Google_VoterInfoRequest $postBody, $optParams = array()) {
-      $params = array('electionId' => $electionId, 'postBody' => $postBody);
+    public function voterInfoQuery($electionId, Google_VoterInfoRequest $postBody, $optParams = []) {
+      $params = ['electionId' => $electionId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('voterInfoQuery', array($params));
+      $data = $this->__call('voterInfoQuery', [$params]);
       if ($this->useObjects()) {
         return new Google_VoterInfoResponse($data);
       } else {

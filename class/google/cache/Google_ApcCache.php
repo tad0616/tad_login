@@ -83,7 +83,7 @@ class Google_APCCache extends Google_Cache {
    * @inheritDoc
    */
   public function set($key, $value) {
-    if (@apc_store($key, array('time' => time(), 'data' => serialize($value))) == false) {
+    if (@apc_store($key, ['time' => time(), 'data' => serialize($value)]) == false) {
       throw new Google_CacheException("Couldn't store data");
     }
   }

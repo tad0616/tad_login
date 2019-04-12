@@ -35,10 +35,10 @@
      * @opt_param string currentDataVersion The version of the data to be cleared. Version strings are returned by the server.
      * @return Google_WriteResult
      */
-    public function clear($stateKey, $optParams = array()) {
-      $params = array('stateKey' => $stateKey);
+    public function clear($stateKey, $optParams = []) {
+      $params = ['stateKey' => $stateKey];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('clear', array($params));
+      $data = $this->__call('clear', [$params]);
       if ($this->useObjects()) {
         return new Google_WriteResult($data);
       } else {
@@ -54,10 +54,10 @@
      * @param int $stateKey The key for the data to be retrieved.
      * @param array $optParams Optional parameters.
      */
-    public function delete($stateKey, $optParams = array()) {
-      $params = array('stateKey' => $stateKey);
+    public function delete($stateKey, $optParams = []) {
+      $params = ['stateKey' => $stateKey];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -67,10 +67,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_GetResponse
      */
-    public function get($stateKey, $optParams = array()) {
-      $params = array('stateKey' => $stateKey);
+    public function get($stateKey, $optParams = []) {
+      $params = ['stateKey' => $stateKey];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_GetResponse($data);
       } else {
@@ -85,10 +85,10 @@
      * @opt_param bool includeData Whether to include the full data in addition to the version number
      * @return Google_ListResponse
      */
-    public function listStates($optParams = array()) {
-      $params = array();
+    public function listStates($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_ListResponse($data);
       } else {
@@ -107,10 +107,10 @@
      * @opt_param string currentStateVersion The version of the app state your application is attempting to update. If this does not match the current version, this method will return a conflict error. If there is no data stored on the server for this key, the update will succeed irrespective of the value of this parameter.
      * @return Google_WriteResult
      */
-    public function update($stateKey, Google_UpdateRequest $postBody, $optParams = array()) {
-      $params = array('stateKey' => $stateKey, 'postBody' => $postBody);
+    public function update($stateKey, Google_UpdateRequest $postBody, $optParams = []) {
+      $params = ['stateKey' => $stateKey, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_WriteResult($data);
       } else {

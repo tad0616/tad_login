@@ -97,13 +97,13 @@ class Google_OAuth2 extends Google_Auth
 
         if ($code) {
             // We got here from the redirect from a successful authorization grant, fetch the access token
-            $request = Google_Client::$io->makeRequest(new Google_HttpRequest(self::OAUTH2_TOKEN_URI, 'POST', array(), array(
+            $request = Google_Client::$io->makeRequest(new Google_HttpRequest(self::OAUTH2_TOKEN_URI, 'POST', [], [
                 'code'          => $code,
                 'grant_type'    => 'authorization_code',
                 'redirect_uri'  => $this->redirectUri,
                 'client_id'     => $this->clientId,
                 'client_secret' => $this->clientSecret,
-            )));
+            ]));
 
             if ($request->getResponseHttpCode() == 200) {
                 $this->setAccessToken($request->getResponseBody());
@@ -133,14 +133,14 @@ class Google_OAuth2 extends Google_Auth
      */
     public function createAuthUrl($scope)
     {
-        $params = array(
+        $params = [
             'response_type=code',
             'redirect_uri=' . urlencode($this->redirectUri),
             'client_id=' . urlencode($this->clientId),
             'scope=' . urlencode($scope),
             'access_type=' . urlencode($this->accessType),
             'approval_prompt=' . urlencode($this->approvalPrompt),
-        );
+        ];
 
         // if the list of scopes contains plus.login, add request_visible_actions
         // to auth URL
@@ -240,7 +240,7 @@ class Google_OAuth2 extends Google_Auth
 
         // Add the OAuth2 header to the request
         $request->setRequestHeaders(
-            array('Authorization' => 'Bearer ' . $this->token['access_token'])
+            ['Authorization' => 'Bearer ' . $this->token['access_token']]
         );
 
         return $request;
@@ -253,12 +253,12 @@ class Google_OAuth2 extends Google_Auth
      */
     public function refreshToken($refreshToken)
     {
-        $this->refreshTokenRequest(array(
+        $this->refreshTokenRequest([
             'client_id'     => $this->clientId,
             'client_secret' => $this->clientSecret,
             'refresh_token' => $refreshToken,
             'grant_type'    => 'refresh_token',
-        ));
+                                   ]);
     }
 
     /**
@@ -272,16 +272,16 @@ class Google_OAuth2 extends Google_Auth
             $assertionCredentials = $this->assertionCredentials;
         }
 
-        $this->refreshTokenRequest(array(
+        $this->refreshTokenRequest([
             'grant_type'     => 'assertion',
             'assertion_type' => $assertionCredentials->assertionType,
             'assertion'      => $assertionCredentials->generateAssertion(),
-        ));
+                                   ]);
     }
 
     private function refreshTokenRequest($params)
     {
-        $http    = new Google_HttpRequest(self::OAUTH2_TOKEN_URI, 'POST', array(), $params);
+        $http    = new Google_HttpRequest(self::OAUTH2_TOKEN_URI, 'POST', [], $params);
         $request = Google_Client::$io->makeRequest($http);
 
         $code = $request->getResponseHttpCode();
@@ -316,7 +316,7 @@ class Google_OAuth2 extends Google_Auth
         if (!$token) {
             $token = $this->token['access_token'];
         }
-        $request  = new Google_HttpRequest(self::OAUTH2_REVOKE_URI, 'POST', array(), "token=$token");
+        $request  = new Google_HttpRequest(self::OAUTH2_REVOKE_URI, 'POST', [], "token=$token");
         $response = Google_Client::$io->makeRequest($request);
         $code     = $response->getResponseHttpCode();
         if ($code == 200) {

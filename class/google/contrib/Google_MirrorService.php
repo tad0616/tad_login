@@ -30,10 +30,10 @@
      * @param string $id The ID of the contact.
      * @param array $optParams Optional parameters.
      */
-    public function delete($id, $optParams = array()) {
-      $params = array('id' => $id);
+    public function delete($id, $optParams = []) {
+      $params = ['id' => $id];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -43,10 +43,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Contact
      */
-    public function get($id, $optParams = array()) {
-      $params = array('id' => $id);
+    public function get($id, $optParams = []) {
+      $params = ['id' => $id];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Contact($data);
       } else {
@@ -60,10 +60,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Contact
      */
-    public function insert(Google_Contact $postBody, $optParams = array()) {
-      $params = array('postBody' => $postBody);
+    public function insert(Google_Contact $postBody, $optParams = []) {
+      $params = ['postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Contact($data);
       } else {
@@ -76,10 +76,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_ContactsListResponse
      */
-    public function listContacts($optParams = array()) {
-      $params = array();
+    public function listContacts($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_ContactsListResponse($data);
       } else {
@@ -95,10 +95,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Contact
      */
-    public function patch($id, Google_Contact $postBody, $optParams = array()) {
-      $params = array('id' => $id, 'postBody' => $postBody);
+    public function patch($id, Google_Contact $postBody, $optParams = []) {
+      $params = ['id' => $id, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_Contact($data);
       } else {
@@ -113,10 +113,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Contact
      */
-    public function update($id, Google_Contact $postBody, $optParams = array()) {
-      $params = array('id' => $id, 'postBody' => $postBody);
+    public function update($id, Google_Contact $postBody, $optParams = []) {
+      $params = ['id' => $id, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_Contact($data);
       } else {
@@ -142,10 +142,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Location
      */
-    public function get($id, $optParams = array()) {
-      $params = array('id' => $id);
+    public function get($id, $optParams = []) {
+      $params = ['id' => $id];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Location($data);
       } else {
@@ -158,10 +158,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_LocationsListResponse
      */
-    public function listLocations($optParams = array()) {
-      $params = array();
+    public function listLocations($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_LocationsListResponse($data);
       } else {
@@ -186,10 +186,10 @@
      * @param string $id The ID of the subscription.
      * @param array $optParams Optional parameters.
      */
-    public function delete($id, $optParams = array()) {
-      $params = array('id' => $id);
+    public function delete($id, $optParams = []) {
+      $params = ['id' => $id];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -199,10 +199,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Subscription
      */
-    public function insert(Google_Subscription $postBody, $optParams = array()) {
-      $params = array('postBody' => $postBody);
+    public function insert(Google_Subscription $postBody, $optParams = []) {
+      $params = ['postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Subscription($data);
       } else {
@@ -216,10 +216,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_SubscriptionsListResponse
      */
-    public function listSubscriptions($optParams = array()) {
-      $params = array();
+    public function listSubscriptions($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_SubscriptionsListResponse($data);
       } else {
@@ -234,10 +234,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Subscription
      */
-    public function update($id, Google_Subscription $postBody, $optParams = array()) {
-      $params = array('id' => $id, 'postBody' => $postBody);
+    public function update($id, Google_Subscription $postBody, $optParams = []) {
+      $params = ['id' => $id, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_Subscription($data);
       } else {
@@ -262,10 +262,10 @@
      * @param string $id The ID of the timeline item.
      * @param array $optParams Optional parameters.
      */
-    public function delete($id, $optParams = array()) {
-      $params = array('id' => $id);
+    public function delete($id, $optParams = []) {
+      $params = ['id' => $id];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -275,10 +275,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_TimelineItem
      */
-    public function get($id, $optParams = array()) {
-      $params = array('id' => $id);
+    public function get($id, $optParams = []) {
+      $params = ['id' => $id];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_TimelineItem($data);
       } else {
@@ -292,10 +292,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_TimelineItem
      */
-    public function insert(Google_TimelineItem $postBody, $optParams = array()) {
-      $params = array('postBody' => $postBody);
+    public function insert(Google_TimelineItem $postBody, $optParams = []) {
+      $params = ['postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_TimelineItem($data);
       } else {
@@ -317,10 +317,10 @@
      * @opt_param string sourceItemId If provided, only items with the given sourceItemId will be returned.
      * @return Google_TimelineListResponse
      */
-    public function listTimeline($optParams = array()) {
-      $params = array();
+    public function listTimeline($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_TimelineListResponse($data);
       } else {
@@ -336,10 +336,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_TimelineItem
      */
-    public function patch($id, Google_TimelineItem $postBody, $optParams = array()) {
-      $params = array('id' => $id, 'postBody' => $postBody);
+    public function patch($id, Google_TimelineItem $postBody, $optParams = []) {
+      $params = ['id' => $id, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_TimelineItem($data);
       } else {
@@ -354,10 +354,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_TimelineItem
      */
-    public function update($id, Google_TimelineItem $postBody, $optParams = array()) {
-      $params = array('id' => $id, 'postBody' => $postBody);
+    public function update($id, Google_TimelineItem $postBody, $optParams = []) {
+      $params = ['id' => $id, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_TimelineItem($data);
       } else {
@@ -383,10 +383,10 @@
      * @param string $attachmentId The ID of the attachment.
      * @param array $optParams Optional parameters.
      */
-    public function delete($itemId, $attachmentId, $optParams = array()) {
-      $params = array('itemId' => $itemId, 'attachmentId' => $attachmentId);
+    public function delete($itemId, $attachmentId, $optParams = []) {
+      $params = ['itemId' => $itemId, 'attachmentId' => $attachmentId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -398,10 +398,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Attachment
      */
-    public function get($itemId, $attachmentId, $optParams = array()) {
-      $params = array('itemId' => $itemId, 'attachmentId' => $attachmentId);
+    public function get($itemId, $attachmentId, $optParams = []) {
+      $params = ['itemId' => $itemId, 'attachmentId' => $attachmentId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Attachment($data);
       } else {
@@ -415,10 +415,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Attachment
      */
-    public function insert($itemId, $optParams = array()) {
-      $params = array('itemId' => $itemId);
+    public function insert($itemId, $optParams = []) {
+      $params = ['itemId' => $itemId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Attachment($data);
       } else {
@@ -432,10 +432,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_AttachmentsListResponse
      */
-    public function listTimelineAttachments($itemId, $optParams = array()) {
-      $params = array('itemId' => $itemId);
+    public function listTimelineAttachments($itemId, $optParams = []) {
+      $params = ['itemId' => $itemId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_AttachmentsListResponse($data);
       } else {

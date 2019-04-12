@@ -10,8 +10,8 @@ if (!isset($xoopsModuleConfig)) {
 // require 'fun.php';
 $provideruri             = 'https://tyc.sso.edu.tw';
 $_SESSION['auth_method'] = 'ty_edu';
-$responsetype            = array('code');
-$scope                   = array('openid', 'openid2', 'email', 'profile', 'eduinfo');
+$responsetype            = ['code'];
+$scope                   = ['openid', 'openid2', 'email', 'profile', 'eduinfo'];
 $clientid                = $xoopsModuleConfig['ty_edu_clientid'];
 $clientsecret            = $xoopsModuleConfig['ty_edu_clientsecret'];
 $redirecturi             = XOOPS_URL . '/modules/tad_login/edu_callback.php';

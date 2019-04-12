@@ -93,7 +93,7 @@ abstract class Google_IO {
     // Set the default content-type as application/x-www-form-urlencoded.
     if (false == $contentType) {
       $contentType = self::FORM_URLENCODED;
-      $request->setRequestHeaders(array('content-type' => $contentType));
+      $request->setRequestHeaders(['content-type' => $contentType]);
     }
 
     // Force the payload to match the content-type asserted in the header.
@@ -105,7 +105,7 @@ abstract class Google_IO {
     // Make sure the content-length header is set.
     if (!$postBody || is_string($postBody)) {
       $postsLength = strlen($postBody);
-      $request->setRequestHeaders(array('content-length' => $postsLength));
+      $request->setRequestHeaders(['content-length' => $postsLength]);
     }
 
     return $request;
@@ -121,7 +121,7 @@ abstract class Google_IO {
    */
   protected function checkMustRevaliadateCachedRequest($cached, $request) {
     if (Google_CacheParser::mustRevalidate($cached)) {
-      $addHeaders = array();
+      $addHeaders = [];
       if ($cached->getResponseHeader('etag')) {
         // [13.3.4] If an entity tag has been provided by the origin server,
         // we must use that entity tag in any cache-conditional request.
@@ -149,7 +149,7 @@ abstract class Google_IO {
         explode(',', $responseHeaders['connection'])
       );
 
-      $endToEnd = array();
+      $endToEnd = [];
       foreach($hopByHop as $key) {
         if (isset($responseHeaders[$key])) {
           $endToEnd[$key] = $responseHeaders[$key];

@@ -42,10 +42,10 @@
      * @opt_param int start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter (one-based, inclusive).
      * @return Google_ResultTable
      */
-    public function query($ids, $start_date, $end_date, $metrics, $optParams = array()) {
-      $params = array('ids' => $ids, 'start-date' => $start_date, 'end-date' => $end_date, 'metrics' => $metrics);
+    public function query($ids, $start_date, $end_date, $metrics, $optParams = []) {
+      $params = ['ids' => $ids, 'start-date' => $start_date, 'end-date' => $end_date, 'metrics' => $metrics];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('query', array($params));
+      $data = $this->__call('query', [$params]);
       if ($this->useObjects()) {
         return new Google_ResultTable($data);
       } else {

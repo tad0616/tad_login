@@ -31,10 +31,10 @@
      * @param string $ruleId ACL rule identifier.
      * @param array $optParams Optional parameters.
      */
-    public function delete($calendarId, $ruleId, $optParams = array()) {
-      $params = array('calendarId' => $calendarId, 'ruleId' => $ruleId);
+    public function delete($calendarId, $ruleId, $optParams = []) {
+      $params = ['calendarId' => $calendarId, 'ruleId' => $ruleId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -45,10 +45,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_AclRule
      */
-    public function get($calendarId, $ruleId, $optParams = array()) {
-      $params = array('calendarId' => $calendarId, 'ruleId' => $ruleId);
+    public function get($calendarId, $ruleId, $optParams = []) {
+      $params = ['calendarId' => $calendarId, 'ruleId' => $ruleId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_AclRule($data);
       } else {
@@ -63,10 +63,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_AclRule
      */
-    public function insert($calendarId, Google_AclRule $postBody, $optParams = array()) {
-      $params = array('calendarId' => $calendarId, 'postBody' => $postBody);
+    public function insert($calendarId, Google_AclRule $postBody, $optParams = []) {
+      $params = ['calendarId' => $calendarId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_AclRule($data);
       } else {
@@ -80,10 +80,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Acl
      */
-    public function listAcl($calendarId, $optParams = array()) {
-      $params = array('calendarId' => $calendarId);
+    public function listAcl($calendarId, $optParams = []) {
+      $params = ['calendarId' => $calendarId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Acl($data);
       } else {
@@ -99,10 +99,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_AclRule
      */
-    public function patch($calendarId, $ruleId, Google_AclRule $postBody, $optParams = array()) {
-      $params = array('calendarId' => $calendarId, 'ruleId' => $ruleId, 'postBody' => $postBody);
+    public function patch($calendarId, $ruleId, Google_AclRule $postBody, $optParams = []) {
+      $params = ['calendarId' => $calendarId, 'ruleId' => $ruleId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_AclRule($data);
       } else {
@@ -118,10 +118,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_AclRule
      */
-    public function update($calendarId, $ruleId, Google_AclRule $postBody, $optParams = array()) {
-      $params = array('calendarId' => $calendarId, 'ruleId' => $ruleId, 'postBody' => $postBody);
+    public function update($calendarId, $ruleId, Google_AclRule $postBody, $optParams = []) {
+      $params = ['calendarId' => $calendarId, 'ruleId' => $ruleId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_AclRule($data);
       } else {
@@ -146,10 +146,10 @@
      * @param string $calendarId Calendar identifier.
      * @param array $optParams Optional parameters.
      */
-    public function delete($calendarId, $optParams = array()) {
-      $params = array('calendarId' => $calendarId);
+    public function delete($calendarId, $optParams = []) {
+      $params = ['calendarId' => $calendarId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -159,10 +159,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_CalendarListEntry
      */
-    public function get($calendarId, $optParams = array()) {
-      $params = array('calendarId' => $calendarId);
+    public function get($calendarId, $optParams = []) {
+      $params = ['calendarId' => $calendarId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_CalendarListEntry($data);
       } else {
@@ -178,10 +178,10 @@
      * @opt_param bool colorRgbFormat Whether to use the 'foregroundColor' and 'backgroundColor' fields to write the calendar colors (RGB). If this feature is used, the index-based 'colorId' field will be set to the best matching option automatically. Optional. The default is False.
      * @return Google_CalendarListEntry
      */
-    public function insert(Google_CalendarListEntry $postBody, $optParams = array()) {
-      $params = array('postBody' => $postBody);
+    public function insert(Google_CalendarListEntry $postBody, $optParams = []) {
+      $params = ['postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_CalendarListEntry($data);
       } else {
@@ -199,10 +199,10 @@
      * @opt_param bool showHidden Whether to show hidden entries. Optional. The default is False.
      * @return Google_CalendarList
      */
-    public function listCalendarList($optParams = array()) {
-      $params = array();
+    public function listCalendarList($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_CalendarList($data);
       } else {
@@ -220,10 +220,10 @@
      * @opt_param bool colorRgbFormat Whether to use the 'foregroundColor' and 'backgroundColor' fields to write the calendar colors (RGB). If this feature is used, the index-based 'colorId' field will be set to the best matching option automatically. Optional. The default is False.
      * @return Google_CalendarListEntry
      */
-    public function patch($calendarId, Google_CalendarListEntry $postBody, $optParams = array()) {
-      $params = array('calendarId' => $calendarId, 'postBody' => $postBody);
+    public function patch($calendarId, Google_CalendarListEntry $postBody, $optParams = []) {
+      $params = ['calendarId' => $calendarId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_CalendarListEntry($data);
       } else {
@@ -240,10 +240,10 @@
      * @opt_param bool colorRgbFormat Whether to use the 'foregroundColor' and 'backgroundColor' fields to write the calendar colors (RGB). If this feature is used, the index-based 'colorId' field will be set to the best matching option automatically. Optional. The default is False.
      * @return Google_CalendarListEntry
      */
-    public function update($calendarId, Google_CalendarListEntry $postBody, $optParams = array()) {
-      $params = array('calendarId' => $calendarId, 'postBody' => $postBody);
+    public function update($calendarId, Google_CalendarListEntry $postBody, $optParams = []) {
+      $params = ['calendarId' => $calendarId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_CalendarListEntry($data);
       } else {
@@ -269,10 +269,10 @@
      * @param string $calendarId Calendar identifier.
      * @param array $optParams Optional parameters.
      */
-    public function clear($calendarId, $optParams = array()) {
-      $params = array('calendarId' => $calendarId);
+    public function clear($calendarId, $optParams = []) {
+      $params = ['calendarId' => $calendarId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('clear', array($params));
+      $data = $this->__call('clear', [$params]);
       return $data;
     }
     /**
@@ -281,10 +281,10 @@
      * @param string $calendarId Calendar identifier.
      * @param array $optParams Optional parameters.
      */
-    public function delete($calendarId, $optParams = array()) {
-      $params = array('calendarId' => $calendarId);
+    public function delete($calendarId, $optParams = []) {
+      $params = ['calendarId' => $calendarId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -294,10 +294,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Calendar
      */
-    public function get($calendarId, $optParams = array()) {
-      $params = array('calendarId' => $calendarId);
+    public function get($calendarId, $optParams = []) {
+      $params = ['calendarId' => $calendarId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Calendar($data);
       } else {
@@ -311,10 +311,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Calendar
      */
-    public function insert(Google_Calendar $postBody, $optParams = array()) {
-      $params = array('postBody' => $postBody);
+    public function insert(Google_Calendar $postBody, $optParams = []) {
+      $params = ['postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Calendar($data);
       } else {
@@ -329,10 +329,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Calendar
      */
-    public function patch($calendarId, Google_Calendar $postBody, $optParams = array()) {
-      $params = array('calendarId' => $calendarId, 'postBody' => $postBody);
+    public function patch($calendarId, Google_Calendar $postBody, $optParams = []) {
+      $params = ['calendarId' => $calendarId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_Calendar($data);
       } else {
@@ -347,10 +347,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Calendar
      */
-    public function update($calendarId, Google_Calendar $postBody, $optParams = array()) {
-      $params = array('calendarId' => $calendarId, 'postBody' => $postBody);
+    public function update($calendarId, Google_Calendar $postBody, $optParams = []) {
+      $params = ['calendarId' => $calendarId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_Calendar($data);
       } else {
@@ -375,10 +375,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Colors
      */
-    public function get($optParams = array()) {
-      $params = array();
+    public function get($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Colors($data);
       } else {
@@ -406,10 +406,10 @@
      *
      * @opt_param bool sendNotifications Whether to send notifications about the deletion of the event. Optional. The default is False.
      */
-    public function delete($calendarId, $eventId, $optParams = array()) {
-      $params = array('calendarId' => $calendarId, 'eventId' => $eventId);
+    public function delete($calendarId, $eventId, $optParams = []) {
+      $params = ['calendarId' => $calendarId, 'eventId' => $eventId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -424,10 +424,10 @@
      * @opt_param string timeZone Time zone used in the response. Optional. The default is the time zone of the calendar.
      * @return Google_Event
      */
-    public function get($calendarId, $eventId, $optParams = array()) {
-      $params = array('calendarId' => $calendarId, 'eventId' => $eventId);
+    public function get($calendarId, $eventId, $optParams = []) {
+      $params = ['calendarId' => $calendarId, 'eventId' => $eventId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Event($data);
       } else {
@@ -442,10 +442,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Event
      */
-    public function import($calendarId, Google_Event $postBody, $optParams = array()) {
-      $params = array('calendarId' => $calendarId, 'postBody' => $postBody);
+    public function import($calendarId, Google_Event $postBody, $optParams = []) {
+      $params = ['calendarId' => $calendarId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('import', array($params));
+      $data = $this->__call('import', [$params]);
       if ($this->useObjects()) {
         return new Google_Event($data);
       } else {
@@ -463,10 +463,10 @@
      * @opt_param bool sendNotifications Whether to send notifications about the creation of the new event. Optional. The default is False.
      * @return Google_Event
      */
-    public function insert($calendarId, Google_Event $postBody, $optParams = array()) {
-      $params = array('calendarId' => $calendarId, 'postBody' => $postBody);
+    public function insert($calendarId, Google_Event $postBody, $optParams = []) {
+      $params = ['calendarId' => $calendarId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Event($data);
       } else {
@@ -491,10 +491,10 @@
      * @opt_param string timeZone Time zone used in the response. Optional. The default is the time zone of the calendar.
      * @return Google_Events
      */
-    public function instances($calendarId, $eventId, $optParams = array()) {
-      $params = array('calendarId' => $calendarId, 'eventId' => $eventId);
+    public function instances($calendarId, $eventId, $optParams = []) {
+      $params = ['calendarId' => $calendarId, 'eventId' => $eventId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('instances', array($params));
+      $data = $this->__call('instances', [$params]);
       if ($this->useObjects()) {
         return new Google_Events($data);
       } else {
@@ -523,10 +523,10 @@
      * @opt_param string updatedMin Lower bound for an event's last modification time (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by last modification time.
      * @return Google_Events
      */
-    public function listEvents($calendarId, $optParams = array()) {
-      $params = array('calendarId' => $calendarId);
+    public function listEvents($calendarId, $optParams = []) {
+      $params = ['calendarId' => $calendarId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Events($data);
       } else {
@@ -544,10 +544,10 @@
      * @opt_param bool sendNotifications Whether to send notifications about the change of the event's organizer. Optional. The default is False.
      * @return Google_Event
      */
-    public function move($calendarId, $eventId, $destination, $optParams = array()) {
-      $params = array('calendarId' => $calendarId, 'eventId' => $eventId, 'destination' => $destination);
+    public function move($calendarId, $eventId, $destination, $optParams = []) {
+      $params = ['calendarId' => $calendarId, 'eventId' => $eventId, 'destination' => $destination];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('move', array($params));
+      $data = $this->__call('move', [$params]);
       if ($this->useObjects()) {
         return new Google_Event($data);
       } else {
@@ -567,10 +567,10 @@
      * @opt_param bool sendNotifications Whether to send notifications about the event update (e.g. attendee's responses, title changes, etc.). Optional. The default is False.
      * @return Google_Event
      */
-    public function patch($calendarId, $eventId, Google_Event $postBody, $optParams = array()) {
-      $params = array('calendarId' => $calendarId, 'eventId' => $eventId, 'postBody' => $postBody);
+    public function patch($calendarId, $eventId, Google_Event $postBody, $optParams = []) {
+      $params = ['calendarId' => $calendarId, 'eventId' => $eventId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_Event($data);
       } else {
@@ -587,10 +587,10 @@
      * @opt_param bool sendNotifications Whether to send notifications about the creation of the event. Optional. The default is False.
      * @return Google_Event
      */
-    public function quickAdd($calendarId, $text, $optParams = array()) {
-      $params = array('calendarId' => $calendarId, 'text' => $text);
+    public function quickAdd($calendarId, $text, $optParams = []) {
+      $params = ['calendarId' => $calendarId, 'text' => $text];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('quickAdd', array($params));
+      $data = $this->__call('quickAdd', [$params]);
       if ($this->useObjects()) {
         return new Google_Event($data);
       } else {
@@ -610,10 +610,10 @@
      * @opt_param bool sendNotifications Whether to send notifications about the event update (e.g. attendee's responses, title changes, etc.). Optional. The default is False.
      * @return Google_Event
      */
-    public function update($calendarId, $eventId, Google_Event $postBody, $optParams = array()) {
-      $params = array('calendarId' => $calendarId, 'eventId' => $eventId, 'postBody' => $postBody);
+    public function update($calendarId, $eventId, Google_Event $postBody, $optParams = []) {
+      $params = ['calendarId' => $calendarId, 'eventId' => $eventId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_Event($data);
       } else {
@@ -639,10 +639,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_FreeBusyResponse
      */
-    public function query(Google_FreeBusyRequest $postBody, $optParams = array()) {
-      $params = array('postBody' => $postBody);
+    public function query(Google_FreeBusyRequest $postBody, $optParams = []) {
+      $params = ['postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('query', array($params));
+      $data = $this->__call('query', [$params]);
       if ($this->useObjects()) {
         return new Google_FreeBusyResponse($data);
       } else {
@@ -668,10 +668,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Setting
      */
-    public function get($setting, $optParams = array()) {
-      $params = array('setting' => $setting);
+    public function get($setting, $optParams = []) {
+      $params = ['setting' => $setting];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Setting($data);
       } else {
@@ -684,10 +684,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Settings
      */
-    public function listSettings($optParams = array()) {
-      $params = array();
+    public function listSettings($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Settings($data);
       } else {

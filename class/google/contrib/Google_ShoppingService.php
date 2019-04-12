@@ -45,10 +45,10 @@
      * @opt_param string thumbnails Thumbnail specification
      * @return Google_Product
      */
-    public function get($source, $accountId, $productIdType, $productId, $optParams = array()) {
-      $params = array('source' => $source, 'accountId' => $accountId, 'productIdType' => $productIdType, 'productId' => $productId);
+    public function get($source, $accountId, $productIdType, $productId, $optParams = []) {
+      $params = ['source' => $source, 'accountId' => $accountId, 'productIdType' => $productIdType, 'productId' => $productId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Product($data);
       } else {
@@ -105,10 +105,10 @@
      * @opt_param string useCase One of CommerceSearchUseCase, ShoppingApiUseCase
      * @return Google_Products
      */
-    public function listProducts($source, $optParams = array()) {
-      $params = array('source' => $source);
+    public function listProducts($source, $optParams = []) {
+      $params = ['source' => $source];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Products($data);
       } else {

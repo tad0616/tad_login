@@ -15,7 +15,7 @@ function tad_login_config_form($config_id = "")
     if (!empty($config_id)) {
         $DBV = get_tad_login_config($config_id);
     } else {
-        $DBV = array();
+        $DBV = [];
     }
 
     //預設值設定
@@ -120,7 +120,7 @@ function list_tad_login_config()
 
     $sql    = "SELECT * FROM `" . $xoopsDB->prefix("groups") . "` ";
     $result = $xoopsDB->query($sql) or web_error($sql, __FILE__, __LINE__);
-    $groups = array();
+    $groups = [];
     $i      = 0;
     while ($all = $xoopsDB->fetchArray($result)) {
         foreach ($all as $k => $v) {
@@ -132,7 +132,7 @@ function list_tad_login_config()
     $sql    = "SELECT * FROM `" . $xoopsDB->prefix("tad_login_config") . "` ";
     $result = $xoopsDB->query($sql) or web_error($sql, __FILE__, __LINE__);
 
-    $all_content = array();
+    $all_content = [];
     $i           = 0;
     while ($all = $xoopsDB->fetchArray($result)) {
         //以下會產生這些變數： $config_id , $item , $group_id

@@ -87,18 +87,18 @@ class Google_Client {
   static $useBatch = false;
 
   /** @var array $scopes */
-  protected $scopes = array();
+  protected $scopes = [];
 
   /** @var bool $useObjects */
   protected $useObjects = false;
 
   // definitions of services that are discovered.
-  protected $services = array();
+  protected $services = [];
 
   // Used to track authenticated state, can't discover services after doing authenticate()
   private $authenticated = false;
 
-  public function __construct($config = array()) {
+  public function __construct($config = []) {
     global $apiConfig;
     $apiConfig = array_merge($apiConfig, $config);
     self::$cache = new $apiConfig['cacheClass']();
@@ -114,7 +114,7 @@ class Google_Client {
     if ($this->authenticated) {
       throw new Google_Exception('Cant add services after having authenticated');
     }
-    $this->services[$service] = array();
+    $this->services[$service] = [];
     if (isset($apiConfig['services'][$service])) {
       // Merge the service descriptor with the default values
       $this->services[$service] = array_merge($this->services[$service], $apiConfig['services'][$service]);
@@ -132,8 +132,8 @@ class Google_Client {
    * @visible For Testing
    */
   public function prepareService() {
-    $service = array();
-    $scopes = array();
+    $service = [];
+    $scopes = [];
     if ($this->scopes) {
       $scopes = $this->scopes;
     } else {
@@ -430,7 +430,7 @@ class Google_ServiceException extends Google_Exception {
   /**
    * Optional list of errors returned in a JSON body of an HTTP error response.
    */
-  protected $errors = array();
+  protected $errors = [];
 
   /**
    * Override default constructor to add ability to set $errors.
@@ -442,7 +442,7 @@ class Google_ServiceException extends Google_Exception {
    * response.  Defaults to [].
    */
   public function __construct($message, $code = 0, Exception $previous = null,
-                              $errors = array()) {
+                              $errors = []) {
     if(version_compare(PHP_VERSION, '5.3.0') >= 0) {
       parent::__construct($message, $code, $previous);
     } else {

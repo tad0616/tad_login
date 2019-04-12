@@ -32,10 +32,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_AchievementResetResponse
      */
-    public function reset($achievementId, $optParams = array()) {
-      $params = array('achievementId' => $achievementId);
+    public function reset($achievementId, $optParams = []) {
+      $params = ['achievementId' => $achievementId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('reset', array($params));
+      $data = $this->__call('reset', [$params]);
       if ($this->useObjects()) {
         return new Google_AchievementResetResponse($data);
       } else {
@@ -49,10 +49,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_AchievementResetAllResponse
      */
-    public function resetAll($optParams = array()) {
-      $params = array();
+    public function resetAll($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('resetAll', array($params));
+      $data = $this->__call('resetAll', [$params]);
       if ($this->useObjects()) {
         return new Google_AchievementResetAllResponse($data);
       } else {
@@ -82,10 +82,10 @@
      * @opt_param string pageToken The token returned by the previous request.
      * @return Google_HiddenPlayerList
      */
-    public function listHidden($applicationId, $optParams = array()) {
-      $params = array('applicationId' => $applicationId);
+    public function listHidden($applicationId, $optParams = []) {
+      $params = ['applicationId' => $applicationId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('listHidden', array($params));
+      $data = $this->__call('listHidden', [$params]);
       if ($this->useObjects()) {
         return new Google_HiddenPlayerList($data);
       } else {
@@ -112,10 +112,10 @@
      * @param string $playerId A player ID. A value of me may be used in place of the authenticated player's ID.
      * @param array $optParams Optional parameters.
      */
-    public function hide($applicationId, $playerId, $optParams = array()) {
-      $params = array('applicationId' => $applicationId, 'playerId' => $playerId);
+    public function hide($applicationId, $playerId, $optParams = []) {
+      $params = ['applicationId' => $applicationId, 'playerId' => $playerId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('hide', array($params));
+      $data = $this->__call('hide', [$params]);
       return $data;
     }
     /**
@@ -126,10 +126,10 @@
      * @param string $playerId A player ID. A value of me may be used in place of the authenticated player's ID.
      * @param array $optParams Optional parameters.
      */
-    public function unhide($applicationId, $playerId, $optParams = array()) {
-      $params = array('applicationId' => $applicationId, 'playerId' => $playerId);
+    public function unhide($applicationId, $playerId, $optParams = []) {
+      $params = ['applicationId' => $applicationId, 'playerId' => $playerId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('unhide', array($params));
+      $data = $this->__call('unhide', [$params]);
       return $data;
     }
   }
@@ -150,10 +150,10 @@
      *
      * @param array $optParams Optional parameters.
      */
-    public function reset($optParams = array()) {
-      $params = array();
+    public function reset($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('reset', array($params));
+      $data = $this->__call('reset', [$params]);
       return $data;
     }
   }
@@ -176,10 +176,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_PlayerScoreResetResponse
      */
-    public function reset($leaderboardId, $optParams = array()) {
-      $params = array('leaderboardId' => $leaderboardId);
+    public function reset($leaderboardId, $optParams = []) {
+      $params = ['leaderboardId' => $leaderboardId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('reset', array($params));
+      $data = $this->__call('reset', [$params]);
       if ($this->useObjects()) {
         return new Google_PlayerScoreResetResponse($data);
       } else {

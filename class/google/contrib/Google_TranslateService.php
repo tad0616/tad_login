@@ -31,10 +31,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_DetectionsListResponse
      */
-    public function listDetections($q, $optParams = array()) {
-      $params = array('q' => $q);
+    public function listDetections($q, $optParams = []) {
+      $params = ['q' => $q];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_DetectionsListResponse($data);
       } else {
@@ -61,10 +61,10 @@
      * @opt_param string target the language and collation in which the localized results should be returned
      * @return Google_LanguagesListResponse
      */
-    public function listLanguages($optParams = array()) {
-      $params = array();
+    public function listLanguages($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_LanguagesListResponse($data);
       } else {
@@ -95,10 +95,10 @@
      * @opt_param string source The source language of the text
      * @return Google_TranslationsListResponse
      */
-    public function listTranslations($q, $target, $optParams = array()) {
-      $params = array('q' => $q, 'target' => $target);
+    public function listTranslations($q, $target, $optParams = []) {
+      $params = ['q' => $q, 'target' => $target];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_TranslationsListResponse($data);
       } else {

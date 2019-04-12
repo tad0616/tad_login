@@ -63,13 +63,13 @@ class Google_AssertionCredentials {
   public function generateAssertion() {
     $now = time();
 
-    $jwtParams = array(
+    $jwtParams = [
           'aud' => Google_OAuth2::OAUTH2_TOKEN_URI,
           'scope' => $this->scopes,
           'iat' => $now,
           'exp' => $now + self::MAX_TOKEN_LIFETIME_SECS,
           'iss' => $this->serviceAccountName,
-    );
+    ];
 
     if ($this->sub !== false) {
       $jwtParams['sub'] = $this->sub;
@@ -86,12 +86,12 @@ class Google_AssertionCredentials {
    * @return string The signed JWT.
    */
   private function makeSignedJwt($payload) {
-    $header = array('typ' => 'JWT', 'alg' => 'RS256');
+    $header = ['typ' => 'JWT', 'alg' => 'RS256'];
 
-    $segments = array(
+    $segments = [
       Google_Utils::urlSafeB64Encode(json_encode($header)),
       Google_Utils::urlSafeB64Encode(json_encode($payload))
-    );
+    ];
 
     $signingInput = implode('.', $segments);
     $signer = new Google_P12Signer($this->privateKey, $this->privateKeyPassword);

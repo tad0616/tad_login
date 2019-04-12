@@ -29,15 +29,15 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 class URI_Template_Parser {
 
-  public static $operators = array('+', ';', '?', '/', '.');
-  public static $reserved_operators = array('|', '!', '@');
-  public static $explode_modifiers = array('+', '*');
-  public static $partial_modifiers = array(':', '^');
+  public static $operators = ['+', ';', '?', '/', '.'];
+  public static $reserved_operators = ['|', '!', '@'];
+  public static $explode_modifiers = ['+', '*'];
+  public static $partial_modifiers = [':', '^'];
 
-  public static $gen_delims = array(':', '/', '?', '#', '[', ']', '@');
-  public static $gen_delims_pct = array('%3A', '%2F', '%3F', '%23', '%5B', '%5D', '%40');
-  public static $sub_delims = array('!', '$', '&', '\'', '(', ')', '*', '+', ',', ';', '=');
-  public static $sub_delims_pct = array('%21', '%24', '%26', '%27', '%28', '%29', '%2A', '%2B', '%2C', '%3B', '%3D');
+  public static $gen_delims = [':', '/', '?', '#', '[', ']', '@'];
+  public static $gen_delims_pct = ['%3A', '%2F', '%3F', '%23', '%5B', '%5D', '%40'];
+  public static $sub_delims = ['!', '$', '&', '\'', '(', ')', '*', '+', ',', ';', '='];
+  public static $sub_delims_pct = ['%21', '%24', '%26', '%27', '%28', '%29', '%2A', '%2B', '%2C', '%3B', '%3D'];
   public static $reserved;
   public static $reserved_pct;
 
@@ -75,7 +75,7 @@ class URI_Template_Parser {
       $exp->operator = $lm[1];
       $exp->variable_list = $lm[2];
       $exp->varspecs = explode(',', $exp->variable_list);
-      $exp->vars = array();
+      $exp->vars = [];
       foreach ($exp->varspecs as $varspec) {
         preg_match('/^([a-zA-Z0-9_]+)([\*\+]{1})?([\:\^][0-9-]+)?(\=[^,]+)?$/', $varspec, $vm);
         $var = new StdClass();

@@ -6,24 +6,24 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit3fc34c3a496c01c1b5e6c1d5203d5dee
 {
-    public static $prefixLengthsPsr4 = array (
+    public static $prefixLengthsPsr4 = [
         'p' => 
-        array (
+        [
             'phpseclib\\' => 10,
-        ),
-    );
+        ],
+    ];
 
-    public static $prefixDirsPsr4 = array (
+    public static $prefixDirsPsr4 = [
         'phpseclib\\' => 
-        array (
+        [
             0 => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib',
-        ),
-    );
+        ],
+    ];
 
-    public static $classMap = array (
+    public static $classMap = [
         'Jumbojett\\OpenIDConnectClient' => __DIR__ . '/..' . '/jumbojett/openid-connect-php/src/OpenIDConnectClient.php',
         'Jumbojett\\OpenIDConnectClientException' => __DIR__ . '/..' . '/jumbojett/openid-connect-php/src/OpenIDConnectClient.php',
-    );
+    ];
 
     public static function getInitializer(ClassLoader $loader)
     {

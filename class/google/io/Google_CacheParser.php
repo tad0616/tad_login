@@ -20,8 +20,8 @@
  * @author Chirag Shah <chirags@google.com>
  */
 class Google_CacheParser {
-  public static $CACHEABLE_HTTP_METHODS = array('GET', 'HEAD');
-  public static $CACHEABLE_STATUS_CODES = array('200', '203', '300', '301');
+  public static $CACHEABLE_HTTP_METHODS = ['GET', 'HEAD'];
+  public static $CACHEABLE_STATUS_CODES = ['200', '203', '300', '301'];
 
   private function __construct() {}
 

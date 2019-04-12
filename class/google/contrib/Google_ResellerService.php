@@ -31,10 +31,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Customer
      */
-    public function get($customerId, $optParams = array()) {
-      $params = array('customerId' => $customerId);
+    public function get($customerId, $optParams = []) {
+      $params = ['customerId' => $customerId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Customer($data);
       } else {
@@ -50,10 +50,10 @@
      * @opt_param string customerAuthToken An auth token needed for inserting a customer for which domain already exists. Can be generated at https://www.google.com/a/cpanel//TransferToken. Optional.
      * @return Google_Customer
      */
-    public function insert(Google_Customer $postBody, $optParams = array()) {
-      $params = array('postBody' => $postBody);
+    public function insert(Google_Customer $postBody, $optParams = []) {
+      $params = ['postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Customer($data);
       } else {
@@ -69,10 +69,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Customer
      */
-    public function patch($customerId, Google_Customer $postBody, $optParams = array()) {
-      $params = array('customerId' => $customerId, 'postBody' => $postBody);
+    public function patch($customerId, Google_Customer $postBody, $optParams = []) {
+      $params = ['customerId' => $customerId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('patch', array($params));
+      $data = $this->__call('patch', [$params]);
       if ($this->useObjects()) {
         return new Google_Customer($data);
       } else {
@@ -87,10 +87,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Customer
      */
-    public function update($customerId, Google_Customer $postBody, $optParams = array()) {
-      $params = array('customerId' => $customerId, 'postBody' => $postBody);
+    public function update($customerId, Google_Customer $postBody, $optParams = []) {
+      $params = ['customerId' => $customerId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('update', array($params));
+      $data = $this->__call('update', [$params]);
       if ($this->useObjects()) {
         return new Google_Customer($data);
       } else {
@@ -118,10 +118,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Subscription
      */
-    public function changePlan($customerId, $subscriptionId, Google_ChangePlanRequest $postBody, $optParams = array()) {
-      $params = array('customerId' => $customerId, 'subscriptionId' => $subscriptionId, 'postBody' => $postBody);
+    public function changePlan($customerId, $subscriptionId, Google_ChangePlanRequest $postBody, $optParams = []) {
+      $params = ['customerId' => $customerId, 'subscriptionId' => $subscriptionId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('changePlan', array($params));
+      $data = $this->__call('changePlan', [$params]);
       if ($this->useObjects()) {
         return new Google_Subscription($data);
       } else {
@@ -137,10 +137,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Subscription
      */
-    public function changeRenewalSettings($customerId, $subscriptionId, Google_RenewalSettings $postBody, $optParams = array()) {
-      $params = array('customerId' => $customerId, 'subscriptionId' => $subscriptionId, 'postBody' => $postBody);
+    public function changeRenewalSettings($customerId, $subscriptionId, Google_RenewalSettings $postBody, $optParams = []) {
+      $params = ['customerId' => $customerId, 'subscriptionId' => $subscriptionId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('changeRenewalSettings', array($params));
+      $data = $this->__call('changeRenewalSettings', [$params]);
       if ($this->useObjects()) {
         return new Google_Subscription($data);
       } else {
@@ -156,10 +156,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Subscription
      */
-    public function changeSeats($customerId, $subscriptionId, Google_Seats $postBody, $optParams = array()) {
-      $params = array('customerId' => $customerId, 'subscriptionId' => $subscriptionId, 'postBody' => $postBody);
+    public function changeSeats($customerId, $subscriptionId, Google_Seats $postBody, $optParams = []) {
+      $params = ['customerId' => $customerId, 'subscriptionId' => $subscriptionId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('changeSeats', array($params));
+      $data = $this->__call('changeSeats', [$params]);
       if ($this->useObjects()) {
         return new Google_Subscription($data);
       } else {
@@ -174,10 +174,10 @@
      * @param string $deletionType Whether the subscription is to be fully cancelled or downgraded
      * @param array $optParams Optional parameters.
      */
-    public function delete($customerId, $subscriptionId, $deletionType, $optParams = array()) {
-      $params = array('customerId' => $customerId, 'subscriptionId' => $subscriptionId, 'deletionType' => $deletionType);
+    public function delete($customerId, $subscriptionId, $deletionType, $optParams = []) {
+      $params = ['customerId' => $customerId, 'subscriptionId' => $subscriptionId, 'deletionType' => $deletionType];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('delete', array($params));
+      $data = $this->__call('delete', [$params]);
       return $data;
     }
     /**
@@ -188,10 +188,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Subscription
      */
-    public function get($customerId, $subscriptionId, $optParams = array()) {
-      $params = array('customerId' => $customerId, 'subscriptionId' => $subscriptionId);
+    public function get($customerId, $subscriptionId, $optParams = []) {
+      $params = ['customerId' => $customerId, 'subscriptionId' => $subscriptionId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_Subscription($data);
       } else {
@@ -208,10 +208,10 @@
      * @opt_param string customerAuthToken An auth token needed for transferring a subscription. Can be generated at https://www.google.com/a/cpanel/customer-domain/TransferToken. Optional.
      * @return Google_Subscription
      */
-    public function insert($customerId, Google_Subscription $postBody, $optParams = array()) {
-      $params = array('customerId' => $customerId, 'postBody' => $postBody);
+    public function insert($customerId, Google_Subscription $postBody, $optParams = []) {
+      $params = ['customerId' => $customerId, 'postBody' => $postBody];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('insert', array($params));
+      $data = $this->__call('insert', [$params]);
       if ($this->useObjects()) {
         return new Google_Subscription($data);
       } else {
@@ -231,10 +231,10 @@
      * @opt_param string pageToken Token to specify next page in the list
      * @return Google_Subscriptions
      */
-    public function listSubscriptions($optParams = array()) {
-      $params = array();
+    public function listSubscriptions($optParams = []) {
+      $params = [];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Subscriptions($data);
       } else {
@@ -249,10 +249,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_Subscription
      */
-    public function startPaidService($customerId, $subscriptionId, $optParams = array()) {
-      $params = array('customerId' => $customerId, 'subscriptionId' => $subscriptionId);
+    public function startPaidService($customerId, $subscriptionId, $optParams = []) {
+      $params = ['customerId' => $customerId, 'subscriptionId' => $subscriptionId];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('startPaidService', array($params));
+      $data = $this->__call('startPaidService', [$params]);
       if ($this->useObjects()) {
         return new Google_Subscription($data);
       } else {

@@ -64,10 +64,10 @@
      * @opt_param string start The index of the first result to return
      * @return Google_Search
      */
-    public function listCse($q, $optParams = array()) {
-      $params = array('q' => $q);
+    public function listCse($q, $optParams = []) {
+      $params = ['q' => $q];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('list', array($params));
+      $data = $this->__call('list', [$params]);
       if ($this->useObjects()) {
         return new Google_Search($data);
       } else {

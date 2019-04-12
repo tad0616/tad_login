@@ -58,6 +58,6 @@ class Google_LoginTicket {
    * @return array
    */
   public function getAttributes() {
-    return array("envelope" => $this->envelope, "payload" => $this->payload);
+    return ["envelope" => $this->envelope, "payload" => $this->payload];
   }
 }

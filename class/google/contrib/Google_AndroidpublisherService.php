@@ -33,10 +33,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_InappPurchase
      */
-    public function get($packageName, $productId, $token, $optParams = array()) {
-      $params = array('packageName' => $packageName, 'productId' => $productId, 'token' => $token);
+    public function get($packageName, $productId, $token, $optParams = []) {
+      $params = ['packageName' => $packageName, 'productId' => $productId, 'token' => $token];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_InappPurchase($data);
       } else {
@@ -64,10 +64,10 @@
      * @param string $token The token provided to the user's device when the subscription was purchased.
      * @param array $optParams Optional parameters.
      */
-    public function cancel($packageName, $subscriptionId, $token, $optParams = array()) {
-      $params = array('packageName' => $packageName, 'subscriptionId' => $subscriptionId, 'token' => $token);
+    public function cancel($packageName, $subscriptionId, $token, $optParams = []) {
+      $params = ['packageName' => $packageName, 'subscriptionId' => $subscriptionId, 'token' => $token];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('cancel', array($params));
+      $data = $this->__call('cancel', [$params]);
       return $data;
     }
     /**
@@ -80,10 +80,10 @@
      * @param array $optParams Optional parameters.
      * @return Google_SubscriptionPurchase
      */
-    public function get($packageName, $subscriptionId, $token, $optParams = array()) {
-      $params = array('packageName' => $packageName, 'subscriptionId' => $subscriptionId, 'token' => $token);
+    public function get($packageName, $subscriptionId, $token, $optParams = []) {
+      $params = ['packageName' => $packageName, 'subscriptionId' => $subscriptionId, 'token' => $token];
       $params = array_merge($params, $optParams);
-      $data = $this->__call('get', array($params));
+      $data = $this->__call('get', [$params]);
       if ($this->useObjects()) {
         return new Google_SubscriptionPurchase($data);
       } else {
