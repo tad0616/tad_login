@@ -40,7 +40,7 @@ if ($_SESSION['auth_method'] == 'ty_edu') {
 
 if ($userinfo['email'] and $_SESSION['auth_method'] == 'ty_edu') {
 
-    $myts         = MyTextsanitizer::getInstance();
+    $myts         = MyTextSanitizer::getInstance();
     $uname        = $userinfo['sub'] . "_ty";
     $name         = $myts->addSlashes($userinfo['name']);
     $email        = $userinfo['email'];
@@ -57,7 +57,7 @@ if ($userinfo['email'] and $_SESSION['auth_method'] == 'ty_edu') {
     login_xoops($uname, $name, $email, $SchoolCode, $JobName, $url, $from, $sig, $occ, $bio);
 } else {
 
-    $myts       = MyTextsanitizer::getInstance();
+    $myts       = MyTextSanitizer::getInstance();
     $uname      = $claims['preferred_username'] . "_edu";
     $name       = $myts->addSlashes($userinfo['name']);
     $email      = $claims['email'];

@@ -58,7 +58,7 @@ function tn_login()
             // die(var_dump($user_profile));
 
             if ($user_profile) {
-                $myts = MyTextsanitizer::getInstance();
+                $myts = MyTextSanitizer::getInstance();
 
                 $user_profile['contact/email'] = trim($user_profile['contact/email']);
                 $the_id                        = explode("@", $user_profile['contact/email']);
@@ -127,7 +127,7 @@ function tp_login()
             // Login or logout url will be needed depending on current user state.
             //die(var_dump($user_profile));
             if ($user_profile) {
-                $myts = MyTextsanitizer::getInstance();
+                $myts = MyTextSanitizer::getInstance();
 
                 $user_profile['contact/email'] = trim($user_profile['contact/email']);
                 $the_id                        = explode("@", $user_profile['contact/email']);
@@ -185,7 +185,7 @@ function kl_login()
             )
              */
             if ($user_profile) {
-                $myts = MyTextsanitizer::getInstance();
+                $myts = MyTextSanitizer::getInstance();
 
                 $user_profile['contact/email'] = trim($user_profile['contact/email']);
                 $the_id                        = explode("@", $user_profile['contact/email']);
@@ -242,7 +242,7 @@ function ilc_login()
             )
              */
             if ($user_profile) {
-                $myts = MyTextsanitizer::getInstance();
+                $myts = MyTextSanitizer::getInstance();
 
                 $user_profile['contact/email'] = trim($user_profile['contact/email']);
                 $the_id                        = explode("@", $user_profile['contact/email']);
@@ -304,7 +304,7 @@ function hc_login()
             )
              */
             if ($user_profile) {
-                $myts                          = MyTextsanitizer::getInstance();
+                $myts                          = MyTextSanitizer::getInstance();
                 $user_profile['contact/email'] = trim($user_profile['contact/email']);
                 $the_id                        = explode("@", $user_profile['contact/email']);
 
@@ -397,7 +397,7 @@ function hlc_login($conty = "", $openid_identity = "")
             $user_profile = $openid->getAttributes();
             // die(var_export($user_profile));
             if ($user_profile) {
-                $myts = MyTextsanitizer::getInstance();
+                $myts = MyTextSanitizer::getInstance();
 
                 $user_profile['contact/email'] = trim($user_profile['contact/email']);
                 $the_id                        = explode("@", $user_profile['contact/email']);
@@ -491,7 +491,7 @@ function tyc_login()
             $user_profile = $openid->getAttributes();
             // die(var_export($user_profile));
             if ($user_profile) {
-                $myts = MyTextsanitizer::getInstance();
+                $myts = MyTextSanitizer::getInstance();
 
                 $user_profile['contact/email'] = trim($user_profile['contact/email']);
                 $the_id                        = explode("@", $user_profile['contact/email']);
@@ -541,7 +541,7 @@ function yahoo_login()
             $user_profile = $openid->getAttributes();
             //die(var_export($user_profile));
             if ($user_profile) {
-                $myts = MyTextsanitizer::getInstance();
+                $myts = MyTextSanitizer::getInstance();
 
                 $user_profile['contact/email'] = trim($user_profile['contact/email']);
                 $the_id                        = explode("@", $user_profile['contact/email']);
@@ -629,7 +629,7 @@ function tc_login($conty = "", $openid_identity = "")
              */
             // Login or logout url will be needed depending on current user state.
             if ($user_profile) {
-                $myts = MyTextsanitizer::getInstance();
+                $myts = MyTextSanitizer::getInstance();
 
                 $SchoolCode = $myts->addSlashes($user_profile['axschema/school/id']);
 
@@ -741,7 +741,7 @@ function kh_login()
             // Login or logout url will be needed depending on current user state.
 
             if ($user_profile) {
-                $myts = MyTextsanitizer::getInstance();
+                $myts = MyTextSanitizer::getInstance();
 
                 if ($user_profile['openid_ext2_email']) {
                     $the_id = explode("@", $user_profile['openid_ext2_email']);
@@ -836,7 +836,7 @@ function km_login()
              */
 
             if ($user_profile) {
-                $myts = MyTextsanitizer::getInstance();
+                $myts = MyTextSanitizer::getInstance();
 
                 $user_profile['contact/email'] = trim($user_profile['contact/email']);
                 $the_id                        = explode("@", $user_profile['contact/email']);
@@ -894,7 +894,7 @@ function mt_login()
              */
 
             if ($user_profile) {
-                $myts = MyTextsanitizer::getInstance();
+                $myts = MyTextSanitizer::getInstance();
 
                 $user_profile['contact/email'] = trim($user_profile['contact/email']);
                 $the_id                        = explode("@", $user_profile['contact/email']);

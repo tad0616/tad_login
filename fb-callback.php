@@ -100,7 +100,7 @@ if ($_SESSION['fb_access_token']) {
     $user_profile = $response->getGraphUser();
 }
 // die(var_export($user_profile));
-$myts  = MyTextsanitizer::getInstance();
+$myts  = MyTextSanitizer::getInstance();
 $uname = $user_profile['id'] . "_fb";
 $name  = $myts->addSlashes($user_profile['name']);
 $email = $user_profile['email'];

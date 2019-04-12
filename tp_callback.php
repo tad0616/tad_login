@@ -73,7 +73,7 @@ $school  = requestProtectedApi('https://ldap.tp.edu.tw/api/school/' . $profile['
 //   )
 
 if ($user['email']) {
-    $myts              = MyTextsanitizer::getInstance();
+    $myts              = MyTextSanitizer::getInstance();
     list($id, $domain) = explode('@', $user['email']);
     $uname             = $id . "_tp";
     $name              = $myts->addSlashes($user['name']);
