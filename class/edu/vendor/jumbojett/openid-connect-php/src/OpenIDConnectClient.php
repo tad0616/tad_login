@@ -537,8 +537,8 @@ class OpenIDConnectClient
                 ?: ((isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on") ? "https" : "http");
         }
 
-        $port = @intval($_SERVER['HTTP_X_FORWARDED_PORT'])
-              ?: @intval($_SERVER["SERVER_PORT"])
+        $port = @(int)$_SERVER['HTTP_X_FORWARDED_PORT']
+              ?: @(int)$_SERVER["SERVER_PORT"]
               ?: (($protocol === 'https') ? 443 : 80);
 
         $host = @explode(":", $_SERVER['HTTP_HOST'])[0]

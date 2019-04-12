@@ -272,7 +272,7 @@ Ao8eayMp6FcvNucIpUndo1X8dKMv3Y26ZQIDAQAB
 
         $this->assertTrue($rsa->loadKey($key));
         $this->assertTrue($rsa->setPrivateKey());
-        $this->assertGreaterThanOrEqual(1, strlen("$rsa"));
+        $this->assertGreaterThanOrEqual(1, strlen((string)$rsa));
         $this->assertFalse($rsa->getPublicKey());
     }
 

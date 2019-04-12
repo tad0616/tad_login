@@ -323,7 +323,7 @@ class LightOpenID
                     return [];
                 }
 
-                if (intval(substr($headers[0], strlen('HTTP/1.1 '))) == 405) {
+                if ((int)substr($headers[0], strlen('HTTP/1.1 ')) == 405) {
                     # The server doesn't support HEAD, so let's emulate it with
                     # a GET.
                     $args    = func_get_args();

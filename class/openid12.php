@@ -131,7 +131,7 @@ class LightOpenID
                 // Make sure that a valid port number is specified.
                 if (array_key_exists('port', $proxy)) {
                     if (!is_int($proxy['port'])) {
-                        $proxy['port'] = is_numeric($proxy['port']) ? intval($proxy['port']) : 0;
+                        $proxy['port'] = is_numeric($proxy['port']) ? (int)$proxy['port'] : 0;
                     }
 
                     if ($proxy['port'] <= 0) {
@@ -420,7 +420,7 @@ class LightOpenID
                 stream_context_get_default($default);
 
                 if (!empty($headers)) {
-                    if (intval(substr($headers[0], strlen('HTTP/1.1 '))) == 405) {
+                    if ((int)substr($headers[0], strlen('HTTP/1.1 ')) == 405) {
                         // The server doesn't support HEAD - emulate it with a GET.
                         $args    = func_get_args();
                         $args[1] = 'GET';
@@ -953,7 +953,7 @@ class LightOpenID
                 $key = substr($this->getItem($prefix . '_type_' . $key), $length);
 
                 if (!empty($key)) {
-                    if (($count = intval($this->getItem($idc))) > 0) {
+                    if (($count = (int)$this->getItem($idc)) > 0) {
                         $value = [];
 
                         for ($i = 1; $i <= $count; $i++) {

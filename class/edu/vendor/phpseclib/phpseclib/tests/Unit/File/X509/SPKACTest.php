@@ -41,7 +41,7 @@ class Unit_File_X509_SPKACTest extends PhpseclibTestCase
 
         $pubKey = $x509->getPublicKey();
 
-        $this->assertInternalType('string', "$pubKey");
+        $this->assertInternalType('string', (string)$pubKey);
     }
 
     public function testSaveSPKAC()

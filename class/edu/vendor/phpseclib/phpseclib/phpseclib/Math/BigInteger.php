@@ -939,7 +939,7 @@ class BigInteger
             $carry = $sum >= self::$maxDigit2; // eg. floor($sum / 2**52); only possible values (in any base) are 0 and 1
             $sum = $carry ? $sum - self::$maxDigit2 : $sum;
 
-            $temp = self::$base === 26 ? intval($sum / 0x4000000) : ($sum >> 31);
+            $temp = self::$base === 26 ? (int)($sum / 0x4000000) : ($sum >> 31);
 
             $value[$i] = (int) ($sum - self::$baseFull * $temp); // eg. a faster alternative to fmod($sum, 0x4000000)
             $value[$j] = $temp;
@@ -1073,7 +1073,7 @@ class BigInteger
             $carry = $sum < 0; // eg. floor($sum / 2**52); only possible values (in any base) are 0 and 1
             $sum = $carry ? $sum + self::$maxDigit2 : $sum;
 
-            $temp = self::$base === 26 ? intval($sum / 0x4000000) : ($sum >> 31);
+            $temp = self::$base === 26 ? (int)($sum / 0x4000000) : ($sum >> 31);
 
             $x_value[$i] = (int) ($sum - self::$baseFull * $temp);
             $x_value[$j] = $temp;
@@ -1219,7 +1219,7 @@ class BigInteger
 
         for ($j = 0; $j < $x_length; ++$j) { // ie. $i = 0
             $temp = $x_value[$j] * $y_value[0] + $carry; // $product_value[$k] == 0
-            $carry = self::$base === 26 ? intval($temp / 0x4000000) : ($temp >> 31);
+            $carry = self::$base === 26 ? (int)($temp / 0x4000000) : ($temp >> 31);
             $product_value[$j] = (int) ($temp - self::$baseFull * $carry);
         }
 
@@ -1232,7 +1232,7 @@ class BigInteger
 
             for ($j = 0, $k = $i; $j < $x_length; ++$j, ++$k) {
                 $temp = $product_value[$k] + $x_value[$j] * $y_value[$i] + $carry;
-                $carry = self::$base === 26 ? intval($temp / 0x4000000) : ($temp >> 31);
+                $carry = self::$base === 26 ? (int)($temp / 0x4000000) : ($temp >> 31);
                 $product_value[$k] = (int) ($temp - self::$baseFull * $carry);
             }
 
@@ -1320,13 +1320,13 @@ class BigInteger
             $i2 = $i << 1;
 
             $temp = $square_value[$i2] + $value[$i] * $value[$i];
-            $carry = self::$base === 26 ? intval($temp / 0x4000000) : ($temp >> 31);
+            $carry = self::$base === 26 ? (int)($temp / 0x4000000) : ($temp >> 31);
             $square_value[$i2] = (int) ($temp - self::$baseFull * $carry);
 
             // note how we start from $i+1 instead of 0 as we do in multiplication.
             for ($j = $i + 1, $k = $i2 + 1; $j <= $max_index; ++$j, ++$k) {
                 $temp = $square_value[$k] + 2 * $value[$j] * $value[$i] + $carry;
-                $carry = self::$base === 26 ? intval($temp / 0x4000000) : ($temp >> 31);
+                $carry = self::$base === 26 ? (int)($temp / 0x4000000) : ($temp >> 31);
                 $square_value[$k] = (int) ($temp - self::$baseFull * $carry);
             }
 
@@ -2214,7 +2214,7 @@ class BigInteger
 
         for ($j = 0; $j < $x_length; ++$j) { // ie. $i = 0, $k = $i
             $temp = $x_value[$j] * $y_value[0] + $carry; // $product_value[$k] == 0
-            $carry = self::$base === 26 ? intval($temp / 0x4000000) : ($temp >> 31);
+            $carry = self::$base === 26 ? (int)($temp / 0x4000000) : ($temp >> 31);
             $product_value[$j] = (int) ($temp - self::$baseFull * $carry);
         }
 
@@ -2230,7 +2230,7 @@ class BigInteger
 
             for ($j = 0, $k = $i; $j < $x_length && $k < $stop; ++$j, ++$k) {
                 $temp = $product_value[$k] + $x_value[$j] * $y_value[$i] + $carry;
-                $carry = self::$base === 26 ? intval($temp / 0x4000000) : ($temp >> 31);
+                $carry = self::$base === 26 ? (int)($temp / 0x4000000) : ($temp >> 31);
                 $product_value[$k] = (int) ($temp - self::$baseFull * $carry);
             }
 
@@ -2279,7 +2279,7 @@ class BigInteger
 
         for ($i = 0; $i < $k; ++$i) {
             $temp = $result[self::VALUE][$i] * $cache[self::DATA][$key];
-            $temp = $temp - self::$baseFull * (self::$base === 26 ? intval($temp / 0x4000000) : ($temp >> 31));
+            $temp = $temp - self::$baseFull * (self::$base === 26 ? (int)($temp / 0x4000000) : ($temp >> 31));
             $temp = $this->_regularMultiply([$temp], $n);
             $temp = array_merge($this->_array_repeat(0, $i), $temp);
             $result = $this->_add($result[self::VALUE], false, $temp, false);
@@ -2336,9 +2336,9 @@ class BigInteger
         $a = [self::VALUE => $this->_array_repeat(0, $n + 1)];
         for ($i = 0; $i < $n; ++$i) {
             $temp = $a[self::VALUE][0] + $x[$i] * $y[0];
-            $temp = $temp - self::$baseFull * (self::$base === 26 ? intval($temp / 0x4000000) : ($temp >> 31));
+            $temp = $temp - self::$baseFull * (self::$base === 26 ? (int)($temp / 0x4000000) : ($temp >> 31));
             $temp = $temp * $cache[self::DATA][$key];
-            $temp = $temp - self::$baseFull * (self::$base === 26 ? intval($temp / 0x4000000) : ($temp >> 31));
+            $temp = $temp - self::$baseFull * (self::$base === 26 ? (int)($temp / 0x4000000) : ($temp >> 31));
             $temp = $this->_add($this->_regularMultiply([$x[$i]], $y), false, $this->_regularMultiply([$temp], $m), false);
             $a = $this->_add($a[self::VALUE], false, $temp[self::VALUE], false);
             $a[self::VALUE] = array_slice($a[self::VALUE], 1);
@@ -3480,7 +3480,7 @@ class BigInteger
 
         for ($i = 0; $i < count($this->value); ++$i) {
             $temp = $this->value[$i] * $shift + $carry;
-            $carry = self::$base === 26 ? intval($temp / 0x4000000) : ($temp >> 31);
+            $carry = self::$base === 26 ? (int)($temp / 0x4000000) : ($temp >> 31);
             $this->value[$i] = (int) ($temp - $carry * self::$baseFull);
         }
 
