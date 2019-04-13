@@ -59,13 +59,13 @@ if (!function_exists('edu_login')) {
     {
         global $xoopsConfig, $xoopsDB, $xoopsTpl, $xoopsUser;
 
-        if ('ty_edu' == $openid) {
+        if ('ty_edu' === $openid) {
             $link = XOOPS_URL . '/modules/tad_login/class/edu/ty_auth.php';
         } else {
             $link = XOOPS_URL . '/modules/tad_login/class/edu/auth.php';
         }
 
-        if ('return' == $mode) {
+        if ('return' === $mode) {
             return $link;
         }
         $xoopsTpl->assign('edu', $link);
@@ -171,7 +171,7 @@ if (!function_exists('facebook_login')) {
             $permissions = ['email']; // Optional permissions
             $loginUrl = $helper->getLoginUrl(XOOPS_URL . '/modules/tad_login/fb-callback.php', $permissions);
         }
-        if ('return' == $mode) {
+        if ('return' === $mode) {
             return $loginUrl;
         }
         $xoopsTpl->assign('facebook', $loginUrl);
@@ -258,7 +258,7 @@ if (!function_exists('google_login')) {
         } else {
             $client->setApprovalPrompt('auto');
             $authUrl = $client->createAuthUrl();
-            if ('return' == $mode) {
+            if ('return' === $mode) {
                 return $authUrl;
             }
             $xoopsTpl->assign('google', $authUrl);

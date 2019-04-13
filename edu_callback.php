@@ -2,7 +2,7 @@
 include_once '../../mainfile.php';
 include_once 'function.php';
 
-if ('ty_edu' == $_SESSION['auth_method']) {
+if ('ty_edu' === $_SESSION['auth_method']) {
     require_once 'class/edu/ty_auth.php';
 } else {
     require_once 'class/edu/auth.php';
@@ -23,7 +23,7 @@ $accesstoken = $oidc->getAccessToken();
 // var_dump($accesstoken);
 
 //get eduinfo
-if ('ty_edu' == $_SESSION['auth_method']) {
+if ('ty_edu' === $_SESSION['auth_method']) {
     $eduinfoep = 'https://tyc.sso.edu.tw/cncresource/api/v1/eduinfo';
     // echo $eduinfoep;
     $eduinfo = requestProtectedApi($eduinfoep, $accesstoken, true, false);
@@ -38,7 +38,7 @@ if ('ty_edu' == $_SESSION['auth_method']) {
 
 // exit;
 
-if ($userinfo['email'] and 'ty_edu' == $_SESSION['auth_method']) {
+if ($userinfo['email'] and 'ty_edu' === $_SESSION['auth_method']) {
     $myts = MyTextSanitizer::getInstance();
     $uname = $userinfo['sub'] . '_ty';
     $name = $myts->addSlashes($userinfo['name']);

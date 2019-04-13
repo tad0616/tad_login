@@ -184,9 +184,9 @@ class LightOpenID
     protected function get_realm_protocol()
     {
         if (!empty($_SERVER['HTTPS'])) {
-            $use_secure_protocol = ('off' != $_SERVER['HTTPS']);
+            $use_secure_protocol = ('off' !== $_SERVER['HTTPS']);
         } elseif (isset($_SERVER['HTTP_X_FORWARDED_PROTO'])) {
-            $use_secure_protocol = ('https' == $_SERVER['HTTP_X_FORWARDED_PROTO']);
+            $use_secure_protocol = ('https' === $_SERVER['HTTP_X_FORWARDED_PROTO']);
         } else {
             $use_secure_protocol = false;
         }
@@ -197,14 +197,14 @@ class LightOpenID
     protected function request_curl($url, $method, $params, $update_claimed_id)
     {
         $params = http_build_query($params, '', '&');
-        $curl = curl_init($url . ('GET' == $method && $params ? '?' . $params : ''));
+        $curl = curl_init($url . ('GET' === $method && $params ? '?' . $params : ''));
         curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($curl, CURLOPT_HEADER, false);
         curl_setopt($curl, CURLOPT_USERAGENT, $this->user_agent);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
-        if ('POST' == $method) {
+        if ('POST' === $method) {
             curl_setopt($curl, CURLOPT_HTTPHEADER, ['Content-type: application/x-www-form-urlencoded']);
         } else {
             curl_setopt($curl, CURLOPT_HTTPHEADER, ['Accept: application/xrds+xml, */*']);
@@ -233,10 +233,10 @@ class LightOpenID
             }
         }
 
-        if ('POST' == $method) {
+        if ('POST' === $method) {
             curl_setopt($curl, CURLOPT_POST, true);
             curl_setopt($curl, CURLOPT_POSTFIELDS, $params);
-        } elseif ('HEAD' == $method) {
+        } elseif ('HEAD' === $method) {
             curl_setopt($curl, CURLOPT_HEADER, true);
             curl_setopt($curl, CURLOPT_NOBODY, true);
         } else {
@@ -245,17 +245,17 @@ class LightOpenID
         }
         $response = curl_exec($curl);
 
-        if ('HEAD' == $method && 405 == curl_getinfo($curl, CURLINFO_HTTP_CODE)) {
+        if ('HEAD' === $method && 405 == curl_getinfo($curl, CURLINFO_HTTP_CODE)) {
             curl_setopt($curl, CURLOPT_HTTPGET, true);
             $response = curl_exec($curl);
             $response = mb_substr($response, 0, mb_strpos($response, "\r\n\r\n"));
         }
 
-        if ('HEAD' == $method || 'GET' == $method) {
+        if ('HEAD' === $method || 'GET' === $method) {
             $header_response = $response;
 
             # If it's a GET request, we want to only parse the header part.
-            if ('GET' == $method) {
+            if ('GET' === $method) {
                 $header_response = mb_substr($response, 0, mb_strpos($response, "\r\n\r\n"));
             }
 
@@ -277,7 +277,7 @@ class LightOpenID
                 }
             }
 
-            if ('HEAD' == $method) {
+            if ('HEAD' === $method) {
                 return $headers;
             }
             $this->headers = $headers;
@@ -304,10 +304,10 @@ class LightOpenID
                 # are followed automatically.
                 # We ignore redirections with relative paths.
                 # If any known provider uses them, file a bug report.
-                if ('location' == $name && $update_claimed_id) {
+                if ('location' === $name && $update_claimed_id) {
                     if (0 === mb_strpos($headers[$name], 'http')) {
                         $this->identity = $this->claimed_id = $headers[$name];
-                    } elseif ('/' == $headers[$name][0]) {
+                    } elseif ('/' === $headers[$name][0]) {
                         $parsed_url = parse_url($this->claimed_id);
                         $this->identity = $this->claimed_id = $parsed_url['scheme'] . '://' . $parsed_url['host'] . $headers[$name];
                     }
@@ -591,7 +591,7 @@ class LightOpenID
                         # OpenID 2
                         $ns = preg_quote('http://specs.openid.net/auth/2.0/', '#');
                         if (preg_match('#<Type>\s*' . $ns . '(server|signon)\s*</Type>#s', $content, $type)) {
-                            if ('server' == $type[1]) {
+                            if ('server' === $type[1]) {
                                 $this->identifier_select = true;
                             }
 
@@ -897,7 +897,7 @@ class LightOpenID
 
             return false;
         }
-        if ('id_res' != $this->mode) {
+        if ('id_res' !== $this->mode) {
             return false;
         }
 
@@ -1023,7 +1023,7 @@ class LightOpenID
     public function getAttributes()
     {
         if (isset($this->data['openid_ns'])
-            && 'http://specs.openid.net/auth/2.0' == $this->data['openid_ns']) {
+            && 'http://specs.openid.net/auth/2.0' === $this->data['openid_ns']) {
             # OpenID 2.0
             # We search for both AX and SREG attributes, with AX taking precedence.
             return $this->getAxAttributes() + $this->getSregAttributes();

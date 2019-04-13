@@ -19,13 +19,13 @@ function tad_login($options = '')
     $big = ('1' == $options[2]) ? '_l' : '';
     $i = 0;
     foreach ($modConfig['auth_method'] as $openid) {
-        if ('facebook' == $openid) {
+        if ('facebook' === $openid) {
             $url = facebook_login('return');
-        } elseif ('google' == $openid) {
+        } elseif ('google' === $openid) {
             $url = google_login('return');
-        } elseif ('edu' == $openid) {
+        } elseif ('edu' === $openid) {
             $url = edu_login($openid, 'return');
-        } elseif ('ty_edu' == $openid) {
+        } elseif ('ty_edu' === $openid) {
             $url = edu_login($openid, 'return');
         } else {
             $url = XOOPS_URL . "/modules/tad_login/index.php?login&op={$openid}";

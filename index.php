@@ -137,7 +137,7 @@ function tp_login()
                 $name = $myts->addSlashes($user_profile['namePerson']);
                 $email = mb_strtolower($user_profile['contact/email']);
                 $SchoolCode = $myts->addSlashes($user_profile['.tw/axschema/EduSchoolID']);
-                $JobName = '學生' == $user_profile['.tw/axschema/JobName'] ? 'student' : 'teacher';
+                $JobName = '學生' === $user_profile['.tw/axschema/JobName'] ? 'student' : 'teacher';
 
                 //搜尋有無相同username資料
                 login_xoops($uname, $name, $email, $SchoolCode, $JobName);
@@ -406,7 +406,7 @@ function hlc_login($conty = '', $openid_identity = '')
                 $uname = $the_id[0] . '_' . $conty;
                 $name = $myts->addSlashes($user_profile['namePerson']);
                 $email = mb_strtolower($user_profile['contact/email']);
-                if ('ntpc' == $conty) {
+                if ('ntpc' === $conty) {
                     $arr = json_decode($user_profile['pref/timezone'], true);
                     //die(var_export($arr));
                     /*
@@ -630,7 +630,7 @@ function tc_login($conty = '', $openid_identity = '')
 
                 $SchoolCode = $myts->addSlashes($user_profile['axschema/school/id']);
 
-                if ('NA' == mb_strtoupper($user_profile['contact/email']) or empty($user_profile['contact/email'])) {
+                if ('NA' === mb_strtoupper($user_profile['contact/email']) or empty($user_profile['contact/email'])) {
                     $uname = mb_substr($user_profile['axschema/person/guid'], 0, 6) . "_{$conty}";
                     $email = "{$uname}@{$SchoolCode}.{$conty}.edu.tw";
                 } else {
@@ -898,7 +898,7 @@ function mt_login()
                 $name = $myts->addSlashes($user_profile['namePerson']);
                 $email = mb_strtolower($user_profile['contact/email']);
                 $SchoolCode = $myts->addSlashes($user_profile['axschema/school/id']);
-                $JobName = 'Stu' == $user_profile['namePerson/friendly'] ? 'student' : 'teacher';
+                $JobName = 'Stu' === $user_profile['namePerson/friendly'] ? 'student' : 'teacher';
 
                 //搜尋有無相同username資料
                 login_xoops($uname, $name, $email, $SchoolCode, $JobName);
@@ -915,33 +915,33 @@ function list_login()
 {
     global $xoopsTpl, $xoopsModuleConfig;
 
-    if ('cyc' == $_SESSION['auth_method']) {
+    if ('cyc' === $_SESSION['auth_method']) {
         tc_login('cyc', 'http://openid.cyccc.tw');
-    } elseif ('ylc' == $_SESSION['auth_method']) {
+    } elseif ('ylc' === $_SESSION['auth_method']) {
         tc_login('ylc', 'http://openid.ylc.edu.tw');
-    } elseif ('hcc' == $_SESSION['auth_method']) {
+    } elseif ('hcc' === $_SESSION['auth_method']) {
         tc_login('hcc', 'http://openid.hcc.edu.tw');
-    } elseif ('mlc' == $_SESSION['auth_method']) {
+    } elseif ('mlc' === $_SESSION['auth_method']) {
         tc_login('mlc', 'https://openid2.mlc.edu.tw');
-    } elseif ('chc' == $_SESSION['auth_method']) {
+    } elseif ('chc' === $_SESSION['auth_method']) {
         tc_login('chc', 'http://openid.chc.edu.tw');
-    } elseif ('ntct' == $_SESSION['auth_method']) {
+    } elseif ('ntct' === $_SESSION['auth_method']) {
         tc_login('ntct', 'http://openid.ntct.edu.tw');
-    } elseif ('cy' == $_SESSION['auth_method']) {
+    } elseif ('cy' === $_SESSION['auth_method']) {
         tc_login('cy', 'https://openid.cy.edu.tw');
-    } elseif ('tc' == $_SESSION['auth_method']) {
+    } elseif ('tc' === $_SESSION['auth_method']) {
         tc_login('tc', 'http://openid.tc.edu.tw');
-    } elseif ('hlc' == $_SESSION['auth_method']) {
+    } elseif ('hlc' === $_SESSION['auth_method']) {
         tc_login('hlc', 'http://openid2.hlc.edu.tw');
-    } elseif ('ptc' == $_SESSION['auth_method']) {
+    } elseif ('ptc' === $_SESSION['auth_method']) {
         tc_login('ptc', 'http://openid.ptc.edu.tw');
-    } elseif ('phc' == $_SESSION['auth_method']) {
+    } elseif ('phc' === $_SESSION['auth_method']) {
         tc_login('phc', 'http://openid.phc.edu.tw');
-    } elseif ('tyc' == $_SESSION['auth_method']) {
+    } elseif ('tyc' === $_SESSION['auth_method']) {
         tyc_login();
-    } elseif ('ttct' == $_SESSION['auth_method']) {
+    } elseif ('ttct' === $_SESSION['auth_method']) {
         hlc_login('ttct', 'http://openid.boe.ttct.edu.tw');
-    } elseif ('ntpc' == $_SESSION['auth_method']) {
+    } elseif ('ntpc' === $_SESSION['auth_method']) {
         hlc_login('ntpc', 'http://openid.ntpc.edu.tw');
     } else {
         call_user_func("{$_SESSION['auth_method']}_login");
@@ -957,13 +957,13 @@ function list_login()
 
     $i = 0;
     foreach ($xoopsModuleConfig['auth_method'] as $openid) {
-        if ('facebook' == $openid) {
+        if ('facebook' === $openid) {
             $url = facebook_login('return');
-        } elseif ('google' == $openid) {
+        } elseif ('google' === $openid) {
             $url = google_login('return');
-        } elseif ('edu' == $openid) {
+        } elseif ('edu' === $openid) {
             $url = edu_login($openid, 'return');
-        } elseif ('ty_edu' == $openid) {
+        } elseif ('ty_edu' === $openid) {
             $url = edu_login($openid, 'return');
         } else {
             $url = XOOPS_URL . "/modules/tad_login/index.php?login&op={$openid}";

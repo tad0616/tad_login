@@ -67,7 +67,7 @@ function insert_tad_login_config()
     $myts = MyTextSanitizer::getInstance();
     $_POST['item'] = $myts->addSlashes($_POST['item']);
 
-    if ('email' == $_POST['type']) {
+    if ('email' === $_POST['type']) {
         $item = $_POST['item_email'];
         $kind = $_POST['kind_schoolcode'];
     } else {
@@ -94,7 +94,7 @@ function update_tad_login_config($config_id = '')
     $myts = MyTextSanitizer::getInstance();
     $_POST['item'] = $myts->addSlashes($_POST['item']);
 
-    if ('email' == $_POST['type']) {
+    if ('email' === $_POST['type']) {
         $item = $_POST['item_email'];
         $kind = $_POST['kind_schoolcode'];
     } else {
@@ -141,11 +141,11 @@ function list_tad_login_config()
         }
 
         $all_content[$i]['config_id'] = $config_id;
-        if ('teacher' == $kind) {
+        if ('teacher' === $kind) {
             $all_content[$i]['kind'] = _MA_TADLOGIN_TEACHER;
-        } elseif ('email' == $kind) {
+        } elseif ('email' === $kind) {
             $all_content[$i]['kind'] = '';
-        } elseif ('student' == $kind) {
+        } elseif ('student' === $kind) {
             $all_content[$i]['kind'] = _MA_TADLOGIN_STUDENT;
         }
         $all_content[$i]['item'] = $item;

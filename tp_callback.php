@@ -79,7 +79,7 @@ if ($user['email']) {
     $name = $myts->addSlashes($user['name']);
     $email = $user['email'];
     $SchoolCode = $myts->addSlashes($school['tpUniformNumbers']);
-    $JobName = '教師' == $user['role'] ? 'teacher' : 'student';
+    $JobName = '教師' === $user['role'] ? 'teacher' : 'student';
     // $JobName = "teacher";
     $bio = '';
     $url = $school['wWWHomePage'];
