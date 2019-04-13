@@ -19,8 +19,8 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- *
  */
+
 namespace Facebook\GraphNodes;
 
 /**
@@ -30,7 +30,6 @@ namespace Facebook\GraphNodes;
  *
  * @package Facebook
  */
-
 use ArrayAccess;
 use ArrayIterator;
 use Countable;
@@ -47,8 +46,6 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate
 
     /**
      * Create a new collection.
-     *
-     * @param array $items
      */
     public function __construct(array $items = [])
     {
@@ -129,14 +126,13 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate
     public function asArray()
     {
         return array_map(function ($value) {
-            return $value instanceof Collection ? $value->asArray() : $value;
+            return $value instanceof self ? $value->asArray() : $value;
         }, $this->items);
     }
 
     /**
      * Run a map over each of the items.
      *
-     * @param \Closure $callback
      *
      * @return static
      */
@@ -206,12 +202,10 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate
      *
      * @param mixed $key
      * @param mixed $value
-     *
-     * @return void
      */
     public function offsetSet($key, $value)
     {
-        if (is_null($key)) {
+        if (null === $key) {
             $this->items[] = $value;
         } else {
             $this->items[$key] = $value;
@@ -222,8 +216,6 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate
      * Unset the item at a given offset.
      *
      * @param string $key
-     *
-     * @return void
      */
     public function offsetUnset($key)
     {

@@ -1,8 +1,8 @@
 <?php
 /*-----------引入檔案區--------------*/
-$xoopsOption['template_main'] = "tad_login_adm_google.tpl";
-include_once "header.php";
-include_once "../function.php";
+$xoopsOption['template_main'] = 'tad_login_adm_google.tpl';
+include_once 'header.php';
+include_once '../function.php';
 
 /*-----------function區--------------*/
 

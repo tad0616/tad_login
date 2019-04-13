@@ -19,16 +19,16 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- *
  */
+
 namespace Facebook\Helpers;
 
+use Facebook\Authentication\AccessToken;
+use Facebook\Authentication\OAuth2Client;
 use Facebook\Facebook;
 use Facebook\FacebookApp;
 use Facebook\FacebookClient;
 use Facebook\SignedRequest;
-use Facebook\Authentication\AccessToken;
-use Facebook\Authentication\OAuth2Client;
 
 /**
  * Class FacebookSignedRequestFromInputHelper
@@ -72,6 +72,7 @@ abstract class FacebookSignedRequestFromInputHelper
      * Instantiates a new SignedRequest entity.
      *
      * @param string|null
+     * @param null|mixed $rawSignedRequest
      */
     public function instantiateSignedRequest($rawSignedRequest = null)
     {
@@ -87,9 +88,8 @@ abstract class FacebookSignedRequestFromInputHelper
     /**
      * Returns an AccessToken entity from the signed request.
      *
-     * @return AccessToken|null
-     *
      * @throws \Facebook\Exceptions\FacebookSDKException
+     * @return AccessToken|null
      */
     public function getAccessToken()
     {

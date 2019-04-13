@@ -15,60 +15,53 @@ class Unit_File_ASN1Test extends PhpseclibTestCase
      */
     public function testAnyString()
     {
-        $KDC_REP = [
+        $KDC_REP = array(
             'type' => ASN1::TYPE_SEQUENCE,
-            'children' => [
-                'pvno' => [
+            'children' => array(
+                'pvno' => array(
                     'constant' => 0,
                     'optional' => true,
                     'explicit' => true,
-                    'type' => ASN1::TYPE_ANY
-                ],
-                'msg-type' => [
+                    'type' => ASN1::TYPE_ANY),
+                'msg-type' => array(
                     'constant' => 1,
                     'optional' => true,
                     'explicit' => true,
-                    'type' => ASN1::TYPE_ANY
-                ],
-                'padata' => [
+                    'type' => ASN1::TYPE_ANY),
+                'padata' => array(
                     'constant' => 2,
                     'optional' => true,
                     'explicit' => true,
-                    'type' => ASN1::TYPE_ANY
-                ],
-                'crealm' => [
+                    'type' => ASN1::TYPE_ANY),
+                'crealm' => array(
                     'constant' => 3,
                     'optional' => true,
                     'explicit' => true,
-                    'type' => ASN1::TYPE_ANY
-                ],
-                'cname' => [
+                    'type' => ASN1::TYPE_ANY),
+                'cname' => array(
                     'constant' => 4,
                     'optional' => true,
                     'explicit' => true,
-                    'type' => ASN1::TYPE_ANY
-                ],
-                'ticket' => [
+                    'type' => ASN1::TYPE_ANY),
+                'ticket' => array(
                     'constant' => 5,
                     'optional' => true,
                     'explicit' => true,
-                    'type' => ASN1::TYPE_ANY
-                ],
-                'enc-part' => [
+                    'type' => ASN1::TYPE_ANY),
+                'enc-part' => array(
                     'constant' => 6,
                     'optional' => true,
                     'explicit' => true,
-                    'type' => ASN1::TYPE_ANY
-                ]
-            ]
-        ];
+                    'type' => ASN1::TYPE_ANY)
+            )
+        );
 
-        $AS_REP = [
+        $AS_REP = array(
             'class'    => ASN1::CLASS_APPLICATION,
             'cast'     => 11,
             'optional' => true,
             'explicit' => true
-                  ] + $KDC_REP;
+        ) + $KDC_REP;
 
         $str = 'a4IC3jCCAtqgAwIBBaEDAgELoi8wLTAroQMCAROiJAQiMCAwHqADAgEXoRcbFUNSRUFUVUlUWS5ORVR0ZXN0dXNlcqMPGw' .
                '1DUkVBVFVJVFkuTkVUpBUwE6ADAgEBoQwwChsIdGVzdHVzZXKlggFOYYIBSjCCAUagAwIBBaEPGw1DUkVBVFVJVFkuTkVU' .
@@ -95,139 +88,132 @@ class Unit_File_ASN1Test extends PhpseclibTestCase
      */
     public function testIncorrectString()
     {
-        $PA_DATA = [
+        $PA_DATA = array(
             'type' => ASN1::TYPE_SEQUENCE,
-            'children' => [
-                'padata-type' => [
+            'children' => array(
+                'padata-type' => array(
                     'constant' => 1,
                     'optional' => true,
                     'explicit' => true,
                     'type' => ASN1::TYPE_INTEGER
-                ],
-                'padata-value' => [
+                ),
+                'padata-value' => array(
                     'constant' => 2,
                     'optional' => true,
                     'explicit' => true,
                     'type' => ASN1::TYPE_OCTET_STRING
-                ]
-            ]
-        ];
+                )
+            )
+        );
 
-        $PrincipalName = [
+        $PrincipalName = array(
             'type' => ASN1::TYPE_SEQUENCE,
-            'children' => [
-                'name-type' => [
+            'children' => array(
+                'name-type' => array(
                     'constant' => 0,
                     'optional' => true,
                     'explicit' => true,
                     'type' => ASN1::TYPE_INTEGER
-                ],
-                'name-string' => [
+                ),
+                'name-string' => array(
                     'constant' => 1,
                     'optional' => true,
                     'explicit' => true,
                     'min' => 0,
                     'max' => -1,
                     'type' => ASN1::TYPE_SEQUENCE,
-                    'children' => ['type' => ASN1::TYPE_IA5_STRING] // should be \phpseclib\File\ASN1::TYPE_GENERAL_STRING
-                ]
-            ]
-        ];
+                    'children' => array('type' => ASN1::TYPE_IA5_STRING) // should be \phpseclib\File\ASN1::TYPE_GENERAL_STRING
+                )
+            )
+        );
 
-        $Ticket = [
+        $Ticket = array(
             'class'    => ASN1::CLASS_APPLICATION,
             'cast'     => 1,
             'optional' => true,
             'explicit' => true,
             'type' => ASN1::TYPE_SEQUENCE,
-            'children' => [
-                'tkt-vno' => [
+            'children' => array(
+                'tkt-vno' => array(
                     'constant' => 0,
                     'optional' => true,
                     'explicit' => true,
                     'type' => ASN1::TYPE_INTEGER
-                ],
-                'realm' => [
+                ),
+                'realm' => array(
                     'constant' => 1,
                     'optional' => true,
                     'explicit' => true,
                     'type' => ASN1::TYPE_ANY
-                ],
-                'sname' => [
+                ),
+                'sname' => array(
                     'constant' => 2,
                     'optional' => true,
                     'explicit' => true,
                     'type' => ASN1::TYPE_ANY
-                ],
-                'enc-part' => [
+                ),
+                'enc-part' => array(
                     'constant' => 3,
                     'optional' => true,
                     'explicit' => true,
                     'type' => ASN1::TYPE_ANY
-                ]
-            ]
-        ];
+                )
+            )
+        );
 
-        $KDC_REP = [
+        $KDC_REP = array(
             'type' => ASN1::TYPE_SEQUENCE,
-            'children' => [
-                'pvno' => [
+            'children' => array(
+                'pvno' => array(
                     'constant' => 0,
                     'optional' => true,
                     'explicit' => true,
-                    'type' => ASN1::TYPE_INTEGER
-                ],
-                'msg-type' => [
+                    'type' => ASN1::TYPE_INTEGER),
+                'msg-type' => array(
                      'constant' => 1,
                     'optional' => true,
                     'explicit' => true,
-                    'type' => ASN1::TYPE_INTEGER
-                ],
-                'padata' => [
+                    'type' => ASN1::TYPE_INTEGER),
+                'padata' => array(
                     'constant' => 2,
                     'optional' => true,
                     'explicit' => true,
                     'min' => 0,
                     'max' => -1,
                     'type' => ASN1::TYPE_SEQUENCE,
-                    'children' => $PA_DATA
-                ],
-                'crealm' => [
+                    'children' => $PA_DATA),
+                'crealm' => array(
                     'constant' => 3,
                     'optional' => true,
                     'explicit' => true,
-                    'type' => ASN1::TYPE_OCTET_STRING
-                ],
-                'cname' => [
+                    'type' => ASN1::TYPE_OCTET_STRING),
+                'cname' => array(
                     'constant' => 4,
                     'optional' => true,
-                    'explicit' => true
-                           ] + $PrincipalName,
-                //'type' => ASN1::TYPE_ANY),
-                'ticket' => [
+                    'explicit' => true) + $PrincipalName,
+                    //'type' => ASN1::TYPE_ANY),
+                'ticket' => array(
                     'constant' => 5,
                     'optional' => true,
                     'implicit' => true,
                     'min' => 0,
                     'max' => 1,
                     'type' => ASN1::TYPE_SEQUENCE,
-                    'children' => $Ticket
-                ],
-                'enc-part' => [
+                    'children' => $Ticket),
+                'enc-part' => array(
                     'constant' => 6,
                     'optional' => true,
                     'explicit' => true,
-                    'type' => ASN1::TYPE_ANY
-                ]
-            ]
-        ];
+                    'type' => ASN1::TYPE_ANY)
+            )
+        );
 
-        $AS_REP = [
+        $AS_REP = array(
             'class'    => ASN1::CLASS_APPLICATION,
             'cast'     => 11,
             'optional' => true,
             'explicit' => true
-                  ] + $KDC_REP;
+        ) + $KDC_REP;
 
         $str = 'a4IC3jCCAtqgAwIBBaEDAgELoi8wLTAroQMCAROiJAQiMCAwHqADAgEXoRcbFUNSRUFUVUlUWS5ORVR0ZXN0dXNlcqMPGw' .
                '1DUkVBVFVJVFkuTkVUpBUwE6ADAgEBoQwwChsIdGVzdHVzZXKlggFOYYIBSjCCAUagAwIBBaEPGw1DUkVBVFVJVFkuTkVU' .

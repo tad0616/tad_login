@@ -19,8 +19,8 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- *
  */
+
 namespace Facebook\Http;
 
 use Facebook\FileUpload\FacebookFile;
@@ -101,7 +101,6 @@ class RequestBodyMultipart implements RequestBodyInterface
      * Get the string needed to transfer a file.
      *
      * @param string       $name
-     * @param FacebookFile $file
      *
      * @return string
      */
@@ -138,7 +137,6 @@ class RequestBodyMultipart implements RequestBodyInterface
     /**
      * Returns the params as an array of nested params.
      *
-     * @param array $params
      *
      * @return array
      */
@@ -159,7 +157,6 @@ class RequestBodyMultipart implements RequestBodyInterface
     /**
      * Get the headers needed before transferring the content of a POST file.
      *
-     * @param FacebookFile $file
      *
      * @return string
      */

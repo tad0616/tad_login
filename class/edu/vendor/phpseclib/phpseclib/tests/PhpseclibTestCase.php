@@ -7,7 +7,7 @@
 
 abstract class PhpseclibTestCase extends PHPUnit_Framework_TestCase
 {
-    protected $tempFilesToUnlinkOnTearDown = [];
+    protected $tempFilesToUnlinkOnTearDown = array();
 
     public function tearDown()
     {

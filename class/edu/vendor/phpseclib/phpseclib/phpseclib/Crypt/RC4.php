@@ -288,12 +288,12 @@ class RC4 extends Base
             $keyStream[$j] = $temp;
         }
 
-        $this->stream = [];
-        $this->stream[self::DECRYPT] = $this->stream[self::ENCRYPT] = [
+        $this->stream = array();
+        $this->stream[self::DECRYPT] = $this->stream[self::ENCRYPT] = array(
             0, // index $i
             0, // index $j
             $keyStream
-        ];
+        );
     }
 
     /**

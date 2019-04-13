@@ -306,36 +306,36 @@ class X509
         // Explicitly Tagged Module, 1988 Syntax
         // http://tools.ietf.org/html/rfc5280#appendix-A.1
 
-        $this->DirectoryString = [
+        $this->DirectoryString = array(
             'type'     => ASN1::TYPE_CHOICE,
-            'children' => [
-                'teletexString'   => ['type' => ASN1::TYPE_TELETEX_STRING],
-                'printableString' => ['type' => ASN1::TYPE_PRINTABLE_STRING],
-                'universalString' => ['type' => ASN1::TYPE_UNIVERSAL_STRING],
-                'utf8String'      => ['type' => ASN1::TYPE_UTF8_STRING],
-                'bmpString'       => ['type' => ASN1::TYPE_BMP_STRING]
-            ]
-        ];
+            'children' => array(
+                'teletexString'   => array('type' => ASN1::TYPE_TELETEX_STRING),
+                'printableString' => array('type' => ASN1::TYPE_PRINTABLE_STRING),
+                'universalString' => array('type' => ASN1::TYPE_UNIVERSAL_STRING),
+                'utf8String'      => array('type' => ASN1::TYPE_UTF8_STRING),
+                'bmpString'       => array('type' => ASN1::TYPE_BMP_STRING)
+            )
+        );
 
-        $this->PKCS9String = [
+        $this->PKCS9String = array(
             'type'     => ASN1::TYPE_CHOICE,
-            'children' => [
-                'ia5String'       => ['type' => ASN1::TYPE_IA5_STRING],
+            'children' => array(
+                'ia5String'       => array('type' => ASN1::TYPE_IA5_STRING),
                 'directoryString' => $this->DirectoryString
-            ]
-        ];
+            )
+        );
 
-        $this->AttributeValue = ['type' => ASN1::TYPE_ANY];
+        $this->AttributeValue = array('type' => ASN1::TYPE_ANY);
 
-        $AttributeType = ['type' => ASN1::TYPE_OBJECT_IDENTIFIER];
+        $AttributeType = array('type' => ASN1::TYPE_OBJECT_IDENTIFIER);
 
-        $AttributeTypeAndValue = [
+        $AttributeTypeAndValue = array(
             'type'     => ASN1::TYPE_SEQUENCE,
-            'children' => [
+            'children' => array(
                 'type' => $AttributeType,
                 'value'=> $this->AttributeValue
-            ]
-        ];
+            )
+        );
 
         /*
         In practice, RDNs containing multiple name-value pairs (called "multivalued RDNs") are rare,
@@ -344,40 +344,40 @@ class X509
 
         - https://www.opends.org/wiki/page/DefinitionRelativeDistinguishedName
         */
-        $this->RelativeDistinguishedName = [
+        $this->RelativeDistinguishedName = array(
             'type'     => ASN1::TYPE_SET,
             'min'      => 1,
             'max'      => -1,
             'children' => $AttributeTypeAndValue
-        ];
+        );
 
         // http://tools.ietf.org/html/rfc5280#section-4.1.2.4
-        $RDNSequence = [
+        $RDNSequence = array(
             'type'     => ASN1::TYPE_SEQUENCE,
             // RDNSequence does not define a min or a max, which means it doesn't have one
             'min'      => 0,
             'max'      => -1,
             'children' => $this->RelativeDistinguishedName
-        ];
+        );
 
-        $this->Name = [
+        $this->Name = array(
             'type'     => ASN1::TYPE_CHOICE,
-            'children' => [
+            'children' => array(
                 'rdnSequence' => $RDNSequence
-            ]
-        ];
+            )
+        );
 
         // http://tools.ietf.org/html/rfc5280#section-4.1.1.2
-        $AlgorithmIdentifier = [
+        $AlgorithmIdentifier = array(
             'type'     => ASN1::TYPE_SEQUENCE,
-            'children' => [
-                'algorithm'  => ['type' => ASN1::TYPE_OBJECT_IDENTIFIER],
-                'parameters' => [
+            'children' => array(
+                'algorithm'  => array('type' => ASN1::TYPE_OBJECT_IDENTIFIER),
+                'parameters' => array(
                                     'type'     => ASN1::TYPE_ANY,
                                     'optional' => true
-                ]
-            ]
-        ];
+                                )
+            )
+        );
 
         /*
            A certificate using system MUST reject the certificate if it encounters
@@ -386,74 +386,74 @@ class X509
 
            http://tools.ietf.org/html/rfc5280#section-4.2
         */
-        $Extension = [
+        $Extension = array(
             'type'     => ASN1::TYPE_SEQUENCE,
-            'children' => [
-                'extnId'   => ['type' => ASN1::TYPE_OBJECT_IDENTIFIER],
-                'critical' => [
+            'children' => array(
+                'extnId'   => array('type' => ASN1::TYPE_OBJECT_IDENTIFIER),
+                'critical' => array(
                                   'type'     => ASN1::TYPE_BOOLEAN,
                                   'optional' => true,
                                   'default'  => false
-                ],
-                'extnValue' => ['type' => ASN1::TYPE_OCTET_STRING]
-            ]
-        ];
+                              ),
+                'extnValue' => array('type' => ASN1::TYPE_OCTET_STRING)
+            )
+        );
 
-        $this->Extensions = [
+        $this->Extensions = array(
             'type'     => ASN1::TYPE_SEQUENCE,
             'min'      => 1,
             // technically, it's MAX, but we'll assume anything < 0 is MAX
             'max'      => -1,
             // if 'children' isn't an array then 'min' and 'max' must be defined
             'children' => $Extension
-        ];
+        );
 
-        $SubjectPublicKeyInfo = [
+        $SubjectPublicKeyInfo = array(
             'type'     => ASN1::TYPE_SEQUENCE,
-            'children' => [
+            'children' => array(
                 'algorithm'        => $AlgorithmIdentifier,
-                'subjectPublicKey' => ['type' => ASN1::TYPE_BIT_STRING]
-            ]
-        ];
+                'subjectPublicKey' => array('type' => ASN1::TYPE_BIT_STRING)
+            )
+        );
 
-        $UniqueIdentifier = ['type' => ASN1::TYPE_BIT_STRING];
+        $UniqueIdentifier = array('type' => ASN1::TYPE_BIT_STRING);
 
-        $Time = [
+        $Time = array(
             'type'     => ASN1::TYPE_CHOICE,
-            'children' => [
-                'utcTime'     => ['type' => ASN1::TYPE_UTC_TIME],
-                'generalTime' => ['type' => ASN1::TYPE_GENERALIZED_TIME]
-            ]
-        ];
+            'children' => array(
+                'utcTime'     => array('type' => ASN1::TYPE_UTC_TIME),
+                'generalTime' => array('type' => ASN1::TYPE_GENERALIZED_TIME)
+            )
+        );
 
         // http://tools.ietf.org/html/rfc5280#section-4.1.2.5
-        $Validity = [
+        $Validity = array(
             'type'     => ASN1::TYPE_SEQUENCE,
-            'children' => [
+            'children' => array(
                 'notBefore' => $Time,
                 'notAfter'  => $Time
-            ]
-        ];
+            )
+        );
 
-        $CertificateSerialNumber = ['type' => ASN1::TYPE_INTEGER];
+        $CertificateSerialNumber = array('type' => ASN1::TYPE_INTEGER);
 
-        $Version = [
+        $Version = array(
             'type'    => ASN1::TYPE_INTEGER,
-            'mapping' => ['v1', 'v2', 'v3']
-        ];
+            'mapping' => array('v1', 'v2', 'v3')
+        );
 
         // assert($TBSCertificate['children']['signature'] == $Certificate['children']['signatureAlgorithm'])
-        $TBSCertificate = [
+        $TBSCertificate = array(
             'type'     => ASN1::TYPE_SEQUENCE,
-            'children' => [
+            'children' => array(
                 // technically, default implies optional, but we'll define it as being optional, none-the-less, just to
                 // reenforce that fact
-                'version'             => [
+                'version'             => array(
                                              'constant' => 0,
                                              'optional' => true,
                                              'explicit' => true,
                                              'default'  => 'v1'
-                                         ] + $Version,
+                                         ) + $Version,
                 'serialNumber'         => $CertificateSerialNumber,
                 'signature'            => $AlgorithmIdentifier,
                 'issuer'               => $this->Name,
@@ -461,38 +461,38 @@ class X509
                 'subject'              => $this->Name,
                 'subjectPublicKeyInfo' => $SubjectPublicKeyInfo,
                 // implicit means that the T in the TLV structure is to be rewritten, regardless of the type
-                'issuerUniqueID'       => [
+                'issuerUniqueID'       => array(
                                                'constant' => 1,
                                                'optional' => true,
                                                'implicit' => true
-                                          ] + $UniqueIdentifier,
-                'subjectUniqueID'       => [
+                                           ) + $UniqueIdentifier,
+                'subjectUniqueID'       => array(
                                                'constant' => 2,
                                                'optional' => true,
                                                'implicit' => true
-                                           ] + $UniqueIdentifier,
+                                           ) + $UniqueIdentifier,
                 // <http://tools.ietf.org/html/rfc2459#page-74> doesn't use the EXPLICIT keyword but if
                 // it's not IMPLICIT, it's EXPLICIT
-                'extensions'            => [
+                'extensions'            => array(
                                                'constant' => 3,
                                                'optional' => true,
                                                'explicit' => true
-                                           ] + $this->Extensions
-            ]
-        ];
+                                           ) + $this->Extensions
+            )
+        );
 
-        $this->Certificate = [
+        $this->Certificate = array(
             'type'     => ASN1::TYPE_SEQUENCE,
-            'children' => [
+            'children' => array(
                  'tbsCertificate'     => $TBSCertificate,
                  'signatureAlgorithm' => $AlgorithmIdentifier,
-                 'signature'          => ['type' => ASN1::TYPE_BIT_STRING]
-            ]
-        ];
+                 'signature'          => array('type' => ASN1::TYPE_BIT_STRING)
+            )
+        );
 
-        $this->KeyUsage = [
+        $this->KeyUsage = array(
             'type'    => ASN1::TYPE_BIT_STRING,
-            'mapping' => [
+            'mapping' => array(
                 'digitalSignature',
                 'nonRepudiation',
                 'keyEncipherment',
@@ -502,294 +502,294 @@ class X509
                 'cRLSign',
                 'encipherOnly',
                 'decipherOnly'
-            ]
-        ];
+            )
+        );
 
-        $this->BasicConstraints = [
+        $this->BasicConstraints = array(
             'type'     => ASN1::TYPE_SEQUENCE,
-            'children' => [
-                'cA'                => [
+            'children' => array(
+                'cA'                => array(
                                                  'type'     => ASN1::TYPE_BOOLEAN,
                                                  'optional' => true,
                                                  'default'  => false
-                ],
-                'pathLenConstraint' => [
+                                       ),
+                'pathLenConstraint' => array(
                                                  'type' => ASN1::TYPE_INTEGER,
                                                  'optional' => true
-                ]
-            ]
-        ];
+                                       )
+            )
+        );
 
-        $this->KeyIdentifier = ['type' => ASN1::TYPE_OCTET_STRING];
+        $this->KeyIdentifier = array('type' => ASN1::TYPE_OCTET_STRING);
 
-        $OrganizationalUnitNames = [
+        $OrganizationalUnitNames = array(
             'type'     => ASN1::TYPE_SEQUENCE,
             'min'      => 1,
             'max'      => 4, // ub-organizational-units
-            'children' => ['type' => ASN1::TYPE_PRINTABLE_STRING]
-        ];
+            'children' => array('type' => ASN1::TYPE_PRINTABLE_STRING)
+        );
 
-        $PersonalName = [
+        $PersonalName = array(
             'type'     => ASN1::TYPE_SET,
-            'children' => [
-                'surname'              => [
+            'children' => array(
+                'surname'              => array(
                                            'type' => ASN1::TYPE_PRINTABLE_STRING,
                                            'constant' => 0,
                                            'optional' => true,
                                            'implicit' => true
-                ],
-                'given-name'           => [
+                                         ),
+                'given-name'           => array(
                                            'type' => ASN1::TYPE_PRINTABLE_STRING,
                                            'constant' => 1,
                                            'optional' => true,
                                            'implicit' => true
-                ],
-                'initials'             => [
+                                         ),
+                'initials'             => array(
                                            'type' => ASN1::TYPE_PRINTABLE_STRING,
                                            'constant' => 2,
                                            'optional' => true,
                                            'implicit' => true
-                ],
-                'generation-qualifier' => [
+                                         ),
+                'generation-qualifier' => array(
                                            'type' => ASN1::TYPE_PRINTABLE_STRING,
                                            'constant' => 3,
                                            'optional' => true,
                                            'implicit' => true
-                ]
-            ]
-        ];
+                                         )
+            )
+        );
 
-        $NumericUserIdentifier = ['type' => ASN1::TYPE_NUMERIC_STRING];
+        $NumericUserIdentifier = array('type' => ASN1::TYPE_NUMERIC_STRING);
 
-        $OrganizationName = ['type' => ASN1::TYPE_PRINTABLE_STRING];
+        $OrganizationName = array('type' => ASN1::TYPE_PRINTABLE_STRING);
 
-        $PrivateDomainName = [
+        $PrivateDomainName = array(
             'type'     => ASN1::TYPE_CHOICE,
-            'children' => [
-                'numeric'   => ['type' => ASN1::TYPE_NUMERIC_STRING],
-                'printable' => ['type' => ASN1::TYPE_PRINTABLE_STRING]
-            ]
-        ];
+            'children' => array(
+                'numeric'   => array('type' => ASN1::TYPE_NUMERIC_STRING),
+                'printable' => array('type' => ASN1::TYPE_PRINTABLE_STRING)
+            )
+        );
 
-        $TerminalIdentifier = ['type' => ASN1::TYPE_PRINTABLE_STRING];
+        $TerminalIdentifier = array('type' => ASN1::TYPE_PRINTABLE_STRING);
 
-        $NetworkAddress = ['type' => ASN1::TYPE_NUMERIC_STRING];
+        $NetworkAddress = array('type' => ASN1::TYPE_NUMERIC_STRING);
 
-        $AdministrationDomainName = [
+        $AdministrationDomainName = array(
             'type'     => ASN1::TYPE_CHOICE,
             // if class isn't present it's assumed to be \phpseclib\File\ASN1::CLASS_UNIVERSAL or
             // (if constant is present) \phpseclib\File\ASN1::CLASS_CONTEXT_SPECIFIC
             'class'    => ASN1::CLASS_APPLICATION,
             'cast'     => 2,
-            'children' => [
-                'numeric'   => ['type' => ASN1::TYPE_NUMERIC_STRING],
-                'printable' => ['type' => ASN1::TYPE_PRINTABLE_STRING]
-            ]
-        ];
+            'children' => array(
+                'numeric'   => array('type' => ASN1::TYPE_NUMERIC_STRING),
+                'printable' => array('type' => ASN1::TYPE_PRINTABLE_STRING)
+            )
+        );
 
-        $CountryName = [
+        $CountryName = array(
             'type'     => ASN1::TYPE_CHOICE,
             // if class isn't present it's assumed to be \phpseclib\File\ASN1::CLASS_UNIVERSAL or
             // (if constant is present) \phpseclib\File\ASN1::CLASS_CONTEXT_SPECIFIC
             'class'    => ASN1::CLASS_APPLICATION,
             'cast'     => 1,
-            'children' => [
-                'x121-dcc-code'        => ['type' => ASN1::TYPE_NUMERIC_STRING],
-                'iso-3166-alpha2-code' => ['type' => ASN1::TYPE_PRINTABLE_STRING]
-            ]
-        ];
+            'children' => array(
+                'x121-dcc-code'        => array('type' => ASN1::TYPE_NUMERIC_STRING),
+                'iso-3166-alpha2-code' => array('type' => ASN1::TYPE_PRINTABLE_STRING)
+            )
+        );
 
-        $AnotherName = [
+        $AnotherName = array(
             'type'     => ASN1::TYPE_SEQUENCE,
-            'children' => [
-                'type-id' => ['type' => ASN1::TYPE_OBJECT_IDENTIFIER],
-                'value'   => [
+            'children' => array(
+                 'type-id' => array('type' => ASN1::TYPE_OBJECT_IDENTIFIER),
+                 'value'   => array(
                                   'type' => ASN1::TYPE_ANY,
                                   'constant' => 0,
                                   'optional' => true,
                                   'explicit' => true
-                ]
-            ]
-        ];
+                              )
+            )
+        );
 
-        $ExtensionAttribute = [
+        $ExtensionAttribute = array(
             'type'     => ASN1::TYPE_SEQUENCE,
-            'children' => [
-                'extension-attribute-type'  => [
+            'children' => array(
+                 'extension-attribute-type'  => array(
                                                     'type' => ASN1::TYPE_PRINTABLE_STRING,
                                                     'constant' => 0,
                                                     'optional' => true,
                                                     'implicit' => true
-                ],
-                'extension-attribute-value' => [
+                                                ),
+                 'extension-attribute-value' => array(
                                                     'type' => ASN1::TYPE_ANY,
                                                     'constant' => 1,
                                                     'optional' => true,
                                                     'explicit' => true
-                ]
-            ]
-        ];
+                                                )
+            )
+        );
 
-        $ExtensionAttributes = [
+        $ExtensionAttributes = array(
             'type'     => ASN1::TYPE_SET,
             'min'      => 1,
             'max'      => 256, // ub-extension-attributes
             'children' => $ExtensionAttribute
-        ];
+        );
 
-        $BuiltInDomainDefinedAttribute = [
+        $BuiltInDomainDefinedAttribute = array(
             'type'     => ASN1::TYPE_SEQUENCE,
-            'children' => [
-                'type'  => ['type' => ASN1::TYPE_PRINTABLE_STRING],
-                'value' => ['type' => ASN1::TYPE_PRINTABLE_STRING]
-            ]
-        ];
+            'children' => array(
+                 'type'  => array('type' => ASN1::TYPE_PRINTABLE_STRING),
+                 'value' => array('type' => ASN1::TYPE_PRINTABLE_STRING)
+            )
+        );
 
-        $BuiltInDomainDefinedAttributes = [
+        $BuiltInDomainDefinedAttributes = array(
             'type'     => ASN1::TYPE_SEQUENCE,
             'min'      => 1,
             'max'      => 4, // ub-domain-defined-attributes
             'children' => $BuiltInDomainDefinedAttribute
-        ];
+        );
 
-        $BuiltInStandardAttributes =  [
+        $BuiltInStandardAttributes =  array(
             'type'     => ASN1::TYPE_SEQUENCE,
-            'children' => [
-                'country-name'               => ['optional' => true] + $CountryName,
-                'administration-domain-name' => ['optional' => true] + $AdministrationDomainName,
-                'network-address'            => [
+            'children' => array(
+                'country-name'               => array('optional' => true) + $CountryName,
+                'administration-domain-name' => array('optional' => true) + $AdministrationDomainName,
+                'network-address'            => array(
                                                  'constant' => 0,
                                                  'optional' => true,
                                                  'implicit' => true
-                                                ] + $NetworkAddress,
-                'terminal-identifier'        => [
+                                               ) + $NetworkAddress,
+                'terminal-identifier'        => array(
                                                  'constant' => 1,
                                                  'optional' => true,
                                                  'implicit' => true
-                                                ] + $TerminalIdentifier,
-                'private-domain-name'        => [
+                                               ) + $TerminalIdentifier,
+                'private-domain-name'        => array(
                                                  'constant' => 2,
                                                  'optional' => true,
                                                  'explicit' => true
-                                                ] + $PrivateDomainName,
-                'organization-name'          => [
+                                               ) + $PrivateDomainName,
+                'organization-name'          => array(
                                                  'constant' => 3,
                                                  'optional' => true,
                                                  'implicit' => true
-                                                ] + $OrganizationName,
-                'numeric-user-identifier'    => [
+                                               ) + $OrganizationName,
+                'numeric-user-identifier'    => array(
                                                  'constant' => 4,
                                                  'optional' => true,
                                                  'implicit' => true
-                                                ] + $NumericUserIdentifier,
-                'personal-name'              => [
+                                               ) + $NumericUserIdentifier,
+                'personal-name'              => array(
                                                  'constant' => 5,
                                                  'optional' => true,
                                                  'implicit' => true
-                                                ] + $PersonalName,
-                'organizational-unit-names'  => [
+                                               ) + $PersonalName,
+                'organizational-unit-names'  => array(
                                                  'constant' => 6,
                                                  'optional' => true,
                                                  'implicit' => true
-                                                ] + $OrganizationalUnitNames
-            ]
-        ];
+                                               ) + $OrganizationalUnitNames
+            )
+        );
 
-        $ORAddress = [
+        $ORAddress = array(
             'type'     => ASN1::TYPE_SEQUENCE,
-            'children' => [
-                'built-in-standard-attributes'       => $BuiltInStandardAttributes,
-                'built-in-domain-defined-attributes' => ['optional' => true] + $BuiltInDomainDefinedAttributes,
-                'extension-attributes'               => ['optional' => true] + $ExtensionAttributes
-            ]
-        ];
+            'children' => array(
+                 'built-in-standard-attributes'       => $BuiltInStandardAttributes,
+                 'built-in-domain-defined-attributes' => array('optional' => true) + $BuiltInDomainDefinedAttributes,
+                 'extension-attributes'               => array('optional' => true) + $ExtensionAttributes
+            )
+        );
 
-        $EDIPartyName = [
+        $EDIPartyName = array(
             'type'     => ASN1::TYPE_SEQUENCE,
-            'children' => [
-                 'nameAssigner' => [
+            'children' => array(
+                 'nameAssigner' => array(
                                     'constant' => 0,
                                     'optional' => true,
                                     'implicit' => true
-                                   ] + $this->DirectoryString,
+                                ) + $this->DirectoryString,
                  // partyName is technically required but \phpseclib\File\ASN1 doesn't currently support non-optional constants and
                  // setting it to optional gets the job done in any event.
-                 'partyName'    => [
+                 'partyName'    => array(
                                     'constant' => 1,
                                     'optional' => true,
                                     'implicit' => true
-                                   ] + $this->DirectoryString
-            ]
-        ];
+                                ) + $this->DirectoryString
+            )
+        );
 
-        $GeneralName = [
+        $GeneralName = array(
             'type'     => ASN1::TYPE_CHOICE,
-            'children' => [
-                'otherName'                 => [
+            'children' => array(
+                'otherName'                 => array(
                                                  'constant' => 0,
                                                  'optional' => true,
                                                  'implicit' => true
-                                               ] + $AnotherName,
-                'rfc822Name'                => [
+                                               ) + $AnotherName,
+                'rfc822Name'                => array(
                                                  'type' => ASN1::TYPE_IA5_STRING,
                                                  'constant' => 1,
                                                  'optional' => true,
                                                  'implicit' => true
-                ],
-                'dNSName'                   => [
+                                               ),
+                'dNSName'                   => array(
                                                  'type' => ASN1::TYPE_IA5_STRING,
                                                  'constant' => 2,
                                                  'optional' => true,
                                                  'implicit' => true
-                ],
-                'x400Address'               => [
+                                               ),
+                'x400Address'               => array(
                                                  'constant' => 3,
                                                  'optional' => true,
                                                  'implicit' => true
-                                               ] + $ORAddress,
-                'directoryName'             => [
+                                               ) + $ORAddress,
+                'directoryName'             => array(
                                                  'constant' => 4,
                                                  'optional' => true,
                                                  'explicit' => true
-                                               ] + $this->Name,
-                'ediPartyName'              => [
+                                               ) + $this->Name,
+                'ediPartyName'              => array(
                                                  'constant' => 5,
                                                  'optional' => true,
                                                  'implicit' => true
-                                               ] + $EDIPartyName,
-                'uniformResourceIdentifier' => [
+                                               ) + $EDIPartyName,
+                'uniformResourceIdentifier' => array(
                                                  'type' => ASN1::TYPE_IA5_STRING,
                                                  'constant' => 6,
                                                  'optional' => true,
                                                  'implicit' => true
-                ],
-                'iPAddress'                 => [
+                                               ),
+                'iPAddress'                 => array(
                                                  'type' => ASN1::TYPE_OCTET_STRING,
                                                  'constant' => 7,
                                                  'optional' => true,
                                                  'implicit' => true
-                ],
-                'registeredID'              => [
+                                               ),
+                'registeredID'              => array(
                                                  'type' => ASN1::TYPE_OBJECT_IDENTIFIER,
                                                  'constant' => 8,
                                                  'optional' => true,
                                                  'implicit' => true
-                ]
-            ]
-        ];
+                                               )
+            )
+        );
 
-        $GeneralNames = [
+        $GeneralNames = array(
             'type'     => ASN1::TYPE_SEQUENCE,
             'min'      => 1,
             'max'      => -1,
             'children' => $GeneralName
-        ];
+        );
 
         $this->IssuerAltName = $GeneralNames;
 
-        $ReasonFlags = [
+        $ReasonFlags = array(
             'type'    => ASN1::TYPE_BIT_STRING,
-            'mapping' => [
+            'mapping' => array(
                 'unused',
                 'keyCompromise',
                 'cACompromise',
@@ -799,250 +799,248 @@ class X509
                 'certificateHold',
                 'privilegeWithdrawn',
                 'aACompromise'
-            ]
-        ];
+            )
+        );
 
-        $DistributionPointName = [
+        $DistributionPointName = array(
             'type'     => ASN1::TYPE_CHOICE,
-            'children' => [
-                'fullName'                => [
+            'children' => array(
+                'fullName'                => array(
                                                  'constant' => 0,
                                                  'optional' => true,
                                                  'implicit' => true
-                                             ] + $GeneralNames,
-                'nameRelativeToCRLIssuer' => [
+                                       ) + $GeneralNames,
+                'nameRelativeToCRLIssuer' => array(
                                                  'constant' => 1,
                                                  'optional' => true,
                                                  'implicit' => true
-                                             ] + $this->RelativeDistinguishedName
-            ]
-        ];
+                                       ) + $this->RelativeDistinguishedName
+            )
+        );
 
-        $DistributionPoint = [
+        $DistributionPoint = array(
             'type'     => ASN1::TYPE_SEQUENCE,
-            'children' => [
-                'distributionPoint' => [
+            'children' => array(
+                'distributionPoint' => array(
                                                  'constant' => 0,
                                                  'optional' => true,
                                                  'explicit' => true
-                                       ] + $DistributionPointName,
-                'reasons'           => [
+                                       ) + $DistributionPointName,
+                'reasons'           => array(
                                                  'constant' => 1,
                                                  'optional' => true,
                                                  'implicit' => true
-                                       ] + $ReasonFlags,
-                'cRLIssuer'         => [
+                                       ) + $ReasonFlags,
+                'cRLIssuer'         => array(
                                                  'constant' => 2,
                                                  'optional' => true,
                                                  'implicit' => true
-                                       ] + $GeneralNames
-            ]
-        ];
+                                       ) + $GeneralNames
+            )
+        );
 
-        $this->CRLDistributionPoints = [
+        $this->CRLDistributionPoints = array(
             'type'     => ASN1::TYPE_SEQUENCE,
             'min'      => 1,
             'max'      => -1,
             'children' => $DistributionPoint
-        ];
+        );
 
-        $this->AuthorityKeyIdentifier = [
+        $this->AuthorityKeyIdentifier = array(
             'type'     => ASN1::TYPE_SEQUENCE,
-            'children' => [
-                'keyIdentifier'             => [
+            'children' => array(
+                'keyIdentifier'             => array(
                                                  'constant' => 0,
                                                  'optional' => true,
                                                  'implicit' => true
-                                               ] + $this->KeyIdentifier,
-                'authorityCertIssuer'       => [
+                                               ) + $this->KeyIdentifier,
+                'authorityCertIssuer'       => array(
                                                  'constant' => 1,
                                                  'optional' => true,
                                                  'implicit' => true
-                                               ] + $GeneralNames,
-                'authorityCertSerialNumber' => [
+                                               ) + $GeneralNames,
+                'authorityCertSerialNumber' => array(
                                                  'constant' => 2,
                                                  'optional' => true,
                                                  'implicit' => true
-                                               ] + $CertificateSerialNumber
-            ]
-        ];
+                                               ) + $CertificateSerialNumber
+            )
+        );
 
-        $PolicyQualifierId = ['type' => ASN1::TYPE_OBJECT_IDENTIFIER];
+        $PolicyQualifierId = array('type' => ASN1::TYPE_OBJECT_IDENTIFIER);
 
-        $PolicyQualifierInfo = [
+        $PolicyQualifierInfo = array(
             'type'     => ASN1::TYPE_SEQUENCE,
-            'children' => [
+            'children' => array(
                 'policyQualifierId' => $PolicyQualifierId,
-                'qualifier'         => ['type' => ASN1::TYPE_ANY]
-            ]
-        ];
+                'qualifier'         => array('type' => ASN1::TYPE_ANY)
+            )
+        );
 
-        $CertPolicyId = ['type' => ASN1::TYPE_OBJECT_IDENTIFIER];
+        $CertPolicyId = array('type' => ASN1::TYPE_OBJECT_IDENTIFIER);
 
-        $PolicyInformation = [
+        $PolicyInformation = array(
             'type'     => ASN1::TYPE_SEQUENCE,
-            'children' => [
+            'children' => array(
                 'policyIdentifier' => $CertPolicyId,
-                'policyQualifiers' => [
+                'policyQualifiers' => array(
                                           'type'     => ASN1::TYPE_SEQUENCE,
                                           'min'      => 0,
                                           'max'      => -1,
                                           'optional' => true,
                                           'children' => $PolicyQualifierInfo
-                ]
-            ]
-        ];
+                                      )
+            )
+        );
 
-        $this->CertificatePolicies = [
+        $this->CertificatePolicies = array(
             'type'     => ASN1::TYPE_SEQUENCE,
             'min'      => 1,
             'max'      => -1,
             'children' => $PolicyInformation
-        ];
+        );
 
-        $this->PolicyMappings = [
+        $this->PolicyMappings = array(
             'type'     => ASN1::TYPE_SEQUENCE,
             'min'      => 1,
             'max'      => -1,
-            'children' => [
+            'children' => array(
                               'type'     => ASN1::TYPE_SEQUENCE,
-                              'children' => [
+                              'children' => array(
                                   'issuerDomainPolicy' => $CertPolicyId,
                                   'subjectDomainPolicy' => $CertPolicyId
-                              ]
-            ]
-        ];
+                              )
+                       )
+        );
 
-        $KeyPurposeId = ['type' => ASN1::TYPE_OBJECT_IDENTIFIER];
+        $KeyPurposeId = array('type' => ASN1::TYPE_OBJECT_IDENTIFIER);
 
-        $this->ExtKeyUsageSyntax = [
+        $this->ExtKeyUsageSyntax = array(
             'type'     => ASN1::TYPE_SEQUENCE,
             'min'      => 1,
             'max'      => -1,
             'children' => $KeyPurposeId
-        ];
+        );
 
-        $AccessDescription = [
+        $AccessDescription = array(
             'type'     => ASN1::TYPE_SEQUENCE,
-            'children' => [
-                'accessMethod'   => ['type' => ASN1::TYPE_OBJECT_IDENTIFIER],
+            'children' => array(
+                'accessMethod'   => array('type' => ASN1::TYPE_OBJECT_IDENTIFIER),
                 'accessLocation' => $GeneralName
-            ]
-        ];
+            )
+        );
 
-        $this->AuthorityInfoAccessSyntax = [
+        $this->AuthorityInfoAccessSyntax = array(
             'type'     => ASN1::TYPE_SEQUENCE,
             'min'      => 1,
             'max'      => -1,
             'children' => $AccessDescription
-        ];
+        );
 
         $this->SubjectAltName = $GeneralNames;
 
-        $this->PrivateKeyUsagePeriod = [
+        $this->PrivateKeyUsagePeriod = array(
             'type'     => ASN1::TYPE_SEQUENCE,
-            'children' => [
-                'notBefore' => [
+            'children' => array(
+                'notBefore' => array(
                                                  'constant' => 0,
                                                  'optional' => true,
                                                  'implicit' => true,
-                                                 'type' => ASN1::TYPE_GENERALIZED_TIME
-                ],
-                'notAfter'  => [
+                                                 'type' => ASN1::TYPE_GENERALIZED_TIME),
+                'notAfter'  => array(
                                                  'constant' => 1,
                                                  'optional' => true,
                                                  'implicit' => true,
-                                                 'type' => ASN1::TYPE_GENERALIZED_TIME
-                ]
-            ]
-        ];
+                                                 'type' => ASN1::TYPE_GENERALIZED_TIME)
+            )
+        );
 
-        $BaseDistance = ['type' => ASN1::TYPE_INTEGER];
+        $BaseDistance = array('type' => ASN1::TYPE_INTEGER);
 
-        $GeneralSubtree = [
+        $GeneralSubtree = array(
             'type'     => ASN1::TYPE_SEQUENCE,
-            'children' => [
+            'children' => array(
                 'base'    => $GeneralName,
-                'minimum' => [
+                'minimum' => array(
                                  'constant' => 0,
                                  'optional' => true,
                                  'implicit' => true,
                                  'default' => new BigInteger(0)
-                             ] + $BaseDistance,
-                'maximum' => [
+                             ) + $BaseDistance,
+                'maximum' => array(
                                  'constant' => 1,
                                  'optional' => true,
                                  'implicit' => true,
-                             ] + $BaseDistance
-            ]
-        ];
+                             ) + $BaseDistance
+            )
+        );
 
-        $GeneralSubtrees = [
+        $GeneralSubtrees = array(
             'type'     => ASN1::TYPE_SEQUENCE,
             'min'      => 1,
             'max'      => -1,
             'children' => $GeneralSubtree
-        ];
+        );
 
-        $this->NameConstraints = [
+        $this->NameConstraints = array(
             'type'     => ASN1::TYPE_SEQUENCE,
-            'children' => [
-                'permittedSubtrees' => [
+            'children' => array(
+                'permittedSubtrees' => array(
                                            'constant' => 0,
                                            'optional' => true,
                                            'implicit' => true
-                                       ] + $GeneralSubtrees,
-                'excludedSubtrees'  => [
+                                       ) + $GeneralSubtrees,
+                'excludedSubtrees'  => array(
                                            'constant' => 1,
                                            'optional' => true,
                                            'implicit' => true
-                                       ] + $GeneralSubtrees
-            ]
-        ];
+                                       ) + $GeneralSubtrees
+            )
+        );
 
-        $this->CPSuri = ['type' => ASN1::TYPE_IA5_STRING];
+        $this->CPSuri = array('type' => ASN1::TYPE_IA5_STRING);
 
-        $DisplayText = [
+        $DisplayText = array(
             'type'     => ASN1::TYPE_CHOICE,
-            'children' => [
-                'ia5String'     => ['type' => ASN1::TYPE_IA5_STRING],
-                'visibleString' => ['type' => ASN1::TYPE_VISIBLE_STRING],
-                'bmpString'     => ['type' => ASN1::TYPE_BMP_STRING],
-                'utf8String'    => ['type' => ASN1::TYPE_UTF8_STRING]
-            ]
-        ];
+            'children' => array(
+                'ia5String'     => array('type' => ASN1::TYPE_IA5_STRING),
+                'visibleString' => array('type' => ASN1::TYPE_VISIBLE_STRING),
+                'bmpString'     => array('type' => ASN1::TYPE_BMP_STRING),
+                'utf8String'    => array('type' => ASN1::TYPE_UTF8_STRING)
+            )
+        );
 
-        $NoticeReference = [
+        $NoticeReference = array(
             'type'     => ASN1::TYPE_SEQUENCE,
-            'children' => [
+            'children' => array(
                 'organization'  => $DisplayText,
-                'noticeNumbers' => [
+                'noticeNumbers' => array(
                                        'type'     => ASN1::TYPE_SEQUENCE,
                                        'min'      => 1,
                                        'max'      => 200,
-                                       'children' => ['type' => ASN1::TYPE_INTEGER]
-                ]
-            ]
-        ];
+                                       'children' => array('type' => ASN1::TYPE_INTEGER)
+                                   )
+            )
+        );
 
-        $this->UserNotice = [
+        $this->UserNotice = array(
             'type'     => ASN1::TYPE_SEQUENCE,
-            'children' => [
-                'noticeRef' => [
+            'children' => array(
+                'noticeRef' => array(
                                            'optional' => true,
                                            'implicit' => true
-                               ] + $NoticeReference,
-                'explicitText'  => [
+                                       ) + $NoticeReference,
+                'explicitText'  => array(
                                            'optional' => true,
                                            'implicit' => true
-                                   ] + $DisplayText
-            ]
-        ];
+                                       ) + $DisplayText
+            )
+        );
 
         // mapping is from <http://www.mozilla.org/projects/security/pki/nss/tech-notes/tn3.html>
-        $this->netscape_cert_type = [
+        $this->netscape_cert_type = array(
             'type'    => ASN1::TYPE_BIT_STRING,
-            'mapping' => [
+            'mapping' => array(
                 'SSLClient',
                 'SSLServer',
                 'Email',
@@ -1051,115 +1049,114 @@ class X509
                 'SSLCA',
                 'EmailCA',
                 'ObjectSigningCA'
-            ]
-        ];
+            )
+        );
 
-        $this->netscape_comment = ['type' => ASN1::TYPE_IA5_STRING];
-        $this->netscape_ca_policy_url = ['type' => ASN1::TYPE_IA5_STRING];
+        $this->netscape_comment = array('type' => ASN1::TYPE_IA5_STRING);
+        $this->netscape_ca_policy_url = array('type' => ASN1::TYPE_IA5_STRING);
 
         // attribute is used in RFC2986 but we're using the RFC5280 definition
 
-        $Attribute = [
+        $Attribute = array(
             'type'     => ASN1::TYPE_SEQUENCE,
-            'children' => [
+            'children' => array(
                 'type' => $AttributeType,
-                'value'=> [
+                'value'=> array(
                               'type'     => ASN1::TYPE_SET,
                               'min'      => 1,
                               'max'      => -1,
                               'children' => $this->AttributeValue
-                ]
-            ]
-        ];
+                          )
+            )
+        );
 
         // adapted from <http://tools.ietf.org/html/rfc2986>
 
-        $Attributes = [
+        $Attributes = array(
             'type'     => ASN1::TYPE_SET,
             'min'      => 1,
             'max'      => -1,
             'children' => $Attribute
-        ];
+        );
 
-        $CertificationRequestInfo = [
+        $CertificationRequestInfo = array(
             'type'     => ASN1::TYPE_SEQUENCE,
-            'children' => [
-                'version'       => [
+            'children' => array(
+                'version'       => array(
                                        'type' => ASN1::TYPE_INTEGER,
-                                       'mapping' => ['v1']
-                ],
+                                       'mapping' => array('v1')
+                                   ),
                 'subject'       => $this->Name,
                 'subjectPKInfo' => $SubjectPublicKeyInfo,
-                'attributes'    => [
+                'attributes'    => array(
                                        'constant' => 0,
                                        'optional' => true,
                                        'implicit' => true
-                                   ] + $Attributes,
-            ]
-        ];
+                                   ) + $Attributes,
+            )
+        );
 
-        $this->CertificationRequest = [
+        $this->CertificationRequest = array(
             'type'     => ASN1::TYPE_SEQUENCE,
-            'children' => [
+            'children' => array(
                 'certificationRequestInfo' => $CertificationRequestInfo,
                 'signatureAlgorithm'       => $AlgorithmIdentifier,
-                'signature'                => ['type' => ASN1::TYPE_BIT_STRING]
-            ]
-        ];
+                'signature'                => array('type' => ASN1::TYPE_BIT_STRING)
+            )
+        );
 
-        $RevokedCertificate = [
+        $RevokedCertificate = array(
             'type'     => ASN1::TYPE_SEQUENCE,
-            'children' => [
+            'children' => array(
                               'userCertificate'    => $CertificateSerialNumber,
                               'revocationDate'     => $Time,
-                              'crlEntryExtensions' => [
+                              'crlEntryExtensions' => array(
                                                           'optional' => true
-                                                      ] + $this->Extensions
-            ]
-        ];
+                                                      ) + $this->Extensions
+                          )
+        );
 
-        $TBSCertList = [
+        $TBSCertList = array(
             'type'     => ASN1::TYPE_SEQUENCE,
-            'children' => [
-                'version'             => [
+            'children' => array(
+                'version'             => array(
                                              'optional' => true,
                                              'default'  => 'v1'
-                                         ] + $Version,
+                                         ) + $Version,
                 'signature'           => $AlgorithmIdentifier,
                 'issuer'              => $this->Name,
                 'thisUpdate'          => $Time,
-                'nextUpdate'          => [
+                'nextUpdate'          => array(
                                              'optional' => true
-                                         ] + $Time,
-                'revokedCertificates' => [
+                                         ) + $Time,
+                'revokedCertificates' => array(
                                              'type'     => ASN1::TYPE_SEQUENCE,
                                              'optional' => true,
                                              'min'      => 0,
                                              'max'      => -1,
                                              'children' => $RevokedCertificate
-                ],
-                'crlExtensions'       => [
+                                         ),
+                'crlExtensions'       => array(
                                              'constant' => 0,
                                              'optional' => true,
                                              'explicit' => true
-                                         ] + $this->Extensions
-            ]
-        ];
+                                         ) + $this->Extensions
+            )
+        );
 
-        $this->CertificateList = [
+        $this->CertificateList = array(
             'type'     => ASN1::TYPE_SEQUENCE,
-            'children' => [
+            'children' => array(
                 'tbsCertList'        => $TBSCertList,
                 'signatureAlgorithm' => $AlgorithmIdentifier,
-                'signature'          => ['type' => ASN1::TYPE_BIT_STRING]
-            ]
-        ];
+                'signature'          => array('type' => ASN1::TYPE_BIT_STRING)
+            )
+        );
 
-        $this->CRLNumber = ['type' => ASN1::TYPE_INTEGER];
+        $this->CRLNumber = array('type' => ASN1::TYPE_INTEGER);
 
-        $this->CRLReason = [
-            'type'    => ASN1::TYPE_ENUMERATED,
-            'mapping' => [
+        $this->CRLReason = array('type' => ASN1::TYPE_ENUMERATED,
+           'mapping' => array(
                             'unspecified',
                             'keyCompromise',
                             'cACompromise',
@@ -1171,78 +1168,77 @@ class X509
                             8 => 'removeFromCRL',
                             'privilegeWithdrawn',
                             'aACompromise'
-            ]
-        ];
+            )
+        );
 
-        $this->IssuingDistributionPoint = [
-            'type'     => ASN1::TYPE_SEQUENCE,
-            'children' => [
-                'distributionPoint'          => [
+        $this->IssuingDistributionPoint = array('type' => ASN1::TYPE_SEQUENCE,
+            'children' => array(
+                'distributionPoint'          => array(
                                                     'constant' => 0,
                                                     'optional' => true,
                                                     'explicit' => true
-                                                ] + $DistributionPointName,
-                'onlyContainsUserCerts'      => [
+                                                ) + $DistributionPointName,
+                'onlyContainsUserCerts'      => array(
                                                     'type'     => ASN1::TYPE_BOOLEAN,
                                                     'constant' => 1,
                                                     'optional' => true,
                                                     'default'  => false,
                                                     'implicit' => true
-                ],
-                'onlyContainsCACerts'        => [
+                                                ),
+                'onlyContainsCACerts'        => array(
                                                     'type'     => ASN1::TYPE_BOOLEAN,
                                                     'constant' => 2,
                                                     'optional' => true,
                                                     'default'  => false,
                                                     'implicit' => true
-                ],
-                'onlySomeReasons'           => [
+                                                ),
+                'onlySomeReasons'           => array(
                                                     'constant' => 3,
                                                     'optional' => true,
                                                     'implicit' => true
-                                               ] + $ReasonFlags,
-                'indirectCRL'               => [
+                                                ) + $ReasonFlags,
+                'indirectCRL'               => array(
                                                     'type'     => ASN1::TYPE_BOOLEAN,
                                                     'constant' => 4,
                                                     'optional' => true,
                                                     'default'  => false,
                                                     'implicit' => true
-                ],
-                'onlyContainsAttributeCerts' => [
+                                                ),
+                'onlyContainsAttributeCerts' => array(
                                                     'type'     => ASN1::TYPE_BOOLEAN,
                                                     'constant' => 5,
                                                     'optional' => true,
                                                     'default'  => false,
                                                     'implicit' => true
-                ]
-            ]
-        ];
+                                                )
+                          )
+        );
 
-        $this->InvalidityDate = ['type' => ASN1::TYPE_GENERALIZED_TIME];
+        $this->InvalidityDate = array('type' => ASN1::TYPE_GENERALIZED_TIME);
 
         $this->CertificateIssuer = $GeneralNames;
 
-        $this->HoldInstructionCode = ['type' => ASN1::TYPE_OBJECT_IDENTIFIER];
+        $this->HoldInstructionCode = array('type' => ASN1::TYPE_OBJECT_IDENTIFIER);
 
-        $PublicKeyAndChallenge = [
+        $PublicKeyAndChallenge = array(
             'type'     => ASN1::TYPE_SEQUENCE,
-            'children' => [
+            'children' => array(
                 'spki'      => $SubjectPublicKeyInfo,
-                'challenge' => ['type' => ASN1::TYPE_IA5_STRING]
-            ]
-        ];
+                'challenge' => array('type' => ASN1::TYPE_IA5_STRING)
+            )
+        );
 
-        $this->SignedPublicKeyAndChallenge = [
+        $this->SignedPublicKeyAndChallenge = array(
             'type'     => ASN1::TYPE_SEQUENCE,
-            'children' => [
+            'children' => array(
                 'publicKeyAndChallenge' => $PublicKeyAndChallenge,
                 'signatureAlgorithm'    => $AlgorithmIdentifier,
-                'signature'             => ['type' => ASN1::TYPE_BIT_STRING]
-            ]
-        ];
+                'signature'             => array('type' => ASN1::TYPE_BIT_STRING)
+            )
+        );
 
         // OIDs from RFC5280 and those RFCs mentioned in RFC5280#section-4.1.1.2
-        $this->oids = [
+        $this->oids = array(
             '1.3.6.1.5.5.7' => 'id-pkix',
             '1.3.6.1.5.5.7.1' => 'id-pe',
             '1.3.6.1.5.5.7.2' => 'id-qt',
@@ -1404,7 +1400,7 @@ class X509
             '1.2.840.113549.1.9.2' => 'pkcs-9-at-unstructuredName', // PKCS #9 unstructured name
             '1.2.840.113549.1.9.7' => 'pkcs-9-at-challengePassword', // Challenge password for certificate revocations
             '1.2.840.113549.1.9.14' => 'pkcs-9-at-extensionRequest' // Certificate extension request
-        ];
+        );
     }
 
     /**
@@ -1518,8 +1514,8 @@ class X509
         $asn1 = new ASN1();
         $asn1->loadOIDs($this->oids);
 
-        $filters = [];
-        $type_utf8_string = ['type' => ASN1::TYPE_UTF8_STRING];
+        $filters = array();
+        $type_utf8_string = array('type' => ASN1::TYPE_UTF8_STRING);
         $filters['tbsCertificate']['signature']['parameters'] = $type_utf8_string;
         $filters['tbsCertificate']['signature']['issuer']['rdnSequence']['value'] = $type_utf8_string;
         $filters['tbsCertificate']['issuer']['rdnSequence']['value'] = $type_utf8_string;
@@ -1536,7 +1532,7 @@ class X509
            characters.
          */
         $filters['policyQualifiers']['qualifier']
-            = ['type' => ASN1::TYPE_IA5_STRING];
+            = array('type' => ASN1::TYPE_IA5_STRING);
 
         $asn1->loadFilters($filters);
 
@@ -1576,7 +1572,7 @@ class X509
                    corresponding to the extension type identified by extnID */
                 $map = $this->_getMapping($id);
                 if (!is_bool($map)) {
-                    $mapped = $asn1->asn1map($decoded[0], $map, ['iPAddress' => [$this, '_decodeIP']]);
+                    $mapped = $asn1->asn1map($decoded[0], $map, array('iPAddress' => array($this, '_decodeIP')));
                     $value = $mapped === false ? $decoded[0] : $mapped;
 
                     if ($id == 'id-ce-certificatePolicies') {
@@ -1662,7 +1658,7 @@ class X509
                         unset($extensions[$i]);
                     }
                 } else {
-                    $temp = $asn1->encodeDER($value, $map, ['iPAddress' => [$this, '_encodeIP']]);
+                    $temp = $asn1->encodeDER($value, $map, array('iPAddress' => array($this, '_encodeIP')));
                     $value = base64_encode($temp);
                 }
             }
@@ -1936,7 +1932,7 @@ class X509
 
         if ($names = $this->getExtension('id-ce-subjectAltName')) {
             foreach ($names as $key => $value) {
-                $value = str_replace(['.', '*'], ['\.', '[^.]*'], $value);
+                $value = str_replace(array('.', '*'), array('\.', '[^.]*'), $value);
                 switch ($key) {
                     case 'dNSName':
                         /* From RFC2818 "HTTP over TLS":
@@ -1965,7 +1961,7 @@ class X509
         }
 
         if ($value = $this->getDNProp('id-at-commonName')) {
-            $value = str_replace(['.', '*'], ['\.', '[^.]*'], $value[0]);
+            $value = str_replace(array('.', '*'), array('\.', '[^.]*'), $value[0]);
             return preg_match('#^' . $value . '$#', $components['host']);
         }
 
@@ -2323,7 +2319,7 @@ class X509
     function setDNProp($propName, $propValue, $type = 'utf8String')
     {
         if (empty($this->dn)) {
-            $this->dn = ['rdnSequence' => []];
+            $this->dn = array('rdnSequence' => array());
         }
 
         if (($propName = $this->_translateDNProp($propName)) === false) {
@@ -2332,14 +2328,14 @@ class X509
 
         foreach ((array) $propValue as $v) {
             if (!is_array($v) && isset($type)) {
-                $v = [$type => $v];
+                $v = array($type => $v);
             }
-            $this->dn['rdnSequence'][] = [
-                [
+            $this->dn['rdnSequence'][] = array(
+                array(
                     'type' => $propName,
                     'value'=> $v
-                ]
-            ];
+                )
+            );
         }
 
         return true;
@@ -2396,7 +2392,7 @@ class X509
         }
 
         $dn = $dn['rdnSequence'];
-        $result = [];
+        $result = array();
         $asn1 = new ASN1();
         for ($i = 0; $i < count($dn); $i++) {
             if ($dn[$i][0]['type'] == $propName) {
@@ -2486,8 +2482,8 @@ class X509
             case self::DN_ASN1:
                 $asn1 = new ASN1();
                 $asn1->loadOIDs($this->oids);
-                $filters = [];
-                $filters['rdnSequence']['value'] = ['type' => ASN1::TYPE_UTF8_STRING];
+                $filters = array();
+                $filters['rdnSequence']['value'] = array('type' => ASN1::TYPE_UTF8_STRING);
                 $asn1->loadFilters($filters);
                 return $asn1->encodeDER($dn, $this->Name);
             case self::DN_OPENSSL:
@@ -2496,14 +2492,14 @@ class X509
                     return false;
                 }
                 $attrs = preg_split('#((?:^|, *|/)[a-z][a-z0-9]*=)#i', $dn, -1, PREG_SPLIT_DELIM_CAPTURE);
-                $dn = [];
+                $dn = array();
                 for ($i = 1; $i < count($attrs); $i += 2) {
                     $prop = trim($attrs[$i], ', =/');
                     $value = $attrs[$i + 1];
                     if (!isset($dn[$prop])) {
                         $dn[$prop] = $value;
                     } else {
-                        $dn[$prop] = array_merge((array) $dn[$prop], [$value]);
+                        $dn[$prop] = array_merge((array) $dn[$prop], array($value));
                     }
                 }
                 return $dn;
@@ -2512,8 +2508,8 @@ class X509
                 // trimmed lowercase UTF-8 with all spacing  as one blank.
                 $asn1 = new ASN1();
                 $asn1->loadOIDs($this->oids);
-                $filters = [];
-                $filters['value'] = ['type' => ASN1::TYPE_UTF8_STRING];
+                $filters = array();
+                $filters['value'] = array('type' => ASN1::TYPE_UTF8_STRING);
                 $asn1->loadFilters($filters);
                 $result = '';
                 foreach ($dn['rdnSequence'] as $rdn) {
@@ -2708,7 +2704,7 @@ class X509
      */
     function getChain()
     {
-        $chain = [$this->currentCert];
+        $chain = array($this->currentCert);
 
         if (!is_array($this->currentCert) || !isset($this->currentCert['tbsCertificate'])) {
             return false;
@@ -2801,7 +2797,7 @@ class X509
         }
 
         if (isset($this->currentCert) && is_array($this->currentCert)) {
-            foreach (['tbsCertificate/subjectPublicKeyInfo', 'certificationRequestInfo/subjectPKInfo'] as $path) {
+            foreach (array('tbsCertificate/subjectPublicKeyInfo', 'certificationRequestInfo/subjectPKInfo') as $path) {
                 $keyinfo = $this->_subArray($this->currentCert, $path);
                 if (!empty($keyinfo)) {
                     break;
@@ -2936,9 +2932,9 @@ class X509
 
         $asn1->loadOIDs($this->oids);
 
-        $filters = [];
+        $filters = array();
         $filters['certificationRequestInfo']['subject']['rdnSequence']['value']
-            = ['type' => ASN1::TYPE_UTF8_STRING];
+            = array('type' => ASN1::TYPE_UTF8_STRING);
 
         $asn1->loadFilters($filters);
 
@@ -3151,22 +3147,22 @@ class X509
 
         $asn1->loadOIDs($this->oids);
 
-        $filters = [];
+        $filters = array();
         $filters['tbsCertList']['issuer']['rdnSequence']['value']
-            = ['type' => ASN1::TYPE_UTF8_STRING];
+            = array('type' => ASN1::TYPE_UTF8_STRING);
         $filters['tbsCertList']['signature']['parameters']
-            = ['type' => ASN1::TYPE_UTF8_STRING];
+            = array('type' => ASN1::TYPE_UTF8_STRING);
         $filters['signatureAlgorithm']['parameters']
-            = ['type' => ASN1::TYPE_UTF8_STRING];
+            = array('type' => ASN1::TYPE_UTF8_STRING);
 
         if (empty($crl['tbsCertList']['signature']['parameters'])) {
             $filters['tbsCertList']['signature']['parameters']
-                = ['type' => ASN1::TYPE_NULL];
+                = array('type' => ASN1::TYPE_NULL);
         }
 
         if (empty($crl['signatureAlgorithm']['parameters'])) {
             $filters['signatureAlgorithm']['parameters']
-                = ['type' => ASN1::TYPE_NULL];
+                = array('type' => ASN1::TYPE_NULL);
         }
 
         $asn1->loadFilters($filters);
@@ -3206,9 +3202,9 @@ class X509
     {
         $year = @gmdate("Y", @strtotime($date)); // the same way ASN1.php parses this
         if ($year < 2050) {
-            return ['utcTime' => $date];
+            return array('utcTime' => $date);
         } else {
-            return ['generalTime' => $date];
+            return array('generalTime' => $date);
         }
     }
 
@@ -3282,23 +3278,23 @@ class X509
                 $this->serialNumber :
                 new BigInteger(Random::string(20) & ("\x7F" . str_repeat("\xFF", 19)), 256);
 
-            $this->currentCert = [
+            $this->currentCert = array(
                 'tbsCertificate' =>
-                    [
+                    array(
                         'version' => 'v3',
                         'serialNumber' => $serialNumber, // $this->setserialNumber()
-                        'signature' => ['algorithm' => $signatureAlgorithm],
+                        'signature' => array('algorithm' => $signatureAlgorithm),
                         'issuer' => false, // this is going to be overwritten later
-                        'validity' => [
+                        'validity' => array(
                             'notBefore' => $this->_timeField($startDate), // $this->setStartDate()
                             'notAfter' => $this->_timeField($endDate)   // $this->setEndDate()
-                        ],
+                        ),
                         'subject' => $subject->dn,
                         'subjectPublicKeyInfo' => $subjectPublicKey
-                    ],
-                'signatureAlgorithm' => ['algorithm' => $signatureAlgorithm],
-                'signature'          => false // this is going to be overwritten later
-            ];
+                    ),
+                    'signatureAlgorithm' => array('algorithm' => $signatureAlgorithm),
+                    'signature'          => false // this is going to be overwritten later
+            );
 
             // Copy extensions from CSR.
             $csrexts = $subject->getAttribute('pkcs-9-at-extensionRequest', 0);
@@ -3311,14 +3307,14 @@ class X509
         $this->currentCert['tbsCertificate']['issuer'] = $issuer->dn;
 
         if (isset($issuer->currentKeyIdentifier)) {
-            $this->setExtension('id-ce-authorityKeyIdentifier', [
+            $this->setExtension('id-ce-authorityKeyIdentifier', array(
                     //'authorityCertIssuer' => array(
                     //    array(
                     //        'directoryName' => $issuer->dn
                     //    )
                     //),
                     'keyIdentifier' => $issuer->currentKeyIdentifier
-            ]);
+                ));
             //$extensions = &$this->currentCert['tbsCertificate']['extensions'];
             //if (isset($issuer->serialNumber)) {
             //    $extensions[count($extensions) - 1]['authorityCertSerialNumber'] = $issuer->serialNumber;
@@ -3330,16 +3326,16 @@ class X509
             $this->setExtension('id-ce-subjectKeyIdentifier', $subject->currentKeyIdentifier);
         }
 
-        $altName = [];
+        $altName = array();
 
         if (isset($subject->domains) && count($subject->domains) > 1) {
-            $altName = array_map(['X509', '_dnsName'], $subject->domains);
+            $altName = array_map(array('X509', '_dnsName'), $subject->domains);
         }
 
         if (isset($subject->ipAddresses) && count($subject->ipAddresses)) {
             // should an IP address appear as the CN if no domain name is specified? idk
             //$ips = count($subject->domains) ? $subject->ipAddresses : array_slice($subject->ipAddresses, 1);
-            $ipAddresses = [];
+            $ipAddresses = array();
             foreach ($subject->ipAddresses as $ipAddress) {
                 $encoded = $subject->_ipAddress($ipAddress);
                 if ($encoded !== false) {
@@ -3358,22 +3354,22 @@ class X509
         if ($this->caFlag) {
             $keyUsage = $this->getExtension('id-ce-keyUsage');
             if (!$keyUsage) {
-                $keyUsage = [];
+                $keyUsage = array();
             }
 
             $this->setExtension(
                 'id-ce-keyUsage',
-                array_values(array_unique(array_merge($keyUsage, ['cRLSign', 'keyCertSign'])))
+                array_values(array_unique(array_merge($keyUsage, array('cRLSign', 'keyCertSign'))))
             );
 
             $basicConstraints = $this->getExtension('id-ce-basicConstraints');
             if (!$basicConstraints) {
-                $basicConstraints = [];
+                $basicConstraints = array();
             }
 
             $this->setExtension(
                 'id-ce-basicConstraints',
-                array_unique(array_merge(['cA' => true], $basicConstraints)),
+                array_unique(array_merge(array('cA' => true), $basicConstraints)),
                 true
             );
 
@@ -3428,16 +3424,16 @@ class X509
             }
             $this->currentCert['certificationRequestInfo']['subjectPKInfo'] = $publicKey;
         } else {
-            $this->currentCert = [
+            $this->currentCert = array(
                 'certificationRequestInfo' =>
-                    [
+                    array(
                         'version' => 'v1',
                         'subject' => $this->dn,
                         'subjectPKInfo' => $publicKey
-                    ],
-                'signatureAlgorithm' => ['algorithm' => $signatureAlgorithm],
-                'signature'          => false // this is going to be overwritten later
-            ];
+                    ),
+                    'signatureAlgorithm' => array('algorithm' => $signatureAlgorithm),
+                    'signature'          => false // this is going to be overwritten later
+            );
         }
 
         // resync $this->signatureSubject
@@ -3489,9 +3485,9 @@ class X509
                 $this->currentCert['publicKeyAndChallenge']['challenge'] = $this->challenge & str_repeat("\x7F", strlen($this->challenge));
             }
         } else {
-            $this->currentCert = [
+            $this->currentCert = array(
                 'publicKeyAndChallenge' =>
-                    [
+                    array(
                         'spki' => $publicKey,
                         // quoting <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/keygen>,
                         // "A challenge string that is submitted along with the public key. Defaults to an empty string if not specified."
@@ -3499,10 +3495,10 @@ class X509
                         // we could alternatively do this instead if we ignored the specs:
                         // Random::string(8) & str_repeat("\x7F", 8)
                         'challenge' => !empty($this->challenge) ? $this->challenge : ''
-                    ],
-                'signatureAlgorithm' => ['algorithm' => $signatureAlgorithm],
-                'signature'          => false // this is going to be overwritten later
-            ];
+                    ),
+                    'signatureAlgorithm' => array('algorithm' => $signatureAlgorithm),
+                    'signature'          => false // this is going to be overwritten later
+            );
         }
 
         // resync $this->signatureSubject
@@ -3545,17 +3541,17 @@ class X509
             $this->currentCert['tbsCertList']['signature']['algorithm'] = $signatureAlgorithm;
             $this->currentCert['signatureAlgorithm']['algorithm'] = $signatureAlgorithm;
         } else {
-            $this->currentCert = [
+            $this->currentCert = array(
                 'tbsCertList' =>
-                    [
+                    array(
                         'version' => 'v2',
-                        'signature' => ['algorithm' => $signatureAlgorithm],
+                        'signature' => array('algorithm' => $signatureAlgorithm),
                         'issuer' => false, // this is going to be overwritten later
                         'thisUpdate' => $this->_timeField($thisUpdate) // $this->setStartDate()
-                    ],
-                'signatureAlgorithm' => ['algorithm' => $signatureAlgorithm],
-                'signature'          => false // this is going to be overwritten later
-            ];
+                    ),
+                    'signatureAlgorithm' => array('algorithm' => $signatureAlgorithm),
+                    'signature'          => false // this is going to be overwritten later
+            );
         }
 
         $tbsCertList = &$this->currentCert['tbsCertList'];
@@ -3608,14 +3604,14 @@ class X509
             }
 
             if (isset($issuer->currentKeyIdentifier)) {
-                $this->setExtension('id-ce-authorityKeyIdentifier', [
+                $this->setExtension('id-ce-authorityKeyIdentifier', array(
                         //'authorityCertIssuer' => array(
                         //    array(
                         //        'directoryName' => $issuer->dn
                         //    )
                         //),
                         'keyIdentifier' => $issuer->currentKeyIdentifier
-                ]);
+                    ));
                 //$extensions = &$tbsCertList['crlExtensions'];
                 //if (isset($issuer->serialNumber)) {
                 //    $extensions[count($extensions) - 1]['authorityCertSerialNumber'] = $issuer->serialNumber;
@@ -3766,7 +3762,7 @@ class X509
                     return $false;
                 }
 
-                $root[$i] = [];
+                $root[$i] = array();
             }
 
             $root = &$root[$i];
@@ -3813,7 +3809,7 @@ class X509
                     }
                     if ($create) {
                         $key = count($attributes);
-                        $attributes[] = ['type' => 'pkcs-9-at-extensionRequest', 'value' => []];
+                        $attributes[] = array('type' => 'pkcs-9-at-extensionRequest', 'value' => array());
                         $path = "$pth/$key/value/0";
                     }
                 }
@@ -3897,7 +3893,7 @@ class X509
     function _getExtensions($cert = null, $path = null)
     {
         $exts = $this->_extensions($cert, $path);
-        $extensions = [];
+        $extensions = array();
 
         if (is_array($exts)) {
             foreach ($exts as $extension) {
@@ -3927,7 +3923,7 @@ class X509
             return false;
         }
 
-        $newext = ['extnId' => $id, 'critical' => $critical, 'extnValue' => $value];
+        $newext = array('extnId'  => $id, 'critical' => $critical, 'extnValue' => $value);
 
         foreach ($extensions as $key => $value) {
             if ($value['extnId'] == $id) {
@@ -4104,7 +4100,7 @@ class X509
         }
 
         $attributes = $this->_subArray($csr, 'certificationRequestInfo/attributes');
-        $attrs = [];
+        $attrs = array();
 
         if (is_array($attributes)) {
             foreach ($attributes as $attribute) {
@@ -4164,7 +4160,7 @@ class X509
                 $attributes[$last]['value'][] = $value;
                 break;
             default:
-                $attributes[] = ['type' => $id, 'value' => $disposition == self::ATTR_ALL ? $value: [$value]];
+                $attributes[] = array('type' => $id, 'value' => $disposition == self::ATTR_ALL ? $value: array($value));
                 break;
         }
 
@@ -4228,7 +4224,7 @@ class X509
                 if (empty($decoded)) {
                     return false;
                 }
-                $raw = $asn1->asn1map($decoded[0], ['type' => ASN1::TYPE_BIT_STRING]);
+                $raw = $asn1->asn1map($decoded[0], array('type' => ASN1::TYPE_BIT_STRING));
                 if (empty($raw)) {
                     return false;
                 }
@@ -4286,10 +4282,10 @@ class X509
             // the following two return statements do the same thing. i dunno.. i just prefer the later for some reason.
             // the former is a good example of how to do fuzzing on the public key
             //return new Element(base64_decode(preg_replace('#-.+-|[\r\n]#', '', $this->publicKey->getPublicKey())));
-            return [
-                'algorithm' => ['algorithm' => 'rsaEncryption'],
+            return array(
+                'algorithm' => array('algorithm' => 'rsaEncryption'),
                 'subjectPublicKey' => $this->publicKey->getPublicKey(RSA::PUBLIC_FORMAT_PKCS1)
-            ];
+            );
         }
 
         return false;
@@ -4334,7 +4330,7 @@ class X509
      */
     function _dnsName($domain)
     {
-        return ['dNSName' => $domain];
+        return array('dNSName' => $domain);
     }
 
     /**
@@ -4348,7 +4344,7 @@ class X509
      */
     function _iPAddress($address)
     {
-        return ['iPAddress' => $address];
+        return array('iPAddress' => $address);
     }
 
     /**
@@ -4375,10 +4371,8 @@ class X509
         }
 
         $i = count($rclist);
-        $rclist[] = [
-            'userCertificate' => $serial,
-            'revocationDate'  => $this->_timeField(@date('D, d M Y H:i:s O'))
-        ];
+        $rclist[] = array('userCertificate' => $serial,
+                          'revocationDate'  => $this->_timeField(@date('D, d M Y H:i:s O')));
         return $i;
     }
 
@@ -4464,7 +4458,7 @@ class X509
             return false;
         }
 
-        $result = [];
+        $result = array();
 
         if (is_array($rclist = $this->_subArray($crl, 'tbsCertList/revokedCertificates'))) {
             foreach ($rclist as $rc) {
@@ -4589,7 +4583,7 @@ class X509
         // remove the -----BEGIN CERTIFICATE----- and -----END CERTIFICATE----- stuff
         $temp = preg_replace('#-+[^-]+-+#', '', $temp);
         // remove new lines
-        $temp = str_replace(["\r", "\n", ' '], '', $temp);
+        $temp = str_replace(array("\r", "\n", ' '), '', $temp);
         $temp = preg_match('#^[a-zA-Z\d/+]*={0,2}$#', $temp) ? base64_decode($temp) : false;
         return $temp != false ? $temp : $str;
     }

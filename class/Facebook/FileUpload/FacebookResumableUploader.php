@@ -19,8 +19,8 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- *
  */
+
 namespace Facebook\FileUpload;
 
 use Facebook\Authentication\AccessToken;
@@ -59,8 +59,6 @@ class FacebookResumableUploader
     protected $graphVersion;
 
     /**
-     * @param FacebookApp             $app
-     * @param FacebookClient          $client
      * @param AccessToken|string|null $accessToken
      * @param string                  $graphVersion
      */
@@ -76,11 +74,9 @@ class FacebookResumableUploader
      * Upload by chunks - start phase
      *
      * @param string $endpoint
-     * @param FacebookFile $file
-     *
-     * @return FacebookTransferChunk
      *
      * @throws FacebookSDKException
+     * @return FacebookTransferChunk
      */
     public function start($endpoint, FacebookFile $file)
     {
@@ -97,12 +93,10 @@ class FacebookResumableUploader
      * Upload by chunks - transfer phase
      *
      * @param string $endpoint
-     * @param FacebookTransferChunk $chunk
-     * @param boolean $allowToThrow
-     *
-     * @return FacebookTransferChunk
+     * @param bool $allowToThrow
      *
      * @throws FacebookResponseException
+     * @return FacebookTransferChunk
      */
     public function transfer($endpoint, FacebookTransferChunk $chunk, $allowToThrow = false)
     {
@@ -135,9 +129,8 @@ class FacebookResumableUploader
      * @param string $uploadSessionId
      * @param array $metadata The metadata associated with the file.
      *
-     * @return boolean
-     *
      * @throws FacebookSDKException
+     * @return bool
      */
     public function finish($endpoint, $uploadSessionId, $metadata = [])
     {

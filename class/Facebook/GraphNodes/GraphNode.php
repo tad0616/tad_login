@@ -19,8 +19,8 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- *
  */
+
 namespace Facebook\GraphNodes;
 
 /**
@@ -37,8 +37,6 @@ class GraphNode extends Collection
 
     /**
      * Init this Graph object.
-     *
-     * @param array $data
      */
     public function __construct(array $data = [])
     {
@@ -65,7 +63,7 @@ class GraphNode extends Collection
                     || $this->isIso8601DateString($v))
             ) {
                 $items[$k] = $this->castToDateTime($v);
-            } elseif ($k === 'birthday') {
+            } elseif ('birthday' === $k) {
                 $items[$k] = $this->castToBirthday($v);
             } else {
                 $items[$k] = $v;
@@ -111,7 +109,7 @@ class GraphNode extends Collection
      *
      * @param string $string
      *
-     * @return boolean
+     * @return bool
      *
      * @see https://developers.facebook.com/docs/graph-api/using-graph-api/#readmodifiers
      * @see http://www.cl.cam.ac.uk/~mgk25/iso-time.html
@@ -130,7 +128,7 @@ class GraphNode extends Collection
             . '((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d'
             . '([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$/';
 
-        return preg_match($crazyInsaneRegexThatSomehowDetectsIso8601, $string) === 1;
+        return 1 === preg_match($crazyInsaneRegexThatSomehowDetectsIso8601, $string);
     }
 
     /**
@@ -138,7 +136,7 @@ class GraphNode extends Collection
      *
      * @param string $key
      *
-     * @return boolean
+     * @return bool
      */
     public function shouldCastAsDateTime($key)
     {
@@ -150,7 +148,7 @@ class GraphNode extends Collection
             'backdated_time',
             'issued_at',
             'expires_at',
-            'publish_time'
+            'publish_time',
         ], true);
     }
 

@@ -19,8 +19,8 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- *
  */
+
 namespace Facebook\Helpers;
 
 use Facebook\Authentication\AccessToken;
@@ -149,9 +149,8 @@ class FacebookRedirectLoginHelper
      * @param string             $next        The url Facebook should redirect the user to after a successful logout.
      * @param string             $separator   The separator to use in http_build_query().
      *
-     * @return string
-     *
      * @throws FacebookSDKException
+     * @return string
      */
     public function getLogoutUrl($accessToken, $next, $separator = '&')
     {
@@ -208,9 +207,8 @@ class FacebookRedirectLoginHelper
      *
      * @param string|null $redirectUrl The redirect URL.
      *
-     * @return AccessToken|null
-     *
      * @throws FacebookSDKException
+     * @return AccessToken|null
      */
     public function getAccessToken($redirectUrl = null)
     {

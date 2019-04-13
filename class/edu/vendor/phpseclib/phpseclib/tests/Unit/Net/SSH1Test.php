@@ -9,19 +9,19 @@ class Unit_Net_SSH1Test extends PhpseclibTestCase
 {
     public function formatLogDataProvider()
     {
-        return [
-            [
-                ['hello world'],
-                ['<--'],
+        return array(
+            array(
+                array('hello world'),
+                array('<--'),
                 "<--\r\n00000000  68:65:6c:6c:6f:20:77:6f:72:6c:64                 hello world\r\n\r\n"
-            ],
-            [
-                ['hello', 'world'],
-                ['<--', '<--'],
+            ),
+            array(
+                array('hello', 'world'),
+                array('<--', '<--'),
                 "<--\r\n00000000  68:65:6c:6c:6f                                   hello\r\n\r\n" .
                 "<--\r\n00000000  77:6f:72:6c:64                                   world\r\n\r\n"
-            ],
-        ];
+            ),
+        );
     }
 
     /**

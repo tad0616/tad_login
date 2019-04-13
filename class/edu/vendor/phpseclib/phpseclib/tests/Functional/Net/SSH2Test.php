@@ -108,12 +108,12 @@ class Functional_Net_SSH2Test extends PhpseclibFunctionalTestCase
      */
     public function testExecWithMethodCallback($ssh)
     {
-        $callbackObject = $this->getMock('stdClass', ['callbackMethod']);
+        $callbackObject = $this->getMock('stdClass', array('callbackMethod'));
         $callbackObject
             ->expects($this->atLeastOnce())
             ->method('callbackMethod')
             ->will($this->returnValue(true));
-        $ssh->exec('pwd', [$callbackObject, 'callbackMethod']);
+        $ssh->exec('pwd', array($callbackObject, 'callbackMethod'));
     }
 
     public function testGetServerPublicHostKey()

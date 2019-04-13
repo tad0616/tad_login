@@ -19,8 +19,8 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- *
  */
+
 namespace Facebook\GraphNodes;
 
 /**
@@ -103,7 +103,7 @@ class GraphAchievement extends GraphNode
     /**
      * Indicates whether gaining the achievement published a feed story for the user.
      *
-     * @return boolean|null
+     * @return bool|null
      */
     public function isNoFeedStory()
     {

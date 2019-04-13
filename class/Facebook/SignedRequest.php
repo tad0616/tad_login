@@ -19,8 +19,8 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- *
  */
+
 namespace Facebook;
 
 use Facebook\Exceptions\FacebookSDKException;
@@ -116,7 +116,7 @@ class SignedRequest
     /**
      * Checks for OAuth data in the payload.
      *
-     * @return boolean
+     * @return bool
      */
     public function hasOAuthData()
     {
@@ -126,7 +126,6 @@ class SignedRequest
     /**
      * Creates a signed request from an array of data.
      *
-     * @param array $payload
      *
      * @return string
      */
@@ -164,13 +163,12 @@ class SignedRequest
     /**
      * Splits a raw signed request into signature and payload.
      *
-     * @return array
-     *
      * @throws FacebookSDKException
+     * @return array
      */
     protected function split()
     {
-        if (strpos($this->rawSignedRequest, '.') === false) {
+        if (false === mb_strpos($this->rawSignedRequest, '.')) {
             throw new FacebookSDKException('Malformed signed request.', 606);
         }
 
@@ -182,9 +180,8 @@ class SignedRequest
      *
      * @param string $encodedSig
      *
-     * @return string
-     *
      * @throws FacebookSDKException
+     * @return string
      */
     protected function decodeSignature($encodedSig)
     {
@@ -202,9 +199,8 @@ class SignedRequest
      *
      * @param string $encodedPayload
      *
-     * @return array
-     *
      * @throws FacebookSDKException
+     * @return array
      */
     protected function decodePayload($encodedPayload)
     {
@@ -228,7 +224,7 @@ class SignedRequest
      */
     protected function validateAlgorithm()
     {
-        if ($this->get('algorithm') !== 'HMAC-SHA256') {
+        if ('HMAC-SHA256' !== $this->get('algorithm')) {
             throw new FacebookSDKException('Signed request is using the wrong algorithm.', 605);
         }
     }
@@ -238,9 +234,8 @@ class SignedRequest
      *
      * @param string $encodedData
      *
-     * @return string
-     *
      * @throws FacebookSDKException
+     * @return string
      */
     protected function hashSignature($encodedData)
     {
@@ -291,7 +286,7 @@ class SignedRequest
         $urlDecodedBase64 = strtr($input, '-_', '+/');
         $this->validateBase64($urlDecodedBase64);
 
-        return base64_decode($urlDecodedBase64);
+        return base64_decode($urlDecodedBase64, true);
     }
 
     /**

@@ -19,8 +19,8 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- *
  */
+
 namespace Facebook\Http;
 
 /**
@@ -126,7 +126,7 @@ class GraphRawResponse
 
         $headerComponents = explode("\n", $rawHeader);
         foreach ($headerComponents as $line) {
-            if (strpos($line, ': ') === false) {
+            if (false === mb_strpos($line, ': ')) {
                 $this->setHttpResponseCodeFromHeader($line);
             } else {
                 list($key, $value) = explode(': ', $line, 2);

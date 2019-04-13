@@ -19,14 +19,14 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- *
  */
+
 namespace Facebook;
 
-use Facebook\HttpClients\FacebookHttpClientInterface;
-use Facebook\HttpClients\FacebookCurlHttpClient;
-use Facebook\HttpClients\FacebookStreamHttpClient;
 use Facebook\Exceptions\FacebookSDKException;
+use Facebook\HttpClients\FacebookCurlHttpClient;
+use Facebook\HttpClients\FacebookHttpClientInterface;
+use Facebook\HttpClients\FacebookStreamHttpClient;
 
 /**
  * Class FacebookClient
@@ -88,8 +88,7 @@ class FacebookClient
     /**
      * Instantiates a new FacebookClient object.
      *
-     * @param FacebookHttpClientInterface|null $httpClientHandler
-     * @param boolean                          $enableBeta
+     * @param bool                          $enableBeta
      */
     public function __construct(FacebookHttpClientInterface $httpClientHandler = null, $enableBeta = false)
     {
@@ -99,8 +98,6 @@ class FacebookClient
 
     /**
      * Sets the HTTP client handler.
-     *
-     * @param FacebookHttpClientInterface $httpClientHandler
      */
     public function setHttpClientHandler(FacebookHttpClientInterface $httpClientHandler)
     {
@@ -130,7 +127,7 @@ class FacebookClient
     /**
      * Toggle beta mode.
      *
-     * @param boolean $betaMode
+     * @param bool $betaMode
      */
     public function enableBetaMode($betaMode = true)
     {
@@ -140,7 +137,7 @@ class FacebookClient
     /**
      * Returns the base Graph URL.
      *
-     * @param boolean $postToVideoUrl Post to the video API if videos are being uploaded.
+     * @param bool $postToVideoUrl Post to the video API if videos are being uploaded.
      *
      * @return string
      */
@@ -156,7 +153,6 @@ class FacebookClient
     /**
      * Prepares the request for sending to the client handler.
      *
-     * @param FacebookRequest $request
      *
      * @return array
      */
@@ -189,15 +185,13 @@ class FacebookClient
     /**
      * Makes the request to Graph and returns the result.
      *
-     * @param FacebookRequest $request
-     *
-     * @return FacebookResponse
      *
      * @throws FacebookSDKException
+     * @return FacebookResponse
      */
     public function sendRequest(FacebookRequest $request)
     {
-        if (get_class($request) === 'Facebook\FacebookRequest') {
+        if ('Facebook\FacebookRequest' === get_class($request)) {
             $request->validateAccessToken();
         }
 
@@ -234,11 +228,9 @@ class FacebookClient
     /**
      * Makes a batched request to Graph and returns the result.
      *
-     * @param FacebookBatchRequest $request
-     *
-     * @return FacebookBatchResponse
      *
      * @throws FacebookSDKException
+     * @return FacebookBatchResponse
      */
     public function sendBatchRequest(FacebookBatchRequest $request)
     {

@@ -1,4 +1,6 @@
-<?php namespace XoopsModules\Tad_login;
+<?php
+
+namespace XoopsModules\Tad_login;
 
 /*
  Utility Class Definition
@@ -19,14 +21,13 @@
  * @author       Mamba <mambax7@gmail.com>
  */
 
-
 /**
  * Class Utility
  */
 class Utility
 {
     //建立目錄
-    public static function mk_dir($dir = "")
+    public static function mk_dir($dir = '')
     {
         //若無目錄名稱秀出警告訊息
         if (empty($dir)) {
@@ -55,28 +56,28 @@ class Utility
         }
 
         while ($file = readdir($dir_handle)) {
-            if ($file != "." && $file != "..") {
-                if (!is_dir($dirname . "/" . $file)) {
-                    unlink($dirname . "/" . $file);
+            if ('.' != $file && '..' != $file) {
+                if (!is_dir($dirname . '/' . $file)) {
+                    unlink($dirname . '/' . $file);
                 } else {
                     self::delete_directory($dirname . '/' . $file);
                 }
-
             }
         }
         closedir($dir_handle);
         rmdir($dirname);
+
         return true;
     }
 
     //拷貝目錄
-    public static function full_copy($source = "", $target = "")
+    public static function full_copy($source = '', $target = '')
     {
         if (is_dir($source)) {
             @mkdir($target);
             $d = dir($source);
             while (false !== ($entry = $d->read())) {
-                if ($entry == '.' || $entry == '..') {
+                if ('.' == $entry || '..' == $entry) {
                     continue;
                 }
 
@@ -98,19 +99,21 @@ class Utility
         if (!rename($oldfile, $newfile)) {
             if (copy($oldfile, $newfile)) {
                 unlink($oldfile);
+
                 return true;
             }
+
             return false;
         }
+
         return true;
     }
-
 
     //檢查有無隨機密碼資料表
     public static function chk_chk1()
     {
         global $xoopsDB;
-        $sql    = "SELECT count(*) FROM " . $xoopsDB->prefix("tad_login_random_pass");
+        $sql = 'SELECT count(*) FROM ' . $xoopsDB->prefix('tad_login_random_pass');
         $result = $xoopsDB->query($sql);
         if (empty($result)) {
             return false;
@@ -123,11 +126,11 @@ class Utility
     public static function go_update1()
     {
         global $xoopsDB;
-        $sql = "CREATE TABLE " . $xoopsDB->prefix("tad_login_random_pass") . " (
+        $sql = 'CREATE TABLE ' . $xoopsDB->prefix('tad_login_random_pass') . ' (
     `uname` VARCHAR( 100 ) NOT NULL ,
     `random_pass` VARCHAR( 255 ) NOT NULL ,
     PRIMARY KEY ( `uname` )
-  );";
+  );';
         $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL, 3, $xoopsDB->error());
 
         return true;
@@ -137,7 +140,7 @@ class Utility
     public static function chk_chk2()
     {
         global $xoopsDB;
-        $sql    = "SELECT count(*) FROM " . $xoopsDB->prefix("tad_login_config");
+        $sql = 'SELECT count(*) FROM ' . $xoopsDB->prefix('tad_login_config');
         $result = $xoopsDB->query($sql);
         if (empty($result)) {
             return false;
@@ -150,12 +153,12 @@ class Utility
     public static function go_update2()
     {
         global $xoopsDB;
-        $sql = "CREATE TABLE " . $xoopsDB->prefix("tad_login_config") . " (
+        $sql = 'CREATE TABLE ' . $xoopsDB->prefix('tad_login_config') . ' (
     `config_id` SMALLINT(5) UNSIGNED NOT NULL AUTO_INCREMENT,
     `item` TEXT NOT NULL,
     `group_id` SMALLINT(5) UNSIGNED NOT NULL DEFAULT 0,
     PRIMARY KEY (`config_id`)
-  ) ENGINE=MyISAM ;";
+  ) ENGINE=MyISAM ;';
         $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL, 3, $xoopsDB->error());
 
         return true;
@@ -165,7 +168,7 @@ class Utility
     public static function chk_chk3()
     {
         global $xoopsDB;
-        $sql    = "SELECT count(`kind`) FROM " . $xoopsDB->prefix("tad_login_config");
+        $sql = 'SELECT count(`kind`) FROM ' . $xoopsDB->prefix('tad_login_config');
         $result = $xoopsDB->query($sql);
         if (empty($result)) {
             return false;
@@ -178,23 +181,17 @@ class Utility
     public static function go_update3()
     {
         global $xoopsDB;
-        $sql = "ALTER TABLE " . $xoopsDB->prefix("tad_login_config") . " ADD `kind` VARCHAR(255) NOT NULL DEFAULT '' AFTER `item`";
+        $sql = 'ALTER TABLE ' . $xoopsDB->prefix('tad_login_config') . " ADD `kind` VARCHAR(255) NOT NULL DEFAULT '' AFTER `item`";
         $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL, 3, $xoopsDB->error());
 
-        $sql = "SELECT config_id,item FROM " . $xoopsDB->prefix("tad_login_config") . " ";
+        $sql = 'SELECT config_id,item FROM ' . $xoopsDB->prefix('tad_login_config') . ' ';
         $result = $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL, 3, $xoopsDB->error());
         while (list($config_id, $item) = $xoopsDB->fetchRow($result)) {
-            $kind = (strpos($item, "@") !== false) ? "email" : "teacher";
-            $sql  = "update " . $xoopsDB->prefix("tad_login_config") . " set kind='$kind' where config_id='{$config_id}'";
+            $kind = (false !== mb_strpos($item, '@')) ? 'email' : 'teacher';
+            $sql = 'update ' . $xoopsDB->prefix('tad_login_config') . " set kind='$kind' where config_id='{$config_id}'";
             $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL, 3, $xoopsDB->error());
         }
 
         return true;
     }
-
-
-
-
-
-
 }

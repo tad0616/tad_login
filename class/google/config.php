@@ -14,41 +14,41 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-include_once "../../../../mainfile.php";
+include_once '../../../../mainfile.php';
 
 global $apiConfig;
 
-$modhandler      = xoops_getHandler('module');
-$tad_loginModule = $modhandler->getByDirname("tad_login");
-$config_handler  = xoops_getHandler('config');
+$modhandler = xoops_getHandler('module');
+$tad_loginModule = $modhandler->getByDirname('tad_login');
+$config_handler = xoops_getHandler('config');
 $tad_loginConfig = $config_handler->getConfigsByCat(0, $tad_loginModule->getVar('mid'));
 
 $apiConfig = [
     // True if objects should be returned by the service classes.
     // False if associative arrays should be returned (default behavior).
-    'use_objects'           => false,
+    'use_objects' => false,
 
     // The application_name is included in the User-Agent HTTP header.
-    'application_name'      => $xoopsConfig['sitename'],
+    'application_name' => $xoopsConfig['sitename'],
 
     // OAuth2 Settings, you can get these keys at https://code.google.com/apis/console
-    'oauth2_client_id'      => trim($tad_loginConfig['google_appId']),
-    'oauth2_client_secret'  => trim($tad_loginConfig['google_secret']),
-    'oauth2_redirect_uri'   => XOOPS_URL . "/modules/tad_login/index.php",
+    'oauth2_client_id' => trim($tad_loginConfig['google_appId']),
+    'oauth2_client_secret' => trim($tad_loginConfig['google_secret']),
+    'oauth2_redirect_uri' => XOOPS_URL . '/modules/tad_login/index.php',
 
     // The developer key, you get this at https://code.google.com/apis/console
-    'developer_key'         => trim($tad_loginConfig['google_api_key']),
+    'developer_key' => trim($tad_loginConfig['google_api_key']),
 
     // Site name to show in the Google's OAuth 1 authentication screen.
-    'site_name'             => $_SERVER["HTTP_HOST"],
+    'site_name' => $_SERVER['HTTP_HOST'],
 
     // Which Authentication, Storage and HTTP IO classes to use.
-    'authClass'             => 'Google_OAuth2',
-    'ioClass'               => 'Google_CurlIO',
-    'cacheClass'            => 'Google_FileCache',
+    'authClass' => 'Google_OAuth2',
+    'ioClass' => 'Google_CurlIO',
+    'cacheClass' => 'Google_FileCache',
 
     // Don't change these unless you're working against a special development or testing environment.
-    'basePath'              => 'https://www.googleapis.com',
+    'basePath' => 'https://www.googleapis.com',
 
     // IO Class dependent configuration, you only have to configure the values
     // for the class that was configured as the ioClass above
@@ -58,31 +58,31 @@ $apiConfig = [
         '/tmp/Google_Client'),
 
     // Definition of service specific values like scopes, oauth token URLs, etc
-    'services'              => [
-        'analytics'        => ['scope' => 'https://www.googleapis.com/auth/analytics.readonly'],
-        'calendar'         => [
+    'services' => [
+        'analytics' => ['scope' => 'https://www.googleapis.com/auth/analytics.readonly'],
+        'calendar' => [
             'scope' => [
-                "https://www.googleapis.com/auth/calendar",
-                "https://www.googleapis.com/auth/calendar.readonly",
+                'https://www.googleapis.com/auth/calendar',
+                'https://www.googleapis.com/auth/calendar.readonly',
             ],
         ],
-        'books'            => ['scope' => 'https://www.googleapis.com/auth/books'],
-        'latitude'         => [
+        'books' => ['scope' => 'https://www.googleapis.com/auth/books'],
+        'latitude' => [
             'scope' => [
                 'https://www.googleapis.com/auth/latitude.all.best',
                 'https://www.googleapis.com/auth/latitude.all.city',
             ],
         ],
-        'moderator'        => ['scope' => 'https://www.googleapis.com/auth/moderator'],
-        'oauth2'           => [
+        'moderator' => ['scope' => 'https://www.googleapis.com/auth/moderator'],
+        'oauth2' => [
             'scope' => [
                 'https://www.googleapis.com/auth/userinfo.profile',
                 'https://www.googleapis.com/auth/userinfo.email',
             ],
         ],
-        'plus'             => ['scope' => 'https://www.googleapis.com/auth/plus.login'],
+        'plus' => ['scope' => 'https://www.googleapis.com/auth/plus.login'],
         'siteVerification' => ['scope' => 'https://www.googleapis.com/auth/siteverification'],
-        'tasks'            => ['scope' => 'https://www.googleapis.com/auth/tasks'],
-        'urlshortener'     => ['scope' => 'https://www.googleapis.com/auth/urlshortener'],
+        'tasks' => ['scope' => 'https://www.googleapis.com/auth/tasks'],
+        'urlshortener' => ['scope' => 'https://www.googleapis.com/auth/urlshortener'],
     ],
 ];

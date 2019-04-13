@@ -19,13 +19,13 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- *
  */
+
 namespace Facebook\GraphNodes;
 
+use Facebook\Exceptions\FacebookSDKException;
 use Facebook\FacebookRequest;
 use Facebook\Url\FacebookUrlManipulator;
-use Facebook\Exceptions\FacebookSDKException;
 
 /**
  * Class GraphEdge
@@ -144,9 +144,8 @@ class GraphEdge extends Collection
      *
      * @param string $direction The direction of the page: next|previous
      *
-     * @return string|null
-     *
      * @throws FacebookSDKException
+     * @return string|null
      */
     public function getPaginationUrl($direction)
     {
@@ -169,7 +168,7 @@ class GraphEdge extends Collection
      */
     public function validateForPagination()
     {
-        if ($this->request->getMethod() !== 'GET') {
+        if ('GET' !== $this->request->getMethod()) {
             throw new FacebookSDKException('You can only paginate on a GET request.', 720);
         }
     }
@@ -179,9 +178,8 @@ class GraphEdge extends Collection
      *
      * @param string $direction The direction of the page: next|previous
      *
-     * @return FacebookRequest|null
-     *
      * @throws FacebookSDKException
+     * @return FacebookRequest|null
      */
     public function getPaginationRequest($direction)
     {
@@ -199,9 +197,8 @@ class GraphEdge extends Collection
     /**
      * Gets the request object needed to make a "next" page request.
      *
-     * @return FacebookRequest|null
-     *
      * @throws FacebookSDKException
+     * @return FacebookRequest|null
      */
     public function getNextPageRequest()
     {
@@ -211,9 +208,8 @@ class GraphEdge extends Collection
     /**
      * Gets the request object needed to make a "previous" page request.
      *
-     * @return FacebookRequest|null
-     *
      * @throws FacebookSDKException
+     * @return FacebookRequest|null
      */
     public function getPreviousPageRequest()
     {

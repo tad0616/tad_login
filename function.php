@@ -1,31 +1,32 @@
 <?php
 //引入TadTools的函式庫
-if (!file_exists(XOOPS_ROOT_PATH . "/modules/tadtools/tad_function.php")) {
-    redirect_header("http://campus-xoops.tn.edu.tw/modules/tad_modules/index.php?module_sn=1", 3, _TAD_NEED_TADTOOLS);
+if (!file_exists(XOOPS_ROOT_PATH . '/modules/tadtools/tad_function.php')) {
+    redirect_header('http://campus-xoops.tn.edu.tw/modules/tad_modules/index.php?module_sn=1', 3, _TAD_NEED_TADTOOLS);
 }
-include_once XOOPS_ROOT_PATH . "/modules/tadtools/tad_function.php";
+include_once XOOPS_ROOT_PATH . '/modules/tadtools/tad_function.php';
 
 /********************* 自訂函數 *********************/
 function generateRandomString($length = 20)
 {
-    $characters       = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_*';
-    $charactersLength = strlen($characters);
-    $randomString     = '';
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_*';
+    $charactersLength = mb_strlen($characters);
+    $randomString = '';
     for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, $charactersLength - 1)];
+        $randomString .= $characters[mt_rand(0, $charactersLength - 1)];
     }
+
     return $randomString;
 }
 
 function requestProtectedApi($token_ep = '', $accesstoken = '', $rtn_array = true, $gzipenable = false)
 {
-    $header  = ["Authorization: Bearer $accesstoken"];
+    $header = ["Authorization: Bearer $accesstoken"];
     $options = [
         'http' => [
-            'header'  => $header,
-            'method'  => 'GET',
+            'header' => $header,
+            'method' => 'GET',
             'content' => '',
-        ]
+        ],
     ];
     $context = stream_context_create($options);
     if ($gzipenable) {
@@ -34,6 +35,7 @@ function requestProtectedApi($token_ep = '', $accesstoken = '', $rtn_array = tru
         $result = file_get_contents($token_ep, false, $context);
     }
     $u = json_decode($result, $rtn_array);
+
     return $u;
 }
 
@@ -47,33 +49,32 @@ function do_post($url, $data)
 
     $response = curl_exec($ch);
     curl_close($ch);
+
     return $response;
 }
 
 //教育部登入
 if (!function_exists('edu_login')) {
-    function edu_login($openid = 'edu', $mode = "")
+    function edu_login($openid = 'edu', $mode = '')
     {
         global $xoopsConfig, $xoopsDB, $xoopsTpl, $xoopsUser;
 
-        if ($openid == 'ty_edu') {
+        if ('ty_edu' == $openid) {
             $link = XOOPS_URL . '/modules/tad_login/class/edu/ty_auth.php';
         } else {
             $link = XOOPS_URL . '/modules/tad_login/class/edu/auth.php';
         }
 
-        if ($mode == "return") {
+        if ('return' == $mode) {
             return $link;
-        } else {
-            $xoopsTpl->assign('edu', $link);
         }
-
+        $xoopsTpl->assign('edu', $link);
     }
 }
 
 //FB登入
 if (!function_exists('facebook_login')) {
-    function facebook_login($mode = "")
+    function facebook_login($mode = '')
     {
         global $xoopsConfig, $xoopsDB, $xoopsTpl, $xoopsUser;
         if (PHP_VERSION_ID < 50400) {
@@ -82,7 +83,7 @@ if (!function_exists('facebook_login')) {
         require_once XOOPS_ROOT_PATH . '/modules/tad_login/class/Facebook/autoload.php';
 
         if ($xoopsUser) {
-            header("location:" . XOOPS_URL . "/user.php");
+            header('location:' . XOOPS_URL . '/user.php');
             exit;
         }
 
@@ -98,14 +99,14 @@ if (!function_exists('facebook_login')) {
             }
         }
 
-        $modhandler      = xoops_getHandler('module');
-        $tad_loginModule = $modhandler->getByDirname("tad_login");
-        $config_handler  = xoops_getHandler('config');
+        $modhandler = xoops_getHandler('module');
+        $tad_loginModule = $modhandler->getByDirname('tad_login');
+        $config_handler = xoops_getHandler('config');
         $tad_loginConfig = $config_handler->getConfigsByCat(0, $tad_loginModule->getVar('mid'));
 
         $fb = new Facebook\Facebook([
-            'app_id'                => $tad_loginConfig['appId'], // Replace {app-id} with your app id
-            'app_secret'            => $tad_loginConfig['secret'],
+            'app_id' => $tad_loginConfig['appId'], // Replace {app-id} with your app id
+            'app_secret' => $tad_loginConfig['secret'],
             'default_graph_version' => 'v2.11',
                                     ]);
 
@@ -168,20 +169,18 @@ if (!function_exists('facebook_login')) {
             // $_SESSION['FBRLH_state'] = $_GET['state'];
             // die($_GET['state']);
             $permissions = ['email']; // Optional permissions
-            $loginUrl    = $helper->getLoginUrl(XOOPS_URL . '/modules/tad_login/fb-callback.php', $permissions);
-
+            $loginUrl = $helper->getLoginUrl(XOOPS_URL . '/modules/tad_login/fb-callback.php', $permissions);
         }
-        if ($mode == "return") {
+        if ('return' == $mode) {
             return $loginUrl;
-        } else {
-            $xoopsTpl->assign('facebook', $loginUrl);
         }
+        $xoopsTpl->assign('facebook', $loginUrl);
     }
 }
 
 //google登入
 if (!function_exists('google_login')) {
-    function google_login($mode = "")
+    function google_login($mode = '')
     {
         global $xoopsConfig, $xoopsDB, $xoopsTpl, $xoopsUser;
 
@@ -189,7 +188,7 @@ if (!function_exists('google_login')) {
         require_once XOOPS_ROOT_PATH . '/modules/tad_login/class/google/contrib/Google_Oauth2Service.php';
 
         if ($xoopsUser) {
-            header("location:" . XOOPS_URL . "/user.php");
+            header('location:' . XOOPS_URL . '/user.php');
             exit;
         }
 
@@ -205,14 +204,14 @@ if (!function_exists('google_login')) {
             }
         }
         $client = new Google_Client();
-        $client->setApplicationName("Google UserInfo PHP Starter Application");
+        $client->setApplicationName('Google UserInfo PHP Starter Application');
         $oauth2 = new Google_Oauth2Service($client);
         // die(var_export($_REQUEST['code']));
         if (isset($_GET['code'])) {
             // die("system testing...1");
             $client->authenticate($_GET['code']);
             $_SESSION['token'] = $client->getAccessToken();
-            $redirect          = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
+            $redirect = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
             header('Location: ' . filter_var($redirect, FILTER_SANITIZE_URL));
 
             return;
@@ -236,41 +235,40 @@ if (!function_exists('google_login')) {
             // These fields are currently filtered through the PHP sanitize filters.
             // See http://www.php.net/manual/en/filter.filters.sanitize.php
             $email = filter_var($user['email'], FILTER_SANITIZE_EMAIL);
-            $img   = filter_var($user['picture'], FILTER_VALIDATE_URL);
+            $img = filter_var($user['picture'], FILTER_VALIDATE_URL);
 
             if ($user) {
-                $myts                 = MyTextSanitizer::getInstance();
-                $uid                  = $user['id'];
-                list($goog_uname, $m) = explode("@", $user['email']);
-                $uname                = empty($goog_uname) ? $user['id'] . "_goo" : $goog_uname . "_goo";
-                $name                 = $myts->addSlashes($user['name']);
-                $email                = $user['email'];
-                $bio                  = '';
-                $url                  = formatURL($user['link']);
-                $from                 = '';
-                $sig                  = '';
-                $occ                  = '';
+                $myts = MyTextSanitizer::getInstance();
+                $uid = $user['id'];
+                list($goog_uname, $m) = explode('@', $user['email']);
+                $uname = empty($goog_uname) ? $user['id'] . '_goo' : $goog_uname . '_goo';
+                $name = $myts->addSlashes($user['name']);
+                $email = $user['email'];
+                $bio = '';
+                $url = formatURL($user['link']);
+                $from = '';
+                $sig = '';
+                $occ = '';
                 // die(var_export($user));
-                login_xoops($uname, $name, $email, "", "", $url, $from, $sig, $occ, $bio);
+                login_xoops($uname, $name, $email, '', '', $url, $from, $sig, $occ, $bio);
             }
 
             // The access token may have been updated lazily.
             $_SESSION['token'] = $client->getAccessToken();
         } else {
-            $client->setApprovalPrompt("auto");
+            $client->setApprovalPrompt('auto');
             $authUrl = $client->createAuthUrl();
-            if ($mode == "return") {
+            if ('return' == $mode) {
                 return $authUrl;
-            } else {
-                $xoopsTpl->assign('google', $authUrl);
             }
+            $xoopsTpl->assign('google', $authUrl);
         }
     }
 }
 
 //搜尋有無相同username資料
 if (!function_exists('login_xoops')) {
-    function login_xoops($uname = "", $name = "", $email = "", $SchoolCode = "", $JobName = "", $url = "", $from = "", $sig = "", $occ = "", $bio = "", $aim = "", $yim = "", $msnm = "")
+    function login_xoops($uname = '', $name = '', $email = '', $SchoolCode = '', $JobName = '', $url = '', $from = '', $sig = '', $occ = '', $bio = '', $aim = '', $yim = '', $msnm = '')
     {
         global $xoopsModuleConfig, $xoopsConfig, $xoopsDB, $xoopsUser;
         $member_handler = xoops_getHandler('member');
@@ -281,7 +279,7 @@ if (!function_exists('login_xoops')) {
             // die($uname);
             $pass = getPass($uname);
 
-            if ($uname == '' || $pass == '') {
+            if ('' == $uname || '' == $pass) {
                 redirect_header(XOOPS_URL . '/user.php', 1, _MD_TNOPENID_INCORRECTLOGIN);
                 exit();
             }
@@ -297,7 +295,6 @@ if (!function_exists('login_xoops')) {
 
             //若登入成功
             if (false != $user) {
-
                 add2group($user->getVar('uid'), $email, $SchoolCode, $JobName);
 
                 if (0 == $user->getVar('level')) {
@@ -305,10 +302,10 @@ if (!function_exists('login_xoops')) {
                     exit();
                 }
                 //若網站關閉
-                if ($xoopsConfig['closesite'] == 1) {
+                if (1 == $xoopsConfig['closesite']) {
                     $allowed = false;
                     foreach ($user->getGroups() as $group) {
-                        if (in_array($group, $xoopsConfig['closesite_okgrp']) || XOOPS_GROUP_ADMIN == $group) {
+                        if (in_array($group, $xoopsConfig['closesite_okgrp'], true) || XOOPS_GROUP_ADMIN == $group) {
                             $allowed = true;
                             break;
                         }
@@ -320,14 +317,14 @@ if (!function_exists('login_xoops')) {
                 }
                 //設定最後登入時間
                 $user->setVar('last_login', time());
-                $user->setVar("user_from", $from);
-                $user->setVar("url", formatURL($url));
-                $user->setVar("user_sig", $sig);
-                $user->setVar("user_icq", $JobName);
-                $user->setVar("bio", $bio);
+                $user->setVar('user_from', $from);
+                $user->setVar('url', formatURL($url));
+                $user->setVar('user_sig', $sig);
+                $user->setVar('user_icq', $JobName);
+                $user->setVar('bio', $bio);
                 if ($SchoolCode) {
-                    $user->setVar("user_occ", $occ);
-                    $user->setVar("user_intrest", $SchoolCode);
+                    $user->setVar('user_occ', $occ);
+                    $user->setVar('user_intrest', $SchoolCode);
                 }
 
                 if (!$member_handler->insertUser($user, true)) {
@@ -336,12 +333,12 @@ if (!function_exists('login_xoops')) {
                 $login_from = $_SESSION['login_from'];
 
                 // Regenrate a new session id and destroy old session
-                $GLOBALS["sess_handler"]->regenerate_id(true);
-                $_SESSION                    = [];
-                $_SESSION['xoopsUserId']     = $user->getVar('uid');
+                $GLOBALS['sess_handler']->regenerate_id(true);
+                $_SESSION = [];
+                $_SESSION['xoopsUserId'] = $user->getVar('uid');
                 $_SESSION['xoopsUserGroups'] = $user->getGroups();
-                $user_theme                  = $user->getVar('theme');
-                if (in_array($user_theme, $xoopsConfig['theme_set_allowed'])) {
+                $user_theme = $user->getVar('theme');
+                if (in_array($user_theme, $xoopsConfig['theme_set_allowed'], true)) {
                     $_SESSION['xoopsUserTheme'] = $user_theme;
                 }
 
@@ -361,49 +358,48 @@ if (!function_exists('login_xoops')) {
                 $notification_handler = xoops_getHandler('notification');
                 $notification_handler->doLoginMaintenance($user->getVar('uid'));
 
-                redirect_header($redirect_url, 1, sprintf("", $user->getVar('uname')), false);
+                redirect_header($redirect_url, 1, sprintf('', $user->getVar('uname')), false);
             } else {
                 redirect_header(XOOPS_URL . '/user.php', 5, $xoopsAuth->getHtmlErrors());
             }
         } else {
-
-            $sql          = "select CHARACTER_MAXIMUM_LENGTH from information_schema.columns where table_schema = DATABASE() AND table_name = '" . $xoopsDB->prefix("users") . "' AND COLUMN_NAME = 'uname'";
-            $result       = $xoopsDB->query($sql);
+            $sql = "select CHARACTER_MAXIMUM_LENGTH from information_schema.columns where table_schema = DATABASE() AND table_name = '" . $xoopsDB->prefix('users') . "' AND COLUMN_NAME = 'uname'";
+            $result = $xoopsDB->query($sql);
             list($length) = $xoopsDB->fetchRow($result);
 
-            if (strlen($uname) > $length) {
+            if (mb_strlen($uname) > $length) {
                 die(sprintf(_MD_TADLOGIN_UNAME_TOO_LONG, $uname, $length));
             }
 
-            $pass    = randStr(128);
+            $pass = randStr(128);
             $newuser = &$member_handler->createUser();
-            $newuser->setVar("user_viewemail", 1);
-            $newuser->setVar("attachsig", 0);
-            $newuser->setVar("name", $name);
-            $newuser->setVar("uname", $uname);
-            $newuser->setVar("email", $email);
-            $newuser->setVar("url", formatURL($url));
-            $newuser->setVar("user_avatar", 'avatars/blank.gif');
+            $newuser->setVar('user_viewemail', 1);
+            $newuser->setVar('attachsig', 0);
+            $newuser->setVar('name', $name);
+            $newuser->setVar('uname', $uname);
+            $newuser->setVar('email', $email);
+            $newuser->setVar('url', formatURL($url));
+            $newuser->setVar('user_avatar', 'avatars/blank.gif');
             $newuser->setVar('user_regdate', time());
-            $newuser->setVar("user_icq", $JobName);
-            $newuser->setVar("user_from", $from);
-            $newuser->setVar("user_sig", $sig);
-            $newuser->setVar("theme", $xoopsConfig['theme_set']);
+            $newuser->setVar('user_icq', $JobName);
+            $newuser->setVar('user_from', $from);
+            $newuser->setVar('user_sig', $sig);
+            $newuser->setVar('theme', $xoopsConfig['theme_set']);
             // $newuser->setVar("user_yim", $yim);
             // $newuser->setVar("user_aim", $aim);
             // $newuser->setVar("user_msnm", $msnm);
-            $newuser->setVar("pass", md5($pass));
-            $newuser->setVar("timezone_offset", $xoopsConfig['default_TZ']);
-            $newuser->setVar("uorder", $xoopsConfig['com_order']);
-            $newuser->setVar("umode", $xoopsConfig['com_mode']);
+            $newuser->setVar('pass', md5($pass));
+            $newuser->setVar('timezone_offset', $xoopsConfig['default_TZ']);
+            $newuser->setVar('uorder', $xoopsConfig['com_order']);
+            $newuser->setVar('umode', $xoopsConfig['com_mode']);
             // RMV-NOTIFY
-            $newuser->setVar("notify_method", 1);
-            $newuser->setVar("notify_mode", 1);
-            $newuser->setVar("bio", $bio);
-            $newuser->setVar("rank", 1);
-            $newuser->setVar("level", 1);
+            $newuser->setVar('notify_method', 1);
+            $newuser->setVar('notify_mode', 1);
+            $newuser->setVar('bio', $bio);
+            $newuser->setVar('rank', 1);
+            $newuser->setVar('level', 1);
             //$newuser->setVar("user_occ", $myts->addSlashes($user_profile['work'][0]['employer']['name']));
-            $newuser->setVar("user_intrest", $SchoolCode);
+            $newuser->setVar('user_intrest', $SchoolCode);
             $newuser->setVar('user_mailok', true);
             if (!$member_handler->insertUser($newuser, 1)) {
                 die(_MD_TADLOGIN_CNRNU);
@@ -412,11 +408,10 @@ if (!function_exists('login_xoops')) {
             $uid = $newuser->getVar('uid');
 
             if ($uid) {
-
-                $sql = "INSERT INTO `" . $xoopsDB->prefix('groups_users_link') . "`  (groupid, uid) VALUES  (2, " . $uid . ")";
+                $sql = 'INSERT INTO `' . $xoopsDB->prefix('groups_users_link') . '`  (groupid, uid) VALUES  (2, ' . $uid . ')';
                 $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
 
-                $sql = "replace into `" . $xoopsDB->prefix('tad_login_random_pass') . "` (`uname` , `random_pass`) values  ('{$uname}','{$pass}')";
+                $sql = 'replace into `' . $xoopsDB->prefix('tad_login_random_pass') . "` (`uname` , `random_pass`) values  ('{$uname}','{$pass}')";
                 $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
 
                 login_xoops($uname, $name, $email, $SchoolCode, $JobName, $url, $from, $sig, $occ, $bio, $aim, $yim, $msnm);
@@ -427,34 +422,34 @@ if (!function_exists('login_xoops')) {
     }
 }
 
-if (!function_exists("getPass")) {
-    function getPass($uname = "")
+if (!function_exists('getPass')) {
+    function getPass($uname = '')
     {
         global $xoopsDB;
         if (empty($uname)) {
             return;
         }
 
-        $sql               = "select `random_pass` from `" . $xoopsDB->prefix('tad_login_random_pass') . "` where `uname`='{$uname}'";
-        $result            = $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
+        $sql = 'select `random_pass` from `' . $xoopsDB->prefix('tad_login_random_pass') . "` where `uname`='{$uname}'";
+        $result = $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
         list($random_pass) = $xoopsDB->fetchRow($result);
 
         //舊OpenID使用者
         if (empty($random_pass)) {
             $random_pass = randStr(128);
 
-            $sql = "replace into `" . $xoopsDB->prefix('tad_login_random_pass') . "` (`uname` , `random_pass`) values  ('{$uname}','{$random_pass}')";
+            $sql = 'replace into `' . $xoopsDB->prefix('tad_login_random_pass') . "` (`uname` , `random_pass`) values  ('{$uname}','{$random_pass}')";
             $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
 
-            $sql = "update `" . $xoopsDB->prefix('users') . "` set `pass`=md5('{$random_pass}') where `uname`='{$uname}'";
+            $sql = 'update `' . $xoopsDB->prefix('users') . "` set `pass`=md5('{$random_pass}') where `uname`='{$uname}'";
             $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
         }
 
-        $sql        = "select `pass` from `" . $xoopsDB->prefix('users') . "` where `uname`='{$uname}'";
-        $result     = $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
+        $sql = 'select `pass` from `' . $xoopsDB->prefix('users') . "` where `uname`='{$uname}'";
+        $result = $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
         list($pass) = $xoopsDB->fetchRow($result);
         if ($pass !== md5($random_pass)) {
-            $sql = "update `" . $xoopsDB->prefix('users') . "` set `pass`=md5('{$random_pass}') where `uname`='{$uname}'";
+            $sql = 'update `' . $xoopsDB->prefix('users') . "` set `pass`=md5('{$random_pass}') where `uname`='{$uname}'";
             $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
         }
 
@@ -462,13 +457,13 @@ if (!function_exists("getPass")) {
     }
 }
 
-if (!function_exists("add2group")) {
-    function add2group($uid = "", $email = "", $SchoolCode = "", $JobName = "")
+if (!function_exists('add2group')) {
+    function add2group($uid = '', $email = '', $SchoolCode = '', $JobName = '')
     {
         global $xoopsDB, $xoopsUser;
 
         $member_handler = xoops_getHandler('member');
-        $user           = &$member_handler->getUser($uid);
+        $user = &$member_handler->getUser($uid);
         if ($user) {
             $userGroups = $user->getGroups();
         } else {
@@ -476,34 +471,34 @@ if (!function_exists("add2group")) {
             exit;
         }
 
-        $sql    = "SELECT `item`,`kind`,`group_id` FROM `" . $xoopsDB->prefix('tad_login_config') . "`";
+        $sql = 'SELECT `item`,`kind`,`group_id` FROM `' . $xoopsDB->prefix('tad_login_config') . '`';
         $result = $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
         while (list($item, $kind, $group_id) = $xoopsDB->fetchRow($result)) {
-            if (!in_array($group_id, $userGroups)) {
+            if (!in_array($group_id, $userGroups, true)) {
                 //echo "<h1>{$group_id}-{$item}-{$SchoolCode}-{$email}</h1>";
-                if (!empty($SchoolCode) and strpos($item, $SchoolCode) !== false and $JobName == $kind) {
-                    $sql = "insert into `" . $xoopsDB->prefix('groups_users_link') . "` (groupid,uid ) values($group_id,$uid)";
+                if (!empty($SchoolCode) and false !== mb_strpos($item, $SchoolCode) and $JobName == $kind) {
+                    $sql = 'insert into `' . $xoopsDB->prefix('groups_users_link') . "` (groupid,uid ) values($group_id,$uid)";
                     $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
                     //echo "{$group_id}, {$uid}<br>";
                 }
 
                 if (empty($item) and $JobName == $kind) {
-                    $sql = "insert into `" . $xoopsDB->prefix('groups_users_link') . "` (groupid,uid ) values($group_id,$uid)";
+                    $sql = 'insert into `' . $xoopsDB->prefix('groups_users_link') . "` (groupid,uid ) values($group_id,$uid)";
                     $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
                 }
 
-                if (!empty($email) and strpos($item, '*') !== false) {
-                    $item     = trim($item);
+                if (!empty($email) and false !== mb_strpos($item, '*')) {
+                    $item = trim($item);
                     $new_item = str_replace('*', '', $item);
                     // die($new_item);
-                    if (strpos($email, $new_item) !== false) {
-                        $sql = "insert into `" . $xoopsDB->prefix('groups_users_link') . "` (groupid,uid ) values($group_id,$uid)";
+                    if (false !== mb_strpos($email, $new_item)) {
+                        $sql = 'insert into `' . $xoopsDB->prefix('groups_users_link') . "` (groupid,uid ) values($group_id,$uid)";
                         $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
                     }
                 }
 
-                if (!empty($email) and strpos($item, $email) !== false) {
-                    $sql = "insert into `" . $xoopsDB->prefix('groups_users_link') . "` (groupid,uid ) values($group_id,$uid)";
+                if (!empty($email) and false !== mb_strpos($item, $email)) {
+                    $sql = 'insert into `' . $xoopsDB->prefix('groups_users_link') . "` (groupid,uid ) values($group_id,$uid)";
                     $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
                     //echo "{$group_id}, {$uid}<br>";
                 }

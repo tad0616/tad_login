@@ -19,8 +19,8 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- *
  */
+
 namespace Facebook\GraphNodes;
 
 /**
@@ -28,7 +28,6 @@ namespace Facebook\GraphNodes;
  *
  * @package Facebook
  */
-
 class GraphAlbum extends GraphNode
 {
     /**
@@ -52,7 +51,7 @@ class GraphAlbum extends GraphNode
     /**
      * Returns whether the viewer can upload photos to this album.
      *
-     * @return boolean|null
+     * @return bool|null
      */
     public function getCanUpload()
     {

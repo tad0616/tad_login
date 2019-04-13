@@ -1,23 +1,21 @@
 <?php
-include "header.php";
+include 'header.php';
 require_once __DIR__ . '/class/Facebook/autoload.php';
 
-$modhandler      = xoops_getHandler('module');
-$tad_loginModule = $modhandler->getByDirname("tad_login");
-$config_handler  = xoops_getHandler('config');
+$modhandler = xoops_getHandler('module');
+$tad_loginModule = $modhandler->getByDirname('tad_login');
+$config_handler = xoops_getHandler('config');
 $tad_loginConfig = $config_handler->getConfigsByCat(0, $tad_loginModule->getVar('mid'));
 
-/*
-
- */
 $fb = new Facebook\Facebook([
-    'app_id'                => $tad_loginConfig['appId'], // Replace {app-id} with your app id
-    'app_secret'            => $tad_loginConfig['secret'],
+    'app_id' => $tad_loginConfig['appId'], // Replace {app-id} with your app id
+    'app_secret' => $tad_loginConfig['secret'],
     'default_graph_version' => 'v2.11',
 ]);
 
-$helper                  = $fb->getRedirectLoginHelper();
+$helper = $fb->getRedirectLoginHelper();
 $_SESSION['FBRLH_state'] = $_GET['state'];
+
 try {
     $accessToken = $helper->getAccessToken();
 } catch (Facebook\Exceptions\FacebookResponseException $e) {
@@ -33,10 +31,10 @@ try {
 if (!isset($accessToken)) {
     if ($helper->getError()) {
         header('HTTP/1.0 401 Unauthorized');
-        echo "Error: " . $helper->getError() . "\n";
-        echo "Error Code: " . $helper->getErrorCode() . "\n";
-        echo "Error Reason: " . $helper->getErrorReason() . "\n";
-        echo "Error Description: " . $helper->getErrorDescription() . "\n";
+        echo 'Error: ' . $helper->getError() . "\n";
+        echo 'Error Code: ' . $helper->getErrorCode() . "\n";
+        echo 'Error Reason: ' . $helper->getErrorReason() . "\n";
+        echo 'Error Description: ' . $helper->getErrorDescription() . "\n";
     } else {
         header('HTTP/1.0 400 Bad Request');
         echo 'Bad request';
@@ -67,7 +65,7 @@ if (!$accessToken->isLongLived()) {
     try {
         $accessToken = $oAuth2Client->getLongLivedAccessToken($accessToken);
     } catch (Facebook\Exceptions\FacebookSDKException $e) {
-        echo "<p>Error getting long-lived access token: " . $helper->getMessage() . "</p>\n\n";
+        echo '<p>Error getting long-lived access token: ' . $helper->getMessage() . "</p>\n\n";
         exit;
     }
 
@@ -100,17 +98,17 @@ if ($_SESSION['fb_access_token']) {
     $user_profile = $response->getGraphUser();
 }
 // die(var_export($user_profile));
-$myts  = MyTextSanitizer::getInstance();
-$uname = $user_profile['id'] . "_fb";
-$name  = $myts->addSlashes($user_profile['name']);
+$myts = MyTextSanitizer::getInstance();
+$uname = $user_profile['id'] . '_fb';
+$name = $myts->addSlashes($user_profile['name']);
 $email = $user_profile['email'];
-$bio   = '';
-$url   = formatURL("https://www.facebook.com/{$user_profile['id']}");
-$from  = '';
-$sig   = '';
-$occ   = '';
+$bio = '';
+$url = formatURL("https://www.facebook.com/{$user_profile['id']}");
+$from = '';
+$sig = '';
+$occ = '';
 
-login_xoops($uname, $name, $email, "", "", $url, $from, $sig, $occ, $bio);
+login_xoops($uname, $name, $email, '', '', $url, $from, $sig, $occ, $bio);
 // User is logged in with a long-lived access token.
 // You can redirect them to a members-only page.
 // header('Location: ' . XOOPS_URL);
