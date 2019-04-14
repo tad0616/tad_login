@@ -19,8 +19,8 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- *
  */
+
 namespace Facebook\Exceptions;
 
 use Facebook\FacebookResponse;
@@ -104,12 +104,10 @@ class FacebookResponseException extends FacebookSDKException
             case 102:
             case 190:
                 return new static($response, new FacebookAuthenticationException($message, $code));
-
             // Server issue, possible downtime
             case 1:
             case 2:
                 return new static($response, new FacebookServerException($message, $code));
-
             // API Throttling
             case 4:
             case 17:
@@ -117,19 +115,18 @@ class FacebookResponseException extends FacebookSDKException
             case 341:
             case 613:
                 return new static($response, new FacebookThrottleException($message, $code));
-
             // Duplicate Post
             case 506:
                 return new static($response, new FacebookClientException($message, $code));
         }
 
         // Missing Permissions
-        if ($code == 10 || ($code >= 200 && $code <= 299)) {
+        if (10 == $code || ($code >= 200 && $code <= 299)) {
             return new static($response, new FacebookAuthorizationException($message, $code));
         }
 
         // OAuth authentication error
-        if (isset($data['error']['type']) && $data['error']['type'] === 'OAuthException') {
+        if (isset($data['error']['type']) && 'OAuthException' === $data['error']['type']) {
             return new static($response, new FacebookAuthenticationException($message, $code));
         }
 

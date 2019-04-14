@@ -19,7 +19,6 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- *
  */
 
 /**
@@ -32,8 +31,8 @@ if (!function_exists('hash_equals')) {
             $kLen = mb_strlen($knownString, '8bit');
             $uLen = mb_strlen($userString, '8bit');
         } else {
-            $kLen = strlen($knownString);
-            $uLen = strlen($userString);
+            $kLen = mb_strlen($knownString);
+            $uLen = mb_strlen($userString);
         }
         if ($kLen !== $uLen) {
             return false;

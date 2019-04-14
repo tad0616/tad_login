@@ -19,8 +19,8 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- *
  */
+
 namespace Facebook\FileUpload;
 
 /**
@@ -942,7 +942,7 @@ class Mimetypes
         'zip' => 'application/zip',
         'zir' => 'application/vnd.zul',
         'zirz' => 'application/vnd.zul',
-        'zmm' => 'application/vnd.handheld-entertainment+xml'
+        'zmm' => 'application/vnd.handheld-entertainment+xml',
     ];
 
     /**
@@ -969,7 +969,7 @@ class Mimetypes
      */
     public function fromExtension($extension)
     {
-        $extension = strtolower($extension);
+        $extension = mb_strtolower($extension);
 
         return isset($this->mimetypes[$extension]) ? $this->mimetypes[$extension] : null;
     }

@@ -19,29 +19,29 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- *
  */
+
 namespace Facebook;
 
 use Facebook\Authentication\AccessToken;
 use Facebook\Authentication\OAuth2Client;
+use Facebook\Exceptions\FacebookSDKException;
 use Facebook\FileUpload\FacebookFile;
 use Facebook\FileUpload\FacebookResumableUploader;
 use Facebook\FileUpload\FacebookTransferChunk;
 use Facebook\FileUpload\FacebookVideo;
 use Facebook\GraphNodes\GraphEdge;
-use Facebook\Url\UrlDetectionInterface;
-use Facebook\Url\FacebookUrlDetectionHandler;
-use Facebook\PseudoRandomString\PseudoRandomStringGeneratorFactory;
-use Facebook\PseudoRandomString\PseudoRandomStringGeneratorInterface;
-use Facebook\HttpClients\HttpClientsFactory;
-use Facebook\PersistentData\PersistentDataFactory;
-use Facebook\PersistentData\PersistentDataInterface;
 use Facebook\Helpers\FacebookCanvasHelper;
 use Facebook\Helpers\FacebookJavaScriptHelper;
 use Facebook\Helpers\FacebookPageTabHelper;
 use Facebook\Helpers\FacebookRedirectLoginHelper;
-use Facebook\Exceptions\FacebookSDKException;
+use Facebook\HttpClients\HttpClientsFactory;
+use Facebook\PersistentData\PersistentDataFactory;
+use Facebook\PersistentData\PersistentDataInterface;
+use Facebook\PseudoRandomString\PseudoRandomStringGeneratorFactory;
+use Facebook\PseudoRandomString\PseudoRandomStringGeneratorInterface;
+use Facebook\Url\FacebookUrlDetectionHandler;
+use Facebook\Url\UrlDetectionInterface;
 
 /**
  * Class Facebook
@@ -118,7 +118,6 @@ class Facebook
     /**
      * Instantiates a new Facebook super-class object.
      *
-     * @param array $config
      *
      * @throws FacebookSDKException
      */
@@ -221,8 +220,6 @@ class Facebook
 
     /**
      * Changes the URL detection handler.
-     *
-     * @param UrlDetectionInterface $urlDetectionHandler
      */
     private function setUrlDetectionHandler(UrlDetectionInterface $urlDetectionHandler)
     {
@@ -326,9 +323,8 @@ class Facebook
      * @param string|null             $eTag
      * @param string|null             $graphVersion
      *
-     * @return FacebookResponse
-     *
      * @throws FacebookSDKException
+     * @return FacebookResponse
      */
     public function get($endpoint, $accessToken = null, $eTag = null, $graphVersion = null)
     {
@@ -346,14 +342,12 @@ class Facebook
      * Sends a POST request to Graph and returns the result.
      *
      * @param string                  $endpoint
-     * @param array                   $params
      * @param AccessToken|string|null $accessToken
      * @param string|null             $eTag
      * @param string|null             $graphVersion
      *
-     * @return FacebookResponse
-     *
      * @throws FacebookSDKException
+     * @return FacebookResponse
      */
     public function post($endpoint, array $params = [], $accessToken = null, $eTag = null, $graphVersion = null)
     {
@@ -371,14 +365,12 @@ class Facebook
      * Sends a DELETE request to Graph and returns the result.
      *
      * @param string                  $endpoint
-     * @param array                   $params
      * @param AccessToken|string|null $accessToken
      * @param string|null             $eTag
      * @param string|null             $graphVersion
      *
-     * @return FacebookResponse
-     *
      * @throws FacebookSDKException
+     * @return FacebookResponse
      */
     public function delete($endpoint, array $params = [], $accessToken = null, $eTag = null, $graphVersion = null)
     {
@@ -397,9 +389,8 @@ class Facebook
      *
      * @param GraphEdge $graphEdge The GraphEdge to paginate over.
      *
-     * @return GraphEdge|null
-     *
      * @throws FacebookSDKException
+     * @return GraphEdge|null
      */
     public function next(GraphEdge $graphEdge)
     {
@@ -411,9 +402,8 @@ class Facebook
      *
      * @param GraphEdge $graphEdge The GraphEdge to paginate over.
      *
-     * @return GraphEdge|null
-     *
      * @throws FacebookSDKException
+     * @return GraphEdge|null
      */
     public function previous(GraphEdge $graphEdge)
     {
@@ -426,9 +416,8 @@ class Facebook
      * @param GraphEdge $graphEdge The GraphEdge to paginate over.
      * @param string    $direction The direction of the pagination: next|previous.
      *
-     * @return GraphEdge|null
-     *
      * @throws FacebookSDKException
+     * @return GraphEdge|null
      */
     public function getPaginationResults(GraphEdge $graphEdge, $direction)
     {
@@ -451,14 +440,12 @@ class Facebook
      *
      * @param string                  $method
      * @param string                  $endpoint
-     * @param array                   $params
      * @param AccessToken|string|null $accessToken
      * @param string|null             $eTag
      * @param string|null             $graphVersion
      *
-     * @return FacebookResponse
-     *
      * @throws FacebookSDKException
+     * @return FacebookResponse
      */
     public function sendRequest($method, $endpoint, array $params = [], $accessToken = null, $eTag = null, $graphVersion = null)
     {
@@ -472,13 +459,11 @@ class Facebook
     /**
      * Sends a batched request to Graph and returns the result.
      *
-     * @param array                   $requests
      * @param AccessToken|string|null $accessToken
      * @param string|null             $graphVersion
      *
-     * @return FacebookBatchResponse
-     *
      * @throws FacebookSDKException
+     * @return FacebookBatchResponse
      */
     public function sendBatchRequest(array $requests, $accessToken = null, $graphVersion = null)
     {
@@ -520,14 +505,12 @@ class Facebook
      *
      * @param string                  $method
      * @param string                  $endpoint
-     * @param array                   $params
      * @param AccessToken|string|null $accessToken
      * @param string|null             $eTag
      * @param string|null             $graphVersion
      *
-     * @return FacebookRequest
-     *
      * @throws FacebookSDKException
+     * @return FacebookRequest
      */
     public function request($method, $endpoint, array $params = [], $accessToken = null, $eTag = null, $graphVersion = null)
     {
@@ -550,9 +533,8 @@ class Facebook
      *
      * @param string $pathToFile
      *
-     * @return FacebookFile
-     *
      * @throws FacebookSDKException
+     * @return FacebookFile
      */
     public function fileToUpload($pathToFile)
     {
@@ -564,9 +546,8 @@ class Facebook
      *
      * @param string $pathToFile
      *
-     * @return FacebookVideo
-     *
      * @throws FacebookSDKException
+     * @return FacebookVideo
      */
     public function videoToUpload($pathToFile)
     {
@@ -583,9 +564,8 @@ class Facebook
      * @param int $maxTransferTries The max times to retry a failed upload chunk.
      * @param string|null $graphVersion The Graph API version to use.
      *
-     * @return array
-     *
      * @throws FacebookSDKException
+     * @return array
      */
     public function uploadVideo($target, $pathToFile, $metadata = [], $accessToken = null, $maxTransferTries = 5, $graphVersion = null)
     {
@@ -593,7 +573,7 @@ class Facebook
         $graphVersion = $graphVersion ?: $this->defaultGraphVersion;
 
         $uploader = new FacebookResumableUploader($this->app, $this->client, $accessToken, $graphVersion);
-        $endpoint = '/'.$target.'/videos';
+        $endpoint = '/' . $target . '/videos';
         $file = $this->videoToUpload($pathToFile);
         $chunk = $uploader->start($endpoint, $file);
 
@@ -610,14 +590,11 @@ class Facebook
     /**
      * Attempts to upload a chunk of a file in $retryCountdown tries.
      *
-     * @param FacebookResumableUploader $uploader
      * @param string $endpoint
-     * @param FacebookTransferChunk $chunk
      * @param int $retryCountdown
      *
-     * @return FacebookTransferChunk
-     *
      * @throws FacebookSDKException
+     * @return FacebookTransferChunk
      */
     private function maxTriesTransfer(FacebookResumableUploader $uploader, $endpoint, FacebookTransferChunk $chunk, $retryCountdown)
     {

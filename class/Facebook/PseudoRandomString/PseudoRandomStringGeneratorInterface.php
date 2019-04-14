@@ -19,8 +19,8 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- *
  */
+
 namespace Facebook\PseudoRandomString;
 
 /**
@@ -37,9 +37,8 @@ interface PseudoRandomStringGeneratorInterface
      *
      * @param int $length The length of the string to return.
      *
-     * @return string
-     *
      * @throws \Facebook\Exceptions\FacebookSDKException|\InvalidArgumentException
+     * @return string
      */
     public function getPseudoRandomString($length);
 }

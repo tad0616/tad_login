@@ -19,12 +19,12 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- *
  */
+
 namespace Facebook\HttpClients;
 
-use Facebook\Http\GraphRawResponse;
 use Facebook\Exceptions\FacebookSDKException;
+use Facebook\Http\GraphRawResponse;
 
 /**
  * Class FacebookCurlHttpClient
@@ -44,7 +44,7 @@ class FacebookCurlHttpClient implements FacebookHttpClientInterface
     protected $curlErrorCode = 0;
 
     /**
-     * @var string|boolean The raw response from the server
+     * @var string|bool The raw response from the server
      */
     protected $rawResponse;
 
@@ -105,7 +105,7 @@ class FacebookCurlHttpClient implements FacebookHttpClientInterface
             CURLOPT_CAINFO => __DIR__ . '/certs/DigiCertHighAssuranceEVRootCA.pem',
         ];
 
-        if ($method !== "GET") {
+        if ('GET' !== $method) {
             $options[CURLOPT_POSTFIELDS] = $body;
         }
 

@@ -19,15 +19,15 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- *
  */
+
 namespace Facebook;
 
-use ArrayIterator;
-use IteratorAggregate;
 use ArrayAccess;
+use ArrayIterator;
 use Facebook\Authentication\AccessToken;
 use Facebook\Exceptions\FacebookSDKException;
+use IteratorAggregate;
 
 /**
  * Class BatchRequest
@@ -49,8 +49,6 @@ class FacebookBatchRequest extends FacebookRequest implements IteratorAggregate,
     /**
      * Creates a new Request entity.
      *
-     * @param FacebookApp|null        $app
-     * @param array                   $requests
      * @param AccessToken|string|null $accessToken
      * @param string|null             $graphVersion
      */
@@ -68,9 +66,8 @@ class FacebookBatchRequest extends FacebookRequest implements IteratorAggregate,
      * @param string|null|array     $options Array of batch request options e.g. 'name', 'omit_response_on_success'.
      *                                       If a string is given, it is the value of the 'name' option.
      *
-     * @return FacebookBatchRequest
-     *
      * @throws \InvalidArgumentException
+     * @return FacebookBatchRequest
      */
     public function add($request, $options = null)
     {
@@ -116,7 +113,6 @@ class FacebookBatchRequest extends FacebookRequest implements IteratorAggregate,
     /**
      * Ensures that the FacebookApp and access token fall back when missing.
      *
-     * @param FacebookRequest $request
      *
      * @throws FacebookSDKException
      */
@@ -142,11 +138,9 @@ class FacebookBatchRequest extends FacebookRequest implements IteratorAggregate,
     /**
      * Extracts the files from a request.
      *
-     * @param FacebookRequest $request
-     *
-     * @return string|null
      *
      * @throws FacebookSDKException
+     * @return string|null
      */
     public function extractFileAttachments(FacebookRequest $request)
     {
@@ -223,7 +217,7 @@ class FacebookBatchRequest extends FacebookRequest implements IteratorAggregate,
     public function validateBatchRequestCount()
     {
         $batchCount = count($this->requests);
-        if ($batchCount === 0) {
+        if (0 === $batchCount) {
             throw new FacebookSDKException('There are no batch requests to send.');
         } elseif ($batchCount > 50) {
             // Per: https://developers.facebook.com/docs/graph-api/making-multiple-requests#limits
@@ -243,7 +237,6 @@ class FacebookBatchRequest extends FacebookRequest implements IteratorAggregate,
      */
     public function requestEntityToBatchArray(FacebookRequest $request, $options = null, $attachedFiles = null)
     {
-
         if (null === $options) {
             $options = [];
         } elseif (!is_array($options)) {
