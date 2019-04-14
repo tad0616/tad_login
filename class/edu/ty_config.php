@@ -1,13 +1,13 @@
 <?php
-include_once __DIR__ . '/../../../../mainfile.php';
+require_once  dirname(dirname(dirname(dirname(__DIR__)))) . '/mainfile.php';
 if (!isset($xoopsModuleConfig)) {
-    $modhandler = xoops_getHandler('module');
-    $tad_loginModule = $modhandler->getByDirname('tad_login');
-    $config_handler = xoops_getHandler('config');
-    $xoopsModuleConfig = $config_handler->getConfigsByCat(0, $tad_loginModule->mid());
+    $moduleHandler = xoops_getHandler('module');
+    $tad_loginModule = $moduleHandler->getByDirname('tad_login');
+    $configHandler = xoops_getHandler('config');
+    $xoopsModuleConfig = $configHandler->getConfigsByCat(0, $tad_loginModule->mid());
 }
 
-// require 'fun.php';
+// require __DIR__ . '/fun.php';
 $provideruri = 'https://tyc.sso.edu.tw';
 $_SESSION['auth_method'] = 'ty_edu';
 $responsetype = ['code'];

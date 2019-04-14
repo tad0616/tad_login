@@ -3,7 +3,7 @@
 if (!file_exists(XOOPS_ROOT_PATH . '/modules/tadtools/tad_function.php')) {
     redirect_header('http://campus-xoops.tn.edu.tw/modules/tad_modules/index.php?module_sn=1', 3, _TAD_NEED_TADTOOLS);
 }
-include_once XOOPS_ROOT_PATH . '/modules/tadtools/tad_function.php';
+require_once XOOPS_ROOT_PATH . '/modules/tadtools/tad_function.php';
 
 /********************* 自訂函數 *********************/
 function generateRandomString($length = 20)
@@ -99,10 +99,10 @@ if (!function_exists('facebook_login')) {
             }
         }
 
-        $modhandler = xoops_getHandler('module');
-        $tad_loginModule = $modhandler->getByDirname('tad_login');
-        $config_handler = xoops_getHandler('config');
-        $tad_loginConfig = $config_handler->getConfigsByCat(0, $tad_loginModule->getVar('mid'));
+        $moduleHandler = xoops_getHandler('module');
+        $tad_loginModule = $moduleHandler->getByDirname('tad_login');
+        $configHandler = xoops_getHandler('config');
+        $tad_loginConfig = $configHandler->getConfigsByCat(0, $tad_loginModule->getVar('mid'));
 
         $fb = new Facebook\Facebook([
             'app_id' => $tad_loginConfig['appId'], // Replace {app-id} with your app id
@@ -271,9 +271,9 @@ if (!function_exists('login_xoops')) {
     function login_xoops($uname = '', $name = '', $email = '', $SchoolCode = '', $JobName = '', $url = '', $from = '', $sig = '', $occ = '', $bio = '', $aim = '', $yim = '', $msnm = '')
     {
         global $xoopsModuleConfig, $xoopsConfig, $xoopsDB, $xoopsUser;
-        $member_handler = xoops_getHandler('member');
+        $memberHandler = xoops_getHandler('member');
 
-        if ($member_handler->getUserCount(new Criteria('uname', $uname)) > 0) {
+        if ($memberHandler->getUserCount(new Criteria('uname', $uname)) > 0) {
             //若已有此帳號！
             $uname = trim($uname);
             // die($uname);
@@ -284,17 +284,17 @@ if (!function_exists('login_xoops')) {
                 exit();
             }
 
-            $member_handler = xoops_getHandler('member');
+            $memberHandler = xoops_getHandler('member');
             xoops_loadLanguage('auth');
 
-            include_once $GLOBALS['xoops']->path('class/auth/authfactory.php');
+            require_once $GLOBALS['xoops']->path('class/auth/authfactory.php');
 
             $xoopsAuth = XoopsAuthFactory::getAuthConnection($uname);
             //自動登入
             $user = $xoopsAuth->authenticate($uname, $pass);
 
             //若登入成功
-            if (false != $user) {
+            if (false !== $user) {
                 add2group($user->getVar('uid'), $email, $SchoolCode, $JobName);
 
                 if (0 == $user->getVar('level')) {
@@ -327,13 +327,13 @@ if (!function_exists('login_xoops')) {
                     $user->setVar('user_intrest', $SchoolCode);
                 }
 
-                if (!$member_handler->insertUser($user, true)) {
+                if (!$memberHandler->insertUser($user, true)) {
                 }
 
                 $login_from = $_SESSION['login_from'];
 
                 // Regenrate a new session id and destroy old session
-                $GLOBALS['sess_handler']->regenerate_id(true);
+                $GLOBALS['sessHandler']->regenerate_id(true);
                 $_SESSION = [];
                 $_SESSION['xoopsUserId'] = $user->getVar('uid');
                 $_SESSION['xoopsUserGroups'] = $user->getGroups();
@@ -355,8 +355,8 @@ if (!function_exists('login_xoops')) {
 
                 // RMV-NOTIFY
                 // Perform some maintenance of notification records
-                $notification_handler = xoops_getHandler('notification');
-                $notification_handler->doLoginMaintenance($user->getVar('uid'));
+                $notificationHandler = xoops_getHandler('notification');
+                $notificationHandler->doLoginMaintenance($user->getVar('uid'));
 
                 redirect_header($redirect_url, 1, sprintf('', $user->getVar('uname')), false);
             } else {
@@ -372,7 +372,7 @@ if (!function_exists('login_xoops')) {
             }
 
             $pass = randStr(128);
-            $newuser = &$member_handler->createUser();
+            $newuser =  $memberHandler->createUser();
             $newuser->setVar('user_viewemail', 1);
             $newuser->setVar('attachsig', 0);
             $newuser->setVar('name', $name);
@@ -401,7 +401,7 @@ if (!function_exists('login_xoops')) {
             //$newuser->setVar("user_occ", $myts->addSlashes($user_profile['work'][0]['employer']['name']));
             $newuser->setVar('user_intrest', $SchoolCode);
             $newuser->setVar('user_mailok', true);
-            if (!$member_handler->insertUser($newuser, 1)) {
+            if (!$memberHandler->insertUser($newuser, 1)) {
                 die(_MD_TADLOGIN_CNRNU);
             }
 
@@ -462,8 +462,8 @@ if (!function_exists('add2group')) {
     {
         global $xoopsDB, $xoopsUser;
 
-        $member_handler = xoops_getHandler('member');
-        $user = &$member_handler->getUser($uid);
+        $memberHandler = xoops_getHandler('member');
+        $user =  $memberHandler->getUser($uid);
         if ($user) {
             $userGroups = $user->getGroups();
         } else {
@@ -473,7 +473,7 @@ if (!function_exists('add2group')) {
 
         $sql = 'SELECT `item`,`kind`,`group_id` FROM `' . $xoopsDB->prefix('tad_login_config') . '`';
         $result = $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
-        while (list($item, $kind, $group_id) = $xoopsDB->fetchRow($result)) {
+        while (false !== (list($item, $kind, $group_id) = $xoopsDB->fetchRow($result))) {
             if (!in_array($group_id, $userGroups, true)) {
                 //echo "<h1>{$group_id}-{$item}-{$SchoolCode}-{$email}</h1>";
                 if (!empty($SchoolCode) and false !== mb_strpos($item, $SchoolCode) and $JobName == $kind) {

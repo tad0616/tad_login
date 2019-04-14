@@ -15,8 +15,8 @@
  * limitations under the License.
  */
 
-require_once 'Google_FileCache.php';
-require_once 'Google_MemcacheCache.php';
+require_once __DIR__ . '/Google_FileCache.php';
+require_once __DIR__ . '/Google_MemcacheCache.php';
 
 /**
  * Abstract storage class

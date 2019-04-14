@@ -14,10 +14,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-require_once 'io/Google_HttpRequest.php';
-require_once 'io/Google_HttpStreamIO.php';
-require_once 'io/Google_CurlIO.php';
-require_once 'io/Google_REST.php';
+require_once  dirname(__DIR__) . '/Google_HttpRequest.php';
+require_once  dirname(__DIR__) . '/Google_HttpStreamIO.php';
+require_once  dirname(__DIR__) . '/Google_CurlIO.php';
+require_once  dirname(__DIR__) . '/Google_REST.php';
 
 /**
  * Abstract IO class
@@ -73,7 +73,7 @@ abstract class Google_IO
      */
     protected function getCachedRequest(Google_HttpRequest $request)
     {
-        if (false == Google_CacheParser::isRequestCacheable($request)) {
+        if (false === Google_CacheParser::isRequestCacheable($request)) {
             false;
         }
 
@@ -91,7 +91,7 @@ abstract class Google_IO
         $contentType = $request->getRequestHeader('content-type');
 
         // Set the default content-type as application/x-www-form-urlencoded.
-        if (false == $contentType) {
+        if (false === $contentType) {
             $contentType = self::FORM_URLENCODED;
             $request->setRequestHeaders(['content-type' => $contentType]);
         }

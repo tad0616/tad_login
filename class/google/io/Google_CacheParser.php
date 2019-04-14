@@ -64,7 +64,7 @@ class Google_CacheParser
     {
         // First, check if the HTTP request was cacheable before inspecting the
         // HTTP response.
-        if (false == self::isRequestCacheable($resp)) {
+        if (false === self::isRequestCacheable($resp)) {
             return false;
         }
 
@@ -76,7 +76,7 @@ class Google_CacheParser
         // The resource is uncacheable if the resource is already expired and
         // the resource doesn't have an ETag for revalidation.
         $etag = $resp->getResponseHeader('etag');
-        if (self::isExpired($resp) && false == $etag) {
+        if (self::isExpired($resp) && false === $etag) {
             return false;
         }
 
@@ -126,7 +126,7 @@ class Google_CacheParser
 
             // See if we can parse the expires header.
             $parsedExpires = strtotime($rawExpires);
-            if (false == $parsedExpires || $parsedExpires <= 0) {
+            if (false === $parsedExpires || $parsedExpires <= 0) {
                 return true;
             }
         }
@@ -141,14 +141,14 @@ class Google_CacheParser
         $rawDate = $resp->getResponseHeader('date');
         $parsedDate = strtotime($rawDate);
 
-        if (empty($rawDate) || false == $parsedDate) {
+        if (empty($rawDate) || false === $parsedDate) {
             $parsedDate = time();
         }
-        if (false == $freshnessLifetime && isset($responseHeaders['expires'])) {
+        if (false === $freshnessLifetime && isset($responseHeaders['expires'])) {
             $freshnessLifetime = $parsedExpires - $parsedDate;
         }
 
-        if (false == $freshnessLifetime) {
+        if (false === $freshnessLifetime) {
             return true;
         }
 

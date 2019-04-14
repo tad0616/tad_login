@@ -14,7 +14,7 @@
  * Here's a short example of how to use this library:
  * <code>
  * <?php
- *    include 'vendor/autoload.php';
+ *    require __DIR__ . '/vendor/autoload.php';
  *
  *    $rc2 = new \phpseclib\Crypt\RC2();
  *

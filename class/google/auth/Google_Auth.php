@@ -15,8 +15,8 @@
  * limitations under the License.
  */
 
-require_once 'Google_AuthNone.php';
-require_once 'Google_OAuth2.php';
+require_once __DIR__ . '/Google_AuthNone.php';
+require_once __DIR__ . '/Google_OAuth2.php';
 
 /**
  * Abstract class for the Authentication in the API client

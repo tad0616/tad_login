@@ -28,13 +28,13 @@ class Google_BatchRequest
 
     public function __construct($boundary = false)
     {
-        $boundary = (false == $boundary) ? mt_rand() : $boundary;
+        $boundary = (false === $boundary) ? mt_rand() : $boundary;
         $this->boundary = str_replace('"', '', $boundary);
     }
 
     public function add(Google_HttpRequest $request, $key = false)
     {
-        if (false == $key) {
+        if (false === $key) {
             $key = mt_rand();
         }
 

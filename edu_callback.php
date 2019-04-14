@@ -1,11 +1,11 @@
 <?php
-include_once '../../mainfile.php';
-include_once 'function.php';
+require_once dirname(dirname(__DIR__)) . '/mainfile.php';
+require_once __DIR__ . '/function.php';
 
 if ('ty_edu' === $_SESSION['auth_method']) {
-    require_once 'class/edu/ty_auth.php';
+    require_once __DIR__ . '/class/edu/ty_auth.php';
 } else {
-    require_once 'class/edu/auth.php';
+    require_once __DIR__ . '/class/edu/auth.php';
 }
 
 //verified idtoken

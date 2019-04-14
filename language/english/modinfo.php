@@ -1,6 +1,6 @@
 <?php
-include_once XOOPS_ROOT_PATH . "/modules/tadtools/language/{$xoopsConfig['language']}/modinfo_common.php";
-include_once 'county.php';
+require_once XOOPS_ROOT_PATH . "/modules/tadtools/language/{$xoopsConfig['language']}/modinfo_common.php";
+require_once __DIR__ . '/county.php';
 
 define('_MI_TADLOGIN_NAME', 'Tad Login');
 define('_MI_TADLOGIN_AUTHOR', 'Tad');

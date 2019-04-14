@@ -128,10 +128,10 @@ class Facebook
             'app_secret' => getenv(static::APP_SECRET_ENV_NAME),
             'default_graph_version' => static::DEFAULT_GRAPH_VERSION,
             'enable_beta_mode' => false,
-            'http_client_handler' => null,
-            'persistent_data_handler' => null,
+            'http_clientHandler' => null,
+            'persistent_dataHandler' => null,
             'pseudo_random_string_generator' => null,
-            'url_detection_handler' => null,
+            'url_detectionHandler' => null,
         ], $config);
 
         if (!$config['app_id']) {
@@ -143,15 +143,15 @@ class Facebook
 
         $this->app = new FacebookApp($config['app_id'], $config['app_secret']);
         $this->client = new FacebookClient(
-            HttpClientsFactory::createHttpClient($config['http_client_handler']),
+            HttpClientsFactory::createHttpClient($config['http_clientHandler']),
             $config['enable_beta_mode']
         );
         $this->pseudoRandomStringGenerator = PseudoRandomStringGeneratorFactory::createPseudoRandomStringGenerator(
             $config['pseudo_random_string_generator']
         );
-        $this->setUrlDetectionHandler($config['url_detection_handler'] ?: new FacebookUrlDetectionHandler());
+        $this->setUrlDetectionHandler($config['url_detectionHandler'] ?: new FacebookUrlDetectionHandler());
         $this->persistentDataHandler = PersistentDataFactory::createPersistentDataHandler(
-            $config['persistent_data_handler']
+            $config['persistent_dataHandler']
         );
 
         if (isset($config['default_access_token'])) {

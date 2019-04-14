@@ -1,8 +1,8 @@
 <?php
 /*-----------引入檔案區--------------*/
-include 'header.php';
-$xoopsOption['template_main'] = 'tad_login_index.tpl';
-include_once XOOPS_ROOT_PATH . '/header.php';
+require __DIR__ . '/header.php';
+$GLOBALS['xoopsOption']['template_main'] = 'tad_login_index.tpl';
+require_once XOOPS_ROOT_PATH . '/header.php';
 
 /*-----------function區--------------*/
 
@@ -16,7 +16,7 @@ function tn_login()
         exit;
     }
 
-    include_once 'class/openid12.php';
+    require_once __DIR__ . '/class/openid12.php';
 
     try {
         # Change 'localhost' to your domain name.
@@ -108,7 +108,7 @@ function tp_login()
         exit;
     }
 
-    include_once 'class/openid12.php';
+    require_once __DIR__ . '/class/openid12.php';
 
     try {
         # Change 'localhost' to your domain name.
@@ -160,7 +160,7 @@ function kl_login()
         exit;
     }
 
-    include_once 'class/openid_kl.php';
+    require_once __DIR__ . '/class/openid_kl.php';
 
     try {
         # Change 'localhost' to your domain name.
@@ -218,7 +218,7 @@ function ilc_login()
         exit;
     }
 
-    include_once 'class/openid.php';
+    require_once __DIR__ . '/class/openid.php';
 
     try {
         # Change 'localhost' to your domain name.
@@ -276,7 +276,7 @@ function hc_login()
         exit;
     }
 
-    include_once 'class/openid.php';
+    require_once __DIR__ . '/class/openid.php';
 
     try {
         # Change 'localhost' to your domain name.
@@ -337,7 +337,7 @@ function hlc_login($conty = '', $openid_identity = '')
         exit;
     }
 
-    include_once 'class/openid.php';
+    require_once __DIR__ . '/class/openid.php';
 
     try {
         # Change 'localhost' to your domain name.
@@ -472,7 +472,7 @@ function tyc_login()
         exit;
     }
 
-    include_once 'class/openid_ty.php';
+    require_once __DIR__ . '/class/openid_ty.php';
 
     try {
         # Change 'localhost' to your domain name.
@@ -523,7 +523,7 @@ function yahoo_login()
         exit;
     }
 
-    include_once 'class/openid.php';
+    require_once __DIR__ . '/class/openid.php';
 
     try {
         # Change 'localhost' to your domain name.
@@ -566,7 +566,7 @@ function tc_login($conty = '', $openid_identity = '')
         exit;
     }
 
-    include_once 'class/openid_tc.php';
+    require_once __DIR__ . '/class/openid_tc.php';
 
     try {
         # Change 'localhost' to your domain name.
@@ -664,7 +664,7 @@ function kh_login()
         header('location:' . XOOPS_URL . '/user.php');
         exit;
     }
-    include_once 'class/openid_kh.php';
+    require_once __DIR__ . '/class/openid_kh.php';
 
     try {
         # Change 'localhost' to your domain name.
@@ -804,7 +804,7 @@ function km_login()
         exit;
     }
 
-    include_once 'class/openid_kl.php';
+    require_once __DIR__ . '/class/openid_kl.php';
 
     try {
         # Change 'localhost' to your domain name.
@@ -863,7 +863,7 @@ function mt_login()
         exit;
     }
 
-    include_once 'class/openid_kl.php';
+    require_once __DIR__ . '/class/openid_kl.php';
 
     try {
         # Change 'localhost' to your domain name.
@@ -995,7 +995,7 @@ function ty_edu_login()
 
 /*-----------執行動作判斷區----------*/
 
-include_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
+require_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
 $op = system_CleanVars($_REQUEST, 'op', '', 'string');
 $link_to = system_CleanVars($_REQUEST, 'link_to', '', 'string');
 
@@ -1123,6 +1123,6 @@ $xoopsTpl->assign('toolbar', toolbar_bootstrap($interface_menu));
 if (isset($link_to) and !empty($link_to)) {
     $_SESSION['login_from'] = $link_to;
 } elseif (!isset($_SESSION['login_from'])) {
-    $_SESSION['login_from'] = $_SERVER['HTTP_REFERER'];
+    $_SESSION['login_from'] = \Xmf\Request::getString('HTTP_REFERER', '', 'SERVER');
 }
-include_once XOOPS_ROOT_PATH . '/footer.php';
+require_once XOOPS_ROOT_PATH . '/footer.php';

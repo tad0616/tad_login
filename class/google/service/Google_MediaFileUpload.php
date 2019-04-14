@@ -197,7 +197,7 @@ class Google_MediaFileUpload
         $data = isset($params['data']['value'])
         ? $params['data']['value'] : false;
 
-        if (false == $data && false == isset($params['file'])) {
+        if (false === $data && false === isset($params['file'])) {
             // No upload data available.
             return false;
         }
@@ -206,7 +206,7 @@ class Google_MediaFileUpload
             return self::UPLOAD_MEDIA_TYPE;
         }
 
-        if (false == $meta) {
+        if (false === $meta) {
             return self::UPLOAD_MEDIA_TYPE;
         }
 
@@ -215,11 +215,11 @@ class Google_MediaFileUpload
 
     public function nextChunk(Google_HttpRequest $req, $chunk = false)
     {
-        if (false == $this->resumeUri) {
+        if (false === $this->resumeUri) {
             $this->resumeUri = $this->getResumeUri($req);
         }
 
-        if (false == $chunk) {
+        if (false === $chunk) {
             $chunk = mb_substr($this->data, $this->progress, $this->chunkSize);
         }
 
@@ -261,7 +261,7 @@ class Google_MediaFileUpload
         $response = Google_Client::$io->makeRequest($httpRequest);
         $location = $response->getResponseHeader('location');
         $code = $response->getResponseHttpCode();
-        if (200 == $code && true == $location) {
+        if (200 == $code && true === $location) {
             return $location;
         }
         throw new Google_Exception('Failed to start the resumable upload');

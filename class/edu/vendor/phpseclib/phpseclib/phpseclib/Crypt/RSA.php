@@ -8,7 +8,7 @@
  * Here's an example of how to encrypt and decrypt text with this library:
  * <code>
  * <?php
- *    include 'vendor/autoload.php';
+ *    require __DIR__ . '/vendor/autoload.php';
  *
  *    $rsa = new \phpseclib\Crypt\RSA();
  *    extract($rsa->createKey());
@@ -26,7 +26,7 @@
  * Here's an example of how to create signatures and verify signatures with this library:
  * <code>
  * <?php
- *    include 'vendor/autoload.php';
+ *    require __DIR__ . '/vendor/autoload.php';
  *
  *    $rsa = new \phpseclib\Crypt\RSA();
  *    extract($rsa->createKey());
@@ -415,7 +415,7 @@ class RSA
      * For use with parsing XML formatted keys.  PHP's XML Parser functions use utilized - instead of PHP's DOM functions -
      * because PHP's XML Parser functions work on PHP4 whereas PHP's DOM functions - although surperior - don't.
      *
-     * @see self::_start_element_handler()
+     * @see self::_start_elementHandler()
      * @var array
      * @access private
      */
@@ -426,8 +426,8 @@ class RSA
      *
      * For use with parsing XML formatted keys.
      *
-     * @see self::_character_handler()
-     * @see self::_stop_element_handler()
+     * @see self::_characterHandler()
+     * @see self::_stop_elementHandler()
      * @var mixed
      * @access private
      */
@@ -463,7 +463,7 @@ class RSA
      */
     function __construct()
     {
-        $this->configFile = dirname(__FILE__) . '/../openssl.cnf';
+        $this->configFile =  dirname(__DIR__) . '/openssl.cnf';
 
         if (!defined('CRYPT_RSA_MODE')) {
             switch (true) {
@@ -1331,8 +1331,8 @@ class RSA
 
                 $xml = xml_parser_create('UTF-8');
                 xml_set_object($xml, $this);
-                xml_set_element_handler($xml, '_start_element_handler', '_stop_element_handler');
-                xml_set_character_data_handler($xml, '_data_handler');
+                xml_set_elementHandler($xml, '_start_elementHandler', '_stop_elementHandler');
+                xml_set_character_dataHandler($xml, '_dataHandler');
                 // add <xml></xml> to account for "dangling" tags like <BitStrength>...</BitStrength> that are sometimes added
                 if (!xml_parse($xml, '<xml>' . $key . '</xml>')) {
                     return false;
@@ -1429,14 +1429,14 @@ class RSA
     /**
      * Start Element Handler
      *
-     * Called by xml_set_element_handler()
+     * Called by xml_set_elementHandler()
      *
      * @access private
      * @param resource $parser
      * @param string $name
      * @param array $attribs
      */
-    function _start_element_handler($parser, $name, $attribs)
+    function _start_elementHandler($parser, $name, $attribs)
     {
         //$name = strtoupper($name);
         switch ($name) {
@@ -1470,13 +1470,13 @@ class RSA
     /**
      * Stop Element Handler
      *
-     * Called by xml_set_element_handler()
+     * Called by xml_set_elementHandler()
      *
      * @access private
      * @param resource $parser
      * @param string $name
      */
-    function _stop_element_handler($parser, $name)
+    function _stop_elementHandler($parser, $name)
     {
         if (isset($this->current)) {
             $this->current = new BigInteger(base64_decode($this->current), 256);
@@ -1487,13 +1487,13 @@ class RSA
     /**
      * Data Handler
      *
-     * Called by xml_set_character_data_handler()
+     * Called by xml_set_character_dataHandler()
      *
      * @access private
      * @param resource $parser
      * @param string $data
      */
-    function _data_handler($parser, $data)
+    function _dataHandler($parser, $data)
     {
         if (!isset($this->current) || is_object($this->current)) {
             return;
@@ -3039,6 +3039,6 @@ class RSA
         // remove new lines
         $temp = str_replace(array("\r", "\n", ' '), '', $temp);
         $temp = preg_match('#^[a-zA-Z\d/+]*={0,2}$#', $temp) ? base64_decode($temp) : false;
-        return $temp != false ? $temp : $str;
+        return $temp !== false ? $temp : $str;
     }
 }

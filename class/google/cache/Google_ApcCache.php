@@ -92,7 +92,7 @@ class Google_APCCache extends Google_Cache
      */
     public function set($key, $value)
     {
-        if (false == @apc_store($key, ['time' => time(), 'data' => serialize($value)])) {
+        if (false === @apc_store($key, ['time' => time(), 'data' => serialize($value)])) {
             throw new Google_CacheException("Couldn't store data");
         }
     }
