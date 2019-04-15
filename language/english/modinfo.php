@@ -1,5 +1,5 @@
 <?php
-require_once XOOPS_ROOT_PATH . "/modules/tadtools/language/{$xoopsConfig['language']}/modinfo_common.php";
+xoops_loadLanguage('modinfo_common', 'tadtools');
 require_once __DIR__ . '/county.php';
 
 define('_MI_TADLOGIN_NAME', 'Tad Login');

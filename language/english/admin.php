@@ -1,5 +1,5 @@
 <?php
-require_once dirname(dirname(__DIR__)) . '/tadtools/language/' . $xoopsConfig['language'] . '/admin_common.php';
+xoops_loadLanguage('admin_common', 'tadtools');
 define('_TAD_NEED_TADTOOLS', 'This module needs TadTools module. You can download TadTools from <a href="http://campus-xoops.tn.edu.tw/modules/tad_modules/index.php?module_sn=1" target="_blank">XOOPS EasyGO</a>.');
 
 define('_MA_TADLOGIN_DEV_STEP1', '<h1> [Step 1] if not the FB developer </h1> <p> Please connect to <a href = \'https: //developers.facebook.com/apps\' target =\' _blank \'> https://developers.facebook.com/apps </a>, if not "create a new Application" button, then you must first click on the "Register Now" has become the FB developer job. </p > ');
