@@ -66,7 +66,7 @@ class FacebookUrlDetectionHandler implements UrlDetectionInterface
             return $this->protocolWithActiveSsl($protocol);
         }
 
-        return '443' === (string)$this->getServerVar('SERVER_PORT');
+        return '443' === (string) $this->getServerVar('SERVER_PORT');
     }
 
     /**
@@ -78,9 +78,9 @@ class FacebookUrlDetectionHandler implements UrlDetectionInterface
      */
     protected function protocolWithActiveSsl($protocol)
     {
-        $protocol = mb_strtolower((string)$protocol);
+        $protocol = mb_strtolower((string) $protocol);
 
-        return in_array($protocol, ['on', '1', 'https', 'ssl'], true);
+        return in_array($protocol, ['on', '1', 'https', 'ssl']);
     }
 
     /**
@@ -127,15 +127,15 @@ class FacebookUrlDetectionHandler implements UrlDetectionInterface
         // Check for proxy first
         $port = $this->getHeader('X_FORWARDED_PORT');
         if ($port) {
-            return (string)$port;
+            return (string) $port;
         }
 
-        $protocol = (string)$this->getHeader('X_FORWARDED_PROTO');
+        $protocol = (string) $this->getHeader('X_FORWARDED_PROTO');
         if ('https' === $protocol) {
             return '443';
         }
 
-        return (string)$this->getServerVar('SERVER_PORT');
+        return (string) $this->getServerVar('SERVER_PORT');
     }
 
     /**
@@ -176,7 +176,7 @@ class FacebookUrlDetectionHandler implements UrlDetectionInterface
         $host = $elements[count($elements) - 1];
 
         return preg_match("/^([a-z\d](-*[a-z\d])*)(\.([a-z\d](-*[a-z\d])*))*$/i", $host) //valid chars check
-            && mb_strlen($host) > 0 && mb_strlen($host) < 254 //overall length check
-            && preg_match("/^[^\.]{1,63}(\.[^\.]{1,63})*$/", $host); //length of each label
+         && mb_strlen($host) > 0 && mb_strlen($host) < 254//overall length check
+         && preg_match("/^[^\.]{1,63}(\.[^\.]{1,63})*$/", $host); //length of each label
     }
 }

@@ -428,7 +428,7 @@ function hlc_login($conty = '', $openid_identity = '')
 
                     $JobName = (false !== mb_strpos($arr[0]['role'], '學生')) ? 'student' : 'teacher';
 
-                // } elseif ($conty == "tyc") {
+                    // } elseif ($conty == "tyc") {
                     //     $SchoolCode = $myts->addSlashes($user_profile['contact/country/home']);
                     //     $arr        = json_decode($user_profile['pref/timezone'], true);
                     //die(var_export($arr));
@@ -672,7 +672,7 @@ function kh_login()
         if (!$openid->mode) {
             header('Location: https://openid.kh.edu.tw/?openid.return_to=' . XOOPS_URL . '/modules/tad_login/index.php?op=kh&openid.realm=' . XOOPS_URL . '/&openid.identity=http://openid.kh.edu.tw/&openid.mode=checkid_setup&openid.ns=http://specs.openid.net/auth/2.0&openid.ns.ext1=http://openid.net/extensions/sreg/1.1&openid.ns.ext2=http://openid.net/srv/ax/1.0&openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select&openid.ext1.required=fullname,email&openid.ext2.type.guid=http://axschema.edu.tw/person/guid&openid.ext2.type.sid=http://axschema.edu.tw/school/id&openid.ext2.type.titles=http://axschema.edu.tw/person/titles&openid.ext2.type.classStr=http://axschema.kh.edu.tw/school/classStr&openid.ext2.required=guid,sid,titles,classStr&openid.ext2.mode=fetch_request');
 
-        /*
+            /*
 
         array (
         'op' => 'kh',
@@ -948,10 +948,10 @@ function list_login()
     }
 
     //注意，不能刪
-    if (in_array('facebook', $xoopsModuleConfig['auth_method'], true)) {
+    if (in_array('facebook', $xoopsModuleConfig['auth_method'])) {
         facebook_login();
     }
-    if (in_array('google', $xoopsModuleConfig['auth_method'], true)) {
+    if (in_array('google', $xoopsModuleConfig['auth_method'])) {
         google_login();
     }
 
