@@ -239,7 +239,7 @@ class FacebookRequest
             throw new FacebookSDKException('HTTP method not specified.');
         }
 
-        if (!in_array($this->method, ['GET', 'POST', 'DELETE'], true)) {
+        if (!in_array($this->method, ['GET', 'POST', 'DELETE'])) {
             throw new FacebookSDKException('Invalid HTTP method specified.');
         }
     }

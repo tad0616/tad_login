@@ -38,7 +38,7 @@ class Google_CacheParser
     public static function isRequestCacheable(Google_HttpRequest $resp)
     {
         $method = $resp->getRequestMethod();
-        if (!in_array($method, self::$CACHEABLE_HTTP_METHODS, true)) {
+        if (!in_array($method, self::$CACHEABLE_HTTP_METHODS)) {
             return false;
         }
 
@@ -69,7 +69,7 @@ class Google_CacheParser
         }
 
         $code = $resp->getResponseHttpCode();
-        if (!in_array($code, self::$CACHEABLE_STATUS_CODES, true)) {
+        if (!in_array($code, self::$CACHEABLE_STATUS_CODES)) {
             return false;
         }
 

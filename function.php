@@ -108,7 +108,7 @@ if (!function_exists('facebook_login')) {
             'app_id' => $tad_loginConfig['appId'], // Replace {app-id} with your app id
             'app_secret' => $tad_loginConfig['secret'],
             'default_graph_version' => 'v2.11',
-                                    ]);
+        ]);
 
         // $user_profile = '';
         // if ($_SESSION['fb_access_token']) {
@@ -305,7 +305,7 @@ if (!function_exists('login_xoops')) {
                 if (1 == $xoopsConfig['closesite']) {
                     $allowed = false;
                     foreach ($user->getGroups() as $group) {
-                        if (in_array($group, $xoopsConfig['closesite_okgrp'], true) || XOOPS_GROUP_ADMIN == $group) {
+                        if (in_array($group, $xoopsConfig['closesite_okgrp']) || XOOPS_GROUP_ADMIN == $group) {
                             $allowed = true;
                             break;
                         }
@@ -338,7 +338,7 @@ if (!function_exists('login_xoops')) {
                 $_SESSION['xoopsUserId'] = $user->getVar('uid');
                 $_SESSION['xoopsUserGroups'] = $user->getGroups();
                 $user_theme = $user->getVar('theme');
-                if (in_array($user_theme, $xoopsConfig['theme_set_allowed'], true)) {
+                if (in_array($user_theme, $xoopsConfig['theme_set_allowed'])) {
                     $_SESSION['xoopsUserTheme'] = $user_theme;
                 }
 
@@ -474,7 +474,7 @@ if (!function_exists('add2group')) {
         $sql = 'SELECT `item`,`kind`,`group_id` FROM `' . $xoopsDB->prefix('tad_login_config') . '`';
         $result = $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
         while (list($item, $kind, $group_id) = $xoopsDB->fetchRow($result)) {
-            if (!in_array($group_id, $userGroups, true)) {
+            if (!in_array($group_id, $userGroups)) {
                 //echo "<h1>{$group_id}-{$item}-{$SchoolCode}-{$email}</h1>";
                 if (!empty($SchoolCode) and false !== mb_strpos($item, $SchoolCode) and $JobName == $kind) {
                     $sql = 'insert into `' . $xoopsDB->prefix('groups_users_link') . "` (groupid,uid ) values($group_id,$uid)";
