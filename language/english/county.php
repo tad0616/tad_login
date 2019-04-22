@@ -32,3 +32,4 @@ define('_TTCT', 'Taitung County Education Office OpenID');
 define('_EDU', 'Ministry of Education Office OpenID');
 define('_TP_EDU', 'Taipei City Single Identity Verification');
 define('_TY_EDU', 'Taoyuan City Education Bureau Education Cloud Certification');
+define('_TC_EDU', 'Taichung City Education Bureau Education Cloud Certification');

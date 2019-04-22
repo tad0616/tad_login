@@ -4,6 +4,8 @@ include_once 'function.php';
 
 if ('ty_edu' === $_SESSION['auth_method']) {
     require_once 'class/edu/ty_auth.php';
+} elseif ('tc_edu' === $_SESSION['auth_method']) {
+    require_once 'class/edu/tc_auth.php';
 } else {
     require_once 'class/edu/auth.php';
 }
@@ -27,6 +29,10 @@ if ('ty_edu' === $_SESSION['auth_method']) {
     $eduinfoep = 'https://tyc.sso.edu.tw/cncresource/api/v1/eduinfo';
     // echo $eduinfoep;
     $eduinfo = requestProtectedApi($eduinfoep, $accesstoken, true, false);
+} elseif ('tc_edu' === $_SESSION['auth_method']) {
+    $eduinfoep = 'https://tc.sso.edu.tw/cncresource/api/v1/eduinfo';
+    // echo $eduinfoep;
+    $eduinfo = requestProtectedApi($eduinfoep, $accesstoken, true, false);
 } else {
     $eduinfoep = 'https://oidc.tanet.edu.tw/moeresource/api/v1/oidc/eduinfo';
     // echo $eduinfoep;
@@ -38,9 +44,14 @@ if ('ty_edu' === $_SESSION['auth_method']) {
 
 // exit;
 
-if ($userinfo['email'] and 'ty_edu' === $_SESSION['auth_method']) {
+if ($userinfo['email']) {
     $myts = MyTextSanitizer::getInstance();
-    $uname = $userinfo['sub'] . '_ty';
+    if ('ty_edu' === $_SESSION['auth_method']) {
+        $uname = $userinfo['sub'] . '_ty';
+    } elseif ('tc_edu' === $_SESSION['auth_method']) {
+        $uname = $userinfo['sub'] . '_tc';
+    }
+
     $name = $myts->addSlashes($userinfo['name']);
     $email = $userinfo['email'];
     $SchoolCode = $myts->addSlashes($eduinfo['schoolid']);

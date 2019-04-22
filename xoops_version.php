@@ -150,6 +150,22 @@ $modversion['config'][$i]['valuetype'] = 'text';
 $modversion['config'][$i]['default'] = '';
 
 $i++;
+$modversion['config'][$i]['name'] = 'tc_edu_clientid';
+$modversion['config'][$i]['title'] = '_MI_TADLOGIN_TC_EDU_CLIENTID';
+$modversion['config'][$i]['description'] = '_MI_TADLOGIN_TC_EDU_CLIENTID_DESC';
+$modversion['config'][$i]['formtype'] = 'textbox';
+$modversion['config'][$i]['valuetype'] = 'text';
+$modversion['config'][$i]['default'] = '';
+
+$i++;
+$modversion['config'][$i]['name'] = 'tc_edu_clientsecret';
+$modversion['config'][$i]['title'] = '_MI_TADLOGIN_TC_EDU_CLIENTSECRET';
+$modversion['config'][$i]['description'] = '_MI_TADLOGIN_TC_EDU_CLIENTSECRET_DESC';
+$modversion['config'][$i]['formtype'] = 'textbox';
+$modversion['config'][$i]['valuetype'] = 'text';
+$modversion['config'][$i]['default'] = '';
+
+$i++;
 $modversion['config'][$i]['name'] = 'tp_edu_clientid';
 $modversion['config'][$i]['title'] = '_MI_TADLOGIN_TP_EDU_CLIENTID';
 $modversion['config'][$i]['description'] = '_MI_TADLOGIN_TP_EDU_CLIENTID_DESC';
@@ -187,6 +203,7 @@ $modversion['config'][$i]['options'] = [
     sprintf(_MI_TADLOGIN_LOGIN, _HC) => 'hc',
     sprintf(_MI_TADLOGIN_LOGIN, _MLC) => 'mlc',
     sprintf(_MI_TADLOGIN_LOGIN, _TC) => 'tc',
+    sprintf(_MI_TADLOGIN_LOGIN, _TC_EDU) => 'tc_edu',
     sprintf(_MI_TADLOGIN_LOGIN, _CHC) => 'chc',
     sprintf(_MI_TADLOGIN_LOGIN, _NTCT) => 'ntct',
     sprintf(_MI_TADLOGIN_LOGIN, _YLC) => 'ylc',

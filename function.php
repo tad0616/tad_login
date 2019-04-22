@@ -61,6 +61,8 @@ if (!function_exists('edu_login')) {
 
         if ('ty_edu' === $openid) {
             $link = XOOPS_URL . '/modules/tad_login/class/edu/ty_auth.php';
+        } elseif ('tc_edu' === $openid) {
+            $link = XOOPS_URL . '/modules/tad_login/class/edu/tc_auth.php';
         } else {
             $link = XOOPS_URL . '/modules/tad_login/class/edu/auth.php';
         }

@@ -965,6 +965,8 @@ function list_login()
             $url = edu_login($openid, 'return');
         } elseif ('ty_edu' === $openid) {
             $url = edu_login($openid, 'return');
+        } elseif ('tc_edu' === $openid) {
+            $url = edu_login($openid, 'return');
         } else {
             $url = XOOPS_URL . "/modules/tad_login/index.php?login&op={$openid}";
         }
@@ -984,14 +986,7 @@ function tp_edu_login()
     exit;
 }
 
-function ty_edu_login()
-{
-    global $xoopsModuleConfig;
-    $state = generateRandomString();
-    $nonce = generateRandomString();
-    header("location:https://tyc.sso.edu.tw/oidc/v1/azp?response_type=code&client_id={$xoopsModuleConfig['ty_edu_clientid']}&redirect_uri=" . XOOPS_URL . "/modules/tad_login/edu_callback.php&scope=openid+email+profile+eduinfo+openid2&state={$state}&nonce={$nonce}");
-    exit;
-}
+
 
 /*-----------執行動作判斷區----------*/
 
@@ -1078,7 +1073,10 @@ switch ($op) {
         break;
     case 'ty_edu':
         $_SESSION['auth_method'] = 'ty_edu';
-        // ty_edu_login();
+        edu_login($op);
+        break;
+    case 'tc_edu':
+        $_SESSION['auth_method'] = 'tc_edu';
         edu_login($op);
         break;
     case 'ttct':
