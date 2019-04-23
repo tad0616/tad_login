@@ -1,28 +1,28 @@
-<form action="oidc" method="post" id="myForm" enctype="multipart/form-data">
+<form action="oidc.php" method="post" id="myForm" enctype="multipart/form-data">
     <{foreach from=$all_oidc key=unit  item=oidc}>
         <div class="form-group row">
             <label class="col-form-label text-md-right col-sm-2">
                 <{$oidc.title}>
             </label>
             <div class="col-sm-5">
-                <input type="text" name="oidc[<{$unit}>][clientid]" class="form-control " value="<{$oidc_setup.$unit.clientid}>" placeholder="<{$smarty.const._MA_TADLOGIN_CLIENTID}>">
+                <input type="text" name="oidc[<{$unit}>][clientid]" class="form-control " value="<{$oidc_setup.$unit.clientid}>" placeholder="<{$oidc.title}> <{$smarty.const._MA_TADLOGIN_CLIENTID}>">
             </div>
             <div class="col-sm-5">
-                <input type="text" name="oidc[<{$unit}>][clientsecret]" class="form-control " value="<{$oidc_setup.$unit.clientsecret}>" placeholder="<{$smarty.const._MA_TADLOGIN_CLIENTSECRET}>">
+                <input type="text" name="oidc[<{$unit}>][clientsecret]" class="form-control " value="<{$oidc_setup.$unit.clientsecret}>" placeholder="<{$oidc.title}> <{$smarty.const._MA_TADLOGIN_CLIENTSECRET}>">
             </div>
         </div>
     <{/foreach}>
     <{foreach from=$all_oidc2 key=unit item=oidc}>
         <!--學校代碼或Email-->
-        <div class="form-group">
-            <label class="control-label col-sm-2">
+        <div class="form-group row">
+            <label class="col-form-label text-md-right col-sm-2">
                 <{$oidc.title}>
             </label>
             <div class="col-sm-5">
-                <input type="text" name="oidc[<{$unit}>][clientid]" class="form-control " value="<{$oidc_setup.$unit.clientid}>" placeholder="<{$smarty.const._MA_TADLOGIN_CLIENTID}>">
+                <input type="text" name="oidc[<{$unit}>][clientid]" class="form-control " value="<{$oidc_setup.$unit.clientid}>" placeholder="<{$oidc.title}> <{$smarty.const._MA_TADLOGIN_CLIENTID}>">
             </div>
             <div class="col-sm-5">
-                <input type="text" name="oidc[<{$unit}>][clientsecret]" class="form-control " value="<{$oidc_setup.$unit.clientsecret}>" placeholder="<{$smarty.const._MA_TADLOGIN_CLIENTSECRET}>">
+                <input type="text" name="oidc[<{$unit}>][clientsecret]" class="form-control " value="<{$oidc_setup.$unit.clientsecret}>" placeholder="<{$oidc.title}> <{$smarty.const._MA_TADLOGIN_CLIENTSECRET}>">
             </div>
         </div>
     <{/foreach}>

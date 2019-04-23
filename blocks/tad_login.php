@@ -2,12 +2,12 @@
 //區塊主函式 (快速登入(tad_login))
 function tad_login($options = '')
 {
-    global $xoopsConfig, $xoopsDB, $xoopsUser, $oidc_array;
+    global $xoopsConfig, $xoopsDB, $xoopsUser;
     if ($xoopsUser) {
         return;
     }
-
     include_once XOOPS_ROOT_PATH . '/modules/tad_login/function.php';
+    include_once XOOPS_ROOT_PATH . '/modules/tad_login/oidc.php';
 
     $modhandler = xoops_getHandler('module');
     $xoopsModule = $modhandler->getByDirname('tad_login');
@@ -30,10 +30,16 @@ function tad_login($options = '')
         }
         $auth_method[$i]['title'] = $openid;
         $auth_method[$i]['url'] = $url;
-        $auth_method[$i]['logo'] = XOOPS_URL . "/modules/tad_login/images/{$openid}{$big}.png";
-        $auth_method[$i]['text'] = constant('_' . mb_strtoupper($openid)) . _MB_TADLOGIN_LOGIN;
+        $auth_method[$i]['logo'] = in_array($openid, $oidc_array) ? XOOPS_URL . "/modules/tad_login/images/oidc/{$all_oidc[$openid]['tail']}.png" : XOOPS_URL . "/modules/tad_login/images/{$openid}{$big}.png";
+        $auth_method[$i]['text'] = in_array($openid, $oidc_array) ? constant('_' . mb_strtoupper($all_oidc[$openid]['tail'])) . ' OIDC ' . _MB_TADLOGIN_LOGIN : constant('_' . mb_strtoupper($openid)) . ' OpenID ' . _MB_TADLOGIN_LOGIN;
+
         $i++;
     }
+
+    $block['all_oidc'] = $all_oidc;
+    $block['oidc_array'] = $oidc_array;
+    $block['oidc_array2'] = $oidc_array2;
+    $block['all_oidc2'] = $all_oidc2;
 
     $block['auth_method'] = $auth_method;
     $block['use_big'] = ('1' == $options[2]) ? '1' : '0';

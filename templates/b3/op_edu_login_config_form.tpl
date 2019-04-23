@@ -6,10 +6,10 @@
                 <{$oidc.title}>
             </label>
             <div class="col-sm-5">
-                <input type="text" name="oidc[<{$unit}>][clientid]" class="form-control " value="<{$oidc_setup.$unit.clientid}>" placeholder="<{$oidc.title}><{$smarty.const._MA_TADLOGIN_CLIENTID}>">
+                <input type="text" name="oidc[<{$unit}>][clientid]" class="form-control " value="<{$oidc_setup.$unit.clientid}>" placeholder="<{$oidc.title}> <{$smarty.const._MA_TADLOGIN_CLIENTID}>">
             </div>
             <div class="col-sm-5">
-                <input type="text" name="oidc[<{$unit}>][clientsecret]" class="form-control " value="<{$oidc_setup.$unit.clientsecret}>" placeholder="<{$oidc.title}><{$smarty.const._MA_TADLOGIN_CLIENTSECRET}>">
+                <input type="text" name="oidc[<{$unit}>][clientsecret]" class="form-control " value="<{$oidc_setup.$unit.clientsecret}>" placeholder="<{$oidc.title}> <{$smarty.const._MA_TADLOGIN_CLIENTSECRET}>">
             </div>
         </div>
     <{/foreach}>
@@ -20,10 +20,10 @@
                 <{$oidc.title}>
             </label>
             <div class="col-sm-5">
-                <input type="text" name="oidc[<{$unit}>][clientid]" class="form-control " value="<{$oidc_setup.$unit.clientid}>" placeholder="<{$oidc.title}><{$smarty.const._MA_TADLOGIN_CLIENTID}>">
+                <input type="text" name="oidc[<{$unit}>][clientid]" class="form-control " value="<{$oidc_setup.$unit.clientid}>" placeholder="<{$oidc.title}> <{$smarty.const._MA_TADLOGIN_CLIENTID}>">
             </div>
             <div class="col-sm-5">
-                <input type="text" name="oidc[<{$unit}>][clientsecret]" class="form-control " value="<{$oidc_setup.$unit.clientsecret}>" placeholder="<{$oidc.title}><{$smarty.const._MA_TADLOGIN_CLIENTSECRET}>">
+                <input type="text" name="oidc[<{$unit}>][clientsecret]" class="form-control " value="<{$oidc_setup.$unit.clientsecret}>" placeholder="<{$oidc.title}> <{$smarty.const._MA_TADLOGIN_CLIENTSECRET}>">
             </div>
         </div>
     <{/foreach}>
