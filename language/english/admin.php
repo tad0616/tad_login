@@ -53,3 +53,6 @@ define('_MA_TADLOGIN_SCHOOLCODE', 'School Code');
 define('_MA_TADLOGIN_TEACHER', 'Teacher');
 define('_MA_TADLOGIN_STUDENT', 'Student');
 define('_MA_TADLOGIN_JOB', 'Job');
+
+define('_MA_TADLOGIN_CLIENTID', 'client id');
+define('_MA_TADLOGIN_CLIENTSECRET', 'client secret');

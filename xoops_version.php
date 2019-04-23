@@ -1,9 +1,10 @@
 <?php
+include_once XOOPS_ROOT_PATH . '/modules/tad_login/oidc.php';
 $modversion = [];
 
 //---模組基本資訊---//
 $modversion['name'] = _MI_TADLOGIN_NAME;
-$modversion['version'] = 4.54;
+$modversion['version'] = 4.55;
 $modversion['description'] = _MI_TADLOGIN_DESC;
 $modversion['author'] = _MI_TADLOGIN_AUTHOR;
 $modversion['credits'] = _MI_TADLOGIN_CREDITS;
@@ -14,7 +15,7 @@ $modversion['image'] = "images/logo_{$xoopsConfig['language']}.png";
 $modversion['dirname'] = basename(__DIR__);
 
 //---模組狀態資訊---//
-$modversion['release_date'] = '2019-04-08';
+$modversion['release_date'] = '2019-04-23';
 $modversion['module_website_url'] = 'https://tad0616.net/';
 $modversion['module_website_name'] = _MI_TAD_WEB;
 $modversion['module_status'] = 'release';
@@ -118,70 +119,6 @@ $modversion['config'][$i]['valuetype'] = 'text';
 $modversion['config'][$i]['default'] = '';
 
 $i++;
-$modversion['config'][$i]['name'] = 'edu_clientid';
-$modversion['config'][$i]['title'] = '_MI_TADLOGIN_EDU_CLIENTID';
-$modversion['config'][$i]['description'] = '_MI_TADLOGIN_EDU_CLIENTID_DESC';
-$modversion['config'][$i]['formtype'] = 'textbox';
-$modversion['config'][$i]['valuetype'] = 'text';
-$modversion['config'][$i]['default'] = '';
-
-$i++;
-$modversion['config'][$i]['name'] = 'edu_clientsecret';
-$modversion['config'][$i]['title'] = '_MI_TADLOGIN_EDU_CLIENTSECRET';
-$modversion['config'][$i]['description'] = '_MI_TADLOGIN_EDU_CLIENTSECRET_DESC';
-$modversion['config'][$i]['formtype'] = 'textbox';
-$modversion['config'][$i]['valuetype'] = 'text';
-$modversion['config'][$i]['default'] = '';
-
-$i++;
-$modversion['config'][$i]['name'] = 'ty_edu_clientid';
-$modversion['config'][$i]['title'] = '_MI_TADLOGIN_TY_EDU_CLIENTID';
-$modversion['config'][$i]['description'] = '_MI_TADLOGIN_TY_EDU_CLIENTID_DESC';
-$modversion['config'][$i]['formtype'] = 'textbox';
-$modversion['config'][$i]['valuetype'] = 'text';
-$modversion['config'][$i]['default'] = '';
-
-$i++;
-$modversion['config'][$i]['name'] = 'ty_edu_clientsecret';
-$modversion['config'][$i]['title'] = '_MI_TADLOGIN_TY_EDU_CLIENTSECRET';
-$modversion['config'][$i]['description'] = '_MI_TADLOGIN_TY_EDU_CLIENTSECRET_DESC';
-$modversion['config'][$i]['formtype'] = 'textbox';
-$modversion['config'][$i]['valuetype'] = 'text';
-$modversion['config'][$i]['default'] = '';
-
-$i++;
-$modversion['config'][$i]['name'] = 'tc_edu_clientid';
-$modversion['config'][$i]['title'] = '_MI_TADLOGIN_TC_EDU_CLIENTID';
-$modversion['config'][$i]['description'] = '_MI_TADLOGIN_TC_EDU_CLIENTID_DESC';
-$modversion['config'][$i]['formtype'] = 'textbox';
-$modversion['config'][$i]['valuetype'] = 'text';
-$modversion['config'][$i]['default'] = '';
-
-$i++;
-$modversion['config'][$i]['name'] = 'tc_edu_clientsecret';
-$modversion['config'][$i]['title'] = '_MI_TADLOGIN_TC_EDU_CLIENTSECRET';
-$modversion['config'][$i]['description'] = '_MI_TADLOGIN_TC_EDU_CLIENTSECRET_DESC';
-$modversion['config'][$i]['formtype'] = 'textbox';
-$modversion['config'][$i]['valuetype'] = 'text';
-$modversion['config'][$i]['default'] = '';
-
-$i++;
-$modversion['config'][$i]['name'] = 'tp_edu_clientid';
-$modversion['config'][$i]['title'] = '_MI_TADLOGIN_TP_EDU_CLIENTID';
-$modversion['config'][$i]['description'] = '_MI_TADLOGIN_TP_EDU_CLIENTID_DESC';
-$modversion['config'][$i]['formtype'] = 'textbox';
-$modversion['config'][$i]['valuetype'] = 'text';
-$modversion['config'][$i]['default'] = '';
-
-$i++;
-$modversion['config'][$i]['name'] = 'tp_edu_clientsecret';
-$modversion['config'][$i]['title'] = '_MI_TADLOGIN_TP_EDU_CLIENTSECRET';
-$modversion['config'][$i]['description'] = '_MI_TADLOGIN_TP_EDU_CLIENTSECRET_DESC';
-$modversion['config'][$i]['formtype'] = 'textbox';
-$modversion['config'][$i]['valuetype'] = 'text';
-$modversion['config'][$i]['default'] = '';
-
-$i++;
 $modversion['config'][$i]['name'] = 'auth_method';
 $modversion['config'][$i]['title'] = '_MI_TADLOGIN_AUTH_METHOD';
 $modversion['config'][$i]['description'] = '_MI_TADLOGIN_AUTH_METHOD_DESC';
@@ -189,36 +126,43 @@ $modversion['config'][$i]['formtype'] = 'select_multi';
 $modversion['config'][$i]['valuetype'] = 'array';
 $modversion['config'][$i]['default'] = ['tn'];
 $modversion['config'][$i]['options'] = [
-    sprintf(_MI_TADLOGIN_LOGIN, _FACEBOOK) => 'facebook',
-    sprintf(_MI_TADLOGIN_LOGIN, _GOOGLE) => 'google',
-    sprintf(_MI_TADLOGIN_LOGIN, _YAHOO) => 'yahoo',
-    sprintf(_MI_TADLOGIN_LOGIN, _EDU) => 'edu',
-    sprintf(_MI_TADLOGIN_LOGIN, _KL) => 'kl',
-    sprintf(_MI_TADLOGIN_LOGIN, _TP) => 'tp',
-    sprintf(_MI_TADLOGIN_LOGIN, _TP_EDU) => 'tp_edu',
-    sprintf(_MI_TADLOGIN_LOGIN, _NTPC) => 'ntpc',
-    sprintf(_MI_TADLOGIN_LOGIN, _TYC) => 'tyc',
-    sprintf(_MI_TADLOGIN_LOGIN, _TY_EDU) => 'ty_edu',
-    sprintf(_MI_TADLOGIN_LOGIN, _HCC) => 'hcc',
-    sprintf(_MI_TADLOGIN_LOGIN, _HC) => 'hc',
-    sprintf(_MI_TADLOGIN_LOGIN, _MLC) => 'mlc',
-    sprintf(_MI_TADLOGIN_LOGIN, _TC) => 'tc',
-    sprintf(_MI_TADLOGIN_LOGIN, _TC_EDU) => 'tc_edu',
-    sprintf(_MI_TADLOGIN_LOGIN, _CHC) => 'chc',
-    sprintf(_MI_TADLOGIN_LOGIN, _NTCT) => 'ntct',
-    sprintf(_MI_TADLOGIN_LOGIN, _YLC) => 'ylc',
-    sprintf(_MI_TADLOGIN_LOGIN, _CYC) => 'cyc',
-    sprintf(_MI_TADLOGIN_LOGIN, _CY) => 'cy',
-    sprintf(_MI_TADLOGIN_LOGIN, _TN) => 'tn',
-    sprintf(_MI_TADLOGIN_LOGIN, _KH) => 'kh',
-    sprintf(_MI_TADLOGIN_LOGIN, _PTC) => 'ptc',
-    sprintf(_MI_TADLOGIN_LOGIN, _ILC) => 'ilc',
-    sprintf(_MI_TADLOGIN_LOGIN, _HLC) => 'hlc',
-    sprintf(_MI_TADLOGIN_LOGIN, _TTCT) => 'ttct',
-    sprintf(_MI_TADLOGIN_LOGIN, _PHC) => 'phc',
-    sprintf(_MI_TADLOGIN_LOGIN, _KM) => 'km',
-    sprintf(_MI_TADLOGIN_LOGIN, _MT) => 'mt',
+    sprintf(_TADLOGIN_LOGIN, _FACEBOOK) => 'facebook',
+    sprintf(_TADLOGIN_LOGIN, _GOOGLE) => 'google',
+    sprintf(_TADLOGIN_LOGIN, _YAHOO) => 'yahoo',
+    sprintf(_TADLOGIN_LOGIN, _KL . 'OpenID') => 'kl',
+    sprintf(_TADLOGIN_LOGIN, _TP . 'OpenID') => 'tp',
+    sprintf(_TADLOGIN_LOGIN, _NTPC . 'OpenID') => 'ntpc',
+    sprintf(_TADLOGIN_LOGIN, _TY . 'OpenID') => 'ty',
+    sprintf(_TADLOGIN_LOGIN, _HCC . 'OpenID') => 'hcc',
+    sprintf(_TADLOGIN_LOGIN, _HC . 'OpenID') => 'hc',
+    sprintf(_TADLOGIN_LOGIN, _MLC . 'OpenID') => 'mlc',
+    sprintf(_TADLOGIN_LOGIN, _TC . 'OpenID') => 'tc',
+    sprintf(_TADLOGIN_LOGIN, _CHC . 'OpenID') => 'chc',
+    sprintf(_TADLOGIN_LOGIN, _NTCT . 'OpenID') => 'ntct',
+    sprintf(_TADLOGIN_LOGIN, _YLC . 'OpenID') => 'ylc',
+    sprintf(_TADLOGIN_LOGIN, _CYC . 'OpenID') => 'cyc',
+    sprintf(_TADLOGIN_LOGIN, _CY . 'OpenID') => 'cy',
+    sprintf(_TADLOGIN_LOGIN, _TN . 'OpenID') => 'tn',
+    sprintf(_TADLOGIN_LOGIN, _KH . 'OpenID') => 'kh',
+    sprintf(_TADLOGIN_LOGIN, _PTC . 'OpenID') => 'ptc',
+    sprintf(_TADLOGIN_LOGIN, _ILC . 'OpenID') => 'ilc',
+    sprintf(_TADLOGIN_LOGIN, _HLC . 'OpenID') => 'hlc',
+    sprintf(_TADLOGIN_LOGIN, _TTCT . 'OpenID') => 'ttct',
+    sprintf(_TADLOGIN_LOGIN, _PHC . 'OpenID') => 'phc',
+    sprintf(_TADLOGIN_LOGIN, _KM . 'OpenID') => 'km',
+    sprintf(_TADLOGIN_LOGIN, _MT . 'OpenID') => 'mt',
 ];
+
+foreach ($all_oidc as $oidc_unit => $oarr) {
+    $const = constant('_' . strtoupper($oarr['tail']));
+    $oidc_unit_const = sprintf(_TADLOGIN_LOGIN, $const . _TADLOGIN_OIDC);
+    $modversion['config'][$i]['options'][$oidc_unit_const] = $oidc_unit;
+}
+foreach ($all_oidc2 as $oidc_unit => $oarr) {
+    $const = constant('_' . strtoupper($oarr['tail']));
+    $oidc_unit_const = sprintf(_TADLOGIN_LOGIN, $const . _TADLOGIN_LDAP);
+    $modversion['config'][$i]['options'][$oidc_unit_const] = $oidc_unit;
+}
 
 $i++;
 $modversion['config'][$i]['name'] = 'openid_login';
@@ -243,5 +187,13 @@ $modversion['config'][$i]['name'] = 'redirect_url';
 $modversion['config'][$i]['title'] = '_MI_TADLOGIN_REDIRECT_URL';
 $modversion['config'][$i]['description'] = '_MI_TADLOGIN_REDIRECT_URL_DESC';
 $modversion['config'][$i]['formtype'] = 'textbox';
+$modversion['config'][$i]['valuetype'] = 'text';
+$modversion['config'][$i]['default'] = '';
+
+$i++;
+$modversion['config'][$i]['name'] = 'oidc_setup';
+$modversion['config'][$i]['title'] = '_TADLOGIN_OIDC_SETUP';
+$modversion['config'][$i]['description'] = '_TADLOGIN_OIDC_SETUP_DESC';
+$modversion['config'][$i]['formtype'] = 'textarea';
 $modversion['config'][$i]['valuetype'] = 'text';
 $modversion['config'][$i]['default'] = '';

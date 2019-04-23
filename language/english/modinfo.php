@@ -6,10 +6,9 @@ define('_MI_TADLOGIN_NAME', 'Tad Login');
 define('_MI_TADLOGIN_AUTHOR', 'Tad');
 define('_MI_TADLOGIN_CREDITS', 'Wang Jiatian director (adm@mail.cyc.edu.tw)');
 define('_MI_TADLOGIN_ADMENU1', 'Facebook certificate');
-define('_MI_TADLOGIN_ADMENU1_DESC', 'Facebook certification statement');
 define('_MI_TADLOGIN_ADMENU2', 'Auto Group Set');
 define('_MI_TADLOGIN_ADMENU3', 'Google Certificate');
-define('_MI_TADLOGIN_ADMENU3_DESC', 'Google Certified Set Description');
+define('_MI_TADLOGIN_ADMENU4', 'Education cloud authentication settings');
 
 define('_MI_TADLOGIN_DESC', 'Join FB and other fast login mechanism');
 define('_MI_TADLOGIN_BNAME1', 'Tad Login');
@@ -20,7 +19,6 @@ define('_MI_TADLOGIN_SECRET', 'FaceBook "Application Key"');
 define('_MI_TADLOGIN_SECRET_DESC', 'Please go to https://developers.facebook.com/apps build an application and obtain the "Application key", the default value of your site is invalid (for reference only');
 define('_MI_TADLOGIN_AUTH_METHOD', 'Select authentication method');
 define('_MI_TADLOGIN_AUTH_METHOD_DESC', 'Please multi-select authentication that you let your users to use to login');
-define('_MI_TADLOGIN_LOGIN', 'Use %s login');
 define('_MI_TADLOGIN_REAL_JOBNAME', 'Apply OpenID title');
 define('_MI_TADLOGIN_REAL_JOBNAME_DESC', 'Selecting "Yes" will try to get the OpenID title and return it (if any), selecting "No" will only determine whether it is a student or a teacher.');
 
@@ -59,22 +57,5 @@ define('_MI_TADLOGIN_HELP_OVERVIEW', 'Overview');
 define('_MI_TADLOGIN_REDIRECT_URL', 'Sign-in URL redirects to settings');
 define('_MI_TADLOGIN_REDIRECT_URL_DESC', 'You can set which URL to redirect to after login.');
 
-define('_MI_TADLOGIN_EDU_CLIENTID', 'Ministry of Education cloud openid connect clientid');
-define('_MI_TADLOGIN_EDU_CLIENTID_DESC', 'For application details, please visit https://oidc.tanet.edu.tw/');
-define('_MI_TADLOGIN_EDU_CLIENTSECRET', 'Ministry of Education cloud openid connect clientsecret');
-define('_MI_TADLOGIN_EDU_CLIENTSECRET_DESC', 'For application details, please visit https://oidc.tanet.edu.tw/');
-
-define('_MI_TADLOGIN_TY_EDU_CLIENTID', 'Ministry of Education cloud for Taoyuan City openid connect clientid');
-define('_MI_TADLOGIN_TY_EDU_CLIENTID_DESC', 'For application details, please visit https://tyc.sso.edu.tw');
-define('_MI_TADLOGIN_TY_EDU_CLIENTSECRET', 'Ministry of Education cloud for Taoyuan City openid connect clientsecret');
-define('_MI_TADLOGIN_TY_EDU_CLIENTSECRET_DESC', 'For application details, please visit https://tyc.sso.edu.tw');
-
-define('_MI_TADLOGIN_TC_EDU_CLIENTID', 'Ministry of Education cloud for Taichung City openid connect clientid');
-define('_MI_TADLOGIN_TC_EDU_CLIENTID_DESC', 'For application details, please visit https://tc.sso.edu.tw');
-define('_MI_TADLOGIN_TC_EDU_CLIENTSECRET', 'Ministry of Education cloud for Taichung City openid connect clientsecret');
-define('_MI_TADLOGIN_TC_EDU_CLIENTSECRET_DESC', 'For application details, please visit https://tc.sso.edu.tw');
-
-define('_MI_TADLOGIN_TP_EDU_CLIENTID', 'Ministry of Education cloud for Taipei City openid connect clientid');
-define('_MI_TADLOGIN_TP_EDU_CLIENTID_DESC', 'For application details, please visit https://ldap.tp.edu.tw');
-define('_MI_TADLOGIN_TP_EDU_CLIENTSECRET', 'Ministry of Education cloud for Taipei City openid connect clientsecret');
-define('_MI_TADLOGIN_TP_EDU_CLIENTSECRET_DESC', 'For application details, please visit https://ldap.tp.edu.tw');
+define('_TADLOGIN_OIDC_SETUP', 'OIDC Education Cloud Account Settings');
+define('_TADLOGIN_OIDC_SETUP_DESC', 'Do not move, please setup from <a href="' . XOOPS_URL . '/modules/tad_login/admin/oidc.php">' . XOOPS_URL . '/modules/tad_login/admin/oidc.php</a>');

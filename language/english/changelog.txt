@@ -1,3 +1,10 @@
+Tad Login 4.5.5 (2019-04-23 released)
+=========================================================
+1. Join OIDC login in each county and city
+2. Automatically correct the login suffix of Kaohsiung City and Taoyuan City
+3. Fixed the problem that the single sign-in service in Taipei cannot be used.
+4. Use the namespace mechanism to avoid function conflicts
+
 Tad Login 4.5.4 (2019-02-11 released)
 ================================================
 1. Fix education cloud login problem

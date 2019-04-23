@@ -1,12 +1,24 @@
 <?php
-require __DIR__ . '/vendor/autoload.php';
-require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/vendor/autoload.php';
+include_once __DIR__ . '/../../../../mainfile.php';
+include_once __DIR__ . '/../../function.php';
+if (!isset($xoopsModuleConfig)) {
+    $modhandler = xoops_getHandler('module');
+    $tad_loginModule = $modhandler->getByDirname('tad_login');
+    $config_handler = xoops_getHandler('config');
+    $xoopsModuleConfig = $config_handler->getConfigsByCat(0, $tad_loginModule->mid());
+}
+$oidc_setup = json_decode($xoopsModuleConfig['oidc_setup'], true);
+$auth_method = $_SESSION['auth_method'];
+$oidc_arr = $all_oidc[$auth_method];
+$responsetype = ['code'];
+
 use Jumbojett\OpenIDConnectClient;
 
-$oidc = new OpenIDConnectClient($provideruri, $clientid, $clientsecret);
+$oidc = new OpenIDConnectClient($oidc_arr['provideruri'], $oidc_setup[$auth_method]['clientid'], $oidc_setup[$auth_method]['clientsecret']);
 
 $oidc->setResponseTypes($responsetype);
-$oidc->setRedirectURL($redirecturi);
-$oidc->setAllowImplicitFlow(false);
-$oidc->addScope($scope);
+$oidc->setRedirectURL(XOOPS_URL . '/modules/tad_login/edu_callback.php');
+$oidc->setAllowImplicitFlow(true);
+$oidc->addScope($oidc_arr['scope']);
 $oidc->authenticate();

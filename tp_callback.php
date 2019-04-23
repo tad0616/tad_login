@@ -3,13 +3,13 @@ include_once '../../mainfile.php';
 include_once 'function.php';
 
 if (!isset($_GET['code']) && !isset($_SESSION['token'])) {
-    header("location:https://ldap.tp.edu.tw/oauth/authorize?client_id={$xoopsModuleConfig['tp_edu_clientid']}&redirect_uri=" . XOOPS_URL . '/modules/tad_login/tp_callback.php&response_type=code&scope=user,profile,school');
+    header("location:https://ldap.tp.edu.tw/oauth/authorize?client_id={$xoopsModuleConfig['tp_ldap_clientid']}&redirect_uri=" . XOOPS_URL . '/modules/tad_login/tp_callback.php&response_type=code&scope=user profile');
     exit;
 } elseif (!isset($_SESSION['token'])) {
     $param = [
         'grant_type' => 'authorization_code',
-        'client_id' => $xoopsModuleConfig['tp_edu_clientid'],
-        'client_secret' => $xoopsModuleConfig['tp_edu_clientsecret'],
+        'client_id' => $xoopsModuleConfig['tp_ldap_clientid'],
+        'client_secret' => $xoopsModuleConfig['tp_ldap_clientsecret'],
         'redirect_uri' => XOOPS_URL . '/modules/tad_login/tp_callback.php',
         'code' => $_GET['code'],
     ];
@@ -23,9 +23,9 @@ if (!isset($_GET['code']) && !isset($_SESSION['token'])) {
     $param = [
         'grant_type' => 'refresh_token',
         'refresh_token' => $_SESSION['refresh'],
-        'client_id' => $xoopsModuleConfig['tp_edu_clientid'],
-        'client_secret' => $xoopsModuleConfig['tp_edu_clientsecret'],
-        'scope' => 'user,profile,school',
+        'client_id' => $xoopsModuleConfig['tp_ldap_clientid'],
+        'client_secret' => $xoopsModuleConfig['tp_ldap_clientsecret'],
+        'scope' => 'user profile',
     ];
     $response = do_post('https://ldap.tp.edu.tw/oauth/token', $param);
     $token = json_decode($response);
@@ -37,41 +37,27 @@ if (!isset($_GET['code']) && !isset($_SESSION['token'])) {
 
 $user = requestProtectedApi('https://ldap.tp.edu.tw/api/user', $_SESSION['token']);
 $profile = requestProtectedApi('https://ldap.tp.edu.tw/api/profile', $_SESSION['token']);
-$school = requestProtectedApi('https://ldap.tp.edu.tw/api/school/' . $profile['o'], $_SESSION['token']);
+// $school = requestProtectedApi('https://ldap.tp.edu.tw/api/school/' . $profile['o'], $_SESSION['token']);
 
-// var_export($school);
-// exit;
+// var_export($profile);
 // array (
-//     'role' => '教師',
-//     'uuid' => '0c04373a-06e0-1038-8694-e52b910af178',
-//     'name' => 'OOO',
-//     'email' => 'aaa@bbb.tp.edu.tw',
-//     'email_login' => true,
-//     'mobile' => '0912345678',
+//     'role' => '校長',
+//     'o' => 'zhps',
+//     'gender' => '1',
+//     'birthDate' => '19700101',
+//     'organization' => '臺北市大同區日新國民小學',
+//   )
+// var_export($user);
+// array (
+//     'role' => '校長',
+//     'uuid' => '6d9d75ba-c47c-1038-9a53-a5ea9162bdf0',
+//     'name' => '林大同',
+//     'email' => 'digimagic1997@gmail.com',
+//     'email_login' => false,
+//     'mobile' => NULL,
 //     'mobile_login' => false,
 //   )
-// array (
-//     'role' => '教師',
-//     'gender' => '1',
-//     'o' => 'bbb',
-//     'organization' => '臺北市立bb國民中學',
-//   )
-// array (
-//     'o' => 'bbb',
-//     'businessCategory' => '國民中學',
-//     'st' => 'bb區',
-//     'description' => '臺北市立bb國民中學',
-//     'facsimileTelephoneNumber' => '(02)2000000',
-//     'telephoneNumber' => '(02)27000000',
-//     'postalCode' => '114',
-//     'street' => '臺北市bb區xx街一號',
-//     'postOfficeBox' => '212',
-//     'wWWHomePage' => 'http://www.bbb.tp.edu.tw/',
-//     'tpUniformNumbers' => '403501',
-//     'tpIpv4' => '163.00.00.0/24',
-//     'tpIpv6' => '2001:000:0000::/48',
-//   )
-
+// exit;
 if ($user['email']) {
     $myts = MyTextSanitizer::getInstance();
     list($id, $domain) = explode('@', $user['email']);
@@ -82,10 +68,10 @@ if ($user['email']) {
     $JobName = '教師' === $user['role'] ? 'teacher' : 'student';
     // $JobName = "teacher";
     $bio = '';
-    $url = $school['wWWHomePage'];
+    $url = '';
     $from = '';
     $sig = '';
-    $occ = $school['description'];
+    $occ = $profile['organization'];
 
     login_xoops($uname, $name, $email, $SchoolCode, $JobName, $url, $from, $sig, $occ, $bio);
 }
