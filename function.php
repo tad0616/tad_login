@@ -4,6 +4,7 @@ if (!file_exists(XOOPS_ROOT_PATH . '/modules/tadtools/tad_function.php')) {
     redirect_header('http://campus-xoops.tn.edu.tw/modules/tad_modules/index.php?module_sn=1', 3, _TAD_NEED_TADTOOLS);
 }
 require_once XOOPS_ROOT_PATH . '/modules/tadtools/tad_function.php';
+require_once XOOPS_ROOT_PATH . '/modules/tad_login/oidc.php';
 
 /********************* 自訂函數 *********************/
 function generateRandomString($length = 20)
@@ -53,22 +54,18 @@ function do_post($url, $data)
     return $response;
 }
 
-//教育部登入
+//oidc 登入
 if (!function_exists('edu_login')) {
-    function edu_login($openid = 'edu', $mode = '')
+    function edu_login($openid = 'edu_oidc', $mode = '')
     {
-        global $xoopsConfig, $xoopsDB, $xoopsTpl, $xoopsUser;
-
-        if ('ty_edu' === $openid) {
-            $link = XOOPS_URL . '/modules/tad_login/class/edu/ty_auth.php';
-        } else {
+        global $xoopsTpl;
             $link = XOOPS_URL . '/modules/tad_login/class/edu/auth.php';
-        }
-
         if ('return' === $mode) {
             return $link;
         }
-        $xoopsTpl->assign('edu', $link);
+
+        header("location: $link");
+        // $xoopsTpl->assign($openid, $link);
     }
 }
 
@@ -108,7 +105,7 @@ if (!function_exists('facebook_login')) {
             'app_id' => $tad_loginConfig['appId'], // Replace {app-id} with your app id
             'app_secret' => $tad_loginConfig['secret'],
             'default_graph_version' => 'v2.11',
-                                    ]);
+        ]);
 
         // $user_profile = '';
         // if ($_SESSION['fb_access_token']) {

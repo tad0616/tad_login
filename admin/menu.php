@@ -14,6 +14,11 @@ $adminmenu[$i]['link'] = 'admin/main.php';
 $adminmenu[$i]['desc'] = _MI_TADLOGIN_ADMENU2;
 $adminmenu[$i]['icon'] = 'images/admin/main.png';
 
+$adminmenu[$i]['title'] = _MI_TADLOGIN_ADMENU4;
+$adminmenu[$i]['link'] = 'admin/oidc.php';
+$adminmenu[$i]['desc'] = _MI_TADLOGIN_ADMENU4;
+$adminmenu[$i]['icon'] = 'images/admin/oidc.png';
+
 $i++;
 $adminmenu[$i]['title'] = _MI_TADLOGIN_ADMENU1;
 $adminmenu[$i]['link'] = 'admin/fb.php';

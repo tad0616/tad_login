@@ -2,9 +2,11 @@
 
 use XoopsModules\Tad_login\Utility;
 
-function xoops_module_update_tad_login(&$module, $old_version)
+function xoops_module_update_tad_login()
 {
-    global $xoopsDB;
+
+    Utility::fix_kh();
+    Utility::fix_ty();
 
     if (!Utility::chk_chk1()) {
         Utility::go_update1();

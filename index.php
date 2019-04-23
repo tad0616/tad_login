@@ -376,7 +376,7 @@ function hlc_login($conty = '', $openid_identity = '')
             'pref/timezone' => '[{"id":"014569","name":"新北市立xx國民中學","role":"教師","title":"專任教師","groups":["科任教師"]}]',
             )
 
-            //tyc
+            //ty
             array (
             'contact/country/home' => '034521',
             'contact/email' => 'xxx@yahoo.com.tw',
@@ -428,7 +428,7 @@ function hlc_login($conty = '', $openid_identity = '')
 
                     $JobName = (false !== mb_strpos($arr[0]['role'], '學生')) ? 'student' : 'teacher';
 
-                    // } elseif ($conty == "tyc") {
+                    // } elseif ($conty == "ty") {
                     //     $SchoolCode = $myts->addSlashes($user_profile['contact/country/home']);
                     //     $arr        = json_decode($user_profile['pref/timezone'], true);
                     //die(var_export($arr));
@@ -463,7 +463,7 @@ function hlc_login($conty = '', $openid_identity = '')
 }
 
 //桃園市登入
-function tyc_login()
+function ty_login()
 {
     global $xoopsModuleConfig, $xoopsConfig, $xoopsDB, $xoopsTpl, $xoopsUser;
 
@@ -494,7 +494,7 @@ function tyc_login()
                 $the_id = explode('@', $user_profile['contact/email']);
 
                 //$uid = $user['id'];
-                $uname = $the_id[0] . '_tyc';
+                $uname = $the_id[0] . '_ty';
                 $name = $myts->addSlashes($user_profile['namePerson']);
                 $email = mb_strtolower($user_profile['contact/email']);
 
@@ -738,11 +738,11 @@ function kh_login()
 
                 if ($user_profile['openid_ext2_email']) {
                     $the_id = explode('@', $user_profile['openid_ext2_email']);
-                    $uname = $the_id[0] . '_hk';
+                    $uname = $the_id[0] . '_kh';
                     $email = mb_strtolower($user_profile['openid_ext2_email']);
                 } else {
                     $the_id = str_replace('http://openid.kh.edu.tw/', '', $user_profile['openid_claimed_id']);
-                    $uname = $the_id . '_hk';
+                    $uname = $the_id . '_kh';
                     $email = "{$the_id}@mail.kh.edu.tw";
                 }
 
@@ -913,7 +913,7 @@ function mt_login()
 
 function list_login()
 {
-    global $xoopsTpl, $xoopsModuleConfig;
+    global $xoopsTpl, $xoopsModuleConfig, $oidc_array;
 
     if ('cyc' === $_SESSION['auth_method']) {
         tc_login('cyc', 'http://openid.cyccc.tw');
@@ -937,12 +937,14 @@ function list_login()
         tc_login('ptc', 'http://openid.ptc.edu.tw');
     } elseif ('phc' === $_SESSION['auth_method']) {
         tc_login('phc', 'http://openid.phc.edu.tw');
-    } elseif ('tyc' === $_SESSION['auth_method']) {
-        tyc_login();
+    } elseif ('ty' === $_SESSION['auth_method']) {
+        ty_login();
     } elseif ('ttct' === $_SESSION['auth_method']) {
         hlc_login('ttct', 'http://openid.boe.ttct.edu.tw');
     } elseif ('ntpc' === $_SESSION['auth_method']) {
         hlc_login('ntpc', 'http://openid.ntpc.edu.tw');
+    } elseif ('tp_ldap' === $_SESSION['auth_method']) {
+        tp_ldap_login();
     } else {
         call_user_func("{$_SESSION['auth_method']}_login");
     }
@@ -961,9 +963,7 @@ function list_login()
             $url = facebook_login('return');
         } elseif ('google' === $openid) {
             $url = google_login('return');
-        } elseif ('edu' === $openid) {
-            $url = edu_login($openid, 'return');
-        } elseif ('ty_edu' === $openid) {
+        } elseif (in_array($openid, $oidc_array)) {
             $url = edu_login($openid, 'return');
         } else {
             $url = XOOPS_URL . "/modules/tad_login/index.php?login&op={$openid}";
@@ -977,19 +977,10 @@ function list_login()
     $xoopsTpl->assign('auth_method', $auth_method);
 }
 
-function tp_edu_login()
+function tp_ldap_login()
 {
     global $xoopsModuleConfig;
-    header("location:https://ldap.tp.edu.tw/oauth/authorize?client_id={$xoopsModuleConfig['tp_edu_clientid']}&redirect_uri=" . XOOPS_URL . '/modules/tad_login/tp_callback.php&response_type=code&scope=user,profile,school');
-    exit;
-}
-
-function ty_edu_login()
-{
-    global $xoopsModuleConfig;
-    $state = generateRandomString();
-    $nonce = generateRandomString();
-    header("location:https://tyc.sso.edu.tw/oidc/v1/azp?response_type=code&client_id={$xoopsModuleConfig['ty_edu_clientid']}&redirect_uri=" . XOOPS_URL . "/modules/tad_login/edu_callback.php&scope=openid+email+profile+eduinfo+openid2&state={$state}&nonce={$nonce}");
+    header("location:https://ldap.tp.edu.tw/oauth/authorize?client_id={$xoopsModuleConfig['tp_ldap_clientid']}&redirect_uri=" . XOOPS_URL . '/modules/tad_login/tp_callback.php&response_type=code&scope=user profile');
     exit;
 }
 
@@ -1000,10 +991,6 @@ $op = system_CleanVars($_REQUEST, 'op', '', 'string');
 $link_to = system_CleanVars($_REQUEST, 'link_to', '', 'string');
 
 switch ($op) {
-    case 'edu':
-        $_SESSION['auth_method'] = 'edu';
-        edu_login($op);
-        break;
     case 'facebook':
         $_SESSION['auth_method'] = 'facebook';
         facebook_login();
@@ -1068,18 +1055,9 @@ switch ($op) {
         $_SESSION['auth_method'] = 'tp';
         tp_login();
         break;
-    case 'tp_edu':
-        $_SESSION['auth_method'] = 'tp_edu';
-        tp_edu_login();
-        break;
-    case 'tyc':
-        $_SESSION['auth_method'] = 'tyc';
-        tyc_login();
-        break;
-    case 'ty_edu':
-        $_SESSION['auth_method'] = 'ty_edu';
-        // ty_edu_login();
-        edu_login($op);
+    case 'ty':
+        $_SESSION['auth_method'] = 'ty';
+        ty_login();
         break;
     case 'ttct':
         $_SESSION['auth_method'] = 'ttct';
@@ -1113,8 +1091,17 @@ switch ($op) {
         $_SESSION['auth_method'] = 'mt';
         mt_login();
         break;
+    case 'tp_ldap':
+        $_SESSION['auth_method'] = 'tp_ldap';
+        tp_ldap_login();
+        break;
     default:
-        list_login();
+        if (in_array($op, $oidc_array)) {
+            $_SESSION['auth_method'] = $op;
+            edu_login($op);
+        } else {
+            list_login();
+        }
         break;
 }
 

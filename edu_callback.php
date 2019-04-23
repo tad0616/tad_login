@@ -1,12 +1,7 @@
 <?php
-require_once dirname(dirname(__DIR__)) . '/mainfile.php';
-require_once __DIR__ . '/function.php';
-
-if ('ty_edu' === $_SESSION['auth_method']) {
-    require_once __DIR__ . '/class/edu/ty_auth.php';
-} else {
-    require_once __DIR__ . '/class/edu/auth.php';
-}
+require_once '../../mainfile.php';
+require_once 'function.php';
+require_once 'class/edu/auth.php';
 
 //verified idtoken
 $claims = $oidc->getVerifiedClaims();
@@ -23,24 +18,19 @@ $accesstoken = $oidc->getAccessToken();
 // var_dump($accesstoken);
 
 //get eduinfo
-if ('ty_edu' === $_SESSION['auth_method']) {
-    $eduinfoep = 'https://tyc.sso.edu.tw/cncresource/api/v1/eduinfo';
-    // echo $eduinfoep;
-    $eduinfo = requestProtectedApi($eduinfoep, $accesstoken, true, false);
-} else {
-    $eduinfoep = 'https://oidc.tanet.edu.tw/moeresource/api/v1/oidc/eduinfo';
-    // echo $eduinfoep;
-    $eduinfo = requestProtectedApi($eduinfoep, $accesstoken, true, true);
-}
+
+$eduinfo = requestProtectedApi($oidc_arr['eduinfoep'], $accesstoken, true, $oidc_arr['gzipenable']);
+
 // var_export($claims);
 // var_export($userinfo);
 // var_export($eduinfo);
 
 // exit;
 
-if ($userinfo['email'] and 'ty_edu' === $_SESSION['auth_method']) {
+if ($userinfo['email']) {
     $myts = MyTextSanitizer::getInstance();
-    $uname = $userinfo['sub'] . '_ty';
+    $uname = $userinfo['sub'] . '_' . $oidc_arr['tail'];
+
     $name = $myts->addSlashes($userinfo['name']);
     $email = $userinfo['email'];
     $SchoolCode = $myts->addSlashes($eduinfo['schoolid']);

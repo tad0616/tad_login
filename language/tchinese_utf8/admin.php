@@ -49,3 +49,6 @@ define('_MA_TADLOGIN_SCHOOLCODE', '學校代碼');
 define('_MA_TADLOGIN_TEACHER', '教師');
 define('_MA_TADLOGIN_STUDENT', '學生');
 define('_MA_TADLOGIN_JOB', '身份為');
+
+define('_MA_TADLOGIN_CLIENTID', 'client id');
+define('_MA_TADLOGIN_CLIENTSECRET', 'client secret');
