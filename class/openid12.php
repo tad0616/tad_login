@@ -1,5 +1,7 @@
 <?php
 
+namespace XoopsModules\Tad_login;
+
 /**
  * This class provides a simple interface for OpenID 1.1/2.0 authentication.
  *

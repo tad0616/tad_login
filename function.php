@@ -273,7 +273,7 @@ if (!function_exists('login_xoops')) {
         global $xoopsModuleConfig, $xoopsConfig, $xoopsDB, $xoopsUser;
         $memberHandler = xoops_getHandler('member');
 
-        if ($memberHandler->getUserCount(new Criteria('uname', $uname)) > 0) {
+        if ($memberHandler->getUserCount(new \Criteria('uname', $uname)) > 0) {
             //若已有此帳號！
             $uname = trim($uname);
             // die($uname);
@@ -289,7 +289,7 @@ if (!function_exists('login_xoops')) {
 
             require_once $GLOBALS['xoops']->path('class/auth/authfactory.php');
 
-            $xoopsAuth = XoopsAuthFactory::getAuthConnection($uname);
+            $xoopsAuth = \XoopsAuthFactory::getAuthConnection($uname);
             //自動登入
             $user = $xoopsAuth->authenticate($uname, $pass);
 

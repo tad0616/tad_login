@@ -42,7 +42,7 @@ function tad_login_config_form($config_id = '')
     //$op="replace_tad_login_config";
 
     if (!file_exists(TADTOOLS_PATH . '/formValidator.php')) {
-        redirect_header('index.php', 3, _MA_NEED_TADTOOLS);
+        redirect_header('index.php', 3, _TAD_NEED_TADTOOLS);
     }
     require_once TADTOOLS_PATH . '/formValidator.php';
     $formValidator = new formValidator('#myForm', true);
@@ -53,7 +53,7 @@ function tad_login_config_form($config_id = '')
     $xoopsTpl->assign('next_op', $op);
 
     //群組
-    $SelectGroup_name = new XoopsFormSelectGroup('', 'group_id', true, $group_id, 6);
+    $SelectGroup_name = new \XoopsFormSelectGroup('', 'group_id', true, $group_id, 6);
     $SelectGroup_name->setExtra("class='form-control'");
     $group_menu = $SelectGroup_name->render();
     $xoopsTpl->assign('group_menu', $group_menu);
