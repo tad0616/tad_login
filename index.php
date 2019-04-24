@@ -913,7 +913,7 @@ function mt_login()
 
 function list_login()
 {
-    global $xoopsTpl, $xoopsModuleConfig, $oidc_array;
+    global $xoopsTpl, $xoopsModuleConfig, $all_oidc, $oidc_array, $oidc_array2, $all_oidc2;
 
     if ('cyc' === $_SESSION['auth_method']) {
         tc_login('cyc', 'http://openid.cyccc.tw');
@@ -963,15 +963,20 @@ function list_login()
             $url = facebook_login('return');
         } elseif ('google' === $openid) {
             $url = google_login('return');
-        } elseif (in_array($openid, $oidc_array)) {
-            $url = edu_login($openid, 'return');
         } else {
             $url = XOOPS_URL . "/modules/tad_login/index.php?login&op={$openid}";
         }
         $auth_method[$i]['title'] = $openid;
         $auth_method[$i]['url'] = $url;
-        $auth_method[$i]['logo'] = XOOPS_URL . "/modules/tad_login/images/{$openid}_l.png";
-        $auth_method[$i]['text'] = constant('_' . mb_strtoupper($openid)) . _MD_TADLOGIN_LOGIN;
+        $auth_method[$i]['logo'] = in_array($openid, $oidc_array) ? XOOPS_URL . "/modules/tad_login/images/oidc/{$all_oidc[$openid]['tail']}.png" : XOOPS_URL . "/modules/tad_login/images/{$openid}_l.png";
+        if (in_array($openid, $oidc_array)) {
+            $auth_method[$i]['text'] = constant('_' . mb_strtoupper($all_oidc[$openid]['tail'])) . ' OIDC ' . _MD_TADLOGIN_LOGIN;
+        } elseif (in_array($openid, $oidc_array2)) {
+            $auth_method[$i]['text'] = constant('_' . mb_strtoupper($all_oidc[$openid]['tail'])) . _MD_TADLOGIN_LOGIN;
+        } else {
+            $auth_method[$i]['text'] = constant('_' . mb_strtoupper($openid)) . ' OpenID ' . _MD_TADLOGIN_LOGIN;
+        }
+
         $i++;
     }
     $xoopsTpl->assign('auth_method', $auth_method);

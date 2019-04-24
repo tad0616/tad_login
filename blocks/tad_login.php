@@ -2,7 +2,7 @@
 //區塊主函式 (快速登入(tad_login))
 function tad_login($options = '')
 {
-    global $xoopsConfig, $xoopsDB, $xoopsUser;
+    global $xoopsConfig, $xoopsDB, $xoopsUser, $all_oidc, $oidc_array, $oidc_array2, $all_oidc2;
     if ($xoopsUser) {
         return;
     }
@@ -23,8 +23,6 @@ function tad_login($options = '')
             $url = facebook_login('return');
         } elseif ('google' === $openid) {
             $url = google_login('return');
-        } elseif (in_array($openid, $oidc_array)) {
-            $url = edu_login($openid, 'return');
         } else {
             $url = XOOPS_URL . "/modules/tad_login/index.php?login&op={$openid}";
         }
