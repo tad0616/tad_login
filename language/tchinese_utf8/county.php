@@ -27,7 +27,7 @@ define('_TY', '桃園市');
 define('_KM', '金門縣');
 define('_MT', '連江縣');
 define('_TTCT', '台東縣');
-define('_EDU', '臺東縣');
+define('_EDU', '教育體系');
 define('_MOE', '教育部');
 define('_TADLOGIN_LOGIN', '使用%s登入');
 define('_TADLOGIN_OIDC', '教育雲 OIDC');
