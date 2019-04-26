@@ -1,4 +1,5 @@
 <?php
+use XoopsModules\Tadtools\Utility;
 /*-----------引入檔案區--------------*/
 $xoopsOption['template_main'] = 'tad_login_adm_main.tpl';
 include_once 'header.php';
@@ -11,10 +12,10 @@ function edu_login_config_form($config_id = '')
 {
     global $xoopsModuleConfig, $xoopsTpl, $all_oidc, $all_oidc2;
 
-    if (!file_exists(TADTOOLS_PATH . '/formValidator.php')) {
+    if (!file_exists(XOOPS_ROOT_PATH . '/modules/tadtools/formValidator.php')) {
         redirect_header('index.php', 3, _MA_NEED_TADTOOLS);
     }
-    include_once TADTOOLS_PATH . '/formValidator.php';
+    include_once XOOPS_ROOT_PATH . '/modules/tadtools/formValidator.php';
     $formValidator = new formValidator('#myForm', true);
     $formValidator_code = $formValidator->render();
 
@@ -50,7 +51,7 @@ function save_tad_login_edu_config()
     $sql = 'update `' . $xoopsDB->prefix('config') . "`
     set `conf_value`='{$oidc}'
     where `conf_name`='oidc_setup' and `conf_title`='_TADLOGIN_OIDC_SETUP'";
-    $xoopsDB->query($sql) or web_error($sql, __FILE__, __LINE__);
+    $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
 }
 

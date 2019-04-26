@@ -1110,7 +1110,7 @@ switch ($op) {
         break;
 }
 
-$xoopsTpl->assign('toolbar', toolbar_bootstrap($interface_menu));
+$xoopsTpl->assign('toolbar', Utility::toolbar_bootstrap($interface_menu));
 
 if (isset($link_to) and !empty($link_to)) {
     $_SESSION['login_from'] = $link_to;
