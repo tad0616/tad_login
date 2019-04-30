@@ -143,7 +143,7 @@ if (!function_exists('facebook_login')) {
         // Login or logout url will be needed depending on current user state.
         if ($user_profile) {
             // die(var_export($user_profile));
-            // $myts  = MyTextSanitizer::getInstance();
+            // $myts  = \MyTextSanitizer::getInstance();
             // $uid   = $user_profile['id'];
             // $uname = empty($user_profile['username']) ? $user_profile['id'] . "_fb" : $user_profile['username'] . "_fb";
             // $name  = $myts->addSlashes($user_profile['name']);
@@ -233,7 +233,7 @@ if (!function_exists('google_login')) {
             $img = filter_var($user['picture'], FILTER_VALIDATE_URL);
 
             if ($user) {
-                $myts = MyTextSanitizer::getInstance();
+                $myts = \MyTextSanitizer::getInstance();
                 $uid = $user['id'];
                 list($goog_uname, $m) = explode('@', $user['email']);
                 $uname = empty($goog_uname) ? $user['id'] . '_goo' : $goog_uname . '_goo';

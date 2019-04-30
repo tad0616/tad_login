@@ -1,4 +1,5 @@
 <?php
+use XoopsModules\Tadtools\FormValidator;
 use XoopsModules\Tadtools\Utility;
 /*-----------引入檔案區--------------*/
 $xoopsOption['template_main'] = 'tad_login_adm_main.tpl';
@@ -42,15 +43,10 @@ function tad_login_config_form($config_id = '')
     $op = (empty($config_id)) ? 'insert_tad_login_config' : 'update_tad_login_config';
     //$op="replace_tad_login_config";
 
-    if (!file_exists(XOOPS_ROOT_PATH . '/modules/tadtools/formValidator.php')) {
-        redirect_header('index.php', 3, _MA_NEED_TADTOOLS);
-    }
-    include_once XOOPS_ROOT_PATH . '/modules/tadtools/formValidator.php';
-    $formValidator = new formValidator('#myForm', true);
-    $formValidator_code = $formValidator->render();
+    $FormValidator = new FormValidator('#myForm', true);
+    $FormValidator->render();
 
     $xoopsTpl->assign('action', $_SERVER['PHP_SELF']);
-    $xoopsTpl->assign('formValidator_code', $formValidator_code);
     $xoopsTpl->assign('next_op', $op);
 
     //群組
@@ -65,7 +61,7 @@ function insert_tad_login_config()
 {
     global $xoopsDB, $xoopsUser;
 
-    $myts = MyTextSanitizer::getInstance();
+    $myts = \MyTextSanitizer::getInstance();
     $_POST['item'] = $myts->addSlashes($_POST['item']);
 
     if ('email' === $_POST['type']) {
@@ -92,7 +88,7 @@ function update_tad_login_config($config_id = '')
 {
     global $xoopsDB, $xoopsUser;
 
-    $myts = MyTextSanitizer::getInstance();
+    $myts = \MyTextSanitizer::getInstance();
     $_POST['item'] = $myts->addSlashes($_POST['item']);
 
     if ('email' === $_POST['type']) {

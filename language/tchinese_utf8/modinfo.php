@@ -1,5 +1,5 @@
 <?php
-include_once XOOPS_ROOT_PATH . "/modules/tadtools/language/{$xoopsConfig['language']}/modinfo_common.php";
+xoops_loadLanguage('modinfo_common', 'tadtools');
 include_once 'county.php';
 
 define('_MI_TADLOGIN_NAME', '快速登入');
