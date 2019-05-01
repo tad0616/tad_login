@@ -50,7 +50,7 @@ function tad_login_config_form($config_id = '')
     $xoopsTpl->assign('next_op', $op);
 
     //群組
-    $SelectGroup_name = new XoopsFormSelectGroup('', 'group_id', true, $group_id, 6);
+    $SelectGroup_name = new \XoopsFormSelectGroup('', 'group_id', true, $group_id, 6);
     $SelectGroup_name->setExtra("class='form-control'");
     $group_menu = $SelectGroup_name->render();
     $xoopsTpl->assign('group_menu', $group_menu);
