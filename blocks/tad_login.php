@@ -28,8 +28,16 @@ function tad_login($options = '')
         }
         $auth_method[$i]['title'] = $openid;
         $auth_method[$i]['url'] = $url;
+
         $auth_method[$i]['logo'] = in_array($openid, $oidc_array) ? XOOPS_URL . "/modules/tad_login/images/oidc/{$all_oidc[$openid]['tail']}.png" : XOOPS_URL . "/modules/tad_login/images/{$openid}{$big}.png";
-        $auth_method[$i]['text'] = in_array($openid, $oidc_array) ? constant('_' . mb_strtoupper($all_oidc[$openid]['tail'])) . ' OIDC ' . _MB_TADLOGIN_LOGIN : constant('_' . mb_strtoupper($openid)) . ' OpenID ' . _MB_TADLOGIN_LOGIN;
+
+        if (in_array($openid, $oidc_array)) {
+            $auth_method[$i]['text'] = constant('_' . mb_strtoupper($all_oidc[$openid]['tail'])) . ' OIDC ' . _MB_TADLOGIN_LOGIN;
+        } elseif (in_array($openid, $oidc_array2)) {
+            $auth_method[$i]['text'] = constant('_' . mb_strtoupper($all_oidc[$openid]['tail'])) . _MB_TADLOGIN_LOGIN;
+        } else {
+            $auth_method[$i]['text'] = constant('_' . mb_strtoupper($openid)) . ' OpenID ' . _MB_TADLOGIN_LOGIN;
+        }
 
         $i++;
     }
