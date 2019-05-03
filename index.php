@@ -1,4 +1,5 @@
 <?php
+use XoopsModules\Tadtools\Utility;
 /*-----------引入檔案區--------------*/
 include 'header.php';
 $xoopsOption['template_main'] = 'tad_login_index.tpl';
