@@ -7,7 +7,7 @@ function tad_login($options = '')
         return;
     }
     include_once XOOPS_ROOT_PATH . '/modules/tad_login/function.php';
-    include_once XOOPS_ROOT_PATH . '/modules/tad_login/oidc.php';
+    // require XOOPS_ROOT_PATH . '/modules/tad_login/oidc.php';
 
     $modhandler = xoops_getHandler('module');
     $xoopsModule = $modhandler->getByDirname('tad_login');
@@ -18,6 +18,8 @@ function tad_login($options = '')
     $block['show_text'] = $options[1];
     $big = ('1' == $options[2]) ? '_l' : '';
     $i = 0;
+
+    // die(var_dump($oidc_array));
     foreach ($modConfig['auth_method'] as $openid) {
         if ('facebook' === $openid) {
             $url = facebook_login('return');

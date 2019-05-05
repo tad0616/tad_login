@@ -1,5 +1,5 @@
 <?php
-include_once XOOPS_ROOT_PATH . '/modules/tad_login/oidc.php';
+require XOOPS_ROOT_PATH . '/modules/tad_login/oidc.php';
 $modversion = [];
 
 //---模組基本資訊---//

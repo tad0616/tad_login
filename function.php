@@ -2,7 +2,7 @@
 use XoopsModules\Tadtools\Utility;
 xoops_loadLanguage('main', 'tadtools');
 
-include_once XOOPS_ROOT_PATH . '/modules/tad_login/oidc.php';
+require XOOPS_ROOT_PATH . '/modules/tad_login/oidc.php';
 
 /********************* 自訂函數 *********************/
 function generateRandomString($length = 20)
