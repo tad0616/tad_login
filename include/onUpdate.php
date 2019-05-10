@@ -2,6 +2,9 @@
 
 use XoopsModules\Tad_login\Update;
 
+if (!class_exists('XoopsModules\Tad_login\Update')) {
+    include dirname(__DIR__) . '/preloads/autoloader.php';
+}
 function xoops_module_update_tad_login()
 {
 
