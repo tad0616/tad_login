@@ -188,7 +188,7 @@ class Utility
 
         $sql = 'SELECT config_id,item FROM ' . $xoopsDB->prefix('tad_login_config') . ' ';
         $result = $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL, 3, $xoopsDB->error());
-        while (false !== (list($config_id, $item) = $xoopsDB->fetchRow($result))) {
+        while (list($config_id, $item) = $xoopsDB->fetchRow($result)) {
             $kind = (false !== mb_strpos($item, '@')) ? 'email' : 'teacher';
             $sql = 'update ' . $xoopsDB->prefix('tad_login_config') . " set kind='$kind' where config_id='{$config_id}'";
             $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL, 3, $xoopsDB->error());

@@ -152,16 +152,19 @@ $modversion['config'][$i]['options'] = [
     sprintf(_TADLOGIN_LOGIN, _KM . 'OpenID') => 'km',
     sprintf(_TADLOGIN_LOGIN, _MT . 'OpenID') => 'mt',
 ];
-
-foreach ($all_oidc as $oidc_unit => $oarr) {
-    $const = constant('_' . strtoupper($oarr['tail']));
-    $oidc_unit_const = sprintf(_TADLOGIN_LOGIN, $const . _TADLOGIN_OIDC);
-    $modversion['config'][$i]['options'][$oidc_unit_const] = $oidc_unit;
+if (isset($all_oidc)) {
+    foreach ($all_oidc as $oidc_unit => $oarr) {
+        $const                                                 = constant('_' . strtoupper($oarr['tail']));
+        $oidc_unit_const                                       = sprintf(_TADLOGIN_LOGIN, $const . _TADLOGIN_OIDC);
+        $modversion['config'][$i]['options'][$oidc_unit_const] = $oidc_unit;
+    }
 }
-foreach ($all_oidc2 as $oidc_unit => $oarr) {
-    $const = constant('_' . strtoupper($oarr['tail']));
-    $oidc_unit_const = sprintf(_TADLOGIN_LOGIN, $const . _TADLOGIN_LDAP);
-    $modversion['config'][$i]['options'][$oidc_unit_const] = $oidc_unit;
+if (isset($all_oidc2)) {
+    foreach ($all_oidc2 as $oidc_unit => $oarr) {
+        $const                                                 = constant('_' . strtoupper($oarr['tail']));
+        $oidc_unit_const                                       = sprintf(_TADLOGIN_LOGIN, $const . _TADLOGIN_LDAP);
+        $modversion['config'][$i]['options'][$oidc_unit_const] = $oidc_unit;
+    }
 }
 
 $i++;
