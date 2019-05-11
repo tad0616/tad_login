@@ -3,7 +3,7 @@
     <{foreach from=$block.auth_method item=openid}>
         <{if $openid}>
             <{if $block.use_big!='1'}>
-                <a href="<{$openid.url}>" style="<{if $block.show_text=='1'}>width: 100%;<{elseif $block.show_btn=='1'}>width: 58px;<{else}>width: 48px;<{/if}> height: 48px; margin: 4px 2px; vertical-align: middle;<{if $block.show_btn!='1'}>display:inline-block;<{/if}>" <{if $block.show_btn=='1'}>class="btn btn-default <{if $block.show_text=='1'}>btn-block<{/if}>"<{/if}>><img src="<{$openid.logo}>" alt="<{$openid.text}>" title="<{$openid.text}>" style="<{if $block.show_text=='1'}>float: left; margin-right:4px; white-space: normal;<{else}>marign:0px;<{/if}>">
+                <a href="<{$openid.url}>" style="<{if $block.show_text=='1'}>width: 100%;<{elseif $block.show_btn=='1'}>width: 58px;<{else}>width: 48px;<{/if}> height: 48px; margin: 4px 2px; vertical-align: middle;<{if $block.show_btn!='1'}>display:inline-block;<{/if}>" <{if $block.show_btn=='1'}>class="btn btn-default <{if $block.show_text=='1'}>btn-block<{/if}>"<{/if}>><img src="<{$openid.logo}>" alt="<{$openid.text}>" title="<{$openid.text}>" style="width: 32px; height: 32px; <{if $block.show_text=='1'}>float: left; margin-right:4px; white-space: normal;<{else}>marign:0px;<{/if}>">
                 <{if $block.show_text=='1'}><div style="padding-top:6px;"><{$openid.text}></div><div style="clear: both;"></div><{/if}>
                 </a>
             <{else}>

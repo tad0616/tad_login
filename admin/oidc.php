@@ -1,4 +1,6 @@
 <?php
+use XoopsModules\Tadtools\FormValidator;
+use XoopsModules\Tadtools\Utility;
 /*-----------引入檔案區--------------*/
 $xoopsOption['template_main'] = 'tad_login_adm_main.tpl';
 include_once 'header.php';
@@ -11,12 +13,8 @@ function edu_login_config_form($config_id = '')
 {
     global $xoopsModuleConfig, $xoopsTpl, $all_oidc, $all_oidc2;
 
-    if (!file_exists(TADTOOLS_PATH . '/formValidator.php')) {
-        redirect_header('index.php', 3, _MA_NEED_TADTOOLS);
-    }
-    include_once TADTOOLS_PATH . '/formValidator.php';
-    $formValidator = new formValidator('#myForm', true);
-    $formValidator_code = $formValidator->render();
+    $FormValidator = new FormValidator('#myForm', true);
+    $FormValidator->render();
 
     $oidc_setup = json_decode($xoopsModuleConfig['oidc_setup'], true);
     $xoopsTpl->assign('oidc_setup', $oidc_setup);
@@ -33,7 +31,6 @@ function edu_login_config_form($config_id = '')
 
     $xoopsTpl->assign('all_oidc', $all_oidc);
     $xoopsTpl->assign('all_oidc2', $all_oidc2);
-    $xoopsTpl->assign('formValidator_code', $formValidator_code);
     $xoopsTpl->assign('next_op', $op);
 
 }
@@ -43,14 +40,14 @@ function save_tad_login_edu_config()
 {
     global $xoopsDB, $xoopsUser;
 
-    $myts = MyTextSanitizer::getInstance();
+    $myts = \MyTextSanitizer::getInstance();
     $oidc = json_encode($_POST['oidc'], 256);
     $oidc = $myts->addSlashes($oidc);
 
     $sql = 'update `' . $xoopsDB->prefix('config') . "`
     set `conf_value`='{$oidc}'
     where `conf_name`='oidc_setup' and `conf_title`='_TADLOGIN_OIDC_SETUP'";
-    $xoopsDB->query($sql) or web_error($sql, __FILE__, __LINE__);
+    $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
 }
 

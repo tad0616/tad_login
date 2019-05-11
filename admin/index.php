@@ -16,7 +16,6 @@
  * @author              Tad
  * @version             $Id $
  **/
-
 require __DIR__ . '/header.php';
 
 $adminObject = \Xmf\Module\Admin::getInstance();

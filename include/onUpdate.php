@@ -1,21 +1,24 @@
 <?php
 
-use XoopsModules\Tad_login\Utility;
+use XoopsModules\Tad_login\Update;
 
+if (!class_exists('XoopsModules\Tad_login\Update')) {
+    include dirname(__DIR__) . '/preloads/autoloader.php';
+}
 function xoops_module_update_tad_login()
 {
 
-    Utility::fix_kh();
-    Utility::fix_ty();
+    Update::fix_kh();
+    Update::fix_ty();
 
-    if (!Utility::chk_chk1()) {
-        Utility::go_update1();
+    if (!Update::chk_chk1()) {
+        Update::go_update1();
     }
-    if (!Utility::chk_chk2()) {
-        Utility::go_update2();
+    if (!Update::chk_chk2()) {
+        Update::go_update2();
     }
-    if (!Utility::chk_chk3()) {
-        Utility::go_update3();
+    if (!Update::chk_chk3()) {
+        Update::go_update3();
     }
 
     return true;

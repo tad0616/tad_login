@@ -1,4 +1,5 @@
 <?php
+use XoopsModules\Tadtools\Utility;
 /*-----------引入檔案區--------------*/
 require __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'tad_login_index.tpl';
@@ -58,7 +59,7 @@ function tn_login()
             // die(var_dump($user_profile));
 
             if ($user_profile) {
-                $myts = MyTextSanitizer::getInstance();
+                $myts = \MyTextSanitizer::getInstance();
 
                 $user_profile['contact/email'] = trim($user_profile['contact/email']);
                 $the_id = explode('@', $user_profile['contact/email']);
@@ -127,7 +128,7 @@ function tp_login()
             // Login or logout url will be needed depending on current user state.
             //die(var_dump($user_profile));
             if ($user_profile) {
-                $myts = MyTextSanitizer::getInstance();
+                $myts = \MyTextSanitizer::getInstance();
 
                 $user_profile['contact/email'] = trim($user_profile['contact/email']);
                 $the_id = explode('@', $user_profile['contact/email']);
@@ -185,7 +186,7 @@ function kl_login()
             )
              */
             if ($user_profile) {
-                $myts = MyTextSanitizer::getInstance();
+                $myts = \MyTextSanitizer::getInstance();
 
                 $user_profile['contact/email'] = trim($user_profile['contact/email']);
                 $the_id = explode('@', $user_profile['contact/email']);
@@ -242,7 +243,7 @@ function ilc_login()
             )
              */
             if ($user_profile) {
-                $myts = MyTextSanitizer::getInstance();
+                $myts = \MyTextSanitizer::getInstance();
 
                 $user_profile['contact/email'] = trim($user_profile['contact/email']);
                 $the_id = explode('@', $user_profile['contact/email']);
@@ -304,7 +305,7 @@ function hc_login()
             )
              */
             if ($user_profile) {
-                $myts = MyTextSanitizer::getInstance();
+                $myts = \MyTextSanitizer::getInstance();
                 $user_profile['contact/email'] = trim($user_profile['contact/email']);
                 $the_id = explode('@', $user_profile['contact/email']);
 
@@ -397,7 +398,7 @@ function hlc_login($conty = '', $openid_identity = '')
             $user_profile = $openid->getAttributes();
             // die(var_export($user_profile));
             if ($user_profile) {
-                $myts = MyTextSanitizer::getInstance();
+                $myts = \MyTextSanitizer::getInstance();
 
                 $user_profile['contact/email'] = trim($user_profile['contact/email']);
                 $the_id = explode('@', $user_profile['contact/email']);
@@ -488,7 +489,7 @@ function ty_login()
             $user_profile = $openid->getAttributes();
             // die(var_export($user_profile));
             if ($user_profile) {
-                $myts = MyTextSanitizer::getInstance();
+                $myts = \MyTextSanitizer::getInstance();
 
                 $user_profile['contact/email'] = trim($user_profile['contact/email']);
                 $the_id = explode('@', $user_profile['contact/email']);
@@ -538,7 +539,7 @@ function yahoo_login()
             $user_profile = $openid->getAttributes();
             //die(var_export($user_profile));
             if ($user_profile) {
-                $myts = MyTextSanitizer::getInstance();
+                $myts = \MyTextSanitizer::getInstance();
 
                 $user_profile['contact/email'] = trim($user_profile['contact/email']);
                 $the_id = explode('@', $user_profile['contact/email']);
@@ -626,7 +627,7 @@ function tc_login($conty = '', $openid_identity = '')
              */
             // Login or logout url will be needed depending on current user state.
             if ($user_profile) {
-                $myts = MyTextSanitizer::getInstance();
+                $myts = \MyTextSanitizer::getInstance();
 
                 $SchoolCode = $myts->addSlashes($user_profile['axschema/school/id']);
 
@@ -734,7 +735,7 @@ function kh_login()
             // Login or logout url will be needed depending on current user state.
 
             if ($user_profile) {
-                $myts = MyTextSanitizer::getInstance();
+                $myts = \MyTextSanitizer::getInstance();
 
                 if ($user_profile['openid_ext2_email']) {
                     $the_id = explode('@', $user_profile['openid_ext2_email']);
@@ -830,7 +831,7 @@ function km_login()
              */
 
             if ($user_profile) {
-                $myts = MyTextSanitizer::getInstance();
+                $myts = \MyTextSanitizer::getInstance();
 
                 $user_profile['contact/email'] = trim($user_profile['contact/email']);
                 $the_id = explode('@', $user_profile['contact/email']);
@@ -888,7 +889,7 @@ function mt_login()
              */
 
             if ($user_profile) {
-                $myts = MyTextSanitizer::getInstance();
+                $myts = \MyTextSanitizer::getInstance();
 
                 $user_profile['contact/email'] = trim($user_profile['contact/email']);
                 $the_id = explode('@', $user_profile['contact/email']);
@@ -913,7 +914,7 @@ function mt_login()
 
 function list_login()
 {
-    global $xoopsTpl, $xoopsModuleConfig, $oidc_array;
+    global $xoopsTpl, $xoopsModuleConfig, $all_oidc, $oidc_array, $oidc_array2, $all_oidc2;
 
     if ('cyc' === $_SESSION['auth_method']) {
         tc_login('cyc', 'http://openid.cyccc.tw');
@@ -963,15 +964,20 @@ function list_login()
             $url = facebook_login('return');
         } elseif ('google' === $openid) {
             $url = google_login('return');
-        } elseif (in_array($openid, $oidc_array)) {
-            $url = edu_login($openid, 'return');
         } else {
             $url = XOOPS_URL . "/modules/tad_login/index.php?login&op={$openid}";
         }
         $auth_method[$i]['title'] = $openid;
         $auth_method[$i]['url'] = $url;
-        $auth_method[$i]['logo'] = XOOPS_URL . "/modules/tad_login/images/{$openid}_l.png";
-        $auth_method[$i]['text'] = constant('_' . mb_strtoupper($openid)) . _MD_TADLOGIN_LOGIN;
+        $auth_method[$i]['logo'] = in_array($openid, $oidc_array) ? XOOPS_URL . "/modules/tad_login/images/oidc/{$all_oidc[$openid]['tail']}.png" : XOOPS_URL . "/modules/tad_login/images/{$openid}_l.png";
+        if (in_array($openid, $oidc_array)) {
+            $auth_method[$i]['text'] = constant('_' . mb_strtoupper($all_oidc[$openid]['tail'])) . ' OIDC ' . _MD_TADLOGIN_LOGIN;
+        } elseif (in_array($openid, $oidc_array2)) {
+            $auth_method[$i]['text'] = constant('_' . mb_strtoupper($all_oidc[$openid]['tail'])) . _MD_TADLOGIN_LOGIN;
+        } else {
+            $auth_method[$i]['text'] = constant('_' . mb_strtoupper($openid)) . ' OpenID ' . _MD_TADLOGIN_LOGIN;
+        }
+
         $i++;
     }
     $xoopsTpl->assign('auth_method', $auth_method);
@@ -1105,7 +1111,7 @@ switch ($op) {
         break;
 }
 
-$xoopsTpl->assign('toolbar', toolbar_bootstrap($interface_menu));
+$xoopsTpl->assign('toolbar', Utility::toolbar_bootstrap($interface_menu));
 
 if (isset($link_to) and !empty($link_to)) {
     $_SESSION['login_from'] = $link_to;

@@ -98,13 +98,13 @@ $all_oidc = [
         'scope' => ['educloudroles', 'openid', 'profile', 'eduinfo', 'openid2', 'email'],
         'gzipenable' => false,
     ],
-    'cy_oidc' => [
-        'tail' => 'cy',
-        'provideruri' => 'https://cy.sso.edu.tw',
-        'eduinfoep' => 'https://cy.sso.edu.tw/cncresource/api/v1/eduinfo',
-        'scope' => ['educloudroles', 'openid', 'profile', 'eduinfo', 'openid2', 'email'],
-        'gzipenable' => false,
-    ],
+    // 'cy_oidc' => [
+    //     'tail' => 'cy',
+    //     'provideruri' => 'https://cy.sso.edu.tw',
+    //     'eduinfoep' => 'https://cy.sso.edu.tw/cncresource/api/v1/eduinfo',
+    //     'scope' => ['educloudroles', 'openid', 'profile', 'eduinfo', 'openid2', 'email'],
+    //     'gzipenable' => false,
+    // ],
     'kh_oidc' => [
         'tail' => 'kh',
         'provideruri' => 'https://kh.sso.edu.tw',

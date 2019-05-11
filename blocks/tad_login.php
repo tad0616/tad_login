@@ -2,12 +2,12 @@
 //區塊主函式 (快速登入(tad_login))
 function tad_login($options = '')
 {
-    global $xoopsConfig, $xoopsDB, $xoopsUser;
+    global $xoopsConfig, $xoopsDB, $xoopsUser, $all_oidc, $oidc_array, $oidc_array2, $all_oidc2;
     if ($xoopsUser) {
         return;
     }
     require_once XOOPS_ROOT_PATH . '/modules/tad_login/function.php';
-    require_once XOOPS_ROOT_PATH . '/modules/tad_login/oidc.php';
+//    require_once XOOPS_ROOT_PATH . '/modules/tad_login/oidc.php';
 
     $moduleHandler = xoops_getHandler('module');
     $xoopsModule = $moduleHandler->getByDirname('tad_login');
@@ -18,20 +18,28 @@ function tad_login($options = '')
     $block['show_text'] = $options[1];
     $big = ('1' == $options[2]) ? '_l' : '';
     $i = 0;
+
+    // die(var_dump($oidc_array));
     foreach ($modConfig['auth_method'] as $openid) {
         if ('facebook' === $openid) {
             $url = facebook_login('return');
         } elseif ('google' === $openid) {
             $url = google_login('return');
-        } elseif (in_array($openid, $oidc_array)) {
-            $url = edu_login($openid, 'return');
         } else {
             $url = XOOPS_URL . "/modules/tad_login/index.php?login&op={$openid}";
         }
         $auth_method[$i]['title'] = $openid;
         $auth_method[$i]['url'] = $url;
+
         $auth_method[$i]['logo'] = in_array($openid, $oidc_array) ? XOOPS_URL . "/modules/tad_login/images/oidc/{$all_oidc[$openid]['tail']}.png" : XOOPS_URL . "/modules/tad_login/images/{$openid}{$big}.png";
-        $auth_method[$i]['text'] = in_array($openid, $oidc_array) ? constant('_' . mb_strtoupper($all_oidc[$openid]['tail'])) . ' OIDC ' . _MB_TADLOGIN_LOGIN : constant('_' . mb_strtoupper($openid)) . ' OpenID ' . _MB_TADLOGIN_LOGIN;
+
+        if (in_array($openid, $oidc_array)) {
+            $auth_method[$i]['text'] = constant('_' . mb_strtoupper($all_oidc[$openid]['tail'])) . ' OIDC ' . _MB_TADLOGIN_LOGIN;
+        } elseif (in_array($openid, $oidc_array2)) {
+            $auth_method[$i]['text'] = constant('_' . mb_strtoupper($all_oidc[$openid]['tail'])) . _MB_TADLOGIN_LOGIN;
+        } else {
+            $auth_method[$i]['text'] = constant('_' . mb_strtoupper($openid)) . ' OpenID ' . _MB_TADLOGIN_LOGIN;
+        }
 
         $i++;
     }

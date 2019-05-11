@@ -1,6 +1,8 @@
 <?php
+use XoopsModules\Tadtools\FormValidator;
+use XoopsModules\Tadtools\Utility;
 /*-----------引入檔案區--------------*/
-$GLOBALS['xoopsOption']['template_main'] = 'tad_login_adm_main.tpl';
+$xoopsOption['template_main']] = 'tad_login_adm_main.tpl';
 require_once __DIR__ . '/header.php';
 require_once dirname(__DIR__) . '/function.php';
 
@@ -41,15 +43,10 @@ function tad_login_config_form($config_id = '')
     $op = (empty($config_id)) ? 'insert_tad_login_config' : 'update_tad_login_config';
     //$op="replace_tad_login_config";
 
-    if (!file_exists(TADTOOLS_PATH . '/formValidator.php')) {
-        redirect_header('index.php', 3, _TAD_NEED_TADTOOLS);
-    }
-    require_once TADTOOLS_PATH . '/formValidator.php';
-    $formValidator = new formValidator('#myForm', true);
-    $formValidator_code = $formValidator->render();
+    $FormValidator = new FormValidator('#myForm', true);
+    $FormValidator->render();
 
     $xoopsTpl->assign('action', $_SERVER['PHP_SELF']);
-    $xoopsTpl->assign('formValidator_code', $formValidator_code);
     $xoopsTpl->assign('next_op', $op);
 
     //群組
@@ -64,7 +61,7 @@ function insert_tad_login_config()
 {
     global $xoopsDB, $xoopsUser;
 
-    $myts = MyTextSanitizer::getInstance();
+    $myts = \MyTextSanitizer::getInstance();
     $_POST['item'] = $myts->addSlashes($_POST['item']);
 
     if ('email' === $_POST['type']) {
@@ -78,7 +75,7 @@ function insert_tad_login_config()
     $sql = 'insert into `' . $xoopsDB->prefix('tad_login_config') . "`
   (`item` , `kind` , `group_id`)
   values('{$item}' , '{$kind}', '{$_POST['group_id']}')";
-    $xoopsDB->query($sql) or web_error($sql, __FILE__, __LINE__);
+    $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
     //取得最後新增資料的流水編號
     $config_id = $xoopsDB->getInsertId();
@@ -91,7 +88,7 @@ function update_tad_login_config($config_id = '')
 {
     global $xoopsDB, $xoopsUser;
 
-    $myts = MyTextSanitizer::getInstance();
+    $myts = \MyTextSanitizer::getInstance();
     $_POST['item'] = $myts->addSlashes($_POST['item']);
 
     if ('email' === $_POST['type']) {
@@ -108,7 +105,7 @@ function update_tad_login_config($config_id = '')
     `group_id` = '{$_POST['group_id']}'
     where `config_id` = '$config_id'";
 
-    $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
+    $xoopsDB->queryF($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
     return $config_id;
 }
@@ -119,7 +116,7 @@ function list_tad_login_config()
     global $xoopsDB, $xoopsTpl;
 
     $sql = 'SELECT * FROM `' . $xoopsDB->prefix('groups') . '` ';
-    $result = $xoopsDB->query($sql) or web_error($sql, __FILE__, __LINE__);
+    $result = $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
     $groups = [];
     $i = 0;
     while (false !== ($all = $xoopsDB->fetchArray($result))) {
@@ -130,7 +127,7 @@ function list_tad_login_config()
     }
 
     $sql = 'SELECT * FROM `' . $xoopsDB->prefix('tad_login_config') . '` ';
-    $result = $xoopsDB->query($sql) or web_error($sql, __FILE__, __LINE__);
+    $result = $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
     $all_content = [];
     $i = 0;
@@ -170,7 +167,7 @@ function get_tad_login_config($config_id = '')
         return;
     }
     $sql = 'select * from `' . $xoopsDB->prefix('tad_login_config') . "` where `config_id` = '{$config_id}'";
-    $result = $xoopsDB->query($sql) or web_error($sql, __FILE__, __LINE__);
+    $result = $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
     $data = $xoopsDB->fetchArray($result);
 
     return $data;
@@ -181,7 +178,7 @@ function delete_tad_login_config($config_id = '')
 {
     global $xoopsDB;
     $sql = 'delete from `' . $xoopsDB->prefix('tad_login_config') . "` where `config_id` = '{$config_id}'";
-    $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
+    $xoopsDB->queryF($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 }
 
 //以流水號秀出某筆tad_login_config資料內容
@@ -195,7 +192,7 @@ function show_one_tad_login_config($config_id = '')
     $config_id = (int) ($config_id);
 
     $sql = 'select * from `' . $xoopsDB->prefix('tad_login_config') . "` where `config_id` = '{$config_id}' ";
-    $result = $xoopsDB->query($sql) or web_error($sql, __FILE__, __LINE__);
+    $result = $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
     $all = $xoopsDB->fetchArray($result);
 
     //以下會產生這些變數： $config_id , $item , $group_id

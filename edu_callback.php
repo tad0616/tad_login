@@ -28,7 +28,7 @@ $eduinfo = requestProtectedApi($oidc_arr['eduinfoep'], $accesstoken, true, $oidc
 // exit;
 
 if ($userinfo['email']) {
-    $myts = MyTextSanitizer::getInstance();
+    $myts = \MyTextSanitizer::getInstance();
     $uname = $userinfo['sub'] . '_' . $oidc_arr['tail'];
 
     $name = $myts->addSlashes($userinfo['name']);
@@ -45,7 +45,7 @@ if ($userinfo['email']) {
 
     login_xoops($uname, $name, $email, $SchoolCode, $JobName, $url, $from, $sig, $occ, $bio);
 } else {
-    $myts = MyTextSanitizer::getInstance();
+    $myts = \MyTextSanitizer::getInstance();
     $uname = $claims['preferred_username'] . '_edu';
     $name = $myts->addSlashes($userinfo['name']);
     $email = $claims['email'];

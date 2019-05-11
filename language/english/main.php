@@ -1,4 +1,5 @@
 <?php
+xoops_loadLanguage('main', 'tadtools');
 require_once __DIR__ . '/county.php';
 // Need to add modules Languages
 if (!defined('_TAD_NEED_TADTOOLS')) {
