@@ -1,6 +1,6 @@
 <?php
 
-namespace XoopsModules\Tad_login;
+//namespace XoopsModules\Tad_login;
 
 /**
  * This class provides a simple interface for OpenID (1.1 and 2.0) authentication.
@@ -101,7 +101,7 @@ class LightOpenID
         $this->data = ('POST' === $_SERVER['REQUEST_METHOD']) ? $_POST : $_GET;
 
         if (!function_exists('curl_init') && !in_array('https', stream_get_wrappers())) {
-            throw new ErrorException('You must have either https wrappers or curl enabled.');
+            throw new \ErrorException('You must have either https wrappers or curl enabled.');
         }
     }
 
@@ -235,7 +235,7 @@ class LightOpenID
         }
 
         if (curl_errno($curl)) {
-            throw new ErrorException(curl_error($curl), curl_errno($curl));
+            throw new \ErrorException(curl_error($curl), curl_errno($curl));
         }
 
         return $response;
@@ -272,7 +272,7 @@ class LightOpenID
     protected function request_streams($url, $method, $params, $update_claimed_id)
     {
         if (!$this->hostExists($url)) {
-            throw new ErrorException("Could not connect to $url.", 404);
+            throw new \ErrorException("Could not connect to $url.", 404);
         }
 
         $params = http_build_query($params, '', '&');
@@ -419,7 +419,7 @@ class LightOpenID
     public function discover($url)
     {
         if (!$url) {
-            throw new ErrorException('No identity supplied.');
+            throw new \ErrorException('No identity supplied.');
         }
 
         # Use xri.net proxy to resolve i-name identities
@@ -568,9 +568,9 @@ class LightOpenID
                 return $server;
             }
 
-            throw new ErrorException("No OpenID Server found at $url", 404);
+            throw new \ErrorException("No OpenID Server found at $url", 404);
         }
-        throw new ErrorException('Endless redirection!', 500);
+        throw new \ErrorException('Endless redirection!', 500);
     }
 
     protected function sregParams()
