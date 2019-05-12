@@ -5,7 +5,10 @@ xoops_loadLanguage('main', 'tadtools');
 
 require XOOPS_ROOT_PATH . '/modules/tad_login/oidc.php';
 
-/********************* 自訂函數 *********************/
+/********************* 自訂函數 ********************
+ * @param int $length
+ * @return string
+ */
 function generateRandomString($length = 20)
 {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_*';
