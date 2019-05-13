@@ -8,7 +8,7 @@
  * Here are some examples of how to use this library:
  * <code>
  * <?php
- *    include 'vendor/autoload.php';
+ *    require __DIR__ . '/vendor/autoload.php';
  *
  *    $agent = new \phpseclib\System\SSH\Agent();
  *

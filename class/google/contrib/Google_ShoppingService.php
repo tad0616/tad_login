@@ -81,7 +81,7 @@
        * @opt_param string extras.info What extra information to return.
        * @opt_param string facets.discover Facets to discover
        * @opt_param bool facets.enabled Whether to return facet information
-       * @opt_param string facets.include Facets to include (applies when useGcsConfig == false)
+       * @opt_param string facets.include Facets to include (applies when useGcsConfig === false)
        * @opt_param bool facets.includeEmptyBuckets Return empty facet buckets.
        * @opt_param bool facets.useGcsConfig Whether to return facet information as configured in the GCS account
        * @opt_param string language Language restriction (BCP 47)

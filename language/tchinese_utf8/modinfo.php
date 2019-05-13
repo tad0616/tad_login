@@ -1,6 +1,6 @@
 <?php
 xoops_loadLanguage('modinfo_common', 'tadtools');
-include_once 'county.php';
+require_once __DIR__ . '/county.php';
 
 define('_MI_TADLOGIN_NAME', '快速登入');
 define('_MI_TADLOGIN_AUTHOR', '快速登入');

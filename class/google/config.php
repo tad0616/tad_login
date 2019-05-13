@@ -14,14 +14,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-include_once '../../../../mainfile.php';
+require_once dirname(dirname(dirname(dirname(__DIR__)))) . '/mainfile.php';
 
 global $apiConfig;
 
-$modhandler = xoops_getHandler('module');
-$tad_loginModule = $modhandler->getByDirname('tad_login');
-$config_handler = xoops_getHandler('config');
-$tad_loginConfig = $config_handler->getConfigsByCat(0, $tad_loginModule->getVar('mid'));
+$moduleHandler = xoops_getHandler('module');
+$tad_loginModule = $moduleHandler->getByDirname('tad_login');
+$configHandler = xoops_getHandler('config');
+$tad_loginConfig = $configHandler->getConfigsByCat(0, $tad_loginModule->getVar('mid'));
 
 $apiConfig = [
     // True if objects should be returned by the service classes.

@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-require_once 'Google_Verifier.php';
-require_once 'Google_LoginTicket.php';
-require_once 'service/Google_Utils.php';
+require_once __DIR__ . '/Google_Verifier.php';
+require_once __DIR__ . '/Google_LoginTicket.php';
+require_once __DIR__ . '/service/Google_Utils.php';
 
 /**
  * Authentication class that deals with the OAuth 2 web-server authentication flow
@@ -163,7 +163,7 @@ class Google_OAuth2 extends Google_Auth
     public function setAccessToken($token)
     {
         $token = json_decode($token, true);
-        if (null == $token) {
+        if (null === $token) {
             throw new Google_AuthException('Could not json decode the token');
         }
         if (!isset($token['access_token'])) {
@@ -218,7 +218,7 @@ class Google_OAuth2 extends Google_Auth
         }
 
         // Cannot sign the request without an OAuth access token.
-        if (null == $this->token && null == $this->assertionCredentials) {
+        if (null === $this->token && null === $this->assertionCredentials) {
             return $request;
         }
 
@@ -285,7 +285,7 @@ class Google_OAuth2 extends Google_Auth
         $body = $request->getResponseBody();
         if (200 == $code) {
             $token = json_decode($body, true);
-            if (null == $token) {
+            if (null === $token) {
                 throw new Google_AuthException('Could not json decode the access token');
             }
 
@@ -331,7 +331,7 @@ class Google_OAuth2 extends Google_Auth
      */
     public function isAccessTokenExpired()
     {
-        if (null == $this->token) {
+        if (null === $this->token) {
             return true;
         }
 

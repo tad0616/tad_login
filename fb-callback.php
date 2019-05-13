@@ -1,11 +1,11 @@
 <?php
-include 'header.php';
+require __DIR__ . '/header.php';
 require_once __DIR__ . '/class/Facebook/autoload.php';
 
-$modhandler = xoops_getHandler('module');
-$tad_loginModule = $modhandler->getByDirname('tad_login');
-$config_handler = xoops_getHandler('config');
-$tad_loginConfig = $config_handler->getConfigsByCat(0, $tad_loginModule->getVar('mid'));
+$moduleHandler = xoops_getHandler('module');
+$tad_loginModule = $moduleHandler->getByDirname('tad_login');
+$configHandler = xoops_getHandler('config');
+$tad_loginConfig = $configHandler->getConfigsByCat(0, $tad_loginModule->getVar('mid'));
 
 $fb = new Facebook\Facebook([
     'app_id' => $tad_loginConfig['appId'], // Replace {app-id} with your app id

@@ -1,6 +1,6 @@
 <?php
-include_once '../../mainfile.php';
-include_once 'function.php';
+require_once '../../mainfile.php';
+require_once 'function.php';
 require_once 'class/edu/auth.php';
 
 //verified idtoken

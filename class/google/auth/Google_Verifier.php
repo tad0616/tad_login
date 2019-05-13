@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-require_once 'Google_PemVerifier.php';
+require_once __DIR__ . '/Google_PemVerifier.php';
 
 /**
  * Verifies signatures.

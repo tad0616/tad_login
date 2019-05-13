@@ -20,7 +20,7 @@
  *
  * @author Stuart Langley <slangley@google.com>
  */
-require_once 'Google_CacheParser.php';
+require_once __DIR__ . '/Google_CacheParser.php';
 
 class Google_HttpStreamIO extends Google_IO
 {
@@ -100,7 +100,7 @@ class Google_HttpStreamIO extends Google_IO
         $default_options['ssl'] : [];
 
         if (!array_key_exists('cafile', $requestSslContext)) {
-            $requestSslContext['cafile'] = dirname(__FILE__) . '/cacerts.pem';
+            $requestSslContext['cafile'] = __DIR__ . '/cacerts.pem';
         }
 
         $options = [

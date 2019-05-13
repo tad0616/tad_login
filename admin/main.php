@@ -2,9 +2,9 @@
 use XoopsModules\Tadtools\FormValidator;
 use XoopsModules\Tadtools\Utility;
 /*-----------引入檔案區--------------*/
-$xoopsOption['template_main'] = 'tad_login_adm_main.tpl';
-include_once 'header.php';
-include_once '../function.php';
+$xoopsOption['template_main']] = 'tad_login_adm_main.tpl';
+require_once __DIR__ . '/header.php';
+require_once dirname(__DIR__) . '/function.php';
 
 /*-----------function區--------------*/
 
@@ -12,7 +12,7 @@ include_once '../function.php';
 function tad_login_config_form($config_id = '')
 {
     global $xoopsDB, $xoopsTpl;
-    include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
+    require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
     //抓取預設值
     if (!empty($config_id)) {
         $DBV = get_tad_login_config($config_id);
@@ -119,7 +119,7 @@ function list_tad_login_config()
     $result = $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
     $groups = [];
     $i = 0;
-    while ($all = $xoopsDB->fetchArray($result)) {
+    while (false !== ($all = $xoopsDB->fetchArray($result))) {
         foreach ($all as $k => $v) {
             $$k = $v;
         }
@@ -131,7 +131,7 @@ function list_tad_login_config()
 
     $all_content = [];
     $i = 0;
-    while ($all = $xoopsDB->fetchArray($result)) {
+    while (false !== ($all = $xoopsDB->fetchArray($result))) {
         //以下會產生這些變數： $config_id , $item , $group_id
         foreach ($all as $k => $v) {
             $$k = $v;
@@ -208,7 +208,7 @@ function show_one_tad_login_config($config_id = '')
 }
 
 /*-----------執行動作判斷區----------*/
-include_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
+require_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
 $op = system_CleanVars($_REQUEST, 'op', '', 'string');
 $config_id = system_CleanVars($_REQUEST, 'config_id', 0, 'int');
 
@@ -257,4 +257,4 @@ switch ($op) {
 
 /*-----------秀出結果區--------------*/
 $xoopsTpl->assign('now_op', $op);
-include_once 'footer.php';
+require_once __DIR__ . '/footer.php';

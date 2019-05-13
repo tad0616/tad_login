@@ -21,7 +21,7 @@
  * @author Chris Chabot <chabotc@google.com>
  * @author Chirag Shah <chirags@google.com>
  */
-require_once 'Google_CacheParser.php';
+require_once __DIR__ . '/Google_CacheParser.php';
 
 class Google_CurlIO extends Google_IO
 {
@@ -117,7 +117,7 @@ class Google_CurlIO extends Google_IO
         if (CURLE_SSL_CACERT == curl_errno($ch)) {
             error_log('SSL certificate problem, verify that the CA cert is OK.'
         . ' Retrying with the CA cert bundle from google-api-php-client.');
-            curl_setopt($ch, CURLOPT_CAINFO, dirname(__FILE__) . '/cacerts.pem');
+            curl_setopt($ch, CURLOPT_CAINFO, __DIR__ . '/cacerts.pem');
             $respData = curl_exec($ch);
         }
 

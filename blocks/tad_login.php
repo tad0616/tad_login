@@ -6,13 +6,13 @@ function tad_login($options = '')
     if ($xoopsUser) {
         return;
     }
-    include_once XOOPS_ROOT_PATH . '/modules/tad_login/function.php';
-    // require XOOPS_ROOT_PATH . '/modules/tad_login/oidc.php';
+    require_once XOOPS_ROOT_PATH . '/modules/tad_login/function.php';
+//    require_once XOOPS_ROOT_PATH . '/modules/tad_login/oidc.php';
 
-    $modhandler = xoops_getHandler('module');
-    $xoopsModule = $modhandler->getByDirname('tad_login');
-    $config_handler = xoops_getHandler('config');
-    $modConfig = $config_handler->getConfigsByCat(0, $xoopsModule->mid());
+    $moduleHandler = xoops_getHandler('module');
+    $xoopsModule = $moduleHandler->getByDirname('tad_login');
+    $configHandler = xoops_getHandler('config');
+    $modConfig = $configHandler->getConfigsByCat(0, $xoopsModule->mid());
 
     $block['show_btn'] = $options[0];
     $block['show_text'] = $options[1];

@@ -1,5 +1,5 @@
 <?php
-include_once 'county.php';
+require_once __DIR__ . '/county.php';
 define('_MB_TADLOGIN_USE', '使用');
 define('_MB_TADLOGIN_LOGIN', '登入');
 define('_MB_TADLOGIN_LOGIN_BUTTON', '以按鈕方式呈現：');

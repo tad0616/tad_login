@@ -30,28 +30,28 @@ if (!ini_get('date.timezone') && function_exists('date_default_timezone_set')) {
 }
 
 // hack around with the include paths a bit so the library 'just works'
-set_include_path(dirname(__FILE__) . PATH_SEPARATOR . get_include_path());
+set_include_path(__DIR__ . PATH_SEPARATOR . get_include_path());
 
-require_once 'config.php';
+require_once __DIR__ . '/config.php';
 // If a local configuration file is found, merge it's values with the default configuration
-if (file_exists(dirname(__FILE__) . '/local_config.php')) {
+if (file_exists(__DIR__ . '/local_config.php')) {
     $defaultConfig = $apiConfig;
-    require_once(dirname(__FILE__) . '/local_config.php');
+    require_once(__DIR__ . '/local_config.php');
     $apiConfig = array_merge($defaultConfig, $apiConfig);
 }
 
 // Include the top level classes, they each include their own dependencies
-require_once 'service/Google_Model.php';
-require_once 'service/Google_Service.php';
-require_once 'service/Google_ServiceResource.php';
-require_once 'auth/Google_AssertionCredentials.php';
-require_once 'auth/Google_Signer.php';
-require_once 'auth/Google_P12Signer.php';
-require_once 'service/Google_BatchRequest.php';
-require_once 'external/URITemplateParser.php';
-require_once 'auth/Google_Auth.php';
-require_once 'cache/Google_Cache.php';
-require_once 'io/Google_IO.php';
+require_once __DIR__ . '/service/Google_Model.php';
+require_once __DIR__ . '/service/Google_Service.php';
+require_once __DIR__ . '/service/Google_ServiceResource.php';
+require_once __DIR__ . '/auth/Google_AssertionCredentials.php';
+require_once __DIR__ . '/auth/Google_Signer.php';
+require_once __DIR__ . '/auth/Google_P12Signer.php';
+require_once __DIR__ . '/service/Google_BatchRequest.php';
+require_once __DIR__ . '/external/URITemplateParser.php';
+require_once __DIR__ . '/auth/Google_Auth.php';
+require_once __DIR__ . '/cache/Google_Cache.php';
+require_once  dirname(__DIR__) . '/Google_IO.php';
 require_once('service/Google_MediaFileUpload.php');
 
 /**
@@ -174,7 +174,7 @@ class Google_Client
      */
     public function setAccessToken($accessToken)
     {
-        if (null == $accessToken || 'null' == $accessToken) {
+        if (null === $accessToken || 'null' == $accessToken) {
             $accessToken = null;
         }
         self::$auth->setAccessToken($accessToken);
@@ -210,7 +210,7 @@ class Google_Client
     {
         $token = self::$auth->getAccessToken();
 
-        return (null == $token || 'null' == $token) ? null : $token;
+        return (null === $token || 'null' == $token) ? null : $token;
     }
 
     /**

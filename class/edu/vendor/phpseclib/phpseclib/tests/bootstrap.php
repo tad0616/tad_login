@@ -7,7 +7,7 @@
 
 date_default_timezone_set('UTC');
 
-$loader_path = __DIR__ . '/../vendor/autoload.php';
+$loader_path =  dirname(__DIR__) . '/vendor/autoload.php';
 if (!file_exists($loader_path)) {
     echo "Dependencies must be installed using composer:\n\n";
     echo "php composer.phar install\n\n";
