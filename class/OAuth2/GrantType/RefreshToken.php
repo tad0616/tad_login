@@ -1,5 +1,4 @@
 <?php
-
 namespace OAuth2\GrantType;
 
 use OAuth2\InvalidArgumentException;
@@ -19,12 +18,13 @@ class RefreshToken implements IGrantType
     /**
      * Adds a specific Handling of the parameters
      *
-     * @param  mixed  $parameters the parameters array (passed by reference)
      * @return array of Specific parameters to be sent.
+     * @param  mixed  $parameters the parameters array (passed by reference)
      */
     public function validateParameters(&$parameters)
     {
-        if (!isset($parameters['refresh_token'])) {
+        if (!isset($parameters['refresh_token']))
+        {
             throw new InvalidArgumentException(
                 'The \'refresh_token\' parameter must be defined for the refresh token grant type',
                 InvalidArgumentException::MISSING_PARAMETER

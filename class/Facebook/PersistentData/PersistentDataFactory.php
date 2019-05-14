@@ -19,8 +19,8 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
+ *
  */
-
 namespace Facebook\PersistentData;
 
 use InvalidArgumentException;
@@ -44,7 +44,7 @@ class PersistentDataFactory
     public static function createPersistentDataHandler($handler)
     {
         if (!$handler) {
-            return PHP_SESSION_ACTIVE === session_status()
+            return session_status() === PHP_SESSION_ACTIVE
                 ? new FacebookSessionPersistentDataHandler()
                 : new FacebookMemoryPersistentDataHandler();
         }

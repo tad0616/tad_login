@@ -19,8 +19,8 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
+ *
  */
-
 namespace Facebook\HttpClients;
 
 /**
@@ -32,6 +32,7 @@ namespace Facebook\HttpClients;
  */
 class FacebookCurl
 {
+
     /**
      * @var resource Curl resource instance
      */
@@ -58,6 +59,8 @@ class FacebookCurl
 
     /**
      * Set an array of options to a curl resource
+     *
+     * @param array $options
      */
     public function setoptArray(array $options)
     {

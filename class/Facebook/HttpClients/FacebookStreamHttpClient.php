@@ -19,12 +19,12 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
+ *
  */
-
 namespace Facebook\HttpClients;
 
-use Facebook\Exceptions\FacebookSDKException;
 use Facebook\Http\GraphRawResponse;
+use Facebook\Exceptions\FacebookSDKException;
 
 class FacebookStreamHttpClient implements FacebookHttpClientInterface
 {
@@ -52,7 +52,7 @@ class FacebookStreamHttpClient implements FacebookHttpClientInterface
                 'header' => $this->compileHeader($headers),
                 'content' => $body,
                 'timeout' => $timeOut,
-                'ignore_errors' => true,
+                'ignore_errors' => true
             ],
             'ssl' => [
                 'verify_peer' => true,
@@ -66,7 +66,7 @@ class FacebookStreamHttpClient implements FacebookHttpClientInterface
         $rawBody = $this->facebookStream->fileGetContents($url);
         $rawHeaders = $this->facebookStream->getResponseHeaders();
 
-        if (false === $rawBody || empty($rawHeaders)) {
+        if ($rawBody === false || empty($rawHeaders)) {
             throw new FacebookSDKException('Stream returned an empty response', 660);
         }
 

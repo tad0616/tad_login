@@ -15,18 +15,16 @@
  * limitations under the License.
  */
 
-require_once __DIR__ . '/Google_P12Signer.php';
+require_once "Google_P12Signer.php";
 
 /**
  * Signs data.
  *
  * @author Brian Eaton <beaton@google.com>
  */
-abstract class Google_Signer
-{
-    /**
-     * Signs data, returns the signature as binary data.
-     * @param mixed $data
-     */
-    abstract public function sign($data);
+abstract class Google_Signer {
+  /**
+   * Signs data, returns the signature as binary data.
+   */
+  abstract public function sign($data);
 }

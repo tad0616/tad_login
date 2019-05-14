@@ -16,7 +16,7 @@
  * Here's a short example of how to use this library:
  * <code>
  * <?php
- *    require __DIR__ . '/vendor/autoload.php';
+ *    include 'vendor/autoload.php';
  *
  *    $des = new \phpseclib\Crypt\DES();
  *

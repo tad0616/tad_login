@@ -19,8 +19,8 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
+ *
  */
-
 namespace Facebook\PseudoRandomString;
 
 use Facebook\Exceptions\FacebookSDKException;
@@ -54,11 +54,11 @@ class OpenSslPseudoRandomStringGenerator implements PseudoRandomStringGeneratorI
         $wasCryptographicallyStrong = false;
         $binaryString = openssl_random_pseudo_bytes($length, $wasCryptographicallyStrong);
 
-        if (false === $binaryString) {
+        if ($binaryString === false) {
             throw new FacebookSDKException(static::ERROR_MESSAGE . 'openssl_random_pseudo_bytes() returned an unknown error.');
         }
 
-        if (true !== $wasCryptographicallyStrong) {
+        if ($wasCryptographicallyStrong !== true) {
             throw new FacebookSDKException(static::ERROR_MESSAGE . 'openssl_random_pseudo_bytes() returned a pseudo-random string but it was not cryptographically secure and cannot be used.');
         }
 

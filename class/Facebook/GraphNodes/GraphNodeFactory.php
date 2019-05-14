@@ -19,12 +19,12 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
+ *
  */
-
 namespace Facebook\GraphNodes;
 
-use Facebook\Exceptions\FacebookSDKException;
 use Facebook\FacebookResponse;
+use Facebook\Exceptions\FacebookSDKException;
 
 /**
  * Class GraphNodeFactory
@@ -83,8 +83,9 @@ class GraphNodeFactory
      *
      * @param string|null $subclassName The GraphNode sub class to cast to.
      *
-     * @throws FacebookSDKException
      * @return GraphNode
+     *
+     * @throws FacebookSDKException
      */
     public function makeGraphNode($subclassName = null)
     {
@@ -97,8 +98,9 @@ class GraphNodeFactory
     /**
      * Convenience method for creating a GraphAchievement collection.
      *
-     * @throws FacebookSDKException
      * @return GraphAchievement
+     *
+     * @throws FacebookSDKException
      */
     public function makeGraphAchievement()
     {
@@ -108,8 +110,9 @@ class GraphNodeFactory
     /**
      * Convenience method for creating a GraphAlbum collection.
      *
-     * @throws FacebookSDKException
      * @return GraphAlbum
+     *
+     * @throws FacebookSDKException
      */
     public function makeGraphAlbum()
     {
@@ -119,8 +122,9 @@ class GraphNodeFactory
     /**
      * Convenience method for creating a GraphPage collection.
      *
-     * @throws FacebookSDKException
      * @return GraphPage
+     *
+     * @throws FacebookSDKException
      */
     public function makeGraphPage()
     {
@@ -130,8 +134,9 @@ class GraphNodeFactory
     /**
      * Convenience method for creating a GraphSessionInfo collection.
      *
-     * @throws FacebookSDKException
      * @return GraphSessionInfo
+     *
+     * @throws FacebookSDKException
      */
     public function makeGraphSessionInfo()
     {
@@ -141,8 +146,9 @@ class GraphNodeFactory
     /**
      * Convenience method for creating a GraphUser collection.
      *
-     * @throws FacebookSDKException
      * @return GraphUser
+     *
+     * @throws FacebookSDKException
      */
     public function makeGraphUser()
     {
@@ -152,8 +158,9 @@ class GraphNodeFactory
     /**
      * Convenience method for creating a GraphEvent collection.
      *
-     * @throws FacebookSDKException
      * @return GraphEvent
+     *
+     * @throws FacebookSDKException
      */
     public function makeGraphEvent()
     {
@@ -163,8 +170,9 @@ class GraphNodeFactory
     /**
      * Convenience method for creating a GraphGroup collection.
      *
-     * @throws FacebookSDKException
      * @return GraphGroup
+     *
+     * @throws FacebookSDKException
      */
     public function makeGraphGroup()
     {
@@ -175,10 +183,11 @@ class GraphNodeFactory
      * Tries to convert a FacebookResponse entity into a GraphEdge.
      *
      * @param string|null $subclassName The GraphNode sub class to cast the list items to.
-     * @param bool     $auto_prefix  Toggle to auto-prefix the subclass name.
+     * @param boolean     $auto_prefix  Toggle to auto-prefix the subclass name.
+     *
+     * @return GraphEdge
      *
      * @throws FacebookSDKException
-     * @return GraphEdge
      */
     public function makeGraphEdge($subclassName = null, $auto_prefix = true)
     {
@@ -240,8 +249,9 @@ class GraphNodeFactory
      * @param array       $data         The array of data to iterate over.
      * @param string|null $subclassName The subclass to cast this collection to.
      *
-     * @throws FacebookSDKException
      * @return GraphNode
+     *
+     * @throws FacebookSDKException
      */
     public function safelyMakeGraphNode(array $data, $subclassName = null)
     {
@@ -282,8 +292,9 @@ class GraphNodeFactory
      * @param string|null $parentKey    The key of this data (Graph edge).
      * @param string|null $parentNodeId The parent Graph node ID.
      *
-     * @throws FacebookSDKException
      * @return GraphNode|GraphEdge
+     *
+     * @throws FacebookSDKException
      */
     public function castAsGraphNodeOrGraphEdge(array $data, $subclassName = null, $parentKey = null, $parentNodeId = null)
     {
@@ -308,8 +319,9 @@ class GraphNodeFactory
      * @param string|null $parentKey    The key of this data (Graph edge).
      * @param string|null $parentNodeId The parent Graph node ID.
      *
-     * @throws FacebookSDKException
      * @return GraphEdge
+     *
+     * @throws FacebookSDKException
      */
     public function safelyMakeGraphEdge(array $data, $subclassName = null, $parentKey = null, $parentNodeId = null)
     {
@@ -348,8 +360,9 @@ class GraphNodeFactory
     /**
      * Determines whether or not the data should be cast as a GraphEdge.
      *
+     * @param array $data
      *
-     * @return bool
+     * @return boolean
      */
     public static function isCastableAsGraphEdge(array $data)
     {

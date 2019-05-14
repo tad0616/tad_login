@@ -19,13 +19,13 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
+ *
  */
-
 namespace Facebook;
 
+use Facebook\GraphNodes\GraphNodeFactory;
 use Facebook\Exceptions\FacebookResponseException;
 use Facebook\Exceptions\FacebookSDKException;
-use Facebook\GraphNodes\GraphNodeFactory;
 
 /**
  * Class FacebookResponse
@@ -67,6 +67,7 @@ class FacebookResponse
     /**
      * Creates a new Response entity.
      *
+     * @param FacebookRequest $request
      * @param string|null     $body
      * @param int|null        $httpStatusCode
      * @param array|null      $headers
@@ -184,7 +185,7 @@ class FacebookResponse
     /**
      * Returns true if Graph returned an error message.
      *
-     * @return bool
+     * @return boolean
      */
     public function isError()
     {
@@ -234,7 +235,7 @@ class FacebookResponse
     {
         $this->decodedBody = json_decode($this->body, true);
 
-        if (null === $this->decodedBody) {
+        if ($this->decodedBody === null) {
             $this->decodedBody = [];
             parse_str($this->body, $this->decodedBody);
         } elseif (is_bool($this->decodedBody)) {
@@ -260,9 +261,9 @@ class FacebookResponse
      *
      * @param string|null $subclassName The GraphNode subclass to cast to.
      *
-     * @throws FacebookSDKException
      * @return \Facebook\GraphNodes\GraphObject
      *
+     * @throws FacebookSDKException
      *
      * @deprecated 5.0.0 getGraphObject() has been renamed to getGraphNode()
      * @todo v6: Remove this method
@@ -277,8 +278,9 @@ class FacebookResponse
      *
      * @param string|null $subclassName The GraphNode subclass to cast to.
      *
-     * @throws FacebookSDKException
      * @return \Facebook\GraphNodes\GraphNode
+     *
+     * @throws FacebookSDKException
      */
     public function getGraphNode($subclassName = null)
     {
@@ -290,8 +292,9 @@ class FacebookResponse
     /**
      * Convenience method for creating a GraphAlbum collection.
      *
-     * @throws FacebookSDKException
      * @return \Facebook\GraphNodes\GraphAlbum
+     *
+     * @throws FacebookSDKException
      */
     public function getGraphAlbum()
     {
@@ -303,8 +306,9 @@ class FacebookResponse
     /**
      * Convenience method for creating a GraphPage collection.
      *
-     * @throws FacebookSDKException
      * @return \Facebook\GraphNodes\GraphPage
+     *
+     * @throws FacebookSDKException
      */
     public function getGraphPage()
     {
@@ -316,8 +320,9 @@ class FacebookResponse
     /**
      * Convenience method for creating a GraphSessionInfo collection.
      *
-     * @throws FacebookSDKException
      * @return \Facebook\GraphNodes\GraphSessionInfo
+     *
+     * @throws FacebookSDKException
      */
     public function getGraphSessionInfo()
     {
@@ -329,8 +334,9 @@ class FacebookResponse
     /**
      * Convenience method for creating a GraphUser collection.
      *
-     * @throws FacebookSDKException
      * @return \Facebook\GraphNodes\GraphUser
+     *
+     * @throws FacebookSDKException
      */
     public function getGraphUser()
     {
@@ -342,8 +348,9 @@ class FacebookResponse
     /**
      * Convenience method for creating a GraphEvent collection.
      *
-     * @throws FacebookSDKException
      * @return \Facebook\GraphNodes\GraphEvent
+     *
+     * @throws FacebookSDKException
      */
     public function getGraphEvent()
     {
@@ -355,8 +362,9 @@ class FacebookResponse
     /**
      * Convenience method for creating a GraphGroup collection.
      *
-     * @throws FacebookSDKException
      * @return \Facebook\GraphNodes\GraphGroup
+     *
+     * @throws FacebookSDKException
      */
     public function getGraphGroup()
     {
@@ -369,11 +377,11 @@ class FacebookResponse
      * Instantiate a new GraphList from response.
      *
      * @param string|null $subclassName The GraphNode subclass to cast list items to.
-     * @param bool     $auto_prefix  Toggle to auto-prefix the subclass name.
+     * @param boolean     $auto_prefix  Toggle to auto-prefix the subclass name.
      *
-     * @throws FacebookSDKException
      * @return \Facebook\GraphNodes\GraphList
      *
+     * @throws FacebookSDKException
      *
      * @deprecated 5.0.0 getGraphList() has been renamed to getGraphEdge()
      * @todo v6: Remove this method
@@ -387,10 +395,11 @@ class FacebookResponse
      * Instantiate a new GraphEdge from response.
      *
      * @param string|null $subclassName The GraphNode subclass to cast list items to.
-     * @param bool     $auto_prefix  Toggle to auto-prefix the subclass name.
+     * @param boolean     $auto_prefix  Toggle to auto-prefix the subclass name.
+     *
+     * @return \Facebook\GraphNodes\GraphEdge
      *
      * @throws FacebookSDKException
-     * @return \Facebook\GraphNodes\GraphEdge
      */
     public function getGraphEdge($subclassName = null, $auto_prefix = true)
     {

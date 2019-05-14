@@ -19,17 +19,17 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
+ *
  */
-
 namespace Facebook\Authentication;
 
-use Facebook\Exceptions\FacebookResponseException;
-use Facebook\Exceptions\FacebookSDKException;
 use Facebook\Facebook;
 use Facebook\FacebookApp;
-use Facebook\FacebookClient;
 use Facebook\FacebookRequest;
 use Facebook\FacebookResponse;
+use Facebook\FacebookClient;
+use Facebook\Exceptions\FacebookResponseException;
+use Facebook\Exceptions\FacebookSDKException;
 
 /**
  * Class OAuth2Client
@@ -72,6 +72,8 @@ class OAuth2Client
     protected $lastRequest;
 
     /**
+     * @param FacebookApp    $app
+     * @param FacebookClient $client
      * @param string|null    $graphVersion The version of the Graph API to use.
      */
     public function __construct(FacebookApp $app, FacebookClient $client, $graphVersion = null)
@@ -138,7 +140,7 @@ class OAuth2Client
             'response_type' => 'code',
             'sdk' => 'php-sdk-' . Facebook::VERSION,
             'redirect_uri' => $redirectUrl,
-            'scope' => implode(',', $scope),
+            'scope' => implode(',', $scope)
         ];
 
         return static::BASE_AUTHORIZATION_URL . '/' . $this->graphVersion . '/dialog/oauth?' . http_build_query($params, null, $separator);
@@ -150,8 +152,9 @@ class OAuth2Client
      * @param string $code
      * @param string $redirectUri
      *
-     * @throws FacebookSDKException
      * @return AccessToken
+     *
+     * @throws FacebookSDKException
      */
     public function getAccessTokenFromCode($code, $redirectUri = '')
     {
@@ -168,8 +171,9 @@ class OAuth2Client
      *
      * @param AccessToken|string $accessToken
      *
-     * @throws FacebookSDKException
      * @return AccessToken
+     *
+     * @throws FacebookSDKException
      */
     public function getLongLivedAccessToken($accessToken)
     {
@@ -188,8 +192,9 @@ class OAuth2Client
      * @param AccessToken|string $accessToken
      * @param string             $redirectUri
      *
-     * @throws FacebookSDKException
      * @return AccessToken
+     *
+     * @throws FacebookSDKException
      */
     public function getCodeFromLongLivedAccessToken($accessToken, $redirectUri = '')
     {
@@ -210,9 +215,11 @@ class OAuth2Client
     /**
      * Send a request to the OAuth endpoint.
      *
+     * @param array $params
+     *
+     * @return AccessToken
      *
      * @throws FacebookSDKException
-     * @return AccessToken
      */
     protected function requestAnAccessToken(array $params)
     {
@@ -244,10 +251,12 @@ class OAuth2Client
      * Send a request to Graph with an app access token.
      *
      * @param string                  $endpoint
+     * @param array                   $params
      * @param AccessToken|string|null $accessToken
      *
-     * @throws FacebookResponseException
      * @return FacebookResponse
+     *
+     * @throws FacebookResponseException
      */
     protected function sendRequestWithClientParams($endpoint, array $params, $accessToken = null)
     {

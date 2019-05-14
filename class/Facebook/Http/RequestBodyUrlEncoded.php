@@ -19,8 +19,8 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
+ *
  */
-
 namespace Facebook\Http;
 
 /**
@@ -37,6 +37,8 @@ class RequestBodyUrlEncoded implements RequestBodyInterface
 
     /**
      * Creates a new GraphUrlEncodedBody entity.
+     *
+     * @param array $params
      */
     public function __construct(array $params)
     {

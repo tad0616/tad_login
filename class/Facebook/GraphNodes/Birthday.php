@@ -19,8 +19,8 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
+ *
  */
-
 namespace Facebook\GraphNodes;
 
 use DateTime;
@@ -57,8 +57,8 @@ class Birthday extends DateTime
     {
         $parts = explode('/', $date);
 
-        $this->hasYear = 3 === count($parts) || 1 === count($parts);
-        $this->hasDate = 3 === count($parts) || 2 === count($parts);
+        $this->hasYear = count($parts) === 3 || count($parts) === 1;
+        $this->hasDate = count($parts) === 3 || count($parts) === 2;
 
         parent::__construct($date);
     }

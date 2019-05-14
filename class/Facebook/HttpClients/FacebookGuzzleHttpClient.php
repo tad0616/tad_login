@@ -19,16 +19,17 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
+ *
  */
-
 namespace Facebook\HttpClients;
 
-use Facebook\Exceptions\FacebookSDKException;
 use Facebook\Http\GraphRawResponse;
+use Facebook\Exceptions\FacebookSDKException;
+
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Message\ResponseInterface;
 use GuzzleHttp\Ring\Exception\RingException;
+use GuzzleHttp\Exception\RequestException;
 
 class FacebookGuzzleHttpClient implements FacebookHttpClientInterface
 {
@@ -88,7 +89,7 @@ class FacebookGuzzleHttpClient implements FacebookHttpClientInterface
         $headers = $response->getHeaders();
         $rawHeaders = [];
         foreach ($headers as $name => $values) {
-            $rawHeaders[] = $name . ': ' . implode(', ', $values);
+            $rawHeaders[] = $name . ": " . implode(", ", $values);
         }
 
         return implode("\r\n", $rawHeaders);

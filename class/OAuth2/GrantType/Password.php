@@ -1,5 +1,4 @@
 <?php
-
 namespace OAuth2\GrantType;
 
 use OAuth2\InvalidArgumentException;
@@ -19,17 +18,20 @@ class Password implements IGrantType
     /**
      * Adds a specific Handling of the parameters
      *
-     * @param  mixed  $parameters the parameters array (passed by reference)
      * @return array of Specific parameters to be sent.
+     * @param  mixed  $parameters the parameters array (passed by reference)
      */
     public function validateParameters(&$parameters)
     {
-        if (!isset($parameters['username'])) {
+        if (!isset($parameters['username']))
+        {
             throw new InvalidArgumentException(
                 'The \'username\' parameter must be defined for the Password grant type',
                 InvalidArgumentException::MISSING_PARAMETER
             );
-        } elseif (!isset($parameters['password'])) {
+        }
+        elseif (!isset($parameters['password']))
+        {
             throw new InvalidArgumentException(
                 'The \'password\' parameter must be defined for the Password grant type',
                 InvalidArgumentException::MISSING_PARAMETER

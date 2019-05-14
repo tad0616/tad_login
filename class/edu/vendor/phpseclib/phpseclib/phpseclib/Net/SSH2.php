@@ -8,7 +8,7 @@
  * Here are some examples of how to use this library:
  * <code>
  * <?php
- *    require __DIR__ . '/vendor/autoload.php';
+ *    include 'vendor/autoload.php';
  *
  *    $ssh = new \phpseclib\Net\SSH2('www.domain.tld');
  *    if (!$ssh->login('username', 'password')) {
@@ -22,7 +22,7 @@
  *
  * <code>
  * <?php
- *    require __DIR__ . '/vendor/autoload.php';
+ *    include 'vendor/autoload.php';
  *
  *    $key = new \phpseclib\Crypt\RSA();
  *    //$key->setPassword('whatever');

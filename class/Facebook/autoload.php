@@ -19,6 +19,7 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
+ *
  */
 
 /**
@@ -26,6 +27,7 @@
  * Why are you not using composer?
  * https://getcomposer.org/
  */
+
 if (version_compare(PHP_VERSION, '5.4.0', '<')) {
     throw new Exception('The Facebook SDK requires PHP version 5.4 or higher.');
 }
@@ -39,6 +41,8 @@ require_once __DIR__ . '/polyfills.php';
  * https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader-examples.md
  *
  * @param string $class The fully-qualified class name.
+ *
+ * @return void
  */
 spl_autoload_register(function ($class) {
     // project-specific namespace prefix
@@ -56,14 +60,14 @@ spl_autoload_register(function ($class) {
     $baseDir = $customBaseDir ?: __DIR__ . '/';
 
     // does the class use the namespace prefix?
-    $len = mb_strlen($prefix);
-    if (0 !== strncmp($prefix, $class, $len)) {
+    $len = strlen($prefix);
+    if (strncmp($prefix, $class, $len) !== 0) {
         // no, move to the next registered autoloader
         return;
     }
 
     // get the relative class name
-    $relativeClass = mb_substr($class, $len);
+    $relativeClass = substr($class, $len);
 
     // replace the namespace prefix with the base directory, replace namespace
     // separators with directory separators in the relative class name, append

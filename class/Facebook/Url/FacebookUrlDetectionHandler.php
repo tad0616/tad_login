@@ -19,8 +19,8 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
+ *
  */
-
 namespace Facebook\Url;
 
 /**
@@ -51,7 +51,7 @@ class FacebookUrlDetectionHandler implements UrlDetectionInterface
     /**
      * Tries to detect if the server is running behind an SSL.
      *
-     * @return bool
+     * @return boolean
      */
     protected function isBehindSsl()
     {
@@ -66,7 +66,7 @@ class FacebookUrlDetectionHandler implements UrlDetectionInterface
             return $this->protocolWithActiveSsl($protocol);
         }
 
-        return '443' === (string) $this->getServerVar('SERVER_PORT');
+        return (string)$this->getServerVar('SERVER_PORT') === '443';
     }
 
     /**
@@ -74,13 +74,13 @@ class FacebookUrlDetectionHandler implements UrlDetectionInterface
      *
      * @param string $protocol
      *
-     * @return bool
+     * @return boolean
      */
     protected function protocolWithActiveSsl($protocol)
     {
-        $protocol = mb_strtolower((string) $protocol);
+        $protocol = strtolower((string)$protocol);
 
-        return in_array($protocol, ['on', '1', 'https', 'ssl']);
+        return in_array($protocol, ['on', '1', 'https', 'ssl'], true);
     }
 
     /**
@@ -107,7 +107,7 @@ class FacebookUrlDetectionHandler implements UrlDetectionInterface
 
         // trim and remove port number from host
         // host is lowercase as per RFC 952/2181
-        $host = mb_strtolower(preg_replace('/:\d+$/', '', trim($host)));
+        $host = strtolower(preg_replace('/:\d+$/', '', trim($host)));
 
         // Port number
         $scheme = $this->getHttpScheme();
@@ -115,7 +115,7 @@ class FacebookUrlDetectionHandler implements UrlDetectionInterface
         $appendPort = ':' . $port;
 
         // Don't append port number if a normal port.
-        if (('http' == $scheme && '80' == $port) || ('https' == $scheme && '443' == $port)) {
+        if (($scheme == 'http' && $port == '80') || ($scheme == 'https' && $port == '443')) {
             $appendPort = '';
         }
 
@@ -127,15 +127,15 @@ class FacebookUrlDetectionHandler implements UrlDetectionInterface
         // Check for proxy first
         $port = $this->getHeader('X_FORWARDED_PORT');
         if ($port) {
-            return (string) $port;
+            return (string)$port;
         }
 
-        $protocol = (string) $this->getHeader('X_FORWARDED_PROTO');
-        if ('https' === $protocol) {
+        $protocol = (string)$this->getHeader('X_FORWARDED_PROTO');
+        if ($protocol === 'https') {
             return '443';
         }
 
-        return (string) $this->getServerVar('SERVER_PORT');
+        return (string)$this->getServerVar('SERVER_PORT');
     }
 
     /**
@@ -168,15 +168,15 @@ class FacebookUrlDetectionHandler implements UrlDetectionInterface
      *
      * @param string $header
      *
-     * @return bool
+     * @return boolean
      */
     protected function isValidForwardedHost($header)
     {
         $elements = explode(',', $header);
         $host = $elements[count($elements) - 1];
-
+        
         return preg_match("/^([a-z\d](-*[a-z\d])*)(\.([a-z\d](-*[a-z\d])*))*$/i", $host) //valid chars check
-         && mb_strlen($host) > 0 && mb_strlen($host) < 254//overall length check
-         && preg_match("/^[^\.]{1,63}(\.[^\.]{1,63})*$/", $host); //length of each label
+            && 0 < strlen($host) && strlen($host) < 254 //overall length check
+            && preg_match("/^[^\.]{1,63}(\.[^\.]{1,63})*$/", $host); //length of each label
     }
 }

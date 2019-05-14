@@ -19,8 +19,8 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
+ *
  */
-
 namespace Facebook\Authentication;
 
 use Facebook\Exceptions\FacebookSDKException;
@@ -50,6 +50,8 @@ class AccessTokenMetadata
     protected static $dateProperties = ['expires_at', 'issued_at'];
 
     /**
+     * @param array $metadata
+     *
      * @throws FacebookSDKException
      */
     public function __construct(array $metadata)
@@ -172,7 +174,7 @@ class AccessTokenMetadata
      */
     public function isError()
     {
-        return null !== $this->getField('error');
+        return $this->getField('error') !== null;
     }
 
     /**
@@ -218,7 +220,7 @@ class AccessTokenMetadata
     /**
      * Whether the access token is still valid or not.
      *
-     * @return bool|null
+     * @return boolean|null
      */
     public function getIsValid()
     {
@@ -380,7 +382,7 @@ class AccessTokenMetadata
     private function castTimestampsToDateTime()
     {
         foreach (static::$dateProperties as $key) {
-            if (isset($this->metadata[$key]) && 0 !== $this->metadata[$key]) {
+            if (isset($this->metadata[$key]) && $this->metadata[$key] !== 0) {
                 $this->metadata[$key] = $this->convertTimestampToDateTime($this->metadata[$key]);
             }
         }

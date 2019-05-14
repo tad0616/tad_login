@@ -19,13 +19,13 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
+ *
  */
-
 namespace Facebook;
 
-use ArrayAccess;
 use ArrayIterator;
 use IteratorAggregate;
+use ArrayAccess;
 
 /**
  * Class FacebookBatchResponse
@@ -46,6 +46,9 @@ class FacebookBatchResponse extends FacebookResponse implements IteratorAggregat
 
     /**
      * Creates a new Response entity.
+     *
+     * @param FacebookBatchRequest $batchRequest
+     * @param FacebookResponse     $response
      */
     public function __construct(FacebookBatchRequest $batchRequest, FacebookResponse $response)
     {
@@ -74,6 +77,8 @@ class FacebookBatchResponse extends FacebookResponse implements IteratorAggregat
     /**
      * The main batch response will be an array of requests so
      * we need to iterate over all the responses.
+     *
+     * @param array $responses
      */
     public function setResponses(array $responses)
     {
@@ -152,6 +157,7 @@ class FacebookBatchResponse extends FacebookResponse implements IteratorAggregat
      * Converts the batch header array into a standard format.
      * @TODO replace with array_column() when PHP 5.5 is supported.
      *
+     * @param array $batchHeaders
      *
      * @return array
      */

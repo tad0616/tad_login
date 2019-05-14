@@ -19,17 +19,17 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
+ *
  */
-
 namespace Facebook;
 
 use Facebook\Authentication\AccessToken;
-use Facebook\Exceptions\FacebookSDKException;
+use Facebook\Url\FacebookUrlManipulator;
 use Facebook\FileUpload\FacebookFile;
 use Facebook\FileUpload\FacebookVideo;
 use Facebook\Http\RequestBodyMultipart;
 use Facebook\Http\RequestBodyUrlEncoded;
-use Facebook\Url\FacebookUrlManipulator;
+use Facebook\Exceptions\FacebookSDKException;
 
 /**
  * Class Request
@@ -86,6 +86,7 @@ class FacebookRequest
     /**
      * Creates a new Request entity.
      *
+     * @param FacebookApp|null        $app
      * @param AccessToken|string|null $accessToken
      * @param string|null             $method
      * @param string|null             $endpoint
@@ -108,7 +109,6 @@ class FacebookRequest
      * Set the access token for this request.
      *
      * @param AccessToken|string|null
-     * @param mixed $accessToken
      *
      * @return FacebookRequest
      */
@@ -127,8 +127,9 @@ class FacebookRequest
      *
      * @param string $accessToken The access token.
      *
-     * @throws FacebookSDKException
      * @return FacebookRequest
+     *
+     * @throws FacebookSDKException
      */
     public function setAccessTokenFromParams($accessToken)
     {
@@ -164,6 +165,8 @@ class FacebookRequest
 
     /**
      * Set the FacebookApp entity used for this request.
+     *
+     * @param FacebookApp|null $app
      */
     public function setApp(FacebookApp $app = null)
     {
@@ -211,11 +214,10 @@ class FacebookRequest
      * Set the HTTP method for this request.
      *
      * @param string
-     * @param mixed $method
      */
     public function setMethod($method)
     {
-        $this->method = mb_strtoupper($method);
+        $this->method = strtoupper($method);
     }
 
     /**
@@ -248,10 +250,10 @@ class FacebookRequest
      * Set the endpoint for this request.
      *
      * @param string
-     * @param mixed $endpoint
+     *
+     * @return FacebookRequest
      *
      * @throws FacebookSDKException
-     * @return FacebookRequest
      */
     public function setEndpoint($endpoint)
     {
@@ -297,6 +299,8 @@ class FacebookRequest
 
     /**
      * Set the headers for this request.
+     *
+     * @param array $headers
      */
     public function setHeaders(array $headers)
     {
@@ -316,9 +320,11 @@ class FacebookRequest
     /**
      * Set the params for this request.
      *
+     * @param array $params
+     *
+     * @return FacebookRequest
      *
      * @throws FacebookSDKException
-     * @return FacebookRequest
      */
     public function setParams(array $params = [])
     {
@@ -340,6 +346,7 @@ class FacebookRequest
     /**
      * Set the params for this request without filtering them first.
      *
+     * @param array $params
      *
      * @return FacebookRequest
      */
@@ -353,6 +360,7 @@ class FacebookRequest
     /**
      * Iterate over the params and pull out the file uploads.
      *
+     * @param array $params
      *
      * @return array
      */
@@ -372,6 +380,7 @@ class FacebookRequest
      * Add a file to be uploaded.
      *
      * @param string       $key
+     * @param FacebookFile $file
      */
     public function addFile($key, FacebookFile $file)
     {
@@ -399,7 +408,7 @@ class FacebookRequest
     /**
      * Let's us know if there is a file upload with this request.
      *
-     * @return bool
+     * @return boolean
      */
     public function containsFileUploads()
     {
@@ -409,7 +418,7 @@ class FacebookRequest
     /**
      * Let's us know if there is a video upload with this request.
      *
-     * @return bool
+     * @return boolean
      */
     public function containsVideoUploads()
     {
@@ -471,7 +480,7 @@ class FacebookRequest
      */
     public function getPostParams()
     {
-        if ('POST' === $this->getMethod()) {
+        if ($this->getMethod() === 'POST') {
             return $this->getParams();
         }
 
@@ -502,7 +511,7 @@ class FacebookRequest
 
         $url = $graphVersion . $endpoint;
 
-        if ('POST' !== $this->getMethod()) {
+        if ($this->getMethod() !== 'POST') {
             $params = $this->getParams();
             $url = FacebookUrlManipulator::appendParamsToUrl($url, $params);
         }

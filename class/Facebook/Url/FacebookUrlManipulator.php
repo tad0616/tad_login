@@ -19,8 +19,8 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
+ *
  */
-
 namespace Facebook\Url;
 
 /**
@@ -80,7 +80,7 @@ class FacebookUrlManipulator
             return $url;
         }
 
-        if (false === mb_strpos($url, '?')) {
+        if (strpos($url, '?') === false) {
             return $url . '?' . http_build_query($newParams, null, '&');
         }
 
@@ -150,7 +150,7 @@ class FacebookUrlManipulator
             return $string;
         }
 
-        return 0 === mb_strpos($string, '/') ? $string : '/' . $string;
+        return strpos($string, '/') === 0 ? $string : '/' . $string;
     }
 
     /**

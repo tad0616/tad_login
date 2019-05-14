@@ -218,7 +218,7 @@ class OpenIDConnectClient
      */
     public function __construct($provider_url = null, $client_id = null, $client_secret = null, $issuer = null) {
         $this->setProviderURL($provider_url);
-		if ($issuer === null) {
+		if ($issuer == null) {
 			$this->setIssuer($provider_url);
 		} else {
 			$this->setIssuer($issuer);
@@ -406,7 +406,7 @@ class OpenIDConnectClient
         $signout_endpoint = $this->getProviderConfigValue("end_session_endpoint");
 
         $signout_params = null;
-        if($redirect === null){
+        if($redirect == null){
           $signout_params = array('id_token_hint' => $accessToken);
         }
         else {

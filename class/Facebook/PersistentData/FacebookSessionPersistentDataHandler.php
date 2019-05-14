@@ -19,8 +19,8 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
+ *
  */
-
 namespace Facebook\PersistentData;
 
 use Facebook\Exceptions\FacebookSDKException;
@@ -40,13 +40,13 @@ class FacebookSessionPersistentDataHandler implements PersistentDataInterface
     /**
      * Init the session handler.
      *
-     * @param bool $enableSessionCheck
+     * @param boolean $enableSessionCheck
      *
      * @throws FacebookSDKException
      */
     public function __construct($enableSessionCheck = true)
     {
-        if ($enableSessionCheck && PHP_SESSION_ACTIVE !== session_status()) {
+        if ($enableSessionCheck && session_status() !== PHP_SESSION_ACTIVE) {
             throw new FacebookSDKException(
                 'Sessions are not active. Please make sure session_start() is at the top of your script.',
                 720
