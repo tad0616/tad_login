@@ -9,51 +9,58 @@ require XOOPS_ROOT_PATH . '/modules/tad_login/oidc.php';
  * @param int $length
  * @return string
  */
-function generateRandomString($length = 20)
-{
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_*';
-    $charactersLength = mb_strlen($characters);
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[mt_rand(0, $charactersLength - 1)];
-    }
 
-    return $randomString;
+if (!function_exists('generateRandomString')) {
+    function generateRandomString($length = 20)
+    {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_*';
+        $charactersLength = mb_strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[mt_rand(0, $charactersLength - 1)];
+        }
+
+        return $randomString;
+    }
 }
 
-function requestProtectedApi($token_ep = '', $accesstoken = '', $rtn_array = true, $gzipenable = false)
-{
-    $header = ["Authorization: Bearer $accesstoken"];
-    $options = [
-        'http' => [
-            'header' => $header,
-            'method' => 'GET',
-            'content' => '',
-        ],
-    ];
-    $context = stream_context_create($options);
-    if ($gzipenable) {
-        $result = gzdecode(file_get_contents($token_ep, false, $context));
-    } else {
-        $result = file_get_contents($token_ep, false, $context);
-    }
-    $u = json_decode($result, $rtn_array);
+if (!function_exists('requestProtectedApi')) {
+    function requestProtectedApi($token_ep = '', $accesstoken = '', $rtn_array = true, $gzipenable = false)
+    {
+        $header = ["Authorization: Bearer $accesstoken"];
+        $options = [
+            'http' => [
+                'header' => $header,
+                'method' => 'GET',
+                'content' => '',
+            ],
+        ];
+        $context = stream_context_create($options);
+        if ($gzipenable) {
+            $result = gzdecode(file_get_contents($token_ep, false, $context));
+        } else {
+            $result = file_get_contents($token_ep, false, $context);
+        }
+        $u = json_decode($result, $rtn_array);
 
-    return $u;
+        return $u;
+    }
 }
 
-function do_post($url, $data)
-{
-    $ch = curl_init($url);
+if (!function_exists('do_post')) {
+    function do_post($url, $data)
+    {
+        $ch = curl_init($url);
 
-    curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-    $response = curl_exec($ch);
-    curl_close($ch);
+        $response = curl_exec($ch);
+        curl_close($ch);
 
-    return $response;
+        return $response;
+    }
 }
 
 //oidc 登入
@@ -371,7 +378,7 @@ if (!function_exists('login_xoops')) {
             }
 
             $pass = Utility::randStr(128);
-            $newuser =  $memberHandler->createUser();
+            $newuser = $memberHandler->createUser();
             $newuser->setVar('user_viewemail', 1);
             $newuser->setVar('attachsig', 0);
             $newuser->setVar('name', $name);
@@ -462,7 +469,7 @@ if (!function_exists('add2group')) {
         global $xoopsDB, $xoopsUser;
 
         $memberHandler = xoops_getHandler('member');
-        $user =  $memberHandler->getUser($uid);
+        $user = $memberHandler->getUser($uid);
         if ($user) {
             $userGroups = $user->getGroups();
         } else {

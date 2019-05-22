@@ -7,7 +7,6 @@ function tad_login($options = '')
         return;
     }
     require_once XOOPS_ROOT_PATH . '/modules/tad_login/function.php';
-//    require_once XOOPS_ROOT_PATH . '/modules/tad_login/oidc.php';
 
     $moduleHandler = xoops_getHandler('module');
     $xoopsModule = $moduleHandler->getByDirname('tad_login');
