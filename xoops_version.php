@@ -7,7 +7,7 @@ $modversion = [];
 
 //---模組基本資訊---//
 $modversion['name'] = _MI_TADLOGIN_NAME;
-$modversion['version'] = 4.55;
+$modversion['version'] = 4.56;
 $modversion['description'] = _MI_TADLOGIN_DESC;
 $modversion['author'] = _MI_TADLOGIN_AUTHOR;
 $modversion['credits'] = _MI_TADLOGIN_CREDITS;
@@ -18,7 +18,7 @@ $modversion['image'] = "images/logo_{$xoopsConfig['language']}.png";
 $modversion['dirname'] = basename(__DIR__);
 
 //---模組狀態資訊---//
-$modversion['release_date'] = '2019/05/10';
+$modversion['release_date'] = '2019/05/28';
 $modversion['module_website_url'] = 'https://tad0616.net/';
 $modversion['module_website_name'] = _MI_TAD_WEB;
 $modversion['module_status'] = 'release';
@@ -156,17 +156,17 @@ $modversion['config'][$i]['options'] = [
     sprintf(_TADLOGIN_LOGIN, _MT . 'OpenID') => 'mt',
 ];
 if (isset($all_oidc)) {
-foreach ($all_oidc as $oidc_unit => $oarr) {
-    $const = constant('_' . strtoupper($oarr['tail']));
-    $oidc_unit_const = sprintf(_TADLOGIN_LOGIN, $const . _TADLOGIN_OIDC);
-    $modversion['config'][$i]['options'][$oidc_unit_const] = $oidc_unit;
-}
+    foreach ($all_oidc as $oidc_unit => $oarr) {
+        $const = constant('_' . strtoupper($oarr['tail']));
+        $oidc_unit_const = sprintf(_TADLOGIN_LOGIN, $const . _TADLOGIN_OIDC);
+        $modversion['config'][$i]['options'][$oidc_unit_const] = $oidc_unit;
+    }
 }
 if (isset($all_oidc2)) {
-foreach ($all_oidc2 as $oidc_unit => $oarr) {
-    $const = constant('_' . strtoupper($oarr['tail']));
-    $oidc_unit_const = sprintf(_TADLOGIN_LOGIN, $const . _TADLOGIN_LDAP);
-    $modversion['config'][$i]['options'][$oidc_unit_const] = $oidc_unit;
+    foreach ($all_oidc2 as $oidc_unit => $oarr) {
+        $const = constant('_' . strtoupper($oarr['tail']));
+        $oidc_unit_const = sprintf(_TADLOGIN_LOGIN, $const . _TADLOGIN_LDAP);
+        $modversion['config'][$i]['options'][$oidc_unit_const] = $oidc_unit;
     }
 }
 

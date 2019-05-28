@@ -1,3 +1,8 @@
+Tad Login 4.5.6 (2019-05-28 released)
+=========================================================
+1. Fix the problem that the page will be blank in some cases
+
+
 Tad Login 4.5.5 (2019-05-10 released)
 =========================================================
 1. Join OIDC login in each county and city
