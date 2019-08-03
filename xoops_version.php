@@ -171,24 +171,6 @@ if (isset($all_oidc2)) {
 }
 
 $i++;
-$modversion['config'][$i]['name'] = 'openid_login';
-$modversion['config'][$i]['title'] = '_MI_TADLOGIN_TITLE2';
-$modversion['config'][$i]['description'] = '_MI_TADLOGIN_DESC2';
-$modversion['config'][$i]['formtype'] = 'select';
-$modversion['config'][$i]['valuetype'] = 'int';
-$modversion['config'][$i]['default'] = '1';
-$modversion['config'][$i]['options'] = [_MI_TADLOGIN_TITLE2_OPT0 => '0', _MI_TADLOGIN_TITLE2_OPT1 => '1', _MI_TADLOGIN_TITLE2_OPT2 => '2', _MI_TADLOGIN_TITLE2_OPT3 => '3'];
-
-$i++;
-$modversion['config'][$i]['name'] = 'openid_logo';
-$modversion['config'][$i]['title'] = '_MI_TADLOGIN_TITLE3';
-$modversion['config'][$i]['description'] = '_MI_TADLOGIN_DESC3';
-$modversion['config'][$i]['formtype'] = 'select';
-$modversion['config'][$i]['valuetype'] = 'int';
-$modversion['config'][$i]['default'] = '4';
-$modversion['config'][$i]['options'] = [1 => '1', 2 => '2', 3 => '3', 4 => '4', 5 => '5', 6 => '6'];
-
-$i++;
 $modversion['config'][$i]['name'] = 'redirect_url';
 $modversion['config'][$i]['title'] = '_MI_TADLOGIN_REDIRECT_URL';
 $modversion['config'][$i]['description'] = '_MI_TADLOGIN_REDIRECT_URL_DESC';

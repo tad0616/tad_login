@@ -37,16 +37,6 @@ define('_MI_TADLOGIN_GOOGLE_REDIRECT_URL_DESC', 'Please go to https://console.de
 define('_MI_TADLOGIN_GOOGLE_API_KEY', 'Google\'s "API key');
 define('_MI_TADLOGIN_GOOGLE_API_KEY_DESC', 'Please go to https://console.developers.google.com, create a Project, and obtain their "API key".');
 
-define('_MI_TADLOGIN_TITLE2', 'Navigation bar Login Options');
-define('_MI_TADLOGIN_DESC2', 'Please select the default navigation bar login presentation options');
-define('_MI_TADLOGIN_TITLE2_OPT0', 'Display only XOOPS login interface');
-define('_MI_TADLOGIN_TITLE2_OPT1', 'While displaying the XOOPS login screen, the OpenID buttons are off');
-define('_MI_TADLOGIN_TITLE2_OPT2', 'Display only OpenID button');
-define('_MI_TADLOGIN_TITLE2_OPT3', 'Does not show login option');
-
-define('_MI_TADLOGIN_TITLE3', 'Quick Login menu icons in a row');
-define('_MI_TADLOGIN_DESC3', 'Select how many Quick Login menu icons should we visible in one row, choose two or more.');
-
 define('_MI_TADLOGIN_DIRNAME', basename(dirname(dirname(__DIR__))));
 define('_MI_TADLOGIN_HELP_HEADER', __DIR__ . '/help/helpheader.tpl');
 define('_MI_TADLOGIN_BACK_2_ADMIN', 'Back to Administration of ');
