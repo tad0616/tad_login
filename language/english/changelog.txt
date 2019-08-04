@@ -1,3 +1,7 @@
+Tad Login 4.5.7 (released from 2019-08-04)
+=========================================================
+1. Move the login settings of the navigation bar to tad_themes
+
 Tad Login 4.5.6 (2019-05-28 released)
 =========================================================
 1. Fix the problem that the page will be blank in some cases
