@@ -168,7 +168,7 @@ function kl_login()
         $openid = new LightOpenID(XOOPS_URL);
 
         if (!$openid->mode) {
-            $openid->identity = 'http://openid.kl.edu.tw';
+            $openid->identity = 'https://openid.kl.edu.tw';
             $openid->required = ['contact/email', 'namePerson/friendly', 'namePerson'];
             $openid->optional = ['axschema/person/guid', 'axschema/school/titleStr', 'axschema/school/id', 'tw/person/guid', 'tw/isas/roles'];
             header('Location: ' . $openid->authUrl());
@@ -225,7 +225,7 @@ function ilc_login()
         # Change 'localhost' to your domain name.
         $openid = new LightOpenID(XOOPS_URL);
         if (!$openid->mode) {
-            $openid->identity = 'http://openid.ilc.edu.tw';
+            $openid->identity = 'https://openid.ilc.edu.tw';
             $openid->required = ['contact/email', 'namePerson/friendly', 'namePerson'];
             //$openid->optional = array('contact/postalCode/home' , 'contact/country/home'  , 'pref/language','pref/timezone','axschema/person/guid' , 'axschema/school/titleStr'  , 'axschema/school/id','tw/person/guid' , 'tw/isas/roles'  );
             header('Location: ' . $openid->authUrl());
@@ -283,7 +283,7 @@ function hc_login()
         # Change 'localhost' to your domain name.
         $openid = new LightOpenID(XOOPS_URL);
         if (!$openid->mode) {
-            $openid->identity = 'http://openid.hc.edu.tw';
+            $openid->identity = 'https://openid.hc.edu.tw';
             $openid->required = ['contact/email', 'namePerson/friendly', 'namePerson'];
             $openid->optional = ['contact/postalCode/home', 'contact/country/home', 'pref/language', 'pref/timezone'];
             header('Location: ' . $openid->authUrl());
@@ -671,60 +671,60 @@ function kh_login()
         # Change 'localhost' to your domain name.
         $openid = new LightOpenID(XOOPS_URL);
         if (!$openid->mode) {
-            header('Location: https://openid.kh.edu.tw/?openid.return_to=' . XOOPS_URL . '/modules/tad_login/index.php?op=kh&openid.realm=' . XOOPS_URL . '/&openid.identity=http://openid.kh.edu.tw/&openid.mode=checkid_setup&openid.ns=http://specs.openid.net/auth/2.0&openid.ns.ext1=http://openid.net/extensions/sreg/1.1&openid.ns.ext2=http://openid.net/srv/ax/1.0&openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select&openid.ext1.required=fullname,email&openid.ext2.type.guid=http://axschema.edu.tw/person/guid&openid.ext2.type.sid=http://axschema.edu.tw/school/id&openid.ext2.type.titles=http://axschema.edu.tw/person/titles&openid.ext2.type.classStr=http://axschema.kh.edu.tw/school/classStr&openid.ext2.required=guid,sid,titles,classStr&openid.ext2.mode=fetch_request');
+            header('Location: https://openid.kh.edu.tw/?openid.return_to=' . XOOPS_URL . '/modules/tad_login/index.php?op=kh&openid.realm=' . XOOPS_URL . '/&openid.identity=https://openid.kh.edu.tw/&openid.mode=checkid_setup&openid.ns=https://specs.openid.net/auth/2.0&openid.ns.ext1=https://openid.net/extensions/sreg/1.1&openid.ns.ext2=https://openid.net/srv/ax/1.0&openid.claimed_id=https://specs.openid.net/auth/2.0/identifier_select&openid.ext1.required=fullname,email&openid.ext2.type.guid=https://axschema.edu.tw/person/guid&openid.ext2.type.sid=https://axschema.edu.tw/school/id&openid.ext2.type.titles=https://axschema.edu.tw/person/titles&openid.ext2.type.classStr=https://axschema.kh.edu.tw/school/classStr&openid.ext2.required=guid,sid,titles,classStr&openid.ext2.mode=fetch_request');
 
             /*
 
         array (
         'op' => 'kh',
-        'openid_ns' => 'http://specs.openid.net/auth/2.0',
-        'openid_op_endpoint' => 'http://openid.kh.edu.tw/',
-        'openid_claimed_id' => 'http://openid.kh.edu.tw/S0407225',
+        'openid_ns' => 'https://specs.openid.net/auth/2.0',
+        'openid_op_endpoint' => 'https://openid.kh.edu.tw/',
+        'openid_claimed_id' => 'https://openid.kh.edu.tw/S0407225',
         'openid_response_nonce' => '2016-11-18T08:46:32Z0',
         'openid_mode' => 'id_res',
-        'openid_identity' => 'http://openid.kh.edu.tw/S0407225',
-        'openid_return_to' => 'http://est.tpps.kh.edu.tw/modules/tad_login/index.php?op=kh',
+        'openid_identity' => 'https://openid.kh.edu.tw/S0407225',
+        'openid_return_to' => 'https://est.tpps.kh.edu.tw/modules/tad_login/index.php?op=kh',
         'openid_assoc_handle' => '08a58751cb534ed5a011c218aa2cc89f-2995',
         'openid_signed' => 'op_endpoint,claimed_id,identity,return_to,response_nonce,assoc_handle,ns.ext1,ns.ext2,ext1.mode,ext1.type.guid,ext1.value.guid,ext1.type.sid,ext1.value.sid,ext1.type.titles,ext1.value.titles,ext1.type.classStr,ext1.value.classStr,ext2.fullname,ext2.email',
         'openid_sig' => 'F9o3ttinjAUySAU9Xxeg+Av1liyschcnsiV0d0YLUdo=',
-        'openid_ns_ext1' => 'http://openid.net/srv/ax/1.0',
+        'openid_ns_ext1' => 'https://openid.net/srv/ax/1.0',
         'openid_ext1_mode' => 'fetch_response',
-        'openid_ext1_type_guid' => 'http://axschema.edu.tw/person/guid',
+        'openid_ext1_type_guid' => 'https://axschema.edu.tw/person/guid',
         'openid_ext1_value_guid' => '4b9d1643ddf10225f49b4b1d6993b03f94b60f5c05f6788694d12def0add9a1f',
-        'openid_ext1_type_sid' => 'http://axschema.edu.tw/school/id',
+        'openid_ext1_type_sid' => 'https://axschema.edu.tw/school/id',
         'openid_ext1_value_sid' => '613605',
-        'openid_ext1_type_titles' => 'http://axschema.edu.tw/person/titles',
+        'openid_ext1_type_titles' => 'https://axschema.edu.tw/person/titles',
         'openid_ext1_value_titles' => '{"sid":"613605","titles":["學生"]}',
-        'openid_ext1_type_classStr' => 'http://axschema.kh.edu.tw/school/classStr',
+        'openid_ext1_type_classStr' => 'https://axschema.kh.edu.tw/school/classStr',
         'openid_ext1_value_classStr' => '[{"sid":"613605","groupId":"","title":"學生","classTitle":"201","degree":"國小","DN":"D","gradeId":"2","classId":"01","subject":"普通班","subjectId":"0","schoolType":"P"}]',
-        'openid_ns_ext2' => 'http://openid.net/extensions/sreg/1.1',
+        'openid_ns_ext2' => 'https://openid.net/extensions/sreg/1.1',
         'openid_ext2_fullname' => '曹宸澔',
         'openid_ext2_email' => '',
         )
 
         array (
         'op' => 'kh',
-        'openid_ns' => 'http://specs.openid.net/auth/2.0',
-        'openid_op_endpoint' => 'http://openid.kh.edu.tw/',
-        'openid_claimed_id' => 'http://openid.kh.edu.tw/tyk',
+        'openid_ns' => 'https://specs.openid.net/auth/2.0',
+        'openid_op_endpoint' => 'https://openid.kh.edu.tw/',
+        'openid_claimed_id' => 'https://openid.kh.edu.tw/tyk',
         'openid_response_nonce' => '2016-11-18T08:55:41Z0',
         'openid_mode' => 'id_res',
-        'openid_identity' => 'http://openid.kh.edu.tw/tyk',
-        'openid_return_to' => 'http://est.tpps.kh.edu.tw/modules/tad_login/index.php?op=kh',
+        'openid_identity' => 'https://openid.kh.edu.tw/tyk',
+        'openid_return_to' => 'https://est.tpps.kh.edu.tw/modules/tad_login/index.php?op=kh',
         'openid_assoc_handle' => '08a58751cb534ed5a011c218aa2cc89f-3007',
         'openid_signed' => 'op_endpoint,claimed_id,identity,return_to,response_nonce,assoc_handle,ns.ext1,ns.ext2,ext1.mode,ext1.type.guid,ext1.value.guid,ext1.type.sid,ext1.value.sid,ext1.type.titles,ext1.value.titles,ext1.type.classStr,ext1.value.classStr,ext2.fullname,ext2.email',
         'openid_sig' => '4QhRyqpGVjnStBa0pYuv1/G6lGfr5CprnFE6SQ0cfj4=',
-        'openid_ns_ext1' => 'http://openid.net/srv/ax/1.0',
+        'openid_ns_ext1' => 'https://openid.net/srv/ax/1.0',
         'openid_ext1_mode' => 'fetch_response',
-        'openid_ext1_type_guid' => 'http://axschema.edu.tw/person/guid',
+        'openid_ext1_type_guid' => 'https://axschema.edu.tw/person/guid',
         'openid_ext1_value_guid' => 'a0c55d6527c4795ee56777f54d32ee1ac9506b872112be6653930f83f0319d86',
-        'openid_ext1_type_sid' => 'http://axschema.edu.tw/school/id',
+        'openid_ext1_type_sid' => 'https://axschema.edu.tw/school/id',
         'openid_ext1_value_sid' => '123456',
-        'openid_ext1_type_titles' => 'http://axschema.edu.tw/person/titles',
+        'openid_ext1_type_titles' => 'https://axschema.edu.tw/person/titles',
         'openid_ext1_value_titles' => '{"sid":"123456","titles":["教師","設備組長"]}',
-        'openid_ext1_type_classStr' => 'http://axschema.kh.edu.tw/school/classStr',
+        'openid_ext1_type_classStr' => 'https://axschema.kh.edu.tw/school/classStr',
         'openid_ext1_value_classStr' => '[]',
-        'openid_ns_ext2' => 'http://openid.net/extensions/sreg/1.1',
+        'openid_ns_ext2' => 'https://openid.net/extensions/sreg/1.1',
         'openid_ext2_fullname' => '杜老師',
         'openid_ext2_email' => 't000@gmail.com',
         )
@@ -742,7 +742,7 @@ function kh_login()
                     $uname = $the_id[0] . '_kh';
                     $email = mb_strtolower($user_profile['openid_ext2_email']);
                 } else {
-                    $the_id = str_replace('http://openid.kh.edu.tw/', '', $user_profile['openid_claimed_id']);
+                    $the_id = str_replace('https://openid.kh.edu.tw/', '', $user_profile['openid_claimed_id']);
                     $uname = $the_id . '_kh';
                     $email = "{$the_id}@mail.kh.edu.tw";
                 }
@@ -811,7 +811,7 @@ function km_login()
         # Change 'localhost' to your domain name.
         $openid = new LightOpenID(XOOPS_URL);
         if (!$openid->mode) {
-            $openid->identity = 'http://openid.cnc.km.edu.tw';
+            $openid->identity = 'https://openid.cnc.km.edu.tw';
             $openid->required = ['contact/email', 'namePerson/friendly', 'namePerson'];
             $openid->optional = ['axschema/person/guid', 'axschema/school/titleStr', 'axschema/school/id', 'tw/person/guid', 'tw/isas/roles'];
             // $openid->required = array('contact/email', 'namePerson');
@@ -870,7 +870,7 @@ function mt_login()
         # Change 'localhost' to your domain name.
         $openid = new LightOpenID(XOOPS_URL);
         if (!$openid->mode) {
-            $openid->identity = 'http://openid.matsu.edu.tw';
+            $openid->identity = 'https://openid.matsu.edu.tw';
 
             $openid->required = ['contact/email', 'namePerson/friendly', 'namePerson'];
             $openid->optional = ['axschema/person/guid', 'axschema/school/titleStr', 'axschema/school/id', 'tw/person/guid', 'tw/isas/roles'];
@@ -917,33 +917,33 @@ function list_login()
     global $xoopsTpl, $xoopsModuleConfig, $all_oidc, $oidc_array, $oidc_array2, $all_oidc2;
 
     if ('cyc' === $_SESSION['auth_method']) {
-        tc_login('cyc', 'http://openid.cyccc.tw');
+        tc_login('cyc', 'https://openid.cyccc.tw');
     } elseif ('ylc' === $_SESSION['auth_method']) {
-        tc_login('ylc', 'http://openid.ylc.edu.tw');
+        tc_login('ylc', 'https://openid.ylc.edu.tw');
     } elseif ('hcc' === $_SESSION['auth_method']) {
-        tc_login('hcc', 'http://openid.hcc.edu.tw');
+        tc_login('hcc', 'https://openid.hcc.edu.tw');
     } elseif ('mlc' === $_SESSION['auth_method']) {
         tc_login('mlc', 'https://openid2.mlc.edu.tw');
     } elseif ('chc' === $_SESSION['auth_method']) {
-        tc_login('chc', 'http://openid.chc.edu.tw');
+        tc_login('chc', 'https://openid.chc.edu.tw');
     } elseif ('ntct' === $_SESSION['auth_method']) {
-        tc_login('ntct', 'http://openid.ntct.edu.tw');
+        tc_login('ntct', 'https://openid.ntct.edu.tw');
     } elseif ('cy' === $_SESSION['auth_method']) {
         tc_login('cy', 'https://openid.cy.edu.tw');
     } elseif ('tc' === $_SESSION['auth_method']) {
-        tc_login('tc', 'http://openid.tc.edu.tw');
+        tc_login('tc', 'https://openid.tc.edu.tw');
     } elseif ('hlc' === $_SESSION['auth_method']) {
-        tc_login('hlc', 'http://openid2.hlc.edu.tw');
+        tc_login('hlc', 'https://openid2.hlc.edu.tw');
     } elseif ('ptc' === $_SESSION['auth_method']) {
-        tc_login('ptc', 'http://openid.ptc.edu.tw');
+        tc_login('ptc', 'https://openid.ptc.edu.tw');
     } elseif ('phc' === $_SESSION['auth_method']) {
-        tc_login('phc', 'http://openid.phc.edu.tw');
+        tc_login('phc', 'https://openid.phc.edu.tw');
     } elseif ('ty' === $_SESSION['auth_method']) {
         ty_login();
     } elseif ('ttct' === $_SESSION['auth_method']) {
-        hlc_login('ttct', 'http://openid.boe.ttct.edu.tw');
+        hlc_login('ttct', 'https://openid.boe.ttct.edu.tw');
     } elseif ('ntpc' === $_SESSION['auth_method']) {
-        hlc_login('ntpc', 'http://openid.ntpc.edu.tw');
+        hlc_login('ntpc', 'https://openid.ntpc.edu.tw');
     } elseif ('tp_ldap' === $_SESSION['auth_method']) {
         tp_ldap_login();
     } else {
@@ -1015,15 +1015,15 @@ switch ($op) {
         break;
     case 'cyc':
         $_SESSION['auth_method'] = 'cyc';
-        tc_login('cyc', 'http://openid.cyccc.tw');
+        tc_login('cyc', 'https://openid.cyccc.tw');
         break;
     case 'ylc':
         $_SESSION['auth_method'] = 'ylc';
-        tc_login('ylc', 'http://openid.ylc.edu.tw');
+        tc_login('ylc', 'https://openid.ylc.edu.tw');
         break;
     case 'hcc':
         $_SESSION['auth_method'] = 'hcc';
-        tc_login('hcc', 'http://openid.hcc.edu.tw');
+        tc_login('hcc', 'https://openid.hcc.edu.tw');
         break;
     case 'hc':
         $_SESSION['auth_method'] = 'hc';
@@ -1035,11 +1035,11 @@ switch ($op) {
         break;
     case 'chc':
         $_SESSION['auth_method'] = 'chc';
-        tc_login('chc', 'http://openid.chc.edu.tw');
+        tc_login('chc', 'https://openid.chc.edu.tw');
         break;
     case 'ntct':
         $_SESSION['auth_method'] = 'ntct';
-        tc_login('ntct', 'http://openid.ntct.edu.tw');
+        tc_login('ntct', 'https://openid.ntct.edu.tw');
         break;
     case 'cy':
         $_SESSION['auth_method'] = 'cy';
@@ -1047,15 +1047,15 @@ switch ($op) {
         break;
     case 'tc':
         $_SESSION['auth_method'] = 'tc';
-        tc_login('tc', 'http://openid.tc.edu.tw');
+        tc_login('tc', 'https://openid.tc.edu.tw');
         break;
     case 'ptc':
         $_SESSION['auth_method'] = 'ptc';
-        tc_login('ptc', 'http://openid.ptc.edu.tw');
+        tc_login('ptc', 'https://openid.ptc.edu.tw');
         break;
     case 'hlc':
         $_SESSION['auth_method'] = 'hlc';
-        tc_login('hlc', 'http://openid2.hlc.edu.tw');
+        tc_login('hlc', 'https://openid2.hlc.edu.tw');
         break;
     case 'tp':
         $_SESSION['auth_method'] = 'tp';
@@ -1067,7 +1067,7 @@ switch ($op) {
         break;
     case 'ttct':
         $_SESSION['auth_method'] = 'ttct';
-        hlc_login('ttct', 'http://openid.boe.ttct.edu.tw');
+        hlc_login('ttct', 'https://openid.boe.ttct.edu.tw');
         break;
     case 'ntpc':
         $_SESSION['auth_method'] = 'ntpc';
@@ -1075,7 +1075,7 @@ switch ($op) {
         break;
     case 'phc':
         $_SESSION['auth_method'] = 'phc';
-        tc_login('phc', 'http://openid.phc.edu.tw');
+        tc_login('phc', 'https://openid.phc.edu.tw');
         break;
     case 'kl':
         $_SESSION['auth_method'] = 'kl';
