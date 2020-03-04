@@ -50,8 +50,8 @@ if ($userinfo['email']) {
     $name = $myts->addSlashes($userinfo['name']);
     $email = $claims['email'];
     $SchoolCode = $myts->addSlashes($eduinfo['schoolid']);
-    // $JobName    = strpos($eduinfo_json, '教師') !== false ? "teacher" : "student";
-    $JobName = 'teacher';
+    $JobName = strpos($eduinfo_json, '教師') !== false ? "teacher" : "student";
+    // $JobName = 'teacher';
     $bio = '';
     $url = '';
     $from = '';

@@ -29,7 +29,7 @@ function tn_login()
             header('Location: ' . $openid->authUrl());
         } else {
             $user_profile = $openid->getAttributes();
-            // die(var_export($user_profile));
+            // Utility::dd($user_profile);
             /*
             array (
             '/axschema/person/guid' => '14684bd6fd05480979e9991f498272c489238XXXb750dd6e79864d470',
@@ -80,14 +80,15 @@ function tn_login()
                         list($k, $v) = explode(':', $Arr);
                         $StuArr[$k] = str_replace('\'', '', $v);
                     }
-                    $aim = $myts->addSlashes($StuArr['gradeId']);
-                    $yim = $myts->addSlashes($StuArr['classId']);
+                    $from = $myts->addSlashes($StuArr['gradeId']);
+                    $sig = $myts->addSlashes($StuArr['classId']);
                     $msnm = '';
                 } else {
-                    $aim = $myts->addSlashes($user_profile['.tw/axschema/grade']);
-                    $yim = $user_profile['.tw/axschema/class'];
+                    $from = $myts->addSlashes($user_profile['.tw/axschema/grade']);
+                    $sig = $user_profile['.tw/axschema/class'];
                     $msnm = $myts->addSlashes($user_profile['.tw/axschema/seat']);
                 }
+                // Utility::dd($aim);
                 //搜尋有無相同username資料
                 login_xoops($uname, $name, $email, $SchoolCode, $JobName, $url, $from, $sig, $occ, $bio, $aim, $yim, $msnm);
             }
@@ -933,7 +934,7 @@ function list_login()
     } elseif ('tc' === $_SESSION['auth_method']) {
         tc_login('tc', 'https://openid.tc.edu.tw');
     } elseif ('hlc' === $_SESSION['auth_method']) {
-        tc_login('hlc', 'https://openid2.hlc.edu.tw');
+        tc_login('hlc', 'http://openid2.hlc.edu.tw');
     } elseif ('ptc' === $_SESSION['auth_method']) {
         tc_login('ptc', 'https://openid.ptc.edu.tw');
     } elseif ('phc' === $_SESSION['auth_method']) {
@@ -1055,7 +1056,7 @@ switch ($op) {
         break;
     case 'hlc':
         $_SESSION['auth_method'] = 'hlc';
-        tc_login('hlc', 'https://openid2.hlc.edu.tw');
+        tc_login('hlc', 'http://openid2.hlc.edu.tw');
         break;
     case 'tp':
         $_SESSION['auth_method'] = 'tp';
