@@ -1,9 +1,14 @@
-Tad Login 4.5.8 (2020-01-10)
+Tad Login 4.5.9 (2020-03-14 released)
+====================================================
+1.Fixed the problem that the identity of students who have not emailed with OIDC will be judged incorrectly
+2. corrected for 2.0 AA accessibility standards
+
+Tad Login 4.5.8 (2020-01-10 released)
 ====================================================
 1. Change all OpenID URLs to https
 
 
-Tad Login 4.5.7 (released from 2019-08-04)
+Tad Login 4.5.7 (2019-08-04 released)
 =========================================================
 1. Move the login settings of the navigation bar to tad_themes
 
