@@ -32,14 +32,26 @@ define('_MA_TADLOGIN_STEP14', '<h1>【步驟 14】應用審查設定</h1><p>點�
 define('_MA_TADLOGIN_STEP15', '<h1>【步驟 15】發布應用程式</h1><p>點擊開關，使之呈現「是」就完工了！</p>');
 
 define('_MA_TADLOGIN_GOO_STEP1', "<h1>【步驟 1】建立Google專案</h1><p>請連至<a href='https://console.developers.google.com/project' target='_blank'>https://console.developers.google.com/project</a>建立一個新專案</p>");
-define('_MA_TADLOGIN_GOO_STEP2', '<h1>【步驟 2】建立憑證</h1><p>至「憑證」，點選「建立憑證」中的「OAuth用戶端ID」</p>');
-define('_MA_TADLOGIN_GOO_STEP3', '<h1>【步驟 3】設定同意畫面</h1><p>點選「設定同意畫面」後，設定好產品名稱及隱私權政策的網址，就大公告成了！</p>');
-define('_MA_TADLOGIN_GOO_STEP4', "<h1>【步驟 4】建立OAuth用戶端ID</h1><p>選擇「網路應用程式」，在「已授權的 JavaScript 來源」輸入網站網址；「已授權的重新導向」則輸入「<span style='color:blue;'>" . XOOPS_URL . '/modules/tad_login/index.php</span>」即可</p>');
-define('_MA_TADLOGIN_GOO_STEP5', '<h1>【步驟 5】取得用戶端 ID</h1><p>底下就是到時候要填入偏好設定中的項目值（貼上時，務必刪除前後的空白）。</p>');
-define('_MA_TADLOGIN_GOO_STEP6', '<h1>【步驟 6】建立 API 金鑰</h1><p>點選「API 金鑰」以建立 API 金鑰</p>');
-define('_MA_TADLOGIN_GOO_STEP7', '<h1>【步驟 7】取得 API 金鑰</h1><p>底下的 API 金鑰就是到時候要填入偏好設定中的項目值。</p>');
-define('_MA_TADLOGIN_GOO_STEP8', '<h1>【步驟 8】設定限制金鑰允許來源</h1><p>選擇「HTTP 參照網址 (網站) 」輸入貴站網域名稱即可，後面可以加上「*」代表所有頁面。</p>');
-define('_MA_TADLOGIN_GOO_STEP9', '<h1>【步驟 9】完成偏好設定</h1><p>接下來請至偏好設定，將三個欄位依序填完即可，貼入時，務必刪除前後的空白。認證方式也記得要選取「使用Google登入」</p>');
+define('_MA_TADLOGIN_GOO_STEP2', '<h1>【步驟 2】設定專案名稱</h1>');
+define('_MA_TADLOGIN_GOO_STEP3', '<h1>【步驟 3】設定憑證</h1><p>先從左上選單→「API和服務」→「憑證」</p>');
+define('_MA_TADLOGIN_GOO_STEP4', '<h1>【步驟 4】建立憑證</h1><p>點選「建立憑證」中的「OAuth用戶端ID」</p>');
+define('_MA_TADLOGIN_GOO_STEP5', "<h1>【步驟 5】設定同意畫面</h1>");
+define('_MA_TADLOGIN_GOO_STEP6', '<h1>【步驟 6】設定OAuth同意畫面</h1><p>若非使用 G suite者，請使用「外部」</p>');
+define('_MA_TADLOGIN_GOO_STEP7', '<p>設定應用程式名稱</p>');
+define('_MA_TADLOGIN_GOO_STEP8', '<p>設定「已授權網域」，請用頂級網域，務必記得按Enter加入，其他欄位可填入網址「<span style="color:blue;">' . XOOPS_URL . '</span>」即可</p>');
+$http = $_SERVER['HTTPS'] ? 'https://' : 'http://';
+define('_MA_TADLOGIN_GOO_STEP9', '<h1>【步驟 7】設定限制金鑰允許來源</h1><p>
+<ol style="list-style: decimal inside;">
+<li style="line-height:2em;">請再回到步驟四，即點選「建立憑證」中的「OAuth用戶端ID」。</li>
+<li style="line-height:2em;">選擇「網路應用程式」，在「已授權的 JavaScript 來源」一般輸入主機的主要網址「<span style="color:blue;">' . $http . $_SERVER['HTTP_HOST'] . '</span>」；</li>
+<li style="line-height:2em;">「已授權的重新導向」則輸入「<span style="color:blue;">' . XOOPS_URL . '/modules/tad_login/index.php</span>」即可</li>
+</ol></p>');
+$mid = $xoopsModule->mid();
+define('_MA_TADLOGIN_GOO_STEP10', '<h1>【步驟 8】完成偏好設定</h1><p>底下就是到時候要填入偏好設定中的項目值，請到<a href="' . XOOPS_URL . '/modules/system/admin.php?fct=preferences&op=showmod&mod=' . $mid . '" target="_blank">偏好設定</a>依序貼上（務必刪除前後的空白）。</p>');
+define('_MA_TADLOGIN_GOO_STEP11', '<h1>【步驟 9】設定API 金鑰</h1><p>點選「建立憑證」中的「API 金鑰」以建立 API 金鑰</p>');
+define('_MA_TADLOGIN_GOO_STEP12', '<h1>【步驟 10】貼上API 金鑰</h1><p>底下的 API 金鑰就是到時候要填入<a href="' . XOOPS_URL . '/modules/system/admin.php?fct=preferences&op=showmod&mod=' . $mid . '" target="_blank">偏好設定</a>中的項目值，填好後請按「限制金鑰」。</p>');
+define('_MA_TADLOGIN_GOO_STEP13', '<h1>【步驟 11】限制金鑰</h1><p>請選擇「無」，避免出現403錯誤訊息，「API限制」則設為「不限制金鑰」。儲存後，即可試試是否能登入。</p>');
+
 define('_MA_TADLOGIN_ITEM', '學校代碼或Email');
 define('_MA_TADLOGIN_GROUP_ID', '群組');
 
