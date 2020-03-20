@@ -1,3 +1,8 @@
+Tad Login 4.6 (2020-03-21 released)
+====================================================
+1. Change Pingtung County and Yunlin County back to http: //
+2. Modify Google and Facebook login application instructions
+
 Tad Login 4.5.9 (2020-03-14 released)
 ====================================================
 1.Fixed the problem that the identity of students who have not emailed with OIDC will be judged incorrectly

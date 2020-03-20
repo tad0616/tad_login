@@ -8,8 +8,6 @@
   <img src="../images/fb/dev_step03.png" alt="dev_step3" title="dev_step3" border="0" class="img-fluid img-thumbnail"><br><br>
   <label><{$smarty.const._MA_TADLOGIN_DEV_STEP4}></label><br>
   <img src="../images/fb/dev_step04.png" alt="dev_step4" title="dev_step4" border="0" class="img-fluid img-thumbnail"><br><br>
-  <label><{$smarty.const._MA_TADLOGIN_DEV_STEP5}></label><br>
-  <img src="../images/fb/dev_step05.png" alt="dev_step5" title="dev_step5" border="0" class="img-fluid img-thumbnail"><br><br>
   <hr>
   <label><{$smarty.const._MA_TADLOGIN_STEP1}></label><br>
   <img src="../images/fb/step01.png" alt="step1" title="step1" border="0" class="img-fluid img-thumbnail"><br><br>
@@ -39,7 +37,5 @@
   <img src="../images/fb/step13.png" alt="step13" title="step13" border="0" class="img-fluid img-thumbnail"><br><br>
   <label><{$smarty.const._MA_TADLOGIN_STEP14}></label><br>
   <img src="../images/fb/step14.png" alt="step14" title="step14" border="0" class="img-fluid img-thumbnail"><br><br>
-  <label><{$smarty.const._MA_TADLOGIN_STEP15}></label><br>
-  <img src="../images/fb/step15.png" alt="step15" title="step15" border="0" class="img-fluid img-thumbnail"><br><br>
 </div>
 
