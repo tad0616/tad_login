@@ -1,3 +1,6 @@
+Tad Login 4.7 (2020-03-25 released)
+1.Remove OpenID login for Hsinchu County
+
 Tad Login 4.6 (2020-03-21 released)
 ====================================================
 1. Change Pingtung County and Yunlin County back to http: //

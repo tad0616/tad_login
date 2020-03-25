@@ -921,8 +921,8 @@ function list_login()
         tc_login('cyc', 'https://openid.cyccc.tw');
     } elseif ('ylc' === $_SESSION['auth_method']) {
         tc_login('ylc', 'http://openid.ylc.edu.tw/');
-    } elseif ('hcc' === $_SESSION['auth_method']) {
-        tc_login('hcc', 'https://openid.hcc.edu.tw');
+        // } elseif ('hcc' === $_SESSION['auth_method']) {
+        //     tc_login('hcc', 'https://openid.hcc.edu.tw');
     } elseif ('mlc' === $_SESSION['auth_method']) {
         tc_login('mlc', 'https://openid2.mlc.edu.tw');
     } elseif ('chc' === $_SESSION['auth_method']) {
@@ -1022,10 +1022,10 @@ switch ($op) {
         $_SESSION['auth_method'] = 'ylc';
         tc_login('ylc', 'http://openid.ylc.edu.tw/');
         break;
-    case 'hcc':
-        $_SESSION['auth_method'] = 'hcc';
-        tc_login('hcc', 'https://openid.hcc.edu.tw');
-        break;
+    // case 'hcc':
+    //     $_SESSION['auth_method'] = 'hcc';
+    //     tc_login('hcc', 'https://openid.hcc.edu.tw');
+    //     break;
     case 'hc':
         $_SESSION['auth_method'] = 'hc';
         hc_login();
