@@ -2,7 +2,7 @@
 use XoopsModules\Tadtools\FormValidator;
 use XoopsModules\Tadtools\Utility;
 /*-----------引入檔案區--------------*/
-$xoopsOption['template_main'] = 'tad_login_adm_main.tpl';
+$xoopsOption['template_main'] = 'tad_login_admin.tpl';
 include_once 'header.php';
 include_once '../function.php';
 

@@ -1,8 +1,9 @@
 <?php
+use Xmf\Request;
 use XoopsModules\Tadtools\FormValidator;
 use XoopsModules\Tadtools\Utility;
 /*-----------引入檔案區--------------*/
-$xoopsOption['template_main'] = 'tad_login_adm_main.tpl';
+$xoopsOption['template_main'] = 'tad_login_admin.tpl';
 require_once __DIR__ . '/header.php';
 require_once dirname(__DIR__) . '/function.php';
 
@@ -208,9 +209,8 @@ function show_one_tad_login_config($config_id = '')
 }
 
 /*-----------執行動作判斷區----------*/
-require_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
-$op = system_CleanVars($_REQUEST, 'op', '', 'string');
-$config_id = system_CleanVars($_REQUEST, 'config_id', 0, 'int');
+$op = Request::getString('op');
+$config_id = Request::getInt('config_id');
 
 switch ($op) {
     /*---判斷動作請貼在下方---*/

@@ -1,4 +1,5 @@
 <?php
+use Xmf\Request;
 use XoopsModules\Tadtools\Utility;
 /*-----------引入檔案區--------------*/
 require __DIR__ . '/header.php';
@@ -488,7 +489,7 @@ function ty_login()
             }
         } else {
             $user_profile = $openid->getAttributes();
-            // die(var_export($user_profile));
+            // Utility::dd($user_profile);
             if ($user_profile) {
                 $myts = \MyTextSanitizer::getInstance();
 
@@ -990,14 +991,47 @@ function tp_ldap_login()
     header("location:https://ldap.tp.edu.tw/oauth/authorize?client_id={$xoopsModuleConfig['tp_ldap_clientid']}&redirect_uri=" . XOOPS_URL . '/modules/tad_login/tp_callback.php&response_type=code&scope=user profile');
     exit;
 }
+function change_pass_form()
+{
+    global $xoopsUser, $xoopsDB, $xoopsTpl;
 
+    $uname = $xoopsUser->uname();
+
+    $sql = 'select `hashed_date` from ' . $xoopsDB->prefix('tad_login_random_pass') . " where `uname` ='$uname'";
+    $result = $xoopsDB->queryF($sql) or die($xoopsDB->error());
+    list($hashed_date) = $xoopsDB->fetchRow($result);
+    $xoopsTpl->assign('hashed_date', $hashed_date);
+    $xoopsTpl->assign('uname', $uname);
+    $mode = $hashed_date == '0000-00-00 00:00:00' ? 'edit' : 'modify';
+    $xoopsTpl->assign('mode', $mode);
+
+}
+
+function change_pass($newpass)
+{
+    global $xoopsUser, $xoopsDB;
+    $uname = $xoopsUser->uname();
+    if ($uname) {
+        $pass = authcode($newpass, 'ENCODE', $uname, 0);
+
+        $sql = 'update ' . $xoopsDB->prefix('users') . " set `pass` = md5('$newpass') where `uname`='$uname' ";
+        $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
+
+        $sql = 'update ' . $xoopsDB->prefix('tad_login_random_pass') . " set `random_pass` = '$pass', `hashed_date`=now() where `uname`='$uname' ";
+        $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
+        redirect_header($_SERVER['PHP_SELF'], 3, _MD_TADLOGIN_CHANGE_COMPLETED);
+    }
+}
 /*-----------執行動作判斷區----------*/
-
-require_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
-$op = system_CleanVars($_REQUEST, 'op', '', 'string');
-$link_to = system_CleanVars($_REQUEST, 'link_to', '', 'string');
+$op = Request::getString('op');
+$link_to = Request::getString('link_to');
+$newpass = Request::getString('newpass');
 
 switch ($op) {
+    case 'change_pass':
+        change_pass($newpass);
+        break;
+
     case 'facebook':
         $_SESSION['auth_method'] = 'facebook';
         facebook_login();
@@ -1103,17 +1137,23 @@ switch ($op) {
         tp_ldap_login();
         break;
     default:
-        if (in_array($op, $oidc_array)) {
-            $_SESSION['auth_method'] = $op;
-            edu_login($op);
+        if ($xoopsUser) {
+            change_pass_form();
+            $op = 'change_pass_form';
         } else {
-            list_login();
+            if (in_array($op, $oidc_array)) {
+                $_SESSION['auth_method'] = $op;
+                edu_login($op);
+            } else {
+                list_login();
+                $op = 'list_login';
+            }
         }
         break;
 }
 
 $xoopsTpl->assign('toolbar', Utility::toolbar_bootstrap($interface_menu));
-
+$xoopsTpl->assign('now_op', $op);
 if (isset($link_to) and !empty($link_to)) {
     $_SESSION['login_from'] = $link_to;
 } elseif (!isset($_SESSION['login_from'])) {

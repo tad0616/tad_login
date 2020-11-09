@@ -61,16 +61,8 @@ $modversion['templates'][$i]['file'] = 'tad_login_index.tpl';
 $modversion['templates'][$i]['description'] = 'tad_login_index.tpl';
 
 $i++;
-$modversion['templates'][$i]['file'] = 'tad_login_adm_main.tpl';
-$modversion['templates'][$i]['description'] = 'tad_login_adm_main.tpl';
-
-$i++;
-$modversion['templates'][$i]['file'] = 'tad_login_adm_google.tpl';
-$modversion['templates'][$i]['description'] = 'tad_login_adm_google.tpl';
-
-$i++;
-$modversion['templates'][$i]['file'] = 'tad_login_adm_fb.tpl';
-$modversion['templates'][$i]['description'] = 'tad_login_adm_fb.tpl';
+$modversion['templates'][$i]['file'] = 'tad_login_admin.tpl';
+$modversion['templates'][$i]['description'] = 'tad_login_admin.tpl';
 
 //---區塊設定---//
 $modversion['blocks'][1]['file'] = 'tad_login.php';

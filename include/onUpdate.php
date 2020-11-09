@@ -20,6 +20,9 @@ function xoops_module_update_tad_login()
     if (!Update::chk_chk3()) {
         Update::go_update3();
     }
+    if (Update::chk_chk4()) {
+        Update::go_update4();
+    }
 
     return true;
 }

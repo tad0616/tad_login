@@ -282,7 +282,6 @@ if (!function_exists('login_xoops')) {
         if ($memberHandler->getUserCount(new \Criteria('uname', $uname)) > 0) {
             //若已有此帳號！
             $uname = trim($uname);
-            // die($uname);
             $pass = getPass($uname);
 
             if ('' == $uname || '' == $pass) {
@@ -352,11 +351,20 @@ if (!function_exists('login_xoops')) {
                 if (!empty($xoopsConfig['usercookie'])) {
                     setcookie($xoopsConfig['usercookie'], 0, -1, '/', XOOPS_COOKIE_DOMAIN, 0);
                 }
+
+                $sql = 'select `hashed_date` from ' . $xoopsDB->prefix('tad_login_random_pass') . " where `uname` ='$uname'";
+                $result = $xoopsDB->queryF($sql) or die($xoopsDB->error());
+                list($hashed_date) = $xoopsDB->fetchRow($result);
+
                 //若有要轉頁
-                if (!empty($xoopsModuleConfig['redirect_url'])) {
-                    $redirect_url = $xoopsModuleConfig['redirect_url'];
+                if ($hashed_date == '0000-00-00 00:00:00') {
+                    $redirect_url = XOOPS_URL . '/modules/tad_login/index.php';
                 } else {
-                    $redirect_url = empty($login_from) ? XOOPS_URL . '/index.php' : $login_from;
+                    if (!empty($xoopsModuleConfig['redirect_url'])) {
+                        $redirect_url = $xoopsModuleConfig['redirect_url'];
+                    } else {
+                        $redirect_url = empty($login_from) ? XOOPS_URL . '/index.php' : $login_from;
+                    }
                 }
 
                 // RMV-NOTIFY
@@ -417,6 +425,7 @@ if (!function_exists('login_xoops')) {
                 $sql = 'INSERT INTO `' . $xoopsDB->prefix('groups_users_link') . '`  (groupid, uid) VALUES  (2, ' . $uid . ')';
                 $xoopsDB->queryF($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
+                $pass = authcode($pass, 'ENCODE', $uname);
                 $sql = 'replace into `' . $xoopsDB->prefix('tad_login_random_pass') . "` (`uname` , `random_pass`) values  ('{$uname}','{$pass}')";
                 $xoopsDB->queryF($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
@@ -443,12 +452,14 @@ if (!function_exists('getPass')) {
         //舊OpenID使用者
         if (empty($random_pass)) {
             $random_pass = Utility::randStr(128);
-
+            $random_pass = authcode($random_pass, 'ENCODE', $uname);
             $sql = 'replace into `' . $xoopsDB->prefix('tad_login_random_pass') . "` (`uname` , `random_pass`) values  ('{$uname}','{$random_pass}')";
             $xoopsDB->queryF($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
             $sql = 'update `' . $xoopsDB->prefix('users') . "` set `pass`=md5('{$random_pass}') where `uname`='{$uname}'";
             $xoopsDB->queryF($sql) or Utility::web_error($sql, __FILE__, __LINE__);
+        } else {
+            $random_pass = authcode($random_pass, 'DECODE', $uname);
         }
 
         $sql = 'select `pass` from `' . $xoopsDB->prefix('users') . "` where `uname`='{$uname}'";
@@ -460,6 +471,71 @@ if (!function_exists('getPass')) {
         }
 
         return $random_pass;
+    }
+}
+
+//非常給力的authcode加密函式,Discuz!經典程式碼(帶詳解)
+//函式authcode($string, $operation, $key, $expiry)中的$string：字串，明文或密文；$operation：DECODE表示解密，其它表示加密；$key：密匙；$expiry：密文有效期。
+
+if (!function_exists('authcode')) {
+    function authcode($string, $operation = 'DECODE', $key = '', $expiry = 0)
+    {
+        // 動態密匙長度，相同的明文會生成不同密文就是依靠動態密匙
+        $ckey_length = 4;
+
+        // 密匙
+        $key = md5($key ? $key : $GLOBALS['discuz_auth_key']);
+
+        // 密匙a會參與加解密
+        $keya = md5(substr($key, 0, 16));
+        // 密匙b會用來做資料完整性驗證
+        $keyb = md5(substr($key, 16, 16));
+        // 密匙c用於變化生成的密文
+        $keyc = $ckey_length ? ($operation == 'DECODE' ? substr($string, 0, $ckey_length) : substr(md5(microtime()), -$ckey_length)) : '';
+        // 參與運算的密匙
+        $cryptkey = $keya . md5($keya . $keyc);
+        $key_length = strlen($cryptkey);
+        // 明文，前10位用來儲存時間戳，解密時驗證資料有效性，10到26位用來儲存$keyb(密匙b)，
+        //解密時會通過這個密匙驗證資料完整性
+        // 如果是解碼的話，會從第$ckey_length位開始，因為密文前$ckey_length位儲存 動態密匙，以保證解密正確
+        $string = $operation == 'DECODE' ? base64_decode(substr($string, $ckey_length)) : sprintf('%010d', $expiry ? $expiry + time() : 0) . substr(md5($string . $keyb), 0, 16) . $string;
+        $string_length = strlen($string);
+        $result = '';
+        $box = range(0, 255);
+        $rndkey = array();
+        // 產生密匙簿
+        for ($i = 0; $i <= 255; $i++) {
+            $rndkey[$i] = ord($cryptkey[$i % $key_length]);
+        }
+        // 用固定的演算法，打亂密匙簿，增加隨機性，好像很複雜，實際上對並不會增加密文的強度
+        for ($j = $i = 0; $i < 256; $i++) {
+            $j = ($j + $box[$i] + $rndkey[$i]) % 256;
+            $tmp = $box[$i];
+            $box[$i] = $box[$j];
+            $box[$j] = $tmp;
+        }
+        // 核心加解密部分
+        for ($a = $j = $i = 0; $i < $string_length; $i++) {
+            $a = ($a + 1) % 256;
+            $j = ($j + $box[$a]) % 256;
+            $tmp = $box[$a];
+            $box[$a] = $box[$j];
+            $box[$j] = $tmp;
+            // 從密匙簿得出密匙進行異或，再轉成字元
+            $result .= chr(ord($string[$i]) ^ ($box[($box[$a] + $box[$j]) % 256]));
+        }
+        if ($operation == 'DECODE') {
+            // 驗證資料有效性，請看未加密明文的格式
+            if ((substr($result, 0, 10) == 0 || substr($result, 0, 10) - time() > 0) && substr($result, 10, 16) == substr(md5(substr($result, 26) . $keyb), 0, 16)) {
+                return substr($result, 26);
+            } else {
+                return '';
+            }
+        } else {
+            // 把動態密匙儲存在密文裡，這也是為什麼同樣的明文，生產不同密文後能解密的原因
+            // 因為加密後的密文可能是一些特殊字元，複製過程可能會丟失，所以用base64編碼
+            return $keyc . str_replace('=', '', base64_encode($result));
+        }
     }
 }
 
