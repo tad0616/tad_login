@@ -9,6 +9,7 @@ define('_MI_TADLOGIN_ADMENU1', 'Facebook certificate');
 define('_MI_TADLOGIN_ADMENU2', 'Auto Group Set');
 define('_MI_TADLOGIN_ADMENU3', 'Google Certificate');
 define('_MI_TADLOGIN_ADMENU4', 'Education cloud authentication settings');
+define('_MI_TADLOGIN_ADMENU5', 'Password management');
 
 define('_MI_TADLOGIN_DESC', 'Join FB and other fast login mechanism');
 define('_MI_TADLOGIN_BNAME1', 'Tad Login');

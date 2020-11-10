@@ -9,6 +9,27 @@ require XOOPS_ROOT_PATH . '/modules/tad_login/oidc.php';
  * @param int $length
  * @return string
  */
+if (!function_exists('change_pass')) {
+    function change_pass($newpass, $uname = '', $redirect_header = true)
+    {
+        global $xoopsUser, $xoopsDB;
+        if (!$uname) {
+            $uname = $xoopsUser->uname();
+        }
+        if ($uname) {
+            $pass = authcode($newpass, 'ENCODE', $uname, 0);
+
+            $sql = 'update ' . $xoopsDB->prefix('users') . " set `pass` = md5('$newpass') where `uname`='$uname' ";
+            $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
+
+            $sql = 'update ' . $xoopsDB->prefix('tad_login_random_pass') . " set `random_pass` = '$pass', `hashed_date`=now() where `uname`='$uname' ";
+            $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
+            if ($redirect_header) {
+                redirect_header($_SERVER['PHP_SELF'], 3, _MD_TADLOGIN_CHANGE_COMPLETED);
+            }
+        }
+    }
+}
 
 if (!function_exists('generateRandomString')) {
     function generateRandomString($length = 20)

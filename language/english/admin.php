@@ -56,3 +56,21 @@ define('_MA_TADLOGIN_JOB', 'Job');
 
 define('_MA_TADLOGIN_CLIENTID', 'client id');
 define('_MA_TADLOGIN_CLIENTSECRET', 'client secret');
+
+define('_MA_TADLOGIN_NAME', 'Name');
+define('_MA_TADLOGIN_UNAME', 'ID');
+define('_MA_TADLOGIN_LAST_LOGIN', 'Last Login Time');
+define('_MA_TADLOGIN_HASHED_DATE', 'Change Password Time');
+define('_MA_TADLOGIN_MANAGE_PASSWORD', 'Manage Password');
+define('_MA_TADLOGIN_MODIFY_PASSWORD', 'Change Password');
+define('_MA_TADLOGIN_CHANGE_BINDING_PASSWORD', 'Change Binding Password');
+define('_MA_TADLOGIN_BIND_ID', 'Bind me.');
+define('_MA_TADLOGIN_SET_PASSWORD', 'Set a login password');
+define('_MA_TADLOGIN_BIND_ALL_ID', 'Set login passwords for unbonded OpenID accounts (%s total).');
+define('_MA_TADLOGIN_BIND_DESC1', 'After setting a binding password, users can use both OpenID login (with the original OpenID password) and account password login (with the binding password), and use the same identity.');
+define('_MA_TADLOGIN_BIND_DESC2', 'If you can\'t login with OpenID, you can login with your account and password.');
+define('_MA_TADLOGIN_BIND_DESC3', 'If OpenID does not have the problem of deactivation, the administrator does not need to bind passwords for all users.');
+define('_MA_TADLOGIN_BIND_DESC4', 'The binding password is the login password, changing the binding password will not affect the OpenID password.');
+define('_MA_TADLOGIN_BIND_DESC5', 'Users can change their own passwords, it is recommended to open the <a href="' . XOOPS_URL . '/modules/system/admin.php?fct=blocksadmin&op=list&filter=1&selgen=%s&selmod=-2&selgrp=-1&selvis=-1">tad_login block</a> and set it to appear on All Pages');
+
+define('_MA_TADLOGIN_NON_ADMINISTRATIVE', 'Non-administrative, no executive authority');

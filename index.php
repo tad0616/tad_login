@@ -1007,21 +1007,6 @@ function change_pass_form()
 
 }
 
-function change_pass($newpass)
-{
-    global $xoopsUser, $xoopsDB;
-    $uname = $xoopsUser->uname();
-    if ($uname) {
-        $pass = authcode($newpass, 'ENCODE', $uname, 0);
-
-        $sql = 'update ' . $xoopsDB->prefix('users') . " set `pass` = md5('$newpass') where `uname`='$uname' ";
-        $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
-
-        $sql = 'update ' . $xoopsDB->prefix('tad_login_random_pass') . " set `random_pass` = '$pass', `hashed_date`=now() where `uname`='$uname' ";
-        $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
-        redirect_header($_SERVER['PHP_SELF'], 3, _MD_TADLOGIN_CHANGE_COMPLETED);
-    }
-}
 /*-----------執行動作判斷區----------*/
 $op = Request::getString('op');
 $link_to = Request::getString('link_to');

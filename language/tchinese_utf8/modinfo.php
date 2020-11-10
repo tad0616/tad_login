@@ -9,6 +9,7 @@ define('_MI_TADLOGIN_ADMENU1', 'FaceBook認證設定說明');
 define('_MI_TADLOGIN_ADMENU2', '自動群組設定');
 define('_MI_TADLOGIN_ADMENU3', 'Google認證設定說明');
 define('_MI_TADLOGIN_ADMENU4', '教育雲認證設定');
+define('_MI_TADLOGIN_ADMENU5', '綁定密碼管理');
 
 define('_MI_TADLOGIN_DESC', '加入FB等快速登入的機制');
 define('_MI_TADLOGIN_BNAME1', '快速登入');

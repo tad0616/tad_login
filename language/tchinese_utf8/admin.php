@@ -60,3 +60,20 @@ define('_MA_TADLOGIN_JOB', '身份為');
 
 define('_MA_TADLOGIN_CLIENTID', 'client id');
 define('_MA_TADLOGIN_CLIENTSECRET', 'client secret');
+
+define('_MA_TADLOGIN_NAME', '姓名');
+define('_MA_TADLOGIN_UNAME', '登入帳號');
+define('_MA_TADLOGIN_LAST_LOGIN', '最後登入時間');
+define('_MA_TADLOGIN_HASHED_DATE', '最後更改密碼時間');
+define('_MA_TADLOGIN_MANAGE_PASSWORD', '管理綁定密碼');
+define('_MA_TADLOGIN_MODIFY_PASSWORD', '修改綁定密碼');
+define('_MA_TADLOGIN_CHANGE_BINDING_PASSWORD', '設定綁定密碼');
+define('_MA_TADLOGIN_BIND_ID', '點我進行綁定');
+define('_MA_TADLOGIN_SET_PASSWORD', '設定一組登入密碼');
+define('_MA_TADLOGIN_BIND_ALL_ID', '替尚未綁定的OpenID帳號設定登入密碼（共 %s 個）');
+define('_MA_TADLOGIN_BIND_DESC1', '設定綁定密碼後，使用者可以同時使用OpenID登入（用原OpenID密碼）和帳號密碼登入（用綁定密碼），並使用同一個身份（uid 相同）。');
+define('_MA_TADLOGIN_BIND_DESC2', '若 OpenID 無法登入，就可以使用帳號密碼登入。');
+define('_MA_TADLOGIN_BIND_DESC3', '若 OpenID 不會有停止使用的問題，管理員無需替所有使用者綁定密碼。');
+define('_MA_TADLOGIN_BIND_DESC4', '綁定密碼就是登入密碼，修改綁定密碼，不會影響到 OpenID 密碼');
+define('_MA_TADLOGIN_BIND_DESC5', '使用者可以自己修改密碼，建議將<a href="' . XOOPS_URL . '/modules/system/admin.php?fct=blocksadmin&op=list&filter=1&selgen=%s&selmod=-2&selgrp=-1&selvis=-1">快速登入區塊</a>打開，並設為顯示於「全部頁面」');
+define('_MA_TADLOGIN_NON_ADMINISTRATIVE', '非管理員，無執行權限');
