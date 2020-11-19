@@ -99,6 +99,46 @@ if (!function_exists('edu_login')) {
     }
 }
 
+//Line登入
+if (!function_exists('line_login')) {
+    function line_login($mode = '')
+    {
+        global $xoopsModuleConfig, $xoopsConfig, $xoopsDB, $xoopsTpl, $xoopsUser;
+
+        if ($xoopsUser) {
+            header('location:' . XOOPS_URL . '/user.php');
+            exit;
+        }
+        require_once 'class/line/ConfigManager.php'; //Line 設定檔 管理器
+        require_once 'class/line/LineAuthorization.php'; //產生登入網址
+        require_once 'class/line/LineProfiles.php'; //取得用戶端 Profile
+        require_once 'class/line/LineController.php'; //LINE控制
+
+        define("CLIENT_ID", $xoopsModuleConfig['line_id']);
+        define("CLIENT_SECRET", $xoopsModuleConfig['line_secret']);
+        define("REDIRECT_URI", XOOPS_URL . '/modules/tad_login/line_callback.php'); //登入後返回位置
+        define("SCOPE", 'openid%20profile%20email'); //授權範圍以%20分隔 可以有3項openid，profile，email
+
+        if (!session_id()) {
+            session_start();
+        }
+        $state = sha1(time());
+        $_SESSION['_line_state'] = $state;
+
+        $Line = new LineController();
+        $loginUrl = $Line->lineLogin($state); //產生LINE登入連結
+
+        if ('return' === $mode) {
+            return $loginUrl;
+        } else {
+
+            header("location: $loginUrl");
+            exit;
+        }
+        $xoopsTpl->assign('line', $loginUrl);
+    }
+}
+
 //FB登入
 if (!function_exists('facebook_login')) {
     function facebook_login($mode = '')
@@ -137,67 +177,10 @@ if (!function_exists('facebook_login')) {
             'default_graph_version' => 'v2.11',
         ]);
 
-        // $user_profile = '';
-        // if ($_SESSION['fb_access_token']) {
-        //     die('fb_access_token:' . $_SESSION['fb_access_token']);
-        //     try {
-        //         // Returns a `Facebook\FacebookResponse` object
-        //         $response = $fb->get('/me?fields=id,name,email', $_SESSION['fb_access_token']);
-        //     } catch (Facebook\Exceptions\FacebookResponseException $e) {
-        //         echo 'Graph returned an error: ' . $e->getMessage();
-        //         exit;
-        //     } catch (Facebook\Exceptions\FacebookSDKException $e) {
-        //         echo 'Facebook SDK returned an error: ' . $e->getMessage();
-        //         exit;
-        //     }
+        $helper = $fb->getRedirectLoginHelper();
+        $permissions = ['email']; // Optional permissions
+        $loginUrl = $helper->getLoginUrl(XOOPS_URL . '/modules/tad_login/fb-callback.php', $permissions);
 
-        //     $user_profile = $response->getGraphUser();
-        // }
-        /*
-        $facebook = new Facebook(array(
-        'appId'  => $tad_loginConfig['appId'],
-        'secret' => $tad_loginConfig['secret'],
-        ));
-
-        $user = $facebook->getUser();
-
-        if ($user) {
-        try {
-        // Proceed knowing you have a logged in user who's authenticated.
-        $user_profile = $facebook->api('/me');
-        } catch (FacebookApiException $e) {
-        error_log($e);
-        $user = null;
-        }
-        }
-         */
-
-        // Login or logout url will be needed depending on current user state.
-        if ($user_profile) {
-            // die(var_export($user_profile));
-            // $myts  = \MyTextSanitizer::getInstance();
-            // $uid   = $user_profile['id'];
-            // $uname = empty($user_profile['username']) ? $user_profile['id'] . "_fb" : $user_profile['username'] . "_fb";
-            // $name  = $myts->addSlashes($user_profile['name']);
-            // $email = $user_profile['email'];
-            // $bio   = $myts->addSlashes($user_profile['bio']);
-            // $url   = formatURL($user_profile['link']);
-            // $from  = $myts->addSlashes($user_profile['hometown']['name']);
-            // $sig   = $myts->addSlashes($user_profile['quotes']);
-            // $occ   = $myts->addSlashes($user_profile['work'][0]['employer']['name']);
-
-            // login_xoops($uname, $name, $email, "", "", $url, $from, $sig, $occ, $bio);
-        } else {
-            // $loginUrl = $facebook->getLoginUrl(array(
-            //     'scope' => 'email',
-            // ));
-
-            $helper = $fb->getRedirectLoginHelper();
-            // $_SESSION['FBRLH_state'] = $_GET['state'];
-            // die($_GET['state']);
-            $permissions = ['email']; // Optional permissions
-            $loginUrl = $helper->getLoginUrl(XOOPS_URL . '/modules/tad_login/fb-callback.php', $permissions);
-        }
         if ('return' === $mode) {
             return $loginUrl;
         }
@@ -295,7 +278,7 @@ if (!function_exists('google_login')) {
 
 //搜尋有無相同username資料
 if (!function_exists('login_xoops')) {
-    function login_xoops($uname = '', $name = '', $email = '', $SchoolCode = '', $JobName = '', $url = '', $from = '', $sig = '', $occ = '', $bio = '', $aim = '', $yim = '', $msnm = '')
+    function login_xoops($uname = '', $name = '', $email = '', $SchoolCode = '', $JobName = '', $url = '', $from = '', $sig = '', $occ = '', $bio = '', $aim = '', $yim = '', $msnm = '', $user_avatar = 'avatars/blank.gif')
     {
         global $xoopsModuleConfig, $xoopsConfig, $xoopsDB, $xoopsUser;
         $memberHandler = xoops_getHandler('member');
@@ -348,6 +331,7 @@ if (!function_exists('login_xoops')) {
                 $user->setVar('user_sig', $sig);
                 $user->setVar('user_icq', $JobName);
                 $user->setVar('bio', $bio);
+                $user->setVar('user_avatar', $user_avatar);
                 if ($SchoolCode) {
                     $user->setVar('user_occ', $occ);
                     $user->setVar('user_intrest', $SchoolCode);
@@ -414,7 +398,7 @@ if (!function_exists('login_xoops')) {
             $newuser->setVar('uname', $uname);
             $newuser->setVar('email', $email);
             $newuser->setVar('url', formatURL($url));
-            $newuser->setVar('user_avatar', 'avatars/blank.gif');
+            $newuser->setVar('user_avatar', $user_avatar);
             $newuser->setVar('user_regdate', time());
             $newuser->setVar('user_icq', $JobName);
             $newuser->setVar('user_from', $from);

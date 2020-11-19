@@ -38,3 +38,8 @@ define('_MI_TADLOGIN_REDIRECT_URL_DESC', '可設定登入後要導向到哪個�
 
 define('_TADLOGIN_OIDC_SETUP', 'OIDC 教育雲帳號設定');
 define('_TADLOGIN_OIDC_SETUP_DESC', '勿動，請從<a href="' . XOOPS_URL . '/modules/tad_login/admin/oidc.php">' . XOOPS_URL . '/modules/tad_login/admin/oidc.php</a> 設定之');
+
+define('_MI_TADLOGIN_LINE_ID', 'Line 的 Channel ID');
+define('_MI_TADLOGIN_LINE_ID_DESC', '至 https://developers.line.biz/console/channel/new?type=line-login 建立一個  channel，並取得其「Channel ID」');
+define('_MI_TADLOGIN_LINE_SECRET', 'Line 的 Channel Secret');
+define('_MI_TADLOGIN_LINE_SECRET_DESC', '至 https://developers.line.biz/console/channel/new?type=line-login 建立一個  channel，並取得其「Channel Secret」');

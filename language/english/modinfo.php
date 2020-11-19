@@ -50,3 +50,7 @@ define('_MI_TADLOGIN_REDIRECT_URL_DESC', 'You can set which URL to redirect to a
 
 define('_TADLOGIN_OIDC_SETUP', 'OIDC Education Cloud Account Settings');
 define('_TADLOGIN_OIDC_SETUP_DESC', 'Do not move, please setup from <a href="' . XOOPS_URL . '/modules/tad_login/admin/oidc.php">' . XOOPS_URL . '/modules/tad_login/admin/oidc.php</a>');
+define('_MI_TADLOGIN_LINE_ID', 'Channel ID of Line');
+define('_MI_TADLOGIN_LINE_ID_DESC', 'Create a channel to https://developers.line.biz/console/channel/new?type=line-login and get its "Channel ID"');
+define('_MI_TADLOGIN_LINE_SECRET', 'Channel Secret of Line');
+define('_MI_TADLOGIN_LINE_SECRET_DESC', 'Create a channel to https://developers.line.biz/console/channel/new?type=line-login and get its "Channel Secret"');

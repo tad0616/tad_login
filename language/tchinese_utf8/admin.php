@@ -77,3 +77,29 @@ define('_MA_TADLOGIN_BIND_DESC3', '若 OpenID 不會有停止使用的問題，�
 define('_MA_TADLOGIN_BIND_DESC4', '綁定密碼就是登入密碼，修改綁定密碼，不會影響到 OpenID 密碼');
 define('_MA_TADLOGIN_BIND_DESC5', '使用者可以自己修改密碼，建議將<a href="' . XOOPS_URL . '/modules/system/admin.php?fct=blocksadmin&op=list&filter=1&selgen=%s&selmod=-2&selgrp=-1&selvis=-1">快速登入區塊</a>打開，並設為顯示於「全部頁面」');
 define('_MA_TADLOGIN_NON_ADMINISTRATIVE', '非管理員，無執行權限');
+
+define('_MA_TADLOGIN_LINE_STEP1', "<h1>【步驟 1】建立 Line Channel</h1><p>請連至<a href='https://developers.line.biz/console/channel/new?type=line-login' target='_blank'>https://developers.line.biz/console/channel/new?type=line-login</a>
+<ol>
+<li>建立一個新 Channel，[Channel type] 請選「LINE Login」</li>
+<li>[Provider]可以選擇「Create a new provider」來建立一個新的</li>
+<li>[Region] 選「Taiwan」（注意！目前只支援四個地區，若主機不在這四個地區之中，設好也無法使用）</li>
+<li>[Channel icon]可以上傳個圖片，或不上傳也無妨。</li>
+</ol></p>");
+define('_MA_TADLOGIN_LINE_STEP2', '<h1>【步驟 2】基本設定1</h1><p>
+<ol>
+<li>填好[Channel name]及[Channel description]</li>
+<li>[App types]選「Web App」</li>
+<li>[Email address]必填</li>
+</ol></p>');
+define('_MA_TADLOGIN_LINE_STEP3', '<h1>【步驟 3】基本設定2</h1><p>
+<ol>
+<li>[Privacy policy URL]隱私政策網址及[Terms of use URL]使用條款，若有可以填入網址（不填無妨）。</li>
+<li>下方同意方框請打勾</li>
+<li>最後按「Create」來建立 Channel即可</li>
+</ol></p>');
+define('_MA_TADLOGIN_LINE_STEP4', '<h1>【步驟 4】複製 Channel ID</h1>');
+define('_MA_TADLOGIN_LINE_STEP5', '<h1>【步驟 5】到<a href="' . XOOPS_URL . '/modules/system/admin.php?fct=preferences&op=showmod&mod=' . $mid . '" target="_blank">偏好設定</a>貼上 Channel ID，並將「欲使用的認證方式」加上 Line</h1>');
+define('_MA_TADLOGIN_LINE_STEP6', '<h1>【步驟 6】複製 Channel secret </h1>');
+define('_MA_TADLOGIN_LINE_STEP7', '<h1>【步驟 7】到<a href="' . XOOPS_URL . '/modules/system/admin.php?fct=preferences&op=showmod&mod=' . $mid . '" target="_blank">偏好設定</a>貼上 Channel secret，並儲存設定</h1>');
+define('_MA_TADLOGIN_LINE_STEP8', '<h1>【步驟 8】設定欲取得Email資訊</h1><p>到最下方的[Email address permission]按「Apply」，該打勾的打勾，圖片必須上傳，最後按「Submit」即可</p>');
+define('_MA_TADLOGIN_LINE_STEP9', '<h1>【步驟 9】設定 Callback URL</h1><p>切換到「LINE Login」頁籤，點擊[Callback URL]的「Edit」按鈕，並填入「<span style="color:blue;">' . XOOPS_URL . '/modules/tad_login/line_callback.php</span>」</p>');

@@ -22,21 +22,27 @@ $adminmenu[$i]['icon'] = 'images/admin/oidc.png';
 
 $i++;
 $adminmenu[$i]['title'] = _MI_TADLOGIN_ADMENU5;
-$adminmenu[$i]['link'] = 'admin/passwd.php';
+$adminmenu[$i]['link'] = 'admin/ps_tool.php';
 $adminmenu[$i]['desc'] = _MI_TADLOGIN_ADMENU5;
-$adminmenu[$i]['icon'] = 'images/admin/password.png';
+$adminmenu[$i]['icon'] = 'images/admin/ps_tool.png';
 
 $i++;
 $adminmenu[$i]['title'] = _MI_TADLOGIN_ADMENU1;
 $adminmenu[$i]['link'] = 'admin/fb.php';
 $adminmenu[$i]['desc'] = _MI_TADLOGIN_ADMENU1;
-$adminmenu[$i]['icon'] = 'images/admin/address_book.png';
+$adminmenu[$i]['icon'] = 'images/facebook.png';
 
 $i++;
 $adminmenu[$i]['title'] = _MI_TADLOGIN_ADMENU3;
 $adminmenu[$i]['link'] = 'admin/google.php';
 $adminmenu[$i]['desc'] = _MI_TADLOGIN_ADMENU3;
-$adminmenu[$i]['icon'] = 'images/admin/address_book.png';
+$adminmenu[$i]['icon'] = 'images/google.png';
+
+$i++;
+$adminmenu[$i]['title'] = _MI_TADLOGIN_ADMENU1;
+$adminmenu[$i]['link'] = 'admin/line.php';
+$adminmenu[$i]['desc'] = _MI_TADLOGIN_ADMENU1;
+$adminmenu[$i]['icon'] = 'images/line.png';
 
 $i++;
 $adminmenu[$i]['title'] = _MI_TAD_ADMIN_ABOUT;

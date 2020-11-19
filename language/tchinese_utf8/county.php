@@ -1,5 +1,6 @@
 <?php
 define('_FACEBOOK', 'Facebook');
+define('_LINE', 'Line');
 define('_GOOGLE', 'Google');
 define('_GOOGLE_V2', 'Google OAuth2.0');
 define('_TWITTER', 'Twitter');

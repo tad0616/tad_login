@@ -959,6 +959,9 @@ function list_login()
     if (in_array('google', $xoopsModuleConfig['auth_method'])) {
         google_login();
     }
+    // if (in_array('line', $xoopsModuleConfig['auth_method'])) {
+    //     line_login();
+    // }
 
     $i = 0;
     foreach ($xoopsModuleConfig['auth_method'] as $openid) {
@@ -966,6 +969,8 @@ function list_login()
             $url = facebook_login('return');
         } elseif ('google' === $openid) {
             $url = google_login('return');
+        } elseif ('line' === $openid) {
+            $url = line_login('return');
         } else {
             $url = XOOPS_URL . "/modules/tad_login/index.php?login&op={$openid}";
         }
@@ -1024,6 +1029,10 @@ switch ($op) {
     case 'google':
         $_SESSION['auth_method'] = 'google';
         google_login();
+        break;
+    case 'line':
+        $_SESSION['auth_method'] = 'line';
+        line_login();
         break;
     case 'yahoo':
         $_SESSION['auth_method'] = 'yahoo';

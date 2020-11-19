@@ -7,7 +7,7 @@ $modversion = [];
 
 //---模組基本資訊---//
 $modversion['name'] = _MI_TADLOGIN_NAME;
-$modversion['version'] = 4.8;
+$modversion['version'] = 4.9;
 $modversion['description'] = _MI_TADLOGIN_DESC;
 $modversion['author'] = _MI_TADLOGIN_AUTHOR;
 $modversion['credits'] = _MI_TADLOGIN_CREDITS;
@@ -18,7 +18,7 @@ $modversion['image'] = "images/logo_{$xoopsConfig['language']}.png";
 $modversion['dirname'] = basename(__DIR__);
 
 //---模組狀態資訊---//
-$modversion['release_date'] = '2020/11/10';
+$modversion['release_date'] = '2020/11/19';
 $modversion['module_website_url'] = 'https://tad0616.net/';
 $modversion['module_website_name'] = _MI_TAD_WEB;
 $modversion['module_status'] = 'release';
@@ -114,6 +114,21 @@ $modversion['config'][$i]['valuetype'] = 'text';
 $modversion['config'][$i]['default'] = '';
 
 $i++;
+$modversion['config'][$i]['name'] = 'line_id';
+$modversion['config'][$i]['title'] = '_MI_TADLOGIN_LINE_ID';
+$modversion['config'][$i]['description'] = '_MI_TADLOGIN_LINE_SECRET_DESC';
+$modversion['config'][$i]['formtype'] = 'textbox';
+$modversion['config'][$i]['valuetype'] = 'text';
+$modversion['config'][$i]['default'] = '';
+
+$i++;
+$modversion['config'][$i]['name'] = 'line_secret';
+$modversion['config'][$i]['title'] = '_MI_TADLOGIN_LINE_SECRET';
+$modversion['config'][$i]['description'] = '_MI_TADLOGIN_LINE_SECRET_DESC';
+$modversion['config'][$i]['formtype'] = 'textbox';
+$modversion['config'][$i]['valuetype'] = 'text';
+$modversion['config'][$i]['default'] = '';
+$i++;
 $modversion['config'][$i]['name'] = 'auth_method';
 $modversion['config'][$i]['title'] = '_MI_TADLOGIN_AUTH_METHOD';
 $modversion['config'][$i]['description'] = '_MI_TADLOGIN_AUTH_METHOD_DESC';
@@ -123,6 +138,7 @@ $modversion['config'][$i]['default'] = ['tn'];
 $modversion['config'][$i]['options'] = [
     sprintf(_TADLOGIN_LOGIN, _FACEBOOK) => 'facebook',
     sprintf(_TADLOGIN_LOGIN, _GOOGLE) => 'google',
+    sprintf(_TADLOGIN_LOGIN, _LINE) => 'line',
     sprintf(_TADLOGIN_LOGIN, _YAHOO) => 'yahoo',
     sprintf(_TADLOGIN_LOGIN, _KL . 'OpenID') => 'kl',
     sprintf(_TADLOGIN_LOGIN, _TP . 'OpenID') => 'tp',

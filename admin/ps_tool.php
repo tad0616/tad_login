@@ -62,7 +62,7 @@ $passwd = Request::getString('passwd');
 switch ($op) {
     case 'change_all_pass':
         change_all_pass($passwd);
-        header('location: passwd.php');
+        header('location: ps_tool.php');
         exit;
 
     //預設動作

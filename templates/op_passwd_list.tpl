@@ -1,5 +1,5 @@
 <{$BootstrapEditableCode}>
-<form action="passwd.php" method="post" id="myForm" enctype="multipart/form-data" class="form-horizontal">
+<form action="ps_tool.php" method="post" id="myForm" enctype="multipart/form-data" class="form-horizontal">
     <div class="row">
         <div class="col-sm-3"><h2><{$smarty.const._MA_TADLOGIN_MANAGE_PASSWORD}></h2></div>
         <div class="col-sm-9">

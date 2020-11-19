@@ -74,3 +74,29 @@ define('_MA_TADLOGIN_BIND_DESC4', 'The binding password is the login password, c
 define('_MA_TADLOGIN_BIND_DESC5', 'Users can change their own passwords, it is recommended to open the <a href="' . XOOPS_URL . '/modules/system/admin.php?fct=blocksadmin&op=list&filter=1&selgen=%s&selmod=-2&selgrp=-1&selvis=-1">tad_login block</a> and set it to appear on All Pages');
 
 define('_MA_TADLOGIN_NON_ADMINISTRATIVE', 'Non-administrative, no executive authority');
+
+define('_MA_TADLOGIN_LINE_STEP1', "<h1>【Step 1】Build Line Channel</h1><p>Please link to <a href='https://developers.line.biz/console/channel/new? type=line-login' target='_blank'>https://developers.line.biz/console/channel/new?type=line-login</a>
+<ol>
+<li>To create a new channel, [Channel type] please select \"LINE Login\"</li>.
+<li>[Provider] can select \"Create a new provider\" to create a new </li>.
+<li>[Region] Select \"Taiwan\". (Currently only four regions are supported, if the host is not in one of these four regions, it will not work even if it is set up) </li>.
+<li>[Channel icon] can upload a picture, or not. </li>
+</ol></p>");
+define('_MA_TADLOGIN_LINE_STEP2', '<h1>Step 2】 Basic Setup 1</h1><p>
+<ol>
+<li>Fill [Channel name] and [Channel description]</li>
+<li>[App types]:「Web App」</li>
+<li>[Email address]Required fields</li>
+</ol></p>');
+define('_MA_TADLOGIN_LINE_STEP3', '<h1>【Step 3】basic setting 2</h1><p>
+<ol>
+<li>[Privacy policy URL] Privacy policy URL and [Terms of use URL] Terms of use, if any, can be filled in (no harm in not filling in the URL). </li> The [Privacy policy URL] and [Terms of use URL] terms of use.
+<li>Please check the agreement box below</li>.
+<li>Finally click on "Create" to create the channel</li>.
+</ol></p>');
+define('_MA_TADLOGIN_LINE_STEP4', '<h1>【Step 4】Copy Channel ID</h1>');
+define('_MA_TADLOGIN_LINE_STEP5', '<h1>[Step 5] to <a href="' . XOOPS_URL . '/modules/system/admin.php?fct=preferences&op=showmod&mod=' . $mid . '" target="_blank">Preferences</a> Paste the Channel ID and add Line</h1> to the "Authentication method to use"');
+define('_MA_TADLOGIN_LINE_STEP6', '<h1>[Step 6] copy Channel secret </h1>');
+define('_MA_TADLOGIN_LINE_STEP7', '<h1>[Step 7] to <a href="' . XOOPS_URL . '/modules/system/admin.php?fct=preferences&op=showmod&mod=' . $mid . '" target="_blank">Preferences</a> Paste Channel secret, and save settings</h1>');
+define('_MA_TADLOGIN_LINE_STEP8', '<h1>【Step 8】Setup to get email information</h1><p>Go to [Email address permission] at the bottom and click "Apply", check all the boxes, the image must be uploaded, and then click "Submit". This can be done</p>');
+define('_MA_TADLOGIN_LINE_STEP9', '<h1>【Step 9】Set the Callback URL</h1><p>Switch to the "LINE Login" tab, click the "Edit" button of [Callback URL], and fill in the "<span style=" color:blue;">' . XOOPS_URL . '/modules/tad_login/line_callback.php</span>"</p>');
