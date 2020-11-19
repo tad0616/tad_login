@@ -25,3 +25,4 @@ define('_MD_TADLOGIN_COMPLETE_MODIFY', '按此完成綁定密碼修改');
 define('_MD_TADLOGIN_EDIT_PASSEOWD_DESC8', '完成設定後即可用此帳號（<b style="color:rgb(0, 86, 199);">%s</b>），及修改後的綁定密碼來登入。');
 define('_MD_TADLOGIN_SET_PASSWORD', '設定 %s 的登入密碼');
 define('_MD_TADLOGIN_LOGIN_ICON', '登入示意圖');
+define('_MD_TNOPENID_INCORRECTLOGIN', '無法登入');

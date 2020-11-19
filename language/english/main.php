@@ -25,3 +25,4 @@ define('_MD_TADLOGIN_COMPLETE_MODIFY', 'Click here to finish changing your bindi
 define('_MD_TADLOGIN_EDIT_PASSEOWD_DESC8', 'After completing the settings, you can log in with this account (<b style="color:rgb(0, 86, 199);">%s</b>) and a modified binding password.');
 define('_MD_TADLOGIN_SET_PASSWORD', 'Set the login password for %s');
 define('_MD_TADLOGIN_LOGIN_ICON', 'Login icon');
+define('_MD_TNOPENID_INCORRECTLOGIN', 'Unable to login');

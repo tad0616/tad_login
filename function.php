@@ -124,14 +124,12 @@ if (!function_exists('line_login')) {
         }
         $state = sha1(time());
         $_SESSION['_line_state'] = $state;
-
         $Line = new LineController();
         $loginUrl = $Line->lineLogin($state); //產生LINE登入連結
 
         if ('return' === $mode) {
             return $loginUrl;
         } else {
-
             header("location: $loginUrl");
             exit;
         }
@@ -362,14 +360,14 @@ if (!function_exists('login_xoops')) {
                 list($hashed_date) = $xoopsDB->fetchRow($result);
 
                 //若有要轉頁
-                if ($hashed_date == '0000-00-00 00:00:00') {
+                if (!empty($xoopsModuleConfig['redirect_url'])) {
+                    $redirect_url = $xoopsModuleConfig['redirect_url'];
+                } elseif ($login_from) {
+                    $redirect_url = $login_from;
+                } elseif ($hashed_date == '0000-00-00 00:00:00') {
                     $redirect_url = XOOPS_URL . '/modules/tad_login/index.php';
                 } else {
-                    if (!empty($xoopsModuleConfig['redirect_url'])) {
-                        $redirect_url = $xoopsModuleConfig['redirect_url'];
-                    } else {
-                        $redirect_url = empty($login_from) ? XOOPS_URL . '/index.php' : $login_from;
-                    }
+                    $redirect_url = XOOPS_URL;
                 }
 
                 // RMV-NOTIFY

@@ -39,9 +39,9 @@ $adminmenu[$i]['desc'] = _MI_TADLOGIN_ADMENU3;
 $adminmenu[$i]['icon'] = 'images/google.png';
 
 $i++;
-$adminmenu[$i]['title'] = _MI_TADLOGIN_ADMENU1;
+$adminmenu[$i]['title'] = _MI_TADLOGIN_ADMENU6;
 $adminmenu[$i]['link'] = 'admin/line.php';
-$adminmenu[$i]['desc'] = _MI_TADLOGIN_ADMENU1;
+$adminmenu[$i]['desc'] = _MI_TADLOGIN_ADMENU6;
 $adminmenu[$i]['icon'] = 'images/line.png';
 
 $i++;

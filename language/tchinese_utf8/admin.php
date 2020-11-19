@@ -103,3 +103,4 @@ define('_MA_TADLOGIN_LINE_STEP6', '<h1>【步驟 6】複製 Channel secret </h1>
 define('_MA_TADLOGIN_LINE_STEP7', '<h1>【步驟 7】到<a href="' . XOOPS_URL . '/modules/system/admin.php?fct=preferences&op=showmod&mod=' . $mid . '" target="_blank">偏好設定</a>貼上 Channel secret，並儲存設定</h1>');
 define('_MA_TADLOGIN_LINE_STEP8', '<h1>【步驟 8】設定欲取得Email資訊</h1><p>到最下方的[Email address permission]按「Apply」，該打勾的打勾，圖片必須上傳，最後按「Submit」即可</p>');
 define('_MA_TADLOGIN_LINE_STEP9', '<h1>【步驟 9】設定 Callback URL</h1><p>切換到「LINE Login」頁籤，點擊[Callback URL]的「Edit」按鈕，並填入「<span style="color:blue;">' . XOOPS_URL . '/modules/tad_login/line_callback.php</span>」</p>');
+define('_MA_TADLOGIN_LINE_STEP10', '<h1>【步驟 10】啟動認證</h1><p>最後務必按下 [Developing] 並點擊「Publish」以啟動之 </p>');

@@ -10,6 +10,7 @@ define('_MI_TADLOGIN_ADMENU2', 'Auto Group Set');
 define('_MI_TADLOGIN_ADMENU3', 'Google Certificate');
 define('_MI_TADLOGIN_ADMENU4', 'Education cloud authentication settings');
 define('_MI_TADLOGIN_ADMENU5', 'Password management');
+define('_MI_TADLOGIN_ADMENU6', 'Line Authentication Setting Description');
 
 define('_MI_TADLOGIN_DESC', 'Join FB and other fast login mechanism');
 define('_MI_TADLOGIN_BNAME1', 'Tad Login');
@@ -46,7 +47,7 @@ define('_MI_TADLOGIN_BACK_2_ADMIN', 'Back to Administration of ');
 define('_MI_TADLOGIN_HELP_OVERVIEW', 'Overview');
 
 define('_MI_TADLOGIN_REDIRECT_URL', 'Sign-in URL redirects to settings');
-define('_MI_TADLOGIN_REDIRECT_URL_DESC', 'You can set which URL to redirect to after login.');
+define('_MI_TADLOGIN_REDIRECT_URL_DESC', 'If the value is empty and the OpenID account has not yet been bound, it will default to the binding page.');
 
 define('_TADLOGIN_OIDC_SETUP', 'OIDC Education Cloud Account Settings');
 define('_TADLOGIN_OIDC_SETUP_DESC', 'Do not move, please setup from <a href="' . XOOPS_URL . '/modules/tad_login/admin/oidc.php">' . XOOPS_URL . '/modules/tad_login/admin/oidc.php</a>');

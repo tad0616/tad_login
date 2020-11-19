@@ -10,6 +10,7 @@ define('_MI_TADLOGIN_ADMENU2', '自動群組設定');
 define('_MI_TADLOGIN_ADMENU3', 'Google認證設定說明');
 define('_MI_TADLOGIN_ADMENU4', '教育雲認證設定');
 define('_MI_TADLOGIN_ADMENU5', '綁定密碼管理');
+define('_MI_TADLOGIN_ADMENU6', 'Line認證設定說明');
 
 define('_MI_TADLOGIN_DESC', '加入FB等快速登入的機制');
 define('_MI_TADLOGIN_BNAME1', '快速登入');
@@ -34,7 +35,7 @@ define('_MI_TADLOGIN_GOOGLE_API_KEY', 'Google 的「API key」');
 define('_MI_TADLOGIN_GOOGLE_API_KEY_DESC', '請至 https://console.developers.google.com 建立一個 Project，並取得其「API key」。');
 
 define('_MI_TADLOGIN_REDIRECT_URL', '登入後轉向設定');
-define('_MI_TADLOGIN_REDIRECT_URL_DESC', '可設定登入後要導向到哪個位址，一般無須設定。');
+define('_MI_TADLOGIN_REDIRECT_URL_DESC', '可設定登入後要導向到哪個位址，空值且尚未進行OpenID帳號綁定的話，會預設進入綁定頁面。');
 
 define('_TADLOGIN_OIDC_SETUP', 'OIDC 教育雲帳號設定');
 define('_TADLOGIN_OIDC_SETUP_DESC', '勿動，請從<a href="' . XOOPS_URL . '/modules/tad_login/admin/oidc.php">' . XOOPS_URL . '/modules/tad_login/admin/oidc.php</a> 設定之');

@@ -18,4 +18,6 @@
     <img src="../images/line/line08.png" alt="step8" title="step8" border="0" class="img-fluid img-responsive img-thumbnail"><br><br>
     <label><{$smarty.const._MA_TADLOGIN_LINE_STEP9}></label><br>
     <img src="../images/line/line09.png" alt="step9" title="step9" border="0" class="img-fluid img-responsive img-thumbnail"><br><br>
+    <label><{$smarty.const._MA_TADLOGIN_LINE_STEP10}></label><br>
+    <img src="../images/line/line10.png" alt="step10" title="step10" border="0" class="img-fluid img-responsive img-thumbnail"><br><br>
 </div>

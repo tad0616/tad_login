@@ -12,13 +12,14 @@ function passwd_list()
     global $xoopsTpl, $xoopsDB, $xoopsModule;
     $xoopsTpl->assign('mid', $xoopsModule->mid());
 
-    $sql = "SELECT count(*) FROM `" . $xoopsDB->prefix('tad_login_random_pass') . "` where hashed_date='0000-00-00 00:00:00' group by hashed_date";
+    $sql = "SELECT count(*) FROM `" . $xoopsDB->prefix('tad_login_random_pass') . "`  as a
+    join `" . $xoopsDB->prefix('users') . "` as b on a.uname=b.uname where a.hashed_date='0000-00-00 00:00:00' group by a.hashed_date";
     $result = $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
     list($count) = $xoopsDB->fetchRow($result);
     $xoopsTpl->assign('count', $count);
 
     $sql = "select a.*, b.* FROM `" . $xoopsDB->prefix('tad_login_random_pass') . "` as a
-    left join `" . $xoopsDB->prefix('users') . "` as b on a.uname=b.uname";
+    join `" . $xoopsDB->prefix('users') . "` as b on a.uname=b.uname";
 
     $PageBar = Utility::getPageBar($sql, 50, 10);
     $sql = $PageBar['sql'];
@@ -31,10 +32,8 @@ function passwd_list()
     $result = $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
     $data = [];
     while (false !== ($all = $xoopsDB->fetchArray($result))) {
-        // foreach ($all as $k => $v) {
-        //     $$k = $v;
-        // }
         $data[] = $all;
+
     }
     $xoopsTpl->assign('data', $data);
 
