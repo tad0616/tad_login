@@ -35,7 +35,7 @@ define('_MI_TADLOGIN_GOOGLE_API_KEY', 'Google 的「API key」');
 define('_MI_TADLOGIN_GOOGLE_API_KEY_DESC', '請至 https://console.developers.google.com 建立一個 Project，並取得其「API key」。');
 
 define('_MI_TADLOGIN_REDIRECT_URL', '登入後轉向設定');
-define('_MI_TADLOGIN_REDIRECT_URL_DESC', '可設定登入後要導向到哪個位址，空值且尚未進行OpenID帳號綁定的話，會預設進入綁定頁面。');
+define('_MI_TADLOGIN_REDIRECT_URL_DESC', '可設定登入後要導向到哪個位址');
 
 define('_TADLOGIN_OIDC_SETUP', 'OIDC 教育雲帳號設定');
 define('_TADLOGIN_OIDC_SETUP_DESC', '勿動，請從<a href="' . XOOPS_URL . '/modules/tad_login/admin/oidc.php">' . XOOPS_URL . '/modules/tad_login/admin/oidc.php</a> 設定之');
@@ -44,3 +44,6 @@ define('_MI_TADLOGIN_LINE_ID', 'Line 的 Channel ID');
 define('_MI_TADLOGIN_LINE_ID_DESC', '至 https://developers.line.biz/console/channel/new?type=line-login 建立一個  channel，並取得其「Channel ID」');
 define('_MI_TADLOGIN_LINE_SECRET', 'Line 的 Channel Secret');
 define('_MI_TADLOGIN_LINE_SECRET_DESC', '至 https://developers.line.biz/console/channel/new?type=line-login 建立一個  channel，並取得其「Channel Secret」');
+
+define('_MI_TADLOGIN_BIND_OPENID', '登入後是否導向到綁定畫面');
+define('_MI_TADLOGIN_BIND_OPENID_DESC', '一般可以設「否」，但若是未來 OpenID 不再提供服務的縣市建議選「是」');

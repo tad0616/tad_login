@@ -100,3 +100,5 @@ define('_MA_TADLOGIN_LINE_STEP6', '<h1>[Step 6] copy Channel secret </h1>');
 define('_MA_TADLOGIN_LINE_STEP7', '<h1>[Step 7] to <a href="' . XOOPS_URL . '/modules/system/admin.php?fct=preferences&op=showmod&mod=' . $mid . '" target="_blank">Preferences</a> Paste Channel secret, and save settings</h1>');
 define('_MA_TADLOGIN_LINE_STEP8', '<h1>【Step 8】Setup to get email information</h1><p>Go to [Email address permission] at the bottom and click "Apply", check all the boxes, the image must be uploaded, and then click "Submit". This can be done</p>');
 define('_MA_TADLOGIN_LINE_STEP9', '<h1>【Step 9】Set the Callback URL</h1><p>Switch to the "LINE Login" tab, click the "Edit" button of [Callback URL], and fill in the "<span style=" color:blue;">' . XOOPS_URL . '/modules/tad_login/line_callback.php</span>"</p>');
+
+define('_MA_TADLOGIN_KEYWORD', 'Keyword');

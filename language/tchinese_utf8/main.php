@@ -12,7 +12,7 @@ define('_MD_TADLOGIN_CHANGE_COMPLETED', '已完成綁定密碼修改！');
 define('_MD_TADLOGIN_CHANGE_PASSEOWD', '設定或變更綁定密碼');
 define('_MD_TADLOGIN_EDIT_PASSEOWD_DESC1', '會看到此頁，是因為您是用 OpenID 登入，而您的 OpenID 帳號還未跟 XOOPS 帳號綁定的緣故');
 define('_MD_TADLOGIN_EDIT_PASSEOWD_DESC2', '建議您設定一組密碼，以將現有 OpenID 帳號跟 XOOPS 帳號進行綁定。');
-define('_MD_TADLOGIN_EDIT_PASSEOWD', '設定密碼');
+define('_MD_TADLOGIN_EDIT_PASSEOWD', '設定綁定密碼');
 define('_MD_TADLOGIN_COMPLETE_BINDING', '按此完成綁定');
 define('_MD_TADLOGIN_AFTER_BINDING', '完成綁定後：');
 define('_MD_TADLOGIN_EDIT_PASSEOWD_DESC3', '一樣可以繼續用 OpenID 登入（用原OpenID的帳號及密碼）');
@@ -23,6 +23,6 @@ define('_MD_TADLOGIN_EDIT_PASSEOWD_DESC7', '修改綁定密碼。非必要，上
 define('_MD_TADLOGIN_MODIFY_PASSEOWD', '修改綁定密碼');
 define('_MD_TADLOGIN_COMPLETE_MODIFY', '按此完成綁定密碼修改');
 define('_MD_TADLOGIN_EDIT_PASSEOWD_DESC8', '完成設定後即可用此帳號（<b style="color:rgb(0, 86, 199);">%s</b>），及修改後的綁定密碼來登入。');
-define('_MD_TADLOGIN_SET_PASSWORD', '設定 %s 的登入密碼');
+define('_MD_TADLOGIN_SET_PASSWORD', '設定 %s 的綁定密碼');
 define('_MD_TADLOGIN_LOGIN_ICON', '登入示意圖');
 define('_MD_TNOPENID_INCORRECTLOGIN', '無法登入');

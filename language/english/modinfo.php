@@ -47,7 +47,7 @@ define('_MI_TADLOGIN_BACK_2_ADMIN', 'Back to Administration of ');
 define('_MI_TADLOGIN_HELP_OVERVIEW', 'Overview');
 
 define('_MI_TADLOGIN_REDIRECT_URL', 'Sign-in URL redirects to settings');
-define('_MI_TADLOGIN_REDIRECT_URL_DESC', 'If the value is empty and the OpenID account has not yet been bound, it will default to the binding page.');
+define('_MI_TADLOGIN_REDIRECT_URL_DESC', 'You can set the address to which you want to be directed after login.');
 
 define('_TADLOGIN_OIDC_SETUP', 'OIDC Education Cloud Account Settings');
 define('_TADLOGIN_OIDC_SETUP_DESC', 'Do not move, please setup from <a href="' . XOOPS_URL . '/modules/tad_login/admin/oidc.php">' . XOOPS_URL . '/modules/tad_login/admin/oidc.php</a>');
@@ -55,3 +55,6 @@ define('_MI_TADLOGIN_LINE_ID', 'Channel ID of Line');
 define('_MI_TADLOGIN_LINE_ID_DESC', 'Create a channel to https://developers.line.biz/console/channel/new?type=line-login and get its "Channel ID"');
 define('_MI_TADLOGIN_LINE_SECRET', 'Channel Secret of Line');
 define('_MI_TADLOGIN_LINE_SECRET_DESC', 'Create a channel to https://developers.line.biz/console/channel/new?type=line-login and get its "Channel Secret"');
+
+define('_MI_TADLOGIN_BIND_OPENID', 'Do you navigate to the binding screen after login');
+define('_MI_TADLOGIN_BIND_OPENID_DESC', 'Generally it can be set to \'No\', but we recommend to select \'Yes\' if OpenID is no longer available in the future');

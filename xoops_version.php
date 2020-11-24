@@ -179,6 +179,14 @@ if (isset($all_oidc2)) {
 }
 
 $i++;
+$modversion['config'][$i]['name'] = 'bind_openid';
+$modversion['config'][$i]['title'] = '_MI_TADLOGIN_BIND_OPENID';
+$modversion['config'][$i]['description'] = '_MI_TADLOGIN_BIND_OPENID_DESC';
+$modversion['config'][$i]['formtype'] = 'yesno';
+$modversion['config'][$i]['valuetype'] = 'int';
+$modversion['config'][$i]['default'] = 0;
+
+$i++;
 $modversion['config'][$i]['name'] = 'redirect_url';
 $modversion['config'][$i]['title'] = '_MI_TADLOGIN_REDIRECT_URL';
 $modversion['config'][$i]['description'] = '_MI_TADLOGIN_REDIRECT_URL_DESC';

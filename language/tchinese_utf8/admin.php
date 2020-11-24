@@ -69,8 +69,8 @@ define('_MA_TADLOGIN_MANAGE_PASSWORD', '管理綁定密碼');
 define('_MA_TADLOGIN_MODIFY_PASSWORD', '修改綁定密碼');
 define('_MA_TADLOGIN_CHANGE_BINDING_PASSWORD', '設定綁定密碼');
 define('_MA_TADLOGIN_BIND_ID', '點我進行綁定');
-define('_MA_TADLOGIN_SET_PASSWORD', '設定一組登入密碼');
-define('_MA_TADLOGIN_BIND_ALL_ID', '替尚未綁定的OpenID帳號設定登入密碼（共 %s 個）');
+define('_MA_TADLOGIN_SET_PASSWORD', '設定一組登入用的綁定密碼');
+define('_MA_TADLOGIN_BIND_ALL_ID', '替尚未綁定的OpenID帳號設定登入用的綁定密碼（共 %s 個）');
 define('_MA_TADLOGIN_BIND_DESC1', '設定綁定密碼後，使用者可以同時使用OpenID登入（用原OpenID密碼）和帳號密碼登入（用綁定密碼），並使用同一個身份（uid 相同）。');
 define('_MA_TADLOGIN_BIND_DESC2', '若 OpenID 無法登入，就可以使用帳號密碼登入。');
 define('_MA_TADLOGIN_BIND_DESC3', '若 OpenID 不會有停止使用的問題，管理員無需替所有使用者綁定密碼。');
@@ -104,3 +104,5 @@ define('_MA_TADLOGIN_LINE_STEP7', '<h1>【步驟 7】到<a href="' . XOOPS_URL .
 define('_MA_TADLOGIN_LINE_STEP8', '<h1>【步驟 8】設定欲取得Email資訊</h1><p>到最下方的[Email address permission]按「Apply」，該打勾的打勾，圖片必須上傳，最後按「Submit」即可</p>');
 define('_MA_TADLOGIN_LINE_STEP9', '<h1>【步驟 9】設定 Callback URL</h1><p>切換到「LINE Login」頁籤，點擊[Callback URL]的「Edit」按鈕，並填入「<span style="color:blue;">' . XOOPS_URL . '/modules/tad_login/line_callback.php</span>」</p>');
 define('_MA_TADLOGIN_LINE_STEP10', '<h1>【步驟 10】啟動認證</h1><p>最後務必按下 [Developing] 並點擊「Publish」以啟動之 </p>');
+
+define('_MA_TADLOGIN_KEYWORD', '關鍵字');

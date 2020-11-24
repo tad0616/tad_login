@@ -1,21 +1,5 @@
 <{$BootstrapEditableCode}>
-<form action="ps_tool.php" method="post" id="myForm" enctype="multipart/form-data" class="form-horizontal">
-    <div class="row">
-        <div class="col-sm-3"><h2><{$smarty.const._MA_TADLOGIN_MANAGE_PASSWORD}></h2></div>
-        <div class="col-sm-9">
-            <div class="input-group">
-                <div class="input-group-prepend input-group-addon">
-                    <span class="input-group-text"><{$smarty.const._MA_TADLOGIN_BIND_ALL_ID|sprintf:$count}></span>
-                </div>
-                <input type="text" name="passwd" class="form-control" placeholder="<{$smarty.const._MA_TADLOGIN_SET_PASSWORD}>">
-                <div class="input-group-append input-group-btn">
-                    <input type="hidden" name="op" value="change_all_pass">
-                    <button type="submit" class="btn btn-primary"><{$smarty.const._MA_TADLOGIN_BIND_ID}></button>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>
+<h2><{$smarty.const._MA_TADLOGIN_MANAGE_PASSWORD}></h2>
 
 <div class="alert alert-info" style="margin-top:10px;">
     <ol>
@@ -26,6 +10,32 @@
         <li><{$smarty.const._MA_TADLOGIN_BIND_DESC5|sprintf:$mid}></li>
     </ol>
 </div>
+<form action="ps_tool.php" method="post" id="myForm" enctype="multipart/form-data" class="form-horizontal">
+    <div class="row">
+        <div class="col-sm-7">
+            <div class="input-group">
+                <div class="input-group-prepend input-group-addon">
+                    <span class="input-group-text"><{$smarty.const._MA_TADLOGIN_BIND_ALL_ID|sprintf:$count}></span>
+                </div>
+                <input type="text" name="passwd" class="form-control" placeholder="<{$smarty.const._MA_TADLOGIN_SET_PASSWORD}>">
+                <div class="input-group-append input-group-btn">
+                    <button type="submit" class="btn btn-warning" name="op" value="change_all_pass"><{$smarty.const._MA_TADLOGIN_BIND_ID}></button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <div class="input-group">
+                <div class="input-group-prepend input-group-addon">
+                    <span class="input-group-text"><{$smarty.const._MA_TADLOGIN_KEYWORD}></span>
+                </div>
+                <input type="text" name="keyword" class="form-control" value="<{$keyword}>" placeholder="<{$smarty.const._MA_TADLOGIN_KEYWORD}>">
+                <div class="input-group-append input-group-btn">
+                    <button type="submit" class="btn btn-primary"><{$smarty.const._TAD_SEARCH}></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 
 <table class="table table-bordered table-hover table-striped table-sm table-condensed">
     <tr>

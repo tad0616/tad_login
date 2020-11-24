@@ -364,7 +364,7 @@ if (!function_exists('login_xoops')) {
                     $redirect_url = $xoopsModuleConfig['redirect_url'];
                 } elseif ($login_from) {
                     $redirect_url = $login_from;
-                } elseif ($hashed_date == '0000-00-00 00:00:00') {
+                } elseif ($hashed_date == '0000-00-00 00:00:00' and $xoopsModuleConfig['bind_openid'] == 1) {
                     $redirect_url = XOOPS_URL . '/modules/tad_login/index.php';
                 } else {
                     $redirect_url = XOOPS_URL;
