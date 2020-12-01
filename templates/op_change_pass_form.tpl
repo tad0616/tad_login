@@ -5,7 +5,7 @@
             <div class="input-group-prepend input-group-addon">
                 <span class="input-group-text"><{$smarty.const._MD_TADLOGIN_EDIT_PASSEOWD}></span>
             </div>
-            <input type="text" name="newpass" class="form-control" placeholder="<{$smarty.const._MD_TADLOGIN_SET_PASSWORD|sprintf:$uname}> ">
+            <input type="text" name="newpass" class="form-control validate[required]" placeholder="<{$smarty.const._MD_TADLOGIN_SET_PASSWORD|sprintf:$uname}> ">
             <div class="input-group-append input-group-btn">
                 <input type="hidden" name="op" value="change_pass">
                 <button type="submit" class="btn btn-primary"><{$smarty.const._MD_TADLOGIN_COMPLETE_BINDING}></button>
@@ -32,7 +32,7 @@
                         <div class="input-group-prepend input-group-addon">
                             <span class="input-group-text"><{$smarty.const._MD_TADLOGIN_MODIFY_PASSEOWD}></span>
                         </div>
-                        <input type="text" name="newpass" class="form-control" placeholder="">
+                        <input type="text" name="newpass" class="form-control validate[required]" placeholder="">
                         <input type="hidden" name="op" value="change_pass">
                         <div class="input-group-append input-group-btn">
                             <button type="submit" class="btn btn-primary"><{$smarty.const._MD_TADLOGIN_COMPLETE_MODIFY}></button>

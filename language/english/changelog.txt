@@ -1,3 +1,10 @@
+Tad Login 5.0 (Released on 2020-12-01)
+================================================
+1. Binding Password Manager to add keyword search.
+2. Add the preference of "whether to navigate to the binding screen after login".
+3. Add auto-correction of binding password failure.
+4. Add a blank check for binding password to avoid using a blank as a password, which may lead to failure to login.
+
 Tad Login 4.9 (Released on 2020-11-19)
 ================================================
 1. Support Line Login

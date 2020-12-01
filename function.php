@@ -448,26 +448,31 @@ if (!function_exists('getPass')) {
             return;
         }
 
+        // 取得XOOPS使用者密碼（加密過的）
+        $sql = 'select `pass` from `' . $xoopsDB->prefix('users') . "` where `uname`='{$uname}'";
+        $result = $xoopsDB->queryF($sql) or Utility::web_error($sql, __FILE__, __LINE__);
+        list($pass) = $xoopsDB->fetchRow($result);
+
+        // 取得綁定密碼
         $sql = 'select `random_pass` from `' . $xoopsDB->prefix('tad_login_random_pass') . "` where `uname`='{$uname}'";
         $result = $xoopsDB->queryF($sql) or Utility::web_error($sql, __FILE__, __LINE__);
         list($random_pass) = $xoopsDB->fetchRow($result);
 
-        //舊OpenID使用者
-        if (empty($random_pass)) {
+        //若無綁定密碼，或者綁定密碼為空白
+        if (empty($random_pass) or $pass == 'd41d8cd98f00b204e9800998ecf8427e') {
             $random_pass = Utility::randStr(128);
+            // 重新產生隨機的綁定密碼
+            $pass = md5($random_pass);
             $random_pass = authcode($random_pass, 'ENCODE', $uname);
-            $sql = 'replace into `' . $xoopsDB->prefix('tad_login_random_pass') . "` (`uname` , `random_pass`) values  ('{$uname}','{$random_pass}')";
+            $sql = 'replace into `' . $xoopsDB->prefix('tad_login_random_pass') . "` (`uname` , `random_pass`, `hashed_date`) values  ('{$uname}','{$random_pass}', '0000-00-00 00:00:00')";
             $xoopsDB->queryF($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
-            $sql = 'update `' . $xoopsDB->prefix('users') . "` set `pass`=md5('{$random_pass}') where `uname`='{$uname}'";
+            $sql = 'update `' . $xoopsDB->prefix('users') . "` set `pass`='$pass' where `uname`='{$uname}'";
             $xoopsDB->queryF($sql) or Utility::web_error($sql, __FILE__, __LINE__);
-        } else {
-            $random_pass = authcode($random_pass, 'DECODE', $uname);
         }
 
-        $sql = 'select `pass` from `' . $xoopsDB->prefix('users') . "` where `uname`='{$uname}'";
-        $result = $xoopsDB->queryF($sql) or Utility::web_error($sql, __FILE__, __LINE__);
-        list($pass) = $xoopsDB->fetchRow($result);
+        $random_pass = authcode($random_pass, 'DECODE', $uname);
+
         if ($pass !== md5($random_pass)) {
             $sql = 'update `' . $xoopsDB->prefix('users') . "` set `pass`=md5('{$random_pass}') where `uname`='{$uname}'";
             $xoopsDB->queryF($sql) or Utility::web_error($sql, __FILE__, __LINE__);

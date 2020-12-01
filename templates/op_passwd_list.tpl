@@ -13,15 +13,17 @@
 <form action="ps_tool.php" method="post" id="myForm" enctype="multipart/form-data" class="form-horizontal">
     <div class="row">
         <div class="col-sm-7">
-            <div class="input-group">
-                <div class="input-group-prepend input-group-addon">
-                    <span class="input-group-text"><{$smarty.const._MA_TADLOGIN_BIND_ALL_ID|sprintf:$count}></span>
+            <{if $count > 0}>
+                <div class="input-group">
+                    <div class="input-group-prepend input-group-addon">
+                        <span class="input-group-text"><{$smarty.const._MA_TADLOGIN_BIND_ALL_ID|sprintf:$count}></span>
+                    </div>
+                    <input type="text" name="passwd" class="form-control validate[required]" placeholder="<{$smarty.const._MA_TADLOGIN_SET_PASSWORD}>">
+                    <div class="input-group-append input-group-btn">
+                        <button type="submit" class="btn btn-warning" name="op" value="change_all_pass"><{$smarty.const._MA_TADLOGIN_BIND_ID}></button>
+                    </div>
                 </div>
-                <input type="text" name="passwd" class="form-control" placeholder="<{$smarty.const._MA_TADLOGIN_SET_PASSWORD}>">
-                <div class="input-group-append input-group-btn">
-                    <button type="submit" class="btn btn-warning" name="op" value="change_all_pass"><{$smarty.const._MA_TADLOGIN_BIND_ID}></button>
-                </div>
-            </div>
+            <{/if}>
         </div>
         <div class="col-sm-5">
             <div class="input-group">

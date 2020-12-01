@@ -1,6 +1,7 @@
 <?php
 use Xmf\Request;
 use XoopsModules\Tadtools\Bootstrap3Editable;
+use XoopsModules\Tadtools\FormValidator;
 use XoopsModules\Tadtools\Utility;
 /*-----------引入檔案區--------------*/
 $GLOBALS['xoopsOption']['template_main'] = 'tad_login_admin.tpl';
@@ -43,6 +44,10 @@ function passwd_list($keyword = '')
     $BootstrapEditable = new Bootstrap3Editable();
     $BootstrapEditableCode = $BootstrapEditable->render('.editable', XOOPS_URL . '/modules/tad_login/admin/ajax.php');
     $xoopsTpl->assign('BootstrapEditableCode', $BootstrapEditableCode);
+
+    $FormValidator = new FormValidator('#myForm', true);
+    $FormValidator->render();
+
     return $data;
 
 }

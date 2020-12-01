@@ -26,3 +26,5 @@ define('_MD_TADLOGIN_EDIT_PASSEOWD_DESC8', 'After completing the settings, you c
 define('_MD_TADLOGIN_SET_PASSWORD', 'Set the login password for %s');
 define('_MD_TADLOGIN_LOGIN_ICON', 'Login icon');
 define('_MD_TNOPENID_INCORRECTLOGIN', 'Unable to login');
+define('_MD_TNOPENID_NOACTTPADM', 'No permission');
+define('_MD_TNOPENID_NO_USER', 'No such account');

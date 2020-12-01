@@ -1,5 +1,6 @@
 <?php
 use Xmf\Request;
+use XoopsModules\Tadtools\FormValidator;
 use XoopsModules\Tadtools\Utility;
 /*-----------引入檔案區--------------*/
 require __DIR__ . '/header.php';
@@ -1010,6 +1011,8 @@ function change_pass_form()
     $mode = $hashed_date == '0000-00-00 00:00:00' ? 'edit' : 'modify';
     $xoopsTpl->assign('mode', $mode);
 
+    $FormValidator = new FormValidator('#myForm', true);
+    $FormValidator->render();
 }
 
 /*-----------執行動作判斷區----------*/

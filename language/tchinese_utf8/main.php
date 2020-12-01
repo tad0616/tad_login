@@ -26,3 +26,5 @@ define('_MD_TADLOGIN_EDIT_PASSEOWD_DESC8', '完成設定後即可用此帳號（
 define('_MD_TADLOGIN_SET_PASSWORD', '設定 %s 的綁定密碼');
 define('_MD_TADLOGIN_LOGIN_ICON', '登入示意圖');
 define('_MD_TNOPENID_INCORRECTLOGIN', '無法登入');
+define('_MD_TNOPENID_NOACTTPADM', '無權限');
+define('_MD_TNOPENID_NO_USER', '無此帳號');
