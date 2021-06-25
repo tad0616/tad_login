@@ -923,32 +923,32 @@ function list_login()
         tc_login('cyc', 'https://openid.cyccc.tw');
     } elseif ('ylc' === $_SESSION['auth_method']) {
         tc_login('ylc', 'http://openid.ylc.edu.tw/');
-        // } elseif ('hcc' === $_SESSION['auth_method']) {
-        //     tc_login('hcc', 'https://openid.hcc.edu.tw');
     } elseif ('mlc' === $_SESSION['auth_method']) {
         tc_login('mlc', 'https://openid2.mlc.edu.tw');
-    } elseif ('chc' === $_SESSION['auth_method']) {
-        tc_login('chc', 'https://openid.chc.edu.tw');
-    } elseif ('ntct' === $_SESSION['auth_method']) {
-        tc_login('ntct', 'https://openid.ntct.edu.tw');
     } elseif ('cy' === $_SESSION['auth_method']) {
         tc_login('cy', 'https://openid.cy.edu.tw');
-    } elseif ('tc' === $_SESSION['auth_method']) {
-        tc_login('tc', 'https://openid.tc.edu.tw');
     } elseif ('hlc' === $_SESSION['auth_method']) {
         tc_login('hlc', 'http://openid2.hlc.edu.tw');
     } elseif ('ptc' === $_SESSION['auth_method']) {
         tc_login('ptc', 'http://openid.ptc.edu.tw');
     } elseif ('phc' === $_SESSION['auth_method']) {
         tc_login('phc', 'https://openid.phc.edu.tw');
-    } elseif ('ty' === $_SESSION['auth_method']) {
-        ty_login();
     } elseif ('ttct' === $_SESSION['auth_method']) {
         hlc_login('ttct', 'https://openid.boe.ttct.edu.tw');
     } elseif ('ntpc' === $_SESSION['auth_method']) {
         hlc_login('ntpc', 'https://openid.ntpc.edu.tw');
     } elseif ('tp_ldap' === $_SESSION['auth_method']) {
         tp_ldap_login();
+        // } elseif ('hcc' === $_SESSION['auth_method']) {
+        //     tc_login('hcc', 'https://openid.hcc.edu.tw');
+        // } elseif ('chc' === $_SESSION['auth_method']) {
+        //     tc_login('chc', 'https://openid.chc.edu.tw');
+        // } elseif ('ntct' === $_SESSION['auth_method']) {
+        //     tc_login('ntct', 'https://openid.ntct.edu.tw');
+        // } elseif ('tc' === $_SESSION['auth_method']) {
+        //     tc_login('tc', 'https://openid.tc.edu.tw');
+        // } elseif ('ty' === $_SESSION['auth_method']) {
+        //     ty_login();
     } else {
         call_user_func("{$_SESSION['auth_method']}_login");
     }
@@ -1008,8 +1008,6 @@ function change_pass_form()
     list($hashed_date) = $xoopsDB->fetchRow($result);
     $xoopsTpl->assign('hashed_date', $hashed_date);
     $xoopsTpl->assign('uname', $uname);
-    $mode = $hashed_date == '0000-00-00 00:00:00' ? 'edit' : 'modify';
-    $xoopsTpl->assign('mode', $mode);
 
     $FormValidator = new FormValidator('#myForm', true);
     $FormValidator->render();
@@ -1053,10 +1051,6 @@ switch ($op) {
         $_SESSION['auth_method'] = 'ylc';
         tc_login('ylc', 'http://openid.ylc.edu.tw/');
         break;
-    // case 'hcc':
-    //     $_SESSION['auth_method'] = 'hcc';
-    //     tc_login('hcc', 'https://openid.hcc.edu.tw');
-    //     break;
     case 'hc':
         $_SESSION['auth_method'] = 'hc';
         hc_login();
@@ -1065,21 +1059,9 @@ switch ($op) {
         $_SESSION['auth_method'] = 'mlc';
         tc_login('mlc', 'https://openid2.mlc.edu.tw');
         break;
-    case 'chc':
-        $_SESSION['auth_method'] = 'chc';
-        tc_login('chc', 'https://openid.chc.edu.tw');
-        break;
-    case 'ntct':
-        $_SESSION['auth_method'] = 'ntct';
-        tc_login('ntct', 'https://openid.ntct.edu.tw');
-        break;
     case 'cy':
         $_SESSION['auth_method'] = 'cy';
         tc_login('cy', 'https://openid.cy.edu.tw');
-        break;
-    case 'tc':
-        $_SESSION['auth_method'] = 'tc';
-        tc_login('tc', 'https://openid.tc.edu.tw');
         break;
     case 'ptc':
         $_SESSION['auth_method'] = 'ptc';
@@ -1092,10 +1074,6 @@ switch ($op) {
     case 'tp':
         $_SESSION['auth_method'] = 'tp';
         tp_login();
-        break;
-    case 'ty':
-        $_SESSION['auth_method'] = 'ty';
-        ty_login();
         break;
     case 'ttct':
         $_SESSION['auth_method'] = 'ttct';
@@ -1133,6 +1111,26 @@ switch ($op) {
         $_SESSION['auth_method'] = 'tp_ldap';
         tp_ldap_login();
         break;
+    // case 'hcc':
+    //     $_SESSION['auth_method'] = 'hcc';
+    //     tc_login('hcc', 'https://openid.hcc.edu.tw');
+    //     break;
+    // case 'chc':
+    //     $_SESSION['auth_method'] = 'chc';
+    //     tc_login('chc', 'https://openid.chc.edu.tw');
+    //     break;
+    // case 'ntct':
+    //     $_SESSION['auth_method'] = 'ntct';
+    //     tc_login('ntct', 'https://openid.ntct.edu.tw');
+    //     break;
+    // case 'tc':
+    //     $_SESSION['auth_method'] = 'tc';
+    //     tc_login('tc', 'https://openid.tc.edu.tw');
+    //     break;
+    // case 'ty':
+    //     $_SESSION['auth_method'] = 'ty';
+    //     ty_login();
+    //     break;
     default:
         if ($xoopsUser) {
             change_pass_form();

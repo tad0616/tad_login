@@ -7,7 +7,7 @@ $modversion = [];
 
 //---模組基本資訊---//
 $modversion['name'] = _MI_TADLOGIN_NAME;
-$modversion['version'] = 5.0;
+$modversion['version'] = 5.2;
 $modversion['description'] = _MI_TADLOGIN_DESC;
 $modversion['author'] = _MI_TADLOGIN_AUTHOR;
 $modversion['credits'] = _MI_TADLOGIN_CREDITS;
@@ -18,13 +18,13 @@ $modversion['image'] = "images/logo_{$xoopsConfig['language']}.png";
 $modversion['dirname'] = basename(__DIR__);
 
 //---模組狀態資訊---//
-$modversion['release_date'] = '2020/12/01';
+$modversion['release_date'] = '2021/06/25';
 $modversion['module_website_url'] = 'https://tad0616.net/';
 $modversion['module_website_name'] = _MI_TAD_WEB;
 $modversion['module_status'] = 'release';
 $modversion['author_website_url'] = 'https://tad0616.net/';
 $modversion['author_website_name'] = _MI_TAD_WEB;
-$modversion['min_php'] = 5.4;
+$modversion['min_php'] = 5.5;
 $modversion['min_xoops'] = '2.5';
 $modversion['min_tadtools'] = '2.08';
 
@@ -143,13 +143,8 @@ $modversion['config'][$i]['options'] = [
     sprintf(_TADLOGIN_LOGIN, _KL . 'OpenID') => 'kl',
     sprintf(_TADLOGIN_LOGIN, _TP . 'OpenID') => 'tp',
     sprintf(_TADLOGIN_LOGIN, _NTPC . 'OpenID') => 'ntpc',
-    sprintf(_TADLOGIN_LOGIN, _TY . 'OpenID') => 'ty',
-    // sprintf(_TADLOGIN_LOGIN, _HCC . 'OpenID') => 'hcc',
     sprintf(_TADLOGIN_LOGIN, _HC . 'OpenID') => 'hc',
     sprintf(_TADLOGIN_LOGIN, _MLC . 'OpenID') => 'mlc',
-    sprintf(_TADLOGIN_LOGIN, _TC . 'OpenID') => 'tc',
-    sprintf(_TADLOGIN_LOGIN, _CHC . 'OpenID') => 'chc',
-    sprintf(_TADLOGIN_LOGIN, _NTCT . 'OpenID') => 'ntct',
     sprintf(_TADLOGIN_LOGIN, _YLC . 'OpenID') => 'ylc',
     sprintf(_TADLOGIN_LOGIN, _CYC . 'OpenID') => 'cyc',
     sprintf(_TADLOGIN_LOGIN, _CY . 'OpenID') => 'cy',
@@ -162,6 +157,11 @@ $modversion['config'][$i]['options'] = [
     sprintf(_TADLOGIN_LOGIN, _PHC . 'OpenID') => 'phc',
     sprintf(_TADLOGIN_LOGIN, _KM . 'OpenID') => 'km',
     sprintf(_TADLOGIN_LOGIN, _MT . 'OpenID') => 'mt',
+    // sprintf(_TADLOGIN_LOGIN, _TY . 'OpenID') => 'ty',
+    // sprintf(_TADLOGIN_LOGIN, _HCC . 'OpenID') => 'hcc',
+    // sprintf(_TADLOGIN_LOGIN, _TC . 'OpenID') => 'tc',
+    // sprintf(_TADLOGIN_LOGIN, _CHC . 'OpenID') => 'chc',
+    // sprintf(_TADLOGIN_LOGIN, _NTCT . 'OpenID') => 'ntct',
 ];
 if (isset($all_oidc)) {
     foreach ($all_oidc as $oidc_unit => $oarr) {
