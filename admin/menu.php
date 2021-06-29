@@ -27,6 +27,12 @@ $adminmenu[$i]['desc'] = _MI_TADLOGIN_ADMENU5;
 $adminmenu[$i]['icon'] = 'images/admin/ps_tool.png';
 
 $i++;
+$adminmenu[$i]['title'] = _MI_TADLOGIN_ADMENU7;
+$adminmenu[$i]['link'] = 'admin/change_uid.php';
+$adminmenu[$i]['desc'] = _MI_TADLOGIN_ADMENU7;
+$adminmenu[$i]['icon'] = 'images/admin/change_uid.png';
+
+$i++;
 $adminmenu[$i]['title'] = _MI_TADLOGIN_ADMENU1;
 $adminmenu[$i]['link'] = 'admin/fb.php';
 $adminmenu[$i]['desc'] = _MI_TADLOGIN_ADMENU1;

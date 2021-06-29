@@ -57,7 +57,7 @@ define('_MA_TADLOGIN_JOB', 'Job');
 define('_MA_TADLOGIN_CLIENTID', 'client id');
 define('_MA_TADLOGIN_CLIENTSECRET', 'client secret');
 
-define('_MA_TADLOGIN_NAME', 'Name');
+define('_MA_TADLOGIN_NAME', 'Real Name');
 define('_MA_TADLOGIN_UNAME', 'ID');
 define('_MA_TADLOGIN_LAST_LOGIN', 'Last Login Time');
 define('_MA_TADLOGIN_HASHED_DATE', 'Change Password Time');
@@ -102,3 +102,12 @@ define('_MA_TADLOGIN_LINE_STEP8', '<h1>【Step 8】Setup to get email informatio
 define('_MA_TADLOGIN_LINE_STEP9', '<h1>【Step 9】Set the Callback URL</h1><p>Switch to the "LINE Login" tab, click the "Edit" button of [Callback URL], and fill in the "<span style=" color:blue;">' . XOOPS_URL . '/modules/tad_login/line_callback.php</span>"</p>');
 
 define('_MA_TADLOGIN_KEYWORD', 'Keyword');
+define('_MA_TADLOGIN_KEYWORD_DESC', 'Please enter your real name, account number, email... and other information');
+define('_MA_TADLOGIN_REAL_NAME_SEARCH', 'Real Name Search');
+define('_MA_TADLOGIN_KEYWORD_REAL_NAME', 'Please enter your real name');
+define('_MA_TADLOGIN_PICK_TWO_UESER', 'Please check the account that you want to exchange uid (to check two)');
+define('_MA_TADLOGIN_ABOUT_CHANGE_UID', 'About the "OpenID Account" scenario');
+define('_MA_TADLOGIN_ABOUT_CHANGE_UID_DESC', '<ol><li>As more and more counties and cities stop using OpenID and switch to OIDC login, the same person may have two different accounts. </li><li>If you want the new OIDC account to continue all the posting records or settings of the previous OpenID account, you can do so by swapping uid numbers. </li><li>"Swapping uid numbers" means applying the uid of the original OpenID account to the new OIDC account for a painless transfer. </li><li>The uid of the deactivated OpenID account will be replaced with the original OIDC uid number, but since the OpenID account will not be used again, it will not be affected. </li></ol>');
+define('_MA_TADLOGIN_ABOUT_CHANGE_UID_TODO', '<ol><li>We suggest searching with your real name first</li><li>then check the two accounts to send</li><li>This will swap the uid of the two accounts</li><li>Only the accounts with OpenID or OIDC will be listed at the bottom</li></ol>.');
+
+define('_MA_TADLOGIN_CHANGE_OK', 'Successfully executed uid swap! (%s = %s, %s = %s)');

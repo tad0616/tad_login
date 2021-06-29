@@ -61,7 +61,7 @@ define('_MA_TADLOGIN_JOB', '身份為');
 define('_MA_TADLOGIN_CLIENTID', 'client id');
 define('_MA_TADLOGIN_CLIENTSECRET', 'client secret');
 
-define('_MA_TADLOGIN_NAME', '姓名');
+define('_MA_TADLOGIN_NAME', '真實姓名');
 define('_MA_TADLOGIN_UNAME', '登入帳號');
 define('_MA_TADLOGIN_LAST_LOGIN', '最後登入時間');
 define('_MA_TADLOGIN_HASHED_DATE', '最後更改密碼時間');
@@ -106,3 +106,12 @@ define('_MA_TADLOGIN_LINE_STEP9', '<h1>【步驟 9】設定 Callback URL</h1><p>
 define('_MA_TADLOGIN_LINE_STEP10', '<h1>【步驟 10】啟動認證</h1><p>最後務必按下 [Developing] 並點擊「Publish」以啟動之 </p>');
 
 define('_MA_TADLOGIN_KEYWORD', '關鍵字');
+define('_MA_TADLOGIN_KEYWORD_DESC', '請輸入真實姓名、帳號、Email...等資訊');
+define('_MA_TADLOGIN_REAL_NAME_SEARCH', '真實姓名搜尋');
+define('_MA_TADLOGIN_KEYWORD_REAL_NAME', '請輸入真實姓名');
+define('_MA_TADLOGIN_PICK_TWO_UESER', '請勾選要互換 uid 的帳號（要勾兩個）');
+define('_MA_TADLOGIN_ABOUT_CHANGE_UID', '關於「沿用OpenID帳號」情境說明');
+define('_MA_TADLOGIN_ABOUT_CHANGE_UID_DESC', '<ol><li>因越來越多縣市停用OpenID，改用OIDC登入，導致同一人可能有兩個不同帳號。</li><li>若希望新的OIDC帳號可以延續之前OpenID帳號的所有發文紀錄或設定，可以藉由互換uid編號達成。</li><li>「互換uid編號」就是把原有OpenID帳號的uid，套用到新的OIDC帳號上，達成無痛轉移。</li><li>至於被停用的OpenID帳號之uid就會換成原本OIDC的uid編號，不過因為再OpenID帳號也用不到，所以，不會有什麼影響。</li></ol>');
+define('_MA_TADLOGIN_ABOUT_CHANGE_UID_TODO', '<ol><li>建議先用真實姓名搜尋</li><li>接著勾選兩個帳號送出</li><li>如此會互換這兩個帳號的uid</li><li>底下只會列出用OpenID或OIDC登入帳號</li></ol>');
+
+define('_MA_TADLOGIN_CHANGE_OK', '已成功執行 uid 互換！（%s = %s、%s = %s）');

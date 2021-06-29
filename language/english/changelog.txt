@@ -1,3 +1,8 @@
+Tad Login 5.3 (released on 2021-06-29)
+================================================
+1. Add "Use OpnID" function (uid swap)
+2. Fix the problem that the binding password management cannot be searched.
+
 Tad Login 5.2 (Released on 2021-06-25)
 ================================================
 1.Remove Taichung City OpenID login

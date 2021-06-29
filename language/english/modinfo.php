@@ -11,6 +11,7 @@ define('_MI_TADLOGIN_ADMENU3', 'Google Certificate');
 define('_MI_TADLOGIN_ADMENU4', 'Education cloud authentication settings');
 define('_MI_TADLOGIN_ADMENU5', 'Password management');
 define('_MI_TADLOGIN_ADMENU6', 'Line Authentication Setting Description');
+define('_MI_TADLOGIN_ADMENU7', 'Apply OpenID account');
 
 define('_MI_TADLOGIN_DESC', 'Join FB and other fast login mechanism');
 define('_MI_TADLOGIN_BNAME1', 'Tad Login');

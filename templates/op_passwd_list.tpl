@@ -10,34 +10,36 @@
         <li><{$smarty.const._MA_TADLOGIN_BIND_DESC5|sprintf:$mid}></li>
     </ol>
 </div>
-<form action="ps_tool.php" method="post" id="myForm" enctype="multipart/form-data" class="form-horizontal">
     <div class="row">
         <div class="col-sm-7">
             <{if $count > 0}>
-                <div class="input-group">
-                    <div class="input-group-prepend input-group-addon">
-                        <span class="input-group-text"><{$smarty.const._MA_TADLOGIN_BIND_ALL_ID|sprintf:$count}></span>
+                <form action="ps_tool.php" method="post" id="myForm" enctype="multipart/form-data" class="form-horizontal">
+                    <div class="input-group">
+                        <div class="input-group-prepend input-group-addon">
+                            <span class="input-group-text"><{$smarty.const._MA_TADLOGIN_BIND_ALL_ID|sprintf:$count}></span>
+                        </div>
+                        <input type="text" name="passwd" class="form-control validate[required]" placeholder="<{$smarty.const._MA_TADLOGIN_SET_PASSWORD}>">
+                        <div class="input-group-append input-group-btn">
+                            <button type="submit" class="btn btn-warning" name="op" value="change_all_pass"><{$smarty.const._MA_TADLOGIN_BIND_ID}></button>
+                        </div>
                     </div>
-                    <input type="text" name="passwd" class="form-control validate[required]" placeholder="<{$smarty.const._MA_TADLOGIN_SET_PASSWORD}>">
-                    <div class="input-group-append input-group-btn">
-                        <button type="submit" class="btn btn-warning" name="op" value="change_all_pass"><{$smarty.const._MA_TADLOGIN_BIND_ID}></button>
-                    </div>
-                </div>
+                </form>
             <{/if}>
         </div>
         <div class="col-sm-5">
-            <div class="input-group">
-                <div class="input-group-prepend input-group-addon">
-                    <span class="input-group-text"><{$smarty.const._MA_TADLOGIN_KEYWORD}></span>
+            <form action="ps_tool.php" method="post" id="myForm" enctype="multipart/form-data" class="form-horizontal">
+                <div class="input-group">
+                    <div class="input-group-prepend input-group-addon">
+                        <span class="input-group-text"><{$smarty.const._MA_TADLOGIN_KEYWORD}></span>
+                    </div>
+                    <input type="text" name="keyword" class="form-control" value="<{$keyword}>" placeholder="<{$smarty.const._MA_TADLOGIN_KEYWORD_DESC}>">
+                    <div class="input-group-append input-group-btn">
+                        <button type="submit" class="btn btn-primary"><{$smarty.const._TAD_SEARCH}></button>
+                    </div>
                 </div>
-                <input type="text" name="keyword" class="form-control" value="<{$keyword}>" placeholder="<{$smarty.const._MA_TADLOGIN_KEYWORD}>">
-                <div class="input-group-append input-group-btn">
-                    <button type="submit" class="btn btn-primary"><{$smarty.const._TAD_SEARCH}></button>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
-</form>
 
 <table class="table table-bordered table-hover table-striped table-sm table-condensed">
     <tr>

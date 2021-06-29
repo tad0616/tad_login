@@ -362,10 +362,10 @@ if (!function_exists('login_xoops')) {
                 //若有要轉頁
                 if (!empty($xoopsModuleConfig['redirect_url'])) {
                     $redirect_url = $xoopsModuleConfig['redirect_url'];
+                } elseif ($xoopsModuleConfig['bind_openid'] == 1) {
+                    $redirect_url = XOOPS_URL . '/modules/tad_login/index.php';
                 } elseif ($login_from) {
                     $redirect_url = $login_from;
-                } elseif ($hashed_date == '0000-00-00 00:00:00' and $xoopsModuleConfig['bind_openid'] == 1) {
-                    $redirect_url = XOOPS_URL . '/modules/tad_login/index.php';
                 } else {
                     $redirect_url = XOOPS_URL;
                 }

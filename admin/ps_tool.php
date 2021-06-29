@@ -13,7 +13,7 @@ function passwd_list($keyword = '')
     global $xoopsTpl, $xoopsDB, $xoopsModule;
     $xoopsTpl->assign('mid', $xoopsModule->mid());
 
-    $and_keyword = empty($keyword) ? '' : "and b.`name` like '%$keyword%' or b.`uname` like '%$keyword%'";
+    $and_keyword = empty($keyword) ? '' : "and b.`name` like '%$keyword%' or b.`uname` like '%$keyword%' or b.`email` like '%$keyword%'";
 
     $sql = "SELECT count(*) FROM `" . $xoopsDB->prefix('tad_login_random_pass') . "`  as a
     join `" . $xoopsDB->prefix('users') . "` as b on a.uname=b.uname where a.hashed_date='0000-00-00 00:00:00' $and_keyword group by a.hashed_date";
