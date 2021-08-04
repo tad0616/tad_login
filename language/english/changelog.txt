@@ -1,3 +1,8 @@
+Tad Login 5.4 (released on 2021-08-04)
+================================================
+1. Fix some bugs in OIDC
+2. Comply with the new version 2021/07 AA accessibility standard.
+
 Tad Login 5.3 (released on 2021-06-29)
 ================================================
 1. Add "Use OpnID" function (uid swap)
