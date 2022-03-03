@@ -39,7 +39,7 @@
             <textarea name="item_email" rows=3 class="form-control " placeholder="<{$smarty.const._MA_TADLOGIN_EMAIL_DESC}>"><{$item}></textarea>
         </div>
 
-        <label class="col-sm-1 text-right">
+        <label class="col-sm-1 text-right text-end">
             <{$smarty.const._MA_TADLOGIN_JOB}>
         </label>
         <div class="col-sm-2">
@@ -51,7 +51,7 @@
         </div>
 
         <!--群組-->
-        <label class="col-sm-1 text-right">
+        <label class="col-sm-1 text-right text-end">
             <{$smarty.const._MA_TADLOGIN_GROUP_ID}>
         </label>
         <div class="col-sm-3">

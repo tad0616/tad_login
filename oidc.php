@@ -6,6 +6,7 @@ $all_oidc = [
         'eduinfoep' => 'https://oidc.tanet.edu.tw/moeresource/api/v1/oidc/eduinfo',
         'scope' => ['openid', 'email', 'profile', 'openid2'],
         'gzipenable' => true,
+        'from' => '',
     ],
     'moe_oidc' => [
         'tail' => 'moe',
@@ -13,6 +14,7 @@ $all_oidc = [
         'eduinfoep' => 'https://moe.sso.edu.tw/cncresource/api/v1/eduinfo',
         'scope' => ['educloudroles', 'openid', 'profile', 'eduinfo', 'openid2', 'email'],
         'gzipenable' => false,
+        'from' => '',
     ],
     'kl_oidc' => [
         'tail' => 'kl',
@@ -20,6 +22,7 @@ $all_oidc = [
         'eduinfoep' => 'https://kl.sso.edu.tw/cncresource/api/v1/eduinfo',
         'scope' => ['educloudroles', 'openid', 'profile', 'eduinfo', 'openid2', 'email'],
         'gzipenable' => false,
+        'from' => '基隆市',
     ],
     'tp_oidc' => [
         'tail' => 'tp',
@@ -27,6 +30,7 @@ $all_oidc = [
         'eduinfoep' => 'https://tp.sso.edu.tw/cncresource/api/v1/eduinfo',
         'scope' => ['educloudroles', 'openid', 'profile', 'eduinfo', 'openid2', 'email'],
         'gzipenable' => false,
+        'from' => '臺北市',
     ],
     'ntpc_oidc' => [
         'tail' => 'ntpc',
@@ -34,6 +38,7 @@ $all_oidc = [
         'eduinfoep' => 'https://ntpc.sso.edu.tw/cncresource/api/v1/eduinfo',
         'scope' => ['educloudroles', 'openid', 'profile', 'eduinfo', 'openid2', 'email'],
         'gzipenable' => false,
+        'from' => '新北市',
     ],
     'ty_oidc' => [
         'tail' => 'ty',
@@ -41,6 +46,7 @@ $all_oidc = [
         'eduinfoep' => 'https://tyc.sso.edu.tw/cncresource/api/v1/eduinfo',
         'scope' => ['openid', 'openid2', 'email', 'profile', 'eduinfo'],
         'gzipenable' => false,
+        'from' => '桃園市',
     ],
     'hc_oidc' => [
         'tail' => 'hc',
@@ -48,6 +54,7 @@ $all_oidc = [
         'eduinfoep' => 'https://hc.sso.edu.tw/cncresource/api/v1/eduinfo',
         'scope' => ['educloudroles', 'openid', 'profile', 'eduinfo', 'openid2', 'email'],
         'gzipenable' => false,
+        'from' => '新竹市',
     ],
     'hcc_oidc' => [
         'tail' => 'hcc',
@@ -55,6 +62,7 @@ $all_oidc = [
         'eduinfoep' => 'https://hcc.sso.edu.tw/cncresource/api/v1/eduinfo',
         'scope' => ['educloudroles', 'openid', 'profile', 'eduinfo', 'openid2', 'email'],
         'gzipenable' => false,
+        'from' => '新竹縣',
     ],
     'mlc_oidc' => [
         'tail' => 'mlc',
@@ -62,6 +70,7 @@ $all_oidc = [
         'eduinfoep' => 'https://mlc.sso.edu.tw/cncresource/api/v1/eduinfo',
         'scope' => ['educloudroles', 'openid', 'profile', 'eduinfo', 'openid2', 'email'],
         'gzipenable' => false,
+        'from' => '苗栗縣',
     ],
     'tc_oidc' => [
         'tail' => 'tc',
@@ -69,6 +78,7 @@ $all_oidc = [
         'eduinfoep' => 'https://tc.sso.edu.tw/cncresource/api/v1/eduinfo',
         'scope' => ['educloudroles', 'openid', 'profile', 'eduinfo', 'openid2', 'email'],
         'gzipenable' => false,
+        'from' => '臺中市',
     ],
     'chc_oidc' => [
         'tail' => 'chc',
@@ -76,6 +86,7 @@ $all_oidc = [
         'eduinfoep' => 'https://chc.sso.edu.tw/cncresource/api/v1/eduinfo',
         'scope' => ['educloudroles', 'openid', 'profile', 'eduinfo', 'openid2', 'email'],
         'gzipenable' => false,
+        'from' => '彰化縣',
     ],
     'ntct_oidc' => [
         'tail' => 'ntct',
@@ -83,6 +94,7 @@ $all_oidc = [
         'eduinfoep' => 'https://ntct.sso.edu.tw/cncresource/api/v1/eduinfo',
         'scope' => ['educloudroles', 'openid', 'profile', 'eduinfo', 'openid2', 'email'],
         'gzipenable' => false,
+        'from' => '南投縣',
     ],
     'ylc_oidc' => [
         'tail' => 'ylc',
@@ -90,6 +102,7 @@ $all_oidc = [
         'eduinfoep' => 'https://ylc.sso.edu.tw/cncresource/api/v1/eduinfo',
         'scope' => ['educloudroles', 'openid', 'profile', 'eduinfo', 'openid2', 'email'],
         'gzipenable' => false,
+        'from' => '雲林縣',
     ],
     'cyc_oidc' => [
         'tail' => 'cyc',
@@ -97,6 +110,7 @@ $all_oidc = [
         'eduinfoep' => 'https://cyc.sso.edu.tw/cncresource/api/v1/eduinfo',
         'scope' => ['educloudroles', 'openid', 'profile', 'eduinfo', 'openid2', 'email'],
         'gzipenable' => false,
+        'from' => '嘉義縣',
     ],
     // 'cy_oidc' => [
     //     'tail' => 'cy',
@@ -104,6 +118,7 @@ $all_oidc = [
     //     'eduinfoep' => 'https://cy.sso.edu.tw/cncresource/api/v1/eduinfo',
     //     'scope' => ['educloudroles', 'openid', 'profile', 'eduinfo', 'openid2', 'email'],
     //     'gzipenable' => false,
+    //     'from'=>'嘉義市',
     // ],
     'kh_oidc' => [
         'tail' => 'kh',
@@ -111,6 +126,7 @@ $all_oidc = [
         'eduinfoep' => 'https://kh.sso.edu.tw/cncresource/api/v1/eduinfo',
         'scope' => ['educloudroles', 'openid', 'profile', 'eduinfo', 'openid2', 'email'],
         'gzipenable' => false,
+        'from' => '高雄市',
     ],
     'ptc_oidc' => [
         'tail' => 'ptc',
@@ -118,6 +134,7 @@ $all_oidc = [
         'eduinfoep' => 'https://ptc.sso.edu.tw/cncresource/api/v1/eduinfo',
         'scope' => ['educloudroles', 'openid', 'profile', 'eduinfo', 'openid2', 'email'],
         'gzipenable' => false,
+        'from' => '屏東縣',
     ],
     'ilc_oidc' => [
         'tail' => 'ilc',
@@ -125,6 +142,7 @@ $all_oidc = [
         'eduinfoep' => 'https://ilc.sso.edu.tw/cncresource/api/v1/eduinfo',
         'scope' => ['educloudroles', 'openid', 'profile', 'eduinfo', 'openid2', 'email'],
         'gzipenable' => false,
+        'from' => '宜蘭縣',
     ],
     'hlc_oidc' => [
         'tail' => 'hlc',
@@ -132,6 +150,7 @@ $all_oidc = [
         'eduinfoep' => 'https://hlc.sso.edu.tw/cncresource/api/v1/eduinfo',
         'scope' => ['educloudroles', 'openid', 'profile', 'eduinfo', 'openid2', 'email'],
         'gzipenable' => false,
+        'from' => '花蓮縣',
     ],
     'ttct_oidc' => [
         'tail' => 'ttct',
@@ -139,6 +158,7 @@ $all_oidc = [
         'eduinfoep' => 'https://ttct.sso.edu.tw/cncresource/api/v1/eduinfo',
         'scope' => ['educloudroles', 'openid', 'profile', 'eduinfo', 'openid2', 'email'],
         'gzipenable' => false,
+        'from' => '臺東縣',
     ],
     'phc_oidc' => [
         'tail' => 'phc',
@@ -146,6 +166,7 @@ $all_oidc = [
         'eduinfoep' => 'https://phc.sso.edu.tw/cncresource/api/v1/eduinfo',
         'scope' => ['educloudroles', 'openid', 'profile', 'eduinfo', 'openid2', 'email'],
         'gzipenable' => false,
+        'from' => '澎湖縣',
     ],
     'mt_oidc' => [
         'tail' => 'mt',
@@ -153,6 +174,7 @@ $all_oidc = [
         'eduinfoep' => 'https://matsu.sso.edu.tw/cncresource/api/v1/eduinfo',
         'scope' => ['educloudroles', 'openid', 'profile', 'eduinfo', 'openid2', 'email'],
         'gzipenable' => false,
+        'from' => '連江縣',
     ],
 ];
 $oidc_array = array_keys($all_oidc);

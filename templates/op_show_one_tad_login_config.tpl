@@ -4,7 +4,7 @@
 
 <div class="row">
     <!--群組-->
-    <div class="col-sm-3 text-right">
+    <div class="col-sm-3 text-right text-end">
     <{$smarty.const._MA_TADLOGIN_GROUP_ID}>
     </div>
     <div class="col-sm-9">
@@ -16,7 +16,7 @@
 <div class="row">
 
 <!--學校代碼或Email-->
-    <div class="col-sm-3 text-right">
+    <div class="col-sm-3 text-right text-end">
     <{$smarty.const._MA_TADLOGIN_ITEM}>
     </div>
     <div class="well span9">

@@ -1,3 +1,13 @@
+Tad Login 5.6 (Released on 2022-03-03)
+================================================
+1. Add the county and city of the OIDC or OpenID logger, recorded in user_from
+2. Add eduinfo information of OIDC loggers recorded in bio
+
+
+Tad Login 5.5 (released on 2021-12-06)
+================================================
+1. Support BootStrap5
+
 Tad Login 5.4 (released on 2021-08-04)
 ================================================
 1. Fix some bugs in OIDC

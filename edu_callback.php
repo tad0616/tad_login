@@ -37,9 +37,9 @@ if ($userinfo['email']) {
     $eduinfo_json = json_encode($eduinfo, 256);
     $JobName = false !== mb_strpos($eduinfo_json, '教師') ? 'teacher' : 'student';
     // $JobName      = "teacher";
-    $bio = '';
+    $bio = $eduinfo_json;
     $url = '';
-    $from = '';
+    $from = $oidc_arr['from'];
     $sig = '';
     $occ = '';
 
@@ -53,7 +53,7 @@ if ($userinfo['email']) {
     $eduinfo_json = json_encode($eduinfo, 256);
     $JobName = strpos($eduinfo_json, '教師') !== false ? "teacher" : "student";
     // $JobName = 'teacher';
-    $bio = '';
+    $bio = $eduinfo_json;
     $url = '';
     $from = '';
     $sig = '';

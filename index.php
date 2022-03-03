@@ -92,7 +92,8 @@ function tn_login()
                 }
                 // Utility::dd($aim);
                 //搜尋有無相同username資料
-                login_xoops($uname, $name, $email, $SchoolCode, $JobName, $url, $from, $sig, $occ, $bio, $aim, $yim, $msnm);
+                // login_xoops($uname, $name, $email, $SchoolCode, $JobName, $url, $from, $sig, $occ, $bio, $aim, $yim, $msnm);
+                login_xoops($uname, $name, $email, $SchoolCode, $JobName, $url, '臺南市', $sig, $occ, $bio, $aim, $yim, $msnm);
             }
         }
     } catch (ErrorException $e) {
@@ -144,7 +145,7 @@ function tp_login()
                 $JobName = '學生' === $user_profile['.tw/axschema/JobName'] ? 'student' : 'teacher';
 
                 //搜尋有無相同username資料
-                login_xoops($uname, $name, $email, $SchoolCode, $JobName);
+                login_xoops($uname, $name, $email, $SchoolCode, $JobName, '', '臺北市');
             }
         }
     } catch (ErrorException $e) {
@@ -202,7 +203,7 @@ function kl_login()
                 $JobName = (false !== mb_strpos($user_profile['axschema/school/titleStr'], '學生')) ? 'student' : 'teacher';
 
                 //搜尋有無相同username資料
-                login_xoops($uname, $name, $email, $SchoolCode, $JobName);
+                login_xoops($uname, $name, $email, $SchoolCode, $JobName, '', '基隆市');
             }
         }
     } catch (ErrorException $e) {
@@ -260,7 +261,7 @@ function ilc_login()
                 $JobName = (false !== mb_strpos($user_profile['axschema/school/titleStr'], '學生')) ? 'student' : 'teacher';
 
                 //搜尋有無相同username資料
-                login_xoops($uname, $name, $email, $SchoolCode, $JobName);
+                login_xoops($uname, $name, $email, $SchoolCode, $JobName, '', '宜蘭縣');
             }
         }
     } catch (ErrorException $e) {
@@ -321,7 +322,7 @@ function hc_login()
                 $JobName = (false !== mb_strpos($user_profile['pref/timezone'], '學生')) ? 'student' : 'teacher';
 
                 //搜尋有無相同username資料
-                login_xoops($uname, $name, $email, $SchoolCode, $JobName);
+                login_xoops($uname, $name, $email, $SchoolCode, $JobName, '', '新竹市');
             }
         }
     } catch (ErrorException $e) {
@@ -332,9 +333,9 @@ function hc_login()
 }
 
 //花蓮縣登入
-function hlc_login($conty = '', $openid_identity = '')
+function hlc_login($county = '', $openid_identity = '')
 {
-    global $xoopsModuleConfig, $xoopsConfig, $xoopsDB, $xoopsTpl, $xoopsUser;
+    global $xoopsTpl, $xoopsUser;
 
     if ($xoopsUser) {
         header('location:' . XOOPS_URL . '/user.php');
@@ -407,10 +408,10 @@ function hlc_login($conty = '', $openid_identity = '')
                 $the_id = explode('@', $user_profile['contact/email']);
 
                 //$uid = $user['id'];
-                $uname = $the_id[0] . '_' . $conty;
+                $uname = $the_id[0] . '_' . $county;
                 $name = $myts->addSlashes($user_profile['namePerson']);
                 $email = mb_strtolower($user_profile['contact/email']);
-                if ('ntpc' === $conty) {
+                if ('ntpc' === $county) {
                     $arr = json_decode($user_profile['pref/timezone'], true);
                     //die(var_export($arr));
                     /*
@@ -432,7 +433,7 @@ function hlc_login($conty = '', $openid_identity = '')
 
                     $JobName = (false !== mb_strpos($arr[0]['role'], '學生')) ? 'student' : 'teacher';
 
-                    // } elseif ($conty == "ty") {
+                    // } elseif ($county == "ty") {
                     //     $SchoolCode = $myts->addSlashes($user_profile['contact/country/home']);
                     //     $arr        = json_decode($user_profile['pref/timezone'], true);
                     //die(var_export($arr));
@@ -455,8 +456,15 @@ function hlc_login($conty = '', $openid_identity = '')
 
                     $JobName = (false !== mb_strpos($user_profile['pref/timezone'], '學生')) ? 'student' : 'teacher';
                 }
+
+                if ($county == 'ttct') {
+                    $from = '臺東縣';
+                } elseif ($county == 'ntpc') {
+                    $from = '屏東縣';
+                }
+
                 //搜尋有無相同username資料
-                login_xoops($uname, $name, $email, $SchoolCode, $JobName);
+                login_xoops($uname, $name, $email, $SchoolCode, $JobName, '', $from);
             }
         }
     } catch (ErrorException $e) {
@@ -507,7 +515,7 @@ function ty_login()
                 $JobName = (false !== mb_strpos($arr[0]['title'], '學生')) ? 'student' : 'teacher';
 
                 //搜尋有無相同username資料
-                login_xoops($uname, $name, $email, $SchoolCode, $JobName);
+                login_xoops($uname, $name, $email, $SchoolCode, $JobName, '', '桃園市');
             }
         }
     } catch (ErrorException $e) {
@@ -561,9 +569,9 @@ function yahoo_login()
 }
 
 //台中版 OpenID 登入
-function tc_login($conty = '', $openid_identity = '')
+function tc_login($county = '', $openid_identity = '')
 {
-    global $xoopsModuleConfig, $xoopsConfig, $xoopsDB, $xoopsTpl, $xoopsUser;
+    global $xoopsTpl, $xoopsUser;
 
     if ($xoopsUser) {
         header('location:' . XOOPS_URL . '/user.php');
@@ -635,12 +643,12 @@ function tc_login($conty = '', $openid_identity = '')
                 $SchoolCode = $myts->addSlashes($user_profile['axschema/school/id']);
 
                 if ('NA' === mb_strtoupper($user_profile['contact/email']) or empty($user_profile['contact/email'])) {
-                    $uname = mb_substr($user_profile['axschema/person/guid'], 0, 6) . "_{$conty}";
-                    $email = "{$uname}@{$SchoolCode}.{$conty}.edu.tw";
+                    $uname = mb_substr($user_profile['axschema/person/guid'], 0, 6) . "_{$county}";
+                    $email = "{$uname}@{$SchoolCode}.{$county}.edu.tw";
                 } else {
                     $user_profile['contact/email'] = trim($user_profile['contact/email']);
                     $the_id = explode('@', $user_profile['contact/email']);
-                    $uname = trim($the_id[0]) . '_' . $conty;
+                    $uname = trim($the_id[0]) . '_' . $county;
                     $email = $user_profile['contact/email'];
                 }
                 //$uid = $user['id'];
@@ -648,8 +656,32 @@ function tc_login($conty = '', $openid_identity = '')
 
                 $JobName = (false !== mb_strpos($user_profile['axschema/school/titleStr'], '學生')) ? 'student' : 'teacher';
 
+                if ($county == 'cyc') {
+                    $from = '嘉義縣';
+                } elseif ($county == 'ylc') {
+                    $from = '雲林縣';
+                } elseif ($county == 'mlc') {
+                    $from = '苗栗縣';
+                } elseif ($county == 'cy') {
+                    $from = '嘉義縣';
+                } elseif ($county == 'hlc') {
+                    $from = '花蓮縣';
+                } elseif ($county == 'ptc') {
+                    $from = '屏東縣';
+                } elseif ($county == 'phc') {
+                    $from = '澎湖縣';
+                } elseif ($county == 'hcc') {
+                    $from = '新竹縣';
+                } elseif ($county == 'chc') {
+                    $from = '彰化縣';
+                } elseif ($county == 'ntct') {
+                    $from = '南投縣';
+                } elseif ($county == 'tc') {
+                    $from = '臺中市';
+                }
+
                 //搜尋有無相同username資料
-                login_xoops($uname, $name, $email, $SchoolCode, $JobName);
+                login_xoops($uname, $name, $email, $SchoolCode, $JobName, '', $from);
             }
         }
     } catch (ErrorException $e) {
@@ -766,7 +798,8 @@ function kh_login()
                 $newclassStr = ['classTitle' => $user_data['classTitle'], 'gradeId' => $user_data['gradeId'], 'classId' => $user_data['classId'], 'subject' => $user_data['subject']];
                 $classStr = is_array($user_data) ? '[' . json_encode($newclassStr) . ']' : '[]';
                 // die($classStr);
-                login_xoops($uname, $name, $email, $SchoolCode, $JobName, null, $classStr);
+                // login_xoops($uname, $name, $email, $SchoolCode, $JobName, null, $classStr);
+                login_xoops($uname, $name, $email, $SchoolCode, $JobName, null, '高雄市');
             }
         }
     } catch (ErrorException $e) {
@@ -847,7 +880,7 @@ function km_login()
                 $JobName = (false !== mb_strrpos($user_profile['axschema/school/titleStr'], '學生')) ? 'student' : 'teacher';
 
                 //搜尋有無相同username資料
-                login_xoops($uname, $name, $email, $SchoolCode, $JobName);
+                login_xoops($uname, $name, $email, $SchoolCode, $JobName, '', '金門縣');
             }
         }
     } catch (ErrorException $e) {
@@ -905,7 +938,7 @@ function mt_login()
                 $JobName = 'Stu' === $user_profile['namePerson/friendly'] ? 'student' : 'teacher';
 
                 //搜尋有無相同username資料
-                login_xoops($uname, $name, $email, $SchoolCode, $JobName);
+                login_xoops($uname, $name, $email, $SchoolCode, $JobName, '', '連江縣');
             }
         }
     } catch (ErrorException $e) {

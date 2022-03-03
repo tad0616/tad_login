@@ -69,7 +69,7 @@ if ($user['email']) {
     // $JobName = "teacher";
     $bio = '';
     $url = '';
-    $from = '';
+    $from = '臺北市';
     $sig = '';
     $occ = $profile['organization'];
 
