@@ -7,7 +7,7 @@ $modversion = [];
 
 //---模組基本資訊---//
 $modversion['name'] = _MI_TADLOGIN_NAME;
-$modversion['version'] = 5.6;
+$modversion['version'] = 5.7;
 $modversion['description'] = _MI_TADLOGIN_DESC;
 $modversion['author'] = _MI_TADLOGIN_AUTHOR;
 $modversion['credits'] = _MI_TADLOGIN_CREDITS;
@@ -18,7 +18,7 @@ $modversion['image'] = "images/logo_{$xoopsConfig['language']}.png";
 $modversion['dirname'] = basename(__DIR__);
 
 //---模組狀態資訊---//
-$modversion['release_date'] = '2022/03/03';
+$modversion['release_date'] = '2022/08/07';
 $modversion['module_website_url'] = 'https://tad0616.net/';
 $modversion['module_website_name'] = _MI_TAD_WEB;
 $modversion['module_status'] = 'release';
@@ -146,7 +146,7 @@ $modversion['config'][$i]['options'] = [
     sprintf(_TADLOGIN_LOGIN, _HC . 'OpenID') => 'hc',
     sprintf(_TADLOGIN_LOGIN, _MLC . 'OpenID') => 'mlc',
     sprintf(_TADLOGIN_LOGIN, _YLC . 'OpenID') => 'ylc',
-    sprintf(_TADLOGIN_LOGIN, _CYC . 'OpenID') => 'cyc',
+    // sprintf(_TADLOGIN_LOGIN, _CYC . 'OpenID') => 'cyc',
     sprintf(_TADLOGIN_LOGIN, _CY . 'OpenID') => 'cy',
     sprintf(_TADLOGIN_LOGIN, _TN . 'OpenID') => 'tn',
     sprintf(_TADLOGIN_LOGIN, _KH . 'OpenID') => 'kh',

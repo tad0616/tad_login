@@ -952,9 +952,7 @@ function list_login()
 {
     global $xoopsTpl, $xoopsModuleConfig, $all_oidc, $oidc_array, $oidc_array2, $all_oidc2;
 
-    if ('cyc' === $_SESSION['auth_method']) {
-        tc_login('cyc', 'https://openid.cyccc.tw');
-    } elseif ('ylc' === $_SESSION['auth_method']) {
+    if ('ylc' === $_SESSION['auth_method']) {
         tc_login('ylc', 'http://openid.ylc.edu.tw/');
     } elseif ('mlc' === $_SESSION['auth_method']) {
         tc_login('mlc', 'https://openid2.mlc.edu.tw');
@@ -972,6 +970,8 @@ function list_login()
         hlc_login('ntpc', 'https://openid.ntpc.edu.tw');
     } elseif ('tp_ldap' === $_SESSION['auth_method']) {
         tp_ldap_login();
+        // } elseif ('cyc' === $_SESSION['auth_method']) {
+        //     tc_login('cyc', 'https://openid.cyccc.tw');
         // } elseif ('hcc' === $_SESSION['auth_method']) {
         //     tc_login('hcc', 'https://openid.hcc.edu.tw');
         // } elseif ('chc' === $_SESSION['auth_method']) {
@@ -1076,10 +1076,6 @@ switch ($op) {
         $_SESSION['auth_method'] = 'tn';
         tn_login();
         break;
-    case 'cyc':
-        $_SESSION['auth_method'] = 'cyc';
-        tc_login('cyc', 'https://openid.cyccc.tw');
-        break;
     case 'ylc':
         $_SESSION['auth_method'] = 'ylc';
         tc_login('ylc', 'http://openid.ylc.edu.tw/');
@@ -1144,6 +1140,10 @@ switch ($op) {
         $_SESSION['auth_method'] = 'tp_ldap';
         tp_ldap_login();
         break;
+    // case 'cyc':
+    //     $_SESSION['auth_method'] = 'cyc';
+    //     tc_login('cyc', 'https://openid.cyccc.tw');
+    //     break;
     // case 'hcc':
     //     $_SESSION['auth_method'] = 'hcc';
     //     tc_login('hcc', 'https://openid.hcc.edu.tw');
