@@ -80,4 +80,5 @@ function login($uname = '', $pass = '')
         }
     } else {
         return $msg['error'] = _MD_TNOPENID_NO_USER;
+    }
 }
