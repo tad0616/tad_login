@@ -122,11 +122,11 @@ $all_oidc = [
     // ],
     'kh_oidc' => [
         'tail' => 'kh',
-        'provideruri' => 'https://oidc.kh.edu.tw',
-        'ignore_userinfo' => true,
-        'providerparams' => ['token_endpoint_auth_methods_supported'=>["client_secret_post"]],
+        'gzipenable' => false,
         'scope' => ['openid', 'profile', 'email', 'kh_profile'],
-        'gzipenable' => true,
+        'providerparams' => ['token_endpoint_auth_methods_supported'=>["client_secret_post"]],
+        'ignore_userinfo' => true,
+        'provideruri' => 'https://oidc.kh.edu.tw',
         'from' => '高雄市',
     ],
     'ptc_oidc' => [
