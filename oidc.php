@@ -122,10 +122,11 @@ $all_oidc = [
     // ],
     'kh_oidc' => [
         'tail' => 'kh',
-        'provideruri' => 'https://kh.sso.edu.tw',
-        'eduinfoep' => 'https://kh.sso.edu.tw/cncresource/api/v1/eduinfo',
-        'scope' => ['educloudroles', 'openid', 'profile', 'eduinfo', 'openid2', 'email'],
         'gzipenable' => false,
+        'scope' => ['openid', 'profile', 'email', 'kh_profile'],
+        'providerparams' => ['token_endpoint_auth_methods_supported'=>["client_secret_post"]],
+        'ignore_userinfo' => true,
+        'provideruri' => 'https://oidc.kh.edu.tw',
         'from' => '高雄市',
     ],
     'ptc_oidc' => [

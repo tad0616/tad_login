@@ -21,4 +21,7 @@ $oidc->setResponseTypes($responsetype);
 $oidc->setRedirectURL(XOOPS_URL . '/modules/tad_login/edu_callback.php');
 $oidc->setAllowImplicitFlow(true);
 $oidc->addScope($oidc_arr['scope']);
+if(isset($oidc_arr['providerparams']) && is_array($oidc_arr['providerparams'])){
+    $oidc->providerConfigParam($oidc_arr['providerparams']);
+}
 $oidc->authenticate();
