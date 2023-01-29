@@ -14,8 +14,6 @@ if (!isset($oidc_arr['ignore_userinfo']) || $oidc_arr['ignore_userinfo'] !== tru
     $userinfo = $oidc->requestUserInfo();
     $userinfo = json_decode(json_encode($userinfo), true);
 }
-// echo "<p>userinfo</p>";
-// var_dump($userinfo);
 
 //accesstoken
 $accesstoken = $oidc->getAccessToken();
@@ -26,15 +24,6 @@ $eduinfo = [];
 if (isset($oidc_arr['eduinfoep']) && !empty($oidc_arr['eduinfoep']) && in_array('eduinfo', $oidc_arr['scope'])) {
     $eduinfo = requestProtectedApi($oidc_arr['eduinfoep'], $accesstoken, true, $oidc_arr['gzipenable']);
 }
-
-// echo "<p>claims</p>";
-// var_export($claims);
-// echo "<p>userinfo</p>";
-// var_export($userinfo);
-// echo "<p>eduinfo</p>";
-// var_export($eduinfo);
-
-// exit;
 
 //sanitizer object
 $myts = \MyTextSanitizer::getInstance();
@@ -58,6 +47,10 @@ if ($auth_method === "kh_oidc") { //高雄市例外處理
     $SchoolCode = $myts->addSlashes($claims['kh_profile']['schoolid']); //教育部6位學校代碼
     $JobName = (isset($claims['gender'])) ? 'student' : 'teacher';
     $from = $oidc_arr['from'];
+    // $bio_arr['eduinfo'] = $eduinfo;
+    // $bio_arr['claims'] = $claims;
+    // $bio_arr['userinfo'] = $userinfo;
+    $bio = json_encode($claims, 256);
 } else if ($userinfo['email']) {
     $uname = $userinfo['sub'] . '_' . $oidc_arr['tail'];
     $name = $myts->addSlashes($userinfo['name']);

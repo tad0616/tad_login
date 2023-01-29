@@ -799,7 +799,8 @@ function kh_login()
                 $classStr = is_array($user_data) ? '[' . json_encode($newclassStr) . ']' : '[]';
                 // die($classStr);
                 // login_xoops($uname, $name, $email, $SchoolCode, $JobName, null, $classStr);
-                login_xoops($uname, $name, $email, $SchoolCode, $JobName, null, '高雄市');
+                $bio = $user_profile['openid_ext1_value_titles'];
+                login_xoops($uname, $name, $email, $SchoolCode, $JobName, null, '高雄市', null, null, $bio);
             }
         }
     } catch (ErrorException $e) {
@@ -1051,6 +1052,12 @@ $op = Request::getString('op');
 $link_to = Request::getString('link_to');
 $newpass = Request::getString('newpass');
 
+if (isset($link_to) and !empty($link_to)) {
+    $_SESSION['login_from'] = $link_to;
+} elseif (!isset($_SESSION['login_from'])) {
+    $_SESSION['login_from'] = \Xmf\Request::getString('HTTP_REFERER', '', 'SERVER');
+}
+
 switch ($op) {
     case 'change_pass':
         change_pass($newpass);
@@ -1182,9 +1189,4 @@ switch ($op) {
 
 $xoopsTpl->assign('toolbar', Utility::toolbar_bootstrap($interface_menu));
 $xoopsTpl->assign('now_op', $op);
-if (isset($link_to) and !empty($link_to)) {
-    $_SESSION['login_from'] = $link_to;
-} elseif (!isset($_SESSION['login_from'])) {
-    $_SESSION['login_from'] = \Xmf\Request::getString('HTTP_REFERER', '', 'SERVER');
-}
 require_once XOOPS_ROOT_PATH . '/footer.php';

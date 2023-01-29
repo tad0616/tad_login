@@ -123,8 +123,8 @@ $all_oidc = [
     'kh_oidc' => [
         'tail' => 'kh',
         'gzipenable' => false,
-        'scope' => ['openid', 'profile', 'email', 'kh_profile'],
-        'providerparams' => ['token_endpoint_auth_methods_supported'=>["client_secret_post"]],
+        'scope' => ['openid', 'profile', 'email', 'kh_profile', 'kh_titles'],
+        'providerparams' => ['token_endpoint_auth_methods_supported' => ["client_secret_post"]],
         'ignore_userinfo' => true,
         'provideruri' => 'https://oidc.kh.edu.tw',
         'from' => '高雄市',

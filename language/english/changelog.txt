@@ -1,3 +1,7 @@
+Tad Login 5.8 (released on 2023-01-29)
+================================================
+1.Correction of Kaohsiung City OIDC Login
+
 Tad Login 5.7 (released on 2022-08-07)
 ================================================
 1.Remove Chiayi County OpenID Login
