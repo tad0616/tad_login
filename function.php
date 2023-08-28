@@ -338,8 +338,6 @@ if (!function_exists('login_xoops')) {
                 if (!$memberHandler->insertUser($user, true)) {
                 }
 
-                $login_from = $_SESSION['login_from'];
-
                 // Regenrate a new session id and destroy old session
                 $GLOBALS['sess_handler']->regenerate_id(true);
                 $_SESSION = [];
@@ -360,14 +358,19 @@ if (!function_exists('login_xoops')) {
                 list($hashed_date) = $xoopsDB->fetchRow($result);
 
                 //若有要轉頁
-                if (!empty($xoopsModuleConfig['redirect_url'])) {
+                if ($_SESSION['login_from']) {
+                    $redirect_url = $_SESSION['login_from'];
+                    unset($_SESSION['login_from']);
+                } elseif ($_COOKIE['login_from']) {
+                    $redirect_url = $_COOKIE['login_from'];
+                    unset($_COOKIE['login_from']);
+                    setcookie('login_from', "", time() - 3600, "/");
+                } elseif (!empty($xoopsModuleConfig['redirect_url'])) {
                     $redirect_url = $xoopsModuleConfig['redirect_url'];
                 } elseif ($xoopsModuleConfig['bind_openid'] == 1) {
                     $redirect_url = XOOPS_URL . '/modules/tad_login/index.php';
-                } elseif ($login_from) {
-                    $redirect_url = $login_from;
                 } else {
-                    $redirect_url = XOOPS_URL;
+                    $redirect_url = XOOPS_URL . '/index.php';
                 }
 
                 // RMV-NOTIFY

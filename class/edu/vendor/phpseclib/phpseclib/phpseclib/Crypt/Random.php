@@ -51,7 +51,7 @@ class Random
      * @param int $length
      * @return string
      */
-    static function string($length)
+    public static function string($length)
     {
         if (version_compare(PHP_VERSION, '7.0.0', '>=')) {
             try {
@@ -236,7 +236,7 @@ class Random
             $i = $crypto->encrypt(microtime()); // strlen(microtime()) == 21
             $r = $crypto->encrypt($i ^ $v); // strlen($v) == 20
             $v = $crypto->encrypt($r ^ $i); // strlen($r) == 20
-            $result.= $r;
+            $result .= $r;
         }
         return substr($result, 0, $length);
     }

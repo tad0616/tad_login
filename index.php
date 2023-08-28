@@ -12,7 +12,7 @@ require_once XOOPS_ROOT_PATH . '/header.php';
 //台南 OpenID 登入
 function tn_login()
 {
-    global $xoopsModuleConfig, $xoopsConfig, $xoopsDB, $xoopsTpl, $xoopsUser;
+    global $xoopsTpl, $xoopsUser;
 
     if ($xoopsUser) {
         header('location:' . XOOPS_URL . '/user.php');
@@ -73,27 +73,31 @@ function tn_login()
                 $SchoolCode = $myts->addSlashes($user_profile['tw/school/id']);
                 $JobName = false !== mb_strpos($user_profile['contact/email'], '@cloud.tn.edu.tw') ? 'student' : 'teacher';
 
-                if ($user_profile['du.tw/school/classStr']) {
-                    $classStr = mb_substr($user_profile['du.tw/school/classStr'], 2, -2);
-                    $classStr = str_replace('\\', '', $classStr);
-                    $classStrArr = explode(',', $classStr);
-                    $StuArr = [];
-                    foreach ($classStrArr as $Arr) {
-                        list($k, $v) = explode(':', $Arr);
-                        $StuArr[$k] = str_replace('\'', '', $v);
+                if ($JobName == 'student') {
+                    if ($user_profile['du.tw/school/classStr']) {
+                        $classStr = mb_substr($user_profile['du.tw/school/classStr'], 2, -2);
+                        $classStr = str_replace('\\', '', $classStr);
+                        $classStrArr = explode(',', $classStr);
+                        $StuArr = [];
+                        foreach ($classStrArr as $Arr) {
+                            list($k, $v) = explode(':', $Arr);
+                            $StuArr[$k] = str_replace('\'', '', $v);
+                        }
+                        $from = $myts->addSlashes($StuArr['gradeId']);
+                        $sig = $myts->addSlashes($StuArr['classId']);
+                        $msnm = '';
+                    } else {
+                        $from = $myts->addSlashes($user_profile['.tw/axschema/grade']);
+                        $sig = $user_profile['.tw/axschema/class'];
+                        $msnm = $myts->addSlashes($user_profile['.tw/axschema/seat']);
                     }
-                    $from = $myts->addSlashes($StuArr['gradeId']);
-                    $sig = $myts->addSlashes($StuArr['classId']);
-                    $msnm = '';
                 } else {
-                    $from = $myts->addSlashes($user_profile['.tw/axschema/grade']);
-                    $sig = $user_profile['.tw/axschema/class'];
-                    $msnm = $myts->addSlashes($user_profile['.tw/axschema/seat']);
+                    $from = '臺南市';
                 }
                 // Utility::dd($aim);
                 //搜尋有無相同username資料
                 // login_xoops($uname, $name, $email, $SchoolCode, $JobName, $url, $from, $sig, $occ, $bio, $aim, $yim, $msnm);
-                login_xoops($uname, $name, $email, $SchoolCode, $JobName, $url, '臺南市', $sig, $occ, $bio, $aim, $yim, $msnm);
+                login_xoops($uname, $name, $email, $SchoolCode, $JobName, $url, $from, $sig, $occ, $bio, $aim, $yim, $msnm);
             }
         }
     } catch (ErrorException $e) {
@@ -1055,7 +1059,7 @@ $newpass = Request::getString('newpass');
 if (isset($link_to) and !empty($link_to)) {
     $_SESSION['login_from'] = $link_to;
 } elseif (!isset($_SESSION['login_from'])) {
-    $_SESSION['login_from'] = \Xmf\Request::getString('HTTP_REFERER', '', 'SERVER');
+    $_SESSION['login_from'] = $_SERVER["HTTP_REFERER"];
 }
 
 switch ($op) {
@@ -1107,10 +1111,10 @@ switch ($op) {
         $_SESSION['auth_method'] = 'hlc';
         tc_login('hlc', 'http://openid2.hlc.edu.tw');
         break;
-    case 'tp':
-        $_SESSION['auth_method'] = 'tp';
-        tp_login();
-        break;
+    // case 'tp':
+    //     $_SESSION['auth_method'] = 'tp';
+    //     tp_login();
+    //     break;
     case 'ttct':
         $_SESSION['auth_method'] = 'ttct';
         hlc_login('ttct', 'https://openid.boe.ttct.edu.tw');

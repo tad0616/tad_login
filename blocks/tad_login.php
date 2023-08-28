@@ -15,7 +15,6 @@ function tad_login($options = '')
         $block['show_text'] = $options[1];
         $big = ('1' == $options[2]) ? '_l' : '';
         $i = 0;
-
         // die(var_dump($oidc_array));
         foreach ($modConfig['auth_method'] as $openid) {
             if ('facebook' === $openid) {

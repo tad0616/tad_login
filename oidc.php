@@ -24,14 +24,14 @@ $all_oidc = [
         'gzipenable' => false,
         'from' => '基隆市',
     ],
-    'tp_oidc' => [
-        'tail' => 'tp',
-        'provideruri' => 'https://tp.sso.edu.tw',
-        'eduinfoep' => 'https://tp.sso.edu.tw/cncresource/api/v1/eduinfo',
-        'scope' => ['educloudroles', 'openid', 'profile', 'eduinfo', 'openid2', 'email'],
-        'gzipenable' => false,
-        'from' => '臺北市',
-    ],
+    // 'tp_oidc' => [
+    //     'tail' => 'tp',
+    //     'provideruri' => 'https://tp.sso.edu.tw',
+    //     'eduinfoep' => 'https://tp.sso.edu.tw/cncresource/api/v1/eduinfo',
+    //     'scope' => ['educloudroles', 'openid', 'profile', 'eduinfo', 'openid2', 'email'],
+    //     'gzipenable' => false,
+    //     'from' => '臺北市',
+    // ],
     'ntpc_oidc' => [
         'tail' => 'ntpc',
         'provideruri' => 'https://ntpc.sso.edu.tw',
@@ -179,9 +179,12 @@ $all_oidc = [
     ],
 ];
 $oidc_array = array_keys($all_oidc);
-$all_oidc2 = [
-    'tp_ldap' => [
-        'tail' => 'tp',
-    ],
-];
-$oidc_array2 = array_keys($all_oidc2);
+
+if (in_array('tp_ldap', $xoopsModuleConfig['auth_method'])) {
+    $all_oidc2 = [
+        'tp_ldap' => [
+            'tail' => 'tp',
+        ],
+    ];
+    $oidc_array2 = array_keys($all_oidc2);
+}
