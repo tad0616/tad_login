@@ -2,14 +2,16 @@
 require_once dirname(dirname(__DIR__)) . '/mainfile.php';
 require_once __DIR__ . '/function.php';
 
+$oidc_setup = json_decode($xoopsModuleConfig['oidc_setup'], true);
+
 if (!isset($_GET['code']) && !isset($_SESSION['token'])) {
-    header("location:https://ldap.tp.edu.tw/oauth/authorize?client_id={$xoopsModuleConfig['tp_ldap_clientid']}&redirect_uri=" . XOOPS_URL . '/modules/tad_login/tp_callback.php&response_type=code&scope=user profile');
+    header("location:https://ldap.tp.edu.tw/oauth/authorize?client_id={$oidc_setup['tp_ldap']['clientid']}&redirect_uri=" . XOOPS_URL . '/modules/tad_login/tp_callback.php&response_type=code&scope=user profile');
     exit;
 } elseif (!isset($_SESSION['token'])) {
     $param = [
         'grant_type' => 'authorization_code',
-        'client_id' => $xoopsModuleConfig['tp_ldap_clientid'],
-        'client_secret' => $xoopsModuleConfig['tp_ldap_clientsecret'],
+        'client_id' => $oidc_setup['tp_ldap']['clientid'],
+        'client_secret' => $oidc_setup['tp_ldap']['clientsecret'],
         'redirect_uri' => XOOPS_URL . '/modules/tad_login/tp_callback.php',
         'code' => $_GET['code'],
     ];
@@ -23,8 +25,8 @@ if (!isset($_GET['code']) && !isset($_SESSION['token'])) {
     $param = [
         'grant_type' => 'refresh_token',
         'refresh_token' => $_SESSION['refresh'],
-        'client_id' => $xoopsModuleConfig['tp_ldap_clientid'],
-        'client_secret' => $xoopsModuleConfig['tp_ldap_clientsecret'],
+        'client_id' => $oidc_setup['tp_ldap']['clientid'],
+        'client_secret' => $oidc_setup['tp_ldap']['clientsecret'],
         'scope' => 'user profile',
     ];
     $response = do_post('https://ldap.tp.edu.tw/oauth/token', $param);

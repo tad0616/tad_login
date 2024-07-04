@@ -180,11 +180,18 @@ $all_oidc = [
 ];
 $oidc_array = array_keys($all_oidc);
 
-if (in_array('tp_ldap', $xoopsModuleConfig['auth_method'])) {
-    $all_oidc2 = [
-        'tp_ldap' => [
-            'tail' => 'tp',
-        ],
-    ];
-    $oidc_array2 = array_keys($all_oidc2);
-}
+// if (!isset($xoopsModuleConfig)) {
+//     $modhandler = xoops_gethandler('module');
+//     $xoopsModule = $modhandler->getByDirname("tad_login");
+//     $config_handler = xoops_gethandler('config');
+//     $xoopsModuleConfig = $config_handler->getConfigsByCat(0, $xoopsModule->mid());
+// }
+
+// if (in_array('tp_ldap', $xoopsModuleConfig['auth_method'])) {
+$all_oidc2 = [
+    'tp_ldap' => [
+        'tail' => 'tp',
+    ],
+];
+$oidc_array2 = array_keys($all_oidc2);
+// }

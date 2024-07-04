@@ -7,7 +7,8 @@ $modversion = [];
 
 //---模組基本資訊---//
 $modversion['name'] = _MI_TADLOGIN_NAME;
-$modversion['version'] = 5.8;
+// $modversion['version'] = 5.8;
+$modversion['version'] = $_SESSION['xoops_version'] >= 20511 ? '6.0.0-Stable' : '6.0';
 $modversion['description'] = _MI_TADLOGIN_DESC;
 $modversion['author'] = _MI_TADLOGIN_AUTHOR;
 $modversion['credits'] = _MI_TADLOGIN_CREDITS;

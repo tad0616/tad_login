@@ -21,6 +21,8 @@ function tad_login($options = '')
                 $url = facebook_login('return');
             } elseif ('google' === $openid) {
                 $url = google_login('return');
+            } elseif ('line' === $openid) {
+                $url = line_login('return');
             } else {
                 $url = XOOPS_URL . "/modules/tad_login/index.php?login&op={$openid}";
             }

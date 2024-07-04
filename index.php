@@ -987,7 +987,7 @@ function list_login()
         //     tc_login('tc', 'https://openid.tc.edu.tw');
         // } elseif ('ty' === $_SESSION['auth_method']) {
         //     ty_login();
-    } else {
+    } elseif (isset($_SESSION['auth_method'])) {
         call_user_func("{$_SESSION['auth_method']}_login");
     }
 
@@ -1032,9 +1032,22 @@ function list_login()
 function tp_ldap_login()
 {
     global $xoopsModuleConfig;
-    header("location:https://ldap.tp.edu.tw/oauth/authorize?client_id={$xoopsModuleConfig['tp_ldap_clientid']}&redirect_uri=" . XOOPS_URL . '/modules/tad_login/tp_callback.php&response_type=code&scope=user profile');
+    if (!isset($xoopsModuleConfig)) {
+        $modhandler = xoops_gethandler('module');
+        $xoopsModule = $modhandler->getByDirname("tad_login");
+        $config_handler = xoops_gethandler('config');
+        $xoopsModuleConfig = $config_handler->getConfigsByCat(0, $xoopsModule->mid());
+    }
+
+    $oidc_setup = json_decode($xoopsModuleConfig['oidc_setup'], true);
+
+    if (empty($oidc_setup['tp_ldap']['clientid'])) {
+        redirect_header(XOOPS_URL, 3, "系統無法取得臺北市單一簽入 client id 值");
+    }
+    header("location:https://ldap.tp.edu.tw/oauth/authorize?client_id={$oidc_setup['tp_ldap']['clientid']}&redirect_uri=" . XOOPS_URL . '/modules/tad_login/tp_callback.php&response_type=code&scope=user profile');
     exit;
 }
+
 function change_pass_form()
 {
     global $xoopsUser, $xoopsDB, $xoopsTpl;

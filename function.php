@@ -114,8 +114,18 @@ if (!function_exists('line_login')) {
         require_once 'class/line/LineProfiles.php'; //取得用戶端 Profile
         require_once 'class/line/LineController.php'; //LINE控制
 
-        define("CLIENT_ID", $xoopsModuleConfig['line_id']);
-        define("CLIENT_SECRET", $xoopsModuleConfig['line_secret']);
+        if (!isset($xoopsModuleConfig['line_id'])) {
+            $moduleHandler = xoops_getHandler('module');
+            $xoopsModule = $moduleHandler->getByDirname('tad_login');
+            $configHandler = xoops_getHandler('config');
+            $modConfig = $configHandler->getConfigsByCat(0, $xoopsModule->mid());
+
+        } else {
+            $modConfig = $xoopsModuleConfig;
+        }
+
+        define("CLIENT_ID", $modConfig['line_id']);
+        define("CLIENT_SECRET", $modConfig['line_secret']);
         define("REDIRECT_URI", XOOPS_URL . '/modules/tad_login/line_callback.php'); //登入後返回位置
         define("SCOPE", 'openid%20profile%20email'); //授權範圍以%20分隔 可以有3項openid，profile，email
 

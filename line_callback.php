@@ -21,7 +21,7 @@ $session_state = $_SESSION['_line_state'];
 
 unset($_SESSION['_line_state']);
 if ($session_state !== $state) {
-    echo '存取錯誤';
+    echo "存取錯誤({$session_state}!={$state})";
     exit;
 }
 
