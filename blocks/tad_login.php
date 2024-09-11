@@ -2,7 +2,7 @@
 //區塊主函式 (快速登入(tad_login))
 function tad_login($options = '')
 {
-    global $xoopsConfig, $xoopsDB, $xoopsUser, $all_oidc, $oidc_array, $oidc_array2, $all_oidc2;
+    global $xoopsUser, $all_oidc, $oidc_array, $oidc_array2, $all_oidc2;
     if (!$xoopsUser) {
         require_once XOOPS_ROOT_PATH . '/modules/tad_login/function.php';
 

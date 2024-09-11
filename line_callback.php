@@ -14,24 +14,39 @@ define("SCOPE", 'openid%20profile%20email'); //授權範圍以%20分隔 可以�
 if (!session_id()) {
     session_start();
 }
-
 $code = $_GET['code'];
 $state = $_GET['state'];
-$session_state = $_SESSION['_line_state'];
+// $session_state = $_SESSION['_line_state'];
 
-unset($_SESSION['_line_state']);
-if ($session_state !== $state) {
-    echo "存取錯誤({$session_state}!={$state})";
-    exit;
-}
+// unset($_SESSION['_line_state']);
+// if ($session_state !== $state) {
+//     echo "存取錯誤({$session_state}!={$state})";
+//     exit;
+// }
+// https://access.line.me/oauth2/v2.1/login?returnUri=%2Foauth2%2Fv2.1%2Fauthorize%2Fconsent%3Fresponse_type%3Dcode%26client_id%3D1655255408%26state%3Daca1880fc08256804d3d78ba655add31369f1bab%26scope%3Dopenid%2520profile%2520email%26redirect_uri%3Dhttps%253A%252F%252Fclass.tn.edu.tw%252Fmodules%252Ftad_login%252Fline_callback.php&loginChannelId=1655255408&loginState=OBGrQdumDo64Rh8TFPPeC9
+
+// https://class.tn.edu.tw/modules/tad_login/line_callback.php?code=3XkxiYON2tBw6ll1kWz3&state=aca1880fc08256804d3d78ba655add31369f1bab
 
 $Line = new LineController();
 
 list($access_token, $id_token) = $Line->getAccessToken($code); //取得使用者資料
-//$_SESSION['access_token']=$access_token;
 setcookie("access_token", $access_token, time() + 3600 * 24 * 20); //把他記憶20天
 // $user = $Line->getLineProfile_access_token($access_token); //取得使用者資料
 $user_profile = $Line->VerifyIDtoken($id_token); //取得使用者資料
+
+// {
+//     "iss": "https:\/\/access.line.me",
+//     "sub": "U9dd5eec1cfa708d76859cbe41d41b072",
+//     "aud": "1655255408",
+//     "exp": 1726033844,
+//     "iat": 1726030244,
+//     "amr": [
+//         "linesso"
+//     ],
+//     "name": "tad ",
+//     "picture": "https:\/\/profile.line-scdn.net\/0hkwwzd7w1NFhKAyKcTnRLD3ZGOjU9LTIQMmwsO2hUPjwwZHRZfzF-O2oGY25iM3peJmF4ajtTb21i",
+//     "email": "tad0616@gmail.com"
+// }
 if ($user_profile['email']) {
     list($id, $domain) = explode('@', $user_profile['email']);
 
@@ -39,19 +54,13 @@ if ($user_profile['email']) {
     $uname = $id . '_line';
     $name = $myts->addSlashes($user_profile['name']);
     $email = $user_profile['email'];
-    $bio = '';
-    $url = '';
-    $from = '';
-    $sig = '';
-    $occ = '';
-    $user_avatar = copy_user_avatar($user_profile['picture'], $id);
+    $bio = $url = $from = $sig = $occ = $msnm = $user_avatar = $aim = $yim = '';
+    // $user_avatar = copy_user_avatar($user_profile['picture'], $id);
     login_xoops($uname, $name, $email, '', '', $url, $from, $sig, $occ, $bio, $aim, $yim, $msnm, $user_avatar);
 }
 
 function copy_user_avatar($url, $id)
 {
-    global $xoopsConfig;
-
     if (function_exists('curl_init')) {
         $ch = curl_init();
         $timeout = 5;

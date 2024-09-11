@@ -103,7 +103,7 @@ if (!function_exists('edu_login')) {
 if (!function_exists('line_login')) {
     function line_login($mode = '')
     {
-        global $xoopsModuleConfig, $xoopsConfig, $xoopsDB, $xoopsTpl, $xoopsUser;
+        global $xoopsModuleConfig, $xoopsTpl, $xoopsUser;
 
         if ($xoopsUser) {
             header('location:' . XOOPS_URL . '/user.php');
@@ -124,16 +124,17 @@ if (!function_exists('line_login')) {
             $modConfig = $xoopsModuleConfig;
         }
 
+        if (!session_id()) {
+            session_start();
+        }
+        $state = sha1(time());
+        // $_SESSION['_line_state'] = $state;
+
         define("CLIENT_ID", $modConfig['line_id']);
         define("CLIENT_SECRET", $modConfig['line_secret']);
         define("REDIRECT_URI", XOOPS_URL . '/modules/tad_login/line_callback.php'); //登入後返回位置
         define("SCOPE", 'openid%20profile%20email'); //授權範圍以%20分隔 可以有3項openid，profile，email
 
-        if (!session_id()) {
-            session_start();
-        }
-        $state = sha1(time());
-        $_SESSION['_line_state'] = $state;
         $Line = new LineController();
         $loginUrl = $Line->lineLogin($state); //產生LINE登入連結
 
@@ -200,7 +201,7 @@ if (!function_exists('facebook_login')) {
 if (!function_exists('google_login')) {
     function google_login($mode = '')
     {
-        global $xoopsConfig, $xoopsDB, $xoopsTpl, $xoopsUser;
+        global $xoopsTpl, $xoopsUser;
 
         require_once XOOPS_ROOT_PATH . '/modules/tad_login/class/google/Google_Client.php';
         require_once XOOPS_ROOT_PATH . '/modules/tad_login/class/google/contrib/Google_Oauth2Service.php';
@@ -215,27 +216,26 @@ if (!function_exists('google_login')) {
                 ${$k} = $v;
             }
         }
-        if (isset($_GET['op'])) {
-            $op = trim($_GET['op']);
-            if (isset($_GET['uid'])) {
-                $uid = (int) ($_GET['uid']);
-            }
-        }
+        // if (isset($_GET['op'])) {
+        //     $op = trim($_GET['op']);
+        //     if (isset($_GET['uid'])) {
+        //         $uid = (int) ($_GET['uid']);
+        //     }
+        // }
         $client = new Google_Client();
         $client->setApplicationName('Google UserInfo PHP Starter Application');
         $oauth2 = new Google_Oauth2Service($client);
-        // die(var_export($_REQUEST['code']));
+
         if (isset($_GET['code'])) {
             // die("system testing...1");
             $client->authenticate($_GET['code']);
             $_SESSION['token'] = $client->getAccessToken();
-            $redirect = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
-            header('Location: ' . filter_var($redirect, FILTER_SANITIZE_URL));
+            //     $redirect = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
+            //     header('Location: ' . filter_var($redirect, FILTER_SANITIZE_URL));
+            //     return;
+            // }
 
-            return;
-        }
-
-        if (isset($_SESSION['token'])) {
+            // if (isset($_SESSION['token'])) {
             // die("system testing...2");
             $client->setAccessToken($_SESSION['token']);
         }
@@ -254,10 +254,10 @@ if (!function_exists('google_login')) {
             // See http://www.php.net/manual/en/filter.filters.sanitize.php
             $email = filter_var($user['email'], FILTER_SANITIZE_EMAIL);
             $img = filter_var($user['picture'], FILTER_VALIDATE_URL);
-
+            // Utility::dd($user);
             if ($user) {
                 $myts = \MyTextSanitizer::getInstance();
-                $uid = $user['id'];
+                // $uid = $user['id'];
                 list($goog_uname, $m) = explode('@', $user['email']);
                 $uname = empty($goog_uname) ? $user['id'] . '_goo' : $goog_uname . '_goo';
                 $name = $myts->addSlashes($user['name']);
@@ -288,7 +288,8 @@ if (!function_exists('google_login')) {
 if (!function_exists('login_xoops')) {
     function login_xoops($uname = '', $name = '', $email = '', $SchoolCode = '', $JobName = '', $url = '', $from = '', $sig = '', $occ = '', $bio = '', $aim = '', $yim = '', $msnm = '', $user_avatar = 'avatars/blank.gif')
     {
-        global $xoopsModuleConfig, $xoopsConfig, $xoopsDB, $xoopsUser;
+        global $xoopsModuleConfig, $xoopsConfig, $xoopsDB;
+
         $memberHandler = xoops_getHandler('member');
 
         if ($memberHandler->getUserCount(new \Criteria('uname', $uname)) > 0) {
@@ -303,6 +304,7 @@ if (!function_exists('login_xoops')) {
 
             $memberHandler = xoops_getHandler('member');
             xoops_loadLanguage('auth');
+            xoops_loadLanguage('user');
 
             require_once $GLOBALS['xoops']->path('class/auth/authfactory.php');
 
@@ -332,6 +334,7 @@ if (!function_exists('login_xoops')) {
                         exit();
                     }
                 }
+
                 //設定最後登入時間
                 $user->setVar('last_login', time());
                 $user->setVar('user_from', $from);
@@ -345,11 +348,22 @@ if (!function_exists('login_xoops')) {
                     $user->setVar('user_intrest', $SchoolCode);
                 }
 
+                // Utility::dd($_SESSION);
                 if (!$memberHandler->insertUser($user, true)) {
                 }
 
                 // Regenrate a new session id and destroy old session
                 $GLOBALS['sess_handler']->regenerate_id(true);
+
+                if ($_COOKIE['login_from']) {
+                    $redirect_url = $_COOKIE['login_from'];
+                    unset($_COOKIE['login_from']);
+                    setcookie('login_from', "", time() - 3600, "/");
+                } elseif ($_SESSION['login_from']) {
+                    $redirect_url = $_SESSION['login_from'];
+                    unset($_SESSION['login_from']);
+                }
+
                 $_SESSION = [];
                 $_SESSION['xoopsUserId'] = $user->getVar('uid');
                 $_SESSION['xoopsUserGroups'] = $user->getGroups();
@@ -363,32 +377,30 @@ if (!function_exists('login_xoops')) {
                     setcookie($xoopsConfig['usercookie'], 0, -1, '/', XOOPS_COOKIE_DOMAIN, 0);
                 }
 
-                $sql = 'select `hashed_date` from ' . $xoopsDB->prefix('tad_login_random_pass') . " where `uname` ='$uname'";
-                $result = $xoopsDB->queryF($sql) or die($xoopsDB->error());
-                list($hashed_date) = $xoopsDB->fetchRow($result);
+                // $sql = 'select `hashed_date` from ' . $xoopsDB->prefix('tad_login_random_pass') . " where `uname` ='$uname'";
+                // $result = $xoopsDB->queryF($sql) or die($xoopsDB->error());
+                // list($hashed_date) = $xoopsDB->fetchRow($result);
 
                 //若有要轉頁
-                if ($_SESSION['login_from']) {
-                    $redirect_url = $_SESSION['login_from'];
-                    unset($_SESSION['login_from']);
-                } elseif ($_COOKIE['login_from']) {
-                    $redirect_url = $_COOKIE['login_from'];
-                    unset($_COOKIE['login_from']);
-                    setcookie('login_from', "", time() - 3600, "/");
-                } elseif (!empty($xoopsModuleConfig['redirect_url'])) {
-                    $redirect_url = $xoopsModuleConfig['redirect_url'];
-                } elseif ($xoopsModuleConfig['bind_openid'] == 1) {
-                    $redirect_url = XOOPS_URL . '/modules/tad_login/index.php';
-                } else {
-                    $redirect_url = XOOPS_URL . '/index.php';
+                if (empty($redirect_url)) {
+                    if (!empty($xoopsModuleConfig['redirect_url'])) {
+                        $redirect_url = $xoopsModuleConfig['redirect_url'];
+                    } elseif ($xoopsModuleConfig['bind_openid'] == 1) {
+                        $redirect_url = XOOPS_URL . '/modules/tad_login/index.php';
+                    } else {
+                        $redirect_url = XOOPS_URL . '/index.php';
+                    }
                 }
+                redirect_header(XOOPS_URL, 3, sprintf(_US_LOGGINGU, $user->getVar('name')), false);
+                // die("<a href='$redirect_url'>暫時請點此繼續： $redirect_url</a>");
 
-                // RMV-NOTIFY
-                // Perform some maintenance of notification records
-                $notificationHandler = xoops_getHandler('notification');
-                $notificationHandler->doLoginMaintenance($user->getVar('uid'));
-
-                redirect_header($redirect_url, 1, sprintf('', $user->getVar('uname')), false);
+                // redirect_header($redirect_url, 3, '已成功登入');
+                // $notificationHandler = xoops_getHandler('notification');
+                // $notificationHandler->doLoginMaintenance($user->getVar('uid'));
+                // Utility::dd($redirect_url);
+                // redirect_header($redirect_url, 1, sprintf(_US_LOGGINGU, $user->getVar('uname')), false);
+                // header('Location: ' . XOOPS_URL);
+                // exit;
             } else {
                 redirect_header(XOOPS_URL . '/user.php', 5, $xoopsAuth->getHtmlErrors());
             }

@@ -100,7 +100,8 @@ class Random
                 // "open_basedir restriction in effect", "Permission denied", "No such file or directory", etc.
                 $fp = @fopen('/dev/urandom', 'rb');
             }
-            if ($fp !== true && $fp !== false) { // surprisingly faster than !is_bool() or is_resource()
+            if ($fp !== true && $fp !== false) {
+                // surprisingly faster than !is_bool() or is_resource()
                 return fread($fp, $length);
             }
             // method 3. pretty much does the same thing as method 2 per the following url:
