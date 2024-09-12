@@ -86,10 +86,9 @@ if (!function_exists('do_post')) {
 
 //oidc 登入
 if (!function_exists('edu_login')) {
-    function edu_login($openid = 'edu_oidc', $mode = '')
+    function edu_login($auth_method = 'edu_oidc', $mode = '')
     {
-        global $xoopsTpl;
-        $link = XOOPS_URL . '/modules/tad_login/class/edu/auth.php';
+        $link = XOOPS_URL . '/modules/tad_login/class/edu/auth.php?auth_method=' . $auth_method;
         if ('return' === $mode) {
             return $link;
         }
@@ -124,9 +123,9 @@ if (!function_exists('line_login')) {
             $modConfig = $xoopsModuleConfig;
         }
 
-        if (!session_id()) {
-            session_start();
-        }
+        // if (!session_id()) {
+        //     session_start();
+        // }
         $state = sha1(time());
         // $_SESSION['_line_state'] = $state;
 

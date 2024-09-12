@@ -11,9 +11,9 @@ define("CLIENT_SECRET", $xoopsModuleConfig['line_secret']);
 define("REDIRECT_URI", XOOPS_URL . '/modules/tad_login/line_callback.php'); //登入後返回位置
 define("SCOPE", 'openid%20profile%20email'); //授權範圍以%20分隔 可以有3項openid，profile，email
 
-if (!session_id()) {
-    session_start();
-}
+// if (!session_id()) {
+//     session_start();
+// }
 $code = $_GET['code'];
 $state = $_GET['state'];
 // $session_state = $_SESSION['_line_state'];
@@ -23,9 +23,6 @@ $state = $_GET['state'];
 //     echo "存取錯誤({$session_state}!={$state})";
 //     exit;
 // }
-// https://access.line.me/oauth2/v2.1/login?returnUri=%2Foauth2%2Fv2.1%2Fauthorize%2Fconsent%3Fresponse_type%3Dcode%26client_id%3D1655255408%26state%3Daca1880fc08256804d3d78ba655add31369f1bab%26scope%3Dopenid%2520profile%2520email%26redirect_uri%3Dhttps%253A%252F%252Fclass.tn.edu.tw%252Fmodules%252Ftad_login%252Fline_callback.php&loginChannelId=1655255408&loginState=OBGrQdumDo64Rh8TFPPeC9
-
-// https://class.tn.edu.tw/modules/tad_login/line_callback.php?code=3XkxiYON2tBw6ll1kWz3&state=aca1880fc08256804d3d78ba655add31369f1bab
 
 $Line = new LineController();
 

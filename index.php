@@ -7,6 +7,145 @@ require __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'tad_login_index.tpl';
 require_once XOOPS_ROOT_PATH . '/header.php';
 
+/*-----------執行動作判斷區----------*/
+$op = Request::getString('op');
+$link_to = Request::getString('link_to');
+$newpass = Request::getString('newpass');
+
+if (isset($link_to) and !empty($link_to)) {
+    $_SESSION['login_from'] = $link_to;
+}
+
+switch ($op) {
+    case 'change_pass':
+        change_pass($newpass);
+        break;
+
+    case 'facebook':
+        $_SESSION['auth_method'] = 'facebook';
+        facebook_login();
+        break;
+    case 'google':
+        $_SESSION['auth_method'] = 'google';
+        google_login();
+        break;
+    case 'line':
+        $_SESSION['auth_method'] = 'line';
+        line_login();
+        break;
+
+    case 'tn':
+        $_SESSION['auth_method'] = 'tn';
+        tn_login();
+        break;
+    case 'ylc':
+        $_SESSION['auth_method'] = 'ylc';
+        tc_login('ylc', 'http://openid.ylc.edu.tw/');
+        break;
+    case 'hc':
+        $_SESSION['auth_method'] = 'hc';
+        hc_login();
+        break;
+    case 'mlc':
+        $_SESSION['auth_method'] = 'mlc';
+        tc_login('mlc', 'https://openid2.mlc.edu.tw');
+        break;
+    case 'cy':
+        $_SESSION['auth_method'] = 'cy';
+        tc_login('cy', 'https://openid.cy.edu.tw');
+        break;
+    case 'ptc':
+        $_SESSION['auth_method'] = 'ptc';
+        tc_login('ptc', 'http://openid.ptc.edu.tw');
+        break;
+    case 'hlc':
+        $_SESSION['auth_method'] = 'hlc';
+        tc_login('hlc', 'http://openid2.hlc.edu.tw');
+        break;
+    // case 'tp':
+    //     $_SESSION['auth_method'] = 'tp';
+    //     tp_login();
+    //     break;
+    case 'ttct':
+        $_SESSION['auth_method'] = 'ttct';
+        hlc_login('ttct', 'https://openid.boe.ttct.edu.tw');
+        break;
+    case 'ntpc':
+        $_SESSION['auth_method'] = 'ntpc';
+        hlc_login('ntpc', 'https://openid.ntpc.edu.tw');
+        break;
+    case 'phc':
+        $_SESSION['auth_method'] = 'phc';
+        tc_login('phc', 'https://openid.phc.edu.tw');
+        break;
+    case 'kl':
+        $_SESSION['auth_method'] = 'kl';
+        kl_login();
+        break;
+    case 'ilc':
+        $_SESSION['auth_method'] = 'ilc';
+        ilc_login();
+        break;
+    case 'kh':
+        $_SESSION['auth_method'] = 'kh';
+        kh_login();
+        break;
+    case 'km':
+        $_SESSION['auth_method'] = 'km';
+        km_login();
+        break;
+    case 'mt':
+        $_SESSION['auth_method'] = 'mt';
+        mt_login();
+        break;
+    case 'tp_ldap':
+        $_SESSION['auth_method'] = 'tp_ldap';
+        tp_ldap_login();
+        break;
+    // case 'cyc':
+    //     $_SESSION['auth_method'] = 'cyc';
+    //     tc_login('cyc', 'https://openid.cyccc.tw');
+    //     break;
+    // case 'hcc':
+    //     $_SESSION['auth_method'] = 'hcc';
+    //     tc_login('hcc', 'https://openid.hcc.edu.tw');
+    //     break;
+    // case 'chc':
+    //     $_SESSION['auth_method'] = 'chc';
+    //     tc_login('chc', 'https://openid.chc.edu.tw');
+    //     break;
+    // case 'ntct':
+    //     $_SESSION['auth_method'] = 'ntct';
+    //     tc_login('ntct', 'https://openid.ntct.edu.tw');
+    //     break;
+    // case 'tc':
+    //     $_SESSION['auth_method'] = 'tc';
+    //     tc_login('tc', 'https://openid.tc.edu.tw');
+    //     break;
+    // case 'ty':
+    //     $_SESSION['auth_method'] = 'ty';
+    //     ty_login();
+    //     break;
+    default:
+        if ($xoopsUser) {
+            change_pass_form();
+            $op = 'change_pass_form';
+        } else {
+            if (in_array($op, $oidc_array)) {
+                $_SESSION['auth_method'] = $op;
+                edu_login($op);
+            } else {
+                list_login();
+                $op = 'list_login';
+            }
+        }
+        break;
+}
+
+$xoopsTpl->assign('toolbar', Utility::toolbar_bootstrap($interface_menu));
+$xoopsTpl->assign('now_op', $op);
+require_once XOOPS_ROOT_PATH . '/footer.php';
+
 /*-----------function區--------------*/
 
 //台南 OpenID 登入
@@ -1020,142 +1159,3 @@ function change_pass_form()
     $FormValidator = new FormValidator('#myForm', true);
     $FormValidator->render();
 }
-
-/*-----------執行動作判斷區----------*/
-$op = Request::getString('op');
-$link_to = Request::getString('link_to');
-$newpass = Request::getString('newpass');
-
-if (isset($link_to) and !empty($link_to)) {
-    $_SESSION['login_from'] = $link_to;
-}
-
-switch ($op) {
-    case 'change_pass':
-        change_pass($newpass);
-        break;
-
-    case 'facebook':
-        $_SESSION['auth_method'] = 'facebook';
-        facebook_login();
-        break;
-    case 'google':
-        $_SESSION['auth_method'] = 'google';
-        google_login();
-        break;
-    case 'line':
-        $_SESSION['auth_method'] = 'line';
-        line_login();
-        break;
-
-    case 'tn':
-        $_SESSION['auth_method'] = 'tn';
-        tn_login();
-        break;
-    case 'ylc':
-        $_SESSION['auth_method'] = 'ylc';
-        tc_login('ylc', 'http://openid.ylc.edu.tw/');
-        break;
-    case 'hc':
-        $_SESSION['auth_method'] = 'hc';
-        hc_login();
-        break;
-    case 'mlc':
-        $_SESSION['auth_method'] = 'mlc';
-        tc_login('mlc', 'https://openid2.mlc.edu.tw');
-        break;
-    case 'cy':
-        $_SESSION['auth_method'] = 'cy';
-        tc_login('cy', 'https://openid.cy.edu.tw');
-        break;
-    case 'ptc':
-        $_SESSION['auth_method'] = 'ptc';
-        tc_login('ptc', 'http://openid.ptc.edu.tw');
-        break;
-    case 'hlc':
-        $_SESSION['auth_method'] = 'hlc';
-        tc_login('hlc', 'http://openid2.hlc.edu.tw');
-        break;
-    // case 'tp':
-    //     $_SESSION['auth_method'] = 'tp';
-    //     tp_login();
-    //     break;
-    case 'ttct':
-        $_SESSION['auth_method'] = 'ttct';
-        hlc_login('ttct', 'https://openid.boe.ttct.edu.tw');
-        break;
-    case 'ntpc':
-        $_SESSION['auth_method'] = 'ntpc';
-        hlc_login('ntpc', 'https://openid.ntpc.edu.tw');
-        break;
-    case 'phc':
-        $_SESSION['auth_method'] = 'phc';
-        tc_login('phc', 'https://openid.phc.edu.tw');
-        break;
-    case 'kl':
-        $_SESSION['auth_method'] = 'kl';
-        kl_login();
-        break;
-    case 'ilc':
-        $_SESSION['auth_method'] = 'ilc';
-        ilc_login();
-        break;
-    case 'kh':
-        $_SESSION['auth_method'] = 'kh';
-        kh_login();
-        break;
-    case 'km':
-        $_SESSION['auth_method'] = 'km';
-        km_login();
-        break;
-    case 'mt':
-        $_SESSION['auth_method'] = 'mt';
-        mt_login();
-        break;
-    case 'tp_ldap':
-        $_SESSION['auth_method'] = 'tp_ldap';
-        tp_ldap_login();
-        break;
-    // case 'cyc':
-    //     $_SESSION['auth_method'] = 'cyc';
-    //     tc_login('cyc', 'https://openid.cyccc.tw');
-    //     break;
-    // case 'hcc':
-    //     $_SESSION['auth_method'] = 'hcc';
-    //     tc_login('hcc', 'https://openid.hcc.edu.tw');
-    //     break;
-    // case 'chc':
-    //     $_SESSION['auth_method'] = 'chc';
-    //     tc_login('chc', 'https://openid.chc.edu.tw');
-    //     break;
-    // case 'ntct':
-    //     $_SESSION['auth_method'] = 'ntct';
-    //     tc_login('ntct', 'https://openid.ntct.edu.tw');
-    //     break;
-    // case 'tc':
-    //     $_SESSION['auth_method'] = 'tc';
-    //     tc_login('tc', 'https://openid.tc.edu.tw');
-    //     break;
-    // case 'ty':
-    //     $_SESSION['auth_method'] = 'ty';
-    //     ty_login();
-    //     break;
-    default:
-        if ($xoopsUser) {
-            change_pass_form();
-            $op = 'change_pass_form';
-        } else {
-            if (in_array($op, $oidc_array)) {
-                $_SESSION['auth_method'] = $op;
-                edu_login($op);
-            } else {
-                list_login();
-                $op = 'list_login';
-            }
-        }
-        break;
-}
-
-$xoopsTpl->assign('toolbar', Utility::toolbar_bootstrap($interface_menu));
-$xoopsTpl->assign('now_op', $op);
-require_once XOOPS_ROOT_PATH . '/footer.php';
