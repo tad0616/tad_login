@@ -14,6 +14,8 @@ $newpass = Request::getString('newpass');
 
 if (isset($link_to) and !empty($link_to)) {
     $_SESSION['login_from'] = $link_to;
+} elseif (!isset($_SESSION['login_from'])) {
+    $_SESSION['login_from'] = $_SERVER['HTTP_REFERER'];
 }
 
 switch ($op) {

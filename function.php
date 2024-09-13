@@ -229,12 +229,12 @@ if (!function_exists('google_login')) {
             // die("system testing...1");
             $client->authenticate($_GET['code']);
             $_SESSION['token'] = $client->getAccessToken();
-            //     $redirect = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
-            //     header('Location: ' . filter_var($redirect, FILTER_SANITIZE_URL));
-            //     return;
-            // }
+            $redirect = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
+            header('Location: ' . filter_var($redirect, FILTER_SANITIZE_URL));
+            return;
+        }
 
-            // if (isset($_SESSION['token'])) {
+        if (isset($_SESSION['token'])) {
             // die("system testing...2");
             $client->setAccessToken($_SESSION['token']);
         }
@@ -354,11 +354,7 @@ if (!function_exists('login_xoops')) {
                 // Regenrate a new session id and destroy old session
                 $GLOBALS['sess_handler']->regenerate_id(true);
 
-                if ($_COOKIE['login_from']) {
-                    $redirect_url = $_COOKIE['login_from'];
-                    unset($_COOKIE['login_from']);
-                    setcookie('login_from', "", time() - 3600, "/");
-                } elseif ($_SESSION['login_from']) {
+                if ($_SESSION['login_from']) {
                     $redirect_url = $_SESSION['login_from'];
                     unset($_SESSION['login_from']);
                 }
@@ -390,7 +386,7 @@ if (!function_exists('login_xoops')) {
                         $redirect_url = XOOPS_URL . '/index.php';
                     }
                 }
-                redirect_header(XOOPS_URL, 3, sprintf(_US_LOGGINGU, $user->getVar('name')), false);
+                redirect_header($redirect_url, 3, sprintf(_US_LOGGINGU, $user->getVar('name')), false);
                 // die("<a href='$redirect_url'>暫時請點此繼續： $redirect_url</a>");
 
                 // redirect_header($redirect_url, 3, '已成功登入');
