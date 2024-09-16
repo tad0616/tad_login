@@ -1055,38 +1055,40 @@ function list_login()
 {
     global $xoopsTpl, $xoopsModuleConfig, $all_oidc, $oidc_array, $oidc_array2, $all_oidc2;
 
-    if ('ylc' === $_SESSION['auth_method']) {
-        tc_login('ylc', 'http://openid.ylc.edu.tw/');
-    } elseif ('mlc' === $_SESSION['auth_method']) {
-        tc_login('mlc', 'https://openid2.mlc.edu.tw');
-    } elseif ('cy' === $_SESSION['auth_method']) {
-        tc_login('cy', 'https://openid.cy.edu.tw');
-    } elseif ('hlc' === $_SESSION['auth_method']) {
-        tc_login('hlc', 'http://openid2.hlc.edu.tw');
-    } elseif ('ptc' === $_SESSION['auth_method']) {
-        tc_login('ptc', 'http://openid.ptc.edu.tw');
-    } elseif ('phc' === $_SESSION['auth_method']) {
-        tc_login('phc', 'https://openid.phc.edu.tw');
-    } elseif ('ttct' === $_SESSION['auth_method']) {
-        hlc_login('ttct', 'https://openid.boe.ttct.edu.tw');
-    } elseif ('ntpc' === $_SESSION['auth_method']) {
-        hlc_login('ntpc', 'https://openid.ntpc.edu.tw');
-    } elseif ('tp_ldap' === $_SESSION['auth_method']) {
-        tp_ldap_login();
-        // } elseif ('cyc' === $_SESSION['auth_method']) {
-        //     tc_login('cyc', 'https://openid.cyccc.tw');
-        // } elseif ('hcc' === $_SESSION['auth_method']) {
-        //     tc_login('hcc', 'https://openid.hcc.edu.tw');
-        // } elseif ('chc' === $_SESSION['auth_method']) {
-        //     tc_login('chc', 'https://openid.chc.edu.tw');
-        // } elseif ('ntct' === $_SESSION['auth_method']) {
-        //     tc_login('ntct', 'https://openid.ntct.edu.tw');
-        // } elseif ('tc' === $_SESSION['auth_method']) {
-        //     tc_login('tc', 'https://openid.tc.edu.tw');
-        // } elseif ('ty' === $_SESSION['auth_method']) {
-        //     ty_login();
-    } elseif (isset($_SESSION['auth_method'])) {
-        call_user_func("{$_SESSION['auth_method']}_login");
+    if (isset($_SESSION['auth_method'])) {
+        if ('ylc' === $_SESSION['auth_method']) {
+            tc_login('ylc', 'http://openid.ylc.edu.tw/');
+        } elseif ('mlc' === $_SESSION['auth_method']) {
+            tc_login('mlc', 'https://openid2.mlc.edu.tw');
+        } elseif ('cy' === $_SESSION['auth_method']) {
+            tc_login('cy', 'https://openid.cy.edu.tw');
+        } elseif ('hlc' === $_SESSION['auth_method']) {
+            tc_login('hlc', 'http://openid2.hlc.edu.tw');
+        } elseif ('ptc' === $_SESSION['auth_method']) {
+            tc_login('ptc', 'http://openid.ptc.edu.tw');
+        } elseif ('phc' === $_SESSION['auth_method']) {
+            tc_login('phc', 'https://openid.phc.edu.tw');
+        } elseif ('ttct' === $_SESSION['auth_method']) {
+            hlc_login('ttct', 'https://openid.boe.ttct.edu.tw');
+        } elseif ('ntpc' === $_SESSION['auth_method']) {
+            hlc_login('ntpc', 'https://openid.ntpc.edu.tw');
+        } elseif ('tp_ldap' === $_SESSION['auth_method']) {
+            tp_ldap_login();
+            // } elseif ('cyc' === $_SESSION['auth_method']) {
+            //     tc_login('cyc', 'https://openid.cyccc.tw');
+            // } elseif ('hcc' === $_SESSION['auth_method']) {
+            //     tc_login('hcc', 'https://openid.hcc.edu.tw');
+            // } elseif ('chc' === $_SESSION['auth_method']) {
+            //     tc_login('chc', 'https://openid.chc.edu.tw');
+            // } elseif ('ntct' === $_SESSION['auth_method']) {
+            //     tc_login('ntct', 'https://openid.ntct.edu.tw');
+            // } elseif ('tc' === $_SESSION['auth_method']) {
+            //     tc_login('tc', 'https://openid.tc.edu.tw');
+            // } elseif ('ty' === $_SESSION['auth_method']) {
+            //     ty_login();
+        } elseif (isset($_SESSION['auth_method'])) {
+            call_user_func("{$_SESSION['auth_method']}_login");
+        }
     }
 
     //注意，不能刪（刪了好像也沒事？）

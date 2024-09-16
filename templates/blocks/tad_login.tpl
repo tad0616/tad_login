@@ -1,6 +1,6 @@
 <{if $block.mode=='login'}>
     <{foreach from=$block.auth_method item=openid}>
-        <{if $openid}>
+        <{if $openid|default:false}>
             <{if $block.use_big!='1'}>
                 <{if $block.show_text=='1'}><div class="d-grid gap-2"><{/if}>
                     <a href="<{$openid.url}>" style="<{if $block.show_text=='1'}>width: 100%;<{elseif $block.show_btn=='1'}>width: 58px;<{else}>width: 48px;<{/if}> height: 48px; margin: 4px 2px; vertical-align: middle;<{if $block.show_btn!='1'}>display:inline-block;<{/if}>" <{if $block.show_btn=='1'}>class="btn btn-info <{if $block.show_text=='1'}>btn-block<{/if}>"<{/if}>><img src="<{$openid.logo}>" alt="<{$openid.text}> login icon" title="<{$openid.text}>" style="width: 32px; height: 32px; <{if $block.show_text=='1'}>float: left; margin-right:4px; white-space: normal;<{else}>marign:0px;<{/if}>">
