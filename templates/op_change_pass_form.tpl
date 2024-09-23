@@ -28,7 +28,7 @@
                         </ul>
                 <li><{$smarty.const._MD_TADLOGIN_EDIT_PASSEOWD_DESC6}></li>
             <{else}>
-                <li><{$smarty.const._MD_TADLOGIN_EDIT_PASSEOWD_DESC7}><{$hashed_date}>
+                <li><{$smarty.const._MD_TADLOGIN_EDIT_PASSEOWD_DESC7}><{$hashed_date|default:''}>
                     <div class="input-group">
                         <div class="input-group-prepend input-group-addon">
                             <span class="input-group-text"><{$smarty.const._MD_TADLOGIN_MODIFY_PASSEOWD}></span>

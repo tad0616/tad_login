@@ -1,4 +1,4 @@
-<{$BootstrapEditableCode}>
+<{$BootstrapEditableCode|default:''}>
 <h2><{$smarty.const._MA_TADLOGIN_MANAGE_PASSWORD}></h2>
 
 <div class="alert alert-info" style="margin-top:10px;">
@@ -32,7 +32,7 @@
                     <div class="input-group-prepend input-group-addon">
                         <span class="input-group-text"><{$smarty.const._MA_TADLOGIN_KEYWORD}></span>
                     </div>
-                    <input type="text" name="keyword" class="form-control" value="<{$keyword}>" placeholder="<{$smarty.const._MA_TADLOGIN_KEYWORD_DESC}>">
+                    <input type="text" name="keyword" class="form-control" value="<{$keyword|default:''}>" placeholder="<{$smarty.const._MA_TADLOGIN_KEYWORD_DESC}>">
                     <div class="input-group-append input-group-btn">
                         <button type="submit" class="btn btn-primary"><{$smarty.const._TAD_SEARCH}></button>
                     </div>
@@ -70,4 +70,4 @@
     </tr>
 <{/foreach}>
 </table>
-<{$bar}>
+<{$bar|default:''}>

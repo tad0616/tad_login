@@ -20,7 +20,7 @@
     });
 </script>
 
-<form action="<{$action}>" method="post" id="myForm" enctype="multipart/form-data">
+<form action="<{$action|default:''}>" method="post" id="myForm" enctype="multipart/form-data">
 
     <!--學校代碼或Email-->
     <div class="row">
@@ -32,11 +32,11 @@
         </div>
 
         <div class="col-sm-2" id="kind_schoolcode">
-            <input type="text" name="item_schoolcode" class="form-control " value="<{$item}>" placeholder="<{$smarty.const._MA_TADLOGIN_SCHOOLCODE}>">
+            <input type="text" name="item_schoolcode" class="form-control " value="<{$item|default:''}>" placeholder="<{$smarty.const._MA_TADLOGIN_SCHOOLCODE}>">
         </div>
 
         <div class="col-sm-2" id="kind_email">
-            <textarea name="item_email" rows=3 class="form-control " placeholder="<{$smarty.const._MA_TADLOGIN_EMAIL_DESC}>"><{$item}></textarea>
+            <textarea name="item_email" rows=3 class="form-control " placeholder="<{$smarty.const._MA_TADLOGIN_EMAIL_DESC}>"><{$item|default:''}></textarea>
         </div>
 
         <label class="col-sm-1 text-right text-end">
@@ -55,13 +55,13 @@
             <{$smarty.const._MA_TADLOGIN_GROUP_ID}>
         </label>
         <div class="col-sm-3">
-            <{$group_menu}>
+            <{$group_menu|default:''}>
         </div>
 
         <div class="col-sm-1 text-center">
             <!--編號-->
-            <input type='hidden' name="config_id" value="<{$config_id}>">
-            <input type="hidden" name="op" value="<{$next_op}>">
+            <input type='hidden' name="config_id" value="<{$config_id|default:''}>">
+            <input type="hidden" name="op" value="<{$next_op|default:''}>">
             <button type="submit" class="btn btn-primary"><{$smarty.const._TAD_SAVE}></button>
         </div>
         </div>

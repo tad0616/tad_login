@@ -1,5 +1,5 @@
 
-<h2 class="text-center"><{$title}></h2>
+<h2 class="text-center"><{$title|default:''}></h2>
 <hr>
 
 <div class="row">
@@ -8,7 +8,7 @@
     <{$smarty.const._MA_TADLOGIN_GROUP_ID}>
     </div>
     <div class="col-sm-9">
-    <{$group_id}>
+    <{$group_id|default:''}>
     </div>
 
 </div>
@@ -20,6 +20,6 @@
     <{$smarty.const._MA_TADLOGIN_ITEM}>
     </div>
     <div class="well span9">
-    <{$item}>
+    <{$item|default:''}>
     </div>
 </div>
