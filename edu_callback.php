@@ -1,6 +1,6 @@
 <?php
+use XoopsModules\Tad_login\Tools;
 require_once '../../mainfile.php';
-require_once 'function.php';
 require_once 'class/edu/auth.php';
 
 //verified idtoken
@@ -22,7 +22,7 @@ $accesstoken = $oidc->getAccessToken();
 //get eduinfo
 $eduinfo = [];
 if (isset($oidc_arr['eduinfoep']) && !empty($oidc_arr['eduinfoep']) && in_array('eduinfo', $oidc_arr['scope'])) {
-    $eduinfo = requestProtectedApi($oidc_arr['eduinfoep'], $accesstoken, true, $oidc_arr['gzipenable']);
+    $eduinfo = Tools::requestProtectedApi($oidc_arr['eduinfoep'], $accesstoken, true, $oidc_arr['gzipenable']);
 }
 
 //sanitizer object
@@ -35,7 +35,8 @@ $sig = '';
 $occ = '';
 $bio = "";
 
-if ($auth_method === "kh_oidc") { //高雄市例外處理
+if ($auth_method === "kh_oidc") {
+    //高雄市例外處理
     $name = $myts->addSlashes($claims['name']); //視有無申請真實完整姓名，沒有的話為<姓+老師/學生>
     $email = $claims['email']; //每個人不一定有mail，沒有為空白字串
     if ($email) {
@@ -72,4 +73,4 @@ if ($auth_method === "kh_oidc") { //高雄市例外處理
     $bio = $eduinfo_json;
 }
 
-login_xoops($uname, $name, $email, $SchoolCode, $JobName, $url, $from, $sig, $occ, $bio);
+Tools::login_xoops($uname, $name, $email, $SchoolCode, $JobName, $url, $from, $sig, $occ, $bio);

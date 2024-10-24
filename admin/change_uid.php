@@ -5,7 +5,6 @@ use XoopsModules\Tadtools\Utility;
 /*-----------引入檔案區--------------*/
 $GLOBALS['xoopsOption']['template_main'] = 'tad_login_admin.tpl';
 require_once __DIR__ . '/header.php';
-require_once dirname(__DIR__) . '/function.php';
 /*-----------function區--------------*/
 function user_list($keyword = '')
 {
@@ -44,28 +43,28 @@ function user_list($keyword = '')
 function change_uid($change_uid = [])
 {
     global $xoopsDB;
-    // Utility::dd($change_uid);
     list($uid1, $uid2) = $change_uid;
-    // die("$uid1, $uid2");
-    $sql = "SELECT max(uid) FROM `" . $xoopsDB->prefix('users') . "`";
-    $result = $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
+    $sql = 'SELECT MAX(`uid`) FROM `' . $xoopsDB->prefix('users') . '`';
+    $result = Utility::query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
+
     list($max_uid) = $xoopsDB->fetchRow($result);
     $max_uid = $max_uid + 100;
+    $sql = 'UPDATE `' . $xoopsDB->prefix('users') . '` SET `uid`=? WHERE `uid`=?';
+    Utility::query($sql, 'ii', [$max_uid, $uid1]) or Utility::web_error($sql, __FILE__, __LINE__);
 
-    $sql = "update `" . $xoopsDB->prefix('users') . "` set `uid`='$max_uid' where `uid`='$uid1'";
-    $xoopsDB->queryF($sql) or Utility::web_error($sql, __FILE__, __LINE__);
+    $sql = 'UPDATE `' . $xoopsDB->prefix('users') . '` SET `uid`=? WHERE `uid`=?';
+    Utility::query($sql, 'ii', [$uid1, $uid2]) or Utility::web_error($sql, __FILE__, __LINE__);
 
-    $sql = "update `" . $xoopsDB->prefix('users') . "` set `uid`='$uid1' where `uid`='$uid2'";
-    $xoopsDB->queryF($sql) or Utility::web_error($sql, __FILE__, __LINE__);
+    $sql = 'UPDATE `' . $xoopsDB->prefix('users') . '` SET `uid`=? WHERE `uid`=?';
+    Utility::query($sql, 'ii', [$uid2, $max_uid]) or Utility::web_error($sql, __FILE__, __LINE__);
 
-    $sql = "update `" . $xoopsDB->prefix('users') . "` set `uid`='$uid2' where `uid`='$max_uid'";
-    $xoopsDB->queryF($sql) or Utility::web_error($sql, __FILE__, __LINE__);
-
-    $sql = "SELECT `uid`, `uname` FROM `" . $xoopsDB->prefix('users') . "` where `uid`='$uid1'";
-    $result = $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
+    $sql = 'SELECT `uid`, `uname` FROM `' . $xoopsDB->prefix('users') . '` WHERE `uid`=?';
+    $result = Utility::query($sql, 'i', [$uid1]) or Utility::web_error($sql, __FILE__, __LINE__);
     list($uidA, $unameA) = $xoopsDB->fetchRow($result);
-    $sql = "SELECT `uid`, `uname` FROM `" . $xoopsDB->prefix('users') . "` where `uid`='$uid2'";
-    $result = $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
+
+    $sql = 'SELECT `uid`, `uname` FROM `' . $xoopsDB->prefix('users') . '` WHERE `uid`=?';
+    $result = Utility::query($sql, 'i', [$uid2]) or Utility::web_error($sql, __FILE__, __LINE__);
+
     list($uidB, $unameB) = $xoopsDB->fetchRow($result);
 
     redirect_header($_SERVER['PHP_SELF'], 3, sprintf(_MA_TADLOGIN_CHANGE_OK, $unameA, $uidA, $unameB, $uidB));

@@ -1,4 +1,4 @@
-<link href="<{$xoops_url}>/modules/tadtools/css/font-awesome/css/font-awesome.css" rel="stylesheet">
+
 <div class="container-fluid">
   <label><{$smarty.const._MA_TADLOGIN_GOO_STEP1}></label><br>
   <img src="../images/google/google_01.png" alt="step1" title="step1" border="0" class="img-fluid img-responsive img-thumbnail"><br><br>

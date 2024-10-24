@@ -1,10 +1,10 @@
 <?php
+use XoopsModules\Tad_login\Tools;
 //區塊主函式 (快速登入(tad_login))
 function tad_login($options = '')
 {
-    global $xoopsUser, $all_oidc, $oidc_array, $oidc_array2, $all_oidc2;
+    global $xoopsUser;
     if (!$xoopsUser) {
-        require_once XOOPS_ROOT_PATH . '/modules/tad_login/function.php';
 
         $moduleHandler = xoops_getHandler('module');
         $xoopsModule = $moduleHandler->getByDirname('tad_login');
@@ -15,26 +15,28 @@ function tad_login($options = '')
         $block['show_text'] = $options[1];
         $big = ('1' == $options[2]) ? '_l' : '';
         $i = 0;
-        // die(var_dump($oidc_array));
+        $oidc_array = array_keys(Tools::$all_oidc);
+        $oidc_array2 = array_keys(Tools::$all_oidc2);
+
         foreach ($modConfig['auth_method'] as $openid) {
             if ('facebook' === $openid) {
-                $url = facebook_login('return');
+                $url = Tools::facebook_login('return');
             } elseif ('google' === $openid) {
-                $url = google_login('return');
+                $url = Tools::google_login('return');
             } elseif ('line' === $openid) {
-                $url = line_login('return');
+                $url = Tools::line_login('return');
             } else {
                 $url = XOOPS_URL . "/modules/tad_login/index.php?login&op={$openid}";
             }
             $auth_method[$i]['title'] = $openid;
             $auth_method[$i]['url'] = $url;
 
-            $auth_method[$i]['logo'] = in_array($openid, $oidc_array) ? XOOPS_URL . "/modules/tad_login/images/oidc/{$all_oidc[$openid]['tail']}.png" : XOOPS_URL . "/modules/tad_login/images/{$openid}{$big}.png";
+            $auth_method[$i]['logo'] = in_array($openid, $oidc_array) ? XOOPS_URL . "/modules/tad_login/images/oidc/" . Tools::$all_oidc[$openid]['tail'] . ".png" : XOOPS_URL . "/modules/tad_login/images/{$openid}{$big}.png";
 
             if (in_array($openid, $oidc_array)) {
-                $auth_method[$i]['text'] = constant('_' . mb_strtoupper($all_oidc[$openid]['tail'])) . ' OIDC ' . _MB_TADLOGIN_LOGIN;
+                $auth_method[$i]['text'] = constant('_' . mb_strtoupper(Tools::$all_oidc[$openid]['tail'])) . ' OIDC ' . _MB_TADLOGIN_LOGIN;
             } elseif (in_array($openid, $oidc_array2)) {
-                $auth_method[$i]['text'] = constant('_' . mb_strtoupper($all_oidc[$openid]['tail'])) . _MB_TADLOGIN_LOGIN;
+                $auth_method[$i]['text'] = constant('_' . mb_strtoupper(Tools::$all_oidc[$openid]['tail'])) . _MB_TADLOGIN_LOGIN;
             } else {
                 $auth_method[$i]['text'] = constant('_' . mb_strtoupper($openid)) . ' OpenID ' . _MB_TADLOGIN_LOGIN;
             }
@@ -42,10 +44,10 @@ function tad_login($options = '')
             $i++;
         }
 
-        $block['all_oidc'] = $all_oidc;
+        $block['all_oidc'] = Tools::$all_oidc;
+        $block['all_oidc2'] = Tools::$all_oidc2;
         $block['oidc_array'] = $oidc_array;
         $block['oidc_array2'] = $oidc_array2;
-        $block['all_oidc2'] = $all_oidc2;
         $block['auth_method'] = $auth_method;
         $block['use_big'] = ('1' == $options[2]) ? '1' : '0';
         $block['mode'] = 'login';

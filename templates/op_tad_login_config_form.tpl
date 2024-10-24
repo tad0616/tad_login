@@ -39,7 +39,7 @@
             <textarea name="item_email" rows=3 class="form-control " placeholder="<{$smarty.const._MA_TADLOGIN_EMAIL_DESC}>"><{$item|default:''}></textarea>
         </div>
 
-        <label class="col-sm-1 text-right text-end">
+        <label class="col-sm-1 control-label col-form-label text-right text-end">
             <{$smarty.const._MA_TADLOGIN_JOB}>
         </label>
         <div class="col-sm-2">
@@ -51,7 +51,7 @@
         </div>
 
         <!--群組-->
-        <label class="col-sm-1 text-right text-end">
+        <label class="col-sm-1 control-label col-form-label text-right text-end">
             <{$smarty.const._MA_TADLOGIN_GROUP_ID}>
         </label>
         <div class="col-sm-3">
@@ -62,7 +62,7 @@
             <!--編號-->
             <input type='hidden' name="config_id" value="<{$config_id|default:''}>">
             <input type="hidden" name="op" value="<{$next_op|default:''}>">
-            <button type="submit" class="btn btn-primary"><{$smarty.const._TAD_SAVE}></button>
+            <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i>  <{$smarty.const._TAD_SAVE}></button>
         </div>
         </div>
 </form>

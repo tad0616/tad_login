@@ -29,15 +29,11 @@
                 <li><{$smarty.const._MD_TADLOGIN_EDIT_PASSEOWD_DESC6}></li>
             <{else}>
                 <li><{$smarty.const._MD_TADLOGIN_EDIT_PASSEOWD_DESC7}><{$hashed_date|default:''}>
-                    <div class="input-group">
-                        <div class="input-group-prepend input-group-addon">
+                    <div class="input-group input-group-lg">
                             <span class="input-group-text"><{$smarty.const._MD_TADLOGIN_MODIFY_PASSEOWD}></span>
-                        </div>
                         <input type="text" name="newpass" class="form-control validate[required]" placeholder="">
                         <input type="hidden" name="op" value="change_pass">
-                        <div class="input-group-append input-group-btn">
-                            <button type="submit" class="btn btn-primary"><{$smarty.const._MD_TADLOGIN_COMPLETE_MODIFY}></button>
-                        </div>
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i> <{$smarty.const._MD_TADLOGIN_COMPLETE_MODIFY}></button>
                     </div>
                 </li>
                 <li><{$smarty.const._MD_TADLOGIN_EDIT_PASSEOWD_DESC8|sprintf:$uname}></li>

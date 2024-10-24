@@ -1,6 +1,6 @@
 <?php
 xoops_loadLanguage('admin_common', 'tadtools');
-$http = $_SERVER['HTTPS'] ? 'https://' : 'http://';
+$http = isset($_SERVER['HTTPS']) ? 'https://' : 'http://';
 $mid = $xoopsModule->mid();
 
 define('_MA_TADLOGIN_STEP1', "<h1> [Step 1] Create an application </h1> <p> Please connect to <a href='https://developers.facebook.com/apps' target='_blank'>https://developers.facebook.com/apps</a>, if you are already a developer, you should see the \"Create Application\" button, please click \"Create Application\" to get started. </p > ");

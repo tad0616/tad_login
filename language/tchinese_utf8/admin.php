@@ -1,6 +1,6 @@
 <?php
 xoops_loadLanguage('admin_common', 'tadtools');
-$http = $_SERVER['HTTPS'] ? 'https://' : 'http://';
+$http = isset($_SERVER['HTTPS']) ? 'https://' : 'http://';
 $mid = $xoopsModule->mid();
 define('_MA_TADLOGIN_DEV_STEP1', "<h1>【步驟 1】若還不是FB開發者</h1><p>請連至 <a href='https://developers.facebook.com/apps' target='_blank'>https://developers.facebook.com/apps</a>，若是沒有「製作新應用程式」的按鈕，那您得先按下「立即註冊」成為FB開發者才行。</p>");
 define('_MA_TADLOGIN_DEV_STEP2', '<h1>【步驟 2】輸入FB密碼</h1><p></p>');

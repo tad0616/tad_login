@@ -1,6 +1,6 @@
 <?php
+use XoopsModules\Tad_login\Tools;
 require_once dirname(dirname(__DIR__)) . '/mainfile.php';
-require_once __DIR__ . '/function.php';
 
 $oidc_setup = json_decode($xoopsModuleConfig['oidc_setup'], true);
 
@@ -15,7 +15,7 @@ if (!isset($_GET['code']) && !isset($_SESSION['token'])) {
         'redirect_uri' => XOOPS_URL . '/modules/tad_login/tp_callback.php',
         'code' => $_GET['code'],
     ];
-    $response = do_post('https://ldap.tp.edu.tw/oauth/token', $param);
+    $response = Tools::do_post('https://ldap.tp.edu.tw/oauth/token', $param);
     $token = json_decode($response);
     ini_set('session.gc_maxlifetime', $token->expires_in);
     $_SESSION['token'] = $token->access_token;
@@ -29,7 +29,7 @@ if (!isset($_GET['code']) && !isset($_SESSION['token'])) {
         'client_secret' => $oidc_setup['tp_ldap']['clientsecret'],
         'scope' => 'user profile',
     ];
-    $response = do_post('https://ldap.tp.edu.tw/oauth/token', $param);
+    $response = Tools::do_post('https://ldap.tp.edu.tw/oauth/token', $param);
     $token = json_decode($response);
     ini_set('session.gc_maxlifetime', $token->expires_in);
     $_SESSION['token'] = $token->access_token;
@@ -37,8 +37,8 @@ if (!isset($_GET['code']) && !isset($_SESSION['token'])) {
     $_SESSION['expire'] = time() + $token->expires_in;
 }
 
-$user = requestProtectedApi('https://ldap.tp.edu.tw/api/user', $_SESSION['token']);
-$profile = requestProtectedApi('https://ldap.tp.edu.tw/api/profile', $_SESSION['token']);
+$user = Tools::requestProtectedApi('https://ldap.tp.edu.tw/api/user', $_SESSION['token']);
+$profile = Tools::requestProtectedApi('https://ldap.tp.edu.tw/api/profile', $_SESSION['token']);
 // $school = requestProtectedApi('https://ldap.tp.edu.tw/api/school/' . $profile['o'], $_SESSION['token']);
 
 // var_export($profile);
@@ -75,5 +75,5 @@ if ($user['email']) {
     $sig = '';
     $occ = $profile['organization'];
 
-    login_xoops($uname, $name, $email, $SchoolCode, $JobName, $url, $from, $sig, $occ, $bio);
+    Tools::login_xoops($uname, $name, $email, $SchoolCode, $JobName, $url, $from, $sig, $occ, $bio);
 }

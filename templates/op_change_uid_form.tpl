@@ -49,7 +49,7 @@
     </table>
     <div class="bar">
         <input type="hidden" name="op" value="change_uid">
-        <button type="submit" class="btn btn-primary"><{$smarty.const._TAD_SUBMIT}></button>
+        <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i>  <{$smarty.const._TAD_SUBMIT}></button>
     </div>
 </form>
 <{$bar|default:''}>

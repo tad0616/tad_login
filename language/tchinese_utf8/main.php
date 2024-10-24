@@ -28,3 +28,4 @@ define('_MD_TADLOGIN_LOGIN_ICON', '登入示意圖');
 define('_MD_TNOPENID_INCORRECTLOGIN', '無法登入');
 define('_MD_TNOPENID_NOACTTPADM', '無權限');
 define('_MD_TNOPENID_NO_USER', '無此帳號');
+define('_MD_TADLOGIN_LOGIN_LIST', '快速登入');

@@ -1,4 +1,4 @@
-<link href="<{$xoops_url}>/modules/tadtools/css/font-awesome/css/font-awesome.css" rel="stylesheet">
+
 <div class="container-fluid">
   <label><{$smarty.const._MA_TADLOGIN_DEV_STEP1}></label><br>
   <img src="../images/fb/dev_step01.png" alt="dev_step1" title="dev_step1" border="0" class="img-fluid img-responsive img-thumbnail"><br><br>

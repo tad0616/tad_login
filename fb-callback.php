@@ -1,4 +1,5 @@
 <?php
+use XoopsModules\Tad_login\Tools;
 require __DIR__ . '/header.php';
 require_once __DIR__ . '/class/Facebook/autoload.php';
 
@@ -108,7 +109,7 @@ $from = '';
 $sig = '';
 $occ = '';
 
-login_xoops($uname, $name, $email, '', '', $url, $from, $sig, $occ, $bio);
+Tools::login_xoops($uname, $name, $email, '', '', $url, $from, $sig, $occ, $bio);
 // User is logged in with a long-lived access token.
 // You can redirect them to a members-only page.
 // header('Location: ' . XOOPS_URL);

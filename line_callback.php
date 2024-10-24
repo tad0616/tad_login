@@ -1,6 +1,6 @@
 <?php
+use XoopsModules\Tad_login\Tools;
 require_once dirname(dirname(__DIR__)) . '/mainfile.php';
-require_once __DIR__ . '/function.php';
 require_once 'class/line/ConfigManager.php'; //Line 設定檔 管理器
 require_once 'class/line/LineAuthorization.php'; //產生登入網址
 require_once 'class/line/LineProfiles.php'; //取得用戶端 Profile
@@ -27,7 +27,7 @@ $state = $_GET['state'];
 $Line = new LineController();
 
 list($access_token, $id_token) = $Line->getAccessToken($code); //取得使用者資料
-setcookie("access_token", $access_token, time() + 3600 * 24 * 20); //把他記憶20天
+setcookie("access_token", $access_token, time() + 3600 * 24 * 20, null, null, true); //把他記憶20天
 // $user = $Line->getLineProfile_access_token($access_token); //取得使用者資料
 $user_profile = $Line->VerifyIDtoken($id_token); //取得使用者資料
 
@@ -53,7 +53,7 @@ if ($user_profile['email']) {
     $email = $user_profile['email'];
     $bio = $url = $from = $sig = $occ = $msnm = $user_avatar = $aim = $yim = '';
     // $user_avatar = copy_user_avatar($user_profile['picture'], $id);
-    login_xoops($uname, $name, $email, '', '', $url, $from, $sig, $occ, $bio, $aim, $yim, $msnm, $user_avatar);
+    Tools::login_xoops($uname, $name, $email, '', '', $url, $from, $sig, $occ, $bio, $aim, $yim, $msnm, $user_avatar);
 }
 
 function copy_user_avatar($url, $id)

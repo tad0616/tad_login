@@ -3,21 +3,25 @@ use Xmf\Request;
 use XoopsModules\Tadtools\Bootstrap3Editable;
 use XoopsModules\Tadtools\FormValidator;
 use XoopsModules\Tadtools\Utility;
+use XoopsModules\Tad_login\Tools;
 /*-----------引入檔案區--------------*/
 $GLOBALS['xoopsOption']['template_main'] = 'tad_login_admin.tpl';
 require_once __DIR__ . '/header.php';
-require_once dirname(__DIR__) . '/function.php';
 /*-----------function區--------------*/
 function passwd_list($keyword = '')
 {
     global $xoopsTpl, $xoopsDB, $xoopsModule;
     $xoopsTpl->assign('mid', $xoopsModule->mid());
 
-    $and_keyword = empty($keyword) ? '' : "and b.`name` like '%$keyword%' or b.`uname` like '%$keyword%' or b.`email` like '%$keyword%'";
+    $and_keyword = empty($keyword) ? '' : "AND (b.`name` LIKE ? OR b.`uname` LIKE ? OR b.`email` LIKE ?)";
+    $sql = "SELECT COUNT(*) FROM `" . $xoopsDB->prefix('tad_login_random_pass') . "` AS a
+        JOIN `" . $xoopsDB->prefix('users') . "` AS b ON a.uname = b.uname
+        WHERE a.hashed_date = '0000-00-00 00:00:00' $and_keyword
+        GROUP BY a.hashed_date";
 
-    $sql = "SELECT count(*) FROM `" . $xoopsDB->prefix('tad_login_random_pass') . "`  as a
-    join `" . $xoopsDB->prefix('users') . "` as b on a.uname=b.uname where a.hashed_date='0000-00-00 00:00:00' $and_keyword group by a.hashed_date";
-    $result = $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
+    $params = empty($keyword) ? [] : ["%$keyword%", "%$keyword%", "%$keyword%"];
+    $result = Utility::query($sql, str_repeat('s', count($params)), $params) or Utility::web_error($sql, __FILE__, __LINE__);
+
     list($count) = $xoopsDB->fetchRow($result);
     $xoopsTpl->assign('count', $count);
 
@@ -54,12 +58,13 @@ function passwd_list($keyword = '')
 
 function change_all_pass($passwd)
 {
-    global $xoopsTpl, $xoopsDB;
+    global $xoopsDB;
 
-    $sql = "SELECT uname FROM `" . $xoopsDB->prefix('tad_login_random_pass') . "` where hashed_date='0000-00-00 00:00:00'";
-    $result = $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
+    $sql = 'SELECT `uname` FROM `' . $xoopsDB->prefix('tad_login_random_pass') . '` WHERE `hashed_date`=?';
+    $result = Utility::query($sql, 's', ['0000-00-00 00:00:00']) or Utility::web_error($sql, __FILE__, __LINE__);
+
     while (list($uname) = $xoopsDB->fetchRow($result)) {
-        change_pass($passwd, $uname, false);
+        Tools::change_pass($passwd, $uname, false);
     }
 }
 /*-----------執行動作判斷區----------*/
