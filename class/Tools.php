@@ -269,10 +269,10 @@ class Tools
             header('location:' . XOOPS_URL . '/user.php');
             exit;
         }
-        require_once 'class/line/ConfigManager.php'; //Line 設定檔 管理器
-        require_once 'class/line/LineAuthorization.php'; //產生登入網址
-        require_once 'class/line/LineProfiles.php'; //取得用戶端 Profile
-        require_once 'class/line/LineController.php'; //LINE控制
+        require_once XOOPS_ROOT_PATH . '/modules/tad_login/class/line/ConfigManager.php'; //Line 設定檔 管理器
+        require_once XOOPS_ROOT_PATH . '/modules/tad_login/class/line/LineAuthorization.php'; //產生登入網址
+        require_once XOOPS_ROOT_PATH . '/modules/tad_login/class/line/LineProfiles.php'; //取得用戶端 Profile
+        require_once XOOPS_ROOT_PATH . '/modules/tad_login/class/line/LineController.php'; //LINE控制
 
         if (!isset($xoopsModuleConfig['line_id'])) {
             $moduleHandler = xoops_getHandler('module');
@@ -295,7 +295,7 @@ class Tools
         define("REDIRECT_URI", XOOPS_URL . '/modules/tad_login/line_callback.php'); //登入後返回位置
         define("SCOPE", 'openid%20profile%20email'); //授權範圍以%20分隔 可以有3項openid，profile，email
 
-        $Line = new LineController();
+        $Line = new \LineController();
         $loginUrl = $Line->lineLogin($state); //產生LINE登入連結
 
         if ('return' === $mode) {
@@ -310,11 +310,11 @@ class Tools
     //FB登入
     public static function facebook_login($mode = '')
     {
-        global $xoopsConfig, $xoopsDB, $xoopsTpl, $xoopsUser;
+        global $xoopsTpl, $xoopsUser;
         if (PHP_VERSION_ID < 50400) {
             return false;
         }
-        require_once XOOPS_ROOT_PATH . '/modules/tad_login/class/Facebook/autoload.php';
+        require XOOPS_ROOT_PATH . '/modules/tad_login/class/Facebook/autoload.php';
 
         if ($xoopsUser) {
             header('location:' . XOOPS_URL . '/user.php');
@@ -337,12 +337,13 @@ class Tools
         $tad_loginModule = $moduleHandler->getByDirname('tad_login');
         $configHandler = xoops_getHandler('config');
         $tad_loginConfig = $configHandler->getConfigsByCat(0, $tad_loginModule->getVar('mid'));
-
-        $fb = new Facebook\Facebook([
-            'app_id' => $tad_loginConfig['appId'], // Replace {app-id} with your app id
-            'app_secret' => $tad_loginConfig['secret'],
-            'default_graph_version' => 'v2.11',
-        ]);
+        if (class_exists('Facebook\Facebook')) {
+            $fb = new Facebook\Facebook([
+                'app_id' => $tad_loginConfig['appId'], // Replace {app-id} with your app id
+                'app_secret' => $tad_loginConfig['secret'],
+                'default_graph_version' => 'v2.11',
+            ]);
+        }
 
         $helper = $fb->getRedirectLoginHelper();
         $permissions = ['email']; // Optional permissions
@@ -378,9 +379,9 @@ class Tools
         //         $uid = (int) ($_GET['uid']);
         //     }
         // }
-        $client = new Google_Client();
+        $client = new \Google_Client();
         $client->setApplicationName('Google UserInfo PHP Starter Application');
-        $oauth2 = new Google_Oauth2Service($client);
+        $oauth2 = new \Google_Oauth2Service($client);
 
         if (isset($_GET['code'])) {
             // die("system testing...1");

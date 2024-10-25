@@ -44,11 +44,13 @@ function edu_login_config_form($config_id = '')
     $all_oidc = $all_oidc2 = [];
     foreach (Tools::$all_oidc as $oidc_unit => $oarr) {
         $oidc_unit_const = constant('_' . strtoupper($oarr['tail'])) . _TADLOGIN_OIDC;
+        $all_oidc[$oidc_unit] = $oarr;
         $all_oidc[$oidc_unit]['title'] = $oidc_unit_const;
     }
 
     foreach (Tools::$all_oidc2 as $oidc_unit => $oarr) {
         $oidc_unit_const = constant('_' . strtoupper($oarr['tail'])) . _TADLOGIN_LDAP;
+        $all_oidc2[$oidc_unit] = $oarr;
         $all_oidc2[$oidc_unit]['title'] = $oidc_unit_const;
     }
 

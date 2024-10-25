@@ -76,12 +76,6 @@ if (!$accessToken->isLongLived()) {
 
 $_SESSION['fb_access_token'] = (string) $accessToken;
 
-// $fb = new Facebook\Facebook([
-//     'app_id'                => $tad_loginConfig['appId'], // Replace {app-id} with your app id
-//     'app_secret'            => $tad_loginConfig['secret'],
-//     'default_graph_version' => 'v2.2',
-// ]);
-
 $user_profile = '';
 if ($_SESSION['fb_access_token']) {
     // die('fb_access_token:' . $_SESSION['fb_access_token']);

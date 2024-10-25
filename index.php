@@ -28,15 +28,15 @@ switch ($op) {
 
     case 'facebook':
         $_SESSION['auth_method'] = 'facebook';
-        facebook_login();
+        Tools::facebook_login();
         break;
     case 'google':
         $_SESSION['auth_method'] = 'google';
-        google_login();
+        Tools::google_login();
         break;
     case 'line':
         $_SESSION['auth_method'] = 'line';
-        line_login();
+        Tools::line_login();
         break;
 
     case 'tn':
