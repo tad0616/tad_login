@@ -5,6 +5,28 @@ use XoopsModules\Tadtools\Utility;
 /*-----------引入檔案區--------------*/
 $GLOBALS['xoopsOption']['template_main'] = 'tad_login_admin.tpl';
 require_once __DIR__ . '/header.php';
+/*-----------執行動作判斷區----------*/
+$op = Request::getString('op');
+$change_uid = Request::getArray('change_uid');
+$keyword = Request::getString('keyword');
+
+switch ($op) {
+    case 'change_uid':
+        change_uid($change_uid);
+        // header('location: change_uid.php');
+        break;
+
+    //預設動作
+    default:
+        user_list($keyword);
+        $op = 'change_uid_form';
+        break;
+}
+
+/*-----------秀出結果區--------------*/
+$xoopsTpl->assign('now_op', $op);
+require_once __DIR__ . '/footer.php';
+
 /*-----------function區--------------*/
 function user_list($keyword = '')
 {
@@ -69,24 +91,3 @@ function change_uid($change_uid = [])
 
     redirect_header($_SERVER['PHP_SELF'], 3, sprintf(_MA_TADLOGIN_CHANGE_OK, $unameA, $uidA, $unameB, $uidB));
 }
-/*-----------執行動作判斷區----------*/
-$op = Request::getString('op');
-$change_uid = Request::getArray('change_uid');
-$keyword = Request::getString('keyword');
-
-switch ($op) {
-    case 'change_uid':
-        change_uid($change_uid);
-        // header('location: change_uid.php');
-        break;
-
-    //預設動作
-    default:
-        user_list($keyword);
-        $op = 'change_uid_form';
-        break;
-}
-
-/*-----------秀出結果區--------------*/
-$xoopsTpl->assign('now_op', $op);
-require_once __DIR__ . '/footer.php';

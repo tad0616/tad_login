@@ -1,7 +1,5 @@
 <?php
 
-use XoopsModules\Tadtools\Utility;
-
 function xoops_module_uninstall_tad_login(&$module)
 {
     $date = date('Ymd');
