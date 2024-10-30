@@ -25,7 +25,7 @@
     <!--學校代碼或Email-->
     <div class="row">
         <div class="col-sm-2">
-            <select name="type" id="type" class="form-control">
+            <select name="type" id="type" class="form-select">
                 <option value="email" <{if $type=="email"}>selected<{/if}>><{$smarty.const._MA_TADLOGIN_EMAIL}></option>
                 <option value="schoolcode" <{if $type!="email"}>selected<{/if}>><{$smarty.const._MA_TADLOGIN_SCHOOLCODE}></option>
             </select>
@@ -43,7 +43,7 @@
             <{$smarty.const._MA_TADLOGIN_JOB}>
         </label>
         <div class="col-sm-2">
-            <select name="kind_schoolcode" class="form-control">
+            <select name="kind_schoolcode" class="form-select">
                 <option value="" <{if $kind=="email" or $kind==""}>selected<{/if}>></option>
                 <option value="teacher" <{if $kind=="teacher"}>selected<{/if}>><{$smarty.const._MA_TADLOGIN_TEACHER}></option>
                 <option value="student" <{if $kind=="student"}>selected<{/if}>><{$smarty.const._MA_TADLOGIN_STUDENT}></option>

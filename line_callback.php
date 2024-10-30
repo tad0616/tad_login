@@ -81,61 +81,6 @@ function copy_user_avatar($url, $id)
     $openedfile = fopen(XOOPS_ROOT_PATH . "/uploads/avatars/{$id}.jpg", 'wb');
     fwrite($openedfile, $contentx);
     fclose($openedfile);
-    thumbnail(XOOPS_ROOT_PATH . "/uploads/avatars/{$id}.jpg", XOOPS_ROOT_PATH . "/uploads/avatars/{$id}.jpg", 'image/jpeg', 400);
+    Utility::generateThumbnail(XOOPS_ROOT_PATH . "/uploads/avatars/{$id}.jpg", XOOPS_ROOT_PATH . "/uploads/avatars/{$id}.jpg", 400);
     return "avatars/{$id}.jpg";
-}
-
-//做縮圖
-function thumbnail($filename = '', $thumb_name = '', $type = 'image/jpeg', $width = '160', $angle = 0)
-{
-    list($old_width, $old_height) = getimagesize($filename);
-
-    if (0 != $angle) {
-        $h = $old_height;
-        $w = $old_width;
-
-        $old_width = $h;
-        $old_height = $w;
-    }
-
-    // die("$old_width, $old_height");
-
-    if ($old_width > $width) {
-        $percent = ($old_width > $old_height) ? round($width / $old_width, 2) : round($width / $old_height, 2);
-
-        $newwidth = ($old_width > $old_height) ? $width : $old_width * $percent;
-        $newheight = ($old_width > $old_height) ? $old_height * $percent : $width;
-
-        // Load
-        $thumb = imagecreatetruecolor($newwidth, $newheight);
-
-        if ('image/jpeg' === $type or 'image/jpg' === $type or 'image/pjpg' === $type or 'image/pjpeg' === $type) {
-            $source = imagecreatefromjpeg($filename);
-
-            $type = 'image/jpeg';
-        } elseif ('image/png' === $type) {
-            $source = imagecreatefrompng($filename);
-            $type = 'image/png';
-        } elseif ('image/gif' === $type) {
-            $source = imagecreatefromgif($filename);
-            $type = 'image/gif';
-        }
-        if (0 != $angle) {
-            $source = imagerotate($source, $angle, 0);
-        }
-        // Resize
-        imagecopyresampled($thumb, $source, 0, 0, 0, 0, $newwidth, $newheight, $old_width, $old_height);
-
-        header("Content-type: $type");
-        if ('image/jpeg' === $type) {
-            imagejpeg($thumb, $thumb_name);
-        } elseif ('image/png' === $type) {
-            imagepng($thumb, $thumb_name);
-        } elseif ('image/gif' === $type) {
-            imagegif($thumb, $thumb_name);
-        }
-
-        return;
-    }
-    copy($filename, $thumb_name);
 }

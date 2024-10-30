@@ -5,7 +5,7 @@
     <form action="oidc.php" method="post" id="myForm" enctype="multipart/form-data" class="form-horizontal">
         <{foreach from=$all_oidc key=unit  item=oidc}>
             <div class="form-group row mb-3">
-                <label class="control-label col-form-label text-md-right col-sm-2">
+                <label class="control-label col-form-label text-md-right text-md-end col-sm-2">
                     <{$oidc.title}>
                 </label>
                 <div class="col-sm-5">
@@ -19,7 +19,7 @@
         <{foreach from=$all_oidc2 key=unit item=oidc}>
             <!--學校代碼或Email-->
             <div class="form-group row mb-3">
-                <label class="control-label col-form-label text-md-right col-sm-2">
+                <label class="control-label col-form-label text-md-right text-md-end col-sm-2">
                     <{$oidc.title}>
                 </label>
                 <div class="col-sm-5">
