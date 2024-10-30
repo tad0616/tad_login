@@ -17,7 +17,7 @@ switch ($op) {
 
 function login($uname = '', $pass = '')
 {
-    global $xoopsModuleConfig, $xoopsConfig, $xoopsDB, $xoopsUser;
+    global $xoopsConfig;
     $memberHandler = xoops_getHandler('member');
 
     if ($memberHandler->getUserCount(new \Criteria('uname', $uname)) > 0) {
@@ -65,8 +65,8 @@ function login($uname = '', $pass = '')
             if (!$memberHandler->insertUser($user, true)) {
             }
 
-            $login_user['uname']=$user->uname();
-            $login_user['name']=$user->name();
+            $login_user['uname'] = $user->uname();
+            $login_user['name'] = $user->name();
             $login_user['groups'] = $user->getGroups();
             $login_user['uid'] = $user->uid();
             $login_user['email'] = $user->email();
