@@ -1,5 +1,7 @@
 <?php
+use XoopsModules\Tadtools\Utility;
 use XoopsModules\Tad_login\Tools;
+
 require_once dirname(dirname(__DIR__)) . '/mainfile.php';
 require_once 'class/line/ConfigManager.php'; //Line 設定檔 管理器
 require_once 'class/line/LineAuthorization.php'; //產生登入網址
