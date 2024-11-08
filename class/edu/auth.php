@@ -1,6 +1,7 @@
 <?php
 use Jumbojett\OpenIDConnectClient;
 use Xmf\Request;
+use XoopsModules\Tadtools\Utility;
 use XoopsModules\Tad_login\Tools;
 
 require_once __DIR__ . '/vendor/autoload.php';
@@ -9,12 +10,11 @@ include_once __DIR__ . '/../../../../mainfile.php';
 $auth_method = Request::getString('auth_method');
 
 if (!isset($xoopsModuleConfig)) {
-    $modhandler = xoops_getHandler('module');
-    $tad_loginModule = $modhandler->getByDirname('tad_login');
-    $config_handler = xoops_getHandler('config');
-    $xoopsModuleConfig = $config_handler->getConfigsByCat(0, $tad_loginModule->mid());
+    $TadLoginModuleConfig = Utility::getXoopsModuleConfig('tad_login');
+} else {
+    $TadLoginModuleConfig = $xoopsModuleConfig;
 }
-$oidc_setup = json_decode($xoopsModuleConfig['oidc_setup'], true);
+$oidc_setup = json_decode($TadLoginModuleConfig['oidc_setup'], true);
 $auth_method = $_SESSION['auth_method'] ? $_SESSION['auth_method'] : $auth_method;
 
 $oidc_arr = Tools::$all_oidc[$auth_method];

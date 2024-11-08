@@ -275,13 +275,10 @@ class Tools
         require_once XOOPS_ROOT_PATH . '/modules/tad_login/class/line/LineController.php'; //LINE控制
 
         if (!isset($xoopsModuleConfig['line_id'])) {
-            $moduleHandler = xoops_getHandler('module');
-            $xoopsModule = $moduleHandler->getByDirname('tad_login');
-            $configHandler = xoops_getHandler('config');
-            $modConfig = $configHandler->getConfigsByCat(0, $xoopsModule->mid());
+            $TadLoginModuleConfig = Utility::getXoopsModuleConfig('tad_login');
 
         } else {
-            $modConfig = $xoopsModuleConfig;
+            $TadLoginModuleConfig = $xoopsModuleConfig;
         }
 
         // if (!session_id()) {
@@ -290,8 +287,8 @@ class Tools
         $state = sha1(time());
         // $_SESSION['_line_state'] = $state;
 
-        define("CLIENT_ID", $modConfig['line_id']);
-        define("CLIENT_SECRET", $modConfig['line_secret']);
+        define("CLIENT_ID", $TadLoginModuleConfig['line_id']);
+        define("CLIENT_SECRET", $TadLoginModuleConfig['line_secret']);
         define("REDIRECT_URI", XOOPS_URL . '/modules/tad_login/line_callback.php'); //登入後返回位置
         define("SCOPE", 'openid%20profile%20email'); //授權範圍以%20分隔 可以有3項openid，profile，email
 
@@ -333,14 +330,11 @@ class Tools
             }
         }
 
-        $moduleHandler = xoops_getHandler('module');
-        $tad_loginModule = $moduleHandler->getByDirname('tad_login');
-        $configHandler = xoops_getHandler('config');
-        $tad_loginConfig = $configHandler->getConfigsByCat(0, $tad_loginModule->getVar('mid'));
+        $TadLoginModuleConfig = Utility::getXoopsModuleConfig('tad_login');
         if (class_exists('Facebook\Facebook')) {
             $fb = new Facebook\Facebook([
-                'app_id' => $tad_loginConfig['appId'], // Replace {app-id} with your app id
-                'app_secret' => $tad_loginConfig['secret'],
+                'app_id' => $TadLoginModuleConfig['appId'], // Replace {app-id} with your app id
+                'app_secret' => $TadLoginModuleConfig['secret'],
                 'default_graph_version' => 'v2.11',
             ]);
         }

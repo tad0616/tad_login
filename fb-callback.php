@@ -1,16 +1,14 @@
 <?php
+use XoopsModules\Tadtools\Utility;
 use XoopsModules\Tad_login\Tools;
 require __DIR__ . '/header.php';
 require_once __DIR__ . '/class/Facebook/autoload.php';
 
-$moduleHandler = xoops_getHandler('module');
-$tad_loginModule = $moduleHandler->getByDirname('tad_login');
-$configHandler = xoops_getHandler('config');
-$tad_loginConfig = $configHandler->getConfigsByCat(0, $tad_loginModule->getVar('mid'));
+$TadLoginModuleConfig = Utility::getXoopsModuleConfig('tad_login');
 
 $fb = new Facebook\Facebook([
-    'app_id' => $tad_loginConfig['appId'], // Replace {app-id} with your app id
-    'app_secret' => $tad_loginConfig['secret'],
+    'app_id' => $TadLoginModuleConfig['appId'], // Replace {app-id} with your app id
+    'app_secret' => $TadLoginModuleConfig['secret'],
     'default_graph_version' => 'v2.11',
 ]);
 
@@ -56,7 +54,7 @@ $tokenMetadata = $oAuth2Client->debugToken($accessToken);
 // var_dump($tokenMetadata);
 
 // Validation (these will throw FacebookSDKException's when they fail)
-$tokenMetadata->validateAppId($tad_loginConfig['appId']); // Replace {app-id} with your app id
+$tokenMetadata->validateAppId($TadLoginModuleConfig['appId']); // Replace {app-id} with your app id
 // If you know the user ID this access token belongs to, you can validate it here
 //$tokenMetadata->validateUserId('123');
 $tokenMetadata->validateExpiration();

@@ -1,4 +1,5 @@
 <?php
+use XoopsModules\Tadtools\Utility;
 use XoopsModules\Tad_login\Tools;
 //區塊主函式 (快速登入(tad_login))
 function tad_login($options = '')
@@ -6,10 +7,7 @@ function tad_login($options = '')
     global $xoopsUser;
     if (!$xoopsUser) {
 
-        $moduleHandler = xoops_getHandler('module');
-        $xoopsModule = $moduleHandler->getByDirname('tad_login');
-        $configHandler = xoops_getHandler('config');
-        $modConfig = $configHandler->getConfigsByCat(0, $xoopsModule->mid());
+        $TadLoginModuleConfig = Utility::getXoopsModuleConfig('tad_login');
 
         $block['show_btn'] = $options[0];
         $block['show_text'] = $options[1];
@@ -18,7 +16,7 @@ function tad_login($options = '')
         $oidc_array = array_keys(Tools::$all_oidc);
         $oidc_array2 = array_keys(Tools::$all_oidc2);
 
-        foreach ($modConfig['auth_method'] as $openid) {
+        foreach ($TadLoginModuleConfig['auth_method'] as $openid) {
             if ('facebook' === $openid) {
                 $url = Tools::facebook_login('return');
             } elseif ('google' === $openid) {
