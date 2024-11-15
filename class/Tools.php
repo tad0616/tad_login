@@ -304,51 +304,6 @@ class Tools
         $xoopsTpl->assign('line', $loginUrl);
     }
 
-    //FB登入
-    public static function facebook_login($mode = '')
-    {
-        global $xoopsTpl, $xoopsUser;
-        if (PHP_VERSION_ID < 50400) {
-            return false;
-        }
-        require XOOPS_ROOT_PATH . '/modules/tad_login/class/Facebook/autoload.php';
-
-        if ($xoopsUser) {
-            header('location:' . XOOPS_URL . '/user.php');
-            exit;
-        }
-
-        if (isset($_POST)) {
-            foreach ($_POST as $k => $v) {
-                ${$k} = $v;
-            }
-        }
-        if (isset($_GET['op'])) {
-            $op = trim($_GET['op']);
-            if (isset($_GET['uid'])) {
-                $uid = (int) ($_GET['uid']);
-            }
-        }
-
-        $TadLoginModuleConfig = Utility::getXoopsModuleConfig('tad_login');
-        if (class_exists('Facebook\Facebook')) {
-            $fb = new Facebook\Facebook([
-                'app_id' => $TadLoginModuleConfig['appId'], // Replace {app-id} with your app id
-                'app_secret' => $TadLoginModuleConfig['secret'],
-                'default_graph_version' => 'v2.11',
-            ]);
-        }
-
-        $helper = $fb->getRedirectLoginHelper();
-        $permissions = ['email']; // Optional permissions
-        $loginUrl = $helper->getLoginUrl(XOOPS_URL . '/modules/tad_login/fb-callback.php', $permissions);
-
-        if ('return' === $mode) {
-            return $loginUrl;
-        }
-        $xoopsTpl->assign('facebook', $loginUrl);
-    }
-
     //google登入
     public static function google_login($mode = '')
     {

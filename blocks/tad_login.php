@@ -17,9 +17,7 @@ function tad_login($options = '')
         $oidc_array2 = array_keys(Tools::$all_oidc2);
 
         foreach ($TadLoginModuleConfig['auth_method'] as $openid) {
-            if ('facebook' === $openid) {
-                $url = Tools::facebook_login('return');
-            } elseif ('google' === $openid) {
+            if ('google' === $openid) {
                 $url = Tools::google_login('return');
             } elseif ('line' === $openid) {
                 $url = Tools::line_login('return');

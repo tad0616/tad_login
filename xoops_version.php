@@ -1,7 +1,4 @@
 <?php
-
-global $xoopsConfig;
-
 $modversion = [];
 global $xoopsConfig;
 
@@ -59,8 +56,9 @@ $modversion['templates'] = [
     ['file' => 'tad_login_admin.tpl', 'description' => 'tad_login_admin.tpl'],
 ];
 
+//---區塊設定 (索引為固定值，若欲刪除區塊記得補上索引，避免區塊重複)---//
 $modversion['blocks'] = [
-    [
+    1 => [
         'file' => 'tad_login.php',
         'name' => _MI_TADLOGIN_BNAME1,
         'description' => _MI_TADLOGIN_BDESC1,
@@ -136,10 +134,8 @@ $modversion['config'] = [
         'valuetype' => 'array',
         'default' => ['tn'],
         'options' => [
-            sprintf(_TADLOGIN_LOGIN, _FACEBOOK) => 'facebook',
             sprintf(_TADLOGIN_LOGIN, _GOOGLE) => 'google',
             sprintf(_TADLOGIN_LOGIN, _LINE) => 'line',
-            sprintf(_TADLOGIN_LOGIN, _YAHOO) => 'yahoo',
             sprintf(_TADLOGIN_LOGIN, _KL . 'OpenID') => 'kl',
             sprintf(_TADLOGIN_LOGIN, _TP . 'OpenID') => 'tp',
             sprintf(_TADLOGIN_LOGIN, _NTPC . 'OpenID') => 'ntpc',

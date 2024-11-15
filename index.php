@@ -26,10 +26,6 @@ switch ($op) {
         Tools::change_pass($newpass);
         break;
 
-    case 'facebook':
-        $_SESSION['auth_method'] = 'facebook';
-        Tools::facebook_login();
-        break;
     case 'google':
         $_SESSION['auth_method'] = 'google';
         Tools::google_login();
@@ -1096,22 +1092,9 @@ function list_login()
         }
     }
 
-    //注意，不能刪（刪了好像也沒事？）
-    // if (in_array('facebook', $xoopsModuleConfig['auth_method'])) {
-    //     facebook_login();
-    // }
-    // if (in_array('google', $xoopsModuleConfig['auth_method'])) {
-    //     google_login();
-    // }
-    // if (in_array('line', $xoopsModuleConfig['auth_method'])) {
-    //     line_login();
-    // }
-
     $i = 0;
     foreach ($xoopsModuleConfig['auth_method'] as $openid) {
-        if ('facebook' === $openid) {
-            $url = Tools::facebook_login('return');
-        } elseif ('google' === $openid) {
+        if ('google' === $openid) {
             $url = Tools::google_login('return');
         } elseif ('line' === $openid) {
             $url = Tools::line_login('return');

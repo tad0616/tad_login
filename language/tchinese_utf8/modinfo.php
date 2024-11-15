@@ -13,13 +13,9 @@ define('_MI_TADLOGIN_ADMENU5', '綁定密碼管理');
 define('_MI_TADLOGIN_ADMENU6', 'Line認證設定說明');
 define('_MI_TADLOGIN_ADMENU7', 'OIDC沿用OpenID帳號');
 
-define('_MI_TADLOGIN_DESC', '加入FB等快速登入的機制');
+define('_MI_TADLOGIN_DESC', '加入快速登入的機制');
 define('_MI_TADLOGIN_BNAME1', '快速登入');
 define('_MI_TADLOGIN_BDESC1', '快速登入(tad_login)');
-define('_MI_TADLOGIN_APPID', 'FaceBook 的「應用程式 ID」');
-define('_MI_TADLOGIN_APPID_DESC', '請至 https://developers.facebook.com/apps 建立一個應用程式，並取得其「應用程式 ID」，預設值對您的網站來說是無效的（僅供參考而已）。');
-define('_MI_TADLOGIN_SECRET', 'FaceBook 的「應用程式密鑰」');
-define('_MI_TADLOGIN_SECRET_DESC', '請至 https://developers.facebook.com/apps 建立一個應用程式，並取得其「應用程式密鑰」，預設值對您的網站來說是無效的（僅供參考而已）。');
 define('_MI_TADLOGIN_AUTH_METHOD', '欲使用的認證方式');
 define('_MI_TADLOGIN_AUTH_METHOD_DESC', '請選可要開放給使用者用的認證方式（<a href="https://www.tad0616.net/modules/tadnews/index.php?nsn=286" target="_blank">OpenID被停用該怎麼辦？ </a>）');
 define('_MI_TADLOGIN_REAL_JOBNAME', '套用OpenID職稱');

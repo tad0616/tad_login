@@ -21,11 +21,6 @@ $adminmenu = [
         'icon' => 'images/admin/change_uid.png',
     ],
     [
-        'title' => _MI_TADLOGIN_ADMENU1,
-        'link' => 'admin/fb.php',
-        'icon' => 'images/facebook.png',
-    ],
-    [
         'title' => _MI_TADLOGIN_ADMENU3,
         'link' => 'admin/google.php',
         'icon' => 'images/google.png',

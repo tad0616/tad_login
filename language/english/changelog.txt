@@ -1,9 +1,10 @@
 Tad Login 6.0 (released on 2024-11-18)
 ================================================
-1.Support XOOPS 2.5.11
+1. Support XOOPS 2.5.11
 2. Remove other login methods in Taipei City except single sign-in.
-3.Support PHP8.1.x.x
+3. Support PHP8.1.x.x
 4. Database syntax parameterization
+5. Remove FaceBook login
 
 Tad Login 5.8 (released on 2023-01-29)
 ================================================
