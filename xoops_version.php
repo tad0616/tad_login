@@ -71,22 +71,6 @@ $modversion['blocks'] = [
 
 $modversion['config'] = [
     [
-        'name' => 'appId',
-        'title' => '_MI_TADLOGIN_APPID',
-        'description' => '_MI_TADLOGIN_APPID_DESC',
-        'formtype' => 'textbox',
-        'valuetype' => 'text',
-        'default' => '',
-    ],
-    [
-        'name' => 'secret',
-        'title' => '_MI_TADLOGIN_SECRET',
-        'description' => '_MI_TADLOGIN_SECRET_DESC',
-        'formtype' => 'textbox',
-        'valuetype' => 'text',
-        'default' => '',
-    ],
-    [
         'name' => 'google_appId',
         'title' => '_MI_TADLOGIN_GOOGLE_APPID',
         'description' => '_MI_TADLOGIN_GOOGLE_APPID_DESC',

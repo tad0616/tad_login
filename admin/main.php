@@ -124,8 +124,8 @@ function insert_tad_login_config()
         $kind = $_POST['kind_schoolcode'];
     }
 
-    $sql = 'INSERT INTO `' . $xoopsDB->prefix('tad_login_config') . '` (`item`, `kind`, `group_id`) VALUES (?, ?, ?)';
-    Utility::query($sql, 'ssi', [$item, $kind, $_POST['group_id']]) or Utility::web_error($sql, __FILE__, __LINE__);
+    $sql = 'INSERT INTO `' . $xoopsDB->prefix('tad_login_config') . "` (`item`, `kind`, `group_id`) VALUES ('{$item}' , '{$kind}', '{$_POST['group_id']}')";
+    $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
     //取得最後新增資料的流水編號
     $config_id = $xoopsDB->getInsertId();
@@ -167,7 +167,7 @@ function list_tad_login_config()
     $xoTheme->addStylesheet('modules/tadtools/css/vtable.css');
 
     $sql = 'SELECT * FROM `' . $xoopsDB->prefix('groups') . '`';
-    $result = Utility::query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
+    $result = $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
     $groups = [];
     $i = 0;
@@ -179,7 +179,7 @@ function list_tad_login_config()
     }
 
     $sql = 'SELECT * FROM `' . $xoopsDB->prefix('tad_login_config') . '`';
-    $result = Utility::query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
+    $result = $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
     $all_content = [];
     $i = 0;

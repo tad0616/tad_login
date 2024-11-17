@@ -250,7 +250,7 @@ function tainan_login()
 //台北 OpenID 登入
 function tp_login()
 {
-    global $xoopsModuleConfig, $xoopsConfig, $xoopsDB, $xoopsTpl, $xoopsUser;
+    global $xoopsTpl, $xoopsUser;
 
     if ($xoopsUser) {
         header('location:' . XOOPS_URL . '/user.php');
@@ -1142,8 +1142,8 @@ function change_pass_form()
 
     $uname = $xoopsUser->uname();
 
-    $sql = 'SELECT `hashed_date` FROM `' . $xoopsDB->prefix('tad_login_random_pass') . '` WHERE `uname` =?';
-    $result = Utility::query($sql, 's', [$uname]) or die($xoopsDB->error());
+    $sql = 'SELECT `hashed_date` FROM `' . $xoopsDB->prefix('tad_login_random_pass') . '` WHERE `uname` =' . $uname;
+    $result = $xoopsDB->query($sql) or die($xoopsDB->error());
 
     list($hashed_date) = $xoopsDB->fetchRow($result);
     $xoopsTpl->assign('hashed_date', $hashed_date);

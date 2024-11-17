@@ -201,11 +201,11 @@ class Tools
         if ($uname) {
             $pass = self::authcode($newpass, 'ENCODE', $uname, 0);
 
-            $sql = 'UPDATE `' . $xoopsDB->prefix('users') . '` SET `pass` = md5(?) WHERE `uname` = ?';
-            Utility::query($sql, 'ss', [$newpass, $uname]) or Utility::web_error($sql, __FILE__, __LINE__);
+            $sql = 'UPDATE `' . $xoopsDB->prefix('users') . "` SET `pass` = MD5('$newpass') WHERE `uname`='$uname' ";
+            $xoopsDB->queryF($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
-            $sql = 'UPDATE `' . $xoopsDB->prefix('tad_login_random_pass') . '` SET `random_pass` = ?, `hashed_date` = NOW() WHERE `uname` = ?';
-            Utility::query($sql, 'ss', [$pass, $uname]) or Utility::web_error($sql, __FILE__, __LINE__);
+            $sql = 'UPDATE `' . $xoopsDB->prefix('tad_login_random_pass') . "` SET `random_pass` = '$pass', `hashed_date`=NOW() WHERE `uname`='$uname' ";
+            $xoopsDB->queryF($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
             if ($redirect_header) {
                 redirect_header($_SERVER['PHP_SELF'], 3, _MD_TADLOGIN_CHANGE_COMPLETED);
@@ -493,9 +493,8 @@ class Tools
                 redirect_header(XOOPS_URL . '/user.php', 5, $xoopsAuth->getHtmlErrors());
             }
         } else {
-            $sql = 'SELECT `CHARACTER_MAXIMUM_LENGTH` FROM `information_schema`.`columns` WHERE `table_schema` = DATABASE() AND `table_name` = ? AND `COLUMN_NAME` = ?';
-            $result = Utility::query($sql, 'ss', [$xoopsDB->prefix('users'), 'uname']) or Utility::web_error($sql, __FILE__, __LINE__);
-
+            $sql = "SELECT CHARACTER_MAXIMUM_LENGTH FROM information_schema.columns WHERE `table_schema` = DATABASE() AND `table_name` = '" . $xoopsDB->prefix('users') . "' AND COLUMN_NAME = 'uname'";
+            $result = $xoopsDB->query($sql);
             list($length) = $xoopsDB->fetchRow($result);
 
             if (mb_strlen($uname) > $length) {
@@ -539,12 +538,12 @@ class Tools
             $uid = $newuser->getVar('uid');
 
             if ($uid) {
-                $sql = 'INSERT INTO `' . $xoopsDB->prefix('groups_users_link') . '` (`groupid`, `uid`) VALUES (2, ?)';
-                Utility::query($sql, 'i', [$uid]) or Utility::web_error($sql, __FILE__, __LINE__);
+                $sql = 'INSERT INTO `' . $xoopsDB->prefix('groups_users_link') . '`  (groupid, uid) VALUES  (2, ' . $uid . ')';
+                $xoopsDB->queryF($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
                 $pass = self::authcode($pass, 'ENCODE', $uname);
-                $sql = 'REPLACE INTO `' . $xoopsDB->prefix('tad_login_random_pass') . '` (`uname`, `random_pass`) VALUES (?, ?)';
-                Utility::query($sql, 'ss', [$uname, $pass]) or Utility::web_error($sql, __FILE__, __LINE__);
+                $sql = 'REPLACE INTO `' . $xoopsDB->prefix('tad_login_random_pass') . "` (`uname` , `random_pass`) VALUES ('{$uname}','{$pass}')";
+                $xoopsDB->queryF($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
                 self::login_xoops($uname, $name, $email, $SchoolCode, $JobName, $url, $from, $sig, $occ, $bio, $aim, $yim, $msnm);
             } else {
@@ -561,14 +560,14 @@ class Tools
         }
 
         // 取得XOOPS使用者密碼（加密過的）
-        $sql = 'SELECT `pass` FROM `' . $xoopsDB->prefix('users') . '` WHERE `uname` = ?';
-        $result = Utility::query($sql, 's', [$uname]) or Utility::web_error($sql, __FILE__, __LINE__);
+        $sql = 'SELECT `pass` FROM `' . $xoopsDB->prefix('users') . "` WHERE `uname`='{$uname}'";
+        $result = $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
         list($pass) = $xoopsDB->fetchRow($result);
 
         // 取得綁定密碼
-        $sql = 'SELECT `random_pass` FROM `' . $xoopsDB->prefix('tad_login_random_pass') . '` WHERE `uname`=?';
-        $result = Utility::query($sql, 's', [$uname]) or Utility::web_error($sql, __FILE__, __LINE__);
+        $sql = 'SELECT `random_pass` FROM `' . $xoopsDB->prefix('tad_login_random_pass') . "` WHERE `uname`='{$uname}'";
+        $result = $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
         list($random_pass) = $xoopsDB->fetchRow($result);
 
@@ -579,19 +578,18 @@ class Tools
             $pass = md5($random_pass);
             $random_pass = self::authcode($random_pass, 'ENCODE', $uname);
 
-            $sql = 'REPLACE INTO `' . $xoopsDB->prefix('tad_login_random_pass') . '` (`uname`, `random_pass`, `hashed_date`) VALUES (?, ?, "0000-00-00 00:00:00")';
-            Utility::query($sql, 'ss', [$uname, $random_pass]) or Utility::web_error($sql, __FILE__, __LINE__);
+            $sql = 'REPLACE INTO `' . $xoopsDB->prefix('tad_login_random_pass') . "` (`uname` , `random_pass`, `hashed_date`) values  ('{$uname}','{$random_pass}', '0000-00-00 00:00:00')";
+            $xoopsDB->queryF($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
-            $sql = 'UPDATE `' . $xoopsDB->prefix('users') . '` SET `pass`=? WHERE `uname`=?';
-            Utility::query($sql, 'ss', [$pass, $uname]) or Utility::web_error($sql, __FILE__, __LINE__);
-
+            $sql = 'UPDATE `' . $xoopsDB->prefix('users') . "` SET `pass`='$pass' WHERE `uname`='{$uname}'";
+            $xoopsDB->queryF($sql) or Utility::web_error($sql, __FILE__, __LINE__);
         }
 
         $random_pass = self::authcode($random_pass, 'DECODE', $uname);
 
         if ($pass !== md5($random_pass)) {
-            $sql = 'UPDATE `' . $xoopsDB->prefix('users') . '` SET `pass`=MD5(?) WHERE `uname`=?';
-            Utility::query($sql, 'ss', [$random_pass, $uname]) or Utility::web_error($sql, __FILE__, __LINE__);
+            $sql = 'UPDATE `' . $xoopsDB->prefix('users') . "` set `pass`=MD5('{$random_pass}') WHERE `uname`='{$uname}'";
+            $xoopsDB->queryF($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
         }
 
@@ -675,20 +673,20 @@ class Tools
         }
 
         $sql = 'SELECT `item`, `kind`, `group_id` FROM `' . $xoopsDB->prefix('tad_login_config') . '`';
-        $result = Utility::query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
+        $result = $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
         while (list($item, $kind, $group_id) = $xoopsDB->fetchRow($result)) {
             if (!in_array($group_id, $userGroups)) {
                 //echo "<h1>{$group_id}-{$item}-{$SchoolCode}-{$email}</h1>";
                 if (!empty($SchoolCode) and false !== mb_strpos($item, $SchoolCode) and $JobName == $kind) {
-                    $sql = 'INSERT INTO `' . $xoopsDB->prefix('groups_users_link') . '` (`groupid`, `uid`) VALUES (?, ?)';
-                    Utility::query($sql, 'ii', [$group_id, $uid]) or Utility::web_error($sql, __FILE__, __LINE__);
+                    $sql = 'INSERT INTO `' . $xoopsDB->prefix('groups_users_link') . "` (`groupid`, `uid`) VALUES ($group_id, $uid)";
+                    $xoopsDB->queryF($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
                 }
 
                 if (empty($item) and $JobName == $kind) {
-                    $sql = 'INSERT INTO `' . $xoopsDB->prefix('groups_users_link') . '` (`groupid`, `uid`) VALUES (?, ?)';
-                    Utility::query($sql, 'ii', [$group_id, $uid]) or Utility::web_error($sql, __FILE__, __LINE__);
+                    $sql = 'INSERT INTO `' . $xoopsDB->prefix('groups_users_link') . "` (`groupid`, `uid`) VALUES ($group_id, $uid)";
+                    $xoopsDB->queryF($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
                 }
 
@@ -697,17 +695,15 @@ class Tools
                     $new_item = str_replace('*', '', $item);
                     // die($new_item);
                     if (false !== mb_strpos($email, $new_item)) {
-                        $sql = 'INSERT INTO `' . $xoopsDB->prefix('groups_users_link') . '` (`groupid`, `uid`) VALUES (?, ?)';
-                        Utility::query($sql, 'ii', [$group_id, $uid]) or Utility::web_error($sql, __FILE__, __LINE__);
+                        $sql = 'INSERT INTO `' . $xoopsDB->prefix('groups_users_link') . "` (`groupid`, `uid`) VALUES ($group_id, $uid)";
+                        $xoopsDB->queryF($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
                     }
                 }
 
                 if (!empty($email) and false !== mb_strpos($item, $email)) {
-                    $sql = 'INSERT INTO `' . $xoopsDB->prefix('groups_users_link') . '` (`groupid`, `uid`) VALUES (?, ?)';
-                    Utility::query($sql, 'ii', [$group_id, $uid]) or Utility::web_error($sql, __FILE__, __LINE__);
-
-                    //echo "{$group_id}, {$uid}<br>";
+                    $sql = 'INSERT INTO `' . $xoopsDB->prefix('groups_users_link') . "` (`groupid`, `uid`) VALUES ($group_id, $uid)";
+                    $xoopsDB->queryF($sql) or Utility::web_error($sql, __FILE__, __LINE__);
                 }
             }
         }

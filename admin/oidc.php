@@ -64,13 +64,13 @@ function save_tad_login_edu_config()
 {
     global $xoopsDB;
 
+    $myts = \MyTextSanitizer::getInstance();
     $oidc = json_encode($_POST['oidc'], 256);
+    $oidc = $myts->addSlashes($oidc);
 
-    $sql = 'UPDATE `' . $xoopsDB->prefix('config') . '`
-    SET `conf_value` = ?
-    WHERE `conf_name` = ? AND `conf_title` = ?';
-    $params = [$oidc, 'oidc_setup', '_TADLOGIN_OIDC_SETUP'];
-
-    Utility::query($sql, 'sss', $params) or Utility::web_error($sql, __FILE__, __LINE__);
+    $sql = 'UPDATE `' . $xoopsDB->prefix('config') . "`
+    SET `conf_value`='{$oidc}'
+    WHERE `conf_name`='oidc_setup' AND `conf_title`='_TADLOGIN_OIDC_SETUP'";
+    $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
 }
