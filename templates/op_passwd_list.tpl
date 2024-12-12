@@ -41,7 +41,7 @@
         </div>
     </div>
 
-<table class="table table-bordered table-hover table-striped table-sm table-condensed">
+<table class="table table-bordered table-hover table-striped table-sm table-condensed mt-3">
     <tr>
         <th><{$smarty.const._MA_TADLOGIN_NAME}></th>
         <th><{$smarty.const._MA_TADLOGIN_UNAME}></th>
@@ -58,11 +58,11 @@
         <td><{$user.last_login|date_format:"%Y-%m-%d %H:%M:%S"}></td>
         <td>
             <{if $user.hashed_date=='0000-00-00 00:00:00'}>
-                <i class="fa fa-pencil-square" aria-hidden="true"></i>
+                <i class="fa fa-pen-to-square" aria-hidden="true"></i>
                 <span class="c n editable" data-type="text" data-pk="<{$user.uname}>" data-params="{op: 'change_pass'}" data-value=""><{$smarty.const._MA_TADLOGIN_CHANGE_BINDING_PASSWORD}></span>
             <{else}>
                 <{$user.hashed_date}>
-                <i class="fa fa-pencil-square" aria-hidden="true"></i>
+                <i class="fa fa-pen-to-square" aria-hidden="true"></i>
                 <span class="c n editable" data-type="text" data-pk="<{$user.uname}>" data-params="{op: 'change_pass'}" data-value=""><{$smarty.const._MA_TADLOGIN_MODIFY_PASSWORD}></span>
             <{/if}>
         </td>

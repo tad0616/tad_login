@@ -8,7 +8,7 @@
             $("#kind_email").hide();
         <{/if}>
 
-        $("#type").change(function() {
+        $("#type").on('change', function() {
             if($("#type").val()=="email"){
                 $("#kind_schoolcode").hide();
                 $("#kind_email").show();
@@ -25,7 +25,7 @@
     <!--學校代碼或Email-->
     <div class="row">
         <div class="col-sm-2">
-            <select name="type" id="type" class="form-select">
+            <select name="type" id="type" class="form-control form-select">
                 <option value="email" <{if $type=="email"}>selected<{/if}>><{$smarty.const._MA_TADLOGIN_EMAIL}></option>
                 <option value="schoolcode" <{if $type!="email"}>selected<{/if}>><{$smarty.const._MA_TADLOGIN_SCHOOLCODE}></option>
             </select>
@@ -43,7 +43,7 @@
             <{$smarty.const._MA_TADLOGIN_JOB}>
         </label>
         <div class="col-sm-2">
-            <select name="kind_schoolcode" class="form-select">
+            <select name="kind_schoolcode" class="form-control form-select">
                 <option value="" <{if $kind=="email" or $kind==""}>selected<{/if}>></option>
                 <option value="teacher" <{if $kind=="teacher"}>selected<{/if}>><{$smarty.const._MA_TADLOGIN_TEACHER}></option>
                 <option value="student" <{if $kind=="student"}>selected<{/if}>><{$smarty.const._MA_TADLOGIN_STUDENT}></option>
@@ -62,7 +62,7 @@
             <!--編號-->
             <input type='hidden' name="config_id" value="<{$config_id|default:''}>">
             <input type="hidden" name="op" value="<{$next_op|default:''}>">
-            <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i>  <{$smarty.const._TAD_SAVE}></button>
+            <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-disk" aria-hidden="true"></i>  <{$smarty.const._TAD_SAVE}></button>
         </div>
         </div>
 </form>

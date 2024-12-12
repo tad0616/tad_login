@@ -117,11 +117,11 @@ function insert_tad_login_config()
     $_POST['item'] = $myts->addSlashes($_POST['item']);
 
     if ('email' === $_POST['type']) {
-        $item = $_POST['item_email'];
-        $kind = $_POST['kind_schoolcode'];
+        $item = (string) $_POST['item_email'];
+        $kind = (string) $_POST['kind_schoolcode'];
     } else {
-        $item = $_POST['item_schoolcode'];
-        $kind = $_POST['kind_schoolcode'];
+        $item = (string) $_POST['item_schoolcode'];
+        $kind = (string) $_POST['kind_schoolcode'];
     }
 
     $sql = 'INSERT INTO `' . $xoopsDB->prefix('tad_login_config') . "` (`item`, `kind`, `group_id`) VALUES ('{$item}' , '{$kind}', '{$_POST['group_id']}')";
@@ -142,11 +142,11 @@ function update_tad_login_config($config_id = '')
     $_POST['item'] = $myts->addSlashes($_POST['item']);
 
     if ('email' === $_POST['type']) {
-        $item = $_POST['item_email'];
-        $kind = $_POST['kind_schoolcode'];
+        $item = (string) $_POST['item_email'];
+        $kind = (string) $_POST['kind_schoolcode'];
     } else {
-        $item = $_POST['item_schoolcode'];
-        $kind = $_POST['kind_schoolcode'];
+        $item = (string) $_POST['item_schoolcode'];
+        $kind = (string) $_POST['kind_schoolcode'];
     }
 
     $sql = 'UPDATE `' . $xoopsDB->prefix('tad_login_config') . '` SET

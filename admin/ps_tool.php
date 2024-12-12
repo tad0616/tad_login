@@ -35,20 +35,17 @@ function passwd_list($keyword = '')
     global $xoopsTpl, $xoopsDB, $xoopsModule;
     $xoopsTpl->assign('mid', $xoopsModule->mid());
 
-    $and_keyword = empty($keyword) ? '' : "AND (b.`name` LIKE ? OR b.`uname` LIKE ? OR b.`email` LIKE ?)";
-    $sql = "SELECT COUNT(*) FROM `" . $xoopsDB->prefix('tad_login_random_pass') . "` AS a
-        JOIN `" . $xoopsDB->prefix('users') . "` AS b ON a.uname = b.uname
-        WHERE a.hashed_date = '0000-00-00 00:00:00' $and_keyword
-        GROUP BY a.hashed_date";
+    $keyword = $xoopsDB->escape($keyword);
+    $and_keyword = empty($keyword) ? '' : "AND b.`name` LIKE '%$keyword%' OR b.`uname` LIKE '%$keyword%' OR b.`email` LIKE '%$keyword%'";
 
-    $params = empty($keyword) ? [] : ["%$keyword%", "%$keyword%", "%$keyword%"];
-    $result = Utility::query($sql, str_repeat('s', count($params)), $params) or Utility::web_error($sql, __FILE__, __LINE__);
-
+    $sql = "SELECT count(*) FROM `" . $xoopsDB->prefix('tad_login_random_pass') . "`  AS a
+    JOIN `" . $xoopsDB->prefix('users') . "` AS b ON a.uname=b.uname WHERE a.hashed_date='0000-00-00 00:00:00' $and_keyword GROUP BY a.hashed_date";
+    $result = $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
     list($count) = $xoopsDB->fetchRow($result);
     $xoopsTpl->assign('count', $count);
 
-    $sql = "select a.*, b.* FROM `" . $xoopsDB->prefix('tad_login_random_pass') . "` as a
-    join `" . $xoopsDB->prefix('users') . "` as b on a.uname=b.uname where 1 $and_keyword";
+    $sql = "SELECT a.*, b.* FROM `" . $xoopsDB->prefix('tad_login_random_pass') . "` AS a
+    JOIN `" . $xoopsDB->prefix('users') . "` AS b ON a.uname=b.uname WHERE 1 $and_keyword";
 
     $PageBar = Utility::getPageBar($sql, 50, 10);
     $sql = $PageBar['sql'];

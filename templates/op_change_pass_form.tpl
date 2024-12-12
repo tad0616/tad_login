@@ -33,7 +33,7 @@
                             <span class="input-group-text"><{$smarty.const._MD_TADLOGIN_MODIFY_PASSEOWD}></span>
                         <input type="text" name="newpass" class="form-control validate[required]" placeholder="">
                         <input type="hidden" name="op" value="change_pass">
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i> <{$smarty.const._MD_TADLOGIN_COMPLETE_MODIFY}></button>
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-disk" aria-hidden="true"></i> <{$smarty.const._MD_TADLOGIN_COMPLETE_MODIFY}></button>
                     </div>
                 </li>
                 <li><{$smarty.const._MD_TADLOGIN_EDIT_PASSEOWD_DESC8|sprintf:$uname}></li>
