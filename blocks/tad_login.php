@@ -1,6 +1,14 @@
 <?php
 use XoopsModules\Tadtools\Utility;
+if (!class_exists('XoopsModules\Tadtools\Utility')) {
+    require XOOPS_ROOT_PATH . '/modules/tadtools/preloads/autoloader.php';
+}
+
 use XoopsModules\Tad_login\Tools;
+if (!class_exists('XoopsModules\Tad_login\Tools')) {
+    require XOOPS_ROOT_PATH . '/modules/tad_login/preloads/autoloader.php';
+}
+
 //區塊主函式 (快速登入(tad_login))
 function tad_login($options = '')
 {

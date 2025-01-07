@@ -1,4 +1,9 @@
 <?php
+use XoopsModules\Tad_login\Tools;
+if (!class_exists('XoopsModules\Tad_login\Tools')) {
+    require XOOPS_ROOT_PATH . '/modules/tad_login/preloads/autoloader.php';
+}
+
 $modversion = [];
 global $xoopsConfig;
 
@@ -163,3 +168,18 @@ $modversion['config'] = [
         'default' => '',
     ],
 ];
+
+if (isset(Tools::$all_oidc)) {
+    foreach (Tools::$all_oidc as $oidc_unit => $oarr) {
+        $const = constant('_' . strtoupper($oarr['tail']));
+        $oidc_unit_const = sprintf(_TADLOGIN_LOGIN, $const . _TADLOGIN_OIDC);
+        $modversion['config'][5]['options'][$oidc_unit_const] = $oidc_unit;
+    }
+}
+if (isset(Tools::$all_oidc2)) {
+    foreach (Tools::$all_oidc2 as $oidc_unit => $oarr) {
+        $const = constant('_' . strtoupper($oarr['tail']));
+        $oidc_unit_const = sprintf(_TADLOGIN_LOGIN, $const . _TADLOGIN_LDAP);
+        $modversion['config'][5]['options'][$oidc_unit_const] = $oidc_unit;
+    }
+}

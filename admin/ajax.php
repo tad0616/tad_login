@@ -2,6 +2,7 @@
 use Xmf\Request;
 use XoopsModules\Tad_login\Tools;
 require_once 'header.php';
+header('HTTP/1.1 200 OK');
 
 $op = Request::getString('op');
 $pass = Request::getString('value');
