@@ -64,9 +64,9 @@ if ($user['email']) {
     $myts = \MyTextSanitizer::getInstance();
     list($id, $domain) = explode('@', $user['email']);
     $uname = $id . '_tp';
-    $name = $myts->addSlashes($user['name']);
+    $name = addslashes($user['name']);
     $email = $user['email'];
-    $SchoolCode = $myts->addSlashes($school['tpUniformNumbers']);
+    $SchoolCode = addslashes($school['tpUniformNumbers']);
     $JobName = '教師' === $user['role'] ? 'teacher' : 'student';
     // $JobName = "teacher";
     $bio = '';

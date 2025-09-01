@@ -210,9 +210,9 @@ function tainan_login()
 
                 //$uid = $user['id'];
                 $uname = $the_id[0] . '_tn';
-                $name = $myts->addSlashes($user_profile['namePerson']);
+                $name = addslashes($user_profile['namePerson']);
                 $email = mb_strtolower($user_profile['contact/email']);
-                $SchoolCode = $myts->addSlashes($user_profile['tw/school/id']);
+                $SchoolCode = addslashes($user_profile['tw/school/id']);
                 $JobName = false !== mb_strpos($user_profile['contact/email'], '@cloud.tn.edu.tw') ? 'student' : 'teacher';
 
                 if ($JobName == 'student') {
@@ -225,13 +225,13 @@ function tainan_login()
                             list($k, $v) = explode(':', $Arr);
                             $StuArr[$k] = str_replace('\'', '', $v);
                         }
-                        $from = $myts->addSlashes($StuArr['gradeId']);
-                        $sig = $myts->addSlashes($StuArr['classId']);
+                        $from = addslashes($StuArr['gradeId']);
+                        $sig = addslashes($StuArr['classId']);
                         $msnm = '';
                     } else {
-                        $from = $myts->addSlashes($user_profile['.tw/axschema/grade']);
+                        $from = addslashes($user_profile['.tw/axschema/grade']);
                         $sig = $user_profile['.tw/axschema/class'];
-                        $msnm = $myts->addSlashes($user_profile['.tw/axschema/seat']);
+                        $msnm = addslashes($user_profile['.tw/axschema/seat']);
                     }
                 } else {
                     $from = '臺南市';
@@ -283,9 +283,9 @@ function tp_login()
 
                 //$uid = $user['id'];
                 $uname = $the_id[0] . '_tp';
-                $name = $myts->addSlashes($user_profile['namePerson']);
+                $name = addslashes($user_profile['namePerson']);
                 $email = mb_strtolower($user_profile['contact/email']);
-                $SchoolCode = $myts->addSlashes($user_profile['.tw/axschema/EduSchoolID']);
+                $SchoolCode = addslashes($user_profile['.tw/axschema/EduSchoolID']);
                 $JobName = '學生' === $user_profile['.tw/axschema/JobName'] ? 'student' : 'teacher';
 
                 //搜尋有無相同username資料
@@ -341,9 +341,9 @@ function kl_login()
 
                 //$uid = $user['id'];
                 $uname = $the_id[0] . '_kl';
-                $name = $myts->addSlashes($user_profile['namePerson']);
+                $name = addslashes($user_profile['namePerson']);
                 $email = mb_strtolower($user_profile['contact/email']);
-                $SchoolCode = $myts->addSlashes($user_profile['axschema/school/id']);
+                $SchoolCode = addslashes($user_profile['axschema/school/id']);
                 $JobName = (false !== mb_strpos($user_profile['axschema/school/titleStr'], '學生')) ? 'student' : 'teacher';
 
                 //搜尋有無相同username資料
@@ -398,9 +398,9 @@ function ilc_login()
 
                 //$uid = $user['id'];
                 $uname = $the_id[0] . '_ilc';
-                $name = $myts->addSlashes($user_profile['namePerson']);
+                $name = addslashes($user_profile['namePerson']);
                 $email = mb_strtolower($user_profile['contact/email']);
-                $SchoolCode = $myts->addSlashes($user_profile['axschema/school/id']);
+                $SchoolCode = addslashes($user_profile['axschema/school/id']);
 
                 $JobName = (false !== mb_strpos($user_profile['axschema/school/titleStr'], '學生')) ? 'student' : 'teacher';
 
@@ -459,9 +459,9 @@ function hc_login()
 
                 //$uid = $user['id'];
                 $uname = $the_id[0] . '_hc';
-                $name = $myts->addSlashes($user_profile['namePerson']);
+                $name = addslashes($user_profile['namePerson']);
                 $email = mb_strtolower($user_profile['contact/email']);
-                $SchoolCode = $myts->addSlashes($user_profile['contact/country/home']);
+                $SchoolCode = addslashes($user_profile['contact/country/home']);
 
                 $JobName = (false !== mb_strpos($user_profile['pref/timezone'], '學生')) ? 'student' : 'teacher';
 
@@ -555,7 +555,7 @@ function hlc_login($county = '', $openid_identity = '')
 
                 //$uid = $user['id'];
                 $uname = $the_id[0] . '_' . $county;
-                $name = $myts->addSlashes($user_profile['namePerson']);
+                $name = addslashes($user_profile['namePerson']);
                 $email = mb_strtolower($user_profile['contact/email']);
                 if ('ntpc' === $county) {
                     $arr = json_decode($user_profile['pref/timezone'], true);
@@ -580,7 +580,7 @@ function hlc_login($county = '', $openid_identity = '')
                     $JobName = (false !== mb_strpos($arr[0]['role'], '學生')) ? 'student' : 'teacher';
 
                     // } elseif ($county == "ty") {
-                    //     $SchoolCode = $myts->addSlashes($user_profile['contact/country/home']);
+                    //     $SchoolCode = addslashes($user_profile['contact/country/home']);
                     //     $arr        = json_decode($user_profile['pref/timezone'], true);
                     //die(var_export($arr));
                     // array (
@@ -598,7 +598,7 @@ function hlc_login($county = '', $openid_identity = '')
 
                     // $JobName = (strpos($arr[0]['title'], "學生") !== false) ? "student" : "teacher";
                 } else {
-                    $SchoolCode = $myts->addSlashes($user_profile['contact/country/home']);
+                    $SchoolCode = addslashes($user_profile['contact/country/home']);
 
                     $JobName = (false !== mb_strpos($user_profile['pref/timezone'], '學生')) ? 'student' : 'teacher';
                 }
@@ -654,10 +654,10 @@ function ty_login()
 
                 //$uid = $user['id'];
                 $uname = $the_id[0] . '_ty';
-                $name = $myts->addSlashes($user_profile['namePerson']);
+                $name = addslashes($user_profile['namePerson']);
                 $email = mb_strtolower($user_profile['contact/email']);
 
-                $SchoolCode = $myts->addSlashes($user_profile['contact/country/home']);
+                $SchoolCode = addslashes($user_profile['contact/country/home']);
                 $arr = json_decode($user_profile['pref/timezone'], true);
                 $JobName = (false !== mb_strpos($arr[0]['title'], '學生')) ? 'student' : 'teacher';
 
@@ -744,7 +744,7 @@ function tc_login($county = '', $openid_identity = '')
             if ($user_profile) {
                 $myts = \MyTextSanitizer::getInstance();
 
-                $SchoolCode = $myts->addSlashes($user_profile['axschema/school/id']);
+                $SchoolCode = addslashes($user_profile['axschema/school/id']);
 
                 if ('NA' === mb_strtoupper($user_profile['contact/email']) or empty($user_profile['contact/email'])) {
                     $uname = mb_substr($user_profile['axschema/person/guid'], 0, 6) . "_{$county}";
@@ -756,7 +756,7 @@ function tc_login($county = '', $openid_identity = '')
                     $email = $user_profile['contact/email'];
                 }
                 //$uid = $user['id'];
-                $name = $myts->addSlashes($user_profile['namePerson']);
+                $name = addslashes($user_profile['namePerson']);
 
                 $JobName = (false !== mb_strpos($user_profile['axschema/school/titleStr'], '學生')) ? 'student' : 'teacher';
 
@@ -887,9 +887,9 @@ function kh_login()
                 }
 
                 //$uid = $user['id'];
-                $name = $myts->addSlashes($user_profile['openid_ext2_fullname']);
-                $SchoolCode = $myts->addSlashes($user_profile['openid_ext1_value_sid']);
-                $classStr = $myts->addSlashes($user_profile['openid_ext1_value_classStr']);
+                $name = addslashes($user_profile['openid_ext2_fullname']);
+                $SchoolCode = addslashes($user_profile['openid_ext1_value_sid']);
+                $classStr = addslashes($user_profile['openid_ext1_value_classStr']);
 
                 $JobName = (false !== mb_strpos($user_profile['openid_ext1_value_titles'], '教師')) ? 'teacher' : 'student';
 
@@ -978,9 +978,9 @@ function km_login()
 
                 //$uid = $user['id'];
                 $uname = $the_id[0] . '_km';
-                $name = $myts->addSlashes($user_profile['namePerson']);
+                $name = addslashes($user_profile['namePerson']);
                 $email = mb_strtolower($user_profile['contact/email']);
-                $SchoolCode = $myts->addSlashes($user_profile['axschema/school/id']);
+                $SchoolCode = addslashes($user_profile['axschema/school/id']);
                 $JobName = (false !== mb_strrpos($user_profile['axschema/school/titleStr'], '學生')) ? 'student' : 'teacher';
 
                 //搜尋有無相同username資料
@@ -1036,9 +1036,9 @@ function mt_login()
 
                 //$uid = $user['id'];
                 $uname = $the_id[0] . '_mt';
-                $name = $myts->addSlashes($user_profile['namePerson']);
+                $name = addslashes($user_profile['namePerson']);
                 $email = mb_strtolower($user_profile['contact/email']);
-                $SchoolCode = $myts->addSlashes($user_profile['axschema/school/id']);
+                $SchoolCode = addslashes($user_profile['axschema/school/id']);
                 $JobName = 'Stu' === $user_profile['namePerson/friendly'] ? 'student' : 'teacher';
 
                 //搜尋有無相同username資料

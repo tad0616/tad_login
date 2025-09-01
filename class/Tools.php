@@ -215,7 +215,7 @@ class Tools
 
     public static function requestProtectedApi($token_ep = '', $accesstoken = '', $rtn_array = true, $gzipenable = false)
     {
-        $header = ["Authorization: Bearer $accesstoken"];
+        $header  = ["Authorization: Bearer $accesstoken"];
         $options = [
             'http' => [
                 'header' => $header,
@@ -292,7 +292,7 @@ class Tools
         define("REDIRECT_URI", XOOPS_URL . '/modules/tad_login/line_callback.php'); //登入後返回位置
         define("SCOPE", 'openid%20profile%20email'); //授權範圍以%20分隔 可以有3項openid，profile，email
 
-        $Line = new \LineController();
+        $Line     = new \LineController();
         $loginUrl = $Line->lineLogin($state); //產生LINE登入連結
 
         if ('return' === $mode) {
@@ -336,7 +336,7 @@ class Tools
             // die("system testing...1");
             $client->authenticate($_GET['code']);
             $_SESSION['token'] = $client->getAccessToken();
-            $redirect = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
+            $redirect          = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
             header('Location: ' . filter_var($redirect, FILTER_SANITIZE_URL));
             return;
         }
@@ -359,20 +359,20 @@ class Tools
             // These fields are currently filtered through the PHP sanitize filters.
             // See http://www.php.net/manual/en/filter.filters.sanitize.php
             $email = filter_var($user['email'], FILTER_SANITIZE_EMAIL);
-            $img = filter_var($user['picture'], FILTER_VALIDATE_URL);
+            $img   = filter_var($user['picture'], FILTER_VALIDATE_URL);
             // Utility::dd($user);
             if ($user) {
                 $myts = \MyTextSanitizer::getInstance();
                 // $uid = $user['id'];
                 list($goog_uname, $m) = explode('@', $user['email']);
-                $uname = empty($goog_uname) ? $user['id'] . '_goo' : $goog_uname . '_goo';
-                $name = $myts->addSlashes($user['name']);
-                $email = $user['email'];
-                $bio = '';
-                $url = formatURL($user['link']);
-                $from = '';
-                $sig = '';
-                $occ = '';
+                $uname                = empty($goog_uname) ? $user['id'] . '_goo' : $goog_uname . '_goo';
+                $name                 = addslashes($user['name']);
+                $email                = $user['email'];
+                $bio                  = '';
+                $url                  = formatURL($user['link']);
+                $from                 = '';
+                $sig                  = '';
+                $occ                  = '';
                 // die(var_export($user));
                 self::login_xoops($uname, $name, $email, '', '', $url, $from, $sig, $occ, $bio);
             }
@@ -399,7 +399,7 @@ class Tools
         if ($memberHandler->getUserCount(new \Criteria('uname', $uname)) > 0) {
             //若已有此帳號！
             $uname = trim($uname);
-            $pass = self::getPass($uname);
+            $pass  = self::getPass($uname);
 
             if ('' == $uname || '' == $pass) {
                 redirect_header(XOOPS_URL . '/user.php', 1, _MD_TNOPENID_INCORRECTLOGIN);
@@ -464,10 +464,10 @@ class Tools
                     unset($_SESSION['login_from']);
                 }
 
-                $_SESSION = [];
-                $_SESSION['xoopsUserId'] = $user->getVar('uid');
+                $_SESSION                    = [];
+                $_SESSION['xoopsUserId']     = $user->getVar('uid');
                 $_SESSION['xoopsUserGroups'] = $user->getGroups();
-                $user_theme = $user->getVar('theme');
+                $user_theme                  = $user->getVar('theme');
                 if (in_array($user_theme, $xoopsConfig['theme_set_allowed'])) {
                     $_SESSION['xoopsUserTheme'] = $user_theme;
                 }
@@ -478,30 +478,29 @@ class Tools
                 }
 
                 //若有要轉頁
-                if (empty($redirect_url)) {
-                    if (!empty($xoopsModuleConfig['redirect_url'])) {
-                        $redirect_url = $xoopsModuleConfig['redirect_url'];
-                    } elseif ($xoopsModuleConfig['bind_openid'] == 1) {
-                        $redirect_url = XOOPS_URL . '/modules/tad_login/index.php';
-                    } else {
-                        $redirect_url = XOOPS_URL . '/index.php';
-                    }
+                if (!empty($xoopsModuleConfig['redirect_url'])) {
+                    $redirect_url = $xoopsModuleConfig['redirect_url'];
+                } elseif ($xoopsModuleConfig['bind_openid'] == 1) {
+                    $redirect_url = XOOPS_URL . '/modules/tad_login/index.php';
+                } elseif (empty($redirect_url)) {
+                    $redirect_url = XOOPS_URL . '/index.php';
                 }
+
                 redirect_header($redirect_url, 3, sprintf(_US_LOGGINGU, $user->getVar('name')), false);
 
             } else {
                 redirect_header(XOOPS_URL . '/user.php', 5, $xoopsAuth->getHtmlErrors());
             }
         } else {
-            $sql = "SELECT CHARACTER_MAXIMUM_LENGTH FROM information_schema.columns WHERE `table_schema` = DATABASE() AND `table_name` = '" . $xoopsDB->prefix('users') . "' AND COLUMN_NAME = 'uname'";
-            $result = $xoopsDB->query($sql);
+            $sql          = "SELECT CHARACTER_MAXIMUM_LENGTH FROM information_schema.columns WHERE `table_schema` = DATABASE() AND `table_name` = '" . $xoopsDB->prefix('users') . "' AND COLUMN_NAME = 'uname'";
+            $result       = $xoopsDB->query($sql);
             list($length) = $xoopsDB->fetchRow($result);
 
             if (mb_strlen($uname) > $length) {
                 die(sprintf(_MD_TADLOGIN_UNAME_TOO_LONG, $uname, $length));
             }
 
-            $pass = Utility::randStr(128);
+            $pass    = Utility::randStr(128);
             $newuser = $memberHandler->createUser();
             $newuser->setVar('user_viewemail', 1);
             $newuser->setVar('attachsig', 0);
@@ -528,7 +527,7 @@ class Tools
             $newuser->setVar('bio', $bio);
             $newuser->setVar('rank', 1);
             $newuser->setVar('level', 1);
-            //$newuser->setVar("user_occ", $myts->addSlashes($user_profile['work'][0]['employer']['name']));
+            //$newuser->setVar("user_occ", addslashes($user_profile['work'][0]['employer']['name']));
             $newuser->setVar('user_intrest', $SchoolCode);
             $newuser->setVar('user_mailok', true);
             if (!$memberHandler->insertUser($newuser, 1)) {
@@ -542,7 +541,7 @@ class Tools
                 $xoopsDB->queryF($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
                 $pass = self::authcode($pass, 'ENCODE', $uname);
-                $sql = 'REPLACE INTO `' . $xoopsDB->prefix('tad_login_random_pass') . "` (`uname` , `random_pass`) VALUES ('{$uname}','{$pass}')";
+                $sql  = 'REPLACE INTO `' . $xoopsDB->prefix('tad_login_random_pass') . "` (`uname` , `random_pass`) VALUES ('{$uname}','{$pass}')";
                 $xoopsDB->queryF($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
                 self::login_xoops($uname, $name, $email, $SchoolCode, $JobName, $url, $from, $sig, $occ, $bio, $aim, $yim, $msnm);
@@ -560,13 +559,13 @@ class Tools
         }
 
         // 取得XOOPS使用者密碼（加密過的）
-        $sql = 'SELECT `pass` FROM `' . $xoopsDB->prefix('users') . "` WHERE `uname`='{$uname}'";
+        $sql    = 'SELECT `pass` FROM `' . $xoopsDB->prefix('users') . "` WHERE `uname`='{$uname}'";
         $result = $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
         list($pass) = $xoopsDB->fetchRow($result);
 
         // 取得綁定密碼
-        $sql = 'SELECT `random_pass` FROM `' . $xoopsDB->prefix('tad_login_random_pass') . "` WHERE `uname`='{$uname}'";
+        $sql    = 'SELECT `random_pass` FROM `' . $xoopsDB->prefix('tad_login_random_pass') . "` WHERE `uname`='{$uname}'";
         $result = $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
         list($random_pass) = $xoopsDB->fetchRow($result);
@@ -575,7 +574,7 @@ class Tools
         if (empty($random_pass) or $pass == 'd41d8cd98f00b204e9800998ecf8427e') {
             $random_pass = Utility::randStr(128);
             // 重新產生隨機的綁定密碼
-            $pass = md5($random_pass);
+            $pass        = md5($random_pass);
             $random_pass = self::authcode($random_pass, 'ENCODE', $uname);
 
             $sql = 'REPLACE INTO `' . $xoopsDB->prefix('tad_login_random_pass') . "` (`uname` , `random_pass`, `hashed_date`) values  ('{$uname}','{$random_pass}', '0000-00-00 00:00:00')";
@@ -614,32 +613,32 @@ class Tools
         // 密匙c用於變化生成的密文
         $keyc = $ckey_length ? ($operation == 'DECODE' ? substr($string, 0, $ckey_length) : substr(md5(microtime()), -$ckey_length)) : '';
         // 參與運算的密匙
-        $cryptkey = $keya . md5($keya . $keyc);
+        $cryptkey   = $keya . md5($keya . $keyc);
         $key_length = strlen($cryptkey);
         // 明文，前10位用來儲存時間戳，解密時驗證資料有效性，10到26位用來儲存$keyb(密匙b)，
         //解密時會通過這個密匙驗證資料完整性
         // 如果是解碼的話，會從第$ckey_length位開始，因為密文前$ckey_length位儲存 動態密匙，以保證解密正確
-        $string = $operation == 'DECODE' ? base64_decode(substr($string, $ckey_length)) : sprintf('%010d', $expiry ? $expiry + time() : 0) . substr(md5($string . $keyb), 0, 16) . $string;
+        $string        = $operation == 'DECODE' ? base64_decode(substr($string, $ckey_length)) : sprintf('%010d', $expiry ? $expiry + time() : 0) . substr(md5($string . $keyb), 0, 16) . $string;
         $string_length = strlen($string);
-        $result = '';
-        $box = range(0, 255);
-        $rndkey = array();
+        $result        = '';
+        $box           = range(0, 255);
+        $rndkey        = array();
         // 產生密匙簿
         for ($i = 0; $i <= 255; $i++) {
             $rndkey[$i] = ord($cryptkey[$i % $key_length]);
         }
         // 用固定的演算法，打亂密匙簿，增加隨機性，好像很複雜，實際上對並不會增加密文的強度
         for ($j = $i = 0; $i < 256; $i++) {
-            $j = ($j + $box[$i] + $rndkey[$i]) % 256;
-            $tmp = $box[$i];
+            $j       = ($j + $box[$i] + $rndkey[$i]) % 256;
+            $tmp     = $box[$i];
             $box[$i] = $box[$j];
             $box[$j] = $tmp;
         }
         // 核心加解密部分
         for ($a = $j = $i = 0; $i < $string_length; $i++) {
-            $a = ($a + 1) % 256;
-            $j = ($j + $box[$a]) % 256;
-            $tmp = $box[$a];
+            $a       = ($a + 1) % 256;
+            $j       = ($j + $box[$a]) % 256;
+            $tmp     = $box[$a];
             $box[$a] = $box[$j];
             $box[$j] = $tmp;
             // 從密匙簿得出密匙進行異或，再轉成字元
@@ -664,7 +663,7 @@ class Tools
         global $xoopsDB;
 
         $memberHandler = xoops_getHandler('member');
-        $user = $memberHandler->getUser($uid);
+        $user          = $memberHandler->getUser($uid);
         if ($user) {
             $userGroups = $user->getGroups();
         } else {
@@ -672,7 +671,7 @@ class Tools
             exit;
         }
 
-        $sql = 'SELECT `item`, `kind`, `group_id` FROM `' . $xoopsDB->prefix('tad_login_config') . '`';
+        $sql    = 'SELECT `item`, `kind`, `group_id` FROM `' . $xoopsDB->prefix('tad_login_config') . '`';
         $result = $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
         while (list($item, $kind, $group_id) = $xoopsDB->fetchRow($result)) {
@@ -691,7 +690,7 @@ class Tools
                 }
 
                 if (!empty($email) and false !== mb_strpos($item, '*')) {
-                    $item = trim($item);
+                    $item     = trim($item);
                     $new_item = str_replace('*', '', $item);
                     // die($new_item);
                     if (false !== mb_strpos($email, $new_item)) {

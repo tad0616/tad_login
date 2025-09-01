@@ -51,7 +51,7 @@ if ($user_profile['email']) {
 
     $myts = \MyTextSanitizer::getInstance();
     $uname = $id . '_line';
-    $name = $myts->addSlashes($user_profile['name']);
+    $name = addslashes($user_profile['name']);
     $email = $user_profile['email'];
     $bio = $url = $from = $sig = $occ = $msnm = $user_avatar = $aim = $yim = '';
     // $user_avatar = copy_user_avatar($user_profile['picture'], $id);
