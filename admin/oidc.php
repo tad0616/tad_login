@@ -66,7 +66,7 @@ function save_tad_login_edu_config()
 
     $myts = \MyTextSanitizer::getInstance();
     $oidc = json_encode($_POST['oidc'], 256);
-    $oidc = addslashes($oidc);
+    $oidc = $myts->addSlashes($oidc);
 
     $sql = 'UPDATE `' . $xoopsDB->prefix('config') . "`
     SET `conf_value`='{$oidc}'

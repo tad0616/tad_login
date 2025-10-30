@@ -8,8 +8,15 @@ require __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'tad_login_index.tpl';
 require_once XOOPS_ROOT_PATH . '/header.php';
 
+if (!class_exists('XoopsModules\Tad_login\Tools')) {
+    require XOOPS_ROOT_PATH . '/modules/tad_login/preloads/autoloader.php';
+}
+if (!class_exists('XoopsModules\Tadtools\Utility')) {
+    require XOOPS_ROOT_PATH . '/modules/tadtools/preloads/autoloader.php';
+}
+
 /*-----------執行動作判斷區----------*/
-$op = Request::getString('op');
+$op      = Request::getString('op');
 $link_to = Request::getString('link_to');
 $newpass = Request::getString('newpass');
 
@@ -206,32 +213,32 @@ function tainan_login()
                 $myts = \MyTextSanitizer::getInstance();
 
                 $user_profile['contact/email'] = trim($user_profile['contact/email']);
-                $the_id = explode('@', $user_profile['contact/email']);
+                $the_id                        = explode('@', $user_profile['contact/email']);
 
                 //$uid = $user['id'];
-                $uname = $the_id[0] . '_tn';
-                $name = addslashes($user_profile['namePerson']);
-                $email = mb_strtolower($user_profile['contact/email']);
-                $SchoolCode = addslashes($user_profile['tw/school/id']);
-                $JobName = false !== mb_strpos($user_profile['contact/email'], '@cloud.tn.edu.tw') ? 'student' : 'teacher';
+                $uname      = $the_id[0] . '_tn';
+                $name       = $myts->addSlashes($user_profile['namePerson']);
+                $email      = mb_strtolower($user_profile['contact/email']);
+                $SchoolCode = $myts->addSlashes($user_profile['tw/school/id']);
+                $JobName    = false !== mb_strpos($user_profile['contact/email'], '@cloud.tn.edu.tw') ? 'student' : 'teacher';
 
                 if ($JobName == 'student') {
                     if ($user_profile['du.tw/school/classStr']) {
-                        $classStr = mb_substr($user_profile['du.tw/school/classStr'], 2, -2);
-                        $classStr = str_replace('\\', '', $classStr);
+                        $classStr    = mb_substr($user_profile['du.tw/school/classStr'], 2, -2);
+                        $classStr    = str_replace('\\', '', $classStr);
                         $classStrArr = explode(',', $classStr);
-                        $StuArr = [];
+                        $StuArr      = [];
                         foreach ($classStrArr as $Arr) {
                             list($k, $v) = explode(':', $Arr);
-                            $StuArr[$k] = str_replace('\'', '', $v);
+                            $StuArr[$k]  = str_replace('\'', '', $v);
                         }
-                        $from = addslashes($StuArr['gradeId']);
-                        $sig = addslashes($StuArr['classId']);
+                        $from = $myts->addSlashes($StuArr['gradeId']);
+                        $sig  = $myts->addSlashes($StuArr['classId']);
                         $msnm = '';
                     } else {
-                        $from = addslashes($user_profile['.tw/axschema/grade']);
-                        $sig = $user_profile['.tw/axschema/class'];
-                        $msnm = addslashes($user_profile['.tw/axschema/seat']);
+                        $from = $myts->addSlashes($user_profile['.tw/axschema/grade']);
+                        $sig  = $user_profile['.tw/axschema/class'];
+                        $msnm = $myts->addSlashes($user_profile['.tw/axschema/seat']);
                     }
                 } else {
                     $from = '臺南市';
@@ -279,14 +286,14 @@ function tp_login()
                 $myts = \MyTextSanitizer::getInstance();
 
                 $user_profile['contact/email'] = trim($user_profile['contact/email']);
-                $the_id = explode('@', $user_profile['contact/email']);
+                $the_id                        = explode('@', $user_profile['contact/email']);
 
                 //$uid = $user['id'];
-                $uname = $the_id[0] . '_tp';
-                $name = addslashes($user_profile['namePerson']);
-                $email = mb_strtolower($user_profile['contact/email']);
-                $SchoolCode = addslashes($user_profile['.tw/axschema/EduSchoolID']);
-                $JobName = '學生' === $user_profile['.tw/axschema/JobName'] ? 'student' : 'teacher';
+                $uname      = $the_id[0] . '_tp';
+                $name       = $myts->addSlashes($user_profile['namePerson']);
+                $email      = mb_strtolower($user_profile['contact/email']);
+                $SchoolCode = $myts->addSlashes($user_profile['.tw/axschema/EduSchoolID']);
+                $JobName    = '學生' === $user_profile['.tw/axschema/JobName'] ? 'student' : 'teacher';
 
                 //搜尋有無相同username資料
                 Tools::login_xoops($uname, $name, $email, $SchoolCode, $JobName, '', '臺北市');
@@ -337,14 +344,14 @@ function kl_login()
                 $myts = \MyTextSanitizer::getInstance();
 
                 $user_profile['contact/email'] = trim($user_profile['contact/email']);
-                $the_id = explode('@', $user_profile['contact/email']);
+                $the_id                        = explode('@', $user_profile['contact/email']);
 
                 //$uid = $user['id'];
-                $uname = $the_id[0] . '_kl';
-                $name = addslashes($user_profile['namePerson']);
-                $email = mb_strtolower($user_profile['contact/email']);
-                $SchoolCode = addslashes($user_profile['axschema/school/id']);
-                $JobName = (false !== mb_strpos($user_profile['axschema/school/titleStr'], '學生')) ? 'student' : 'teacher';
+                $uname      = $the_id[0] . '_kl';
+                $name       = $myts->addSlashes($user_profile['namePerson']);
+                $email      = mb_strtolower($user_profile['contact/email']);
+                $SchoolCode = $myts->addSlashes($user_profile['axschema/school/id']);
+                $JobName    = (false !== mb_strpos($user_profile['axschema/school/titleStr'], '學生')) ? 'student' : 'teacher';
 
                 //搜尋有無相同username資料
                 Tools::login_xoops($uname, $name, $email, $SchoolCode, $JobName, '', '基隆市');
@@ -394,13 +401,13 @@ function ilc_login()
                 $myts = \MyTextSanitizer::getInstance();
 
                 $user_profile['contact/email'] = trim($user_profile['contact/email']);
-                $the_id = explode('@', $user_profile['contact/email']);
+                $the_id                        = explode('@', $user_profile['contact/email']);
 
                 //$uid = $user['id'];
-                $uname = $the_id[0] . '_ilc';
-                $name = addslashes($user_profile['namePerson']);
-                $email = mb_strtolower($user_profile['contact/email']);
-                $SchoolCode = addslashes($user_profile['axschema/school/id']);
+                $uname      = $the_id[0] . '_ilc';
+                $name       = $myts->addSlashes($user_profile['namePerson']);
+                $email      = mb_strtolower($user_profile['contact/email']);
+                $SchoolCode = $myts->addSlashes($user_profile['axschema/school/id']);
 
                 $JobName = (false !== mb_strpos($user_profile['axschema/school/titleStr'], '學生')) ? 'student' : 'teacher';
 
@@ -453,15 +460,15 @@ function hc_login()
             )
              */
             if ($user_profile) {
-                $myts = \MyTextSanitizer::getInstance();
+                $myts                          = \MyTextSanitizer::getInstance();
                 $user_profile['contact/email'] = trim($user_profile['contact/email']);
-                $the_id = explode('@', $user_profile['contact/email']);
+                $the_id                        = explode('@', $user_profile['contact/email']);
 
                 //$uid = $user['id'];
-                $uname = $the_id[0] . '_hc';
-                $name = addslashes($user_profile['namePerson']);
-                $email = mb_strtolower($user_profile['contact/email']);
-                $SchoolCode = addslashes($user_profile['contact/country/home']);
+                $uname      = $the_id[0] . '_hc';
+                $name       = $myts->addSlashes($user_profile['namePerson']);
+                $email      = mb_strtolower($user_profile['contact/email']);
+                $SchoolCode = $myts->addSlashes($user_profile['contact/country/home']);
 
                 $JobName = (false !== mb_strpos($user_profile['pref/timezone'], '學生')) ? 'student' : 'teacher';
 
@@ -551,11 +558,11 @@ function hlc_login($county = '', $openid_identity = '')
                 $myts = \MyTextSanitizer::getInstance();
 
                 $user_profile['contact/email'] = trim($user_profile['contact/email']);
-                $the_id = explode('@', $user_profile['contact/email']);
+                $the_id                        = explode('@', $user_profile['contact/email']);
 
                 //$uid = $user['id'];
                 $uname = $the_id[0] . '_' . $county;
-                $name = addslashes($user_profile['namePerson']);
+                $name  = $myts->addSlashes($user_profile['namePerson']);
                 $email = mb_strtolower($user_profile['contact/email']);
                 if ('ntpc' === $county) {
                     $arr = json_decode($user_profile['pref/timezone'], true);
@@ -580,7 +587,7 @@ function hlc_login($county = '', $openid_identity = '')
                     $JobName = (false !== mb_strpos($arr[0]['role'], '學生')) ? 'student' : 'teacher';
 
                     // } elseif ($county == "ty") {
-                    //     $SchoolCode = addslashes($user_profile['contact/country/home']);
+                    //     $SchoolCode = $myts->addSlashes($user_profile['contact/country/home']);
                     //     $arr        = json_decode($user_profile['pref/timezone'], true);
                     //die(var_export($arr));
                     // array (
@@ -598,7 +605,7 @@ function hlc_login($county = '', $openid_identity = '')
 
                     // $JobName = (strpos($arr[0]['title'], "學生") !== false) ? "student" : "teacher";
                 } else {
-                    $SchoolCode = addslashes($user_profile['contact/country/home']);
+                    $SchoolCode = $myts->addSlashes($user_profile['contact/country/home']);
 
                     $JobName = (false !== mb_strpos($user_profile['pref/timezone'], '學生')) ? 'student' : 'teacher';
                 }
@@ -650,16 +657,16 @@ function ty_login()
                 $myts = \MyTextSanitizer::getInstance();
 
                 $user_profile['contact/email'] = trim($user_profile['contact/email']);
-                $the_id = explode('@', $user_profile['contact/email']);
+                $the_id                        = explode('@', $user_profile['contact/email']);
 
                 //$uid = $user['id'];
                 $uname = $the_id[0] . '_ty';
-                $name = addslashes($user_profile['namePerson']);
+                $name  = $myts->addSlashes($user_profile['namePerson']);
                 $email = mb_strtolower($user_profile['contact/email']);
 
-                $SchoolCode = addslashes($user_profile['contact/country/home']);
-                $arr = json_decode($user_profile['pref/timezone'], true);
-                $JobName = (false !== mb_strpos($arr[0]['title'], '學生')) ? 'student' : 'teacher';
+                $SchoolCode = $myts->addSlashes($user_profile['contact/country/home']);
+                $arr        = json_decode($user_profile['pref/timezone'], true);
+                $JobName    = (false !== mb_strpos($arr[0]['title'], '學生')) ? 'student' : 'teacher';
 
                 //搜尋有無相同username資料
                 Tools::login_xoops($uname, $name, $email, $SchoolCode, $JobName, '', '桃園市');
@@ -744,19 +751,19 @@ function tc_login($county = '', $openid_identity = '')
             if ($user_profile) {
                 $myts = \MyTextSanitizer::getInstance();
 
-                $SchoolCode = addslashes($user_profile['axschema/school/id']);
+                $SchoolCode = $myts->addSlashes($user_profile['axschema/school/id']);
 
                 if ('NA' === mb_strtoupper($user_profile['contact/email']) or empty($user_profile['contact/email'])) {
                     $uname = mb_substr($user_profile['axschema/person/guid'], 0, 6) . "_{$county}";
                     $email = "{$uname}@{$SchoolCode}.{$county}.edu.tw";
                 } else {
                     $user_profile['contact/email'] = trim($user_profile['contact/email']);
-                    $the_id = explode('@', $user_profile['contact/email']);
-                    $uname = trim($the_id[0]) . '_' . $county;
-                    $email = $user_profile['contact/email'];
+                    $the_id                        = explode('@', $user_profile['contact/email']);
+                    $uname                         = trim($the_id[0]) . '_' . $county;
+                    $email                         = $user_profile['contact/email'];
                 }
                 //$uid = $user['id'];
-                $name = addslashes($user_profile['namePerson']);
+                $name = $myts->addSlashes($user_profile['namePerson']);
 
                 $JobName = (false !== mb_strpos($user_profile['axschema/school/titleStr'], '學生')) ? 'student' : 'teacher';
 
@@ -878,29 +885,29 @@ function kh_login()
 
                 if ($user_profile['openid_ext2_email']) {
                     $the_id = explode('@', $user_profile['openid_ext2_email']);
-                    $uname = $the_id[0] . '_kh';
-                    $email = mb_strtolower($user_profile['openid_ext2_email']);
+                    $uname  = $the_id[0] . '_kh';
+                    $email  = mb_strtolower($user_profile['openid_ext2_email']);
                 } else {
                     $the_id = str_replace('https://openid.kh.edu.tw/', '', $user_profile['openid_claimed_id']);
-                    $uname = $the_id . '_kh';
-                    $email = "{$the_id}@mail.kh.edu.tw";
+                    $uname  = $the_id . '_kh';
+                    $email  = "{$the_id}@mail.kh.edu.tw";
                 }
 
                 //$uid = $user['id'];
-                $name = addslashes($user_profile['openid_ext2_fullname']);
-                $SchoolCode = addslashes($user_profile['openid_ext1_value_sid']);
-                $classStr = addslashes($user_profile['openid_ext1_value_classStr']);
+                $name       = $myts->addSlashes($user_profile['openid_ext2_fullname']);
+                $SchoolCode = $myts->addSlashes($user_profile['openid_ext1_value_sid']);
+                $classStr   = $myts->addSlashes($user_profile['openid_ext1_value_classStr']);
 
                 $JobName = (false !== mb_strpos($user_profile['openid_ext1_value_titles'], '教師')) ? 'teacher' : 'student';
 
                 //搜尋有無相同username資料
                 // die("$uname, $name, $email, $SchoolCode, $JobName, null, $classStr");
-                $classStr = preg_replace('/.+?({.+}).+/', '$1', $classStr);
-                $classStr = str_replace('&#34;', '"', superentities($classStr));
+                $classStr  = preg_replace('/.+?({.+}).+/', '$1', $classStr);
+                $classStr  = str_replace('&#34;', '"', superentities($classStr));
                 $user_data = json_decode($classStr, true);
                 // [{"classTitle":"503","gradeId":"5","classId":"03","subject":"普通班"}]
                 $newclassStr = ['classTitle' => $user_data['classTitle'], 'gradeId' => $user_data['gradeId'], 'classId' => $user_data['classId'], 'subject' => $user_data['subject']];
-                $classStr = is_array($user_data) ? '[' . json_encode($newclassStr) . ']' : '[]';
+                $classStr    = is_array($user_data) ? '[' . json_encode($newclassStr) . ']' : '[]';
 
                 $bio = $user_profile['openid_ext1_value_titles'];
                 Tools::login_xoops($uname, $name, $email, $SchoolCode, $JobName, null, '高雄市', null, null, $bio);
@@ -918,8 +925,8 @@ function superentities($str)
 {
     // get rid of existing entities else double-escape
     $str2 = '';
-    $str = html_entity_decode(stripslashes($str), ENT_QUOTES, 'UTF-8');
-    $ar = preg_split('/(?<!^)(?!$)/u', $str); // return array of every multi-byte character
+    $str  = html_entity_decode(stripslashes($str), ENT_QUOTES, 'UTF-8');
+    $ar   = preg_split('/(?<!^)(?!$)/u', $str); // return array of every multi-byte character
     foreach ($ar as $c) {
         $o = ord($c);
         if ((mb_strlen($c) > 1) || /* multi-byte [unicode] */
@@ -974,14 +981,14 @@ function km_login()
                 $myts = \MyTextSanitizer::getInstance();
 
                 $user_profile['contact/email'] = trim($user_profile['contact/email']);
-                $the_id = explode('@', $user_profile['contact/email']);
+                $the_id                        = explode('@', $user_profile['contact/email']);
 
                 //$uid = $user['id'];
-                $uname = $the_id[0] . '_km';
-                $name = addslashes($user_profile['namePerson']);
-                $email = mb_strtolower($user_profile['contact/email']);
-                $SchoolCode = addslashes($user_profile['axschema/school/id']);
-                $JobName = (false !== mb_strrpos($user_profile['axschema/school/titleStr'], '學生')) ? 'student' : 'teacher';
+                $uname      = $the_id[0] . '_km';
+                $name       = $myts->addSlashes($user_profile['namePerson']);
+                $email      = mb_strtolower($user_profile['contact/email']);
+                $SchoolCode = $myts->addSlashes($user_profile['axschema/school/id']);
+                $JobName    = (false !== mb_strrpos($user_profile['axschema/school/titleStr'], '學生')) ? 'student' : 'teacher';
 
                 //搜尋有無相同username資料
                 Tools::login_xoops($uname, $name, $email, $SchoolCode, $JobName, '', '金門縣');
@@ -1032,14 +1039,14 @@ function mt_login()
                 $myts = \MyTextSanitizer::getInstance();
 
                 $user_profile['contact/email'] = trim($user_profile['contact/email']);
-                $the_id = explode('@', $user_profile['contact/email']);
+                $the_id                        = explode('@', $user_profile['contact/email']);
 
                 //$uid = $user['id'];
-                $uname = $the_id[0] . '_mt';
-                $name = addslashes($user_profile['namePerson']);
-                $email = mb_strtolower($user_profile['contact/email']);
-                $SchoolCode = addslashes($user_profile['axschema/school/id']);
-                $JobName = 'Stu' === $user_profile['namePerson/friendly'] ? 'student' : 'teacher';
+                $uname      = $the_id[0] . '_mt';
+                $name       = $myts->addSlashes($user_profile['namePerson']);
+                $email      = mb_strtolower($user_profile['contact/email']);
+                $SchoolCode = $myts->addSlashes($user_profile['axschema/school/id']);
+                $JobName    = 'Stu' === $user_profile['namePerson/friendly'] ? 'student' : 'teacher';
 
                 //搜尋有無相同username資料
                 Tools::login_xoops($uname, $name, $email, $SchoolCode, $JobName, '', '連江縣');
@@ -1102,8 +1109,8 @@ function list_login()
             $url = XOOPS_URL . "/modules/tad_login/index.php?login&op={$openid}";
         }
         $auth_method[$i]['title'] = $openid;
-        $auth_method[$i]['url'] = $url;
-        $auth_method[$i]['logo'] = in_array($openid, $oidc_array) ? XOOPS_URL . "/modules/tad_login/images/oidc/" . Tools::$all_oidc[$openid]['tail'] . ".png" : XOOPS_URL . "/modules/tad_login/images/{$openid}_l.png";
+        $auth_method[$i]['url']   = $url;
+        $auth_method[$i]['logo']  = in_array($openid, $oidc_array) ? XOOPS_URL . "/modules/tad_login/images/oidc/" . Tools::$all_oidc[$openid]['tail'] . ".png" : XOOPS_URL . "/modules/tad_login/images/{$openid}_l.png";
         if (in_array($openid, $oidc_array)) {
             $auth_method[$i]['text'] = constant('_' . mb_strtoupper(Tools::$all_oidc[$openid]['tail'])) . ' OIDC ' . _MD_TADLOGIN_LOGIN;
         } elseif (in_array($openid, array_keys(Tools::$all_oidc2))) {
@@ -1121,9 +1128,9 @@ function tp_ldap_login()
 {
     global $xoopsModuleConfig;
     if (!isset($xoopsModuleConfig)) {
-        $modhandler = xoops_gethandler('module');
-        $xoopsModule = $modhandler->getByDirname("tad_login");
-        $config_handler = xoops_gethandler('config');
+        $modhandler        = xoops_gethandler('module');
+        $xoopsModule       = $modhandler->getByDirname("tad_login");
+        $config_handler    = xoops_gethandler('config');
         $xoopsModuleConfig = $config_handler->getConfigsByCat(0, $xoopsModule->mid());
     }
 
@@ -1142,7 +1149,7 @@ function change_pass_form()
 
     $uname = $xoopsUser->uname();
 
-    $sql = 'SELECT `hashed_date` FROM `' . $xoopsDB->prefix('tad_login_random_pass') . '` WHERE `uname` =' . $uname;
+    $sql    = 'SELECT `hashed_date` FROM `' . $xoopsDB->prefix('tad_login_random_pass') . '` WHERE `uname` =' . $uname;
     $result = $xoopsDB->query($sql) or die($xoopsDB->error());
 
     list($hashed_date) = $xoopsDB->fetchRow($result);

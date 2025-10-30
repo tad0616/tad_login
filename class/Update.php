@@ -30,7 +30,7 @@ class Update
     public static function chk_chk1()
     {
         global $xoopsDB;
-        $sql = 'SELECT count(*) FROM ' . $xoopsDB->prefix('tad_login_random_pass');
+        $sql    = 'SELECT count(*) FROM ' . $xoopsDB->prefix('tad_login_random_pass');
         $result = $xoopsDB->query($sql);
         if (empty($result)) {
             return false;
@@ -57,7 +57,7 @@ class Update
     public static function chk_chk2()
     {
         global $xoopsDB;
-        $sql = 'SELECT count(*) FROM ' . $xoopsDB->prefix('tad_login_config');
+        $sql    = 'SELECT count(*) FROM ' . $xoopsDB->prefix('tad_login_config');
         $result = $xoopsDB->query($sql);
         if (empty($result)) {
             return false;
@@ -85,7 +85,7 @@ class Update
     public static function chk_chk3()
     {
         global $xoopsDB;
-        $sql = 'SELECT count(`kind`) FROM ' . $xoopsDB->prefix('tad_login_config');
+        $sql    = 'SELECT count(`kind`) FROM ' . $xoopsDB->prefix('tad_login_config');
         $result = $xoopsDB->query($sql);
         if (empty($result)) {
             return false;
@@ -101,11 +101,11 @@ class Update
         $sql = 'ALTER TABLE ' . $xoopsDB->prefix('tad_login_config') . " ADD `kind` VARCHAR(255) NOT NULL DEFAULT '' AFTER `item`";
         $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL, 3, $xoopsDB->error());
 
-        $sql = 'SELECT config_id,item FROM ' . $xoopsDB->prefix('tad_login_config') . ' ';
+        $sql    = 'SELECT config_id,item FROM ' . $xoopsDB->prefix('tad_login_config') . ' ';
         $result = $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL, 3, $xoopsDB->error());
         while (list($config_id, $item) = $xoopsDB->fetchRow($result)) {
             $kind = (false !== mb_strpos($item, '@')) ? 'email' : 'teacher';
-            $sql = 'update ' . $xoopsDB->prefix('tad_login_config') . " set kind='$kind' where config_id='{$config_id}'";
+            $sql  = 'update ' . $xoopsDB->prefix('tad_login_config') . " set kind='$kind' where config_id='{$config_id}'";
             $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL, 3, $xoopsDB->error());
         }
 
@@ -116,7 +116,7 @@ class Update
     public static function fix_kh()
     {
         global $xoopsDB;
-        $sql = 'select `uname`, `uid` from ' . $xoopsDB->prefix('users') . " where right(`uname`, 3)='_hk' ";
+        $sql    = 'select `uname`, `uid` from ' . $xoopsDB->prefix('users') . " where right(`uname`, 3)='_hk' ";
         $result = $xoopsDB->queryF($sql) or die($xoopsDB->error());
         while (list($uname, $uid) = $xoopsDB->fetchRow($result)) {
             $sql = 'update ' . $xoopsDB->prefix('users') . " set `uname` = replace(`uname`,'_hk','_kh') where `uid`='$uid' ";
@@ -131,7 +131,7 @@ class Update
     public static function fix_ty()
     {
         global $xoopsDB;
-        $sql = 'select `uname`, `uid` from ' . $xoopsDB->prefix('users') . " where right(`uname`, 4)='_tyc' ";
+        $sql    = 'select `uname`, `uid` from ' . $xoopsDB->prefix('users') . " where right(`uname`, 4)='_tyc' ";
         $result = $xoopsDB->queryF($sql) or die($xoopsDB->error());
         while (list($uname, $uid) = $xoopsDB->fetchRow($result)) {
             $sql = 'update ' . $xoopsDB->prefix('users') . " set `uname` = replace(`uname`,'_tyc','_ty') where `uid`='$uid' ";
@@ -146,7 +146,7 @@ class Update
     public static function chk_chk4()
     {
         global $xoopsDB;
-        $sql = 'SELECT count(`hashed_date`) FROM ' . $xoopsDB->prefix('tad_login_random_pass');
+        $sql    = 'SELECT count(`hashed_date`) FROM ' . $xoopsDB->prefix('tad_login_random_pass');
         $result = $xoopsDB->query($sql);
         if (empty($result)) {
             return true;
@@ -170,7 +170,7 @@ class Update
     public static function fix_passwd()
     {
         global $xoopsDB;
-        $sql = 'select `uname`, `random_pass` from ' . $xoopsDB->prefix('tad_login_random_pass') . " where hashed_date is null";
+        $sql    = 'select `uname`, `random_pass` from ' . $xoopsDB->prefix('tad_login_random_pass') . " where hashed_date is null";
         $result = $xoopsDB->queryF($sql) or die($xoopsDB->error());
         while (list($uname, $random_pass) = $xoopsDB->fetchRow($result)) {
             $pass = self::authcode($random_pass, 'ENCODE', $uname, 0);
@@ -199,32 +199,32 @@ class Update
         // 密匙c用於變化生成的密文
         $keyc = $ckey_length ? ($operation == 'DECODE' ? substr($string, 0, $ckey_length) : substr(md5(microtime()), -$ckey_length)) : '';
         // 參與運算的密匙
-        $cryptkey = $keya . md5($keya . $keyc);
+        $cryptkey   = $keya . md5($keya . $keyc);
         $key_length = strlen($cryptkey);
         // 明文，前10位用來儲存時間戳，解密時驗證資料有效性，10到26位用來儲存$keyb(密匙b)，
         //解密時會通過這個密匙驗證資料完整性
         // 如果是解碼的話，會從第$ckey_length位開始，因為密文前$ckey_length位儲存 動態密匙，以保證解密正確
-        $string = $operation == 'DECODE' ? base64_decode(substr($string, $ckey_length)) : sprintf('%010d', $expiry ? $expiry + time() : 0) . substr(md5($string . $keyb), 0, 16) . $string;
+        $string        = $operation == 'DECODE' ? base64_decode(substr($string, $ckey_length)) : sprintf('%010d', $expiry ? $expiry + time() : 0) . substr(md5($string . $keyb), 0, 16) . $string;
         $string_length = strlen($string);
-        $result = '';
-        $box = range(0, 255);
-        $rndkey = array();
+        $result        = '';
+        $box           = range(0, 255);
+        $rndkey        = array();
         // 產生密匙簿
         for ($i = 0; $i <= 255; $i++) {
             $rndkey[$i] = ord($cryptkey[$i % $key_length]);
         }
         // 用固定的演算法，打亂密匙簿，增加隨機性，好像很複雜，實際上對並不會增加密文的強度
         for ($j = $i = 0; $i < 256; $i++) {
-            $j = ($j + $box[$i] + $rndkey[$i]) % 256;
-            $tmp = $box[$i];
+            $j       = ($j + $box[$i] + $rndkey[$i]) % 256;
+            $tmp     = $box[$i];
             $box[$i] = $box[$j];
             $box[$j] = $tmp;
         }
         // 核心加解密部分
         for ($a = $j = $i = 0; $i < $string_length; $i++) {
-            $a = ($a + 1) % 256;
-            $j = ($j + $box[$a]) % 256;
-            $tmp = $box[$a];
+            $a       = ($a + 1) % 256;
+            $j       = ($j + $box[$a]) % 256;
+            $tmp     = $box[$a];
             $box[$a] = $box[$j];
             $box[$j] = $tmp;
             // 從密匙簿得出密匙進行異或，再轉成字元

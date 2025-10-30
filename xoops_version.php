@@ -1,5 +1,7 @@
 <?php
+
 use XoopsModules\Tad_login\Tools;
+
 if (!class_exists('XoopsModules\Tad_login\Tools')) {
     require XOOPS_ROOT_PATH . '/modules/tad_login/preloads/autoloader.php';
 }
@@ -10,7 +12,7 @@ global $xoopsConfig;
 //---模組基本資訊---//
 $modversion['name'] = _MI_TADLOGIN_NAME;
 // $modversion['version'] = 5.8;
-$modversion['version'] = $_SESSION['xoops_version'] >= 20511 ? '6.0.0-Stable' : '6.0';
+$modversion['version'] = $_SESSION['xoops_version'] >= 20511 ? '6.1.0-Stable' : '6.1';
 $modversion['description'] = _MI_TADLOGIN_DESC;
 $modversion['author'] = _MI_TADLOGIN_AUTHOR;
 $modversion['credits'] = _MI_TADLOGIN_CREDITS;
@@ -21,13 +23,13 @@ $modversion['image'] = "images/logo_{$xoopsConfig['language']}.png";
 $modversion['dirname'] = basename(__DIR__);
 
 //---模組狀態資訊---//
-$modversion['release_date'] = '2024-12-12';
+$modversion['release_date'] = '2025-10-30';
 $modversion['module_website_url'] = 'https://tad0616.net/';
 $modversion['module_website_name'] = _MI_TAD_WEB;
 $modversion['module_status'] = 'release';
 $modversion['author_website_url'] = 'https://tad0616.net/';
 $modversion['author_website_name'] = _MI_TAD_WEB;
-$modversion['min_php'] = 5.5;
+$modversion['min_php'] = 7.3;
 $modversion['min_xoops'] = '2.5.10';
 
 //---paypal資訊---//

@@ -107,7 +107,7 @@ class Tools
             'tail' => 'ylc',
             'provideruri' => 'https://ylc.sso.edu.tw',
             'eduinfoep' => 'https://ylc.sso.edu.tw/cncresource/api/v1/eduinfo',
-            'scope' => ['educloudroles', 'openid', 'profile', 'eduinfo', 'openid2', 'email'],
+            'scope' => ['openid', 'profile', 'eduinfo', 'email'],
             'gzipenable' => false,
             'from' => '雲林縣',
         ],
@@ -366,7 +366,7 @@ class Tools
                 // $uid = $user['id'];
                 list($goog_uname, $m) = explode('@', $user['email']);
                 $uname                = empty($goog_uname) ? $user['id'] . '_goo' : $goog_uname . '_goo';
-                $name                 = addslashes($user['name']);
+                $name                 = $myts->addSlashes($user['name']);
                 $email                = $user['email'];
                 $bio                  = '';
                 $url                  = formatURL($user['link']);
@@ -459,8 +459,18 @@ class Tools
                 // Regenrate a new session id and destroy old session
                 $GLOBALS['sess_handler']->regenerate_id(true);
 
-                if ($_SESSION['login_from']) {
+                //若有要轉頁
+                if (!empty($xoopsModuleConfig['redirect_url'])) {
+                    $redirect_url = $xoopsModuleConfig['redirect_url'];
+                } elseif ($xoopsModuleConfig['bind_openid'] == 1) {
+                    $redirect_url = XOOPS_URL . '/modules/tad_login/index.php';
+                } elseif ($_SESSION['login_from']) {
                     $redirect_url = $_SESSION['login_from'];
+                } else {
+                    $redirect_url = XOOPS_URL . '/index.php';
+                }
+
+                if ($_SESSION['login_from']) {
                     unset($_SESSION['login_from']);
                 }
 
@@ -475,15 +485,6 @@ class Tools
                 // Set cookie for rememberme
                 if (!empty($xoopsConfig['usercookie'])) {
                     setcookie($xoopsConfig['usercookie'], 0, -1, '/', XOOPS_COOKIE_DOMAIN, true);
-                }
-
-                //若有要轉頁
-                if (!empty($xoopsModuleConfig['redirect_url'])) {
-                    $redirect_url = $xoopsModuleConfig['redirect_url'];
-                } elseif ($xoopsModuleConfig['bind_openid'] == 1) {
-                    $redirect_url = XOOPS_URL . '/modules/tad_login/index.php';
-                } elseif (empty($redirect_url)) {
-                    $redirect_url = XOOPS_URL . '/index.php';
                 }
 
                 redirect_header($redirect_url, 3, sprintf(_US_LOGGINGU, $user->getVar('name')), false);
@@ -527,7 +528,7 @@ class Tools
             $newuser->setVar('bio', $bio);
             $newuser->setVar('rank', 1);
             $newuser->setVar('level', 1);
-            //$newuser->setVar("user_occ", addslashes($user_profile['work'][0]['employer']['name']));
+            //$newuser->setVar("user_occ", $myts->addSlashes($user_profile['work'][0]['employer']['name']));
             $newuser->setVar('user_intrest', $SchoolCode);
             $newuser->setVar('user_mailok', true);
             if (!$memberHandler->insertUser($newuser, 1)) {
@@ -598,7 +599,7 @@ class Tools
     //非常給力的authcode加密函式,Discuz!經典程式碼(帶詳解)
     //函式authcode($string, $operation, $key, $expiry)中的$string：字串，明文或密文；$operation：DECODE表示解密，其它表示加密；$key：密匙；$expiry：密文有效期。
 
-    private static function authcode($string, $operation = 'DECODE', $key = '', $expiry = 0)
+    public static function authcode($string, $operation = 'DECODE', $key = '', $expiry = 0)
     {
         // 動態密匙長度，相同的明文會生成不同密文就是依靠動態密匙
         $ckey_length = 4;

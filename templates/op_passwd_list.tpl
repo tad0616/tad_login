@@ -1,4 +1,4 @@
-<{$TadLoginBootstrapEditableCode}>
+<{$BootstrapEditableCode|default:''}>
 <h2><{$smarty.const._MA_TADLOGIN_MANAGE_PASSWORD}></h2>
 
 <div class="alert alert-info" style="margin-top:10px;">

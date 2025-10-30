@@ -114,7 +114,7 @@ function insert_tad_login_config()
     global $xoopsDB, $xoopsUser;
 
     $myts = \MyTextSanitizer::getInstance();
-    $_POST['item'] = addslashes($_POST['item']);
+    $_POST['item'] = $myts->addSlashes($_POST['item']);
 
     if ('email' === $_POST['type']) {
         $item = (string) $_POST['item_email'];
@@ -139,7 +139,7 @@ function update_tad_login_config($config_id = '')
     global $xoopsDB, $xoopsUser;
 
     $myts = \MyTextSanitizer::getInstance();
-    $_POST['item'] = addslashes($_POST['item']);
+    $_POST['item'] = $myts->addSlashes($_POST['item']);
 
     if ('email' === $_POST['type']) {
         $item = (string) $_POST['item_email'];

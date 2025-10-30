@@ -37,7 +37,7 @@ $bio = "";
 
 if ($auth_method === "kh_oidc") {
     //高雄市例外處理
-    $name = addslashes($claims['name']); //視有無申請真實完整姓名，沒有的話為<姓+老師/學生>
+    $name = $myts->addSlashes($claims['name']); //視有無申請真實完整姓名，沒有的話為<姓+老師/學生>
     $email = $claims['email']; //每個人不一定有mail，沒有為空白字串
     if ($email) {
         list($uname, $domain) = explode('@', $email);
@@ -45,7 +45,7 @@ if ($auth_method === "kh_oidc") {
         $uname = $name;
     }
     $uname = $uname . '_' . $oidc_arr['tail']; //視有無申請真實帳號，沒有的話為hash值(即sub使用pairwaise)
-    $SchoolCode = addslashes($claims['kh_profile']['schoolid']); //教育部6位學校代碼
+    $SchoolCode = $myts->addSlashes($claims['kh_profile']['schoolid']); //教育部6位學校代碼
     $JobName = (isset($claims['gender'])) ? 'student' : 'teacher';
     $from = $oidc_arr['from'];
     // $bio_arr['eduinfo'] = $eduinfo;
@@ -54,9 +54,9 @@ if ($auth_method === "kh_oidc") {
     $bio = json_encode($claims, 256);
 } else if ($userinfo['email']) {
     $uname = $userinfo['sub'] . '_' . $oidc_arr['tail'];
-    $name = addslashes($userinfo['name']);
+    $name = $myts->addSlashes($userinfo['name']);
     $email = $userinfo['email'];
-    $SchoolCode = addslashes($eduinfo['schoolid']);
+    $SchoolCode = $myts->addSlashes($eduinfo['schoolid']);
     $eduinfo_json = json_encode($eduinfo, 256);
     $JobName = false !== mb_strpos($eduinfo_json, '教師') ? 'teacher' : 'student';
     // $JobName      = "teacher";
@@ -64,9 +64,9 @@ if ($auth_method === "kh_oidc") {
     $from = $oidc_arr['from'];
 } else {
     $uname = $claims['preferred_username'] . '_edu';
-    $name = addslashes($userinfo['name']);
+    $name = $myts->addSlashes($userinfo['name']);
     $email = $claims['email'];
-    $SchoolCode = addslashes($eduinfo['schoolid']);
+    $SchoolCode = $myts->addSlashes($eduinfo['schoolid']);
     $eduinfo_json = json_encode($eduinfo, 256);
     $JobName = strpos($eduinfo_json, '教師') !== false ? "teacher" : "student";
     // $JobName = 'teacher';
