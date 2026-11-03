@@ -15,7 +15,18 @@ if (!isset($xoopsModuleConfig)) {
     $TadLoginModuleConfig = $xoopsModuleConfig;
 }
 $oidc_setup = json_decode($TadLoginModuleConfig['oidc_setup'], true);
-$auth_method = $_SESSION['auth_method'] ? $_SESSION['auth_method'] : $auth_method;
+// 網址帶入的登入來源優先（登入連結不會更新 Session，Session 可能殘留上次的舊值）；callback 時才沿用 Session
+if (!empty($auth_method) && isset(Tools::$all_oidc[$auth_method])) {
+    $_SESSION['auth_method'] = $auth_method;
+} elseif (!empty($_SESSION['auth_method'])) {
+    $auth_method = $_SESSION['auth_method'];
+}
+
+// Session 遺失（逾時、重複重新整理、瀏覽器擋 Cookie 等）時，無法得知登入來源，導回登入頁重新開始
+if (empty($auth_method) || empty(Tools::$all_oidc[$auth_method]['provideruri'])) {
+    header('location: ' . XOOPS_URL . '/modules/tad_login/index.php');
+    exit;
+}
 
 $oidc_arr = Tools::$all_oidc[$auth_method];
 $responsetype = ['code'];
