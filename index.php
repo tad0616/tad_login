@@ -150,6 +150,7 @@ switch ($op) {
             if (in_array($op, $oidc_array)) {
                 $_SESSION['auth_method'] = $op;
                 Tools::edu_login($op);
+                exit;
             } else {
                 list_login();
                 $op = 'list_login';
