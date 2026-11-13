@@ -1,6 +1,9 @@
-Tad Login 6.3 (Unreleased)
+Tad Login 6.3 (Released 2026-11-13)
 ================================================
 1. Fixed a security issue where county OpenID logins could be forged
+2. Added state verification to LINE login to prevent login CSRF
+3. LINE login no longer stores the access token in a cookie, and ID token verification is strengthened
+4. Fixed PHP 8.5 compatibility issues
 
 Tad Login 6.2 (Released 2026-10-30)
 ================================================

@@ -107,16 +107,32 @@ class Google_HttpStreamIO extends Google_IO {
 
     $context = stream_context_create($options);
 
-    $response_data = file_get_contents($request->getUrl(),
-                                       false,
-                                       $context);
+    // tad_login：
+    # PHP 8.5 起棄用 $http_response_header：PHP 8.4+ 用 http_get_last_response_headers()，舊版改由 stream_get_meta_data() 取得
+    if (function_exists('http_get_last_response_headers')) {
+        $response_data = file_get_contents($request->getUrl(), false, $context);
+        $response_headers = http_get_last_response_headers();
+    } else {
+        $response_data = false;
+        $response_headers = null;
+        $fp = fopen($request->getUrl(), 'rb', false, $context);
+        if (false !== $fp) {
+            $meta = stream_get_meta_data($fp);
+            $response_headers = isset($meta['wrapper_data']) ? $meta['wrapper_data'] : null;
+            $response_data = stream_get_contents($fp);
+            fclose($fp);
+        }
+    }
 
     if (false === $response_data) {
       throw new Google_IOException("HTTP Error: Unable to connect");
     }
 
-    $respHttpCode = $this->getHttpResponseCode($http_response_header);
-    $responseHeaders = $this->getHttpResponseHeaders($http_response_header);
+    if (!is_array($response_headers)) {
+      $response_headers = array();
+    }
+    $respHttpCode = $this->getHttpResponseCode($response_headers);
+    $responseHeaders = $this->getHttpResponseHeaders($response_headers);
 
     if ($respHttpCode == 304 && $cached) {
       // If the server responded NOT_MODIFIED, return the cached request.

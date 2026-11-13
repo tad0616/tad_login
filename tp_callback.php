@@ -47,7 +47,7 @@ curl_setopt_array($ch, [
     ],
 ]);
 $response = curl_exec($ch);
-curl_close($ch);
+// PHP 8.0 起 curl_close() 已無作用，PHP 8.5 起棄用，交由 PHP 自動釋放
 
 $token       = json_decode($response);
 $accessToken = $token->access_token ?? '';

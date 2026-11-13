@@ -1099,7 +1099,7 @@ class OpenIDConnectClient
         }
 
         // Close the cURL resource, and free system resources
-        curl_close($ch);
+        // tad_login：PHP 8.0 起 curl_close() 已無作用，PHP 8.5 起棄用，故移除
 
         return $output;
     }

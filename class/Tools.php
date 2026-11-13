@@ -410,7 +410,7 @@ class Tools
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
         $response = curl_exec($ch);
-        curl_close($ch);
+        // PHP 8.0 起 curl_close() 已無作用，PHP 8.5 起棄用，交由 PHP 自動釋放
 
         return $response;
     }
@@ -451,13 +451,17 @@ class Tools
         // if (!session_id()) {
         //     session_start();
         // }
-        $state = sha1(time());
-        // $_SESSION['_line_state'] = $state;
+        // 產生防 CSRF 的 state，同一個 session 重複產生連結時沿用，避免頁面上多個登入連結互相覆蓋
+        if (empty($_SESSION['tad_login_line_state']) || !is_string($_SESSION['tad_login_line_state'])) {
+            $_SESSION['tad_login_line_state'] = bin2hex(random_bytes(16));
+        }
+        $state = $_SESSION['tad_login_line_state'];
 
-        define("CLIENT_ID", $TadLoginModuleConfig['line_id']);
-        define("CLIENT_SECRET", $TadLoginModuleConfig['line_secret']);
-        define("REDIRECT_URI", XOOPS_URL . '/modules/tad_login/line_callback.php'); //登入後返回位置
-        define("SCOPE", 'openid%20profile%20email');                                //授權範圍以%20分隔 可以有3項openid，profile，email
+        // 同一次請求可能被呼叫多次（區塊與登入頁），避免重複定義常數的警告
+        defined('CLIENT_ID') || define('CLIENT_ID', (string) ($TadLoginModuleConfig['line_id'] ?? ''));
+        defined('CLIENT_SECRET') || define('CLIENT_SECRET', (string) ($TadLoginModuleConfig['line_secret'] ?? ''));
+        defined('REDIRECT_URI') || define('REDIRECT_URI', XOOPS_URL . '/modules/tad_login/line_callback.php'); //登入後返回位置
+        defined('SCOPE') || define('SCOPE', 'openid%20profile%20email');                                       //授權範圍以%20分隔 可以有3項openid，profile，email
 
         $Line     = new \LineController();
         $loginUrl = $Line->lineLogin($state); //產生LINE登入連結

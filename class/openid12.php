@@ -98,7 +98,7 @@ class LightOpenID
                     $this->xrds_override_pattern = $pattern;
                     $this->xrds_override_replacement = $replacement;
                 } else {
-                    trigger_error('Invalid value specified for "xrdsOverride".', E_USER_ERROR);
+                    throw new \ErrorException('Invalid value specified for "xrdsOverride".');
                 }
                 break;
         }
@@ -447,11 +447,25 @@ class LightOpenID
         }
 
         $context = stream_context_create($opts);
-        $data = file_get_contents($url, false, $context);
+        # PHP 8.5 起棄用 $http_response_header：PHP 8.4+ 用 http_get_last_response_headers()，舊版改由 stream_get_meta_data() 取得
+        if (function_exists('http_get_last_response_headers')) {
+            $data = file_get_contents($url, false, $context);
+            $response_headers = http_get_last_response_headers();
+        } else {
+            $data = false;
+            $response_headers = null;
+            $fp = fopen($url, 'rb', false, $context);
+            if (false !== $fp) {
+                $meta = stream_get_meta_data($fp);
+                $response_headers = isset($meta['wrapper_data']) ? $meta['wrapper_data'] : null;
+                $data = stream_get_contents($fp);
+                fclose($fp);
+            }
+        }
         # This is a hack for providers who don't support HEAD requests.
         # It just creates the headers array for the last request in $this->headers.
-        if (isset($http_response_header)) {
-            $this->headers = $this->parse_header_array($http_response_header, $update_claimed_id);
+        if (is_array($response_headers)) {
+            $this->headers = $this->parse_header_array($response_headers, $update_claimed_id);
         }
 
         return $data;

@@ -38,8 +38,11 @@ class LineProfiles
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
         $result = curl_exec($ch);
-        curl_close($ch);
-        $result = json_decode($result);
+        // PHP 8.0 起 curl_close() 已無作用，PHP 8.5 起棄用，交由 PHP 自動釋放
+        $result = json_decode((string) $result, true);
+        if (!is_array($result)) {
+            $result = [];
+        }
         $result['accessToken2'] = $accessToken;
         return $result;
     }
@@ -65,8 +68,8 @@ class LineProfiles
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
         $result = curl_exec($ch);
-        curl_close($ch);
-        $result = json_decode($result, true);
+        // PHP 8.0 起 curl_close() 已無作用，PHP 8.5 起棄用，交由 PHP 自動釋放
+        $result = json_decode((string) $result, true);
         return $result;
     }
 
@@ -146,12 +149,12 @@ class LineProfiles
         //---------------------
         $res_json = file_get_contents($url, false, stream_context_create($context));
 
-        $info = json_decode($res_json);
-        if (empty($info->access_token)) {
-            echo 'Can Not Find User Access Token';
+        $info = json_decode((string) $res_json, true);
+        if (!is_array($info) || empty($info['access_token']) || empty($info['id_token']) || !is_string($info['id_token'])) {
+            return ['', ''];
         }
 
-        return [$info->access_token, $info->id_token];
+        return [(string) $info['access_token'], $info['id_token']];
     }
 
     public function VerifyIDtoken($id_token)
@@ -160,7 +163,7 @@ class LineProfiles
 
         $url = "https://api.line.me/oauth2/v2.1/verify";
         $query = "";
-        $query .= "id_token=" . $id_token . "&";
+        $query .= "id_token=" . urlencode((string) $id_token) . "&";
         $query .= "client_id=" . urlencode($config[$this->configManager::CLIENT_ID]) . "&";
         $header = array(
             "Content-Type: application/x-www-form-urlencoded",
@@ -176,10 +179,10 @@ class LineProfiles
         );
 
         $res_json = file_get_contents($url, false, stream_context_create($context));
-        $info = json_decode($res_json, true);
+        $info = json_decode((string) $res_json, true);
 
         // print_r($info); die();
 
-        return $info;
+        return is_array($info) ? $info : [];
     }
 }

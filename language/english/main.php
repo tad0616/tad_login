@@ -30,3 +30,6 @@ define('_MD_TNOPENID_NOACTTPADM', 'No permission');
 define('_MD_TNOPENID_NO_USER', 'No such account');
 define('_MD_TADLOGIN_LOGIN_LIST', 'Quick Login');
 define('_MD_TADLOGIN_OPENID_VERIFY_FAIL', 'OpenID verification failed, please log in again.');
+define('_MD_TADLOGIN_LINE_STATE_FAIL', 'LINE login verification failed or expired, please log in again.');
+define('_MD_TADLOGIN_LINE_LOGIN_FAIL', 'LINE login failed, please log in again.');
+define('_MD_TADLOGIN_LINE_NO_EMAIL', 'Unable to get the email of your LINE account. Please allow email access and log in again.');

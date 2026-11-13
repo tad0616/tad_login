@@ -30,3 +30,6 @@ define('_MD_TNOPENID_NOACTTPADM', '無權限');
 define('_MD_TNOPENID_NO_USER', '無此帳號');
 define('_MD_TADLOGIN_LOGIN_LIST', '快速登入');
 define('_MD_TADLOGIN_OPENID_VERIFY_FAIL', 'OpenID 驗證失敗，請重新登入。');
+define('_MD_TADLOGIN_LINE_STATE_FAIL', 'LINE 登入驗證失敗或已逾時，請重新登入。');
+define('_MD_TADLOGIN_LINE_LOGIN_FAIL', 'LINE 登入失敗，請重新登入。');
+define('_MD_TADLOGIN_LINE_NO_EMAIL', '無法取得 LINE 帳號的 Email，請確認已授權提供 Email 後再登入。');

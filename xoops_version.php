@@ -1,5 +1,4 @@
 <?php
-
 use XoopsModules\Tad_login\Tools;
 
 if (!class_exists('XoopsModules\Tad_login\Tools')) {
@@ -10,7 +9,7 @@ $modversion = [];
 global $xoopsConfig;
 
 //---模組基本資訊---//
-$modversion['name'] = _MI_TADLOGIN_NAME;
+$modversion['name']        = _MI_TADLOGIN_NAME;
 $modversion['version']     = $_SESSION['xoops_version'] >= 20511 ? '6.3.0-Stable' : '6.3';
 $modversion['description'] = _MI_TADLOGIN_DESC;
 $modversion['author']      = _MI_TADLOGIN_AUTHOR;
@@ -22,7 +21,7 @@ $modversion['image']       = "images/logo_{$xoopsConfig['language']}.png";
 $modversion['dirname']     = basename(__DIR__);
 
 //---模組狀態資訊---//
-$modversion['release_date']        = '2026-10-30';
+$modversion['release_date']        = '2026-11-13';
 $modversion['module_website_url']  = 'https://tad0616.net/';
 $modversion['module_website_name'] = _MI_TAD_WEB;
 $modversion['module_status']       = 'release';
