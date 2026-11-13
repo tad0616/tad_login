@@ -230,6 +230,135 @@ class Tools
         return $targetPort === $basePort;
     }
 
+    /**
+     * 驗證 OpenID 回應，失敗時直接導回並中止
+     * 1. 綁定 claimed_id / identity 必須屬於預期的 OP 主機（避免攻擊者指定自己的驗證伺服器）
+     * 2. 關鍵欄位必須在簽章範圍內
+     * 3. 交由 OP 以 check_authentication 驗證簽章
+     * 4. 檢查 nonce 時效並防止重放
+     * 5. 移除未簽章的欄位，之後 getAttributes() 只會讀到已簽章資料
+     *
+     * @param object $openid       LightOpenID 物件
+     * @param string $expected_url 該縣市 OpenID 的網址（取其主機名稱比對）
+     */
+    public static function verify_openid($openid, $expected_url)
+    {
+        if (!self::check_openid($openid, $expected_url)) {
+            redirect_header(XOOPS_URL . '/modules/tad_login/index.php', 5, _MD_TADLOGIN_OPENID_VERIFY_FAIL);
+            exit;
+        }
+    }
+
+    private static function check_openid($openid, $expected_url)
+    {
+        if (!is_object($openid) || !isset($openid->data) || !is_array($openid->data)) {
+            return false;
+        }
+        $data = $openid->data;
+
+        $expected_host = is_string($expected_url) ? parse_url($expected_url, PHP_URL_HOST) : null;
+        if (empty($expected_host)) {
+            return false;
+        }
+        $expected_host = strtolower($expected_host);
+
+        if (!isset($data['openid_mode']) || 'id_res' !== $data['openid_mode']) {
+            return false;
+        }
+
+        foreach (['openid_identity', 'openid_signed', 'openid_sig', 'openid_return_to', 'openid_assoc_handle'] as $key) {
+            if (!isset($data[$key]) || !is_string($data[$key]) || '' === $data[$key]) {
+                return false;
+            }
+        }
+
+        // claimed_id 與 identity 都必須在預期的 OP 主機底下
+        $check_ids = ['openid_identity'];
+        if (isset($data['openid_claimed_id'])) {
+            $check_ids[] = 'openid_claimed_id';
+        }
+        foreach ($check_ids as $key) {
+            if (!is_string($data[$key]) || !self::is_openid_host($data[$key], $expected_host)) {
+                return false;
+            }
+        }
+
+        // 關鍵欄位必須被簽章
+        $signed = array_map('trim', explode(',', $data['openid_signed']));
+        $must_signed = ['identity', 'return_to'];
+        if (isset($data['openid_claimed_id'])) {
+            $must_signed[] = 'claimed_id';
+        }
+        if (isset($data['openid_response_nonce'])) {
+            $must_signed[] = 'response_nonce';
+        }
+        foreach ($must_signed as $item) {
+            if (!in_array($item, $signed, true)) {
+                return false;
+            }
+        }
+
+        // nonce 時效檢查（允許 15 分鐘內）
+        $nonce = isset($data['openid_response_nonce']) && is_string($data['openid_response_nonce']) ? $data['openid_response_nonce'] : '';
+        if ('' !== $nonce) {
+            if (!preg_match('/^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z)/', $nonce, $m)) {
+                return false;
+            }
+            $nonce_time = strtotime($m[1]);
+            if (false === $nonce_time || abs(time() - $nonce_time) > 900) {
+                return false;
+            }
+        }
+
+        // 交由 OP 驗證簽章（validate() 會以 claimed_id 進行 discovery，前面已確認主機正確）
+        if (!$openid->validate()) {
+            return false;
+        }
+
+        // 防止同一個回應被重複使用
+        if ('' !== $nonce) {
+            xoops_load('XoopsCache');
+            if (class_exists('XoopsCache')) {
+                $cache_key = 'tad_login_nonce_' . md5($expected_host . '|' . $nonce);
+                if (false !== \XoopsCache::read($cache_key)) {
+                    return false;
+                }
+                \XoopsCache::write($cache_key, 1, 1800);
+            }
+        }
+
+        // 只保留已簽章欄位與協定必要欄位
+        $keep = ['openid_mode' => true, 'openid_signed' => true, 'openid_sig' => true];
+        foreach ($signed as $item) {
+            $keep['openid_' . str_replace('.', '_', $item)] = true;
+        }
+        $clean = [];
+        foreach ($data as $key => $value) {
+            if (isset($keep[$key]) || 'openid_ns' === $key || 0 === strpos($key, 'openid_ns_')) {
+                $clean[$key] = $value;
+            }
+        }
+        $openid->data = $clean;
+
+        return true;
+    }
+
+    private static function is_openid_host($url, $expected_host)
+    {
+        if ('' === $url || preg_match('/[\x00-\x20\x7f\\\\]/', $url)) {
+            return false;
+        }
+        $parts = parse_url($url);
+        if (false === $parts || !isset($parts['scheme'], $parts['host']) || isset($parts['user']) || isset($parts['pass'])) {
+            return false;
+        }
+        if (!in_array(strtolower($parts['scheme']), ['http', 'https'], true)) {
+            return false;
+        }
+
+        return strtolower($parts['host']) === $expected_host;
+    }
+
     public static function change_pass($newpass, $uname = '', $redirect_header = true)
     {
         global $xoopsUser, $xoopsDB;

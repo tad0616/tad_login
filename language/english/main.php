@@ -29,3 +29,4 @@ define('_MD_TNOPENID_INCORRECTLOGIN', 'Unable to login');
 define('_MD_TNOPENID_NOACTTPADM', 'No permission');
 define('_MD_TNOPENID_NO_USER', 'No such account');
 define('_MD_TADLOGIN_LOGIN_LIST', 'Quick Login');
+define('_MD_TADLOGIN_OPENID_VERIFY_FAIL', 'OpenID verification failed, please log in again.');

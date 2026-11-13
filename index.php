@@ -189,14 +189,8 @@ function tainan_login()
             // die($openid_url);
             header('Location: ' . $openid_url);
         } else {
-            // Never trust attributes until the OP has verified the signed response.
-            // validate() checks return_to and asks the discovered OP to verify the
-            // signed response, rejecting forged assoc_handle and signature values.
-            if (!$openid->validate()) {
-                redirect_header(XOOPS_URL, 5, 'OpenID 驗證失敗，請重新登入。');
-                exit;
-            }
-
+            // 未通過 OP 簽章驗證前，不可信任任何 OpenID 回傳資料
+            Tools::verify_openid($openid, 'https://openid.tn.edu.tw/op/');
             $user_profile = $openid->getAttributes();
             // Utility::dd($user_profile);
             /*
@@ -295,6 +289,8 @@ function tp_login()
             $openid->optional = ['axschema/person/accountType', 'axschema/school/titleStr', 'axschema/school/id'];
             header('Location: ' . $openid->authUrl());
         } else {
+            // 未通過 OP 簽章驗證前，不可信任任何 OpenID 回傳資料
+            Tools::verify_openid($openid, 'https://openid.tp.edu.tw/openid/op.action');
             $user_profile = $openid->getAttributes();
             // die(var_export($user_profile));
 
@@ -346,6 +342,8 @@ function kl_login()
             $openid->optional = ['axschema/person/guid', 'axschema/school/titleStr', 'axschema/school/id', 'tw/person/guid', 'tw/isas/roles'];
             header('Location: ' . $openid->authUrl());
         } else {
+            // 未通過 OP 簽章驗證前，不可信任任何 OpenID 回傳資料
+            Tools::verify_openid($openid, 'https://openid.kl.edu.tw');
             $user_profile = $openid->getAttributes();
             //die(var_export($user_profile));
             // Login or logout url will be needed depending on current user state.
@@ -403,6 +401,8 @@ function ilc_login()
             //$openid->optional = array('contact/postalCode/home' , 'contact/country/home'  , 'pref/language','pref/timezone','axschema/person/guid' , 'axschema/school/titleStr'  , 'axschema/school/id','tw/person/guid' , 'tw/isas/roles'  );
             header('Location: ' . $openid->authUrl());
         } else {
+            // 未通過 OP 簽章驗證前，不可信任任何 OpenID 回傳資料
+            Tools::verify_openid($openid, 'https://openid.ilc.edu.tw');
             $user_profile = $openid->getAttributes();
             // die(var_export($user_profile));
             // Login or logout url will be needed depending on current user state.
@@ -461,6 +461,8 @@ function hc_login()
             $openid->optional = ['contact/postalCode/home', 'contact/country/home', 'pref/language', 'pref/timezone'];
             header('Location: ' . $openid->authUrl());
         } else {
+            // 未通過 OP 簽章驗證前，不可信任任何 OpenID 回傳資料
+            Tools::verify_openid($openid, 'https://openid.hc.edu.tw');
             $user_profile = $openid->getAttributes();
             // die(var_export($user_profile));
             // Login or logout url will be needed depending on current user state.
@@ -569,6 +571,8 @@ function hlc_login($county = '', $openid_identity = '')
             'pref/timezone' => '{"sid":"1446xx","title":["教師","學校管理者"]}',
             )
              */
+            // 未通過 OP 簽章驗證前，不可信任任何 OpenID 回傳資料
+            Tools::verify_openid($openid, $openid_identity);
             $user_profile = $openid->getAttributes();
             // Utility::dd($user_profile);
             // die(var_export($user_profile));
@@ -669,6 +673,8 @@ function ty_login()
                 header('Location: ' . $openid->authUrl());
             }
         } else {
+            // 未通過 OP 簽章驗證前，不可信任任何 OpenID 回傳資料
+            Tools::verify_openid($openid, 'https://openid.tyc.edu.tw');
             $user_profile = $openid->getAttributes();
             // Utility::dd($user_profile);
             if ($user_profile) {
@@ -718,6 +724,8 @@ function tc_login($county = '', $openid_identity = '')
             $openid->optional = ['axschema/person/guid', 'axschema/school/titleStr', 'axschema/school/id', 'tw/person/guid', 'tw/isas/roles'];
             header('Location: ' . $openid->authUrl());
         } else {
+            // 未通過 OP 簽章驗證前，不可信任任何 OpenID 回傳資料
+            Tools::verify_openid($openid, $openid_identity);
             $user_profile = $openid->getAttributes();
             // die(var_export($user_profile));
             /*
@@ -894,7 +902,10 @@ function kh_login()
         )
          */
         } else {
-            $user_profile = $openid->getAttributes();
+            // 未通過 OP 簽章驗證前，不可信任任何 OpenID 回傳資料
+            Tools::verify_openid($openid, 'https://openid.kh.edu.tw/');
+            // 高雄回傳欄位以 openid_xxx 原始名稱取用；verify_openid() 已移除未簽章欄位
+            $user_profile = $openid->data;
             // die(var_export($user_profile));
             // Login or logout url will be needed depending on current user state.
 
@@ -983,6 +994,8 @@ function km_login()
             // $openid->optional = array('axschema/person/guid', 'axschema/school/titleStr', 'axschema/school/id');
             header('Location: ' . $openid->authUrl());
         } else {
+            // 未通過 OP 簽章驗證前，不可信任任何 OpenID 回傳資料
+            Tools::verify_openid($openid, 'https://openid.cnc.km.edu.tw');
             $user_profile = $openid->getAttributes();
             // die(var_export($user_profile));
             /*
@@ -1041,6 +1054,8 @@ function mt_login()
             $openid->optional = ['axschema/person/guid', 'axschema/school/titleStr', 'axschema/school/id', 'tw/person/guid', 'tw/isas/roles'];
             header('Location: ' . $openid->authUrl());
         } else {
+            // 未通過 OP 簽章驗證前，不可信任任何 OpenID 回傳資料
+            Tools::verify_openid($openid, 'https://openid.matsu.edu.tw');
             $user_profile = $openid->getAttributes();
             // die(var_export($user_profile));
             /*

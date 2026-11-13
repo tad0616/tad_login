@@ -1,3 +1,7 @@
+Tad Login 6.3 (Unreleased)
+================================================
+1. Fixed a security issue where county OpenID logins could be forged
+
 Tad Login 6.2 (Released 2026-10-30)
 ================================================
 1. Enhanced Tainan OpenID login authentication

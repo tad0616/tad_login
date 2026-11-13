@@ -11,7 +11,7 @@ global $xoopsConfig;
 
 //---模組基本資訊---//
 $modversion['name'] = _MI_TADLOGIN_NAME;
-$modversion['version']     = $_SESSION['xoops_version'] >= 20511 ? '6.2.0-Stable' : '6.2';
+$modversion['version']     = $_SESSION['xoops_version'] >= 20511 ? '6.3.0-Stable' : '6.3';
 $modversion['description'] = _MI_TADLOGIN_DESC;
 $modversion['author']      = _MI_TADLOGIN_AUTHOR;
 $modversion['credits']     = _MI_TADLOGIN_CREDITS;
